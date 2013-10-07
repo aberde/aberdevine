@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true" enhancementEnabled="true"
+		lazyLoadingEnabled="true" maxRequests="100" maxSessions="100"
+		maxTransactions="100" useStatementNamespaces="true"/>
+
+	<typeAlias type="whoya.whoyaMap" alias="cmap" />
+	<typeAlias type="egovframework.rte.psl.dataaccess.util.EgovMap" alias="egovMap" />
+
+	<sqlMap resource="login/login.xml"/>
+	<sqlMap resource="ac/ACI0010.xml"/>
+	<sqlMap resource="co/COI0010.xml"/>
+	<sqlMap resource="co/COI0020.xml"/>
+	<sqlMap resource="co/COI0040.xml"/>
+	<sqlMap resource="hr/HRI0010.xml"/>
+	<!-- tempSQL 
+	<sqlMap resource="co/COI0030.xml"/>
+	-->
+</sqlMapConfig>
