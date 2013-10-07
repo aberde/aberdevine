@@ -14,22 +14,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hanjin.bean.ApprovalCountBean;
 import com.hanjin.bean.BulletinBoardCountBean;
-import com.hanjin.bean.EmailLoginBean;
-import com.hanjin.bean.EmailMailCountBean;
 import com.hanjin.bean.EncryptPasswordBean;
 import com.hanjin.bean.GwMailLoginBean;
 import com.hanjin.bean.GwMailMailCountBean;
 import com.hanjin.bean.MemberInfoBean;
-import com.hanjin.bean.MessageCountBean;
 import com.hanjin.bean.SsoLoginBean;
 import com.hanjin.dao.ApprovalCountDAO;
 import com.hanjin.dao.BulletinBoardCountDAO;
-import com.hanjin.dao.EmailLoginDAO;
-import com.hanjin.dao.EmailMailCountDAO;
 import com.hanjin.dao.EncryptPasswordDAO;
 import com.hanjin.dao.GwMailLoginDAO;
 import com.hanjin.dao.GwMailMailCountDAO;
-import com.hanjin.dao.MessageCountDAO;
 import com.hanjin.dao.SsoLoginDAO;
 
 @Controller
