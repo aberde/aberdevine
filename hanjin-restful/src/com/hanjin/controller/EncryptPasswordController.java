@@ -1,5 +1,12 @@
 package com.hanjin.controller;
 
+import java.io.StringWriter;
+import java.io.Writer;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,12 +31,20 @@ public class EncryptPasswordController {
 	 */
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	@ResponseBody
-	public EncryptPasswordBean.Result getEncryptPassword(String pwd) {
+	public EncryptPasswordBean.Result getEncryptPassword(String pwd, HttpServletResponse response) {
 		System.out.println("Creating encryptPassword");
 
 		EncryptPasswordBean bean = new EncryptPasswordBean();
 		try {
 			bean = service.getEncryptPassword(pwd);
+		
+			JAXBContext jaxbContext = JAXBContext.newInstance(EncryptPasswordBean.class);
+			Marshaller marshaller = jaxbContext.createMarshaller();
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			Writer writer = new StringWriter();
+			marshaller.marshal(bean.getResult(), writer);
+		
+			response.setContentLength(writer.toString().replaceAll("\\n\\s*", "").getBytes().length);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
