@@ -44,7 +44,7 @@ public class EncryptPasswordController {
 			Writer writer = new StringWriter();
 			marshaller.marshal(bean.getResult(), writer);
 		
-			response.setContentLength(writer.toString().replaceAll("\\n\\s*", "").getBytes().length);
+			response.setContentLength(writer.toString().replaceAll("\\n\\s*", "").getBytes("UTF-8").length);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
