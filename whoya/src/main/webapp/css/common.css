@@ -1,0 +1,28 @@
+	.dhx_combo_box{
+		margin-top:0px;
+		height:15px;
+	}
+	.dhx_combo_input{
+		top:-3px;
+		font-family: Arial;
+		font-size: 8pt;
+}	
+	.dhx_combo_img{
+		position:absolute;
+		top:0;
+		right:0;
+		width:15px;
+		height:15px;
+	}
+	/* grid_hover */
+	.grid_hover {
+		background-color:#7FFFD4;
+		font-size:12px;
+	}
+	html, body {
+		width: 100%;
+		height: 100%;
+		margin: 0px;
+		padding: 0px;
+		overflow: hidden;
+	}
