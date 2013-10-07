@@ -14,16 +14,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hanjin.bean.ApprovalCountBean;
 import com.hanjin.bean.BulletinBoardCountBean;
+import com.hanjin.bean.EmailLoginBean;
+import com.hanjin.bean.EmailMailCountBean;
 import com.hanjin.bean.EncryptPasswordBean;
 import com.hanjin.bean.GwMailLoginBean;
 import com.hanjin.bean.GwMailMailCountBean;
 import com.hanjin.bean.MemberInfoBean;
+import com.hanjin.bean.MessageCountBean;
 import com.hanjin.bean.SsoLoginBean;
 import com.hanjin.dao.ApprovalCountDAO;
 import com.hanjin.dao.BulletinBoardCountDAO;
+import com.hanjin.dao.EmailLoginDAO;
+import com.hanjin.dao.EmailMailCountDAO;
 import com.hanjin.dao.EncryptPasswordDAO;
 import com.hanjin.dao.GwMailLoginDAO;
 import com.hanjin.dao.GwMailMailCountDAO;
+import com.hanjin.dao.MessageCountDAO;
 import com.hanjin.dao.SsoLoginDAO;
 
 @Controller
@@ -83,25 +89,23 @@ public class MemberInfoController {
 			
 			// 5단계 EMAIL LOGIN
 			// http://localhost.hanjin.com/hanjin/emailLogin?userid=barbarkl@hanjin.com
-			// TODO 성공/실패 확인.
-//			bean.setFailDepth("5단계 EMAIL LOGIN");
-//			EmailLoginDAO emailLoginDAO = new EmailLoginDAO();
-//			EmailLoginBean emailLoginBean = emailLoginDAO.getEmailLogin(ssoLoginBean.getEmail());
-//			String JSESSIONID = emailLoginBean.getResult().getJSESSIONID();
-//			System.out.println("JSESSIONID : " + JSESSIONID);
-//			if ( !"0".equals(emailLoginBean.getResult().getFail()) ) {
-//				throw new Exception(emailLoginBean.getResult().getFail());
-//			}
+			bean.setFailDepth("5단계 EMAIL LOGIN");
+			EmailLoginDAO emailLoginDAO = new EmailLoginDAO();
+			EmailLoginBean emailLoginBean = emailLoginDAO.getEmailLogin(ssoLoginBean.getEmail());
+			String JSESSIONID = emailLoginBean.getResult().getJSESSIONID();
+			System.out.println("JSESSIONID : " + JSESSIONID);
+			if ( !"0".equals(emailLoginBean.getResult().getFail()) ) {
+				throw new Exception(emailLoginBean.getResult().getFail());
+			}
 			
 			// 6단계 Email Mail Count
 			// http://localhost.hanjin.com/hanjin/emailMailCount?dirkey=Inbox_barbarkl&JSESSIONID=???
-			// TODO 성공/실패 확인.
-//			bean.setFailDepth("6단계 Email Mail Count");
-//			String dirkey = "Inbox_" + ssoLoginBean.getEmail().substring(0, ssoLoginBean.getEmail().indexOf("@"));
-//			EmailMailCountDAO emailMailCountDAO = new EmailMailCountDAO();
-//			EmailMailCountBean emailMailCountBean = emailMailCountDAO.getEmailMailCount(dirkey, JSESSIONID);
-//			String newcnt = emailMailCountBean.getResult().getNewcnt();
-//			System.out.println("newcnt : " + newcnt);
+			bean.setFailDepth("6단계 Email Mail Count");
+			String dirkey = "Inbox_" + ssoLoginBean.getEmail().substring(0, ssoLoginBean.getEmail().indexOf("@"));
+			EmailMailCountDAO emailMailCountDAO = new EmailMailCountDAO();
+			EmailMailCountBean emailMailCountBean = emailMailCountDAO.getEmailMailCount(dirkey, JSESSIONID);
+			String newcnt = emailMailCountBean.getResult().getNewcnt();
+			System.out.println("newcnt : " + newcnt);
 			
 			// 7단계 Approval Count
 			// http://localhost.hanjin.com/hanjin/approvalCount?pUserID=2004620
@@ -121,22 +125,22 @@ public class MemberInfoController {
 			
 			// 9단계 Message Count
 			// http://localhost.hanjin.com/hanjin/messageCount?luid=2004620
-//			bean.setFailDepth("9단계 Message Count");
-//			MessageCountDAO messageCountDAO = new MessageCountDAO();
-//			MessageCountBean messageCountBean = messageCountDAO.getMessageCount(ssoLoginBean.getLuid());
-//			System.out.println("messageCount : " + messageCountBean.getResult().getMessageCount());
+			bean.setFailDepth("9단계 Message Count");
+			MessageCountDAO messageCountDAO = new MessageCountDAO();
+			MessageCountBean messageCountBean = messageCountDAO.getMessageCount(ssoLoginBean.getLuid());
+			System.out.println("messageCount : " + messageCountBean.getResult().getMessageCount());
 
 			bean.setFailDepth(null);
 			bean.setResult("success");
 			bean.setLuid(ssoLoginBean.getLuid());
 			bean.setGuid(ssoLoginBean.getGuid());
 			bean.setEmail(ssoLoginBean.getEmail());
-//			bean.setJSESSIONID(emailLoginBean.getResult().getJSESSIONID());
+			bean.setJSESSIONID(emailLoginBean.getResult().getJSESSIONID());
 			bean.setGwMailCount(gwMailMailCountBean.getResult().getBox().getFoldersAll().getUnReadCount());
-//			bean.setEmailCount(emailMailCountBean.getResult().getNewcnt());
+			bean.setEmailCount(emailMailCountBean.getResult().getNewcnt());
 			bean.setApprovalCount(approvalCountBean.getRoot().getData().getCNT().getRESULT());
 			bean.setBulletinBoradCount(bulletinBoardCountBean.getRoot().getRESULT());
-//			bean.setMessageCount(messageCountBean.getResult().getMessageCount());
+			bean.setMessageCount(messageCountBean.getResult().getMessageCount());
 			
 			
 		} catch (Exception e) {
@@ -150,7 +154,7 @@ public class MemberInfoController {
 				Writer writer = new StringWriter();
 				marshaller.marshal(bean, writer);
 			
-				response.setContentLength(writer.toString().replaceAll("\\n\\s*", "").getBytes().length);
+				response.setContentLength(writer.toString().replaceAll("\\n\\s*", "").getBytes("UTF-8").length);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
