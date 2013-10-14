@@ -16,7 +16,8 @@ public class Property {
         try {
             if ( prop == null ) {
                 prop = new Properties();
-                prop.load(new BufferedReader(new InputStreamReader(new FileInputStream(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "Dbcopy.properties"))));
+                String path = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
+                prop.load(new BufferedReader(new InputStreamReader(new FileInputStream(path.substring(0, path.lastIndexOf("/") + 1) + "Dbcopy.properties"))));
             }
         } catch (Exception e) {
             e.printStackTrace();
