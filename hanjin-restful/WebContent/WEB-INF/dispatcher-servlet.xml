@@ -18,6 +18,14 @@
 	<mvc:annotation-driven />
 
 	<!-- DBCOPY 스케쥴러(매일 06시) -->
+	<!-- cron expression의 각각의 필드는 다음을 나타낸다.(왼쪽 -> 오른쪽 순) -->
+	<!-- Seconds(0 ~ 59) -->
+	<!-- Minutes(0 ~ 59) -->
+	<!-- Hours(0 ~ 23) -->
+	<!-- Day-of-month(1 ~ 31) -->
+	<!-- Month(1 ~12 or JAN ~ DEC) -->
+	<!-- Day-Of-Week(1 ~ 7 or SUN-SAT) -->
+	<!-- Year (optional)(empty, 1970 ~ 2099) -->
 	<bean id="dbcopy" class="com.hanjin.cmm.Dbcopy"></bean>
 	<task:scheduler id="dbcopyScheduler" pool-size="10" />
 	<task:scheduled-tasks scheduler="dbcopyScheduler">
