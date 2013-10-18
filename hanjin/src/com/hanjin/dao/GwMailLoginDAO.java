@@ -21,7 +21,7 @@ public class GwMailLoginDAO {
 		GwMailLoginBean bean = new GwMailLoginBean();
 
 		String url = HanjinServerURL.GW_MAIL_LOGIN_URL;
-		String data = "MailId=" + MailId + "&MailPassword=" + URLEncoder.encode(MailPassword, "UTF-8")
+		String data = "MailId=" + URLEncoder.encode(MailId, "UTF-8") + "&MailPassword=" + URLEncoder.encode(MailPassword, "UTF-8")
 				+ "&ServerVersion=Exchange2010"
 				+ "&ServiceUrl=" + URLEncoder.encode("http://exchange.hanjin.com/ews/exchange.asmx", "UTF-8")
 				+ "&function=Authentication";

@@ -21,7 +21,7 @@ public class GwMailMailCountDAO {
 		GwMailMailCountBean bean = new GwMailMailCountBean();
 
 		String url = HanjinServerURL.GW_MAIL_MAILCOUNT_URL;
-		String data = "MailId=" + MailId + "&MailPassword=" + URLEncoder.encode(MailPassword, "UTF-8")
+		String data = "MailId=" + URLEncoder.encode(MailId, "UTF-8") + "&MailPassword=" + URLEncoder.encode(MailPassword, "UTF-8")
 				+ "&ServerVersion=Exchange2010"
 				+ "&ServiceUrl=" + URLEncoder.encode("http://exchange.hanjin.com/ews/exchange.asmx", "UTF-8")
 				+ "&BoxName=InBox"

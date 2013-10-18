@@ -1,5 +1,6 @@
 package com.hanjin.dao;
 
+import java.net.URLEncoder;
 import java.util.Map;
 
 import com.hanjin.bean.EncryptPasswordBean;
@@ -19,7 +20,7 @@ public class EncryptPasswordDAO {
 		EncryptPasswordBean bean = new EncryptPasswordBean();
 		
 		String url = HanjinServerURL.ENCRYPT_PASSWORD_URL;
-		String data = "pwd=" + pwd;
+		String data = "pwd=" + URLEncoder.encode(pwd, "UTF-8");
 		Map<String, String> retValue = URLConnection.getURLConnection(url, data, "");
 
 		EncryptPasswordBean.Result result = new EncryptPasswordBean.Result();
