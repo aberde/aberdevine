@@ -1,5 +1,6 @@
 package com.hanjin.dao;
 
+import java.net.URLEncoder;
 import java.util.Map;
 
 import com.hanjin.bean.EmailMailCountBean;
@@ -20,7 +21,7 @@ public class EmailMailCountDAO {
 		EmailMailCountBean bean = new EmailMailCountBean();
 
 		String url = HanjinServerURL.EMAIL_MAILCOUNT_URL;
-		String data = "dirkey=" + dirkey;
+		String data = "dirkey=" + URLEncoder.encode(dirkey, "UTF-8");
 		String cookie = "JSESSIONID=" + JSESSIONID;
 		Map<String, String> retValue = URLConnection.getURLConnection(url, data, cookie);
 

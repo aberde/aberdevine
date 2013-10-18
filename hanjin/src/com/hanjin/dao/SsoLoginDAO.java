@@ -22,7 +22,7 @@ public class SsoLoginDAO {
 		SsoLoginBean bean = new SsoLoginBean();
 
 		String url = HanjinServerURL.SSO_LOGIN_URL;
-		String data = "USER=" + user + "&PASSWORD=" + URLEncoder.encode(password, "UTF-8")
+		String data = "USER=" + URLEncoder.encode(user, "UTF-8") + "&PASSWORD=" + URLEncoder.encode(password, "UTF-8")
 				+ "&TARGET=" + URLEncoder.encode("http://nmo.hanjin.com:8000/sm_sso/auth.html", "UTF-8")
 				+ "&smagentname=" + URLEncoder.encode("hj_nmo_agent01.hanjin.com", "UTF-8");
 		Map<String, String> retValue = URLConnection.getURLConnection(url, data, "");
