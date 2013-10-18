@@ -50,6 +50,8 @@ public class Dbcopy {
 		setDeptMaster();
 		// 직원정보 동기화
 		setUserMaster();
+		// 최상위부서코드 수정
+		setTopDeptUpdate();
         
         // ORACLE 접속테스트
 //        oracleConnectionTest();
@@ -88,7 +90,7 @@ public class Dbcopy {
     private static void setUserMaster() {
         // ##############################################################################
 		// ## 직원정보
-		// ###############
+    	// ##############################################################################
 		System.out.println("[" + today + "] TOP_COMM.VWTBLUSERMASTER start");
 		
 		StringBuffer sql = new StringBuffer();
@@ -299,6 +301,64 @@ public class Dbcopy {
 		setData("TOP_COMM.VWTBLADDJOB", getData(sql.toString()), BACKUP_ADDJOB);
 		
 		System.out.println("[" + today + "] TOP_COMM.VWTBLADDJOB end");
+		// ##############################################################################
+    }
+    
+    /**
+     * 최상위부서코드 수정.
+    */
+    private static void setTopDeptUpdate() {
+        // ##############################################################################
+		// ## 최상위부서코드 수정
+    	// ##############################################################################
+		System.out.println("[" + today + "]  TOP_COMM.VWTBLDEPTMASTER UPDATE start");
+		
+	    Connection conn = null;
+		PreparedStatement pstmt1 = null;
+		
+		try {
+			Class.forName(ORACLE_DB_CLASSFORNAME);
+			conn = DriverManager.getConnection(ORACLE_DB_URL, ORACLE_DB_ID, ORACLE_DB_PW);
+			conn.setAutoCommit(false);
+			
+	        // ###########################################################################
+	        // ## 테이블 데이터 수정
+	        // ###########################################################################
+	        StringBuffer sql = new StringBuffer();
+	        sql.append(" UPDATE TOP_COMM.VWTBLDEPTMASTER SET                                           \n");
+	        sql.append("  PARENTDEPTID = NULL                                                          \n");
+	        sql.append(" WHERE PARENTDEPTID = 'Top'                                                    \n");
+	        
+	        pstmt1 = conn.prepareStatement(sql.toString());
+	        
+	        int updateCnt = pstmt1.executeUpdate();
+	        
+	        System.out.println("[" + today + "] UPDATE_TABLE TOP_COMM.VWTBLDEPTMASTER : " + updateCnt);
+	        // ###########################################################################
+		} catch (Exception e) {
+		    try {
+                conn.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+			e.printStackTrace();
+		} finally {
+			try {
+			    if ( conn != null ) {
+			        conn.commit();
+			    }
+			    if ( pstmt1 != null ) {
+			        pstmt1.close();
+                }
+                if ( conn != null ) {
+                    conn.close();
+                }
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		System.out.println("[" + today + "] TOP_COMM.VWTBLDEPTMASTER UPDATE end");
 		// ##############################################################################
     }
 
