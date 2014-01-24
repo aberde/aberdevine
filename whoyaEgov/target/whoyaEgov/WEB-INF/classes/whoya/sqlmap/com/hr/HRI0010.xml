@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="HRI0010">
+	<select id="HRI0010Rc_dptCd" parameterClass="cmap" resultClass="cmap">
+	<!-- 부서  -->
+	<![CDATA[
+    SELECT '' CD, '전체' CDNM FROM DUAL
+    UNION ALL
+    SELECT CD, CDNM
+    FROM   CO_CD 
+    WHERE  COID = #coId#
+    AND    CDID = 'HR0010'
+    START WITH HCD = '0'
+    CONNECT BY PRIOR CD = HCD
+	]]>
+	</select>
+	<select id="HRI0010Rc_jgicCd" parameterClass="cmap" resultClass="cmap">
+	<!-- 재직구분코드  -->
+	<![CDATA[
+    SELECT CD, CDNM
+    FROM   CO_CD
+    WHERE  COID = #coId#
+    AND    CDID = 'HR0050' 
+    ORDER BY SEQ
+	]]>
+	</select>
+	<select id="HRI0010Rc_rolCd" parameterClass="cmap" resultClass="cmap">
+	<!-- 직위  -->
+	<![CDATA[
+    SELECT CD, CDNM
+    FROM   CO_CD
+    WHERE  COID = #coId#
+    AND    CDID = 'HR0020' 
+    ORDER BY SEQ
+	]]>
+	</select>
+	<select id="HRI0010Rc_rolId" parameterClass="cmap" resultClass="cmap">
+	<!-- 직무  -->
+	<![CDATA[
+    SELECT CD, CDNM
+    FROM   CO_CD
+    WHERE  COID = #coId#
+    AND    CDID = 'HR0030' 
+    ORDER BY SEQ
+	]]>
+	</select>
+	<select id="HRI0010Rc_grpId" parameterClass="cmap" resultClass="cmap">
+	<!-- 작업그룹  -->
+	<![CDATA[
+    SELECT CD, CDNM
+    FROM   CO_CD
+    WHERE  COID = #coId#
+    AND    CDID = 'HR0040' 
+    ORDER BY SEQ
+	]]>
+	</select>
+	<select id="HRI0010Rs" parameterClass="cmap" resultClass="cmap">
+	<!-- 사원리스트  -->
+	<![CDATA[
+    SELECT EMPNO, EMPNMKO, EMPNMHN, EMPNMEN, RSNO, PNGDIR, SEX, TO_DATE(BIRDD) BIRDD, BIRDV, MARYN, TO_DATE(MARDD) MARDD
+         , POSID, JGBID, ROLID, HBG, RGNID, RNMID, WRKDPTCD, ADDDPTCD, SUPDPTCD, SENDPTCD, EMAIL, COTELNO, LNTELNO, HPTELNO, HMTELNO
+         , POSTNO, ADDR1, ADDR2, WRKDV, DNDDV, TANDV, RCUDV, RCUCNTN, TO_DATE(ROLSETDD) ROLSETDD, TO_DATE(DPTSETDD) DPTSETDD, HOLDV
+		 , TO_DATE(INTDD) INTDD, TO_DATE(OUTDD) OUTDD, OUTCNTN, INSDT, INSID, UPDDT, UPDID
+	FROM   HR_EMR	 
+    WHERE  COID = #coId#
+    AND   (WRKDPTCD LIKE '%' || '' || '%' OR WRKDPTCD IS NULL)
+    AND   (EMPNMKO LIKE '%' || '' || '%' OR EMPNMKO IS NULL)
+	]]>
+	</select>
+	<insert id="HRI0010Is">
+	<!-- 사용자 INSERT -->
+	<![CDATA[
+    INSERT INTO HR_EMR (COID, EMPNO, EMPNMKO, EMPNMHN, EMPNMEN, RSNO, PNGDIR, SEX, BIRDD, BIRDV, MARYN, MARDD
+         , POSID, JGBID, ROLID, HBG, RGNID, RNMID, WRKDPTCD, ADDDPTCD, SUPDPTCD, SENDPTCD, EMAIL, COTELNO, LNTELNO, HPTELNO, HMTELNO
+         , POSTNO, ADDR1, ADDR2, WRKDV, DNDDV, TANDV, RCUDV, RCUCNTN, ROLSETDD, DPTSETDD, HOLDV
+		 , INTDD, OUTDD, OUTCNTN, INSID 
+    )
+    VALUES (#coId#, #empNo#, #empNmKo#, #empNmHn#, #empNmEn#, #rsNo#, #pngDir#, #sex#, REPLACE(#birDD#,'-',''), #birDv#, #marYn#, REPLACE(#marDD#,'-','')
+         , #posId#, #jgbId#, #rolId#, #hbg#, #rgnId#, #rnmId#, #wrkDptCd#, #addDptCd#, #supDptCd#, #senDptCd#, #eMail#, #coTelNo#, #lnTelNo#, #hpTelNo#, #hmTelNo#
+         , #postNo#, #addr1#, #addr2#, #wrkDv#, #dndDv#, #tanDv#, #rcuDv#, #rcuCntn#, REPLACE(#rolSetDD#,'-',''), REPLACE(#dptSetDD#,'-',''), #holDv#
+		 , REPLACE(#intDD#,'-',''), REPLACE(#outDD#,'-',''), #outCntn#, #usrId#
+    )
+	]]>
+	</insert>
+	<update id="HRI0010Us">
+	<!-- 사용자 UPDATE -->
+	<![CDATA[
+    UPDATE HR_EMR 
+    SET    EMPNMKO  = #empNmKo#
+         , EMPNMHN  = #empNmHn#
+         , EMPNMEN  = #empNmEn#
+         , RSNO     = #rsNo#
+         , PNGDIR   = #pngDir#
+         , SEX      = #sex#
+         , BIRDD    = REPLACE(#birDD#,'-','')
+         , BIRDV    = #birDv#
+         , MARYN    = #marYn#
+         , MARDD    = REPLACE(#marDD#,'-','')
+         , POSID    = #posId#
+         , JGBID    = #jgbId#
+         , ROLID    = #rolId#
+         , HBG      = #hbg#
+         , RGNID    = #rgnId#
+         , RNMID    = #rnmId#
+         , WRKDPTCD = #wrkDptCd#
+         , ADDDPTCD = #addDptCd#
+         , SUPDPTCD = #supDptCd#
+         , SENDPTCD = #senDptCd#
+         , EMAIL    = #eMail#
+         , COTELNO  = #coTelNo#
+         , LNTELNO  = #lnTelNo#
+         , HPTELNO  = #hpTelNo#
+         , HMTELNO  = #hmTelNo#
+         , POSTNO   = #postNo#
+         , ADDR1    = #addr1#
+         , ADDR2    = #addr2#
+         , WRKDV    = #wrkDv#
+         , DNDDV    = #dndDv#
+         , TANDV    = #tanDv#
+         , RCUDV    = #rcuDv#
+         , RCUCNTN  = #rcuCntn#
+         , ROLSETDD = REPLACE(#rolSetDD#,'-','')
+         , DPTSETDD = REPLACE(#dptSetDD#,'-','')
+         , HOLDV    = #holDv#
+		 , INTDD    = REPLACE(#intDD#,'-','')
+		 , OUTDD    = REPLACE(#outDD#,'-','')
+		 , OUTCNTN  = #outCntn#
+		 , UPDID    = #usrId# 
+    WHERE  COID = #coId#
+    AND    EMPNO = #empNo#
+	]]>
+	</update>
+	<delete id="HRI0010Ds">
+	<!-- 사용자 DELETE -->
+	<![CDATA[
+    DELETE FROM HR_EMR 
+    WHERE  COID = #coId#
+    AND    EMPNO = #empNo#
+	]]>
+	</delete>
+</sqlMap>

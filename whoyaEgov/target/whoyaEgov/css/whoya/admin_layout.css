@@ -1,0 +1,72 @@
+@charset "utf-8";
+
+#wrap { position:relative; width:100%; text-align:left; background:url(/images/whoya/bg_01.jpg) left top repeat-x; }
+#login_wrap { position:relative; width:100%; height:810px; text-align:left; background:url(/images/whoya/bg_05.jpg) center top repeat-x; }
+
+/* top */
+#top { position:relative; width:1000px; height:147px; text-align:left; }
+#top h1 { padding:0 0 0 0; }
+#top .topmenu { position:absolute; top:7px; right:0; }
+#top .topmenu ul { float:left; }
+#top .topmenu li { float:left; padding:0 10px 0 0; }
+#top .topmenu li.start { float:left; padding:0 6px 0 0; }
+#top .topmenu li.text { float:left; padding:2px 6px 0 0; }
+#top .menu { position:absolute; top:44px; left:237px; }
+#top .menu ul { float:left; }
+#top .menu li { float:left; padding:0 38px 0 0; }
+#top .submenu { position:absolute; top:80px; left:202px; width:100%; }
+#top .submenu ul { float:left; }
+#top .submenu li { float:left; padding:0 0 0 0; }
+#top .submenu li.submenu_li { background:url(/images/whoya/bg_03.jpg) repeat-x; padding:8px 10px 0 0; height:30px; }
+
+/* contentbox */
+#contentbox { clear:both; position:relative; width:1000px; text-align:left; }
+
+/* leftmenu */
+#leftmenu { float:left; position:relative; width:161px; text-align:left; padding:0 0 0 14px;  }
+#leftmenu ul { background:url(/images/whoya/left_menu_bg.jpg) repeat; }
+#leftmenu li.sub_start { height:20px; padding:12px 0 0 20px;  }
+#leftmenu li.sub { height:20px; padding:0 0 0 20px;  }
+#leftmenu li.sub_last { height:20px; padding:0 0 5px 20px; border-bottom:1px solid #e0e0e0; }
+
+/* main */
+#main_content { position:relative; width:1000px; padding:0 0 0 20px;}
+#main_con_title { padding:0 0 12px 0; }
+
+/* content */
+#content { float:right; position:relative; width:796px; }
+#con_title { padding:0 0 16px 0; border-bottom:1px solid #e0e0e0; }
+#con_blank { height:20px; }
+
+/* paging */
+#con_paging { text-align:center; font-weight:bold; color:#4c4c4c; }
+#con_paging a { padding:0 5px 0 0; }
+#con_paging span { color:#808080;  }
+
+/* line */
+#line { clear:both; position:relative; width:100%; height:20px; border-bottom:1px solid #dadada; }
+
+/* footer */
+#footer { clear:both; position:relative; width:796px; text-align:center; padding:20px 0 20px 0; }
+
+/* popup wrap */
+#pop_wrap { position:relative; width:100%; text-align:left; background:url(/images/whoya/pop_bg_02.jpg) left top repeat-x; }
+
+/* popup top */
+#pop_top { position:relative; width:800px; height:59px; text-align:left; }
+#pop_top h1 { padding:0 0 0 0; }
+#pop_top h2 { position:absolute;	 top:13px; left:766px; }
+#pop_btn { width:800px; text-align:center; }
+
+/* popup top2 */
+#pop_top2 { position:relative; width:800px; height:45px; text-align:left; }
+#pop_top2 .pop_top2_tab { position:absolute; top:20px; left:8px; }
+#pop_top2 .pop_top2_tab ul { float:left; }
+#pop_top2 .pop_top2_tab li { float:left; padding:0 5px 0 0; }
+#pop_top2 h2 { position:absolute; top:13px; left:766px; }
+
+/* popup top */
+#pop_top3 { position:relative; width:900px; height:45px; text-align:left; }
+#pop_top3 h1 { padding:0 0 0 0; }
+#pop_top3 h2 { position:absolute; top:13px; left:866px; }
+#pop_btn3 { width:900px; text-align:center; }

@@ -1,0 +1,61 @@
+package egovframework.com.ext.jfile.utils;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
+import egovframework.com.ext.jfile.GlobalVariables;
+import egovframework.com.ext.jfile.security.service.CipherService;
+import egovframework.com.ext.jfile.service.JFile;
+
+/**
+ *  클래스
+ * @author 정호열
+ * @since 2010.10.17
+ * @version 1.0
+ * @see
+ *
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *   
+ *   수정일        수정자       수정내용
+ *  -------       --------    ---------------------------
+ *   2010.10.17   정호열       최초 생성
+ *   2013.12.19	표준프레임워크	공통컴포넌트 추가 적용 (패키지 변경 및 jazzlib 사용 제외)
+ *
+ * </pre>
+ */
+public class ZipUtils {
+
+	private static final byte[] buf = new byte[1024];
+	
+	public static void createZipJFile(JFile[] targetFiles, OutputStream os)
+			throws Exception {
+		
+		ZipOutputStream zipOs = new ZipOutputStream(os);
+
+		for (int i = 0; i < targetFiles.length; i++) {
+			FileInputStream in = new FileInputStream(new File(
+					targetFiles[i].getPath()));
+			zipOs.putNextEntry(new ZipEntry(targetFiles[i]
+					.getOriginalFileName()));
+			if ("true".equalsIgnoreCase(targetFiles[i].getUseSecurity())) {
+				CipherService service = (CipherService)SpringUtils.getBean(GlobalVariables.CIPHER_SERVICE_BEAN_NAME);
+				service.decryptForZipFile(in, zipOs);
+			} else {
+				int data;
+				while ((data = in.read(buf)) > 0) {
+					zipOs.write(buf, 0, data);
+				}
+			}
+			zipOs.closeEntry();
+
+			in.close();
+		}
+
+		zipOs.close();
+		os.close();
+	}
+}

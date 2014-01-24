@@ -1,0 +1,58 @@
+What is new in v.3.6 build 130619
+
+form
+----------------
+blockOffset attr added, allows to change left-side block offset
+enableCustomColors/customColors attrs added for colorpicker
+fieldsets-in-a-row overlapping fixed
+skin autodetect added
+highlight focused checkbox/radio for skyblue/web skins
+empty commas fix ([,,,] in init)
+fix validation for radio ('return null' bug)
+onKeyUp/onKeyDown events fixed (broken args), added for button
+uploader - content-type added in samples
+uploader - autoStart for html4 fix
+reloadOptions added (ability to reload options for combo, select, multiselect)
+minutesInterval,showWeekNumbers attrs added for calendar
+block-float fix for ie
+width calc for input/select and fieldset improved
+uploader - adding files into list and dnd fixed for safari 5.0.5 - 5.1.7 for windows
+
+
+layout
+----------------
+header/footer rendering improved, detach added, demo updated
+collapsed vertical text for ie10
+
+
+popup
+----------------
+demo with grid fixed
+position determine logic improved
+onBeforeHide event added
+display text inside popup improved for ie6/quircks modes
+
+
+calendar
+----------------
+ability to set interval for minutes added
+abolity to set tooltips for dates added (also popup-based tooltips)
+onMouseOver/onMouseOut events added
+skin autodetect added
+week numbers added
+show/hide time imporved
+selector behaviour fixed for ie
+onPopupShow/onPopupHide events added
+getCellDimension function added
+
+
+toolbar
+----------------
+reset button hover state on layout's view change fixed
+buttonSelect fix for IE
+input was not clickable on iPad
+
+
+combo
+---------------
+slow rendering in large option lists - fixed
