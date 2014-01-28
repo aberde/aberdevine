@@ -193,7 +193,14 @@
             APPLCNT_NM LIKE '%' ||#searchKeyword#|| '%'
         </isEqual>
         ORDER BY 13 DESC
-        ) TB ) WHERE rn BETWEEN #firstIndex# + 1 AND #firstIndex# + #recordCountPerPage#
+        ) TB ) 
+        <isNotEmpty property="pageIndex">
+			<isNotEqual property="pageIndex" compareValue="0">
+			<![CDATA[
+				WHERE rn BETWEEN #firstIndex# + 1 AND #firstIndex# + #recordCountPerPage#
+			]]>
+			</isNotEqual>
+		</isNotEmpty>
     </select>
     
     

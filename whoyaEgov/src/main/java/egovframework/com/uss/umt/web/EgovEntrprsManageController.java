@@ -248,7 +248,7 @@ public class EgovEntrprsManageController {
      * @return uss/umt/EgovEntrprsMberManage
      * @throws Exception
      */
-    @IncludedInfo(name="기업회원관리", order = 450 ,gid = 50)
+    @IncludedInfo(name="기업회원관리", whoyaListUrl="/whoya/uss/umt/EgovEntrprsMberManage.do", order = 450 ,gid = 50)
     @RequestMapping(value="/uss/umt/EgovEntrprsMberManage.do")
     public String selectEntrprsMberList(
     		@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO,
