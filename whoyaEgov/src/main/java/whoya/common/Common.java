@@ -6,8 +6,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
-import whoya.whoyaList;
 import whoya.whoyaMap;
 
 public class Common {
@@ -25,19 +25,23 @@ public class Common {
 				Object obj = list.get(i);
 				Class<?> superClass = obj.getClass();
 				whoyaMap resultMap = new whoyaMap();
-				while ( superClass != null ) {
-					// Field[] fields = obj.getClass().getFields(); //private field는 나오지
-					// 않음.
-					Field[] superFields = superClass.getDeclaredFields();
-					for ( int j = 0; j < superFields.length; j++ ) {
-						superFields[j].setAccessible(true);
-						resultMap.put(superFields[j].getName(), superFields[j].get(obj));
+				if ( "egovframework.rte.psl.dataaccess.util.EgovMap".equals(superClass.getName()) ) {  // EgovMap Class의 경우 Map형식으로 whoyaMap으로 변환.
+					resultMap.putAll((Map)obj);
+				} else {
+					while ( superClass != null ) {
+						// Field[] fields = obj.getClass().getFields(); //private field는 나오지
+						// 않음.
+						Field[] superFields = superClass.getDeclaredFields();
+						for ( int j = 0; j < superFields.length; j++ ) {
+							superFields[j].setAccessible(true);
+							resultMap.put(superFields[j].getName(), superFields[j].get(obj));
+						}
+						
+						superClass = superClass.getSuperclass();
 					}
-					
-					superClass = superClass.getSuperclass();
 				}
-				
 				resultList.add(resultMap);
+				
 			}
 			return resultList;
 		} catch (Exception e) {
