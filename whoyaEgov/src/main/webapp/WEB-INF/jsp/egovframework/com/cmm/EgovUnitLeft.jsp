@@ -130,7 +130,7 @@
 		</c:if>
 		<tr height = "16">
 		    <td align="left" valign="center" width="100%">
-		    	<a href="#" class="link" onclick="content('<c:url value="${result.listUrl}"/>', '<c:url value="${result.whoyaListUrl}"/>');"> <c:out value="${result.order}"/>. <c:out value="${result.name}"/></a>
+		    	<a href="#" class="link" onclick="content('<c:url value="${result.listUrl}"/>', '<c:url value="${result.whoyaListUrl}"/>');return false;"> <c:out value="${result.order}"/>. <c:out value="${result.name}"/></a>
 			</td>
 		</tr>
 	</c:forEach>
