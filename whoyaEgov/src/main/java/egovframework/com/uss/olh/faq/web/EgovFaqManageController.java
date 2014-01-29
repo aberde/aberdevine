@@ -112,7 +112,7 @@ public class EgovFaqManageController {
      * @throws Exception
      */
     @IncludedInfo(name="FAQ관리", order = 540 ,gid = 50)
-    @RequestMapping(value="/uss/olh/faq/FaqListInqire.do")
+    @RequestMapping(value="whoya/uss/olh/faq/FaqListInqireJSONList.do")
     public String selectFaqList(@ModelAttribute("searchVO") FaqManageDefaultVO searchVO, ModelMap model) throws Exception {
     	
     	/** EgovPropertyService.SiteList */
