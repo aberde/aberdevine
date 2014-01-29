@@ -59,7 +59,7 @@ public class FaqManageDAO extends EgovComAbstractDAO {
 	 * @return 글 목록
 	 * @exception Exception
 	 */
-    public List<FaqManageVO> selectFaqList(FaqManageDefaultVO searchVO) throws Exception {
+    public List selectFaqList(FaqManageDefaultVO searchVO) throws Exception {
     	
         return list("FaqManageDAO.selectFaqList", searchVO);
         
