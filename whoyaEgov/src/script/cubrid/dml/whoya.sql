@@ -1,202 +1,202 @@
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22000000', '20000000', '¿Øµø∫Œ√§', 'C', 
+   ('0010', '22000000', '20000000', 'Ïú†ÎèôÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22010000', '22000000', '¿Øµø√Ê¥Á∫Œ√§', 'C', 
+   ('0010', '22010000', '22000000', 'Ïú†ÎèôÏ∂©ÎãπÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22010100', '22010000', '¿Øµø¡ææ˜ø¯±ﬁø©√Ê¥Á∫Œ√§', 'C', 
+   ('0010', '22010100', '22010000', 'Ïú†ÎèôÏ¢ÖÏóÖÏõêÍ∏âÏó¨Ï∂©ÎãπÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22010200', '22010000', '±‚≈∏¥‹±‚√Ê¥Á∫Œ√§', 'C', 
+   ('0010', '22010200', '22010000', 'Í∏∞ÌÉÄÎã®Í∏∞Ï∂©ÎãπÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22010201', '22010200', '¥‹±‚¡¶«∞∫∏¡ı√Ê¥Á∫Œ√§', 'C', 
+   ('0010', '22010201', '22010200', 'Îã®Í∏∞Ï†úÌíàÎ≥¥Ï¶ùÏ∂©ÎãπÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22010202', '22010200', '¥‹±‚±∏¡∂¡∂¡§√Ê¥Á∫Œ√§', 'C', 
+   ('0010', '22010202', '22010200', 'Îã®Í∏∞Íµ¨Ï°∞Ï°∞Ï†ïÏ∂©ÎãπÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22010203', '22010200', '¥‹±‚π˝¿˚º“º€√Ê¥Á∫Œ√§', 'C', 
+   ('0010', '22010203', '22010200', 'Îã®Í∏∞Î≤ïÏ†ÅÏÜåÏÜ°Ï∂©ÎãπÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22010204', '22010200', '¥‹±‚º’Ω«∫Œ¥„∞Ëæ‡√Ê¥Á∫Œ√§', 'C', 
+   ('0010', '22010204', '22010200', 'Îã®Í∏∞ÏÜêÏã§Î∂ÄÎã¥Í≥ÑÏïΩÏ∂©ÎãπÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22010205', '22010200', ' ªÁ»ƒ√≥∏Æ ∫π±∏ ¡§»≠ ∫ÒøÎ¿ª ¿ß«— ¥‹±‚√Ê¥Á∫Œ√§', 'C', 
+   ('0010', '22010205', '22010200', ' ÏÇ¨ÌõÑÏ≤òÎ¶¨ Î≥µÍµ¨ Ï†ïÌôî ÎπÑÏö©ÏùÑ ÏúÑÌïú Îã®Í∏∞Ï∂©ÎãπÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22010206', '22010200', '±◊ π€¿« ±‚≈∏¥‹±‚√Ê¥Á∫Œ√§', 'C', 
+   ('0010', '22010206', '22010200', 'Í∑∏ Î∞ñÏùò Í∏∞ÌÉÄÎã®Í∏∞Ï∂©ÎãπÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22020000', '22000000', '∏≈¿‘√§π´ π◊ ±‚≈∏¿Øµø√§π´', 'C', 
+   ('0010', '22020000', '22000000', 'Îß§ÏûÖÏ±ÑÎ¨¥ Î∞è Í∏∞ÌÉÄÏú†ÎèôÏ±ÑÎ¨¥', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22020100', '22020000', '¥‹±‚∏≈¿‘√§π´', 'C', 
+   ('0010', '22020100', '22020000', 'Îã®Í∏∞Îß§ÏûÖÏ±ÑÎ¨¥', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22020200', '22020000', '¥‹±‚πÃ¡ˆ±ﬁ±›', 'C', 
+   ('0010', '22020200', '22020000', 'Îã®Í∏∞ÎØ∏ÏßÄÍ∏âÍ∏à', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22020300', '22020000', '¥‹±‚πÃ¡ˆ±ﬁ∫ÒøÎ', 'C', 
+   ('0010', '22020300', '22020000', 'Îã®Í∏∞ÎØ∏ÏßÄÍ∏âÎπÑÏö©', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22020400', '22020000', '¥‹±‚¿”¥Î∫∏¡ı±›', 'C', 
+   ('0010', '22020400', '22020000', 'Îã®Í∏∞ÏûÑÎåÄÎ≥¥Ï¶ùÍ∏à', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22020500', '22020000', '¥‹±‚øπºˆ±›', 'C', 
+   ('0010', '22020500', '22020000', 'Îã®Í∏∞ÏòàÏàòÍ∏à', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22020600', '22020000', '¥‹±‚º±ºˆ±›', 'C', 
+   ('0010', '22020600', '22020000', 'Îã®Í∏∞ÏÑ†ÏàòÍ∏à', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22030000', '22000000', '¥‹±‚¬˜¿‘±›', 'C', 
+   ('0010', '22030000', '22000000', 'Îã®Í∏∞Ï∞®ÏûÖÍ∏à', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22040000', '22000000', '¿Øµøº∫¿Â±‚¬˜¿‘±›', 'C', 
+   ('0010', '22040000', '22000000', 'Ïú†ÎèôÏÑ±Ïû•Í∏∞Ï∞®ÏûÖÍ∏à', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22050000', '22000000', 'πÃ¡ˆ±ﬁπ˝¿Œºº', 'C', 
+   ('0010', '22050000', '22000000', 'ÎØ∏ÏßÄÍ∏âÎ≤ïÏù∏ÏÑ∏', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22060000', '22050000', '¥Á±‚π˝¿Œºº∫Œ√§', 'C', 
+   ('0010', '22060000', '22050000', 'ÎãπÍ∏∞Î≤ïÏù∏ÏÑ∏Î∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22070000', '22050000', ' ±‚≈∏¿Øµø±›¿∂∫Œ√§', 'C', 
+   ('0010', '22070000', '22050000', ' Í∏∞ÌÉÄÏú†ÎèôÍ∏àÏúµÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22080000', '22050000', '±‚≈∏¿Øµø∫Ò±›¿∂∫Œ√§', 'C', 
+   ('0010', '22080000', '22050000', 'Í∏∞ÌÉÄÏú†ÎèôÎπÑÍ∏àÏúµÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22090000', '22050000', '∏≈∞¢øπ¡§¿∏∑Œ ∫–∑˘µ» √≥∫–¿⁄ªÍ¡˝¥‹ø° ∆˜«‘µ» ∫Œ√§ ¿Ãø‹¿« ¿Øµø∫Œ√§«’∞Ë', 'C', 
+   ('0010', '22090000', '22050000', 'Îß§Í∞ÅÏòàÏ†ïÏúºÎ°ú Î∂ÑÎ•òÎêú Ï≤òÎ∂ÑÏûêÏÇ∞ÏßëÎã®Ïóê Ìè¨Ìï®Îêú Î∂ÄÏ±Ñ Ïù¥Ïô∏Ïùò Ïú†ÎèôÎ∂ÄÏ±ÑÌï©Í≥Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '22100000', '22050000', '∏≈∞¢øπ¡§¿∏∑Œ ∫–∑˘µ» √≥∫–¿⁄ªÍ¡˝¥‹ø° ∆˜«‘µ» ∫Œ√§', 'C', 
+   ('0010', '22100000', '22050000', 'Îß§Í∞ÅÏòàÏ†ïÏúºÎ°ú Î∂ÑÎ•òÎêú Ï≤òÎ∂ÑÏûêÏÇ∞ÏßëÎã®Ïóê Ìè¨Ìï®Îêú Î∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '30000000', '¿⁄∫ª', 'C', 
+   ('0010', '30000000', 'ÏûêÎ≥∏', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '31000000', '30000000', '≥≥¿‘¿⁄∫ª', 'C', 
+   ('0010', '31000000', '30000000', 'ÎÇ©ÏûÖÏûêÎ≥∏', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '31010000', '31000000', '¿⁄∫ª±›', 'C', 
+   ('0010', '31010000', '31000000', 'ÏûêÎ≥∏Í∏à', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '31010100', '31010000', '∫∏≈Î¡÷¿⁄∫ª±›', 'C', 
+   ('0010', '31010100', '31010000', 'Î≥¥ÌÜµÏ£ºÏûêÎ≥∏Í∏à', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '31010200', '31010000', 'øÏº±¡÷¿⁄∫ª±›', 'C', 
+   ('0010', '31010200', '31010000', 'Ïö∞ÏÑ†Ï£ºÏûêÎ≥∏Í∏à', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '31020000', '31000000', '¡÷Ωƒπﬂ«‡√ ∞˙±›', 'C', 
+   ('0010', '31020000', '31000000', 'Ï£ºÏãùÎ∞úÌñâÏ¥àÍ≥ºÍ∏à', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '32000000', '30000000', '¿Ã¿Õ¿◊ø©±›(∞·º’±›)', 'C', 
+   ('0010', '32000000', '30000000', 'Ïù¥ÏùµÏûâÏó¨Í∏à(Í≤∞ÏÜêÍ∏à)', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '32010000', '32000000', '¿Ã¿Õ¡ÿ∫Ò±›', 'C', 
+   ('0010', '32010000', '32000000', 'Ïù¥ÏùµÏ§ÄÎπÑÍ∏à', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '32020000', '32000000', '¿”¿«¿˚∏≥±›', 'C', 
+   ('0010', '32020000', '32000000', 'ÏûÑÏùòÏ†ÅÎ¶ΩÍ∏à', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '32030000', '32000000', 'πÃ√≥∫–¿Ã¿Õ¿◊ø©±›(πÃ√≥∏Æ∞·º’±›)', 'C', 
+   ('0010', '32030000', '32000000', 'ÎØ∏Ï≤òÎ∂ÑÏù¥ÏùµÏûâÏó¨Í∏à(ÎØ∏Ï≤òÎ¶¨Í≤∞ÏÜêÍ∏à)', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '33000000', '30000000', '±‚≈∏¿⁄∫ª¿◊ø©±›', 'C', 
+   ('0010', '33000000', '30000000', 'Í∏∞ÌÉÄÏûêÎ≥∏ÏûâÏó¨Í∏à', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '33010000', '33000000', '±‚≈∏∆˜∞˝º’¿Õ¥©∞Ëæ◊', 'C', 
+   ('0010', '33010000', '33000000', 'Í∏∞ÌÉÄÌè¨Í¥ÑÏÜêÏùµÎàÑÍ≥ÑÏï°', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '33020000', '33000000', '±‚≈∏¿⁄∫ª', 'C', 
+   ('0010', '33020000', '33000000', 'Í∏∞ÌÉÄÏûêÎ≥∏', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '33030000', '33020000', '¡ˆπË±‚æ˜¿« º“¿Ø¡÷ø°∞‘ ±Õº”µ«¥¬ ¿⁄∫ª', 'C', 
+   ('0010', '33030000', '33020000', 'ÏßÄÎ∞∞Í∏∞ÏóÖÏùò ÏÜåÏú†Ï£ºÏóêÍ≤å Í∑ÄÏÜçÎêòÎäî ÏûêÎ≥∏', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '33040000', '33020000', '∫Ò¡ˆπË¡ˆ∫–', 'C', 
+   ('0010', '33040000', '33020000', 'ÎπÑÏßÄÎ∞∞ÏßÄÎ∂Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:06', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
@@ -251,507 +251,507 @@ Insert into AC_ACD
 Insert into AC_ACD
    (COID, ACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '10000000', '¿⁄ªÍ', 'D', 
+   ('0010', '10000000', 'ÏûêÏÇ∞', 'D', 
     '0', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:01', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:01', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11000000', '10000000', '∞Ì¡§¿⁄ªÍ', 'D', 
+   ('0010', '11000000', '10000000', 'Í≥†Ï†ïÏûêÏÇ∞', 'D', 
     '0', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:01', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:01', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11010100', '11010000', '¿Â±‚∏≈√‚√§±«', 'D', 
+   ('0010', '11010100', '11010000', 'Ïû•Í∏∞Îß§Ï∂úÏ±ÑÍ∂å', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:01', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:01', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11010300', '11010000', '¿Â±‚πÃºˆºˆ¿Õ', 'D', 
+   ('0010', '11010300', '11010000', 'Ïû•Í∏∞ÎØ∏ÏàòÏàòÏùµ', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:01', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:01', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11010400', '11010000', '¿Â±‚∫∏¡ı±›', 'D', 
+   ('0010', '11010400', '11010000', 'Ïû•Í∏∞Î≥¥Ï¶ùÍ∏à', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:01', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:01', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11010500', '11010000', '¿Â±‚º±±ﬁ±›', 'D', 
+   ('0010', '11010500', '11010000', 'Ïû•Í∏∞ÏÑ†Í∏âÍ∏à', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:01', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:01', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11010600', '11010000', '¿Â±‚º±±ﬁ∫ÒøÎ', 'D', 
+   ('0010', '11010600', '11010000', 'Ïû•Í∏∞ÏÑ†Í∏âÎπÑÏö©', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:01', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:01', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11020100', '11020000', '≈‰¡ˆ', 'D', 
+   ('0010', '11020100', '11020000', 'ÌÜ†ÏßÄ', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11020200', '11020000', '∞«π∞', 'D', 
+   ('0010', '11020200', '11020000', 'Í±¥Î¨º', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11020300', '11020000', '±∏√‡π∞', 'D', 
+   ('0010', '11020300', '11020000', 'Íµ¨Ï∂ïÎ¨º', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11020400', '11020000', '±‚∞Ë¿Âƒ°', 'D', 
+   ('0010', '11020400', '11020000', 'Í∏∞Í≥ÑÏû•Ïπò', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11020500', '11020000', '¬˜∑ÆøÓπ›±∏', 'D', 
+   ('0010', '11020500', '11020000', 'Ï∞®ÎüâÏö¥Î∞òÍµ¨', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11020600', '11020000', '¡˝±‚', 'D', 
+   ('0010', '11020600', '11020000', 'ÏßëÍ∏∞', 'D', 
     '0', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11020700', '11020000', 'ªÁπ´øÎ∫Ò«∞', 'D', 
+   ('0010', '11020700', '11020000', 'ÏÇ¨Î¨¥Ïö©ÎπÑÌíà', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11020800', '11020000', '¿Ø«¸≈ΩªÁ∆Ú∞°¿⁄ªÍ', 'D', 
+   ('0010', '11020800', '11020000', 'Ïú†ÌòïÌÉêÏÇ¨ÌèâÍ∞ÄÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11020900', '11020000', '∞«º≥¡ﬂ¿Œ¿⁄ªÍ', 'D', 
+   ('0010', '11020900', '11020000', 'Í±¥ÏÑ§Ï§ëÏù∏ÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11021000', '11020000', '±‚≈∏¿Ø«¸¿⁄ªÍ', 'D', 
+   ('0010', '11021000', '11020000', 'Í∏∞ÌÉÄÏú†ÌòïÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11040000', '11000000', 'øµæ˜±«', 'D', 
+   ('0010', '11040000', '11000000', 'ÏòÅÏóÖÍ∂å', 'D', 
     '0', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11050000', '11000000', 'øµæ˜±« ¿Ãø‹¿« π´«¸¿⁄ªÍ', 'D', 
+   ('0010', '11050000', '11000000', 'ÏòÅÏóÖÍ∂å Ïù¥Ïô∏Ïùò Î¨¥ÌòïÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11050100', '11050000', '∫Í∑£µÂ∏Ì', 'D', 
+   ('0010', '11050100', '11050000', 'Î∏åÎûúÎìúÎ™Ö', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11050200', '11050000', 'π´«¸≈ΩªÁ∆Ú∞°¿⁄ªÍ', 'D', 
+   ('0010', '11050200', '11050000', 'Î¨¥ÌòïÌÉêÏÇ¨ÌèâÍ∞ÄÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11050400', '11050000', 'ƒƒ«ª≈Õº“«¡∆Æø˛æÓ3423423423423', 'D', 
+   ('0010', '11050400', '11050000', 'Ïª¥Ìì®ÌÑ∞ÏÜåÌîÑÌä∏Ïõ®Ïñ¥3423423423423', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11050500', '11050000', '∂Û¿Ãº±Ω∫øÕ «¡∑£¬˜¿Ã¡Ó4234234234', 'D', 
+   ('0010', '11050500', '11050000', 'ÎùºÏù¥ÏÑ†Ïä§ÏôÄ ÌîÑÎûúÏ∞®Ïù¥Ï¶à4234234234', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11050600', '11050000', '¿˙¿€±« ∆Ø«„±« ±‚≈∏ ªÍæ˜¿ÁªÍ±« øÎø™øÓøµ±«', 'D', 
+   ('0010', '11050600', '11050000', 'Ï†ÄÏûëÍ∂å ÌäπÌóàÍ∂å Í∏∞ÌÉÄ ÏÇ∞ÏóÖÏû¨ÏÇ∞Í∂å Ïö©Ïó≠Ïö¥ÏòÅÍ∂å', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11050800', '11050000', '∞≥πﬂ ¡ﬂ¿Œ π´«¸¿⁄ªÍ', 'D', 
+   ('0010', '11050800', '11050000', 'Í∞úÎ∞ú Ï§ëÏù∏ Î¨¥ÌòïÏûêÏÇ∞', 'D', 
     '1', '0', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11050900', '11050000', '±‚≈∏π´«¸¿⁄ªÍ', 'D', 
+   ('0010', '11050900', '11050000', 'Í∏∞ÌÉÄÎ¨¥ÌòïÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11060000', '11000000', '¡ˆ∫–π˝¿˚øÎ ≈ı¿⁄¡ˆ∫–', 'D', 
+   ('0010', '11060000', '11000000', 'ÏßÄÎ∂ÑÎ≤ïÏ†ÅÏö© Ìà¨ÏûêÏßÄÎ∂Ñ', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11070000', '11000000', '∫Ò¿Øµøª˝π∞¿⁄ªÍ', 'D', 
+   ('0010', '11070000', '11000000', 'ÎπÑÏú†ÎèôÏÉùÎ¨ºÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11080000', '11000000', '∫Ò¿Øµø√§±«', 'D', 
+   ('0010', '11080000', '11000000', 'ÎπÑÏú†ÎèôÏ±ÑÍ∂å', 'D', 
     '0', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11090000', '11000000', '¿Ãø¨π˝¿Œºº¿⁄ªÍ', 'D', 
+   ('0010', '11090000', '11000000', 'Ïù¥Ïó∞Î≤ïÏù∏ÏÑ∏ÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11100000', '11000000', '±‚≈∏∫Ò¿Øµø±›¿∂¿⁄ªÍ', 'D', 
+   ('0010', '11100000', '11000000', 'Í∏∞ÌÉÄÎπÑÏú†ÎèôÍ∏àÏúµÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11100100', '11100000', '∫Ò¿Øµø∏≈µµ∞°¥…±›¿∂¿⁄ªÍ', 'D', 
+   ('0010', '11100100', '11100000', 'ÎπÑÏú†ÎèôÎß§ÎèÑÍ∞ÄÎä•Í∏àÏúµÏûêÏÇ∞', 'D', 
     '0', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:02', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11100200', '11100000', '∫Ò¿Øµø∏∏±‚∫∏¿Ø±›¿∂¿⁄ªÍ', 'D', 
+   ('0010', '11100200', '11100000', 'ÎπÑÏú†ÎèôÎßåÍ∏∞Î≥¥Ïú†Í∏àÏúµÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11100300', '11100000', '∫Ò¿Øµø¥Á±‚º’¿Õ¿ŒΩƒ±›¿∂¿⁄ªÍ', 'D', 
+   ('0010', '11100300', '11100000', 'ÎπÑÏú†ÎèôÎãπÍ∏∞ÏÜêÏùµÏù∏ÏãùÍ∏àÏúµÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11100400', '11100000', '¿Â±‚¥Îø©±›π◊ºˆ√Î√§±«', 'D', 
+   ('0010', '11100400', '11100000', 'Ïû•Í∏∞ÎåÄÏó¨Í∏àÎ∞èÏàòÏ∑®Ï±ÑÍ∂å', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11100500', '11100000', '¿Â±‚±›¿∂ªÛ«∞', 'D', 
+   ('0010', '11100500', '11100000', 'Ïû•Í∏∞Í∏àÏúµÏÉÅÌíà', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '11110000', '11000000', '±‚≈∏∫Ò¿Øµø∫Ò±›¿∂¿⁄ªÍ', 'D', 
+   ('0010', '11110000', '11000000', 'Í∏∞ÌÉÄÎπÑÏú†ÎèôÎπÑÍ∏àÏúµÏûêÏÇ∞', 'D', 
     '1', '0', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12000000', '10000000', '¿Øµø¿⁄ªÍ', 'D', 
+   ('0010', '12000000', '10000000', 'Ïú†ÎèôÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12010000', '12000000', '¿Á∞Ì¿⁄ªÍ', 'D', 
+   ('0010', '12010000', '12000000', 'Ïû¨Í≥†ÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12010100', '12010000', 'ø¯¿Á∑·', 'D', 
+   ('0010', '12010100', '12010000', 'ÏõêÏû¨Î£å', 'D', 
     '1', '0', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12010200', '12010000', 'ªÛ«∞', 'D', 
+   ('0010', '12010200', '12010000', 'ÏÉÅÌíà', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12010300', '12010000', 'º“∏«∞', 'D', 
+   ('0010', '12010300', '12010000', 'ÏÜåÎ™®Ìíà', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12010400', '12010000', '¿Á∞¯«∞', 'D', 
+   ('0010', '12010400', '12010000', 'Ïû¨Í≥µÌíà', 'D', 
     '1', '0', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12010500', '12010000', '¡¶«∞', 'D', 
+   ('0010', '12010500', '12010000', 'Ï†úÌíà', 'D', 
     '0', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12010600', '12010000', '¿˙¿Â«∞', 'D', 
+   ('0010', '12010600', '12010000', 'Ï†ÄÏû•Ìíà', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12010700', '12010000', 'πÃ¬¯«∞', 'D', 
+   ('0010', '12010700', '12010000', 'ÎØ∏Ï∞©Ìíà', 'D', 
     '0', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12010800', '12010000', '±‚≈∏¿Á∞Ì', 'D', 
+   ('0010', '12010800', '12010000', 'Í∏∞ÌÉÄÏû¨Í≥†', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12020000', '12000000', '∏≈√‚√§±« π◊ ±‚≈∏¿Øµø√§±«', 'D', 
+   ('0010', '12020000', '12000000', 'Îß§Ï∂úÏ±ÑÍ∂å Î∞è Í∏∞ÌÉÄÏú†ÎèôÏ±ÑÍ∂å', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12020100', '12020000', '¥‹±‚∏≈√‚√§±«', 'D', 
+   ('0010', '12020100', '12020000', 'Îã®Í∏∞Îß§Ï∂úÏ±ÑÍ∂å', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12020200', '12020000', '¥‹±‚πÃºˆ±›', 'D', 
+   ('0010', '12020200', '12020000', 'Îã®Í∏∞ÎØ∏ÏàòÍ∏à', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12020300', '12020000', '¥‹±‚πÃºˆºˆ¿Õ', 'D', 
+   ('0010', '12020300', '12020000', 'Îã®Í∏∞ÎØ∏ÏàòÏàòÏùµ', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12020400', '12020000', '¥‹±‚∫∏¡ı±›', 'D', 
+   ('0010', '12020400', '12020000', 'Îã®Í∏∞Î≥¥Ï¶ùÍ∏à', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12020500', '12020000', '¥‹±‚º±±ﬁ±›', 'D', 
+   ('0010', '12020500', '12020000', 'Îã®Í∏∞ÏÑ†Í∏âÍ∏à', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12020600', '12020000', '¥‹±‚º±±ﬁ∫ÒøÎ', 'D', 
+   ('0010', '12020600', '12020000', 'Îã®Í∏∞ÏÑ†Í∏âÎπÑÏö©', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12030000', '12000000', '¥Á±‚π˝¿Œºº¿⁄ªÍ', 'D', 
+   ('0010', '12030000', '12000000', 'ÎãπÍ∏∞Î≤ïÏù∏ÏÑ∏ÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12040000', '12000000', '¿Øµøª˝π∞¿⁄ªÍ', 'D', 
+   ('0010', '12040000', '12000000', 'Ïú†ÎèôÏÉùÎ¨ºÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12050000', '12000000', '±‚≈∏¿Øµø±›¿∂¿⁄ªÍ', 'D', 
+   ('0010', '12050000', '12000000', 'Í∏∞ÌÉÄÏú†ÎèôÍ∏àÏúµÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12050100', '12050000', '¿Øµø∏≈µµ∞°¥…±›¿∂¿⁄ªÍ', 'D', 
+   ('0010', '12050100', '12050000', 'Ïú†ÎèôÎß§ÎèÑÍ∞ÄÎä•Í∏àÏúµÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12050200', '12050000', '¿Øµø∏∏±‚∫∏¿Ø±›¿∂¿⁄ªÍ', 'D', 
+   ('0010', '12050200', '12050000', 'Ïú†ÎèôÎßåÍ∏∞Î≥¥Ïú†Í∏àÏúµÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12050300', '12050000', '¿Øµø¥Á±‚º’¿Õ¿ŒΩƒ±›¿∂¿⁄ªÍ', 'D', 
+   ('0010', '12050300', '12050000', 'Ïú†ÎèôÎãπÍ∏∞ÏÜêÏùµÏù∏ÏãùÍ∏àÏúµÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12050400', '12050000', '¥‹±‚¥Îø©±›π◊ºˆ√Î√§±«', 'D', 
+   ('0010', '12050400', '12050000', 'Îã®Í∏∞ÎåÄÏó¨Í∏àÎ∞èÏàòÏ∑®Ï±ÑÍ∂å', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12050500', '12050000', '¥‹±‚±›¿∂ªÛ«∞', 'D', 
+   ('0010', '12050500', '12050000', 'Îã®Í∏∞Í∏àÏúµÏÉÅÌíà', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12060000', '12000000', '±‚≈∏¿Øµø∫Ò±›¿∂¿⁄ªÍ', 'D', 
+   ('0010', '12060000', '12000000', 'Í∏∞ÌÉÄÏú†ÎèôÎπÑÍ∏àÏúµÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:03', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12070000', '12000000', '«ˆ±›π◊«ˆ±›º∫¿⁄ªÍ', 'D', 
+   ('0010', '12070000', '12000000', 'ÌòÑÍ∏àÎ∞èÌòÑÍ∏àÏÑ±ÏûêÏÇ∞', 'D', 
     '0', '0', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12070100', '12070000', '«ˆ±›', 'D', 
+   ('0010', '12070100', '12070000', 'ÌòÑÍ∏à', 'D', 
     '0', '0', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12070101', '12070100', '∫∏¿Ø«ˆ±›', 'D', 
+   ('0010', '12070101', '12070100', 'Î≥¥Ïú†ÌòÑÍ∏à', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12070102', '12070100', 'øπ±›¿‹æ◊', 'D', 
+   ('0010', '12070102', '12070100', 'ÏòàÍ∏àÏûîÏï°', 'D', 
     '1', '0', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12070103', '12070100', '±‚≈∏ ø‰±∏∫“ øπ±›', 'D', 
+   ('0010', '12070103', '12070100', 'Í∏∞ÌÉÄ ÏöîÍµ¨Î∂à ÏòàÍ∏à', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12070200', '12070000', '«ˆ±›º∫¿⁄ªÍ', 'D', 
+   ('0010', '12070200', '12070000', 'ÌòÑÍ∏àÏÑ±ÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12070201', '12070200', '«ˆ±›º∫¿⁄ªÍ¿∏∑Œ ∫–∑˘µ» ¥‹±‚øπ±›', 'D', 
+   ('0010', '12070201', '12070200', 'ÌòÑÍ∏àÏÑ±ÏûêÏÇ∞ÏúºÎ°ú Î∂ÑÎ•òÎêú Îã®Í∏∞ÏòàÍ∏à', 'D', 
     '1', '0', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12070202', '12070200', '«ˆ±›º∫¿⁄ªÍ¿∏∑Œ ∫–∑˘µ» ¥‹±‚≈ı¿⁄¿⁄ªÍ', 'D', 
+   ('0010', '12070202', '12070200', 'ÌòÑÍ∏àÏÑ±ÏûêÏÇ∞ÏúºÎ°ú Î∂ÑÎ•òÎêú Îã®Í∏∞Ìà¨ÏûêÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12070203', '12070200', '«ˆ±›º∫¿⁄ªÍ¿∏∑Œ ∫–∑˘µ» ¿∫«‡∞≈∑°æ‡¡§', 'D', 
+   ('0010', '12070203', '12070200', 'ÌòÑÍ∏àÏÑ±ÏûêÏÇ∞ÏúºÎ°ú Î∂ÑÎ•òÎêú ÏùÄÌñâÍ±∞ÎûòÏïΩÏ†ï', 'D', 
     '0', '0', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12070300', '12070000', '±‚≈∏«ˆ±›π◊«ˆ±›º∫¿⁄ªÍ', 'D', 
+   ('0010', '12070300', '12070000', 'Í∏∞ÌÉÄÌòÑÍ∏àÎ∞èÌòÑÍ∏àÏÑ±ÏûêÏÇ∞', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12080000', '12000000', '∏≈∞¢øπ¡§ ∂«¥¬ º“¿Ø¡÷ø° ¥Î«— ∫–πËøπ¡§¿∏∑Œ ∫–∑˘µ» ∫Ò¿Øµø¿⁄ªÍ¿Ã≥™ √≥∫–¿⁄ªÍ¡˝¥‹', 'D', 
+   ('0010', '12080000', '12000000', 'Îß§Í∞ÅÏòàÏ†ï ÎòêÎäî ÏÜåÏú†Ï£ºÏóê ÎåÄÌïú Î∂ÑÎ∞∞ÏòàÏ†ïÏúºÎ°ú Î∂ÑÎ•òÎêú ÎπÑÏú†ÎèôÏûêÏÇ∞Ïù¥ÎÇò Ï≤òÎ∂ÑÏûêÏÇ∞ÏßëÎã®', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12080100', '12080000', '∏≈∞¢øπ¡§¿∏∑Œ ∫–∑˘µ» ∫Ò¿Øµø¿⁄ªÍ¿Ã≥™ √≥∫–¿⁄ªÍ¡˝¥‹', 'D', 
+   ('0010', '12080100', '12080000', 'Îß§Í∞ÅÏòàÏ†ïÏúºÎ°ú Î∂ÑÎ•òÎêú ÎπÑÏú†ÎèôÏûêÏÇ∞Ïù¥ÎÇò Ï≤òÎ∂ÑÏûêÏÇ∞ÏßëÎã®', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '12080200', '12080000', 'º“¿Ø¡÷ø° ¥Î«— ∫–πËøπ¡§¿∏∑Œ ∫–∑˘µ» ∫Ò¿Øµø¿⁄ªÍ¿Ã≥™ √≥∫–¿⁄ªÍ¡˝¥‹', 'D', 
+   ('0010', '12080200', '12080000', 'ÏÜåÏú†Ï£ºÏóê ÎåÄÌïú Î∂ÑÎ∞∞ÏòàÏ†ïÏúºÎ°ú Î∂ÑÎ•òÎêú ÎπÑÏú†ÎèôÏûêÏÇ∞Ïù¥ÎÇò Ï≤òÎ∂ÑÏûêÏÇ∞ÏßëÎã®', 'D', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '20000000', '∫Œ√§', 'C', 
+   ('0010', '20000000', 'Î∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21000000', '20000000', '∫Ò¿Øµø∫Œ√§', 'C', 
+   ('0010', '21000000', '20000000', 'ÎπÑÏú†ÎèôÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21010000', '21000000', '∫Ò¿Øµø√Ê¥Á∫Œ√§', 'C', 
+   ('0010', '21010000', '21000000', 'ÎπÑÏú†ÎèôÏ∂©ÎãπÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21010100', '21010000', '∫Ò¿Øµø¡ææ˜ø¯±ﬁø©√Ê¥Á∫Œ√§', 'C', 
+   ('0010', '21010100', '21010000', 'ÎπÑÏú†ÎèôÏ¢ÖÏóÖÏõêÍ∏âÏó¨Ï∂©ÎãπÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21010200', '21010100', '±‚≈∏¿Â±‚√Ê¥Á∫Œ√§', 'C', 
+   ('0010', '21010200', '21010100', 'Í∏∞ÌÉÄÏû•Í∏∞Ï∂©ÎãπÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21010201', '21010200', '¿Â±‚¡¶«∞∫∏¡ı√Ê¥Á∫Œ√§', 'C', 
+   ('0010', '21010201', '21010200', 'Ïû•Í∏∞Ï†úÌíàÎ≥¥Ï¶ùÏ∂©ÎãπÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21010202', '21010200', '¿Â±‚±∏¡∂¡∂¡§√Ê¥Á∫Œ√§', 'C', 
+   ('0010', '21010202', '21010200', 'Ïû•Í∏∞Íµ¨Ï°∞Ï°∞Ï†ïÏ∂©ÎãπÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21010203', '21010200', '¿Â±‚π˝¿˚º“º€√Ê¥Á∫Œ√§', 'C', 
+   ('0010', '21010203', '21010200', 'Ïû•Í∏∞Î≤ïÏ†ÅÏÜåÏÜ°Ï∂©ÎãπÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21010204', '21010200', '¿Â±‚º’Ω«∫Œ¥„∞Ëæ‡√Ê¥Á∫Œ√§', 'C', 
+   ('0010', '21010204', '21010200', 'Ïû•Í∏∞ÏÜêÏã§Î∂ÄÎã¥Í≥ÑÏïΩÏ∂©ÎãπÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21010205', '21010200', ' ªÁ»ƒ√≥∏Æ ∫π±∏ ¡§»≠ ∫ÒøÎ¿ª ¿ß«— ¿Â±‚√Ê¥Á∫Œ√§', 'C', 
+   ('0010', '21010205', '21010200', ' ÏÇ¨ÌõÑÏ≤òÎ¶¨ Î≥µÍµ¨ Ï†ïÌôî ÎπÑÏö©ÏùÑ ÏúÑÌïú Ïû•Í∏∞Ï∂©ÎãπÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21010206', '21010200', ' ±◊ π€¿« ±‚≈∏¿Â±‚√Ê¥Á∫Œ√§', 'C', 
+   ('0010', '21010206', '21010200', ' Í∑∏ Î∞ñÏùò Í∏∞ÌÉÄÏû•Í∏∞Ï∂©ÎãπÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21020000', '21010000', '¿Â±‚∏≈¿‘√§π´ π◊ ±‚≈∏∫Ò¿Øµø√§π´', 'C', 
+   ('0010', '21020000', '21010000', 'Ïû•Í∏∞Îß§ÏûÖÏ±ÑÎ¨¥ Î∞è Í∏∞ÌÉÄÎπÑÏú†ÎèôÏ±ÑÎ¨¥', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21020100', '21010000', '¿Â±‚∏≈¿‘√§π´', 'C', 
+   ('0010', '21020100', '21010000', 'Ïû•Í∏∞Îß§ÏûÖÏ±ÑÎ¨¥', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21020200', '21010000', '¿Â±‚πÃ¡ˆ±ﬁ±›', 'C', 
+   ('0010', '21020200', '21010000', 'Ïû•Í∏∞ÎØ∏ÏßÄÍ∏âÍ∏à', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21020300', '21010000', '¿Â±‚πÃ¡ˆ±ﬁ∫ÒøÎ', 'C', 
+   ('0010', '21020300', '21010000', 'Ïû•Í∏∞ÎØ∏ÏßÄÍ∏âÎπÑÏö©', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:04', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21020400', '21010000', '¿Â±‚¿”¥Î∫∏¡ı±›', 'C', 
+   ('0010', '21020400', '21010000', 'Ïû•Í∏∞ÏûÑÎåÄÎ≥¥Ï¶ùÍ∏à', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21020500', '21010000', '¿Â±‚øπºˆ±›', 'C', 
+   ('0010', '21020500', '21010000', 'Ïû•Í∏∞ÏòàÏàòÍ∏à', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21020600', '21010000', '¿Â±‚º±ºˆ±›', 'C', 
+   ('0010', '21020600', '21010000', 'Ïû•Í∏∞ÏÑ†ÏàòÍ∏à', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21030000', '21010000', '¿Â±‚¬˜¿‘±›', 'C', 
+   ('0010', '21030000', '21010000', 'Ïû•Í∏∞Ï∞®ÏûÖÍ∏à', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21040000', '21000000', ' ≈¡˜±ﬁø©√§π´', 'C', 
+   ('0010', '21040000', '21000000', ' Ìá¥ÏßÅÍ∏âÏó¨Ï±ÑÎ¨¥', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21040100', '21040000', '»Æ¡§±ﬁø©√§π´¿««ˆ¿Á∞°ƒ°', 'C', 
+   ('0010', '21040100', '21040000', 'ÌôïÏ†ïÍ∏âÏó¨Ï±ÑÎ¨¥ÏùòÌòÑÏû¨Í∞ÄÏπò', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21050000', '21000000', '∫Ò¿Øµø√§π´', 'C', 
+   ('0010', '21050000', '21000000', 'ÎπÑÏú†ÎèôÏ±ÑÎ¨¥', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21060000', '21000000', '¿Ãø¨π˝¿Œºº∫Œ√§', 'C', 
+   ('0010', '21060000', '21000000', 'Ïù¥Ïó∞Î≤ïÏù∏ÏÑ∏Î∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21070000', '21000000', '±‚≈∏∫Ò¿Øµø±›¿∂∫Œ√§', 'C', 
+   ('0010', '21070000', '21000000', 'Í∏∞ÌÉÄÎπÑÏú†ÎèôÍ∏àÏúµÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into AC_ACD
    (COID, ACCD, HACCD, ACNM, DCDV, WRTYN, CONYN, USEYN, INSDT, UPDDT)
  Values
-   ('0010', '21080000', '21000000', '±‚≈∏∫Ò¿Øµø∫Ò±›¿∂∫Œ√§', 'C', 
+   ('0010', '21080000', '21000000', 'Í∏∞ÌÉÄÎπÑÏú†ÎèôÎπÑÍ∏àÏúµÎ∂ÄÏ±Ñ', 'C', 
     '1', '1', '1', TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2013 15:42:05', 'MM/DD/YYYY HH24:MI:SS'));
 COMMIT;
 
@@ -761,33 +761,33 @@ Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, INSID, UPDDT)
  Values
    ('0010', 'HRDPCD', '0010', 'CO', 1, 
-    '»ƒæﬂº“«¡∆Æ', 'Y', TO_TIMESTAMP('12/14/2013 19:34:58', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/14/2013 19:34:58', 'MM/DD/YYYY HH24:MI:SS'));
+    'ÌõÑÏïºÏÜåÌîÑÌä∏', 'Y', TO_TIMESTAMP('12/14/2013 19:34:58', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/14/2013 19:34:58', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, MGTITM1, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HRDPCD', 'P010', '0010', 1, 
-    '∞Êøµ¡ˆø¯∫Œ', '±Ë¥Î∫¿', '1', TO_TIMESTAMP('12/14/2013 19:37:31', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/14/2013 19:37:31', 'MM/DD/YYYY HH24:MI:SS'));
+    'Í≤ΩÏòÅÏßÄÏõêÎ∂Ä', 'ÍπÄÎåÄÎ¥â', '1', TO_TIMESTAMP('12/14/2013 19:37:31', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/14/2013 19:37:31', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, MGTITM1, MGTITM2, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HRDPCD', 'S010', '0010', 2, 
-    'øµæ˜∞¸∏Æ∫Œ', '¿ÃªÛ»∆', '435345', 
+    'ÏòÅÏóÖÍ¥ÄÎ¶¨Î∂Ä', 'Ïù¥ÏÉÅÌõà', '435345', 
     '1', TO_TIMESTAMP('12/14/2013 19:39:17', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/14/2013 19:39:17', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, MGTITM1, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HRDPCD', 'S020', '0010', 3, 
-    'SIªÁæ˜∫Œ', '¿Ã¿≤', '1', TO_TIMESTAMP('12/14/2013 19:40:39', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/14/2013 19:40:39', 'MM/DD/YYYY HH24:MI:SS'));
+    'SIÏÇ¨ÏóÖÎ∂Ä', 'Ïù¥Ïú®', '1', TO_TIMESTAMP('12/14/2013 19:40:39', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/14/2013 19:40:39', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, MGTITM1, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HRDPCD', 'R010', '0010', 4, 
-    '»ƒæﬂ±‚º˙ø¨±∏º“', 'π⁄»´±Õ', '1', TO_TIMESTAMP('12/14/2013 19:41:52', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/14/2013 19:41:52', 'MM/DD/YYYY HH24:MI:SS'));
+    'ÌõÑÏïºÍ∏∞Ïà†Ïó∞Íµ¨ÏÜå', 'Î∞ïÌôçÍ∑Ä', '1', TO_TIMESTAMP('12/14/2013 19:41:52', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/14/2013 19:41:52', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HROLCD', 'ROLCD', 'CO', 2, 
-    '¡˜¿ßƒ⁄µÂ', '1', TO_TIMESTAMP('12/19/2013 15:27:10', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/19/2013 15:27:10', 'MM/DD/YYYY HH24:MI:SS'));
+    'ÏßÅÏúÑÏΩîÎìú', '1', TO_TIMESTAMP('12/19/2013 15:27:10', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/19/2013 15:27:10', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
@@ -797,107 +797,107 @@ Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'SYSCD', 'HP', '0', 7, 
-    '»ƒæﬂ»®∆‰¿Ã¡ˆ', '1', TO_TIMESTAMP('12/24/2013 16:02:11', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/24/2013 16:02:11', 'MM/DD/YYYY HH24:MI:SS'));
+    'ÌõÑÏïºÌôàÌéòÏù¥ÏßÄ', '1', TO_TIMESTAMP('12/24/2013 16:02:11', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/24/2013 16:02:11', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HPCD010ID', 'BBSID', 'HP', 1, 
-    '∞‘Ω√∆«ID', '1', TO_TIMESTAMP('12/24/2013 16:04:36', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/24/2013 16:04:36', 'MM/DD/YYYY HH24:MI:SS'));
+    'Í≤åÏãúÌåêID', '1', TO_TIMESTAMP('12/24/2013 16:04:36', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/24/2013 16:04:36', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'BBSID', 'A010', 'BBSID', 1, 
-    'µµ¿‘º∫∞¯ªÁ∑ ', '1', TO_TIMESTAMP('12/24/2013 16:06:44', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/24/2013 16:06:44', 'MM/DD/YYYY HH24:MI:SS'));
+    'ÎèÑÏûÖÏÑ±Í≥µÏÇ¨Î°Ä', '1', TO_TIMESTAMP('12/24/2013 16:06:44', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/24/2013 16:06:44', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'BBSID', 'A020', 'BBSID', 2, 
-    '¿⁄¡÷πØ¥¬¡˙πÆ', '1', TO_TIMESTAMP('12/24/2013 16:09:34', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/24/2013 16:09:34', 'MM/DD/YYYY HH24:MI:SS'));
+    'ÏûêÏ£ºÎ¨ªÎäîÏßàÎ¨∏', '1', TO_TIMESTAMP('12/24/2013 16:09:34', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/24/2013 16:09:34', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'BBSID', 'A030', 'BBSID', 3, 
-    '±‚º˙¿⁄∑·', '1', TO_TIMESTAMP('12/24/2013 16:09:34', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/24/2013 16:09:34', 'MM/DD/YYYY HH24:MI:SS'));
+    'Í∏∞Ïà†ÏûêÎ£å', '1', TO_TIMESTAMP('12/24/2013 16:09:34', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/24/2013 16:09:34', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'BBSID', 'A040', 'BBSID', 4, 
-    '∞¯¡ˆªÁ«◊', '1', TO_TIMESTAMP('12/24/2013 16:51:19', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/24/2013 16:51:19', 'MM/DD/YYYY HH24:MI:SS'));
+    'Í≥µÏßÄÏÇ¨Ìï≠', '1', TO_TIMESTAMP('12/24/2013 16:51:19', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/24/2013 16:51:19', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HROLCD', 'A020', 'ROLCD', 2, 
-    '∫ŒªÁ¿Â', '1', TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'));
+    'Î∂ÄÏÇ¨Ïû•', '1', TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HROLCD', 'A030', 'ROLCD', 3, 
-    '¿¸π´¿ÃªÁ', '1', TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'));
+    'Ï†ÑÎ¨¥Ïù¥ÏÇ¨', '1', TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HROLCD', 'A040', 'ROLCD', 4, 
-    'ªÛπ´¿ÃªÁ', '1', TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'));
+    'ÏÉÅÎ¨¥Ïù¥ÏÇ¨', '1', TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HROLCD', 'A050', 'ROLCD', 5, 
-    '¿ÃªÁ', '1', TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'));
+    'Ïù¥ÏÇ¨', '1', TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HROLCD', 'B010', 'ROLCD', 6, 
-    '∫Œ¿Â', '1', TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'));
+    'Î∂ÄÏû•', '1', TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HROLCD', 'B01A', 'ROLCD', 7, 
-    'ºˆºÆ', '1', TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'));
+    'ÏàòÏÑù', '1', TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HROLCD', 'B020', 'ROLCD', 8, 
-    '¬˜¿Â', '1', TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'));
+    'Ï∞®Ïû•', '1', TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HROLCD', 'B02A', 'ROLCD', 9, 
-    'ºˆºÆ∫∏', '1', TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'));
+    'ÏàòÏÑùÎ≥¥', '1', TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:47:09', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HROLCD', 'B030', 'ROLCD', 10, 
-    '∞˙¿Â', '1', TO_TIMESTAMP('12/29/2013 10:49:18', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:49:18', 'MM/DD/YYYY HH24:MI:SS'));
+    'Í≥ºÏû•', '1', TO_TIMESTAMP('12/29/2013 10:49:18', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:49:18', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HROLCD', 'B03A', 'ROLCD', 11, 
-    'º±¿”', '1', TO_TIMESTAMP('12/29/2013 10:49:18', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:49:18', 'MM/DD/YYYY HH24:MI:SS'));
+    'ÏÑ†ÏûÑ', '1', TO_TIMESTAMP('12/29/2013 10:49:18', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:49:18', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HROLCD', 'B040', 'ROLCD', 12, 
-    '¥Î∏Æ', '1', TO_TIMESTAMP('12/29/2013 10:49:18', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:49:18', 'MM/DD/YYYY HH24:MI:SS'));
+    'ÎåÄÎ¶¨', '1', TO_TIMESTAMP('12/29/2013 10:49:18', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:49:18', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HROLCD', 'B04A', 'ROLCD', 13, 
-    '¿¸¿”', '1', TO_TIMESTAMP('12/29/2013 10:49:18', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:49:18', 'MM/DD/YYYY HH24:MI:SS'));
+    'Ï†ÑÏûÑ', '1', TO_TIMESTAMP('12/29/2013 10:49:18', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/29/2013 10:49:18', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, INSID, UPDDT)
  Values
    ('0010', 'SYSCD', 'CO', '0', 8, 
-    'Ω√Ω∫≈€∞¸∏Æ', 'Y', TO_TIMESTAMP('12/19/2013 11:50:59', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/19/2013 11:50:59', 'MM/DD/YYYY HH24:MI:SS'));
+    'ÏãúÏä§ÌÖúÍ¥ÄÎ¶¨', 'Y', TO_TIMESTAMP('12/19/2013 11:50:59', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/19/2013 11:50:59', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HROLID', 'ROLID', 'CO', 3, 
-    '¡˜±ﬁƒ⁄µÂ', '1', TO_TIMESTAMP('12/19/2013 15:57:41', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/19/2013 15:57:41', 'MM/DD/YYYY HH24:MI:SS'));
+    'ÏßÅÍ∏âÏΩîÎìú', '1', TO_TIMESTAMP('12/19/2013 15:57:41', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/19/2013 15:57:41', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_CD
    (COID, CDID, CD, HCD, SEQ, CDNM, USEYN, INSDT, UPDDT)
  Values
    ('0010', 'HROLCD', 'A010', 'ROLCD', 1, 
-    '¥Î«•¿ÃªÁ', '1', TO_TIMESTAMP('12/19/2013 16:29:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/19/2013 16:29:06', 'MM/DD/YYYY HH24:MI:SS'));
+    'ÎåÄÌëúÏù¥ÏÇ¨', '1', TO_TIMESTAMP('12/19/2013 16:29:06', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/19/2013 16:29:06', 'MM/DD/YYYY HH24:MI:SS'));
 COMMIT;
 
 
@@ -906,109 +906,109 @@ Insert into CO_MNU
    (COID, MNUDV, MNUID, HMNUID, SEQ, MNUNM, MNUFNC, MNUDIR, MNUCNTN, LNKPARM, MNUED, INSDT, INSID, UPDDT, UPDID)
  Values
    ('0010', 'B', 'WT', '0', 7, 
-    '»ƒæﬂ≈‰≈©', 'M', 'NULL', 'NULL', 'NULL', 
+    'ÌõÑÏïºÌÜ†ÌÅ¨', 'M', 'NULL', 'NULL', 'NULL', 
     'NULL', TO_TIMESTAMP('12/14/2013 00:00:00', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/14/2013 00:00:00', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne');
 Insert into CO_MNU
    (COID, MNUDV, MNUID, HMNUID, SEQ, MNUNM, MNUFNC, MNUDIR, MNUCNTN, LNKPARM, MNUED, INSDT, INSID, UPDDT, UPDID)
  Values
    ('0010', 'B', 'WTI0010', 'WT', 1, 
-    'ƒ£±∏∏Ò∑œ∞¸∏Æ', 'P', 'NULL', 'NULL', 'NULL', 
+    'ÏπúÍµ¨Î™©Î°ùÍ¥ÄÎ¶¨', 'P', 'NULL', 'NULL', 'NULL', 
     'NULL', TO_TIMESTAMP('12/14/2013 00:00:00', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/14/2013 00:00:00', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne');
 Insert into CO_MNU
    (COID, MNUDV, MNUID, HMNUID, SEQ, MNUNM, MNUFNC, MNUDIR, MNUCNTN, LNKPARM, MNUED, INSDT, INSID, UPDDT, UPDID)
  Values
    ('0010', 'B', 'WTI0020', 'WT', 2, 
-    '¥Î»≠πÊ∞¸∏Æ', 'P', 'NULL', 'NULL', 'NULL', 
+    'ÎåÄÌôîÎ∞©Í¥ÄÎ¶¨', 'P', 'NULL', 'NULL', 'NULL', 
     'NULL', TO_TIMESTAMP('12/14/2013 00:00:00', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/14/2013 00:00:00', 'MM/DD/YYYY HH24:MI:SS'), 'NULL');
 Insert into CO_MNU
    (COID, MNUDV, MNUID, HMNUID, SEQ, MNUNM, MNUFNC, MNUDIR, MNUCNTN, LNKPARM, MNUED, INSDT, INSID, UPDDT)
  Values
    ('0010', 'B', 'HP', '0', 8, 
-    '»ƒæﬂ»®∆‰¿Ã¡ˆ∞¸∏Æ¿⁄', 'M', 'NULL', 'NULL', 'NULL', 
+    'ÌõÑÏïºÌôàÌéòÏù¥ÏßÄÍ¥ÄÎ¶¨Ïûê', 'M', 'NULL', 'NULL', 'NULL', 
     'NULL', TO_TIMESTAMP('12/24/2013 15:55:31', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/24/2013 15:55:31', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_MNU
    (COID, MNUDV, MNUID, HMNUID, SEQ, MNUNM, MNUFNC, MNUDIR, MNUCNTN, LNKPARM, MNUED, INSDT, INSID, UPDDT)
  Values
    ('0010', 'B', 'HPI0010', 'HP', 1, 
-    '∞‘Ω√∆«∞¸∏Æ', 'P', 'NULL', 'NULL', 'NULL', 
+    'Í≤åÏãúÌåêÍ¥ÄÎ¶¨', 'P', 'NULL', 'NULL', 'NULL', 
     'NULL', TO_TIMESTAMP('12/24/2013 15:57:29', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/24/2013 15:57:29', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_MNU
    (COID, MNUDV, MNUID, HMNUID, SEQ, MNUNM, MNUFNC, MNUDIR, MNUCNTN, LNKPARM, MNUED, INSDT, INSID, UPDDT)
  Values
    ('0010', 'B', 'COI0010', 'CO', 1, 
-    'ªÁøÎ¿⁄∞¸∏Æ', 'P', 'NULL', 'NULL', 'NULL', 
+    'ÏÇ¨Ïö©ÏûêÍ¥ÄÎ¶¨', 'P', 'NULL', 'NULL', 'NULL', 
     'NULL', TO_TIMESTAMP('12/06/2013 11:00:52', 'MM/DD/YYYY HH24:MI:SS'), 'test', TO_TIMESTAMP('12/06/2013 11:00:52', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_MNU
    (COID, MNUDV, MNUID, HMNUID, SEQ, MNUNM, MNUFNC, MNUDIR, MNUCNTN, LNKPARM, MNUED, INSDT, INSID, UPDDT)
  Values
    ('0010', 'B', 'COI0020', 'CO', 1, 
-    '∏ﬁ¥∫∞¸∏Æ', 'P', 'NULL', 'NULL', 'NULL', 
+    'Î©îÎâ¥Í¥ÄÎ¶¨', 'P', 'NULL', 'NULL', 'NULL', 
     'NULL', TO_TIMESTAMP('12/06/2013 11:00:52', 'MM/DD/YYYY HH24:MI:SS'), 'test', TO_TIMESTAMP('12/06/2013 11:00:52', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_MNU
    (COID, MNUDV, MNUID, HMNUID, SEQ, MNUNM, MNUFNC, MNUDIR, MNUCNTN, LNKPARM, MNUED, INSDT, INSID, UPDDT)
  Values
    ('0010', 'B', 'COI0030', 'CO', 1, 
-    'ªÁøÎ¿⁄±««—∞¸∏Æ', 'P', 'NULL', 'NULL', 'NULL', 
+    'ÏÇ¨Ïö©ÏûêÍ∂åÌïúÍ¥ÄÎ¶¨', 'P', 'NULL', 'NULL', 'NULL', 
     'NULL', TO_TIMESTAMP('12/06/2013 11:00:52', 'MM/DD/YYYY HH24:MI:SS'), 'test', TO_TIMESTAMP('12/06/2013 11:00:52', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_MNU
    (COID, MNUDV, MNUID, HMNUID, SEQ, MNUNM, MNUFNC, MNUDIR, MNUCNTN, LNKPARM, MNUED, INSDT, INSID, UPDDT)
  Values
    ('0010', 'B', 'COI0040', 'CO', 1, 
-    '∞¯≈Îƒ⁄µÂ∞¸∏Æ', 'P', 'NULL', 'NULL', 'NULL', 
+    'Í≥µÌÜµÏΩîÎìúÍ¥ÄÎ¶¨', 'P', 'NULL', 'NULL', 'NULL', 
     'NULL', TO_TIMESTAMP('12/06/2013 11:00:53', 'MM/DD/YYYY HH24:MI:SS'), 'test', TO_TIMESTAMP('12/06/2013 11:00:53', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_MNU
    (COID, MNUDV, MNUID, HMNUID, SEQ, MNUNM, MNUFNC, MNUDIR, MNUCNTN, LNKPARM, MNUED, INSDT, INSID, UPDDT)
  Values
    ('0010', 'B', 'HR', '0', 1, 
-    '¿ŒªÁ∞¸∏Æ', 'M', 'NULL', 'NULL', 'NULL', 
+    'Ïù∏ÏÇ¨Í¥ÄÎ¶¨', 'M', 'NULL', 'NULL', 'NULL', 
     'NULL', TO_TIMESTAMP('12/06/2013 11:00:53', 'MM/DD/YYYY HH24:MI:SS'), 'test', TO_TIMESTAMP('12/06/2013 11:00:53', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_MNU
    (COID, MNUDV, MNUID, HMNUID, SEQ, MNUNM, MNUFNC, MNUDIR, MNUCNTN, LNKPARM, MNUED, INSDT, INSID, UPDDT)
  Values
    ('0010', 'B', 'HRI0010', 'HR', 1, 
-    '¿ŒªÁ±‚∑œ∫Œ∞¸∏Æ', 'P', 'NULL', 'NULL', 'NULL', 
+    'Ïù∏ÏÇ¨Í∏∞Î°ùÎ∂ÄÍ¥ÄÎ¶¨', 'P', 'NULL', 'NULL', 'NULL', 
     'NULL', TO_TIMESTAMP('12/06/2013 11:00:53', 'MM/DD/YYYY HH24:MI:SS'), 'test', TO_TIMESTAMP('12/06/2013 11:00:53', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_MNU
    (COID, MNUDV, MNUID, HMNUID, SEQ, MNUNM, MNUFNC, MNUDIR, MNUCNTN, LNKPARM, MNUED, INSDT, INSID, UPDDT)
  Values
    ('0010', 'B', 'CO', '0', 9, 
-    'Ω√Ω∫≈€∞¸∏Æ', 'M', 'NULL', 'NULL', 'NULL', 
+    'ÏãúÏä§ÌÖúÍ¥ÄÎ¶¨', 'M', 'NULL', 'NULL', 'NULL', 
     'NULL', TO_TIMESTAMP('12/06/2013 11:02:54', 'MM/DD/YYYY HH24:MI:SS'), 'test', TO_TIMESTAMP('12/06/2013 11:02:54', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_MNU
    (COID, MNUDV, MNUID, HMNUID, SEQ, MNUNM, MNUFNC, MNUDIR, MNUCNTN, LNKPARM, MNUED, INSDT, INSID, UPDDT, UPDID)
  Values
    ('0010', 'B', 'AC', '0', 1, 
-    '¿Áπ´∞¸∏Æ', 'M', 'NULL', 'NULL', 'NULL', 
+    'Ïû¨Î¨¥Í¥ÄÎ¶¨', 'M', 'NULL', 'NULL', 'NULL', 
     'NULL', TO_TIMESTAMP('12/05/2013 15:24:20', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/05/2013 15:24:20', 'MM/DD/YYYY HH24:MI:SS'), 'NULL');
 Insert into CO_MNU
    (COID, MNUDV, MNUID, HMNUID, SEQ, MNUNM, MNUFNC, MNUDIR, MNUCNTN, LNKPARM, MNUED, INSDT, INSID, UPDDT, UPDID)
  Values
    ('0010', 'B', 'ACI0010', 'ACI', 1, 
-    '∞Ë¡§∞˙∏Ò∞¸∏Æ', 'P', 'NULL', 'NULL', 'NULL', 
+    'Í≥ÑÏ†ïÍ≥ºÎ™©Í¥ÄÎ¶¨', 'P', 'NULL', 'NULL', 'NULL', 
     'NULL', TO_TIMESTAMP('12/05/2013 15:24:20', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/05/2013 15:24:20', 'MM/DD/YYYY HH24:MI:SS'), 'NULL');
 Insert into CO_MNU
    (COID, MNUDV, MNUID, HMNUID, SEQ, MNUNM, MNUFNC, MNUDIR, MNUCNTN, LNKPARM, MNUED, INSDT, INSID, UPDDT, UPDID)
  Values
    ('0010', 'B', 'ACI', 'AC', 1, 
-    '»∏∞Ë±‚¡ÿ∞¸∏Æ', 'M', 'NULL', 'NULL', 'NULL', 
+    'ÌöåÍ≥ÑÍ∏∞Ï§ÄÍ¥ÄÎ¶¨', 'M', 'NULL', 'NULL', 'NULL', 
     'NULL', TO_TIMESTAMP('12/05/2013 15:24:20', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/05/2013 15:24:20', 'MM/DD/YYYY HH24:MI:SS'), 'NULL');
 Insert into CO_MNU
    (COID, MNUDV, MNUID, HMNUID, SEQ, MNUNM, MNUFNC, MNUDIR, MNUCNTN, LNKPARM, MNUED, INSDT, INSID, UPDDT)
  Values
    ('0010', 'B', 'formI0010', 'FORM', 1, 
-    'form ø°º≠¿« µ•¿Ã≈Õ ¿‘√‚∑¬', 'P', 'NULL', 'NULL', 'NULL', 
+    'form ÏóêÏÑúÏùò Îç∞Ïù¥ÌÑ∞ ÏûÖÏ∂úÎ†•', 'P', 'NULL', 'NULL', 'NULL', 
     'NULL', TO_TIMESTAMP('12/16/2013 11:59:23', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/16/2013 11:59:23', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_MNU
    (COID, MNUDV, MNUID, HMNUID, SEQ, MNUNM, MNUFNC, MNUDIR, MNUCNTN, LNKPARM, MNUED, INSDT, INSID, UPDDT)
  Values
    ('0010', 'B', 'FORM', 'DM', 1, 
-    'formøπ¡¶', 'M', 'NULL', 'NULL', 'NULL', 
+    'formÏòàÏ†ú', 'M', 'NULL', 'NULL', 'NULL', 
     'NULL', TO_TIMESTAMP('12/16/2013 11:59:23', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/16/2013 11:59:23', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_MNU
    (COID, MNUDV, MNUID, HMNUID, SEQ, MNUNM, MNUFNC, MNUDIR, MNUCNTN, LNKPARM, MNUED, INSDT, INSID, UPDDT)
  Values
    ('0010', 'B', 'DM', '0', 11, 
-    '»ƒæﬂµ•∏', 'M', 'NULL', 'NULL', 'NULL', 
+    'ÌõÑÏïºÎç∞Î™®', 'M', 'NULL', 'NULL', 'NULL', 
     'NULL', TO_TIMESTAMP('12/16/2013 11:59:23', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/16/2013 11:59:23', 'MM/DD/YYYY HH24:MI:SS'));
 COMMIT;
 
@@ -1016,17 +1016,17 @@ COMMIT;
 Insert into CO_USR
    (COID, USRID, USRNM, PWD, DPTCD, ROLCD, HPNNO, USEYN, INSDT, UPDDT)
  Values
-   ('0010', 'worldcne', 'π⁄»´±Õ', '1', 
+   ('0010', 'worldcne', 'Î∞ïÌôçÍ∑Ä', '1', 
     'R010', 'A02', '010-5255-3756', '0', TO_TIMESTAMP('12/18/2013 14:10:15', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/18/2013 14:10:15', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_USR
    (COID, USRID, USRNM, PWD, DPTCD, ROLCD, ROLID, USEYN, INSDT, UPDDT)
  Values
-   ('0010', 'go', '∞Ìæ∆∂Û', '1', 
+   ('0010', 'go', 'Í≥†ÏïÑÎùº', '1', 
     'R010', 'A05', 'T010', '1', TO_TIMESTAMP('12/18/2013 14:55:51', 'MM/DD/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/18/2013 14:55:51', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into CO_USR
    (COID, USRID, EMPNO, USRNM, PWD, DPTCD, ROLCD, ROLID, GRPID, USEYN, INSDT, INSID, UPDDT, UPDID)
  Values
-   ('0010', 'test', 'A99999999', 'π⁄ªÛ«ˆ', '1234', 
+   ('0010', 'test', 'A99999999', 'Î∞ïÏÉÅÌòÑ', '1234', 
     'R010', 'A04', 'T010', 'A010', 
     '1', TO_TIMESTAMP('12/05/2013 15:34:51', 'MM/DD/YYYY HH24:MI:SS'), 'test', TO_TIMESTAMP('12/05/2013 15:34:51', 'MM/DD/YYYY HH24:MI:SS'), 'test');
 COMMIT;
@@ -1036,26 +1036,26 @@ COMMIT;
 Insert into HR_DPT
    (COID, DPTCD, HDPTCD, SEQ, DPTNM, DPTSD, INSDT, INSID, UPDDT)
  Values
-   ('0010', '0010', '0', 1, '»ƒæﬂº“«¡∆Æ', 
+   ('0010', '0010', '0', 1, 'ÌõÑÏïºÏÜåÌîÑÌä∏', 
     '20131121', TO_TIMESTAMP('12/14/2013 00:00:00', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/14/2013 00:00:00', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into HR_DPT
    (COID, DPTCD, HDPTCD, SEQ, DPTNM, DPTSD, INSDT, INSID, UPDDT)
  Values
-   ('0010', 'P0100', '0010', 1, '∞Êøµ∞¸∏Æ∫Œ', 
+   ('0010', 'P0100', '0010', 1, 'Í≤ΩÏòÅÍ¥ÄÎ¶¨Î∂Ä', 
     '20131121', TO_TIMESTAMP('12/14/2013 00:00:00', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/14/2013 00:00:00', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into HR_DPT
    (COID, DPTCD, HDPTCD, SEQ, DPTNM, DPTSD, INSDT, INSID, UPDDT)
  Values
-   ('0010', 'S0100', '0010', 2, 'øµæ˜∫Œ', 
+   ('0010', 'S0100', '0010', 2, 'ÏòÅÏóÖÎ∂Ä', 
     '20131121', TO_TIMESTAMP('12/14/2013 00:00:00', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/14/2013 00:00:00', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into HR_DPT
    (COID, DPTCD, HDPTCD, SEQ, DPTNM, DPTSD, INSDT, INSID, UPDDT)
  Values
-   ('0010', 'S0200', '0010', 3, 'SIªÁæ˜∫Œ', 
+   ('0010', 'S0200', '0010', 3, 'SIÏÇ¨ÏóÖÎ∂Ä', 
     '20131121', TO_TIMESTAMP('12/14/2013 00:00:00', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/14/2013 19:13:07', 'MM/DD/YYYY HH24:MI:SS'));
 Insert into HR_DPT
    (COID, DPTCD, HDPTCD, SEQ, DPTNM, DPTSD, INSDT, INSID, UPDDT)
  Values
-   ('0010', 'R0100', '0010', 4, '±‚º˙ø¨±∏º“', 
+   ('0010', 'R0100', '0010', 4, 'Í∏∞Ïà†Ïó∞Íµ¨ÏÜå', 
     '20131121', TO_TIMESTAMP('12/14/2013 19:14:32', 'MM/DD/YYYY HH24:MI:SS'), 'worldcne', TO_TIMESTAMP('12/14/2013 19:14:32', 'MM/DD/YYYY HH24:MI:SS'));
 COMMIT;
