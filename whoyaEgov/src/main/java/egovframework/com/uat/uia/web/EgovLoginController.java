@@ -79,7 +79,7 @@ public class EgovLoginController {
 	 * @return 로그인 페이지
 	 * @exception Exception
 	 */
-    @IncludedInfo(name="로그인", listUrl="/uat/uia/egovLoginUsr.do", whoyaListUrl="/whoya/content/login.do", order = 10, gid = 10)
+    @IncludedInfo(name="로그인", listUrl="/uat/uia/egovLoginUsr.do", whoyaListUrl="/whoya/uat/uia/egovLoginUsr.do", order = 10, gid = 10)
     @RequestMapping(value="/uat/uia/egovLoginUsr.do")
 	public String loginUsrView(@ModelAttribute("loginVO") LoginVO loginVO,
 			HttpServletRequest request,
