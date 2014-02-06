@@ -19,7 +19,6 @@ import whoya.whoyaMap;
 import whoya.common.Common;
 import whoya.common.commonReturn;
 import whoya.egovframework.com.cop.cmy.service.WhoyaEgovCommunityManageService;
-import egovframework.com.cop.bbs.service.BoardMasterVO;
 import egovframework.com.cop.cmy.service.CommunityVO;
 
 /**
