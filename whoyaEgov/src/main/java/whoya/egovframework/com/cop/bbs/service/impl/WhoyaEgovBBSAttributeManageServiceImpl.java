@@ -28,6 +28,14 @@ public class WhoyaEgovBBSAttributeManageServiceImpl implements WhoyaEgovBBSAttri
     	return egovBBSAttributeManageService.selectBBSMasterInfs(searchVO);
     }
 
+    /**
+     * 사용중이지 않은 게시판 속성 정보의 목록을 조회 한다.
+     */
+    public Map<String, Object> selectNotUsedBdMstrList(BoardMasterVO searchVO) throws Exception {
+		return egovBBSAttributeManageService.selectNotUsedBdMstrList(searchVO);
+    }
+    
+    
 //    @Resource(name = "BBSAttributeManageDAO")
 //    private BBSAttributeManageDAO attrbMngDAO;
 //
@@ -239,18 +247,4 @@ public class WhoyaEgovBBSAttributeManageServiceImpl implements WhoyaEgovBBSAttri
 //	return attrbMngDAO.selectAllBdMstrByTrget(vo);
 //    }
 //
-//    /**
-//     * 사용중이지 않은 게시판 속성 정보의 목록을 조회 한다.
-//     */
-//    public Map<String, Object> selectNotUsedBdMstrList(BoardMasterVO searchVO) throws Exception {
-//	List<BoardMasterVO> result = attrbMngDAO.selectNotUsedBdMstrList(searchVO);
-//	int cnt = attrbMngDAO.selectNotUsedBdMstrListCnt(searchVO);
-//	
-//	Map<String, Object> map = new HashMap<String, Object>();
-//	
-//	map.put("resultList", result);
-//	map.put("resultCnt", Integer.toString(cnt));
-//
-//	return map;
-//    }
 }

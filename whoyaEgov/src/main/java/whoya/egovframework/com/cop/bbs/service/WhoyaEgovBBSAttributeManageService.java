@@ -18,6 +18,16 @@ public interface WhoyaEgovBBSAttributeManageService {
      */
     public Map<String, Object> selectBBSMasterInfs(BoardMasterVO searchVO) throws Exception;
     
+    
+    /**
+     * 사용중이지 않은 게시판 속성 정보의 목록을 조회 한다.
+     * 
+     * @param vo
+     * @return
+     * @throws Exception
+     */
+    public Map<String, Object> selectNotUsedBdMstrList(BoardMasterVO vo) throws Exception;
+
 //    /**
 //     * 등록된 게시판 속성정보를 삭제한다.
 //     * 
@@ -77,13 +87,4 @@ public interface WhoyaEgovBBSAttributeManageService {
 //     * @throws Exception
 //     */
 //    public List<BoardMasterVO> selectAllBdMstrByTrget(BoardMasterVO vo) throws Exception;
-//
-//    /**
-//     * 사용중이지 않은 게시판 속성 정보의 목록을 조회 한다.
-//     * 
-//     * @param vo
-//     * @return
-//     * @throws Exception
-//     */
-//    public Map<String, Object> selectNotUsedBdMstrList(BoardMasterVO vo) throws Exception;
 }
