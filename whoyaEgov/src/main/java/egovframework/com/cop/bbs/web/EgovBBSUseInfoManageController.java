@@ -164,7 +164,7 @@ public class EgovBBSUseInfoManageController {
      * @return
      * @throws Exception
      */
-    @IncludedInfo(name="게시판사용정보", order = 190 ,gid = 40)
+    @IncludedInfo(name="게시판사용정보", whoyaListUrl="/whoya/cop/com/selectBBSUseInfs.do", order = 190 ,gid = 40)
     @RequestMapping("/cop/com/selectBBSUseInfs.do")
     public String selectBBSUseInfs(@ModelAttribute("searchVO") BoardUseInfVO bdUseVO, ModelMap model) throws Exception {
 
