@@ -59,21 +59,46 @@ function comKeyPress(grid, code, ctrl, shift, keyVal){
 }
 
 /*단위화면 기능키표시*/
-function comToolbarButton(toolbar){
-	toolbar.addSeparator("sep_Open", 11); 
-	toolbar.addButton("btn_Open", 12, "조회", "open.gif");
-	toolbar.addSeparator("sep_Save", 13); 
-	toolbar.addButton("btn_Append", 14, "추가", "append.gif");
-	toolbar.addSeparator("sep_Save", 15); 
-	toolbar.addButton("btn_Delete", 16, "삭제", "close.gif");
-	toolbar.addSeparator("sep_Save", 17); 
-	toolbar.addButton("btn_Undo", 18, "취소", "undo.gif");
-	toolbar.addSeparator("sep_Save", 19); 
-	toolbar.addButton("btn_Save", 20, "저장", "save.gif");
-	toolbar.addSeparator("sep_Print", 21);
-	toolbar.addButton("btn_Print", 22, "인쇄", "print.gif");
-	toolbar.addSeparator("sep_Excel", 23);
-	toolbar.addButton("btn_Excel", 24, "엑셀", "excel.gif");
+function comToolbarButton(toolbar, hideBtn){
+	var showBtn = {
+		btn_Open: true
+		, btn_Append: true
+		, btn_Delete: true
+		, btn_Undo: true
+		, btn_Save: true
+		, btn_Print: true
+		, btn_Excel: true
+	};
+	$.extend(showBtn, hideBtn);
+	
+	if ( showBtn.btn_Open ) {
+		toolbar.addSeparator("sep_Open", 11); 
+		toolbar.addButton("btn_Open", 12, "조회", "open.gif");
+	}
+	if ( showBtn.btn_Append ) {
+		toolbar.addSeparator("sep_Append", 13); 
+		toolbar.addButton("btn_Append", 14, "추가", "append.gif");
+	}
+	if ( showBtn.btn_Delete ) {
+		toolbar.addSeparator("sep_Delete", 15); 
+		toolbar.addButton("btn_Delete", 16, "삭제", "close.gif");
+	}
+	if ( showBtn.btn_Undo ) {
+		toolbar.addSeparator("sep_Undo", 17); 
+		toolbar.addButton("btn_Undo", 18, "취소", "undo.gif");
+	}
+	if ( showBtn.btn_Save ) {
+		toolbar.addSeparator("sep_Save", 19); 
+		toolbar.addButton("btn_Save", 20, "저장", "save.gif");
+	}
+	if ( showBtn.btn_Print ) {
+		toolbar.addSeparator("sep_Print", 21);
+		toolbar.addButton("btn_Print", 22, "인쇄", "print.gif");
+	}
+	if ( showBtn.btn_Excel ) {
+		toolbar.addSeparator("sep_Excel", 23);
+		toolbar.addButton("btn_Excel", 24, "엑셀", "excel.gif");
+	}
 	toolbar.forEachItem(function(id) {
 		if (id == "button_Separator") toolbar.addSpacer(id);
         
@@ -191,4 +216,26 @@ function jsonString(data){
 				}
 			return value;
 		   });
+}
+
+//입력폼 숨기기.
+function hideInputForm(formId, formData) {
+	$.each(formData, function(idx, data) {
+		if ( data.type == "radio" ) {
+			formId.hideItem(data.name, data.value);
+		} else {
+			formId.hideItem(data.name);
+		}
+	});
+}
+
+//입력폼 보이기.
+function showInputForm(formId, formData) {
+	$.each(formData, function(idx, data) {
+		if ( data.type == "radio" ) {
+			formId.showItem(data.name, data.value);
+		} else {
+			formId.showItem(data.name);
+		}
+	});
 }
