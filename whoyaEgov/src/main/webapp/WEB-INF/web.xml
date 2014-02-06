@@ -92,16 +92,49 @@
     <filter-name>springSecurityFilterChain</filter-name>
     <url-pattern>/utl/*</url-pattern>
   </filter-mapping>
-  <listener>
-    <listener-class>org.springframework.security.ui.session.HttpSessionEventPublisher</listener-class>
-  </listener>
-  <filter>
-    <filter-name>EgovSpringSecurityLogoutFilter</filter-name>
-    <filter-class>egovframework.com.sec.security.filter.EgovSpringSecurityLogoutFilter</filter-class>
-  </filter>
   <filter-mapping>
-    <filter-name>EgovSpringSecurityLogoutFilter</filter-name>
-    <url-pattern>/uat/uia/actionLogout.do</url-pattern>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/whoya/cmm/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/whoya/cop/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/whoya/dam/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/whoya/ext/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/whoya/sec/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/whoya/ssi/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/whoya/sts/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/whoya/sym/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/whoya/uat/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/whoya/uss/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/whoya/utl/*</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>EgovSpringSecurityLoginFilter</filter-name>
@@ -155,6 +188,61 @@
   <filter-mapping>
     <filter-name>EgovSpringSecurityLoginFilter</filter-name>
     <url-pattern>/utl/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>EgovSpringSecurityLoginFilter</filter-name>
+    <url-pattern>/whoya/cmm/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>EgovSpringSecurityLoginFilter</filter-name>
+    <url-pattern>/whoya/cop/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>EgovSpringSecurityLoginFilter</filter-name>
+    <url-pattern>/whoya/dam/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>EgovSpringSecurityLoginFilter</filter-name>
+    <url-pattern>/whoya/ext/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>EgovSpringSecurityLoginFilter</filter-name>
+    <url-pattern>/whoya/sec/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>EgovSpringSecurityLoginFilter</filter-name>
+    <url-pattern>/whoya/ssi/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>EgovSpringSecurityLoginFilter</filter-name>
+    <url-pattern>/whoya/sts/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>EgovSpringSecurityLoginFilter</filter-name>
+    <url-pattern>/whoya/sym/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>EgovSpringSecurityLoginFilter</filter-name>
+    <url-pattern>/whoya/uat/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>EgovSpringSecurityLoginFilter</filter-name>
+    <url-pattern>/whoya/uss/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>EgovSpringSecurityLoginFilter</filter-name>
+    <url-pattern>/whoya/utl/*</url-pattern>
+  </filter-mapping>
+  <listener>
+    <listener-class>org.springframework.security.ui.session.HttpSessionEventPublisher</listener-class>
+  </listener>
+  <filter>
+    <filter-name>EgovSpringSecurityLogoutFilter</filter-name>
+    <filter-class>egovframework.com.sec.security.filter.EgovSpringSecurityLogoutFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>EgovSpringSecurityLogoutFilter</filter-name>
+    <url-pattern>/uat/uia/actionLogout.do</url-pattern>
   </filter-mapping>
   <servlet>
     <servlet-name>ajaxServlet</servlet-name>
