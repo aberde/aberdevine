@@ -47,12 +47,12 @@ public class WhoyaEgovBBSAttributeManageController {
 	/**
 	 * 게시판 속성관리 목록을 조회한다.
 	 * @param boardMasterVO BoardMasterVO
+	 * @param model ModelMap
 	 * @return JSONObject
 	 * @exception Exception
 	 */
 	@RequestMapping(value="whoya/cop/bbs/SelectBBSMasterJSONInfs.do", headers="Accept=application/json")
 	public @ResponseBody JSONObject selectLoginPolicyJSONList(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, ModelMap model) throws Exception {
-		
 		JSONObject resultList = new JSONObject();
 		
 		try {
@@ -80,8 +80,48 @@ public class WhoyaEgovBBSAttributeManageController {
 		
 		return resultList;
 	} 
-	 
-
+	
+	/**
+	 * 게시판 마스터 선택 팝업을 위한 목록을 조회한다.
+	 * 
+	 * @param boardMasterVO
+	 * @param model
+	 * @return JSONObject
+	 * @throws Exception
+	 */
+	@RequestMapping(value="whoya/cop/bbs/SelectBBSMasterInfsPop.do", headers="Accept=application/json")
+	public @ResponseBody JSONObject selectBBSMasterInfsPop(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, ModelMap model) throws Exception {
+		JSONObject resultList = new JSONObject();
+		
+		try {
+			boardMasterVO.setPageIndex(0);
+			boardMasterVO.setUseAt("Y");
+			Map<String, Object> map = whoyaEgovBBSAttributeManageService.selectNotUsedBdMstrList(boardMasterVO);
+			List<BoardMasterVO> voList = (List<BoardMasterVO>)map.get("resultList");
+			whoyaList list = new whoyaList(Common.ConverObjectToWhoyaMap(voList));
+			
+			// 번호 컬럼 추가.
+			// TODO 수정필요 list목록이 많아지면 속도저하 whoyaLib에서 whoyaRenderGrid호출시 같이 처리되도록 해야됨.(aberdevine) 
+			for ( int i = 0 ; i < list.size(); i++ ) {
+				whoyaMap wmap = list.getMap(i);
+				wmap.put("no", i + 1);
+				wmap.put("selectLink", "../../../images/egovframework/com/cmm/icon/search.gif^선택^javascript:boardSelect(\"" + wmap.get("bbsId") + "\", \"" + wmap.get("bbsNm") + "\");^_self");
+			}
+			
+			// 번호,게시판명,게시판유형,게시판속성,생성일,사용여부
+		 	resultList.put("list", whoyaLib.whoyaRenderGrid(list, "no,bbsNm,bbsTyCodeNm,bbsAttrbCodeNm,frstRegisterPnttm,useAt,selectLink"));
+		 	resultList.put("status", commonReturn.SUCCESS);
+		 	resultList.put("message", "조회되었습니다");
+		} catch(Exception e) {
+			resultList.put("status", commonReturn.FAIL);
+			resultList.put("message", e.getMessage());
+			throw e;
+		}
+		
+		return resultList;
+	}
+	
+	
 //    @Resource(name = "EgovBBSAttributeManageService")
 //    private EgovBBSAttributeManageService bbsAttrbService;
 //
@@ -332,42 +372,5 @@ public class WhoyaEgovBBSAttributeManageController {
 //	}
 //	// status.setComplete();
 //	return "forward:/cop/bbs/SelectBBSMasterInfs.do";
-//    }
-//
-//    /**
-//     * 게시판 마스터 선택 팝업을 위한 목록을 조회한다.
-//     * 
-//     * @param boardMasterVO
-//     * @param model
-//     * @return
-//     * @throws Exception
-//     */
-//    @RequestMapping("/cop/bbs/SelectBBSMasterInfsPop.do")
-//    public String selectBBSMasterInfsPop(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, ModelMap model) throws Exception {
-//	boardMasterVO.setPageUnit(propertyService.getInt("pageUnit"));
-//	boardMasterVO.setPageSize(propertyService.getInt("pageSize"));
-//
-//	PaginationInfo paginationInfo = new PaginationInfo();
-//	
-//	paginationInfo.setCurrentPageNo(boardMasterVO.getPageIndex());
-//	paginationInfo.setRecordCountPerPage(boardMasterVO.getPageUnit());
-//	paginationInfo.setPageSize(boardMasterVO.getPageSize());
-//
-//	boardMasterVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
-//	boardMasterVO.setLastIndex(paginationInfo.getLastRecordIndex());
-//	boardMasterVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-//
-//	boardMasterVO.setUseAt("Y");
-//	
-//	Map<String, Object> map = bbsAttrbService.selectNotUsedBdMstrList(boardMasterVO);
-//	int totCnt = Integer.parseInt((String)map.get("resultCnt"));
-//	
-//	paginationInfo.setTotalRecordCount(totCnt);
-//
-//	model.addAttribute("resultList", map.get("resultList"));
-//	model.addAttribute("resultCnt", map.get("resultCnt"));	
-//	model.addAttribute("paginationInfo", paginationInfo);
-//
-//	return "egovframework/com/cop/bbs/EgovBoardMstrListPop";
 //    }
 }
