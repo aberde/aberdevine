@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import whoya.egovframework.com.cop.tpl.service.WhoyaEgovTemplateManageService;
 import egovframework.com.cop.tpl.service.EgovTemplateManageService;
+import egovframework.com.cop.tpl.service.TemplateInf;
 import egovframework.com.cop.tpl.service.TemplateInfVO;
 import egovframework.rte.fdl.cmmn.AbstractServiceImpl;
 
@@ -29,6 +30,33 @@ public class WhoyaEgovTemplateManageServiceImpl extends AbstractServiceImpl impl
 		return tmplatService.selectTemplateInfs(tmplatInfVO);
     }
 
+    /**
+     * 템플릿 정보를 등록한다.
+     * 
+     * @see egovframework.com.cop.bbs.com.service.EgovTemplateManageService#insertTemplateInf(egovframework.com.cop.bbs.com.service.TemplateInf)
+     */
+    public void insertTemplateInf(TemplateInf tmplatInf) throws Exception {
+    	tmplatService.insertTemplateInf(tmplatInf);
+    }
+
+    /**
+     * 템플릿에 대한 상세정보를 조회한다.
+     * 
+     * @see egovframework.com.cop.bbs.com.service.EgovTemplateManageService#selectTemplateInf(egovframework.com.cop.bbs.com.service.TemplateInfVO)
+     */
+    public TemplateInfVO selectTemplateInf(TemplateInfVO tmplatInfVO) throws Exception {
+		return tmplatService.selectTemplateInf(tmplatInfVO);
+    }
+
+    /**
+     * 템플릿 정보를 수정한다.
+     * 
+     * @see egovframework.com.cop.bbs.com.service.EgovTemplateManageService#updateTemplateInf(egovframework.com.cop.bbs.com.service.TemplateInf)
+     */
+    public void updateTemplateInf(TemplateInf tmplatInf) throws Exception {
+    	tmplatService.updateTemplateInf(tmplatInf);
+    }
+
 //    @Resource(name = "TemplateManageDAO")
 //    private TemplateManageDAO tmplatDAO;
 //
@@ -45,29 +73,6 @@ public class WhoyaEgovTemplateManageServiceImpl extends AbstractServiceImpl impl
 //    }
 //
 //    /**
-//     * 템플릿 정보를 등록한다.
-//     * 
-//     * @see egovframework.com.cop.bbs.com.service.EgovTemplateManageService#insertTemplateInf(egovframework.com.cop.bbs.com.service.TemplateInf)
-//     */
-//    public void insertTemplateInf(TemplateInf tmplatInf) throws Exception {
-//
-//	tmplatInf.setTmplatId(idgenService.getNextStringId());
-//
-//	tmplatDAO.insertTemplateInf(tmplatInf);
-//    }
-//
-//    /**
-//     * 템플릿에 대한 상세정보를 조회한다.
-//     * 
-//     * @see egovframework.com.cop.bbs.com.service.EgovTemplateManageService#selectTemplateInf(egovframework.com.cop.bbs.com.service.TemplateInfVO)
-//     */
-//    public TemplateInfVO selectTemplateInf(TemplateInfVO tmplatInfVO) throws Exception {
-//	TemplateInfVO vo = new TemplateInfVO();
-//	vo = tmplatDAO.selectTemplateInf(tmplatInfVO);
-//	return vo;
-//    }
-//
-//    /**
 //     * 템플릿에 대한 미리보기 정보를 조회한다.
 //     * 
 //     * @see egovframework.com.cop.bbs.com.service.EgovTemplateManageService#selectTemplatePreview(egovframework.com.cop.bbs.com.service.TemplateInfVO)
@@ -78,15 +83,6 @@ public class WhoyaEgovTemplateManageServiceImpl extends AbstractServiceImpl impl
 //	vo = tmplatDAO.selectTemplatePreview(tmplatInfVO);
 //	
 //	return vo;
-//    }
-//
-//    /**
-//     * 템플릿 정보를 수정한다.
-//     * 
-//     * @see egovframework.com.cop.bbs.com.service.EgovTemplateManageService#updateTemplateInf(egovframework.com.cop.bbs.com.service.TemplateInf)
-//     */
-//    public void updateTemplateInf(TemplateInf tmplatInf) throws Exception {
-//	tmplatDAO.updateTemplateInf(tmplatInf);
 //    }
 //
 //    /**
