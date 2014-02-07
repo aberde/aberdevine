@@ -3,6 +3,7 @@ package egovframework.com.cop.bbs.service;
 import java.io.Serializable;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 /**
  * 게시판 속성 정보를 관리하기 위한 VO  클래스
@@ -21,6 +22,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  * </pre>
  */
 @SuppressWarnings("serial")
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_DEFAULT)
 public class BoardMasterVO extends BoardMaster implements Serializable {
     
     /** 검색시작일 */
