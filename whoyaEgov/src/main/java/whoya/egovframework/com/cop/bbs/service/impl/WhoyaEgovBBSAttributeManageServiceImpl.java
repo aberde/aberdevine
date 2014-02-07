@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import whoya.egovframework.com.cop.bbs.service.WhoyaEgovBBSAttributeManageService;
+import egovframework.com.cop.bbs.service.BoardMaster;
 import egovframework.com.cop.bbs.service.BoardMasterVO;
 import egovframework.com.cop.bbs.service.EgovBBSAttributeManageService;
 
@@ -34,7 +35,42 @@ public class WhoyaEgovBBSAttributeManageServiceImpl implements WhoyaEgovBBSAttri
     public Map<String, Object> selectNotUsedBdMstrList(BoardMasterVO searchVO) throws Exception {
 		return egovBBSAttributeManageService.selectNotUsedBdMstrList(searchVO);
     }
-    
+
+    /**
+     * 신규 게시판 속성정보를 생성한다.
+     * 
+     * @see egovframework.com.cop.bbs.brd.service.EgovBBSAttributeManageService#insertBBSMastetInf(egovframework.com.cop.bbs.brd.service.BoardMaster)
+     */
+    public String insertBBSMastetInf(BoardMaster boardMaster) throws Exception {
+		return egovBBSAttributeManageService.insertBBSMastetInf(boardMaster);
+    }
+
+    /**
+     * 게시판 속성정보를 수정한다.
+     * 
+     * @see egovframework.com.cop.bbs.brd.service.EgovBBSAttributeManageService#updateBBSMasterInf(egovframework.com.cop.bbs.brd.service.BoardMaster)
+     */
+    public void updateBBSMasterInf(BoardMaster boardMaster) throws Exception {
+		egovBBSAttributeManageService.updateBBSMasterInf(boardMaster);
+    }
+
+    /**
+     * 게시판 속성정보 한 건을 상세조회한다.
+     * 
+     * @see egovframework.com.cop.bbs.brd.service.EgovBBSAttributeManageService#selectBBSMasterInf(egovframework.com.cop.bbs.brd.service.BoardMasterVO)
+     */
+    public BoardMasterVO selectBBSMasterInf(BoardMaster searchVO) throws Exception {
+    	return egovBBSAttributeManageService.selectBBSMasterInf(searchVO);
+    }
+		
+    /**
+     * 등록된 게시판 속성정보를 삭제한다.
+     * 
+     * @see egovframework.com.cop.bbs.brd.service.EgovBBSAttributeManageService#deleteBBSMasterInf(egovframework.com.cop.bbs.brd.service.BoardMaster)
+     */
+    public void deleteBBSMasterInf(BoardMaster boardMaster) throws Exception {
+    	egovBBSAttributeManageService.deleteBBSMasterInf(boardMaster);
+    }
     
 //    @Resource(name = "BBSAttributeManageDAO")
 //    private BBSAttributeManageDAO attrbMngDAO;
@@ -54,92 +90,6 @@ public class WhoyaEgovBBSAttributeManageServiceImpl implements WhoyaEgovBBSAttri
 //    @Resource(name = "BBSAddedOptionsDAO")
 //    private BBSAddedOptionsDAO addedOptionsDAO;
 //    ////-------------------------------
-//		
-//    /**
-//     * 등록된 게시판 속성정보를 삭제한다.
-//     * 
-//     * @see egovframework.com.cop.bbs.brd.service.EgovBBSAttributeManageService#deleteBBSMasterInf(egovframework.com.cop.bbs.brd.service.BoardMaster)
-//     */
-//    public void deleteBBSMasterInf(BoardMaster boardMaster) throws Exception {
-//	attrbMngDAO.deleteBBSMasterInf(boardMaster);
-//	
-//	BoardUseInf bdUseInf = new BoardUseInf();
-//	
-//	bdUseInf.setBbsId(boardMaster.getBbsId());
-//	bdUseInf.setLastUpdusrId(boardMaster.getLastUpdusrId());
-//	
-//	bbsUseDAO.deleteBBSUseInfByBoardId(bdUseInf);
-//    }
-//
-//    /**
-//     * 신규 게시판 속성정보를 생성한다.
-//     * 
-//     * @see egovframework.com.cop.bbs.brd.service.EgovBBSAttributeManageService#insertBBSMastetInf(egovframework.com.cop.bbs.brd.service.BoardMaster)
-//     */
-//    public String insertBBSMastetInf(BoardMaster boardMaster) throws Exception {
-//	String bbsId = idgenService.getNextStringId();
-//	
-//	boardMaster.setBbsId(bbsId);
-//	
-//	attrbMngDAO.insertBBSMasterInf(boardMaster);
-//	
-//	//---------------------------------
-//	// 2009.06.26 : 2단계 기능 추가
-//	//---------------------------------
-//	if (boardMaster.getOption().equals("comment") || boardMaster.getOption().equals("stsfdg")) {
-//	    addedOptionsDAO.insertAddedOptionsInf(boardMaster);
-//	}
-//	////-------------------------------
-//
-//	if ("Y".equals(boardMaster.getBbsUseFlag())) {
-//	    BoardUseInf bdUseInf = new BoardUseInf();
-//
-//	    bdUseInf.setBbsId(bbsId);
-//	    bdUseInf.setTrgetId(boardMaster.getTrgetId());
-//	    bdUseInf.setRegistSeCode(boardMaster.getRegistSeCode());
-//	    bdUseInf.setFrstRegisterId(boardMaster.getFrstRegisterId());
-//	    bdUseInf.setUseAt("Y");
-//
-//	    bbsUseDAO.insertBBSUseInf(bdUseInf);
-//
-//	    UserInfVO userVO = new UserInfVO();
-//	    userVO.setTrgetId(boardMaster.getTrgetId());
-//
-//	    List<UserInfVO> tmpList = null;
-//	    Iterator<UserInfVO> iter = null;
-//
-//	    if ("REGC05".equals(boardMaster.getRegistSeCode())) {
-//		tmpList = userService.selectAllClubUser(userVO);
-//		iter = tmpList.iterator();
-//		while (iter.hasNext()) {
-//		    bdUseInf = new BoardUseInf();
-//		    
-//		    bdUseInf.setBbsId(bbsId);
-//		    bdUseInf.setTrgetId(((UserInfVO)iter.next()).getUniqId());
-//		    bdUseInf.setRegistSeCode("REGC07");
-//		    bdUseInf.setUseAt("Y");
-//		    bdUseInf.setFrstRegisterId(boardMaster.getFrstRegisterId());
-//		    
-//		    bbsUseDAO.insertBBSUseInf(bdUseInf);
-//		}
-//	    } else if ("REGC06".equals(boardMaster.getRegistSeCode())) {
-//		tmpList = userService.selectAllCmmntyUser(userVO);
-//		iter = tmpList.iterator();
-//		while (iter.hasNext()) {
-//		    bdUseInf = new BoardUseInf();
-//		    
-//		    bdUseInf.setBbsId(bbsId);
-//		    bdUseInf.setTrgetId(((UserInfVO)iter.next()).getUniqId());
-//		    bdUseInf.setRegistSeCode("REGC07");
-//		    bdUseInf.setUseAt("Y");
-//		    bdUseInf.setFrstRegisterId(boardMaster.getFrstRegisterId());
-//		    
-//		    bbsUseDAO.insertBBSUseInf(bdUseInf);
-//		}
-//	    }
-//	}
-//	return bbsId;
-//    }
 //
 //    /**
 //     * 게시판 속성 정보의 목록을 조회 한다.
@@ -148,72 +98,6 @@ public class WhoyaEgovBBSAttributeManageServiceImpl implements WhoyaEgovBBSAttri
 //     */
 //    public List<BoardMasterVO> selectAllBBSMasteInf(BoardMasterVO vo) throws Exception {
 //	return attrbMngDAO.selectAllBBSMasteInf(vo);
-//    }
-//
-//    /**
-//     * 게시판 속성정보 한 건을 상세조회한다.
-//     * 
-//     * @see egovframework.com.cop.bbs.brd.service.EgovBBSAttributeManageService#selectBBSMasterInf(egovframework.com.cop.bbs.brd.service.BoardMasterVO)
-//     */
-//    public BoardMasterVO selectBBSMasterInf(BoardMaster searchVO) throws Exception {
-//	//---------------------------------
-//	// 2009.06.26 : 2단계 기능 추가
-//	//---------------------------------
-//	//return attrbMngDAO.selectBBSMasterInf(searchVO);
-//	
-//	BoardMasterVO result = attrbMngDAO.selectBBSMasterInf(searchVO);
-//
-//	//String flag = EgovProperties.getProperty("Globals.addedOptions");
-//	//if (flag != null && flag.trim().equalsIgnoreCase("true")) {
-//	if(EgovComponentChecker.hasComponent("EgovBBSCommentService") || EgovComponentChecker.hasComponent("EgovBBSSatisfactionService")){//2011.09.15
-//	    BoardMasterVO options = addedOptionsDAO.selectAddedOptionsInf(searchVO);
-//	    
-//	    if (options != null) {
-//		if (options.getCommentAt().equals("Y")) {
-//		    result.setOption("comment");
-//		}
-//
-//		if (options.getStsfdgAt().equals("Y")) {
-//		    result.setOption("stsfdg");
-//		}
-//	    } else {
-//		result.setOption("na");	// 미지정 상태로 수정 가능 (이미 지정된 경우는 수정 불가로 처리)
-//	    }
-//	}
-//
-//	return result;
-//	////-------------------------------
-//	
-//    }
-//
-//    /**
-//     * 게시판 속성정보를 수정한다.
-//     * 
-//     * @see egovframework.com.cop.bbs.brd.service.EgovBBSAttributeManageService#updateBBSMasterInf(egovframework.com.cop.bbs.brd.service.BoardMaster)
-//     */
-//    public void updateBBSMasterInf(BoardMaster boardMaster) throws Exception {
-//	attrbMngDAO.updateBBSMasterInf(boardMaster);
-//	
-//	//---------------------------------
-//	// 2009.06.26 : 2단계 기능 추가
-//	//---------------------------------
-//
-//	if (boardMaster.getOption().equals("comment") || boardMaster.getOption().equals("stsfdg")) {
-//	    if (boardMaster.getOption().equals("na")) {
-//		return;
-//	    }
-//	    BoardMasterVO options = addedOptionsDAO.selectAddedOptionsInf(boardMaster);
-//	    
-//	    if (options == null) {
-//		boardMaster.setFrstRegisterId(boardMaster.getLastUpdusrId());
-//		addedOptionsDAO.insertAddedOptionsInf(boardMaster);
-//	    } else {
-//		//수정 기능 제외 (새롭게 선택사항을 지정한 insert만 처리함)
-//		//addedOptionsDAO.updateAddedOptionsInf(boardMaster);
-//		log.debug("BBS Master update ignored...");
-//	    }
-//	}
-//	////-------------------------------
 //    }
 //
 //    /**
