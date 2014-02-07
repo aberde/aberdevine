@@ -2,6 +2,7 @@ package whoya.egovframework.com.cop.bbs.service;
 
 import java.util.Map;
 
+import egovframework.com.cop.bbs.service.BoardMaster;
 import egovframework.com.cop.bbs.service.BoardMasterVO;
 
 
@@ -28,33 +29,33 @@ public interface WhoyaEgovBBSAttributeManageService {
      */
     public Map<String, Object> selectNotUsedBdMstrList(BoardMasterVO vo) throws Exception;
 
-//    /**
-//     * 등록된 게시판 속성정보를 삭제한다.
-//     * 
-//     * @param BoardMaster
-//     */
-//    public void deleteBBSMasterInf(BoardMaster boardMaster) throws Exception;
-//
-//    /**
-//     * 신규 게시판 속성정보를 생성한다.
-//     * 
-//     * @param BoardMaster
-//     */
-//    public String insertBBSMastetInf(BoardMaster boardMaster) throws Exception;
-//
-//    /**
-//     * 게시판 속성정보 한 건을 상세조회한다.
-//     * 
-//     * @param BoardMasterVO
-//     */
-//    public BoardMasterVO selectBBSMasterInf(BoardMaster searchVO) throws Exception;
-//
-//    /**
-//     * 게시판 속성정보를 수정한다.
-//     * 
-//     * @param BoardMaster
-//     */
-//    public void updateBBSMasterInf(BoardMaster boardMaster) throws Exception;
+    /**
+     * 신규 게시판 속성정보를 생성한다.
+     * 
+     * @param BoardMaster
+     */
+    public String insertBBSMastetInf(BoardMaster boardMaster) throws Exception;
+
+    /**
+     * 게시판 속성정보를 수정한다.
+     * 
+     * @param BoardMaster
+     */
+    public void updateBBSMasterInf(BoardMaster boardMaster) throws Exception;
+
+    /**
+     * 게시판 속성정보 한 건을 상세조회한다.
+     * 
+     * @param BoardMasterVO
+     */
+    public BoardMasterVO selectBBSMasterInf(BoardMaster searchVO) throws Exception;
+
+    /**
+     * 등록된 게시판 속성정보를 삭제한다.
+     * 
+     * @param BoardMaster
+     */
+    public void deleteBBSMasterInf(BoardMaster boardMaster) throws Exception;
 //
 //    /**
 //     * 템플릿의 유효여부를 점검한다.
