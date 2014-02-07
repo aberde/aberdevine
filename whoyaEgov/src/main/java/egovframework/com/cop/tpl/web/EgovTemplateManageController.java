@@ -71,7 +71,7 @@ public class EgovTemplateManageController {
      * @return
      * @throws Exception
      */
-    @IncludedInfo(name="템플릿관리", order = 200 ,gid = 40)
+    @IncludedInfo(name="템플릿관리", whoyaListUrl="/whoya/cop/tpl/selectTemplateInfs.do", order = 200 ,gid = 40)
     @RequestMapping("/cop/tpl/selectTemplateInfs.do")
     public String selectTemplateInfs(@ModelAttribute("searchVO") TemplateInfVO tmplatInfVO, ModelMap model) throws Exception {
 	tmplatInfVO.setPageUnit(propertyService.getInt("pageUnit"));

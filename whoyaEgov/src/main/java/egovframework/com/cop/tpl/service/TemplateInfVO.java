@@ -3,6 +3,7 @@ package egovframework.com.cop.tpl.service;
 import java.io.Serializable;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 
 /**
@@ -22,6 +23,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  * </pre>
  */
 @SuppressWarnings("serial")
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_DEFAULT)
 public class TemplateInfVO extends TemplateInf implements Serializable {
 	
     /** 최초 등록자명 */
