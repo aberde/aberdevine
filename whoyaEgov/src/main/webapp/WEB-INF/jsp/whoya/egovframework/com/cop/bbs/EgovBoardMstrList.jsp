@@ -460,20 +460,6 @@ function init() {
 		oProcB.hideHeader();
 	}
 	
-	/** 
-	 * log
-	 */
-	function log(message, args) {
-	    var div = document.createElement("div");
-	    for (var i = 0; i < 3; i++) {
-	        message += "<li>" + args[i];
-	    };
-	    message += "<br/>";
-	    console.log(message);
-	    div.innerHTML = message;
-	    document.getElementById('zoneA').appendChild(div);
-	}
-	
     /**
      * layout status bar
      */
@@ -586,17 +572,6 @@ function init() {
 			gridPopup.init();
 		}
 		
-		function log(message, args) {
-		    var div = document.createElement("div");
-		    for (var i = 0; i < 3; i++) {
-		        message += "<li>" + args[i];
-		    };
-
-		    message += "<br/>";
-		    div.innerHTML = message;
-		    document.getElementById('zoneA').appendChild(div);
-		}
-
 		/**
 	     * layout status bar(popup용)
 	     */
