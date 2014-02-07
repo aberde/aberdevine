@@ -1,7 +1,6 @@
 package whoya.common;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,7 +16,7 @@ public class Common {
 	 * @param list
 	 * @return
 	 */
-	public static List<whoyaMap> ConverObjectToWhoyaMap(List<?> list) {
+	public static List<whoyaMap> ConverObjectToWhoyaMap(List<?> list) throws Exception {
 		try {
 			List<whoyaMap> resultList = new ArrayList<whoyaMap>();
 			
@@ -46,9 +45,8 @@ public class Common {
 			return resultList;
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
-		
-		return null;
 	}
 	
 	/**
@@ -56,7 +54,7 @@ public class Common {
 	 * @param obj
 	 * @return
 	 */
-	public static Object convertWhoyaMapToObject(whoyaMap map, Object objClass){
+	public static Object convertWhoyaMapToObject(whoyaMap map, Object objClass) throws Exception {
         String keyAttribute = null;
         String setMethodString = "set";
         String methodString = null;
@@ -70,20 +68,19 @@ public class Common {
 					Method[] methods = superClass.getDeclaredMethods();
 	                for(int i=0;i<=methods.length-1;i++){
 	                    if(methodString.equals(methods[i].getName())){
-	                        methods[i].invoke(objClass, map.get(keyAttribute));
+	                    	if ( methods[i].getParameterTypes()[0] == int.class ) {
+	                    		methods[i].invoke(objClass, Integer.parseInt((String)map.get(keyAttribute)));
+	                    	} else {
+	                    		methods[i].invoke(objClass, map.get(keyAttribute));
+	                    	}
 	                    }
 	                }
 					
 					superClass = superClass.getSuperclass();
 				}
-            } catch (SecurityException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (IllegalArgumentException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
+                throw e;
             }
         }
         return objClass;
