@@ -32,7 +32,7 @@ function init() {
 					{ type: "settings", labelWidth: 150, inputWidth: 170 },
 					{ type: "label", label: "게시판명" },
 					{ type: "newcolumn" },
-					{ type: "input", name: "bbsNm", value: "" },
+					{ type: "input", name: "bbsNm", value: "" }
 				] },
 				{ type: "block", list: [
 					{ type: "settings", labelWidth: 150, inputWidth: 170 },
@@ -46,7 +46,7 @@ function init() {
 					{ type: "newcolumn" },
 					{ type: "select", name: "bbsTyCode", options: [
 						{ value: "", text: "--선택하세요--" }
-					] },
+					] }
 				] },
 				{ type: "block", list: [
 					{ type: "settings", labelWidth: 150, inputWidth: 170 },
@@ -54,7 +54,7 @@ function init() {
 					{ type: "newcolumn" },
 					{ type: "select", name: "bbsAttrbCode", options: [
 						{ value: "", text: "--선택하세요--" }
-					] },
+					] }
 				] },
 				{ type: "block", list: [
 					{ type: "settings", labelWidth: 70, inputWidth: 170, position: "label-right" },
@@ -81,7 +81,7 @@ function init() {
 						{ value: "1", text: "1개" },
 						{ value: "2", text: "2개" },
 						{ value: "3", text: "3개" }
-					] },
+					] }
 				] },
 				{ type: "block", list: [
 					{ type: "settings", labelWidth: 150, inputWidth: 170 },
@@ -100,10 +100,10 @@ function init() {
 						{ value: "", text: "미선택" },
 						{ value: "comment", text: "댓글" },
 						{ value: "stsfdg", text: "만족도조사" }
-					] },
+					] }
 				] },
 				{ type: "block", list: [
-					{ type: "button", name: "regBtn", value: "등록" },
+					{ type: "button", name: "regBtn", value: "등록" }
 				] }
 			] }
 		];
