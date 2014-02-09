@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration 
+    xmlns:log4j="http://jakarta.apache.org/log4j/" 
+    debug="false">
+    
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%-5p] %d [%c][%M][%L] %m%n" />
+        </layout>   
+    </appender>
+    
+    <appender name="dailyFile" class="org.apache.log4j.DailyRollingFileAppender">
+    	<param name="Append" value="true"/>
+    	<param name="File" value="c:/logs/ws.log"/>
+    	<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+    	<layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%-5p] %d [%c][%M][%L] %m%n" />
+        </layout>
+    </appender>
+
+    <!-- daily timeStamp File 
+    <appender name="efSpeedFile" class="org.apache.log4j.DailyRollingFileAppender">
+    	<param name="Append" value="true"/>
+    	<param name="File" value="c:/efSpeed.log"/>
+    	<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+    	<layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%C.%M] %m%n" />
+        </layout>
+    </appender>
+    -->
+	
+	<logger name="rarp" additivity="true">
+        <level value="DEBUG"/>
+        <appender-ref ref="console"/>
+    </logger>
+    
+    <logger name="egovframework" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="console"/>
+    </logger>
+    
+	<logger name="jdbc.sqltiming" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="console" />
+		<appender-ref ref="dailyFile" />
+	</logger>
+	
+	<logger name="jdbc.connection" additivity="false">
+		<level value="OFF" />
+		<appender-ref ref="console" />
+	</logger>
+	
+	<logger name="log4jdbc.debug" additivity="false">
+		<level value="OFF" />
+		<appender-ref ref="console" />
+	</logger>
+	
+	<logger name="jdbc.resultset" additivity="false">
+		<level value="OFF" />
+		<appender-ref ref="console" />
+	</logger>
+	<logger name="jdbc.audit" additivity="false">
+		<level value="OFF" />
+		<appender-ref ref="console" />
+	</logger>
+	<logger name="jdbc.sqlonly" additivity="false">
+		<level value="OFF" />
+		<appender-ref ref="console" />
+		<appender-ref ref="dailyFile" />
+	</logger>
+
+	<logger name="org.springframework" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="console" />
+	</logger>
+	<!-- 
+	<logger name="slog" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="efSpeedFile" />
+	</logger>
+	 -->
+	<root>
+		<level value="DEBUG" />
+		<appender-ref ref="console" />
+		<appender-ref ref="dailyFile" />
+	</root>           
+</log4j:configuration>

@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="RarpHsHistoryDAOSQL">
+    <select id="RarpHsHistoryDAO.selectChagCount" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+			SELECT 
+				   COUNT(A.CHAG_ID) TOTCNT
+		FROM RARP_CHAG_HIST A, RARP_PART_INFO B, RARP_PART_DTL C, RARP_BOM_INFO E
+		, ( SELECT BOM_ID, PART_CD, TRN_KIND_CD FROM RARP_BOM_PART WHERE TRN_KIND_CD = #TRN_KIND_CD#) D
+			WHERE A.PART_CD = B.PART_CD
+			AND A.CRG_CD = #CRG_CD# 
+			AND A.PRG_CD = #PRG_CD#	
+			AND A.PART_CD = C.PART_CD
+			AND A.NW_PART_SN = C.PART_SN
+			AND C.PART_CD = D.PART_CD
+			AND D.BOM_ID = E.BOM_ID
+		<isNotEmpty property="GRS_CD">
+			AND C.GRS_CD = #GRS_CD#
+		</isNotEmpty>	
+		<isNotEmpty property="PART_CD">
+			AND C.PART_CD = #PART_CD#
+		</isNotEmpty>
+		<isNotEmpty property="ST">
+			AND CHAG_DT BETWEEN #ST# AND #ED#
+		</isNotEmpty>
+		 <isEqual property="CRG_TYPE_CD" compareValue="01">
+			AND E.TC1_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="02">
+			AND E.TC2_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="03">
+			AND E.M_YN = 'Y'
+		  </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="04">
+			AND E.T1_YN = 'Y'
+		  </isEqual>
+		<isEqual property="CRG_TYPE_CD" compareValue="05">
+			AND E.T2_YN = 'Y'
+		  </isEqual>
+		  <isNotEmpty property="BOM_ID">
+			 AND (E.BOM_ID = #BOM_ID#
+			 <isNotEmpty property="OR_PARENT_BOM_ID">
+				OR E.PARENT_BOM_ID = #OR_PARENT_BOM_ID#
+			  </isNotEmpty>
+			 )
+		 </isNotEmpty>
+	</select>
+	<select id="RarpHsHistoryDAO.selectChagList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT * FROM (     
+		SELECT A.*, ROWNUM AS RNUM FROM (
+			SELECT 
+			  A.PART_CD || '_' || C.GRS_CD AS SEL_PART_ID
+			, A.CHAG_ID,TO_CHAR(A.CHAG_DT, 'yyyy-mm-dd') CHAG_DT, A.RSMO_CD
+			, A.PRG_CD, A.AP_PART_SN, A.PART_CD, A.GRS_CD, A.AMT, A.NW_PART_SN
+			, B.PART_NM, B.PART_SPEC
+			, D.BOM_ID
+			FROM RARP_CHAG_HIST A, RARP_PART_INFO B, RARP_PART_DTL C, RARP_BOM_INFO E
+			, ( SELECT BOM_ID, PART_CD, TRN_KIND_CD FROM RARP_BOM_PART WHERE TRN_KIND_CD = #TRN_KIND_CD#) D
+			WHERE A.PART_CD = B.PART_CD
+			AND A.CRG_CD = #CRG_CD# 
+			AND A.PRG_CD = #PRG_CD#	
+			AND A.PART_CD = C.PART_CD
+			AND A.NW_PART_SN = C.PART_SN
+			AND C.PART_CD = D.PART_CD
+			AND D.BOM_ID = E.BOM_ID
+		<isNotEmpty property="GRS_CD">
+			AND C.GRS_CD = #GRS_CD#
+		</isNotEmpty>	
+		<isNotEmpty property="PART_CD">
+			AND C.PART_CD = #PART_CD#
+		</isNotEmpty>
+		<isNotEmpty property="ST">
+			AND CHAG_DT BETWEEN #ST# AND #ED#
+		</isNotEmpty>
+		 <isEqual property="CRG_TYPE_CD" compareValue="01">
+			AND E.TC1_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="02">
+			AND E.TC2_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="03">
+			AND E.M_YN = 'Y'
+		  </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="04">
+			AND E.T1_YN = 'Y'
+		  </isEqual>
+		<isEqual property="CRG_TYPE_CD" compareValue="05">
+			AND E.T2_YN = 'Y'
+		  </isEqual>
+		  <isNotEmpty property="BOM_ID">
+			 AND (E.BOM_ID = #BOM_ID#
+			 <isNotEmpty property="OR_PARENT_BOM_ID">
+				OR E.PARENT_BOM_ID = #OR_PARENT_BOM_ID#
+			  </isNotEmpty>
+			 )
+		 </isNotEmpty>
+		<![CDATA[	
+			order by $sidx$ $sord$, E.BOM_ID, A.PART_CD
+		 ) A) WHERE 1=1 
+		   AND RNUM > #sRow# AND RNUM <= #eRow#
+	    ]]>
+	</select>	
+	<select id="RarpHsHistoryDAO.selectChagExportList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT 
+			( SELECT COMM_DTL_NM FROM RARP_COMM_DTL C WHERE F.TRN_KIND_CD = C.COMM_DTL_ID AND C.COMM_ID ='A01') AS AA
+            , PRG_NM AS B1
+            , ( SELECT COMM_DTL_NM FROM RARP_COMM_DTL C WHERE G.CRG_CD = C.COMM_DTL_ID AND C.COMM_ID ='A07') || '호차' AS B2
+            ,( SELECT COMM_DTL_NM FROM RARP_COMM_DTL C WHERE G.CRG_TYPE_CD = C.COMM_DTL_ID AND C.COMM_ID ='A05') AS CC
+			, B.PART_NM FF
+            , TO_CHAR(A.CHAG_DT, 'yyyy-mm-dd') GG
+            , B.PART_SPEC HH
+			, A.PART_CD II, TO_CHAR(A.AMT) JJ , A.AP_PART_SN KK, A.NW_PART_SN LL
+			, E.BOM_ID
+			FROM RARP_CHAG_HIST A, RARP_PART_INFO B, RARP_PART_DTL C, RARP_BOM_INFO E
+			, ( SELECT BOM_ID, PART_CD, TRN_KIND_CD FROM RARP_BOM_PART WHERE TRN_KIND_CD = #TRN_KIND_CD# ) D
+			, RARP_PRG_INFO F, RARP_PRG_CRG G
+			WHERE A.PART_CD = B.PART_CD
+			AND A.PRG_CD = F.PRG_CD
+            AND A.PRG_CD = G.PRG_CD
+            AND A.CRG_CD = G.CRG_CD
+			AND A.PART_CD = C.PART_CD
+			AND A.NW_PART_SN = C.PART_SN
+			AND C.PART_CD = D.PART_CD
+			AND D.BOM_ID = E.BOM_ID
+			AND A.CRG_CD = #CRG_CD# 
+			AND A.PRG_CD = #PRG_CD#	
+		<isNotEmpty property="GRS_CD">
+			AND C.GRS_CD = #GRS_CD#
+		</isNotEmpty>	
+		<isNotEmpty property="PART_CD">
+			AND C.PART_CD = #PART_CD#
+		</isNotEmpty>
+		<isNotEmpty property="ST">
+			AND CHAG_DT BETWEEN #ST# AND #ED#
+		</isNotEmpty>
+		 <isEqual property="CRG_TYPE_CD" compareValue="01">
+			AND E.TC1_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="02">
+			AND E.TC2_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="03">
+			AND E.M_YN = 'Y'
+		  </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="04">
+			AND E.T1_YN = 'Y'
+		  </isEqual>
+		<isEqual property="CRG_TYPE_CD" compareValue="05">
+			AND E.T2_YN = 'Y'
+		  </isEqual>
+		  <isNotEmpty property="BOM_ID">
+			 AND (E.BOM_ID = #BOM_ID#
+			 <isNotEmpty property="OR_PARENT_BOM_ID">
+				OR E.PARENT_BOM_ID = #OR_PARENT_BOM_ID#
+			  </isNotEmpty>
+			 )
+		 </isNotEmpty>
+		 order by A.CHAG_DT desc, E.BOM_ID, A.PART_CD
+	</select>	
+	<select id="RarpHsHistoryDAO.selectChagPartList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT 
+			  A.PART_CD || '_' || C.GRS_CD AS SEL_PART_ID
+			, A.CHAG_ID,TO_CHAR(A.CHAG_DT, 'yyyy-mm-dd') CHAG_DT, A.RSMO_CD
+			, A.PRG_CD, A.AP_PART_SN, A.PART_CD, A.GRS_CD, A.AMT, A.NW_PART_SN
+			, B.PART_NM, B.PART_SPEC
+			, D.BOM_ID
+			FROM RARP_CHAG_HIST A, RARP_PART_INFO B, RARP_PART_DTL C, RARP_BOM_INFO E
+			, ( SELECT BOM_ID, PART_CD, TRN_KIND_CD FROM RARP_BOM_PART WHERE TRN_KIND_CD = #TRN_KIND_CD#) D
+			WHERE A.PART_CD = B.PART_CD
+			AND A.CRG_CD = #CRG_CD# 
+			AND A.PRG_CD = #PRG_CD#	
+			AND A.PART_CD = C.PART_CD
+			AND A.NW_PART_SN = C.PART_SN
+			AND C.PART_CD = D.PART_CD
+			AND D.BOM_ID = E.BOM_ID
+		<isNotEmpty property="GRS_CD">
+			AND C.GRS_CD = #GRS_CD#
+		</isNotEmpty>		
+		<isNotEmpty property="PART_CD">
+			AND C.PART_CD = #PART_CD#
+		</isNotEmpty>
+		<isNotEmpty property="ST">
+			AND CHAG_DT BETWEEN #ST# AND #ED#
+		</isNotEmpty>
+		 <isEqual property="CRG_TYPE_CD" compareValue="01">
+			AND E.TC1_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="02">
+			AND E.TC2_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="03">
+			AND E.M_YN = 'Y'
+		  </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="04">
+			AND E.T1_YN = 'Y'
+		  </isEqual>
+		<isEqual property="CRG_TYPE_CD" compareValue="05">
+			AND E.T2_YN = 'Y'
+		  </isEqual>
+		  <isNotEmpty property="BOM_ID">
+			 AND (E.BOM_ID = #BOM_ID#
+			 <isNotEmpty property="OR_PARENT_BOM_ID">
+				OR E.PARENT_BOM_ID = #OR_PARENT_BOM_ID#
+			  </isNotEmpty>
+			 )
+		 </isNotEmpty>
+	</select>	
+	<select id="RarpHsHistoryDAO.selectTrblCount" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+			SELECT 
+				   COUNT(A.TRBL_ID) TOTCNT
+			FROM RARP_TRBL_HIST A, RARP_PART_DTL B, RARP_RSMO_INFO C, RARP_BOM_INFO E
+			, ( SELECT BOM_ID, PART_CD, TRN_KIND_CD FROM RARP_BOM_PART WHERE TRN_KIND_CD = #TRN_KIND_CD#) D
+			WHERE A.PART_CD = B.PART_CD
+			AND A.PART_SN = B.PART_SN
+			AND A.RSMO_CD = C.RSMO_CD
+			AND A.CRG_CD = #CRG_CD# 
+			AND A.PRG_CD = #PRG_CD#	
+			AND B.PART_CD = D.PART_CD
+			AND D.BOM_ID = E.BOM_ID	
+		<isNotEmpty property="GRS_CD">
+			AND B.GRS_CD = #GRS_CD#
+		</isNotEmpty>	
+		<isNotEmpty property="PART_CD">
+			AND B.PART_CD = #PART_CD#
+		</isNotEmpty>
+		<isNotEmpty property="ST">
+			AND ISPT_DT BETWEEN #ST# AND #ED#
+		</isNotEmpty>
+		<isEqual property="CRG_TYPE_CD" compareValue="01">
+			AND E.TC1_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="02">
+			AND E.TC2_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="03">
+			AND E.M_YN = 'Y'
+		  </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="04">
+			AND E.T1_YN = 'Y'
+		  </isEqual>
+		<isEqual property="CRG_TYPE_CD" compareValue="05">
+			AND E.T2_YN = 'Y'
+		  </isEqual>
+		  <isNotEmpty property="BOM_ID">
+			 AND (E.BOM_ID = #BOM_ID#
+			 <isNotEmpty property="OR_PARENT_BOM_ID">
+				OR E.PARENT_BOM_ID = #OR_PARENT_BOM_ID#
+			  </isNotEmpty>
+			 )
+		 </isNotEmpty>
+	</select>
+	<select id="RarpHsHistoryDAO.selectTrblList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT * FROM (     
+		SELECT A.*, ROWNUM AS RNUM FROM (
+			SELECT
+			  A.PART_CD || '_' || GRS_CD AS SEL_PART_ID
+			, A.TRBL_ID, TO_CHAR(a.ISPT_DT, 'yyyy-mm-dd') ISPT_DT, A.TRBL_STAT, A.FIX_DESC, A.PART_CD
+			, A.FIX_CD, A.RSMO_CD, A.PRG_CD, A.TRBL_DT, A.CRG_CD, A.AMT
+			, D.BOM_ID
+			, C.RSMO_NM
+			, ( SELECT COMM_DTL_NM FROM RARP_COMM_DTL G WHERE A.TRBL_STAT = G.COMM_DTL_ID AND G.COMM_ID ='A03') TRBL_STAT_NM
+			, ( SELECT COMM_DTL_NM FROM RARP_COMM_DTL G WHERE A.TRBL_STAT = G.COMM_DTL_ID AND G.COMM_ID ='A04') FIX_CD_NM
+			FROM RARP_TRBL_HIST A, RARP_PART_DTL B, RARP_RSMO_INFO C, RARP_BOM_INFO E
+			, ( SELECT BOM_ID, PART_CD, TRN_KIND_CD FROM RARP_BOM_PART WHERE TRN_KIND_CD = #TRN_KIND_CD#) D
+			WHERE A.PART_CD = B.PART_CD
+			AND A.PART_SN = B.PART_SN
+			AND A.RSMO_CD = C.RSMO_CD
+			AND A.CRG_CD = #CRG_CD# 
+			AND A.PRG_CD = #PRG_CD#	
+			AND B.PART_CD = D.PART_CD
+			AND D.BOM_ID = E.BOM_ID
+		<isNotEmpty property="GRS_CD">
+			AND B.GRS_CD = #GRS_CD#
+		</isNotEmpty>	
+		<isNotEmpty property="PART_CD">
+			AND B.PART_CD = #PART_CD#
+		</isNotEmpty>
+		<isNotEmpty property="ST">
+			AND ISPT_DT BETWEEN #ST# AND #ED#
+		</isNotEmpty>
+		<isEqual property="CRG_TYPE_CD" compareValue="01">
+			AND E.TC1_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="02">
+			AND E.TC2_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="03">
+			AND E.M_YN = 'Y'
+		  </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="04">
+			AND E.T1_YN = 'Y'
+		  </isEqual>
+		<isEqual property="CRG_TYPE_CD" compareValue="05">
+			AND E.T2_YN = 'Y'
+		  </isEqual>	
+		  <isNotEmpty property="BOM_ID">
+			 AND (E.BOM_ID = #BOM_ID#
+			 <isNotEmpty property="OR_PARENT_BOM_ID">
+				OR E.PARENT_BOM_ID = #OR_PARENT_BOM_ID#
+			  </isNotEmpty>
+			 )
+		 </isNotEmpty>
+		<![CDATA[	
+			order by $sidx$ $sord$, E.BOM_ID, A.PART_CD
+		 ) A) WHERE 1=1 
+		   AND RNUM > #sRow# AND RNUM <= #eRow#
+	    ]]>
+	</select>
+	<select id="RarpHsHistoryDAO.selectTrbExportlList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+			( SELECT COMM_DTL_NM FROM RARP_COMM_DTL C WHERE F.TRN_KIND_CD = C.COMM_DTL_ID AND C.COMM_ID ='A01') AS AA
+            , PRG_NM AS B1
+            , ( SELECT COMM_DTL_NM FROM RARP_COMM_DTL C WHERE G.CRG_CD = C.COMM_DTL_ID AND C.COMM_ID ='A07') || '호차' AS B2
+            ,( SELECT COMM_DTL_NM FROM RARP_COMM_DTL C WHERE G.CRG_TYPE_CD = C.COMM_DTL_ID AND C.COMM_ID ='A05') AS CC
+			, TO_CHAR(a.ISPT_DT, 'yyyy-mm-dd') DD, A.FIX_DESC KK
+			, A.PART_CD II, TO_CHAR(A.AMT) JJ
+			, D.BOM_ID
+			, H.RSMO_NM LL
+			, ( SELECT COMM_DTL_NM FROM RARP_COMM_DTL G WHERE A.TRBL_STAT = G.COMM_DTL_ID AND G.COMM_ID ='A03') GG
+			, ( SELECT COMM_DTL_NM FROM RARP_COMM_DTL G WHERE A.TRBL_STAT = G.COMM_DTL_ID AND G.COMM_ID ='A04') HH
+			FROM RARP_TRBL_HIST A, RARP_PART_INFO B, RARP_PART_DTL C, RARP_BOM_INFO E
+			, ( SELECT BOM_ID, PART_CD, TRN_KIND_CD FROM RARP_BOM_PART WHERE TRN_KIND_CD = #TRN_KIND_CD# ) D
+			, RARP_PRG_INFO F, RARP_PRG_CRG G, RARP_RSMO_INFO H
+			WHERE A.PART_CD = B.PART_CD
+			AND A.PRG_CD = F.PRG_CD
+            AND A.PRG_CD = G.PRG_CD
+            AND A.CRG_CD = G.CRG_CD
+			AND A.PART_CD = C.PART_CD
+			AND A.PART_SN = C.PART_SN
+			AND C.PART_CD = D.PART_CD
+			AND A.RSMO_CD = H.RSMO_CD
+			AND D.BOM_ID = E.BOM_ID
+			AND A.CRG_CD = #CRG_CD# 
+			AND A.PRG_CD = #PRG_CD#	
+		<isNotEmpty property="GRS_CD">
+			AND B.GRS_CD = #GRS_CD#
+		</isNotEmpty>
+		<isNotEmpty property="PART_CD">
+			AND B.PART_CD = #PART_CD#
+		</isNotEmpty>		
+		<isNotEmpty property="ST">
+			AND ISPT_DT BETWEEN #ST# AND #ED#
+		</isNotEmpty>
+		<isEqual property="CRG_TYPE_CD" compareValue="01">
+			AND E.TC1_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="02">
+			AND E.TC2_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="03">
+			AND E.M_YN = 'Y'
+		  </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="04">
+			AND E.T1_YN = 'Y'
+		  </isEqual>
+		<isEqual property="CRG_TYPE_CD" compareValue="05">
+			AND E.T2_YN = 'Y'
+		  </isEqual>	
+		  <isNotEmpty property="BOM_ID">
+			 AND (E.BOM_ID = #BOM_ID#
+			 <isNotEmpty property="OR_PARENT_BOM_ID">
+				OR E.PARENT_BOM_ID = #OR_PARENT_BOM_ID#
+			  </isNotEmpty>
+			 )
+		 </isNotEmpty>
+		 order by ISPT_DT desc, E.BOM_ID, A.PART_CD
+	</select>
+    <select id="RarpHsHistoryDAO.selectTrblPartList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+			  A.PART_CD || '_' || GRS_CD AS SEL_PART_ID
+			, A.TRBL_ID, TO_CHAR(a.ISPT_DT, 'yyyy-mm-dd') ISPT_DT, A.TRBL_STAT, A.FIX_DESC, A.PART_CD
+			, A.FIX_CD, A.RSMO_CD, A.PRG_CD, A.TRBL_DT, A.CRG_CD, A.AMT
+			, D.BOM_ID
+			, C.RSMO_NM
+			, ( SELECT COMM_DTL_NM FROM RARP_COMM_DTL G WHERE A.TRBL_STAT = G.COMM_DTL_ID AND G.COMM_ID ='A03') TRBL_STAT_NM
+			, ( SELECT COMM_DTL_NM FROM RARP_COMM_DTL G WHERE A.TRBL_STAT = G.COMM_DTL_ID AND G.COMM_ID ='A04') FIX_CD_NM
+			FROM RARP_TRBL_HIST A, RARP_PART_DTL B, RARP_RSMO_INFO C, RARP_BOM_INFO E
+			, ( SELECT BOM_ID, PART_CD, TRN_KIND_CD FROM RARP_BOM_PART WHERE TRN_KIND_CD = #TRN_KIND_CD#) D
+			WHERE A.PART_CD = B.PART_CD
+			AND A.PART_SN = B.PART_SN
+			AND A.RSMO_CD = C.RSMO_CD
+			AND A.CRG_CD = #CRG_CD# 
+			AND A.PRG_CD = #PRG_CD#	
+			AND B.PART_CD = D.PART_CD
+			AND D.BOM_ID = E.BOM_ID
+		<isNotEmpty property="GRS_CD">
+			AND B.GRS_CD = #GRS_CD#
+		</isNotEmpty>		
+		<isNotEmpty property="PART_CD">
+			AND B.PART_CD = #PART_CD#
+		</isNotEmpty>
+		<isNotEmpty property="ST">
+			AND ISPT_DT BETWEEN #ST# AND #ED#
+		</isNotEmpty>
+		<isEqual property="CRG_TYPE_CD" compareValue="01">
+			AND E.TC1_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="02">
+			AND E.TC2_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="03">
+			AND E.M_YN = 'Y'
+		  </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="04">
+			AND E.T1_YN = 'Y'
+		  </isEqual>
+		<isEqual property="CRG_TYPE_CD" compareValue="05">
+			AND E.T2_YN = 'Y'
+		  </isEqual>
+		  <isNotEmpty property="BOM_ID">
+			 AND (E.BOM_ID = #BOM_ID#
+			 <isNotEmpty property="OR_PARENT_BOM_ID">
+				OR E.PARENT_BOM_ID = #OR_PARENT_BOM_ID#
+			  </isNotEmpty>
+			 )
+		 </isNotEmpty>
+	</select>
+	<select id="RarpHsHistoryDAO.selectIsptCount" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+			<![CDATA[	
+				SELECT 
+					COUNT(ISPT_ID) 
+				FROM RARP_ISPT_HIST A
+				WHERE A.CRG_CD = #CRG_CD# 
+				AND A.PRG_CD = #PRG_CD#
+				AND ISPT_DT BETWEEN #ST# AND #ED#
+		    ]]>
+			<isNotEmpty property="ISPT_TYPE_CD">
+				AND A.ISPT_TYPE_CD = #ISPT_TYPE_CD#
+		    </isNotEmpty>
+	</select>
+	<select id="RarpHsHistoryDAO.selectIsptList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT * FROM (     
+		SELECT A.*, ROWNUM AS RNUM FROM (
+			SELECT 
+			TO_CHAR(a.ISPT_DT, 'yyyy-mm-dd') ISPT_DT, A.ISPT_ID, A.ISPT_TYPE_CD, A.ISPT_KIND_CD
+			, A.RSMO_CD, A.PRG_CD, A.CRG_CD, B.RSMO_NM
+			, ( SELECT COMM_DTL_NM FROM RARP_COMM_DTL C WHERE A.ISPT_TYPE_CD = C.COMM_DTL_ID AND C.COMM_ID ='A02') ISPT_TYPE_NM
+			, ( SELECT COMM_DTL_NM FROM RARP_COMM_DTL C WHERE A.ISPT_KIND_CD = C.COMM_DTL_ID AND C.COMM_ID ='A06') ISPT_KIND_NM
+			FROM RARP_ISPT_HIST A, RARP_RSMO_INFO B
+			WHERE A.RSMO_CD = B.RSMO_CD
+			AND A.CRG_CD = #CRG_CD# 
+			AND A.PRG_CD = #PRG_CD#	
+			AND ISPT_DT BETWEEN #ST# AND #ED#
+		<isNotEmpty property="ISPT_TYPE_CD">
+			AND A.ISPT_TYPE_CD = #ISPT_TYPE_CD#
+		</isNotEmpty>	
+		<![CDATA[	
+			order by $sidx$ $sord$
+		 ) A) WHERE 1=1 
+		   AND RNUM > #sRow# AND RNUM <= #eRow#
+	    ]]>
+	</select>
+	<select id="RarpHsHistoryDAO.selectIsptExportList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">		
+			SELECT 
+			B.RSMO_NM AS FF
+            , TO_CHAR(a.ISPT_DT, 'yyyy-mm-dd') AS EE
+            , ( SELECT COMM_DTL_NM FROM RARP_COMM_DTL C WHERE A.ISPT_TYPE_CD = C.COMM_DTL_ID AND C.COMM_ID ='A02') AS DD
+            , ( SELECT COMM_DTL_NM FROM RARP_COMM_DTL C WHERE E.CRG_TYPE_CD = C.COMM_DTL_ID AND C.COMM_ID ='A05') AS CC
+            , PRG_NM AS B1
+            , ( SELECT COMM_DTL_NM FROM RARP_COMM_DTL C WHERE E.CRG_CD = C.COMM_DTL_ID AND C.COMM_ID ='A07') || '호차' AS B2
+            , ( SELECT COMM_DTL_NM FROM RARP_COMM_DTL C WHERE D.TRN_KIND_CD = C.COMM_DTL_ID AND C.COMM_ID ='A01') AS AA
+           	FROM RARP_ISPT_HIST A, RARP_RSMO_INFO B, RARP_PRG_INFO D, RARP_PRG_CRG E
+			WHERE A.RSMO_CD = B.RSMO_CD
+            AND A.PRG_CD = D.PRG_CD
+            AND A.PRG_CD = E.PRG_CD
+            AND A.CRG_CD = E.CRG_CD
+			AND A.CRG_CD = #CRG_CD# 
+			AND A.PRG_CD = #PRG_CD#	
+			AND ISPT_DT BETWEEN #ST# AND #ED#
+		<isNotEmpty property="ISPT_TYPE_CD">
+			AND A.ISPT_TYPE_CD = #ISPT_TYPE_CD#
+		</isNotEmpty>	
+		order by a.ISPT_DT desc
+	</select>
+</sqlMap>

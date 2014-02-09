@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="RarpMaMainDAOSQL">
+	<select id="RarpMaMainDAO.selectUserInfo" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			<![CDATA[	
+				SELECT 
+				   A.USER_TYPE, A.RSMO_CD, A.USER_ID, 
+				   A.USER_NM, A.USER_PW, B.RSMO_NM
+				FROM RARP_USER_INFO A, RARP_RSMO_INFO B   
+				WHERE USER_ID = #userId#
+				AND USER_PW = ora_hash(#userPw#)
+				AND A.RSMO_CD = B.RSMO_CD
+		    ]]>
+	</select>
+</sqlMap>

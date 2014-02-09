@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="RarpSySystemDAOSQL">
+    <select id="RarpSySystemDAO.selectRsmoInfoList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			<![CDATA[	
+				SELECT RSMO_CD, RSMO_NM, RSMO_ADDR, RSMO_ZIP_CD, RSMO_X, RSMO_Y, RSMO_TEL 
+				FROM RARP_RSMO_INFO
+		    ]]>
+	</select>
+	<select id="RarpSySystemDAO.selectCommDtlList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			<![CDATA[	
+				SELECT 
+				 COMM_DTL_ID, COMM_DTL_NM, COMM_DTL_DESC, COMM_DTL_USE_YN, COMM_DTL_REG_DT, COMM_DTL_UPD_ID, COMM_DTL_UPD_DT, COMM_ID 
+				FROM RARP_COMM_DTL
+				WHERE 1=1
+		    ]]>
+		     <isNotNull property="COMM_ID">
+				AND COMM_ID = #COMM_ID#
+			 </isNotNull>
+			 <isNotNull property="COMM_DTL_ID">
+				AND COMM_DTL_ID = #COMM_DTL_ID#
+			 </isNotNull>
+	</select>
+	<select id="RarpSySystemDAO.selectPrgInfoList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			<![CDATA[	
+				SELECT 
+					PRG_CD, PRG_NM, PRG_LINE, RSMO_CD, TRN_KIND_CD 
+				FROM RARP_PRG_INFO
+				WHERE 
+					RSMO_CD = #RSMO_CD# AND TRN_KIND_CD = #TRN_KIND_CD# 
+		    ]]>
+	</select>	
+	<select id="RarpSySystemDAO.selectCrgInfoList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			<![CDATA[	
+				SELECT 
+					  A.CRG_CD
+					, ( SELECT COMM_DTL_NM FROM RARP_COMM_DTL G WHERE A.CRG_CD = G.COMM_DTL_ID AND G.COMM_ID ='A07') || ' 호차' CRG_NM
+					, A.PRG_CD, A.CRG_TYPE_CD, A.RFID_TAG_ID
+					, (SELECT MAX(SNS_DT) FROM RARP_PART_TAG E WHERE A.RFID_TAG_ID = E.RFID_TAG_ID ) SNS_DT
+				FROM RARP_PRG_CRG A, RARP_PRG_INFO B
+				WHERE A.PRG_CD = B.PRG_CD
+		    ]]>
+			 <isNotNull property="PRG_CD">
+				AND A.PRG_CD = #PRG_CD# 
+			 </isNotNull>
+			 <isNotNull property="CRG_CD">
+				AND A.CRG_CD = #CRG_CD#
+			 </isNotNull>
+			    ORDER BY A.CRG_CD
+	</select>		
+   	<select id="RarpSySystemDAO.selectCrgInfo" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			<![CDATA[	
+				SELECT 
+					  A.CRG_CD
+					, ( SELECT COMM_DTL_NM FROM RARP_COMM_DTL G WHERE A.CRG_CD = G.COMM_DTL_ID AND G.COMM_ID ='A07') || ' 호차' CRG_NM
+					, A.PRG_CD, A.CRG_TYPE_CD, A.RFID_TAG_ID
+					, (SELECT MAX(SNS_DT) FROM RARP_PART_TAG E WHERE A.RFID_TAG_ID = E.RFID_TAG_ID ) SNS_DT
+				FROM RARP_PRG_CRG A, RARP_PRG_INFO B
+				WHERE A.PRG_CD = B.PRG_CD
+		    ]]>
+				AND A.PRG_CD = #PRG_CD# 
+				AND A.CRG_CD = #CRG_CD#
+			    ORDER BY A.CRG_CD
+	</select>	
+    <select id="RarpSySystemDAO.selectBomList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+				SELECT 
+				   ROWNUM, A.BOM_ID, A.BOM_NM, A.BOM_LVL, A.PARENT_BOM_ID
+				 , A.TRN_KIND_CD, A.TC1_YN, A.TC2_YN, A.M_YN, A.T1_YN, A.T2_YN 
+				 , B.PART_CD
+				  , (   SELECT 
+						  COUNT(C.PART_SN) FROM RARP_PART_DTL C, RARP_BOM_PART D
+						WHERE C.PART_CD = D.PART_CD 
+						AND C.CRG_CD = #CRG_CD# 
+						AND C.PRG_CD = #PRG_CD#
+						AND D.BOM_ID = B.BOM_ID
+					  <isGreaterThan property="BOM_LVL" compareValue="2">
+						AND C.GRS_CD = #GRS_CD#
+					  </isGreaterThan>
+					    AND D.TRN_KIND_CD = #TRN_KIND_CD#
+					) AS PART_AMT
+				FROM RARP_BOM_INFO A, RARP_BOM_PART B
+				WHERE A.BOM_ID = B.BOM_ID (+)
+				AND A.TRN_KIND_CD = B.TRN_KIND_CD (+)
+			 <isNotEmpty property="BOM_LVL">
+				AND A.BOM_LVL = #BOM_LVL#
+			 </isNotEmpty>
+			 <isNotEmpty property="PARENT_BOM_ID">
+				AND A.PARENT_BOM_ID = #PARENT_BOM_ID#
+			 </isNotEmpty>
+			 <isNotEmpty property="TRN_KIND_CD">
+				AND A.TRN_KIND_CD = #TRN_KIND_CD#
+			 </isNotEmpty>
+			 <isNotEmpty property="UP_PARENT_BOM_ID">
+			 <isGreaterThan property="BOM_LVL" compareValue="2">
+				AND A.PARENT_BOM_ID = 
+				(
+					SELECT PARENT_BOM_ID
+					FROM RARP_BOM_INFO
+					WHERE BOM_ID = #UP_PARENT_BOM_ID#
+				)
+			  </isGreaterThan>
+			 </isNotEmpty>
+			 <isNotEmpty property="BOM_ID">
+				 AND (A.BOM_ID = #BOM_ID#
+				 <isNotEmpty property="OR_PARENT_BOM_ID">
+					OR A.PARENT_BOM_ID = #OR_PARENT_BOM_ID#
+				  </isNotEmpty>
+				 )
+			 </isNotEmpty>
+			 <isEqual property="CRG_TYPE_CD" compareValue="01">
+			    AND A.TC1_YN = 'Y'
+			 </isEqual>
+			 <isEqual property="CRG_TYPE_CD" compareValue="02">
+				AND A.TC2_YN = 'Y'
+			 </isEqual>
+			 <isEqual property="CRG_TYPE_CD" compareValue="03">
+				AND A.M_YN = 'Y'
+			  </isEqual>
+			 <isEqual property="CRG_TYPE_CD" compareValue="04">
+				AND A.T1_YN = 'Y'
+			  </isEqual>
+			<isEqual property="CRG_TYPE_CD" compareValue="05">
+				AND A.T2_YN = 'Y'
+			  </isEqual>
+			 order by A.BOM_ID
+	</select>	
+    <select id="RarpSySystemDAO.selectBomInfo" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			<![CDATA[	
+				SELECT 
+				   ROWNUM, A.BOM_ID, A.BOM_NM, A.BOM_LVL, A.PARENT_BOM_ID
+				 , A.TRN_KIND_CD, A.TC1_YN, A.TC2_YN, A.M_YN, A.T1_YN, A.T2_YN
+				 , C.PART_SN
+				FROM RARP_BOM_INFO A, RARP_PART_DTL C
+				, ( SELECT BOM_ID, PART_CD, TRN_KIND_CD FROM RARP_BOM_PART WHERE TRN_KIND_CD = #TRN_KIND_CD#) b
+				WHERE A.BOM_ID = B.BOM_ID (+)
+				AND A.TRN_KIND_CD = B.TRN_KIND_CD (+)
+				AND B.PART_CD = C.PART_CD
+				AND CRG_CD = #CRG_CD# 
+				AND PRG_CD = #PRG_CD#
+		    ]]>
+			 <isNotEmpty property="BOM_LVL">
+				AND A.BOM_LVL = #BOM_LVL#
+			 </isNotEmpty>
+			 <isNotEmpty property="BOM_ID">
+				AND A.BOM_ID = #BOM_ID#
+			 </isNotEmpty>
+			 <isNotEmpty property="PARENT_BOM_ID">
+				AND A.PARENT_BOM_ID = #PARENT_BOM_ID#
+			 </isNotEmpty>
+			 <isNotEmpty property="TRN_KIND_CD">
+				AND A.TRN_KIND_CD = #TRN_KIND_CD#
+			 </isNotEmpty>
+			 <isNotEmpty property="UP_PARENT_BOM_ID">
+			    <isLessEqual property="BOM_LVL" compareValue="2">
+			    AND A.PARENT_BOM_ID IS NULL
+			    </isLessEqual>
+				<isGreaterThan property="BOM_LVL" compareValue="2">
+				AND A.PARENT_BOM_ID = 
+				(
+					SELECT PARENT_BOM_ID
+					FROM RARP_BOM_INFO
+					WHERE BOM_ID = #UP_PARENT_BOM_ID#
+				)
+				</isGreaterThan>
+			 </isNotEmpty>
+			 <isNotEmpty property="BOM_PARENT_ID">
+			    <isLessEqual property="BOM_LVL" compareValue="2">
+				AND A.BOM_ID = 
+				(
+					SELECT DISTINCT PARENT_BOM_ID
+					FROM RARP_BOM_INFO
+					WHERE BOM_ID = #BOM_PARENT_ID#
+				)
+			    </isLessEqual>
+				<isGreaterThan property="BOM_LVL" compareValue="2">
+
+				</isGreaterThan>
+			 </isNotEmpty>
+			 <isEqual property="CRG_TYPE_CD" compareValue="01">
+			    AND A.TC1_YN = 'Y'
+			 </isEqual>
+			 <isEqual property="CRG_TYPE_CD" compareValue="02">
+				AND A.TC2_YN = 'Y'
+			 </isEqual>
+			 <isEqual property="CRG_TYPE_CD" compareValue="03">
+				AND A.M_YN = 'Y'
+			  </isEqual>
+			 <isEqual property="CRG_TYPE_CD" compareValue="04">
+				AND A.T1_YN = 'Y'
+			  </isEqual>
+			<isEqual property="CRG_TYPE_CD" compareValue="05">
+				AND A.T2_YN = 'Y'
+			  </isEqual>
+			 <isNotEmpty property="PART_CD">
+				AND C.PART_CD = #PART_CD#
+			 </isNotEmpty>
+			 <isNotEmpty property="GRS_CD">
+				AND C.GRS_CD = #GRS_CD#
+			 </isNotEmpty>
+	</select>			
+    <select id="RarpSySystemDAO.selectBomPathList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+				SELECT * FROM(
+					SELECT 
+					 BOM_ID, BOM_NM, BOM_LVL, PARENT_BOM_ID
+					FROM RARP_BOM_INFO
+					START WITH BOM_ID = #BOM_ID# 
+					 <isEqual property="CRG_TYPE_CD" compareValue="01">
+						AND TC1_YN = 'Y'
+					 </isEqual>
+					 <isEqual property="CRG_TYPE_CD" compareValue="02">
+						AND TC2_YN = 'Y'
+					 </isEqual>
+					 <isEqual property="CRG_TYPE_CD" compareValue="03">
+						AND M_YN = 'Y'
+					  </isEqual>
+					 <isEqual property="CRG_TYPE_CD" compareValue="04">
+						AND T1_YN = 'Y'
+					  </isEqual>
+					<isEqual property="CRG_TYPE_CD" compareValue="05">
+						AND T2_YN = 'Y'
+					 </isEqual>
+					 <isNotEmpty property="TRN_KIND_CD">
+						AND TRN_KIND_CD = #TRN_KIND_CD#
+					 </isNotEmpty>
+					CONNECT BY PRIOR PARENT_BOM_ID = BOM_ID
+				)
+				WHERE 1=1
+			 <isNotEmpty property="BOM_LVL">
+				AND BOM_LVL = #BOM_LVL#
+			 </isNotEmpty>
+			 <isNotEmpty property="PARENT_BOM_ID">
+				AND PARENT_BOM_ID = #PARENT_BOM_ID#
+			 </isNotEmpty>
+	</select>		
+    <select id="RarpSySystemDAO.selectBomPathInfo" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		<![CDATA[		
+		SELECT * FROM
+			(		
+					SELECT
+						BOM_ID,
+						BOM_NM,
+						BOM_LVL,
+						PARENT_BOM_ID,
+						SUBSTR(SYS_CONNECT_BY_PATH(BOM_NM, '|'), 2) BOM_PATH
+					FROM
+						RARP_BOM_INFO START WITH  PARENT_BOM_ID IS NULL CONNECT 
+					BY
+						PRIOR BOM_ID = PARENT_BOM_ID 
+			)
+			WHERE BOM_ID = #BOM_ID#
+	     ]]>
+	</select>	
+	<select id="RarpSySystemDAO.selectPartDtlList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT 
+			    DISTINCT A.PART_CD || '_' || A.GRS_CD AS SEL_PART_ID
+			  , ROWNUM
+			  , A.PART_SN, A.PART_CD, A.CRG_CD, A.PRG_CD, A.GRS_CD, A.RFID_TAG_ID
+			  , D.PART_NM, D.PART_SPEC
+			  , (SELECT MAX(SNS_DT) FROM RARP_PART_TAG E WHERE A.RFID_TAG_ID = E.RFID_TAG_ID ) SNS_DT
+			FROM RARP_PART_DTL A, RARP_BOM_INFO C, RARP_PART_INFO D
+				, ( SELECT BOM_ID, PART_CD, TRN_KIND_CD FROM RARP_BOM_PART WHERE TRN_KIND_CD = #TRN_KIND_CD#) B
+			WHERE CRG_CD = #CRG_CD# 
+			AND PRG_CD = #PRG_CD#
+			AND A.PART_CD = B.PART_CD
+			AND B.BOM_ID = C.BOM_ID
+			AND A.PART_CD = D.PART_CD
+		 <isEqual property="CRG_TYPE_CD" compareValue="01">
+			AND C.TC1_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="02">
+			AND C.TC2_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="03">
+			AND C.M_YN = 'Y'
+		  </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="04">
+			AND C.T1_YN = 'Y'
+		  </isEqual>
+		<isEqual property="CRG_TYPE_CD" compareValue="05">
+			AND C.T2_YN = 'Y'
+		  </isEqual>
+		 <isNotEmpty prepend="AND" property="PART_CD">
+			 A.PART_CD = #PART_CD#
+		 </isNotEmpty>
+	     <isNotEmpty prepend="AND" property="GRS_CD">
+			 A.GRS_CD = #GRS_CD#
+		 </isNotEmpty>	 
+		 <isNotEmpty prepend="AND" property="PART_SN">
+			A.PART_SN = #PART_SN#
+		 </isNotEmpty>	
+		 <isNotEmpty property="BOM_ID">
+			 AND (C.BOM_ID = #BOM_ID#
+			 <isNotEmpty property="OR_PARENT_BOM_ID">
+				OR C.PARENT_BOM_ID = #OR_PARENT_BOM_ID#
+			  </isNotEmpty>
+			 )
+		 </isNotEmpty>
+		 <isNotEmpty property="sidx">
+			 <![CDATA[	
+				order by $sidx$ $sord$
+			 ]]>
+		</isNotEmpty>
+		<isEmpty property="sidx">
+		 ORDER BY A.GRS_CD
+		</isEmpty>
+	</select>	
+<select id="RarpSySystemDAO.selectPartDetailList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT 
+			   DISTINCT A.PART_CD , D.PART_NM, D.PART_SPEC
+			FROM RARP_PART_DTL A, RARP_BOM_INFO C, RARP_PART_INFO D
+				, ( SELECT BOM_ID, PART_CD, TRN_KIND_CD FROM RARP_BOM_PART WHERE TRN_KIND_CD = #TRN_KIND_CD#) B
+			WHERE CRG_CD = #CRG_CD# 
+			AND PRG_CD = #PRG_CD#
+			AND A.PART_CD = B.PART_CD
+			AND B.BOM_ID = C.BOM_ID
+			AND A.PART_CD = D.PART_CD
+		 <isEqual property="CRG_TYPE_CD" compareValue="01">
+			AND C.TC1_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="02">
+			AND C.TC2_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="03">
+			AND C.M_YN = 'Y'
+		  </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="04">
+			AND C.T1_YN = 'Y'
+		  </isEqual>
+		<isEqual property="CRG_TYPE_CD" compareValue="05">
+			AND C.T2_YN = 'Y'
+		  </isEqual>
+		 <isNotEmpty property="BOM_ID">
+			 AND (C.BOM_ID = #BOM_ID#
+			 <isNotEmpty property="OR_PARENT_BOM_ID">
+				OR C.PARENT_BOM_ID = #OR_PARENT_BOM_ID#
+			  </isNotEmpty>
+			 )
+		 </isNotEmpty>
+		 <isNotEmpty property="sidx">
+			 <![CDATA[	
+				order by $sidx$ $sord$
+			 ]]>
+		</isNotEmpty>
+		<isEmpty property="sidx">
+		 ORDER BY A.GRS_CD
+		</isEmpty>
+	</select>	
+	<select id="RarpSySystemDAO.selectBomAllList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			BOM_ID,
+			BOM_NM,
+			BOM_LVL,
+			PARENT_BOM_ID,
+			SUBSTR(SYS_CONNECT_BY_PATH(BOM_NM, '|'), 2) BOM_PATH
+		FROM
+			RARP_BOM_INFO START WITH  PARENT_BOM_ID IS NULL
+		 <isEqual property="CRG_TYPE_CD" compareValue="01">
+			AND TC1_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="02">
+			AND TC2_YN = 'Y'
+		 </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="03">
+			AND M_YN = 'Y'
+		  </isEqual>
+		 <isEqual property="CRG_TYPE_CD" compareValue="04">
+			AND T1_YN = 'Y'
+		  </isEqual>
+		<isEqual property="CRG_TYPE_CD" compareValue="05">
+			AND T2_YN = 'Y'
+		  </isEqual>
+	  	 <isNotEmpty property="TRN_KIND_CD">
+			AND TRN_KIND_CD = #TRN_KIND_CD#
+		 </isNotEmpty>
+	    CONNECT BY PRIOR BOM_ID = PARENT_BOM_ID 
+	</select>
+</sqlMap>

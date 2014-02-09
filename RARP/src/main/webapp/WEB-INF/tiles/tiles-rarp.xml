@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+
+     <!-- This is a root Tiles definition -->
+    <definition name="layouts-tiles" template="/WEB-INF/jsp/tiles/layout.jsp">
+        <put-attribute name="title"> :: 3D PLM 기반 스마트 철도차량 유지보수 시스템 :: </put-attribute>
+        <put-attribute name="content" value="" />
+        <put-attribute name="search" value="" />
+    </definition>
+    
+	 <definition name="/hs/01/*.tiles" extends="layouts-tiles">
+	  <put-attribute name="search"   value="/WEB-INF/jsp/tiles/search01.jsp" />
+	  <put-attribute name="content"   value="/WEB-INF/jsp/views/{1}.jsp" />
+	 </definition>
+	 <definition name="/hs/02/*.tiles" extends="layouts-tiles">
+	  <put-attribute name="search"   value="/WEB-INF/jsp/tiles/search02.jsp" />
+	  <put-attribute name="content"   value="/WEB-INF/jsp/views/{1}.jsp" />
+	 </definition>
+	 <definition name="/rf/03/*.tiles" extends="layouts-tiles">
+	  <put-attribute name="search"   value="/WEB-INF/jsp/tiles/search03.jsp" />
+	  <put-attribute name="content"   value="/WEB-INF/jsp/views/{1}.jsp" />
+	 </definition>	 
+	 <definition name="/rf/04/*.tiles" extends="layouts-tiles">
+	  <put-attribute name="search"   value="" />
+	  <put-attribute name="content"   value="/WEB-INF/jsp/views/{1}.jsp" />
+	 </definition>	 
+</tiles-definitions>
