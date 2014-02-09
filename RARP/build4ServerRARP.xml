@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<project name="rarp" default="all" basedir="C:/Users/Administrator/.hudson/jobs/RARP/workspace/branches">
+    <!-- Load properties -->
+    <property name="webapp.dir" value = "${basedir}/src/main/webapp" />
+	<property name="javadoc.home"        value="C:/Users/Administrator/.hudson/jobs/RARP/javadoc" />
+    <!-- Set classpath -->
+    <path id="base-classpath">
+          <pathelement path="src" />
+          <fileset dir="src/main/webapp/WEB-INF/lib">
+                 <include name="*.jar" />
+          </fileset>
+          <fileset dir="${webapp.dir}/WEB-INF/lib" />
+          <fileset dir="C:/DEV_ENV/02.tomcat/apache-tomcat-6.0.24/lib" />
+    </path>
+    <!-- Configure the custom Ant tasks for the Manager application -->
+   <target name="all" depends="t1_init, t2_compile, t4_war, t5_deploy, t6_javadoc" />
+   <target name="t1_init">
+		<delete dir="${basedir}/build/classes" />
+		<delete dir="${basedir}/dist" />
+		<delete dir="${javadoc.home}" />
+		<mkdir dir="${basedir}/build/classes" />
+		<mkdir dir="${basedir}/dist" />
+		<mkdir dir="${javadoc.home}" />
+	</target>
+	<target name="t2_compile">
+		<javac encoding="UTF-8" debug="true" srcdir="${basedir}/src/main/java" destdir="${basedir}/build/classes" fork="yes" memoryMaximumSize="256m">
+			<classpath>
+			  <path refid="base-classpath" />
+			</classpath>
+		</javac>		
+	</target>	
+    <!-- 배포 자동화 -->
+    <target name="t4_war">
+          <copy todir="src/main/webapp/WEB-INF/classes">
+   	 		<fileset dir="${basedir}/build/classes"/>
+          	<fileset dir="src/main/resources"/>
+   	 	  </copy>
+          <war destfile="${basedir}/dist/${ant.project.name}.war" webxml="src/main/webapp/WEB-INF/web.xml">
+               <fileset dir="src/main/webapp" />
+          </war>
+    </target>
+	<!-- 배포 자동화 -->
+	 <target name="t5_deploy">
+	          <copy file="${basedir}/dist/${ant.project.name}.war" todir="C:/jboss-as-7.1.1.Final/standalone/deployments" />
+	    </target>
+	<!-- target : javadoc -->
+    <target name="t6_javadoc">
+        <javadoc sourcepath="${basedir}/src/main/java" windowtitle="RARP" 
+            destdir="${javadoc.home}" encoding="UTF-8" charset="UTF-8" classpathref="base-classpath"
+            docencoding="UTF-8">
+			<packageset dir="${basedir}/src/main/java"  defaultexcludes="yes">
+                 <include name="com/aps/rarp/**"/>
+                 <exclude name="**/test/**"/>
+             </packageset>
+        </javadoc>
+    </target>
+</project>

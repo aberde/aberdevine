@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+    
+    <bean name="egovPropertiesService" class="egovframework.rte.fdl.property.impl.EgovPropertyServiceImpl" destroy-method="destroy">
+        <property name="extFileName">
+        	<map>
+					<entry key="encoding" value="UTF-8"/>
+					<entry key="filename" value="classpath:/rarp/props/*.properties"/>
+            </map>
+        </property>
+        
+        <!-- 전자정부 표준 프레임워크 버그임(properties Dummy 로 존재해야함) -->
+        <property name="properties">
+            <map>
+                <!--  Page Unit = 리스트에 출력되는 게시글 수 -->
+                <entry key="pageUnit" value="10"/>
+                <!--  Page Size 하단에 나오는 페이지 출력 수  -->
+                <entry key="pageSize" value="10"/>
+            </map>
+        </property>
+    </bean>
+</beans>

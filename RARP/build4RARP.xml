@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<project name="rarp" default="all" basedir=".">
+    <!-- Load properties -->
+    <property name="tm_ip" value="10.2.37.130" />
+	<property name="tm_url" value="http://${tm_ip}:9001/manager/text" />
+	<property name="username" value="tm" />
+	<property name="password" value="tm" />
+	<property name="cargo.lib" value="C:/RARP_DEV/bin/lib" />
+	<property name="jboss.lib.7.1" value="C:/jboss-as-7.1.1.Final/modules/org/jboss" />
+	<property name="jboss.lib" value="C:/jboss-5.1.0.GA" />
+    <!-- Set classpath -->
+    <path id="base-classpath">
+          <pathelement path="src" />
+          <fileset dir="src/main/webapp/WEB-INF/lib">
+                 <include name="*.jar" />
+          </fileset>
+          <fileset dir="${ant.home}/lib" />
+    	  <fileset dir="${cargo.lib}" />
+    </path>
+	<taskdef resource="cargo.tasks">
+	  <classpath>
+	  	<fileset dir="${cargo.lib}">
+	  	    <include name="**/*.jar"/>
+	  	</fileset>
+	      <fileset dir="${jboss.lib}/client">
+	    	    <include name="**/*.jar"/>
+	      </fileset>
+	      <fileset dir="${jboss.lib}/lib">
+	    	    <include name="**/*.jar"/>
+	      </fileset>
+	      <fileset dir="${jboss.lib}/common/lib">
+	    	    <include name="**/*.jar"/>
+	      </fileset>
+	  </classpath>
+	</taskdef>
+
+    <!-- Configure the custom Ant tasks for the Manager application -->
+   <target name="all" depends="t1_init, t2_compile, t4_war" />
+   <target name="t1_init">
+		<delete dir="${basedir}/build/classes" />
+		<delete dir="${basedir}/dist" />
+		<mkdir dir="${basedir}/build/classes" />
+		<mkdir dir="${basedir}/dist" />
+		<delete file="${basedir}/dist/${ant.project.name}.war"/>
+	</target>
+	<target name="t2_compile">
+		<javac encoding="UTF-8" debug="true" srcdir="${basedir}/src/main/java" destdir="${basedir}/build/classes" fork="yes" memoryMaximumSize="256m">
+			<classpath>
+				<path refid="base-classpath" />
+			</classpath>
+		</javac>		
+	</target>	
+    <!-- 배포 자동화 -->
+    <target name="t4_war">
+          <copy todir="${basedir}/build/classes">
+   	 		<fileset dir="src/main/webapp/WEB-INF/classes"/>
+   	 	  </copy>
+          <war destfile="${basedir}/dist/${ant.project.name}.war" webxml="src/main/webapp/WEB-INF/web.xml">
+               <fileset dir="src/main/webapp" >
+               	<exclude name="WEB-INF/jboss*" />
+          	  </fileset>
+          </war>
+    </target>
+	
+	<target name="t5_deploy">
+		<cargo containerId="jboss51x" action="deploy" type="remote">
+		  <configuration type="runtime" >
+		    <property name="cargo.hostname" value="127.0.0.1"/>
+		  	<property name="cargo.servlet.port" value="8080"/>
+		  	<property name="cargo.rmi.port" value="1099"/>
+		    <property name="cargo.remote.username" value="admin"/>
+		    <property name="cargo.remote.password" value="admin"/>
+		    <deployable type="war" file="${basedir}/dist/${ant.project.name}.war">
+		      <property name="context" value="/"/>
+		    	
+		    </deployable>
+		  </configuration>
+		</cargo>
+	</target>
+</project>
