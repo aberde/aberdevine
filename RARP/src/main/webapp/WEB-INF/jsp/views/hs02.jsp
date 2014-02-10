@@ -42,7 +42,7 @@ jQuery("#gridData").jqGrid({
 		fnDataAct("DX");
 	},
 	gridComplete: function () {
-		 $('.jqgrow').mouseover(function(e) {4
+		 $('.jqgrow').mouseover(function(e) {
 				if((typeof e.result) != "undefined")
 				{
 					return;
