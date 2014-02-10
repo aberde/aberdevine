@@ -71,9 +71,7 @@ function init() {
 		
 		// 버튼 클릭 이벤트.
 		form.attachEvent("onButtonClick", function(name) {
-			if ( name == "tmplatSearch" ) {  // 템플릿 찾기.
-				tmplatPopup();
-			} else if ( name == "regBtn" ) {
+			if ( name == "regBtn" ) {
 				if ( confirm("저장하시겠습니까?") ) {
 					document.getElementById("activeStatusBar").innerHTML = "";
 					
