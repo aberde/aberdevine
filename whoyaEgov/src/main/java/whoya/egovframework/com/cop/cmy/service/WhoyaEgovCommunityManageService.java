@@ -2,6 +2,7 @@ package whoya.egovframework.com.cop.cmy.service;
 
 import java.util.Map;
 
+import egovframework.com.cop.cmy.service.Community;
 import egovframework.com.cop.cmy.service.CommunityVO;
 
 /**
@@ -18,13 +19,13 @@ public interface WhoyaEgovCommunityManageService {
 	 */
 	public Map<String, Object> selectCommunityInfs(CommunityVO cmmntyVO) throws Exception;
 	
-//    /**
-//     * 커뮤니티에 대한 정보를 등록한다.
-//     * 
-//     * @param cmmnty
-//     * @throws Exception
-//     */
-//    public void insertCommunityInf(Community cmmnty) throws Exception;
+    /**
+     * 커뮤니티에 대한 정보를 등록한다.
+     * 
+     * @param cmmnty
+     * @throws Exception
+     */
+    public void insertCommunityInf(Community cmmnty) throws Exception;
 //
 //    /**
 //     * 커뮤니티 정보를 수정한다.

@@ -95,7 +95,7 @@ public class EgovCommunityManageController {
      * @return
      * @throws Exception
      */
-    @IncludedInfo(name="커뮤니티관리", order = 270 ,gid = 40)
+    @IncludedInfo(name="커뮤니티관리", whoyaListUrl="/whoya/cop/cmy/selectCmmntyInfs.do", order = 270 ,gid = 40)
     @RequestMapping("/cop/cmy/selectCmmntyInfs.do")
     public String selectCmmntyInfs(@ModelAttribute("searchVO") CommunityVO cmmntyVO, ModelMap model) throws Exception {
 	cmmntyVO.setPageUnit(propertyService.getInt("pageUnit"));
