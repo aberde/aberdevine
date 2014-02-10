@@ -45,8 +45,15 @@
 			</isEqual>
 		<![CDATA[			
 			ORDER BY USER_NM 
-			) TB ) WHERE rn BETWEEN #firstIndex# + 1 AND #firstIndex# + #recordCountPerPage#
-		]]>					
+			) TB ) 
+		]]>
+		<isNotEmpty property="pageIndex">
+			<isNotEqual property="pageIndex" compareValue="0">
+			<![CDATA[
+				WHERE rn BETWEEN #firstIndex# + 1 AND #firstIndex# + #recordCountPerPage#
+			]]>
+			</isNotEqual>
+		</isNotEmpty>
  	</select>
  	
 	<select id="EgovUserInfManageDAO.selectUserListCnt" parameterClass="UserInfVO" resultClass="java.lang.Integer" >
