@@ -53,7 +53,11 @@
 
  <script event="EndLoadModel" for="SeemageEmbedded" type="text/javascript">
 	    document.SeemageEmbedded.AssySelectionMode(1);
-	    window.parent.fnEndLoadModel(true);	 
+	    if ( window.parent&& window.parent.fnEndLoadModel ) {
+			window.parent.fnEndLoadModel(true);
+		} else {
+			window.dialogArguments.fnEndLoadModel(true);
+		}
 	    bEndModel = true;
 
  </script>
@@ -131,7 +135,11 @@ function fnSelectRow(selection)
 	if(partname =="")
 		return;
 	
-	window.parent.fnSelectRow(partname);
+	if ( window.parent && window.parent.fnSelectRow ) {
+		window.parent.fnSelectRow(partname);
+	} else {
+		window.dialogArguments.fnSelectRow(partname);
+	}
 
 }
 
@@ -186,10 +194,10 @@ function fnFocusParts(partArray)
 
 function fnFocusPart(partname)
 {
-	var partList = '<CLitModifiable Name="'+partname+'"/>'
+	var partList = '<CLitModifiable Name="'+partname+'"/>';
 
 	document.SeemageEmbedded.setvisibility('<CLitSelection Name="">'+partList+'</CLitSelection>',1,3);
-	var collab=document.SeemageEmbedded.GetAllCollaborations()
+	var collab=document.SeemageEmbedded.GetAllCollaborations();
 	document.SeemageEmbedded.setvisibility(collab,2,0);
 	document.SeemageEmbedded.ZoomFitAll();
 	document.SeemageEmbedded.RefreshScene(1);
@@ -197,7 +205,12 @@ function fnFocusPart(partname)
 var cabFile = "";
 function fnOnload()
 {
-	window.parent.fnEndLoadModel(false);	 
+	if ( window.parent && window.parent.fnEndLoadModel ) {
+		window.parent.fnEndLoadModel(false);
+	} else {
+		window.dialogArguments.fnEndLoadModel(false);
+	}
+	
 	if (navigator.userAgent.indexOf("MSIE") != -1 && navigator.userAgent.indexOf("Win64") != -1 && navigator.userAgent.indexOf("x64") != -1){ 
 		cabFile = "3DVIAPlayerActiveX64.cab#version=6,10,1,2085";
 	} else { 
