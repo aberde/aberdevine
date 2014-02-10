@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import whoya.egovframework.com.cop.cmy.service.WhoyaEgovCommunityManageService;
+import egovframework.com.cop.cmy.service.Community;
 import egovframework.com.cop.cmy.service.CommunityVO;
 import egovframework.com.cop.cmy.service.EgovCommunityManageService;
 import egovframework.rte.fdl.cmmn.AbstractServiceImpl;
@@ -29,6 +30,14 @@ public class WhoyaEgovCommunityManageServiceImpl extends AbstractServiceImpl imp
 		return cmmntyService.selectCommunityInfs(cmmntyVO);
 	}
 	
+	/**
+	 * 커뮤니티에 대한 정보를 등록한다.
+	 * 
+	 * @see egovframework.com.cop.cmy.service.EgovCommunityManageService#insertCommunityInf(egovframework.com.cop.cmy.service.Community)
+	 */
+	public void insertCommunityInf(Community cmmnty) throws Exception {
+		cmmntyService.insertCommunityInf(cmmnty);
+	}
 	
 //    @Resource(name = "EgovBBSAttributeManageService")
 //    private EgovBBSAttributeManageService bbsAttrbService;
@@ -94,75 +103,6 @@ public class WhoyaEgovCommunityManageServiceImpl extends AbstractServiceImpl imp
 //	//cmmntyDAO.insertCommunityBBSUseInf(bdUseInf);
 //	//커뮤니티에 게시판을 하나 추가하게 되면 - _- 해당 게시판이 등록된 커뮤니티의
 //	//모든 소속사용자에게 사용 권한을 줘야하나 - _-? 일단 그렇게 진행
-//    }
-//
-//    /**
-//     * 커뮤니티에 대한 정보를 등록한다.
-//     * 
-//     * @see egovframework.com.cop.cmy.service.EgovCommunityManageService#insertCommunityInf(egovframework.com.cop.cmy.service.Community)
-//     */
-//    public void insertCommunityInf(Community cmmnty) throws Exception {
-//	/*
-//	* 커뮤니티 생성 시 기본 게시판으로 1. 공지게시판, 2.자료실, 3.갤러리, 4.자유게시판, 5. 방명록을 자동 생성하고
-//	* 사용이 가능하도록 사용등록 처리한다.
-//	* 공지게시판(답변불가/파일첨부가능/유기한) 0
-//	* 자료실(답변불가/파일첨부가능) 1
-//	* 갤러리(답변불가/파일첨부가능) 2
-//	* 자유게시판(답변가능/파일첨부불가) 3
-//	* 방명록(답변불가/파일첨부불가) 4
-//	*/
-//
-//	cmmnty.setCmmntyId(idgenService.getNextStringId());
-//	
-//	cmmntyDAO.insertCommunityInf(cmmnty);
-//
-//	CommunityUser cmmntyUser = new CommunityUser();
-//	
-//	cmmntyUser.setCmmntyId(cmmnty.getCmmntyId());
-//	cmmntyUser.setEmplyrId(cmmnty.getEmplyrId());
-//	cmmntyUser.setMngrAt("Y");
-//	cmmntyUser.setUseAt("Y");
-//	cmmntyUser.setFrstRegisterId(cmmnty.getFrstRegisterId());
-//	
-//	cmmntyDAO.insertCommunityUserInf(cmmntyUser);
-//
-//	List<BoardMaster> result = makeBdMstrListforCmmnty(cmmnty);
-//
-//	BoardMaster bdMstr;
-//	//BoardUseInf bdUseInf;
-//	
-//	Iterator<BoardMaster> iter = result.iterator();
-//	while (iter.hasNext()) {
-//	    //게시판 생성
-//	    bdMstr = (BoardMaster)iter.next();
-//	    
-//	    @SuppressWarnings("unused")
-//	    String bbsId = bbsAttrbService.insertBBSMastetInf(bdMstr);			
-//
-//	    /*			
-//	    //게시판 이용정보 생성
-//	    bdUseInf = new BoardUseInf();
-//	    bdUseInf.setBbsId(_bbsId);
-//	    bdUseInf.setTrgetId(cmmnty.getCmmntyId());
-//	    bdUseInf.setRegistSeCode("REGC06");
-//	    bdUseInf.setUseAt("Y"); //커뮤니티 생성 시 기본 게시판을 이용정보로 등록하는 것이므로 생성시 사용으로 등록
-//	    bdUseInf.setFrstRegisterId(cmmnty.getFrstRegisterId());
-//
-//	    bbsUseService.insertBBSUseInf(bdUseInf);
-//	    //*/
-//			
-//			
-//	    /* 이미 bbsAttrbService.insertBBSMastetInf() 부분에서 REGC07을 등록함... 
-//	    bdUseInf = new BoardUseInf();
-//	    bdUseInf.setBbsId(_bbsId);
-//	    bdUseInf.setTrgetId(cmmnty.getEmplyrId());
-//	    bdUseInf.setRegistSeCode("REGC07");
-//	    bdUseInf.setUseAt("Y"); //커뮤니티 생성 시 생성된 기본 게시판을 최초등록 운영자에게 부여한다
-//	    bdUseInf.setFrstRegisterId(cmmnty.getFrstRegisterId());
-//
-//	    bbsUseService.insertBBSUseInf(bdUseInf);	
-//	    //*/	
-//	}
 //    }
 //
 //    /**
