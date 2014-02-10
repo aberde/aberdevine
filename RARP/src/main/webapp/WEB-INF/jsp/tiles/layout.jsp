@@ -234,7 +234,8 @@ function fnForward(menu){
 function fnPopupCenter(url, title, w, h) {
 	  var left = (screen.width/2)-(w/2);
 	  var top = (screen.height/2)-(h/2);
-	  return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+	  
+	  window.showModalDialog(url, window,  "dialogHeight="+h+"px; dialogWidth="+w+"px; resizable=no; scroll=no; status=no; center=yes" ); 
 }
 
 //부품 검색 화면 
@@ -306,7 +307,7 @@ function fnSearchValidation()
 	var ssCrg = crg.split('_');
 	$("#CRG_CD").val(ssCrg[0]);
 	
-	if(menuId == "HO01" || menuId == "HO02")
+	if(menuId == "HO01" || menuId == "HO02" || menuId == "HO03")
 	{
 		var stDate = $("#stDate").val();
 		if ($.trim(stDate).length == 0) {
@@ -336,11 +337,6 @@ function fnSearchValidation()
 		{
 			$("#ISPT_TYPE_CD").val($("#sltIsptType").val());
 		}
-	}
-	else if( menuId == "HO03")
-	{
-		$("#ST").val($("#stDate").val());
-		$("#ED").val($("#edDate").val());
 	}
 	
 	return true;
