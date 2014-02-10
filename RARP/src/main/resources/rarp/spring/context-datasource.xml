@@ -5,11 +5,14 @@
 
   	 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		  <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" /> 
-		  <property name="url" value="jdbc:oracle:thin:@192.168.0.211:1521:rarp" /> 
-		  <property name="username" value="rarp" /> 
-		  <property name="password" value="rarp" /> 
-<!-- 		  <property name="url" value="jdbc:oracle:thin:@ora-002.cafe24.com:1521:orcl" />  -->
-<!-- 		  <property name="username" value="whoyacokr2" />  -->
-<!-- 		  <property name="password" value="qkrghdrnl2" />  -->
+<!-- 		  <property name="url" value="jdbc:oracle:thin:@192.168.0.211:1521:rarp" />  -->
+<!-- 		  <property name="username" value="rarp" />  -->
+<!-- 		  <property name="password" value="rarp" />  -->
+<!-- 		  <property name="url" value="jdbc:oracle:thin:@218.234.218.23:1521:rarp" />  -->
+<!-- 		  <property name="username" value="rarp" />  -->
+<!-- 		  <property name="password" value="rarp" />  -->
+		  <property name="url" value="jdbc:oracle:thin:@ora-002.cafe24.com:1521:orcl" /> 
+		  <property name="username" value="whoyacokr2" /> 
+		  <property name="password" value="qkrghdrnl2" /> 
   	 </bean>
 </beans>
