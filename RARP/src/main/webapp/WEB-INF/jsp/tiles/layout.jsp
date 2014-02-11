@@ -231,11 +231,17 @@ function fnForward(menu){
 
 }
 
-function fnPopupCenter(url, title, w, h) {
+function fnPopupCenter(url, title, w, h, view) {
 	  var left = (screen.width/2)-(w/2);
 	  var top = (screen.height/2)-(h/2);
 	  
-	  window.showModalDialog(url, window,  "dialogHeight="+h+"px; dialogWidth="+w+"px; resizable=no; scroll=no; status=no; center=yes" ); 
+	  
+	  if ( view ) {  // 3DVIEWR
+		  window.showModalDialog(url, window,  "dialogHeight="+h+"px; dialogWidth="+w+"px; resizable=no; scroll=no; status=no; center=yes" );
+	  } else {  // 부품 팝업.
+		  return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+	  }
+	  
 }
 
 //부품 검색 화면 
@@ -357,7 +363,7 @@ function fnPlay(file)
 	var viewerPage = "${pageContext.request.contextPath}/3d/view.jsp";
 	viewerPage = viewerPage + "?AUTO=1&CRG_TYPE_CD=P&TRN_KIND_CD=PART&PART_CD=" + file;
 	var title = "ANIPART";
-	fnPopupCenter(viewerPage,title,1145,650);  
+	fnPopupCenter(viewerPage,title,1145,650,true);  
 }
 
 
@@ -1024,7 +1030,13 @@ $('#stDate').datepicker({
 					fnGetTagValue(fnGetDataPostData());
 					bSelectRow = true;
 					
-					fnSearchDataList(fnGetDataPostData());
+					// ##################################################
+					// ## 서브 그리드 선택시 하단 조회데이터 검색시 부품코드는 제거 
+					// ##################################################
+					var gridData = fnGetDataPostData();
+					gridData.PART_CD = "";
+					// ##################################################
+					fnSearchDataList(gridData);
 				},			   	
 				gridComplete: function(data) {
 					 $('.jqgrow').mouseover(function(e) {
@@ -1082,7 +1094,8 @@ function fnChangeSltTrnType(obj)
 		 	}
         }
   });
-	$("#txtPart").val("");
+	
+	initForm();  // 데이터 초기화
 }
 
 //편성 변경 이벤트
@@ -1123,6 +1136,8 @@ function fnChangeSltPrg(obj)
         	
         }
   });
+	
+	initForm();  // 데이터 초기화
 }
 
 //차호 변경 이벤트
@@ -1149,6 +1164,8 @@ function fnChangeSltCrg(obj)
 			})
         }
   });
+	
+	initForm();  // 데이터 초기화
 }
 
 //그리드 사이즈 변경 
@@ -1206,6 +1223,35 @@ $(document).ajaxError(function(event, jqXHR, ajaxSettings, thrownError) {
 	}
 });
 
+
+// 검색 조건 변경시 데이터 초기화
+function initForm() {
+	// bom목록 초기화
+	$("#gridBom").jqGrid("clearGridData");
+	// 조회목록 초기화
+	$("#gridData").jqGrid("clearGridData");
+	
+	// 3D viewer 초기화
+	$("#CRG_TYPE_CD").val("");
+	$("#TRN_KIND_CD").val("");
+	fnViewShow();
+	
+	// 검색 부품 초기화
+	$("#txtPart").val("");
+	
+	// 검색 관련 정보 표시 초기화
+	// 편성
+	$("#spanPrgNm").text("");
+	// 차호
+	$("#spanCrgNm").text("");
+	// 객차유형
+	$("#spanCrgTypeNm").text("");
+	// RFID 태그ID
+	$("#spanRfidTagId").text("");
+	// BOM
+	$("#spanBomPath").text("");
+	
+}
 </script>
 </head>
 <body>
