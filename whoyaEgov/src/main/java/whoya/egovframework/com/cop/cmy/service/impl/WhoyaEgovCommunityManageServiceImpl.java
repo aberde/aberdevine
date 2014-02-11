@@ -39,6 +39,32 @@ public class WhoyaEgovCommunityManageServiceImpl extends AbstractServiceImpl imp
 		cmmntyService.insertCommunityInf(cmmnty);
 	}
 	
+	/**
+     * 커뮤니티에 대한 특정 사용자 정보를 조회한다.
+     * 
+     * @see egovframework.com.cop.cmy.service.EgovCommunityManageService#selectCommunityInf(egovframework.com.cop.cmy.service.CommunityVO)
+     */
+    public Map<String, Object> selectCommunityInf(CommunityVO cmmntyVO) throws Exception {
+    	return cmmntyService.selectCommunityInf(cmmntyVO);
+    }
+    
+    /**
+     * 커뮤니티 정보를 수정한다.
+     * 
+     * @see egovframework.com.cop.cmy.service.EgovCommunityManageService#updateCommunityInf(egovframework.com.cop.cmy.service.Community)
+     */
+    public void updateCommunityInf(Community cmmnty) throws Exception {
+    	cmmntyService.updateCommunityInf(cmmnty);
+    }
+	
+    /**
+     * 커뮤니티에 대한 정보를 삭제한다.
+     * 
+     * @see egovframework.com.cop.cmy.service.EgovCommunityManageService#deleteCommunityInf(egovframework.com.cop.cmy.service.Community)
+     */
+    public void deleteCommunityInf(Community cmmnty) throws Exception {
+    	cmmntyService.deleteCommunityInf(cmmnty);
+    }
 //    @Resource(name = "EgovBBSAttributeManageService")
 //    private EgovBBSAttributeManageService bbsAttrbService;
 //
@@ -52,30 +78,6 @@ public class WhoyaEgovCommunityManageServiceImpl extends AbstractServiceImpl imp
 //    private EgovIdGnrService idgenService;
 //
 //    Logger log = Logger.getLogger(this.getClass());
-//	
-//    /**
-//     * 커뮤니티에 대한 정보를 삭제한다.
-//     * 
-//     * @see egovframework.com.cop.cmy.service.EgovCommunityManageService#deleteCommunityInf(egovframework.com.cop.cmy.service.Community)
-//     */
-//    public void deleteCommunityInf(Community cmmnty) throws Exception {
-//	cmmntyDAO.deleteCommunityInf(cmmnty);
-//
-//	BoardUseInfVO bdUseVO = new BoardUseInfVO();
-//	
-//	bdUseVO.setLastUpdusrId(cmmnty.getLastUpdusrId());
-//	bdUseVO.setCmmntyId(cmmnty.getCmmntyId());
-//
-//	bbsUseService.deleteAllBBSUseInfByCmmnty(bdUseVO);
-//
-//	//커뮤티니 사용자도 삭제처리해야 한다.
-//	CommunityUser cmmntyUser = new CommunityUser();
-//	cmmntyUser.setSecsnDe(EgovDateUtil.getToday());
-//	cmmntyUser.setCmmntyId(cmmnty.getCmmntyId());
-//	cmmntyUser.setLastUpdusrId(cmmnty.getLastUpdusrId());
-//	
-//	cmmntyDAO.deleteAllCommunityUserInf(cmmntyUser);
-//    }
 //
 //    /**
 //     * 커뮤니티 사용정보를 삭제한다.
@@ -235,54 +237,6 @@ public class WhoyaEgovCommunityManageServiceImpl extends AbstractServiceImpl imp
 //	return cmmntyDAO.selectCommunityBBSUseInf(cmmntyVO);
 //    }
 //
-//	/**
-//     * 커뮤니티에 대한 특정 사용자 정보를 조회한다.
-//     * 
-//     * @see egovframework.com.cop.cmy.service.EgovCommunityManageService#selectCommunityInf(egovframework.com.cop.cmy.service.CommunityVO)
-//     */
-//    public Map<String, Object> selectCommunityInf(CommunityVO cmmntyVO) throws Exception {
-//
-//	CommunityVO vo = cmmntyDAO.selectCommunityInf(cmmntyVO);
-//	
-//	List<CommunityVO> result = cmmntyDAO.selectCommunityBBSUseInf(cmmntyVO);
-//
-//	CommunityUser cmmntyUser = new CommunityUser();
-//	
-//	cmmntyUser.setCmmntyId(cmmntyVO.getCmmntyId());
-//	cmmntyUser.setEmplyrId(cmmntyVO.getEmplyrId());
-//	
-//	cmmntyUser = cmmntyDAO.selectSingleCommunityUserInf(cmmntyUser);
-//		
-//	//-----------------------------------------------------------------
-//	// 관리자 정보를 처리한다. (여러 명이 있을 수 있음 - DB 설계 문제상 문제)
-//	// 위의 처리는 cmmntyVO.getEmplyrId()가 ""이기 때문에 의미 없음..
-//	//-----------------------------------------------------------------
-//	List<CommunityUser> managers = cmmntyDAO.selectCommunityManagerInfs(cmmntyVO);
-//
-//	if (cmmntyUser == null) {
-//	    cmmntyUser = new CommunityUser();
-//	}
-//	if (managers.size() == 1) {
-//	    cmmntyUser.setEmplyrId(managers.get(0).getEmplyrId());
-//	    cmmntyUser.setEmplyrNm(managers.get(0).getEmplyrNm());
-//	} else if (managers.size() > 1) {
-//	    cmmntyUser.setEmplyrId(managers.get(0).getEmplyrId());
-//	    cmmntyUser.setEmplyrNm(managers.get(0).getEmplyrNm() + "외 " + (managers.size() - 1) + "명");
-//	} else {
-//	    // no-op
-//	    log.debug("No managers...");
-//	}
-//	////---------------------------------------------------------------
-//
-//	Map<String, Object> map = new HashMap<String, Object>();
-//	
-//	map.put("resultList", result);
-//	map.put("cmmntyVO", vo);
-//	map.put("cmmntyUser", cmmntyUser);
-//
-//	return map;
-//    }
-//
 //    /**
 //     * 커뮤니티 관리자 정보를 조회한다.
 //     * 
@@ -325,24 +279,6 @@ public class WhoyaEgovCommunityManageServiceImpl extends AbstractServiceImpl imp
 //     */
 //    public void updateCommunityBBSUseInf(BoardUseInf bdUseInf) throws Exception {
 //	cmmntyDAO.updateCommunityBBSUseInf(bdUseInf);
-//    }
-//
-//    /**
-//     * 커뮤니티 정보를 수정한다.
-//     * 
-//     * @see egovframework.com.cop.cmy.service.EgovCommunityManageService#updateCommunityInf(egovframework.com.cop.cmy.service.Community)
-//     */
-//    public void updateCommunityInf(Community cmmnty) throws Exception {
-//	CommunityUser cmmntyUser = new CommunityUser();
-//
-//	cmmntyUser.setUseAt("Y");
-//	cmmntyUser.setMngrAt("Y");
-//	cmmntyUser.setLastUpdusrId(cmmnty.getLastUpdusrId());
-//	cmmntyUser.setCmmntyId(cmmnty.getCmmntyId());
-//	cmmntyUser.setEmplyrId(cmmnty.getEmplyrId());
-//
-//	cmmntyDAO.updateCommunityInf(cmmnty);
-//	cmmntyDAO.updateCommunityUserInf(cmmntyUser);
 //    }
 //
 //    /**

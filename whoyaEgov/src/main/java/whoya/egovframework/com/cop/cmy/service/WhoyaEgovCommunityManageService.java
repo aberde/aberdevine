@@ -26,22 +26,31 @@ public interface WhoyaEgovCommunityManageService {
      * @throws Exception
      */
     public void insertCommunityInf(Community cmmnty) throws Exception;
-//
-//    /**
-//     * 커뮤니티 정보를 수정한다.
-//     * 
-//     * @param cmmnty
-//     * @throws Exception
-//     */
-//    public void updateCommunityInf(Community cmmnty) throws Exception;
-//
-//    /**
-//     * 커뮤니티에 대한 정보를 삭제한다.
-//     * 
-//     * @param cmmnty
-//     * @throws Exception
-//     */
-//    public void deleteCommunityInf(Community cmmnty) throws Exception;
+    
+    /**
+     * 커뮤니티에 대한 특정 사용자 정보를 조회한다.
+     * 
+     * @param cmmntyVO
+     * @return
+     * @throws Exception
+     */
+    public Map<String, Object> selectCommunityInf(CommunityVO cmmntyVO) throws Exception;
+
+    /**
+     * 커뮤니티 정보를 수정한다.
+     * 
+     * @param cmmnty
+     * @throws Exception
+     */
+    public void updateCommunityInf(Community cmmnty) throws Exception;
+
+    /**
+     * 커뮤니티에 대한 정보를 삭제한다.
+     * 
+     * @param cmmnty
+     * @throws Exception
+     */
+    public void deleteCommunityInf(Community cmmnty) throws Exception;
 //
 //    /**
 //     * 커뮤니티 사용자 정보를 등록한다.
@@ -108,15 +117,6 @@ public interface WhoyaEgovCommunityManageService {
 //     * @throws Exception
 //     */
 //    public List<CommunityVO> selectCommunityBBSUseInf(CommunityVO cmmntyVO) throws Exception;
-//
-//    /**
-//     * 커뮤니티에 대한 특정 사용자 정보를 조회한다.
-//     * 
-//     * @param cmmntyVO
-//     * @return
-//     * @throws Exception
-//     */
-//    public Map<String, Object> selectCommunityInf(CommunityVO cmmntyVO) throws Exception;
 //
 //    /**
 //     * 커뮤니티 관리자 정보를 조회한다.

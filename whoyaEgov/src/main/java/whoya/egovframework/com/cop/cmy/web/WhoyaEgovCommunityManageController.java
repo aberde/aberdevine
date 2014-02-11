@@ -26,8 +26,8 @@ import whoya.egovframework.com.cop.cmy.service.WhoyaEgovCommunityManageService;
 import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.com.cop.cmy.service.Community;
+import egovframework.com.cop.cmy.service.CommunityUser;
 import egovframework.com.cop.cmy.service.CommunityVO;
-import egovframework.com.cop.tpl.service.TemplateInfVO;
 
 /**
  * 커뮤니티 정보를 관리하기 위한 컨트롤러 클래스
@@ -107,7 +107,7 @@ public class WhoyaEgovCommunityManageController {
 		try {
 			cmmntyVO.setPageIndex(0);
 			Map<String, Object> map = cmmntyService.selectCommunityInfs(cmmntyVO);
-			List<TemplateInfVO> voList = (List<TemplateInfVO>)map.get("resultList");
+			List<CommunityVO> voList = (List<CommunityVO>)map.get("resultList");
 			whoyaList list = new whoyaList(Common.ConverObjectToWhoyaMap(voList));
 			
 			// 번호 컬럼 추가.
@@ -117,8 +117,8 @@ public class WhoyaEgovCommunityManageController {
 				wmap.put("no", i + 1);
 			}
 
-			// 번호,커뮤니티명,생성자,생성일,사용여부
-		 	resultList.put("list", whoyaLib.whoyaRenderGrid(list, "no,cmmntyNm,frstRegisterNm,frstRegisterPnttm,useAt"));
+			// 번호,커뮤니티명,생성자,생성일,사용여부,커뮤니티 아이디
+		 	resultList.put("list", whoyaLib.whoyaRenderGrid(list, "no,cmmntyNm,frstRegisterNm,frstRegisterPnttm,useAt,cmmntyId"));
 		 	resultList.put("status", commonReturn.SUCCESS);
 		 	resultList.put("message", "조회되었습니다");
 		} catch(Exception e) {
@@ -170,8 +170,100 @@ public class WhoyaEgovCommunityManageController {
     		throw e;
     	}
     }
+    
+    /**
+     * 커뮤니티에 대한 상세정보를 조회한다.
+     * 
+     * @param cmmntyVO
+     * @param sessionVO
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/whoya/cop/cmy/selectCmmntyInf.do")
+    public @ResponseBody CommunityVO selectCmmntyInf(@ModelAttribute("searchVO") CommunityVO cmmntyVO, ModelMap model, HttpServletRequest request) throws Exception {
+    	try {
+	    	Map<String, Object> map = cmmntyService.selectCommunityInf(cmmntyVO);
+	    	CommunityVO vo = (CommunityVO)map.get("cmmntyVO");
+	    	
+	    	//-----------------------
+	    	// 제공 URL 
+	    	//-----------------------
+	    	vo.setProvdUrl(request.getContextPath()+ "/whoya/cop/cmy/CmmntyMainPage.do?cmmntyId=" + vo.getCmmntyId());
+	    	////---------------------
 	
+	    	// 게시판 정보 목록
+	    	vo.setBbsNmList((List<CommunityVO>)map.get("resultList"));
+	
+	    	return vo;
+    	} catch ( Exception e ) {
+    		e.printStackTrace();
+    		throw e;
+    	}
+	}
+    
+    /**
+     * 커뮤니티 정보 수정을 위한 수정페이지로 이동한다.
+     * 
+     * @param cmmntyVO
+     * @param sessionVO
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/whoya/cop/cmy/forUpdateCmmntyInf.do")
+    public @ResponseBody CommunityVO forUpdateCmmntyInf(@ModelAttribute("searchVO") CommunityVO cmmntyVO, Map<String, Object> commandMap, ModelMap model) throws Exception {
+		Map<String, Object> map = cmmntyService.selectCommunityInf(cmmntyVO);
+		CommunityVO vo = (CommunityVO)map.get("cmmntyVO");
+		vo.setEmplyrId(((CommunityUser)map.get("cmmntyUser")).getEmplyrId());
+		vo.setUserNm(((CommunityUser)map.get("cmmntyUser")).getEmplyrNm());
+		// 게시판 정보 목록
+    	vo.setBbsNmList((List<CommunityVO>)map.get("resultList"));
+	
+		return vo;
+    }
+    
+    /**
+     * 커뮤니티 정보를 수정한다.
+     * 
+     * @param cmmntyVO
+     * @param sessionVO
+     * @param status
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/whoya/cop/cmy/updtCmmntyInf.do")
+    public @ResponseBody void updtCmmntyInf(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	try {
+    		String[] ids = request.getParameter("ids").split(",");
+    		
+    		whoyaDataProcess  data = new whoyaDataProcess();
+    	    whoyaMap rows = new whoyaMap();
+    	    rows = data.dataProcess(request, response);
+    	    
+    		for (int i = 0; i < ids.length; i++) {
+    			whoyaMap cols = (whoyaMap) rows.get(ids[i]);
+    			Community community = new Community();
+    			community = (Community)Common.convertWhoyaMapToObject(cols, community);
 
+    			LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+    			Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+    			
+    			if (isAuthenticated) {
+    				community.setLastUpdusrId(user.getUniqId());
+    				if ("Y".equals(community.getUseAt())) {
+    					cmmntyService.updateCommunityInf(community);
+    				} else {
+    					cmmntyService.deleteCommunityInf(community);
+    				}
+    			}
+    		}
+    	} catch ( Exception e ) {
+    		e.printStackTrace();
+    		throw e;
+    	}
+    }
 //
 //    @Resource(name = "EgovBBSAttributeManageService")
 //    private EgovBBSAttributeManageService bbsAttrbService;
@@ -205,100 +297,6 @@ public class WhoyaEgovCommunityManageController {
 //    @RequestMapping("/cop/cmy/addCmmntyInf.do")
 //    public String addCmmntyInf(@ModelAttribute("searchVO") CommunityVO cmmntyVO, ModelMap model) throws Exception {
 //	return "egovframework/com/cop/cmy/EgovCmmntyRegist";
-//    }
-//
-//    /**
-//     * 커뮤니티에 대한 상세정보를 조회한다.
-//     * 
-//     * @param cmmntyVO
-//     * @param sessionVO
-//     * @param model
-//     * @return
-//     * @throws Exception
-//     */
-//    @RequestMapping("/cop/cmy/selectCmmntyInf.do")
-//    public String selectCmmntyInf(@ModelAttribute("searchVO") CommunityVO cmmntyVO, ModelMap model, HttpServletRequest request) throws Exception {
-//	Map<String, Object> map = cmmntyService.selectCommunityInf(cmmntyVO);
-//	CommunityVO vo = (CommunityVO)map.get("cmmntyVO");
-//	
-//	//-----------------------
-//	// 제공 URL 
-//	//-----------------------
-//	vo.setProvdUrl(request.getContextPath()+ "/cop/cmy/CmmntyMainPage.do?cmmntyId=" + vo.getCmmntyId());
-//	////---------------------
-//
-//	model.addAttribute("cmmntyVO", vo);
-//	model.addAttribute("result", map.get("resultList"));
-//
-//	return "egovframework/com/cop/cmy/EgovCmmntyInqire";
-//    }
-//
-//    /**
-//     * 커뮤니티 정보 수정을 위한 수정페이지로 이동한다.
-//     * 
-//     * @param cmmntyVO
-//     * @param sessionVO
-//     * @param model
-//     * @return
-//     * @throws Exception
-//     */
-//    @RequestMapping("/cop/cmy/forUpdateCmmntyInf.do")
-//    public String forUpdateCmmntyInf(@ModelAttribute("searchVO") CommunityVO cmmntyVO, Map<String, Object> commandMap, ModelMap model)
-//	    throws Exception {
-//
-//	String cmmntyId = (String)commandMap.get("param_cmmntyId");
-//	cmmntyVO.setCmmntyId(cmmntyId);
-//	
-//	Map<String, Object> map = cmmntyService.selectCommunityInf(cmmntyVO);
-//	
-//	model.addAttribute("cmmntyVO", (CommunityVO)map.get("cmmntyVO"));
-//	model.addAttribute("cmmntyUser", (CommunityUser)map.get("cmmntyUser"));
-//	model.addAttribute("result", map.get("resultList"));
-//
-//	return "egovframework/com/cop/cmy/EgovCmmntyUpdt";
-//    }
-//
-//    /**
-//     * 커뮤니티 정보를 수정한다.
-//     * 
-//     * @param cmmntyVO
-//     * @param sessionVO
-//     * @param status
-//     * @param model
-//     * @return
-//     * @throws Exception
-//     */
-//    @RequestMapping("/cop/cmy/updtCmmntyInf.do")
-//    public String updtCmmntyInf(@ModelAttribute("searchVO") CommunityVO cmmntyVO, @ModelAttribute("community") Community community,
-//	    BindingResult bindingResult, SessionStatus status, ModelMap model) throws Exception {
-//
-//	LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
-//	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
-//
-//	beanValidator.validate(community, bindingResult);
-//	if (bindingResult.hasErrors()) {
-//
-//	    Map<String, Object> map = cmmntyService.selectCommunityInf(cmmntyVO);
-//	    CommunityVO vo = (CommunityVO)map.get("cmmntyVO");
-//
-//	    model.addAttribute("cmmntyVO", vo);
-//	    model.addAttribute("result", map.get("resultList"));
-//
-//	    return "egovframework/com/cop/cmy/EgovCmmntyUpdt";
-//	}
-//
-//	community.setLastUpdusrId(user.getUniqId());
-//	
-//	if (isAuthenticated) {
-//	    if ("Y".equals(community.getUseAt())) {
-//		cmmntyService.updateCommunityInf(community);
-//	    } else {
-//		cmmntyService.deleteCommunityInf(community);
-//	    }
-//
-//	}
-//
-//	return "forward:/cop/cmy/selectCmmntyInfs.do";
 //    }
 //
 //    /**

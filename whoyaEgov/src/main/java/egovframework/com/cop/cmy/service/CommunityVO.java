@@ -1,8 +1,10 @@
 package egovframework.com.cop.cmy.service;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 /**
  * 커뮤니티 관리를 위한 VO 클래스
@@ -21,6 +23,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  * </pre>
  */
 @SuppressWarnings("serial")
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_DEFAULT)
 public class CommunityVO extends Community implements Serializable {
 
     /** 검색시작일 */
@@ -76,6 +79,9 @@ public class CommunityVO extends Community implements Serializable {
     
     /** 제공 URL */
     private String provdUrl = "";
+
+    /** 게시판 이름 목록 */
+    private List<CommunityVO> bbsNmList;
 
     /**
      * searchBgnDe attribute를 리턴한다.
@@ -422,4 +428,12 @@ public class CommunityVO extends Community implements Serializable {
     public String toString() {
 	return ToStringBuilder.reflectionToString(this);
     }
+
+	public List<CommunityVO> getBbsNmList() {
+		return bbsNmList;
+	}
+
+	public void setBbsNmList(List<CommunityVO> bbsNmList) {
+		this.bbsNmList = bbsNmList;
+	}
 }
