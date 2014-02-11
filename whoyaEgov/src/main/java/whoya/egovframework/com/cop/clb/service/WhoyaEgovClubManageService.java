@@ -18,7 +18,15 @@ public interface WhoyaEgovClubManageService {
 	 * @throws Exception
 	 */
 	public Map<String, Object> selectClubInfs(ClubVO clubVO) throws Exception;
-  
+	
+	/**
+	 * 특정 커뮤니티에 사용되는 동호회 목록을 조회한다.
+	 * 
+	 * @param clubVO
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> selectClubInfsByCmmntyId(ClubVO clubVO) throws Exception;
 //	/**
 //     * 동호회 정보를 삭제한다.
 //     * 
@@ -118,15 +126,6 @@ public interface WhoyaEgovClubManageService {
 //     * @throws Exception
 //     */
 //    public void updateClubUserInf(ClubUser clubUser) throws Exception;
-//
-//    /**
-//     * 특정 커뮤니티에 사용되는 동호회 목록을 조회한다.
-//     * 
-//     * @param clubVO
-//     * @return
-//     * @throws Exception
-//     */
-//    public Map<String, Object> selectClubInfsByCmmntyId(ClubVO clubVO) throws Exception;
 //
 //    /**
 //     * 특정 커뮤니티에 사용되는 동호회 목록을 조회 한다(포틀릿 형식용).

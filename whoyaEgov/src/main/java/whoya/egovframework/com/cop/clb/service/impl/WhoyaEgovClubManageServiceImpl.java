@@ -29,7 +29,17 @@ public class WhoyaEgovClubManageServiceImpl extends AbstractServiceImpl implemen
 	public Map<String, Object> selectClubInfs(ClubVO clubVO) throws Exception {
 		return clubService.selectClubInfs(clubVO);
 	}
-  
+	
+	/**
+	 * 특정 커뮤니티에 사용되는 동호회 목록을 조회한다.
+	 * 
+	 * @param clubVO
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> selectClubInfsByCmmntyId(ClubVO clubVO) throws Exception {
+		return clubService.selectClubInfsByCmmntyId(clubVO);
+	}
 //    @Resource(name = "EgovBBSAttributeManageService")
 //    private EgovBBSAttributeManageService bbsAttrbService;
 //
@@ -408,25 +418,6 @@ public class WhoyaEgovClubManageServiceImpl extends AbstractServiceImpl implemen
 //     */
 //    public void updateClubUserInf(ClubUser clubUser) throws Exception {
 //	clubDAO.updateClubUserInf(clubUser);
-//    }
-//
-//    /**
-//     * 특정 커뮤니티에 사용되는 동호회 목록을 조회한다.
-//     * 
-//     * @param clubVO
-//     * @return
-//     * @throws Exception
-//     */
-//    public Map<String, Object> selectClubInfsByCmmntyId(ClubVO clubVO) throws Exception {
-//	List<ClubVO> result = clubDAO.selectClubInfsByCmmntyId(clubVO);
-//	//int cnt = clubDAO.selectClubInfsCntByCmmntyId(clubVO);
-//
-//	Map<String, Object> map = new HashMap<String, Object>();
-//	
-//	map.put("resultList", result);
-//	//map.put("resultCnt", Integer.toString(cnt));
-//
-//	return map;
 //    }
 //
 //    /**
