@@ -39,6 +39,7 @@ body {
  		 alert("선택한 부품이 없습니다.");
  		 return;
  	 }
+ 	 opener.initForm();  // 데이터 초기화
 	 opener.document.getElementById("txtPart").value = PART_CD;
 	 opener.document.getElementById("PART_CD").value = PART_CD;
 	 self.close();
@@ -186,7 +187,7 @@ jQuery(document).ready(function(){
 
   </form>
 <div style="width:60%; height:60%">
-   <div class="map02 font10" style="font-size: 1.2em;">부품검색</div>
+   <div class="map02 font10" style="margin-top: 20px; font-size: 1.2em;">부품검색</div>
   <div id="container" class="clear_both"> 
     <!-- 네비게이션 -->
     <div class="lnb10 float_left">
