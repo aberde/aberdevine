@@ -73,7 +73,7 @@ public class EgovBBSScrapController {
      * @return
      * @throws Exception
      */
-    @IncludedInfo(name="스크랩 목록", order = 250 ,gid = 40)
+    @IncludedInfo(name="스크랩 목록", whoyaListUrl="/whoya/cop/scp/selectScrapList.do", order = 250 ,gid = 40)
     @RequestMapping("/cop/scp/selectScrapList.do")
     public String selectScrapList(@ModelAttribute("searchVO") ScrapVO scrapVO, ModelMap model) throws Exception {
 	LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
