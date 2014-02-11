@@ -69,6 +69,45 @@ public class WhoyaEgovClubManageController {
 		
 		return resultList;
 	}
+	
+	/**
+	 * 특정 커뮤니티에 사용되는 동호회 목록을 조회한다.
+	 * 
+	 * @param clubVO
+	 * @param sessionVO
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/whoya/cop/clb/selectClubInfByCmmntyId.do")
+	public @ResponseBody JSONObject selectClubInfByCmmntyId(@ModelAttribute("searchVO") ClubVO clubVO, Map<String, Object> commandMap, ModelMap model) throws Exception {
+		JSONObject resultList = new JSONObject();
+		
+		try {
+			clubVO.setPageIndex(0);
+			Map<String, Object> map = clubService.selectClubInfsByCmmntyId(clubVO);
+			List<ClubVO> voList = (List<ClubVO>)map.get("resultList");
+			whoyaList list = new whoyaList(Common.ConverObjectToWhoyaMap(voList));
+			
+			// 번호 컬럼 추가.
+			// TODO 수정필요 list목록이 많아지면 속도저하 whoyaLib에서 whoyaRenderGrid호출시 같이 처리되도록 해야됨.(aberdevine) 
+			for ( int i = 0 ; i < list.size(); i++ ) {
+				whoyaMap wmap = list.getMap(i);
+				wmap.put("no", i + 1);
+			}
+			
+			// 번호,동호회명,등록일,사용여부
+		 	resultList.put("list", whoyaLib.whoyaRenderGrid(list, "no,clbNm,frstRegisterPnttm,useAt"));
+		 	resultList.put("status", commonReturn.SUCCESS);
+		 	resultList.put("message", "조회되었습니다");
+		} catch(Exception e) {
+			resultList.put("status", commonReturn.FAIL);
+			resultList.put("message", e.getMessage());
+			throw e;
+		}
+		
+		return resultList;
+	}
 	 
 
 //
@@ -264,32 +303,6 @@ public class WhoyaEgovClubManageController {
 //	}
 //
 //	return "forward:/cop/clb/selectClubInfs.do";
-//    }
-//
-//    /**
-//     * 특정 커뮤니티에 사용되는 동호회 목록을 조회한다.
-//     * 
-//     * @param clubVO
-//     * @param sessionVO
-//     * @param model
-//     * @return
-//     * @throws Exception
-//     */
-//    @RequestMapping("/cop/clb/selectClubInfByCmmntyId.do")
-//    public String selectClubInfByCmmntyId(@ModelAttribute("searchVO") ClubVO clubVO, Map<String, Object> commandMap, ModelMap model) throws Exception {
-//
-//	String cmmntyId = (String)commandMap.get("param_cmmntyId");
-//	clubVO.setCmmntyId(cmmntyId);
-//
-//	Map<String, Object> map = clubService.selectClubInfsByCmmntyId(clubVO);
-//	//ClubVO vo = new ClubVO();
-//	
-//	//vo = (ClubVO)_map.get("clubVO");
-//	
-//	model.addAttribute("cmmntyId", cmmntyId);
-//	model.addAttribute("result", map.get("resultList"));
-//
-//	return "egovframework/com/cop/clb/EgovClubListByCmmntyId";
 //    }
 //
 //    /**
