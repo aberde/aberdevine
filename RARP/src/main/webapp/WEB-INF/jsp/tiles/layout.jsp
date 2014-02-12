@@ -1251,6 +1251,8 @@ function initForm() {
 	// BOM
 	$("#spanBomPath").text("");
 	
+	// "조회된 데이터가 없습니다."라는 문구 안보이게 처리. 
+	$("#noDataDiv").hide();
 }
 </script>
 </head>
