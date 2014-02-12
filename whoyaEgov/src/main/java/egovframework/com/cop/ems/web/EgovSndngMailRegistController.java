@@ -65,7 +65,7 @@ public class EgovSndngMailRegistController {
 	 * @return String
 	 * @exception Exception
 	 */
-    @IncludedInfo(name="메일발송", order = 360 ,gid = 40)
+    @IncludedInfo(name="메일발송", whoyaListUrl="/whoya/cop/ems/insertSndngMailView.do", order = 360 ,gid = 40)
     @RequestMapping(value="/cop/ems/insertSndngMailView.do")
     public String insertSndngMailView(@ModelAttribute("sndngMailVO") SndngMailVO sndngMailVO,
 			ModelMap model) throws Exception {
