@@ -38,7 +38,8 @@ jQuery("#gridData").jqGrid({
     		return;
 		
 		var rowData = $("#gridData").getRowData(rowId);
-		$('#viewer')[0].contentWindow.fnFocusPart(rowData.SEL_PART_ID);
+		// 위수코드가 존재하지 않아 3D화면에 정상출력되지 않아 제거함.(2014.02.12. : 이민규)
+// 		$('#viewer')[0].contentWindow.fnFocusPart(rowData.SEL_PART_ID);
 		fnDataAct("DX");
 	},
 	gridComplete: function () {
@@ -50,7 +51,8 @@ jQuery("#gridData").jqGrid({
 				e.result = true;
 				var rowId = $(this).attr('id');
 				var rowData = $("#gridData").getRowData(rowId);
-				$('#viewer')[0].contentWindow.fnSelectPart(rowData.SEL_PART_ID);
+				// 위수코드가 존재하지 않아 3D화면에 정상출력되지 않아 제거함.(2014.02.12. : 이민규)
+// 				$('#viewer')[0].contentWindow.fnSelectPart(rowData.SEL_PART_ID);
 		});
 	
 		var timer = setInterval(function () {       
