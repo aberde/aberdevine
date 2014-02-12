@@ -54,7 +54,7 @@ public class EgovSndngMailDtlsController {
 	 * @return String
 	 * @exception Exception
 	 */
-    @IncludedInfo(name="발송메일내역", order = 361 ,gid = 40)
+    @IncludedInfo(name="발송메일내역", whoyaListUrl="/whoya/cop/ems/selectSndngMailList.do", order = 361 ,gid = 40)
     @RequestMapping(value="/cop/ems/selectSndngMailList.do")
 	public String selectSndngMailList(@ModelAttribute("searchVO") ComDefaultVO searchVO,
 			ModelMap model) throws Exception {

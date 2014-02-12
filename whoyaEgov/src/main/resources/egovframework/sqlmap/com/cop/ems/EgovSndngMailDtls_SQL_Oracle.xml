@@ -55,10 +55,16 @@
 		<![CDATA[		
 				 ORDER BY mssage_id DESC
 		  ) dtls	
-		 WHERE 1 = 1	 
-		   AND rownum > #firstIndex#
-		   AND rownum <= #firstIndex# + #recordCountPerPage#
-		]]>   
+		]]>
+		<isNotEmpty property="pageIndex">
+			<isNotEqual property="pageIndex" compareValue="0">
+			<![CDATA[
+				WHERE 1 = 1	 
+				   AND rownum > #firstIndex#
+				   AND rownum <= #firstIndex# + #recordCountPerPage#
+			]]>
+			</isNotEqual>
+		</isNotEmpty>
 	</select>
 
 	<!-- 발송메일 내역 총건수 조회 -->
