@@ -12,6 +12,7 @@
 <script type="text/javascript" src="<c:out value='/js/whoya/jquery.simpleTab.js' />"></script>
 <script type="text/javascript" src="<c:out value='/js/whoya/jquery.instanceUpload.js' />"></script>
 <script type="text/javascript" src="<c:out value='/js/whoya/common.js' />"></script>
+<script type="text/javascript" src="<c:out value='/js/whoya/ajaxfileupload.js' />"></script>
 
 <script type="text/javascript" src="<c:out value='/dhtmlx/dhtmlx_pro_full/dhtmlx.js' />"></script>
 
