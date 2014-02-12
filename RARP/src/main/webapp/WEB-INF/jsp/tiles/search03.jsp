@@ -7,6 +7,8 @@ function fnSearch()
 	if(!fnSearchValidation())
 		return;
 	
+	initForm();
+	
 	fnSetAct("");
 	bomPath = [];
 	partPath = [];
