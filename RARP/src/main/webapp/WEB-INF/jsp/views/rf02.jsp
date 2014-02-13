@@ -555,7 +555,7 @@ String sReadcss = "";
 String treeRootId = (String)request.getAttribute("RSMO_INFRA");
 Map<String, String> rootMap = (Map<String, String>)request.getAttribute(treeRootId);
 %>          
-            <div class="clear_both content08 font10" onClick="javascript:fnGetRootData(this, '<%=String.valueOf(rootMap.get("INFRA_STRUCTURE_SEQ")) %>');"> <span class="float_left"><img src="${pageContext.request.contextPath}/images/icon_01.png" /></span> <span class="float_left lnb03"><%=rootMap.get("STRUCTURE_NAME") %></span> </div>
+            <div class="clear_both content08" style="color:#fff;" onClick="javascript:fnGetRootData(this, '<%=String.valueOf(rootMap.get("INFRA_STRUCTURE_SEQ")) %>');"> <span class="float_left"><img src="${pageContext.request.contextPath}/images/icon_01.png" /></span> <span class="float_left lnb03"><%=rootMap.get("STRUCTURE_NAME") %></span> </div>
 				<div style="overflow-y:scroll;height:520px">
 <%
 String treeMdlwListId = "INFRA_MDLW_LIST_" + String.valueOf(rootMap.get("INFRA_STRUCTURE_SEQ"));
@@ -628,7 +628,7 @@ catch(Exception ex)
               <div class="float_left content15">
                 <div class=" content18">
                   <p class=" font08">인프라명 :</p>
-                  <p class=" font09 lnb03">  <span id="MW_INFRA_RSC_NM"></span></p>
+                  <p class=" font09 lnb03" style="margin-top: 5px;">  <span id="MW_INFRA_RSC_NM"></span></p>
                 </div>
                 <div class="content19">
                   <p class="font08">IP :</p>
@@ -732,7 +732,7 @@ catch(Exception ex)
               <div class="float_left content15">
                 <div class=" content18">
                   <p class=" font08">인프라명 :</p>
-                  <p class=" font09 lnb03"><span id="INFRA_RSC_NM"></span></p>
+                  <p class=" font09 lnb03" style="margin-top: 5px;"><span id="INFRA_RSC_NM"></span></p>
                 </div>
                 <div class="content19">
                   <p class="font08">IP :</p>

@@ -451,17 +451,19 @@ input {
 }
 .content20 {
 	width:73.59259259259%;
-	background:url(../images/pattern_bg.gif) repeat-x;
-	padding:19px 0px;
+	background:url(../images/pattern_bg.gif);
+	padding:33px 0px 5px 0px;
 	border:#007caa 1px solid;
-	border-radius:5px
+	border-radius:5px;
+	height: 55px;
 }
 .content20_01 {
 	width:73.59259259259%;
-	background:url(../images/pattern_bg_01.gif) repeat-x;
-	padding:19px 0px;
+	background:url(../images/pattern_bg_01.gif);
+	padding:33px 0px 5px 0px;
 	border:#007caa 1px solid;
-	border-radius:5px
+	border-radius:5px;
+	height: 55px;
 }
 .content21 {
 	margin:0 0 5px 7px
