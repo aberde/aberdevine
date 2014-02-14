@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import whoya.egovframework.com.cop.ems.service.WhoyaEgovSndngMailDtlsService;
 import egovframework.com.cmm.ComDefaultVO;
 import egovframework.com.cop.ems.service.EgovSndngMailDtlsService;
+import egovframework.com.cop.ems.service.SndngMailVO;
 import egovframework.rte.fdl.cmmn.AbstractServiceImpl;
 
 /**
@@ -30,7 +31,15 @@ public class WhoyaEgovSndngMailDtlsServiceImpl extends AbstractServiceImpl imple
     public List selectSndngMailList(ComDefaultVO vo) throws Exception {
         return sndngMailDtlsService.selectSndngMailList(vo);
 	}
-
+  
+    /**
+	 * 발송메일을 삭제한다.
+	 * @param vo SndngMailVO
+	 * @exception
+	 */
+    public void deleteSndngMailList(SndngMailVO vo) throws Exception {
+    	sndngMailDtlsService.deleteSndngMailList(vo);
+	}
 //    @Resource(name="sndngMailDtlsDAO")
 //    private SndngMailDtlsDAO sndngMailDtlsDAO;
 //    
@@ -45,29 +54,5 @@ public class WhoyaEgovSndngMailDtlsServiceImpl extends AbstractServiceImpl imple
 //	 */
 //    public int selectSndngMailListTotCnt(ComDefaultVO vo) throws Exception {
 //        return sndngMailDtlsDAO.selectSndngMailListTotCnt(vo);
-//	}
-//    
-//    /**
-//	 * 발송메일을 삭제한다.
-//	 * @param vo SndngMailVO
-//	 * @exception
-//	 */
-//    public void deleteSndngMailList(SndngMailVO vo) throws Exception {
-//        
-//    	// 1. 발송메일을 삭제한다.
-//    	String [] sbuf = EgovStringUtil.split(vo.getMssageId(), ",");
-//    	for (int i = 0; i < sbuf.length; i++) {
-//    		SndngMailVO sndngMailVO = new SndngMailVO();
-//    		sndngMailVO.setMssageId(sbuf[i]);
-//    		sndngMailDetailService.deleteSndngMail(sndngMailVO);
-//    	}
-//    	
-//    	// 2. 첨부파일을 삭제한다.
-//    	String [] fbuf = EgovStringUtil.split(vo.getAtchFileIdList(), ",");
-//    	for (int i = 0; i < fbuf.length; i++) {
-//    		SndngMailVO sndngMailVO = new SndngMailVO();
-//    		sndngMailVO.setAtchFileId(fbuf[i]);
-//    		sndngMailDetailService.deleteAtchmnFile(sndngMailVO);
-//    	}
 //	}
 }

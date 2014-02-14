@@ -3,6 +3,7 @@ package whoya.egovframework.com.cop.ems.service;
 import java.util.List;
 
 import egovframework.com.cmm.ComDefaultVO;
+import egovframework.com.cop.ems.service.SndngMailVO;
 
 
 
@@ -18,6 +19,13 @@ public interface WhoyaEgovSndngMailDtlsService {
 	 * @exception Exception
 	 */
 	List selectSndngMailList(ComDefaultVO vo) throws Exception;
+	
+	/**
+	 * 발송메일을 삭제한다.
+	 * @param vo SndngMailVO
+	 * @exception
+	 */
+	void deleteSndngMailList(SndngMailVO vo) throws Exception;
 //	
 //	/**
 //	 * 발송메일 총건수를 조회한다.
@@ -26,11 +34,4 @@ public interface WhoyaEgovSndngMailDtlsService {
 //	 * @exception
 //	 */
 //	int selectSndngMailListTotCnt(ComDefaultVO vo) throws Exception;
-//	
-//	/**
-//	 * 발송메일을 삭제한다.
-//	 * @param vo SndngMailVO
-//	 * @exception
-//	 */
-//	void deleteSndngMailList(SndngMailVO vo) throws Exception;
 }
