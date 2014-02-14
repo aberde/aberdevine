@@ -1,69 +1,57 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@page contentType="text/html; charset=utf-8" trimDirectiveWhitespaces="true"%>
+<%@	taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@	taglib uri="/el-functions" prefix="ef"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
 <head>
+<title>발송메일내역</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>▒▒▒  eGovFrame Potal 온라인 지원 포탈  ▒▒▒</title>
+<jsp:include page="/WEB-INF/jsp/whoya/include/header.jsp" />
+<script type="text/javascript" src="<c:out value='/js/whoya/whoya.dhtmlx.ui.js' />"></script>
 
-<link href="<c:url value='/css/egovframework/com/com.css' />" rel="stylesheet" type="text/css" />
-
-<script language="javascript">
-function fncGoAfterErrorPage(){
-    history.back(-2);
-}
+<script type="text/javascript">
+$(function(document) {
+	// #########################################
+	// ## 레이아웃생성
+	// #########################################
+	var layout = whoya.dhtmlx.layout();
+	//#########################################
+	
+	
+	// #########################################
+	// ## layout cell a 
+	// #########################################
+	var cellData = {};
+	cellData.layout = layout;
+	// 화면 layout의 해당 cell 정의 
+	var cell = whoya.dhtmlx.layout.cell(cellData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## layout cell a에 grid생성
+	// #########################################
+	var aCellGridData = {};
+	aCellGridData.cell = cell;
+	aCellGridData.setHeader = "상태,발신자,수신자,제목,날짜,메세지ID";
+	aCellGridData.setColumnIds = "sndngResultCode,dsptchPerson,recptnPerson,sj,sndngDe,mssageId";
+	aCellGridData.setInitWidths = "100,100,150,*,100,100";
+	aCellGridData.setColAlign = "center,center,center,center,center,center";
+	aCellGridData.setColTypes = "ro,ro,ro,ro,ro,ro";
+	aCellGridData.enableResizing = "false,true,false,false,false,false";
+	aCellGridData.enableTooltips = "false,false,false,false,false,false";
+	aCellGridData.setColSorting = "str,str,str,str,str,str";
+	aCellGridData.setColumnHidden = [
+		{ id: 5 }
+	];
+	// 화면 layout cell a에 dhtmlxGrid 객체 생성.
+	var grid = whoya.dhtmlx.layout.grid(aCellGridData);
+	// #########################################
+	
+});
 </script>
 </head>
-
 <body>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td align="center" valign="top"><br />
-    <br />
-    <br />
-    <table width="600" border="0" cellpadding="0" cellspacing="0" background="${pageContext.request.contextPath}/images/egovframework/com/cmm/blue_bg.jpg">
-      <tr>
-        <td align="center"><table width="100%" border="0" cellspacing="9" cellpadding="0">
-          <tr>
-            <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td align="left"><img src="${pageContext.request.contextPath}/images/egovframework/com/cmm/er_logo.jpg" width="379" height="57" /></td>
-              </tr>
-              <tr>
-                <td><br />
-                  <br /></td>
-              </tr>
-
-              <tr>
-                <td align="center"><table width="520" border="0" cellspacing="2" cellpadding="2">
-                  <tr>
-                    <td width="74" rowspan="2" align="center"><img src="${pageContext.request.contextPath}/images/egovframework/com/cmm/danger.jpg" width="74" height="74" /></td>
-                    <td width="399" align="left" class="lt_text2">HTTP 404 Error</td>
-                  </tr>
-                  <tr>
-                    <td align="left" valign="top" class="lt_text5">웹 페이지를 찾을 수 없습니다.</td>
-                  </tr>
-                </table>
-                  <table width="500" border="0" cellspacing="2" cellpadding="2">
-                                  </table></td>
-              </tr>
-              <tr>
-                <td><br />
-                  <br /></td>
-              </tr>
-              <tr>
-                <td align="center"><a href="javascript:fncGoAfterErrorPage();"><img src="${pageContext.request.contextPath}/images/egovframework/com/cmm/go_history.jpg" width="90" height="29" border="0"/></a></td>
-              </tr>
-            </table>
-              <br /></td>
-          </tr>
-        </table></td>
-      </tr>
-    </table>
-    </td>
-  </tr>
-</table>
 </body>
 </html>
