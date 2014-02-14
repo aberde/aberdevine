@@ -37,10 +37,7 @@
 	 * 화면 layout의 toolbar 정의
 	 * @param data JSON형식의 UI셋팅 데이터
 	 *   layout: layout  // dhtmlXLayoutObject 객체
-	 *   cell_target: "a"  // 레이아웃 화면선택(기본 "a"셀)
-	 *   width: ($(document).width() / 10 * 7)  // 선택된 셀의 넓이를 70%로 설정.(단위:px)
-	 *   hideHeader: true  // 헤더 숨김여부
-	 * @returns dhtmlXLayoutObject의 cell 객체 
+	 * @returns dhtmlXLayoutObject의 toolbar 객체 
 	 */
 	whoya.dhtmlx.layout.toolbar = function(data) {
 		var whoyaData = {
@@ -49,30 +46,8 @@
 			
 		var toolbar = whoyaData.layout.attachToolbar();
 		toolbar.setIconsPath(dhtmlx.image_path);
-	
-		toolbar.addText("searchCondition", 1, "");
-		toolbar.addInput("searchKeyword", 2, "", 200);
-		toolbar.addSeparator("button_Separator", 3);
-	
-		// selectBox 생성
-		var comboDIV = toolbar.objPull[toolbar.idPrefix+"searchCondition"].obj;
-		toolbar.objPull[toolbar.idPrefix+"searchCondition"].obj.innerHTML = "";
-		combo = new dhtmlXCombo(comboDIV,"alfa",140);
-		combo.addOption([
-       		["", "--선택하세요--"]
-       		, ["1", "제목"]
-       		, ["2", "내용"]
-       		, ["3", "보낸이"]
-       	]);
-		combo.selectOption(0);
-	
-		var hideBtn = {
-			btn_Undo: false
-			, btn_Save: false
-			, btn_Print: false
-			, btn_Excel: false
-		};
-		comToolbarButton(toolbar, hideBtn);
+		
+		return toolbar;
 	};
 	
 	/**
@@ -92,14 +67,14 @@
 		};
 		$.extend(whoyaData, data);
 		
-		var layoutA = whoyaData.layout.cells(whoyaData.cell_target);  // 레이아웃 화면선택(기본 "a"셀)
-		layoutA.setWidth($(document).width() / 10 * 7);  // 선택된 셀의 넓이를 70%로 설정.(단위:px)
+		var cell = whoyaData.layout.cells(whoyaData.cell_target);  // 레이아웃 화면선택(기본 "a"셀)
+		cell.setWidth($(document).width() / 10 * 7);  // 선택된 셀의 넓이를 70%로 설정.(단위:px)
 		
 		if ( whoyaData.hideHeader ) {  // 헤더 숨김여부
-			layoutA.hideHeader();  // 헤더 숨기기
+			cell.hideHeader();  // 헤더 숨기기
 		}
 		
-		return layoutA;
+		return cell;
 	};
 	
 	/**
@@ -116,9 +91,9 @@
 	 *   enableMultiselect: "true"  // grid 여러줄 선택여부
 	 *   enableBlockSelection: "false"  // 
 	 *   setColumnHidden: []  // 숨길컬럼
-	 * @returns dhtmlXLayoutObject 객체
+	 * @returns dhtmlxGrid 객체
 	 */
-	whoya.dhtmlx.layout.grid = function(data) {
+	whoya.dhtmlx.layout.cell.grid = function(data) {
 		var whoyaData = {
 			setHeader: ""
 			, setColumnIds: ""
@@ -159,4 +134,51 @@
 		
 		return grid;
 	};
+	
+	/**
+	 * grid 또는 form 등의 객체에서 서버로 저장
+	 * @param data JSON형식의 UI셋팅 데이터
+	 *   url: ""  // 저장 경로
+	 *   setTransactionMode_method: "POST"  // 전송메소드
+	 *   setTransactionMode_allrow: true  // false: 한줄 데이터 전송, true: 여러줄 데이터 전송(grid에서만 사용)
+	 *   setUpdateMode: "off"  //
+	 *   enableDataNames: true  // 
+	 *   obj: Object  // 데이터를 동기화시킬 객체(dhtmlxGrid, dhtmlxForme등)
+	 * @returns dataProcessor 객체
+	 */
+	whoya.dhtmlx.dataProcessor = function(data) {
+		var whoyaData = {
+			url: ""
+			, setTransactionMode_method: "POST"
+			, setTransactionMode_allrow: true
+			, setUpdateMode: "off"
+			, enableDataNames: true
+		};
+		$.extend(whoyaData, data);
+		
+		var dp = new dataProcessor(whoya.url);
+		dp.setTransactionMode(whoyaData.setTransactionMode_method, whoyaData.setTransactionMode_allrow);
+		dp.setUpdateMode(whoyaData.setUpdateMode);
+		dp.enableDataNames(whoyaData.enableDataNames);
+		dp.init(whoyaData.obj);
+		
+		return dp;
+	};
+	
+	/**
+	 *  화면 layout에 statusbar 객체 생성
+	 * @param data JSON형식의 UI셋팅 데이터
+	 *   layout: layout  // dhtmlXLayoutObject 객체
+	 * @returns statusbar 객체
+	 */
+	whoya.dhtmlx.statusbar = function(data) {
+		var whoyaData = {
+		};
+		$.extend(whoyaData, data);
+			
+		var main_status = whoyaData.layout.attachStatusBar();
+		main_status.setText("<div><table><td id='activeImg'><img src='/dhtmlx/dhtmlx_pro_full/imgs/run_exc.gif'></td><td id='activeStatusBar' valign='middle'></td></table></div>");
+		
+		return main_status;
+    };
 })(window);
