@@ -11,11 +11,23 @@
 <script type="text/javascript" src="<c:out value='/js/whoya/whoya.dhtmlx.ui.js' />"></script>
 
 <script type="text/javascript">
+/**
+ * 전역변수로 사용할 데이터
+ * JSON형식의 데이터
+ *   layout: layout  // dhtmlXLayoutObject 객체
+ *   toolbar: toolbar // dhtmlXLayoutObject의 toolbar 객체
+ *   aCell: aCell  // dhtmlXLayoutObject의 cell 객체 'a'
+ *   grid: grid  // dhtmlxGrid 객체
+ *   dp: dp  // dataProcessor 객체
+ *   statusbar: statusbar  // statusbar 객체
+ */
+var whoyaGlobalData = {};
+
 function init() {
 	// #########################################
 	// ## 레이아웃생성
 	// #########################################
-	var layout = whoya.dhtmlx.layout();
+	whoyaGlobalData.layout = whoya.dhtmlx.layout();
 	// #########################################
 	
 	
@@ -23,16 +35,15 @@ function init() {
 	// ## 툴바 생성
 	// #########################################
 	var toolbarData = {
-		layout: layout
+		layout: whoyaGlobalData.layout
 	};
-	var toolbar = whoya.dhtmlx.layout.toolbar(toolbarData);
-	toolbar.addText("searchCondition", 1, "");
-	toolbar.addInput("searchKeyword", 2, "", 200);
-	toolbar.addSeparator("button_Separator", 3);
+	whoyaGlobalData.toolbar = whoya.dhtmlx.layout.toolbar(toolbarData);
+	whoyaGlobalData.toolbar.addText("searchCondition", 1, "");
+	whoyaGlobalData.toolbar.addInput("searchKeyword", 2, "", 200);
 
 	// selectBox 생성
-	var comboDIV = toolbar.objPull[toolbar.idPrefix+"searchCondition"].obj;
-	toolbar.objPull[toolbar.idPrefix+"searchCondition"].obj.innerHTML = "";
+	var comboDIV = whoyaGlobalData.toolbar.objPull[whoyaGlobalData.toolbar.idPrefix+"searchCondition"].obj;
+	whoyaGlobalData.toolbar.objPull[whoyaGlobalData.toolbar.idPrefix+"searchCondition"].obj.innerHTML = "";
 	combo = new dhtmlXCombo(comboDIV,"alfa",140);
 	combo.addOption([
    		["", "--선택하세요--"]
@@ -41,71 +52,49 @@ function init() {
    		, ["3", "보낸이"]
    	]);
 	combo.selectOption(0);
-
-	var hideBtn = {
-		btn_Undo: false
+	
+	// toolbar의 Button정의
+	var toolbarAddButton = {
+		toolbar: whoyaGlobalData.toolbar
+		, btn_Undo: false
 		, btn_Save: false
 		, btn_Print: false
 		, btn_Excel: false
 	};
-	comToolbarButton(toolbar, hideBtn);
-	
-	// event bar 생성
-	toolbar.attachEvent("onClick", function(id){
-		if(id == "btn_Open"){
-			var searchData = {
-				layout: layout
-				, toolbar: toolbar
-				, grid: grid
-				, combo: combo
-			};
-			search(searchData);
-		}
-		if(id == "btn_Append"){
-			location.href = "/whoya/cop/ems/insertSndngMailView.do";
-		}
-		if(id == "btn_Delete") {
-			if ( confirm("삭제하시겠습니까?") ) {
-				
-// 				document.getElementById("activeStatusBar").innerHTML = "";
-				
-// 				grid.deleteSelectedRows();
-				
-// 				DataProcessor.sendData();
-			}
-		}
-    });
+	whoya.dhtmlx.layout.toolbar.addButton(toolbarAddButton);
 	// #########################################
 
 	
 	// #########################################
 	// ## layout cell a 
 	// #########################################
-	var cellData = {};
-	cellData.layout = layout;
+	var aCellData = {
+		layout: whoyaGlobalData.layout
+	};
 	// 화면 layout의 해당 cell 정의 
-	var cell = whoya.dhtmlx.layout.cell(cellData);
+	whoyaGlobalData.aCell = whoya.dhtmlx.layout.cell(aCellData);
 	// #########################################
 	
 	
 	// #########################################
 	// ## layout cell a에 grid생성
 	// #########################################
-	var aCellGridData = {};
-	aCellGridData.cell = cell;
-	aCellGridData.setHeader = "상태,발신자,수신자,제목,날짜,메세지ID";
-	aCellGridData.setColumnIds = "sndngResultCode,dsptchPerson,recptnPerson,sj,sndngDe,mssageId";
-	aCellGridData.setInitWidths = "100,100,150,*,100,100";
-	aCellGridData.setColAlign = "center,center,center,center,center,center";
-	aCellGridData.setColTypes = "ro,ro,ro,ro,ro,ro";
-	aCellGridData.enableResizing = "false,true,false,false,false,false";
-	aCellGridData.enableTooltips = "false,false,false,false,false,false";
-	aCellGridData.setColSorting = "str,str,str,str,str,str";
-	aCellGridData.setColumnHidden = [
-		{ id: 5 }
-	];
+	var aCellGridData = {
+		cell: whoyaGlobalData.aCell
+		, setHeader: "상태,발신자,수신자,제목,날짜,메세지ID"
+		, setColumnIds: "sndngResultCode,dsptchPerson,recptnPerson,sj,sndngDe,mssageId"
+		, setInitWidths: "100,100,150,*,100,100"
+		, setColAlign: "center,center,center,center,center,center"
+		, setColTypes: "ro,ro,ro,ro,ro,ro"
+		, enableResizing: "false,true,false,false,false,false"
+		, enableTooltips: "false,false,false,false,false,false"
+		, setColSorting: "str,str,str,str,str,str"
+		, setColumnHidden: [
+			{ id: 5 }
+		]
+	};
 	// 화면 layout cell a에 dhtmlxGrid 객체 생성.
-	var grid = whoya.dhtmlx.layout.cell.grid(aCellGridData);
+	whoyaGlobalData.grid = whoya.dhtmlx.layout.cell.grid(aCellGridData);
 	// #########################################
 	
 	
@@ -113,10 +102,10 @@ function init() {
 	// ## grid 또는 form 등의 객체에서 서버로 저장
 	// #########################################
 	var dpData = {
-		url: "/whoya/cop/ems/deleteSndngMailList.do"
-		, obj: grid
+		url: "<c:out value='/whoya/cop/ems/deleteSndngMailList.do' />"
+		, obj: whoyaGlobalData.grid
 	};
-	var dp = whoya.dhtmlx.dataProcessor(dpData);
+	whoyaGlobalData.dp = whoya.dhtmlx.dataProcessor(dpData);
 	// #########################################
 
 	
@@ -124,10 +113,39 @@ function init() {
 	// ## layout에 statusbar 생성
 	// #########################################
 	var statusbarData = {
-		layout: layout	
+		layout: whoyaGlobalData.layout	
 	};
-	var statusbar = whoya.dhtmlx.statusbar(statusbarData);
+	whoyaGlobalData.statusbar = whoya.dhtmlx.statusbar(statusbarData);
 	// #########################################
+	
+	
+	// #######################################################################
+	// ## event 생성
+	// #######################################################################
+	// toolbar event 생성
+	whoyaGlobalData.toolbar.attachEvent("onClick", function(id) {
+		if(id == "btn_Open"){
+			var searchData = {
+				layout: whoyaGlobalData.layout
+				, toolbar: whoyaGlobalData.toolbar
+				, grid: whoyaGlobalData.grid
+				, combo: combo
+			};
+			search(searchData);
+		}
+		if(id == "btn_Append"){
+			location.href = "<c:out value='/whoya/cop/ems/insertSndngMailView.do' />";
+		}
+		if(id == "btn_Delete") {
+			if ( confirm("삭제하시겠습니까?") ) {
+				
+				document.getElementById("activeStatusBar").innerHTML = "";
+				whoyaGlobalData.grid.deleteSelectedRows();
+				whoyaGlobalData.dp.sendData();
+			}
+		}
+    });
+	// #######################################################################
 }
 
 /**
@@ -148,7 +166,7 @@ function search(data) {
 	document.getElementById("activeStatusBar").innerHTML = "";
 
 	$.ajax({
-		url: "/whoya/cop/ems/selectSndngMailJSONList.do"
+		url: "<c:out value='/whoya/cop/ems/selectSndngMailJSONList.do' />"
 		, data: {
 			searchCondition : whoyaData.combo.getSelectedValue()
 			, searchKeyword : whoyaData.toolbar.getValue("searchKeyword")
