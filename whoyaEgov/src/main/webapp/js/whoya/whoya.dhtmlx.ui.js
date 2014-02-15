@@ -37,7 +37,7 @@
 	 * 화면 layout의 toolbar 정의
 	 * @param data JSON형식의 UI셋팅 데이터
 	 *   layout: layout  // dhtmlXLayoutObject 객체
-	 * @returns dhtmlXLayoutObject의 toolbar 객체 
+	 * @returns dhtmlXLayoutObject의 toolbar 객체
 	 */
 	whoya.dhtmlx.layout.toolbar = function(data) {
 		var whoyaData = {
@@ -48,6 +48,63 @@
 		toolbar.setIconsPath(dhtmlx.image_path);
 		
 		return toolbar;
+	};
+	
+	/**
+	 * toolbar의 Button정의
+	 * @param data JSON형식의 UI셋팅 데이터
+	 *   toolbar: toolbar  // dhtmlXLayoutObject 객체의 toolbar
+	 *   btn_Open: true  // 조회버튼출력
+	 *   btn_Append: true  // 추가버튼출력
+	 *   btn_Delete: true  // 삭제버튼출력
+	 *   btn_Undo: true  // 취소버튼출력
+	 *   btn_Save: true  // 저장버튼출력
+	 *   btn_Print: true  // 인쇄버튼출력
+	 *   btn_Excel: true  // 엑셀버튼출력
+	 * @returns dhtmlXLayoutObject의 toolbar 객체 
+	 */
+	whoya.dhtmlx.layout.toolbar.addButton = function(data) {
+		var whoyaData = {
+			btn_Open: true
+			, btn_Append: true
+			, btn_Delete: true
+			, btn_Undo: true
+			, btn_Save: true
+			, btn_Print: true
+			, btn_Excel: true
+		};
+		$.extend(whoyaData, data);
+		
+		whoyaData.toolbar.addSeparator("button_Separator", 3);
+		whoyaData.toolbar.addSpacer("button_Separator");
+		if ( whoyaData.btn_Open ) {
+			whoyaData.toolbar.addSeparator("sep_Open", 11); 
+			whoyaData.toolbar.addButton("btn_Open", 12, "조회", "open.gif");
+		}
+		if ( whoyaData.btn_Append ) {
+			whoyaData.toolbar.addSeparator("sep_Append", 13); 
+			whoyaData.toolbar.addButton("btn_Append", 14, "추가", "append.gif");
+		}
+		if ( whoyaData.btn_Delete ) {
+			whoyaData.toolbar.addSeparator("sep_Delete", 15); 
+			whoyaData.toolbar.addButton("btn_Delete", 16, "삭제", "close.gif");
+		}
+		if ( whoyaData.btn_Undo ) {
+			whoyaData.toolbar.addSeparator("sep_Undo", 17); 
+			whoyaData.toolbar.addButton("btn_Undo", 18, "취소", "undo.gif");
+		}
+		if ( whoyaData.btn_Save ) {
+			whoyaData.toolbar.addSeparator("sep_Save", 19); 
+			whoyaData.toolbar.addButton("btn_Save", 20, "저장", "save.gif");
+		}
+		if ( whoyaData.btn_Print ) {
+			whoyaData.toolbar.addSeparator("sep_Print", 21);
+			whoyaData.toolbar.addButton("btn_Print", 22, "인쇄", "print.gif");
+		}
+		if ( whoyaData.btn_Excel ) {
+			whoyaData.toolbar.addSeparator("sep_Excel", 23);
+			whoyaData.toolbar.addButton("btn_Excel", 24, "엑셀", "excel.gif");
+		}
 	};
 	
 	/**
@@ -136,6 +193,101 @@
 	};
 	
 	/**
+	 * 화면 layout에 dhtmlxForm 객체 생성
+	 * @param data JSON형식의 UI셋팅 데이터
+	 * @returns dhtmlxForm 객체
+	 */
+	whoya.dhtmlx.layout.cell.form = function(data) {
+		var whoyaData = {
+		};
+		$.extend(whoyaData, data);
+			
+		var formData = [
+   			{ type: "fieldset", name: "formField", label: "발송메일 상세조회", list: [
+				{ type: "settings", labelWidth: 150, inputWidth: 170 },
+   				{ type: "template", label: "보내는사람", name: "dsptchPerson", value: "", format: printData },
+				{ type: "template", label: "받는사람", name: "recptnPerson", value: "", format: printData },
+				{ type: "template", label: "제목", name: "sj", value: "", format: printData },
+				{ type: "template", label: "발신 내용", name: "emailCn", value: "", format: printData },
+				{ type: "template", label: "발송 결과", name: "sndngResultCode", value: "", format: printData },
+				{ type: "template", label: "XML메일보기", name: "xmlMailView", value: "", format: xmlMailViewLink },
+				{ type: "template", label: "첨부파일", name: "atchFileId", value: "", format: getFileList },
+				{ type: "button", name: "dltBtn", value: "삭제" }
+   			] }
+   		];
+		
+		/**
+		 * 일반 form 데이터만 출력시.
+		 */
+		function printData(name, value) {
+			return value;
+		}
+		
+		/**
+		 * 첨부파일 목록 가져오기.
+		 */
+		function getFileList(name, value) {
+			var fileList = "";
+			
+			$.ajax({
+				url: "/whoya/cmm/fms/selectFileInfs.do"
+				, async: false
+				, data: {
+					atchFileId: value
+				}
+				, success: function(data, textStatus, jqXHR) {
+					$.each(data, function() {
+						fileList += "<a href=\"#\" onclick=\"fileDownload('" + this.atchFileId + "', '" + this.fileSn + "');return false;\" />" + this.orignlFileNm + " [ " + this.fileMg + " byte ]</a><br />";
+					});
+				}
+				, error: function(jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR);
+					console.log(textStatus);
+					console.log(errorThrown);
+					alert(errorThrown);
+				}
+			});
+			return fileList;
+		}
+		
+		/**
+		 * XML메일보기 링크 만들기.
+		 */
+		function xmlMailViewLink(name, value) {
+			return "<a href=\"#\"' onclick=\"xmlMailView('" + value + "');\">" + value + ".xml</a>";
+		}
+		
+		var oProcB = oProc.cells("b");
+		oProcB.hideHeader();
+		form = oProcB.attachForm(formData);
+		form.setFontSize("11px");
+		
+		// 버튼 클릭 이벤트.
+		form.attachEvent("onButtonClick", function(name) {
+			if ( name == "dltBtn" ) {
+				if ( confirm("삭제하시겠습니까?") ) {
+					document.getElementById("activeStatusBar").innerHTML = "";
+					
+					$.ajax({
+						url: "/whoya/cop/ems/deleteSndngMail.do"
+						, data: form.getFormData()
+						, success: function(data, textStatus, jqXHR) {
+							form = oProcB.attachForm("");
+							search();
+						}
+						, error: function(jqXHR, textStatus, errorThrown) {
+							console.log(jqXHR);
+							console.log(textStatus);
+							console.log(errorThrown);
+							alert(errorThrown);
+						}
+					});
+				}
+			}
+		});
+	}
+	
+	/**
 	 * grid 또는 form 등의 객체에서 서버로 저장
 	 * @param data JSON형식의 UI셋팅 데이터
 	 *   url: ""  // 저장 경로
@@ -156,7 +308,7 @@
 		};
 		$.extend(whoyaData, data);
 		
-		var dp = new dataProcessor(whoya.url);
+		var dp = new dataProcessor(whoyaData.url);
 		dp.setTransactionMode(whoyaData.setTransactionMode_method, whoyaData.setTransactionMode_allrow);
 		dp.setUpdateMode(whoyaData.setUpdateMode);
 		dp.enableDataNames(whoyaData.enableDataNames);
@@ -173,11 +325,12 @@
 	 */
 	whoya.dhtmlx.statusbar = function(data) {
 		var whoyaData = {
+			context: ""
 		};
 		$.extend(whoyaData, data);
 			
 		var main_status = whoyaData.layout.attachStatusBar();
-		main_status.setText("<div><table><td id='activeImg'><img src='/dhtmlx/dhtmlx_pro_full/imgs/run_exc.gif'></td><td id='activeStatusBar' valign='middle'></td></table></div>");
+		main_status.setText("<div><table><td id='activeImg'><img src='" + whoyaData.context + "/dhtmlx/dhtmlx_pro_full/imgs/run_exc.gif'></td><td id='activeStatusBar' valign='middle'></td></table></div>");
 		
 		return main_status;
     };
