@@ -16,5 +16,8 @@
 
 <script type="text/javascript" src="<c:out value='/dhtmlx/dhtmlx_pro_full/dhtmlx.js' />"></script>
 
+<script type="text/javascript" src="<c:out value='/js/whoya/whoya.dhtmlx.ui.js' />"></script>
+<script type="text/javascript" src="<c:out value='/js/whoya/whoya.common.js' />"></script>
+
 <link rel="stylesheet" type="text/css" href="<c:out value='/dhtmlx/dhtmlx_pro_full/dhtmlx.css' />">
 <link rel="stylesheet" type="text/css" href="<c:out value='/css/whoya/common.css' />">

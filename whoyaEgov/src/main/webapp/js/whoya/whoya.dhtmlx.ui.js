@@ -1,14 +1,15 @@
 /**
  * whoya dhtmlx UI
  */
-(function( window, undefined ) {
 	whoya = function() {};
+	
+	whoya.context = "";
+
 	whoya.dhtmlx = function() {};
 	
 	/**
 	 * 화면 layout 객체 생성
 	 * @param data JSON형식의 UI셋팅 데이터
-	 *   context: ""  // 해당 웹서비스의 Context
 	 *   layout_target: document.body  // 레이아웃을 표현할 위치
 	 *   layout_Pattern: "2U"  // 패턴종류(http://docs.dhtmlx.com/doku.php?id=dhtmlxlayout:layoutpattern)
 	 *   dhtmlxwindows_setEffect_efName: "move"  // 윈도우창 효과 대상(http://docs.dhtmlx.com/doku.php?id=dhtmlxwindows:api_method_dhtmlxwindows_seteffect)
@@ -17,15 +18,14 @@
 	 */
 	whoya.dhtmlx.layout = function(data) {
 		var whoyaData = {
-			context: ""
-			, layout_target: document.body
+			layout_target: document.body
 			, layout_Pattern: "2U"
 			, dhtmlxwindows_setEffect_efName: "move"
 			, dhtmlxwindows_setEffect_efValue: true
 		};
 		$.extend(whoyaData, data);
 		
-		dhtmlx.image_path = whoyaData.context + "/dhtmlx/dhtmlx_pro_full/imgs/";  // 기본 이미지 경로 
+		dhtmlx.image_path = whoya.context + "/dhtmlx/dhtmlx_pro_full/imgs/";  // 기본 이미지 경로 
 		var layout = new dhtmlXLayoutObject(whoyaData.layout_target, whoyaData.layout_Pattern);  // 레이아웃 객체(기본은 body)
 		// TODO 추후에 dhtmlxWindows 객체로 이동.(aberdevine)
 		layout.dhxWins.setEffect(whoyaData.dhtmlxwindows_setEffect_efName, whoyaData.dhtmlxwindows_setEffect_efValue);  // 윈도우창 효과(기본은 윈도우 창 이동시 바로 이동.)
@@ -114,7 +114,7 @@
 	 *   cell_target: "a"  // 레이아웃 화면선택(기본 "a"셀)
 	 *   width: ($(document).width() / 10 * 7)  // 선택된 셀의 넓이를 70%로 설정.(단위:px)
 	 *   hideHeader: true  // 헤더 숨김여부
-	 * @returns dhtmlXLayoutObject의 cell 객체 
+	 * @returns dhtmlXLayoutObject의 cell 객체
 	 */
 	whoya.dhtmlx.layout.cell = function(data) {
 		var whoyaData = {
@@ -125,7 +125,9 @@
 		$.extend(whoyaData, data);
 		
 		var cell = whoyaData.layout.cells(whoyaData.cell_target);  // 레이아웃 화면선택(기본 "a"셀)
-		cell.setWidth($(document).width() / 10 * 7);  // 선택된 셀의 넓이를 70%로 설정.(단위:px)
+		if ( whoyaData.width ) {  // 셀의 넓이가 설정되었을 경우에만 설정.
+			cell.setWidth(whoyaData.width);  // 선택된 셀의 넓이설정.(기본 70%, 단위:px)
+		}
 		
 		if ( whoyaData.hideHeader ) {  // 헤더 숨김여부
 			cell.hideHeader();  // 헤더 숨기기
@@ -137,6 +139,7 @@
 	/**
 	 * 화면 layout에 dhtmlxGrid 객체 생성
 	 * @param data JSON형식의 UI셋팅 데이터
+	 *   cell: cell  // dhtmlXLayoutObject의 cell 객체
 	 *   setHeader: ""  // 컬럼제목
 	 *   setColumnIds: ""  // 컬럼아이디
 	 *   setInitWidths: ""  // 컬럼넓이
@@ -195,97 +198,20 @@
 	/**
 	 * 화면 layout에 dhtmlxForm 객체 생성
 	 * @param data JSON형식의 UI셋팅 데이터
+	 * 	 cell: cell  // dhtmlXLayoutObject의 cell 객체
+	 *   formData: formData  // dhtmlxForm의 UI데이터
 	 * @returns dhtmlxForm 객체
 	 */
 	whoya.dhtmlx.layout.cell.form = function(data) {
 		var whoyaData = {
 		};
 		$.extend(whoyaData, data);
-			
-		var formData = [
-   			{ type: "fieldset", name: "formField", label: "발송메일 상세조회", list: [
-				{ type: "settings", labelWidth: 150, inputWidth: 170 },
-   				{ type: "template", label: "보내는사람", name: "dsptchPerson", value: "", format: printData },
-				{ type: "template", label: "받는사람", name: "recptnPerson", value: "", format: printData },
-				{ type: "template", label: "제목", name: "sj", value: "", format: printData },
-				{ type: "template", label: "발신 내용", name: "emailCn", value: "", format: printData },
-				{ type: "template", label: "발송 결과", name: "sndngResultCode", value: "", format: printData },
-				{ type: "template", label: "XML메일보기", name: "xmlMailView", value: "", format: xmlMailViewLink },
-				{ type: "template", label: "첨부파일", name: "atchFileId", value: "", format: getFileList },
-				{ type: "button", name: "dltBtn", value: "삭제" }
-   			] }
-   		];
 		
-		/**
-		 * 일반 form 데이터만 출력시.
-		 */
-		function printData(name, value) {
-			return value;
-		}
-		
-		/**
-		 * 첨부파일 목록 가져오기.
-		 */
-		function getFileList(name, value) {
-			var fileList = "";
-			
-			$.ajax({
-				url: "/whoya/cmm/fms/selectFileInfs.do"
-				, async: false
-				, data: {
-					atchFileId: value
-				}
-				, success: function(data, textStatus, jqXHR) {
-					$.each(data, function() {
-						fileList += "<a href=\"#\" onclick=\"fileDownload('" + this.atchFileId + "', '" + this.fileSn + "');return false;\" />" + this.orignlFileNm + " [ " + this.fileMg + " byte ]</a><br />";
-					});
-				}
-				, error: function(jqXHR, textStatus, errorThrown) {
-					console.log(jqXHR);
-					console.log(textStatus);
-					console.log(errorThrown);
-					alert(errorThrown);
-				}
-			});
-			return fileList;
-		}
-		
-		/**
-		 * XML메일보기 링크 만들기.
-		 */
-		function xmlMailViewLink(name, value) {
-			return "<a href=\"#\"' onclick=\"xmlMailView('" + value + "');\">" + value + ".xml</a>";
-		}
-		
-		var oProcB = oProc.cells("b");
-		oProcB.hideHeader();
-		form = oProcB.attachForm(formData);
+		var form = whoyaData.cell.attachForm(whoyaData.formData);
 		form.setFontSize("11px");
 		
-		// 버튼 클릭 이벤트.
-		form.attachEvent("onButtonClick", function(name) {
-			if ( name == "dltBtn" ) {
-				if ( confirm("삭제하시겠습니까?") ) {
-					document.getElementById("activeStatusBar").innerHTML = "";
-					
-					$.ajax({
-						url: "/whoya/cop/ems/deleteSndngMail.do"
-						, data: form.getFormData()
-						, success: function(data, textStatus, jqXHR) {
-							form = oProcB.attachForm("");
-							search();
-						}
-						, error: function(jqXHR, textStatus, errorThrown) {
-							console.log(jqXHR);
-							console.log(textStatus);
-							console.log(errorThrown);
-							alert(errorThrown);
-						}
-					});
-				}
-			}
-		});
-	}
+		return form;
+	};
 	
 	/**
 	 * grid 또는 form 등의 객체에서 서버로 저장
@@ -325,13 +251,67 @@
 	 */
 	whoya.dhtmlx.statusbar = function(data) {
 		var whoyaData = {
-			context: ""
 		};
 		$.extend(whoyaData, data);
 			
 		var main_status = whoyaData.layout.attachStatusBar();
-		main_status.setText("<div><table><td id='activeImg'><img src='" + whoyaData.context + "/dhtmlx/dhtmlx_pro_full/imgs/run_exc.gif'></td><td id='activeStatusBar' valign='middle'></td></table></div>");
+		main_status.setText("<div><table><td id='activeImg'><img src='" + whoya.context + "/dhtmlx/dhtmlx_pro_full/imgs/run_exc.gif'></td><td id='activeStatusBar' valign='middle'></td></table></div>");
 		
 		return main_status;
     };
-})(window);
+    
+    whoya.dhtmlx.form = function() {};
+    whoya.dhtmlx.form.format = function() {};
+    
+    /**
+     * form에 데이터만 출력시.
+     * @param name  // form의 name
+     * @param value  // form의 value
+     */
+    whoya.dhtmlx.form.format.printData = function(name, value) {
+    	return value;
+    };
+
+    /**
+     * XML메일보기 링크 만들기.
+     * @param name  // form의 name
+     * @param value  // form의 value
+     */
+    whoya.dhtmlx.form.format.xmlMailViewLink = function(name, value) {
+    	var xmlMailViewData = {
+    		value: [value]
+    	};
+    	return "<a href='#' onclick='whoya.common.xmlMailView(" + JSON.stringify(xmlMailViewData) + ");return false;'>" + value + ".xml</a>";
+    };
+
+    /**
+     * 첨부파일 목록 가져오기.
+     * @param name  // form의 name
+     * @param value  // form의 value
+     */
+    whoya.dhtmlx.form.format.getFileList = function(name, value) {
+    	var fileList = "";
+    	
+    	$.ajax({
+    		url: whoya.context + "/whoya/cmm/fms/selectFileInfs.do"
+    		, async: false
+    		, data: {
+    			atchFileId: value
+    		}
+    		, success: function(data, textStatus, jqXHR) {
+    			$.each(data, function() {
+    				var fileDownloadData = {
+			    		value: [this.atchFileId, this.fileSn]
+			    	};
+    				fileList += "<a href='#' onclick='whoya.common.fileDownload(" + JSON.stringify(fileDownloadData) + ");return false;' />" + this.orignlFileNm + " [ " + this.fileMg + " byte ]</a><br />";
+    			});
+    		}
+    		, error: function(jqXHR, textStatus, errorThrown) {
+    			console.log(jqXHR);
+    			console.log(textStatus);
+    			console.log(errorThrown);
+    			alert(errorThrown);
+    		}
+    	});
+    	return fileList;
+    };
