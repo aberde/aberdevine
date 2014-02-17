@@ -4,6 +4,8 @@
      * XML메일보기
      * @param data JSON형식의 데이터
      *   url: ""  // 경로
+     *   param: param  // 배열로 된 데이터명
+     *   value: value  // 배열로 된 데이터값
      */
     whoya.common.xmlMailView = function(data) {
     	var whoyaData = {
@@ -27,6 +29,10 @@
 
     /**
      * 첨부파일 다운로드
+     * @param data JSON형식의 데이터
+     *   url: ""  // 경로
+     *   param: param  // 배열로 된 데이터명
+     *   value: value  // 배열로 된 데이터값
      */
     whoya.common.fileDownload = function(data) {
     	var whoyaData = {
