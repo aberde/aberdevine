@@ -30,7 +30,7 @@ function init() {
 	// #########################################
 	// ## 레이아웃생성
 	// #########################################
-	whoyaGlobalData.layout = whoya.dhtmlx.layout();
+	whoyaGlobalData.layout = whoya.dhtmlx.layout.init();
 	// #########################################
 	
 	
@@ -40,7 +40,7 @@ function init() {
 	var toolbarData = {
 		layout: whoyaGlobalData.layout
 	};
-	whoyaGlobalData.toolbar = whoya.dhtmlx.layout.toolbar(toolbarData);
+	whoyaGlobalData.toolbar = whoya.dhtmlx.layout.toolbar.init(toolbarData);
 	whoyaGlobalData.toolbar.addText("searchCondition", 1, "");
 	whoyaGlobalData.toolbar.addInput("searchKeyword", 2, "", 200);
 
@@ -76,7 +76,7 @@ function init() {
 		layout: whoyaGlobalData.layout
 	};
 	// 화면 layout의 해당 cell 정의 
-	whoyaGlobalData.aCell = whoya.dhtmlx.layout.cell(aCellData);
+	whoyaGlobalData.aCell = whoya.dhtmlx.layout.cell.init(aCellData);
 	// #########################################
 	
 	
@@ -112,7 +112,7 @@ function init() {
 		, width: ""
 	};
 	// 화면 layout의 해당 cell 정의 
-	whoyaGlobalData.bCell = whoya.dhtmlx.layout.cell(bCellData);
+	whoyaGlobalData.bCell = whoya.dhtmlx.layout.cell.init(bCellData);
 	// #########################################
 	
 	
