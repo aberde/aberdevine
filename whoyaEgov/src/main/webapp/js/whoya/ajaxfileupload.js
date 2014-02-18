@@ -191,8 +191,12 @@ jQuery.extend({
         if ( type == "script" )
             jQuery.globalEval( data );
         // Get the JavaScript object, if JSON is used.
-        if ( type == "json" )
-            eval( "data = " + data );
+        if ( type == "json" ) {
+        	$.each([/<\/?pre[^>]*>/g, /<\/?embed[^>]*>/g], function (i, value) {            
+        	    data = data.replace(value, "");
+        	});
+        	eval( "data = " + data );
+        }
         // evaluate scripts within html
         if ( type == "html" )
             jQuery("<div>").html(data).evalScripts();
