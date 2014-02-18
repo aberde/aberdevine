@@ -111,7 +111,7 @@ public class EgovFaqManageController {
      * @return	"/uss/olh/faq/EgovFaqListInqire"
      * @throws Exception
      */
-    @IncludedInfo(name="FAQ관리", order = 540 ,gid = 50)
+    @IncludedInfo(name="FAQ관리", whoyaListUrl="/whoya/uss/olh/faq/FaqListInqire.do", order = 540 ,gid = 50)
     @RequestMapping(value="/uss/olh/faq/FaqListInqire.do")
     public String selectFaqList(@ModelAttribute("searchVO") FaqManageDefaultVO searchVO, ModelMap model) throws Exception {
     	

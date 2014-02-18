@@ -74,8 +74,14 @@
 						  ORDER BY FAQ_ID DESC								   
 						  ) FAQ
 				   ) 
-			WHERE ROWNUM <= #recordCountPerPage# and RNUM > #firstIndex#						
-		]]>			
+		]]>
+		<isNotEmpty property="pageIndex">
+			<isNotEqual property="pageIndex" compareValue="0">
+			<![CDATA[
+				WHERE ROWNUM <= #recordCountPerPage# and RNUM > #firstIndex#						
+			]]>
+			</isNotEqual>
+		</isNotEmpty>
 	</select>
 	
 	<select id="FaqManageDAO.selectFaqListTotCnt" parameterClass="FaqManageSearchVO" resultClass="int">
