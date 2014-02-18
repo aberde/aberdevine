@@ -1,13 +1,13 @@
 /**
  * whoya dhtmlx UI
  */
-	whoya = function() {};
-	
-	whoya.context = "";
+	// dhtmlx 함수
+	whoya.dhtmlx = {};
 
-	whoya.dhtmlx = function() {};
-	
+	// dhtmlx의 layout함수
+	whoya.dhtmlx.layout = {};
 	/**
+	 * <pre>
 	 * 화면 layout 객체 생성
 	 * @param data JSON형식의 UI셋팅 데이터
 	 *   layout_target: document.body  // 레이아웃을 표현할 위치
@@ -15,8 +15,9 @@
 	 *   dhtmlxwindows_setEffect_efName: "move"  // 윈도우창 효과 대상(http://docs.dhtmlx.com/doku.php?id=dhtmlxwindows:api_method_dhtmlxwindows_seteffect)
 	 *   dhtmlxwindows_setEffect_efValue: true  // 윈도우창 효과 설정값.(true/false to enable/disable)
 	 * @returns dhtmlXLayoutObject 객체
+	 * </pre>
 	 */
-	whoya.dhtmlx.layout = function(data) {
+	whoya.dhtmlx.layout.init = function(data) {
 		var whoyaData = {
 			layout_target: document.body
 			, layout_Pattern: "2U"
@@ -33,13 +34,18 @@
 		return layout;
 	};
 	
+	// layout의 toolbar함수
+	whoya.dhtmlx.layout.toolbar = {};
+	
 	/**
+	 * <pre>
 	 * 화면 layout의 toolbar 정의
 	 * @param data JSON형식의 UI셋팅 데이터
 	 *   layout: layout  // dhtmlXLayoutObject 객체
 	 * @returns dhtmlXLayoutObject의 toolbar 객체
+	 * </pre>
 	 */
-	whoya.dhtmlx.layout.toolbar = function(data) {
+	whoya.dhtmlx.layout.toolbar.init = function(data) {
 		var whoyaData = {
 		};
 		$.extend(whoyaData, data);
@@ -51,6 +57,7 @@
 	};
 	
 	/**
+	 * <pre>
 	 * toolbar의 Button정의
 	 * @param data JSON형식의 UI셋팅 데이터
 	 *   toolbar: toolbar  // dhtmlXLayoutObject 객체의 toolbar
@@ -61,7 +68,8 @@
 	 *   btn_Save: true  // 저장버튼출력
 	 *   btn_Print: true  // 인쇄버튼출력
 	 *   btn_Excel: true  // 엑셀버튼출력
-	 * @returns dhtmlXLayoutObject의 toolbar 객체 
+	 * @returns dhtmlXLayoutObject의 toolbar 객체
+	 * </pre>
 	 */
 	whoya.dhtmlx.layout.toolbar.addButton = function(data) {
 		var whoyaData = {
@@ -106,8 +114,12 @@
 			whoyaData.toolbar.addButton("btn_Excel", 24, "엑셀", "excel.gif");
 		}
 	};
+
+	// layout의 cell함수
+	whoya.dhtmlx.layout.cell = {};
 	
 	/**
+	 * <pre>
 	 * 화면 layout의 해당 cell 정의
 	 * @param data JSON형식의 UI셋팅 데이터
 	 *   layout: layout  // dhtmlXLayoutObject 객체
@@ -115,8 +127,9 @@
 	 *   width: ($(document).width() / 10 * 7)  // 선택된 셀의 넓이를 70%로 설정.(단위:px)
 	 *   hideHeader: true  // 헤더 숨김여부
 	 * @returns dhtmlXLayoutObject의 cell 객체
+	 * </pre>
 	 */
-	whoya.dhtmlx.layout.cell = function(data) {
+	whoya.dhtmlx.layout.cell.init = function(data) {
 		var whoyaData = {
 			cell_target: "a"
 			, width: ($(document).width() / 10 * 7)
@@ -137,6 +150,7 @@
 	};
 	
 	/**
+	 * <pre>
 	 * 화면 layout에 dhtmlxGrid 객체 생성
 	 * @param data JSON형식의 UI셋팅 데이터
 	 *   cell: cell  // dhtmlXLayoutObject의 cell 객체
@@ -152,6 +166,7 @@
 	 *   enableBlockSelection: "false"  // 
 	 *   setColumnHidden: []  // 숨길컬럼
 	 * @returns dhtmlxGrid 객체
+	 * </pre>
 	 */
 	whoya.dhtmlx.layout.cell.grid = function(data) {
 		var whoyaData = {
@@ -196,11 +211,13 @@
 	};
 	
 	/**
+	 * <pre>
 	 * 화면 layout에 dhtmlxForm 객체 생성
 	 * @param data JSON형식의 UI셋팅 데이터
 	 * 	 cell: cell  // dhtmlXLayoutObject의 cell 객체
 	 *   formData: formData  // dhtmlxForm의 UI데이터
 	 * @returns dhtmlxForm 객체
+	 * </pre>
 	 */
 	whoya.dhtmlx.layout.cell.form = function(data) {
 		var whoyaData = {
@@ -214,6 +231,7 @@
 	};
 	
 	/**
+	 * <pre>
 	 * grid 또는 form 등의 객체에서 서버로 저장
 	 * @param data JSON형식의 UI셋팅 데이터
 	 *   url: ""  // 저장 경로
@@ -223,6 +241,7 @@
 	 *   enableDataNames: true  // 
 	 *   obj: Object  // 데이터를 동기화시킬 객체(dhtmlxGrid, dhtmlxForme등)
 	 * @returns dataProcessor 객체
+	 * </pre>
 	 */
 	whoya.dhtmlx.dataProcessor = function(data) {
 		var whoyaData = {
@@ -244,10 +263,12 @@
 	};
 	
 	/**
-	 *  화면 layout에 statusbar 객체 생성
+	 * <pre>
+	 * 화면 layout에 statusbar 객체 생성
 	 * @param data JSON형식의 UI셋팅 데이터
 	 *   layout: layout  // dhtmlXLayoutObject 객체
 	 * @returns statusbar 객체
+	 * </pre>
 	 */
 	whoya.dhtmlx.statusbar = function(data) {
 		var whoyaData = {
@@ -260,22 +281,26 @@
 		return main_status;
     };
     
-    whoya.dhtmlx.form = function() {};
-    whoya.dhtmlx.form.format = function() {};
+    whoya.dhtmlx.form = {};
+    whoya.dhtmlx.form.format = {};
     
     /**
+     * <pre>
      * form에 데이터만 출력시.
      * @param name  // form의 name
      * @param value  // form의 value
+     * </pre>
      */
     whoya.dhtmlx.form.format.printData = function(name, value) {
     	return value;
     };
 
     /**
+     * <pre>
      * XML메일보기 링크 만들기.
      * @param name  // form의 name
      * @param value  // form의 value
+     * </pre>
      */
     whoya.dhtmlx.form.format.xmlMailViewLink = function(name, value) {
     	var xmlMailViewData = {
@@ -285,9 +310,11 @@
     };
 
     /**
+     * <pre>
      * 첨부파일 목록 가져오기.
      * @param name  // form의 name
      * @param value  // form의 value
+     * </pre>
      */
     whoya.dhtmlx.form.format.getFileList = function(name, value) {
     	var fileList = "";
