@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import net.sf.json.JSONObject;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import whoya.common.commonReturn;
 import whoya.egovframework.com.cop.ems.service.WhoyaEgovSndngMailRegistService;
 import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.service.EgovFileMngService;
@@ -63,7 +66,9 @@ public class WhoyaEgovSndngMailRegistController {
 	 * @exception Exception
 	 */
 	@RequestMapping(value="/whoya/cop/ems/insertSndngMail.do")
-	public @ResponseBody void insertSndngMail(final MultipartHttpServletRequest multiRequest, @ModelAttribute("sndngMailVO") SndngMailVO sndngMailVO, ModelMap model, HttpServletRequest request) throws Exception {
+	public @ResponseBody JSONObject insertSndngMail(final MultipartHttpServletRequest multiRequest, @ModelAttribute("sndngMailVO") SndngMailVO sndngMailVO, ModelMap model, HttpServletRequest request) throws Exception {
+		JSONObject resultJSON = new JSONObject();
+		
 		try {
 		  	String link = "N";
 		  	
@@ -95,9 +100,13 @@ public class WhoyaEgovSndngMailRegistController {
 		  	// 발송메일을 등록한다.
 		  	boolean result = sndngMailRegistService.insertSndngMail(sndngMailVO);
 		  	System.out.println("result : " + result);
+		  	resultJSON.put("status", commonReturn.SUCCESS);
 		} catch ( Exception e ) {
 			e.printStackTrace();
+			resultJSON.put("status", commonReturn.FAIL);
 		}
+		
+		return resultJSON;
 	}
 
 //
