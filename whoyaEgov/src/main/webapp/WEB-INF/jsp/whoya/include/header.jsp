@@ -16,6 +16,7 @@
 
 <script type="text/javascript" src="<c:out value='/dhtmlx/dhtmlx_pro_full/dhtmlx.js' />"></script>
 
+<script type="text/javascript" src="<c:out value='/js/whoya/whoya.js' />"></script>
 <script type="text/javascript" src="<c:out value='/js/whoya/whoya.dhtmlx.ui.js' />"></script>
 <script type="text/javascript" src="<c:out value='/js/whoya/whoya.common.js' />"></script>
 
