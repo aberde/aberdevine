@@ -1232,7 +1232,6 @@ function initForm() {
 	$("#gridData").jqGrid("clearGridData");
 	
 	// 3D viewer 초기화
-	$("#CRG_TYPE_CD").val("");
 	$("#TRN_KIND_CD").val("");
 	fnViewShow();
 	
