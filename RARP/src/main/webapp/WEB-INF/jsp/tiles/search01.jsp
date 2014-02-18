@@ -5,10 +5,10 @@
 
 function fnSearch()
 {
+	initForm();
+
 	if(!fnSearchValidation())
 		return;
-	
-	initForm();
 	
 	fnSetAct("");
 	bomPath = [];
