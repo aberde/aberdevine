@@ -106,8 +106,14 @@
 							ORDER BY QA_ID DESC
 						  ) QNA
 				   )
-			WHERE ROWNUM <= #recordCountPerPage# and RNUM > #firstIndex#
 		]]>
+		<isNotEmpty property="pageIndex">
+			<isNotEqual property="pageIndex" compareValue="0">
+			<![CDATA[
+				WHERE ROWNUM <= #recordCountPerPage# and RNUM > #firstIndex#						
+			]]>
+			</isNotEqual>
+		</isNotEmpty>
 	</select>
 
 	<select id="QnaManageDAO.selectQnaListTotCnt" parameterClass="QnaManageSearchVO" resultClass="int">
