@@ -179,7 +179,91 @@ public class WhoyaEgovQnaManageController {
 			e.printStackTrace();
 			throw e;
 		}
-  }
+	}
+  
+	/**
+     * 수정,삭제을 위해 작성 비밀번호를 확인한다.
+     * @param qnaManageVO
+     * @param searchVO
+     * @return	JSONObject
+     * @throws Exception
+     */
+	@RequestMapping("/whoya/uss/olh/qna/QnaPasswordConfirm.do")
+	public @ResponseBody JSONObject selectPasswordConfirm(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, Model model) throws Exception {
+		JSONObject result = new JSONObject();
+		try {
+			// 작성비밀번호를 암호화 하기 위해서 Get
+			String	writngPassword = qnaManageVO.getWritngPassword();
+			// EgovFileScrty Util에 있는 암호화 모듈을 적용해서 암호화 한다.
+			qnaManageVO.setWritngPassword(EgovFileScrty.encode(writngPassword));
+	  	    	    	
+			int searchCnt = qnaManageService.selectQnaPasswordConfirmCnt(qnaManageVO);
+	          	    	
+			if ( searchCnt > 0) {		// 작성 비밀번호가 일치하는 경우
+				result.put("status", commonReturn.SUCCESS);
+			} else	{					// 작성비밀번호가 틀린경우
+				result.put("status", commonReturn.FAIL);
+			}
+		} catch ( Exception e ) {
+			result.put("status", commonReturn.FAIL);
+			e.printStackTrace();
+			throw e;
+		}
+		
+		return result;
+	}
+  
+	/**
+     * Q&A정보를 삭제처리한다.               
+     * @param qnaManageVO
+     * @param searchVO
+     * @throws Exception
+     */
+	@RequestMapping("/whoya/uss/olh/qna/QnaCnDelete.do")
+	public @ResponseBody JSONObject deleteQnaCn(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO) throws Exception {
+		JSONObject result = new JSONObject();
+		try {
+			qnaManageService.deleteQnaCn(qnaManageVO);
+			result.put("status", commonReturn.SUCCESS);
+		} catch ( Exception e ) {
+			result.put("status", commonReturn.FAIL);
+			e.printStackTrace();
+			throw e;
+		}
+		
+		return result;
+	}
+	
+	/**
+     * Q&A정보를 수정처리한다.           
+     * @param searchVO
+     * @param qnaManageVO
+     * @return	JSONObject
+     * @throws Exception
+     */
+	@RequestMapping("/whoya/uss/olh/qna/QnaCnUpdt.do")
+	public @ResponseBody JSONObject updateQnaCn(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, @ModelAttribute("qnaManageVO") QnaManageVO qnaManageVO) throws Exception {
+	  	JSONObject result = new JSONObject();
+		try {
+			// 로그인VO에서  사용자 정보 가져오기
+			LoginVO	loginVO = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+			String	lastUpdusrId = loginVO.getUniqId();
+			qnaManageVO.setLastUpdusrId(lastUpdusrId);    	// 최종수정자ID
+			// 작성비밀번호를 암호화 하기 위해서 Get
+			String	writngPassword = qnaManageVO.getWritngPassword();
+			// EgovFileScrty Util에 있는 암호화 모듈을 적용해서 암호화 한다.
+			qnaManageVO.setWritngPassword(EgovFileScrty.encode(writngPassword));
+			
+			qnaManageService.updateQnaCn(qnaManageVO);
+			result.put("status", commonReturn.SUCCESS);
+		} catch ( Exception e ) {
+			result.put("status", commonReturn.FAIL);
+			e.printStackTrace();
+			throw e;
+		}
+		
+		return result;
+	}
 //	 
 //
 //	protected Log log = LogFactory.getLog(this.getClass());
@@ -265,50 +349,6 @@ public class WhoyaEgovQnaManageController {
 //    }
 //    
 //    /**
-//     * 수정을 위해 작성 비밀번호를 확인한다.
-//     * @param qnaManageVO
-//     * @param searchVO
-//     * @return	"forward:/uss/olh/qna/QnaDetailInqire.do"
-//     * @throws Exception
-//     */
-//    @RequestMapping("/uss/olh/qna/QnaPasswordConfirm.do")
-//    public String selectPasswordConfirm(
-//            QnaManageVO qnaManageVO,
-//            @ModelAttribute("searchVO") QnaManageDefaultVO searchVO,
-//            Model	model)            
-//            throws Exception {
-//
-//    	// 작성비밀번호를 암호화 하기 위해서 Get
-//    	String	writngPassword = qnaManageVO.getWritngPassword();
-//
-//    	// EgovFileScrty Util에 있는 암호화 모듈을 적용해서 암호화 한다.
-//    	qnaManageVO.setWritngPassword(EgovFileScrty.encode(writngPassword));
-//    	    	    	
-//        int searchCnt = qnaManageService.selectQnaPasswordConfirmCnt(qnaManageVO);
-//            	    	
-//        if ( searchCnt > 0) {		// 작성 비밀번호가 일치하는 경우
-//        	
-//        	// Q&A를 수정할 수 있는 화면으로 이동.
-//        	return	"forward:/uss/olh/qna/QnaCnUpdtView.do";
-//        	
-//        } else	{					// 작성비밀번호가 틀린경우
-//        
-//        	// 작성비밀번호 확인 결과 세팅.
-//        	//qnaManageVO.setPasswordConfirmAt("N");
-//        	
-//        	String	passwordConfirmAt = "N";
-//        	
-//            //model.addAttribute("QnaManageVO", qnaManageVO);
-//                    	
-//        	// Q&A 상세조회 화면으로 이동.
-//        	return "forward:/uss/olh/qna/QnaDetailInqire.do?passwordConfirmAt=" + passwordConfirmAt;
-//        	
-//        	
-//        }
-//                        
-//    }    
-//    
-//    /**
 //     * Q&A정보를 수정하기 위한 전 처리(비밀번호 암호화)       
 //     * @param qnaManageVO
 //     * @param searchVO
@@ -337,49 +377,6 @@ public class WhoyaEgovQnaManageController {
 //        model.addAttribute(selectQnaListDetail("Y",qnaManageVO, searchVO, model));
 //    	        
 //        return "egovframework/com/uss/olh/qna/EgovQnaCnUpdt";
-//    }
-//
-//    /**
-//     * Q&A정보를 수정처리한다.           
-//     * @param searchVO
-//     * @param qnaManageVO
-//     * @param bindingResult
-//     * @return	"forward:/uss/olh/qna/QnaListInqire.do"
-//     * @throws Exception
-//     */
-//    @RequestMapping("/uss/olh/qna/QnaCnUpdt.do")
-//    public String updateQnaCn(
-//            @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, 
-//            @ModelAttribute("qnaManageVO") QnaManageVO qnaManageVO,
-//            BindingResult bindingResult)
-//            throws Exception {
-//    	    	
-//    	// Validation
-//    	beanValidator.validate(qnaManageVO, bindingResult);
-//    	
-//		if(bindingResult.hasErrors()){
-//			
-//			return "egovframework/com/uss/olh/qna/EgovQnaCnUpdt";
-//						
-//		}    	
-//    	
-//    	// 로그인VO에서  사용자 정보 가져오기
-//    	LoginVO	loginVO = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
-//    	
-//    	String	lastUpdusrId = loginVO.getUniqId();
-//		    			            			        
-//    	qnaManageVO.setLastUpdusrId(lastUpdusrId);    	// 최종수정자ID
-//
-//    	// 작성비밀번호를 암호화 하기 위해서 Get
-//    	String	writngPassword = qnaManageVO.getWritngPassword();
-//    	
-//    	// EgovFileScrty Util에 있는 암호화 모듈을 적용해서 암호화 한다.
-//    	qnaManageVO.setWritngPassword(EgovFileScrty.encode(writngPassword));
-//    	
-//    	qnaManageService.updateQnaCn(qnaManageVO);
-//            	        
-//        return "forward:/uss/olh/qna/QnaListInqire.do";
-//        
 //    }
 //
 //    /**
@@ -425,24 +422,6 @@ public class WhoyaEgovQnaManageController {
 //        }
 //                        
 //    }    
-//    
-//    /**
-//     * Q&A정보를 삭제처리한다.               
-//     * @param qnaManageVO
-//     * @param searchVO
-//     * @return	"forward:/uss/olh/qna/QnaListInqire.do"
-//     * @throws Exception
-//     */
-//    @RequestMapping("/uss/olh/qna/QnaCnDelete.do")
-//    public String deleteQnaCn(
-//            QnaManageVO qnaManageVO,
-//            @ModelAttribute("searchVO") QnaManageDefaultVO searchVO)
-//            throws Exception {
-//    	
-//    	qnaManageService.deleteQnaCn(qnaManageVO);        
-//        
-//        return "forward:/uss/olh/qna/QnaListInqire.do";
-//    }
 //
 //    /**
 //     * Q&A답변정보 목록을 조회한다. (pageing)

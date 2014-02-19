@@ -58,6 +58,33 @@ public class WhoyaEgovQnaManageServiceImpl extends AbstractServiceImpl implement
     public QnaManageVO selectQnaListDetail(QnaManageVO vo) throws Exception {
     	return qnaManageService.selectQnaListDetail(vo);
     }
+  
+    /**
+	 * 작성비밀번호를 확인한다.
+	 * @param vo
+	 * @return 글 총 갯수
+	 */
+    public int selectQnaPasswordConfirmCnt(QnaManageVO vo) {
+    	return qnaManageService.selectQnaPasswordConfirmCnt(vo);
+    }
+    
+	/**
+	 * Q&A 글을 삭제한다.
+	 * @param vo
+	 * @exception Exception
+	 */
+    public void deleteQnaCn(QnaManageVO vo) throws Exception {
+    	qnaManageService.deleteQnaCn(vo);
+    }
+    
+	/**
+	 * Q&A 글을 수정한다.
+	 * @param vo
+	 * @exception Exception
+	 */
+    public void updateQnaCn(QnaManageVO vo) throws Exception {
+    	qnaManageService.updateQnaCn(vo);
+    }
 //    @Resource(name="QnaManageDAO")
 //    private QnaManageDAO qnaManageDAO;
 //        
@@ -74,33 +101,6 @@ public class WhoyaEgovQnaManageServiceImpl extends AbstractServiceImpl implement
 //    public int selectQnaListTotCnt(QnaManageDefaultVO searchVO) {
 //		return qnaManageDAO.selectQnaListTotCnt(searchVO);
 //	}
-//    
-//    /**
-//	 * 작성비밀번호를 확인한다.
-//	 * @param vo
-//	 * @return 글 총 갯수
-//	 */
-//    public int selectQnaPasswordConfirmCnt(QnaManageVO vo) {
-//		return qnaManageDAO.selectQnaPasswordConfirmCnt(vo);
-//	}
-//    
-//	/**
-//	 * Q&A 글을 수정한다.
-//	 * @param vo
-//	 * @exception Exception
-//	 */
-//    public void updateQnaCn(QnaManageVO vo) throws Exception {           	
-//    	qnaManageDAO.updateQnaCn(vo);    	
-//    }
-//
-//	/**
-//	 * Q&A 글을 삭제한다.
-//	 * @param vo
-//	 * @exception Exception
-//	 */
-//    public void deleteQnaCn(QnaManageVO vo) throws Exception {
-//    	qnaManageDAO.deleteQnaCn(vo);    	
-//    }
 //
 //    
 //    /**

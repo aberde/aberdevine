@@ -40,6 +40,28 @@ public interface WhoyaEgovQnaManageService {
 	 * @exception Exception
 	 */
 	QnaManageVO selectQnaListDetail(QnaManageVO vo) throws Exception;
+  
+	/**
+	 * Q&A  작성비밀번호를 확인한다.
+	 * @param vo
+	 * @return 확인결과
+	 * @exception
+	 */
+	int selectQnaPasswordConfirmCnt(QnaManageVO vo);
+  
+	/**
+	 * Q&A 글을 삭제한다.
+	 * @param vo
+	 * @exception Exception
+	 */
+	void deleteQnaCn(QnaManageVO vo) throws Exception;
+    
+	/**
+	 * Q&A 글을 수정한다.
+	 * @param vo
+	 * @exception Exception
+	 */
+    void updateQnaCn(QnaManageVO vo) throws Exception;
 //    
 //    /**
 //	 * Q&A 글 총 갯수를 조회한다.
@@ -48,28 +70,6 @@ public interface WhoyaEgovQnaManageService {
 //	 * @exception
 //	 */
 //    int selectQnaListTotCnt(QnaManageDefaultVO searchVO);
-//    
-//    /**
-//	 * Q&A  작성비밀번호를 확인한다.
-//	 * @param vo
-//	 * @return 확인결과
-//	 * @exception
-//	 */
-//    int selectQnaPasswordConfirmCnt(QnaManageVO vo);
-//    
-//	/**
-//	 * Q&A 글을 수정한다.
-//	 * @param vo
-//	 * @exception Exception
-//	 */
-//    void updateQnaCn(QnaManageVO vo) throws Exception;
-//    
-//	/**
-//	 * Q&A 글을 삭제한다.
-//	 * @param vo
-//	 * @exception Exception
-//	 */
-//    void deleteQnaCn(QnaManageVO vo) throws Exception;
 //    
 //    
 //    /**
