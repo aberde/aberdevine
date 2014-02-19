@@ -142,7 +142,7 @@ function init() {
 	// ## grid 또는 form 등의 객체에서 서버로 저장
 	// #########################################
 	var dpData = {
-		url: "<c:out value='/whoya/cop/ems/deleteSndngMailList.do' />"
+		url: "<c:url value='/whoya/cop/ems/deleteSndngMailList.do' />"
 		, obj: whoyaGlobalData.aGrid
 	};
 	whoyaGlobalData.dp = whoya.dhtmlx.dataProcessor(dpData);
@@ -170,7 +170,7 @@ function toolbarEvent() {
 			search();
 		}
 		if(id == "btn_Append"){
-			location.href = "<c:out value='/whoya/cop/ems/insertSndngMailView.do' />";
+			location.href = "<c:url value='/whoya/cop/ems/insertSndngMailView.do' />";
 		}
 		if(id == "btn_Delete") {
 			if ( confirm("삭제하시겠습니까?") ) {
@@ -190,7 +190,7 @@ function gridEvent() {
 		whoyaGlobalData.bForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.bCellFormData);
 		
 		$.ajax({
-			url: "<c:out value='/whoya/cop/ems/selectSndngMailDetail.do' />"
+			url: "<c:url value='/whoya/cop/ems/selectSndngMailDetail.do' />"
 			, data: {
 				mssageId: whoyaGlobalData.aGrid.cells(id, 5).getValue()
 			}
@@ -218,7 +218,7 @@ function formEvent() {
 				document.getElementById("activeStatusBar").innerHTML = "";
 				
 				$.ajax({
-					url: "<c:out value='/whoya/cop/ems/deleteSndngMail.do' />"
+					url: "<c:url value='/whoya/cop/ems/deleteSndngMail.do' />"
 					, data: whoyaGlobalData.bForm.getFormData()
 					, success: function(data, textStatus, jqXHR) {
 						whoyaGlobalData.bForm = whoyaGlobalData.bCell.attachForm("");
@@ -248,7 +248,7 @@ function search() {
 	document.getElementById("activeStatusBar").innerHTML = "";
 
 	$.ajax({
-		url: "<c:out value='/whoya/cop/ems/selectSndngMailJSONList.do' />"
+		url: "<c:url value='/whoya/cop/ems/selectSndngMailJSONList.do' />"
 		, data: {
 			searchCondition : whoyaGlobalData.combo.getSelectedValue()
 			, searchKeyword : whoyaGlobalData.toolbar.getValue("searchKeyword")

@@ -89,7 +89,7 @@ function formEvent() {
 				document.getElementById("activeStatusBar").innerHTML = "";
 				
 				$.ajaxFileUpload({
-					url: "<c:out value='/whoya/cop/ems/insertSndngMail.do' />"
+					url: "<c:url value='/whoya/cop/ems/insertSndngMail.do' />"
 					, secureuri: false
 					, fileElementId: ["file_1"]
 					, data: whoyaGlobalData.aForm.getFormData()
