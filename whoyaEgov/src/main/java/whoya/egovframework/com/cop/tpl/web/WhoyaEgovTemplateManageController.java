@@ -80,7 +80,7 @@ public class WhoyaEgovTemplateManageController {
 			for ( int i = 0 ; i < list.size(); i++ ) {
 				whoyaMap wmap = list.getMap(i);
 				wmap.put("no", i + 1);
-				wmap.put("selectLink", "../../../images/egovframework/com/cmm/icon/search.gif^선택^javascript:tmplatSelect(\"" + wmap.get("tmplatId") + "\", \"" + wmap.get("tmplatNm") + "\");^_self");
+				wmap.put("selectLink", "../../../images/egovframework/com/cmm/icon/search.gif^선택^javascript:whoya.common.tmplatSelect(\"" + wmap.get("tmplatId") + "\", \"" + wmap.get("tmplatNm") + "\");^_self");
 			}
 
 			// 번호,템플릿명,템플릿구분,템플릿경로,사용여부,등록일자,선택
