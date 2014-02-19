@@ -6,6 +6,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>▒▒▒ eGovFrame 공통 컴포넌트  ▒▒▒</title>
 <link href="<c:url value='/css/egovframework/com/cmm/com.css' />" rel="stylesheet" type="text/css">
+<style type="text/css">
+.red {
+	font-weight: bold;
+	color: red;
+}
+.cursor {
+	cursor: pointer;
+}
+</style>
 <script type="text/javascript">
 	/**
 	 * content화면 링크
@@ -130,7 +139,7 @@
 		</c:if>
 		<tr height = "16">
 		    <td align="left" valign="center" width="100%">
-		    	<a href="#" class="link" onclick="content('<c:url value="${result.listUrl}"/>', '<c:url value="${result.whoyaListUrl}"/>');return false;"> <c:out value="${result.order}"/>. <c:out value="${result.name}"/></a>
+		    	<a href="#" class="link" onclick="content('<c:url value="${result.listUrl}"/>', '<c:url value="${result.whoyaListUrl}"/>');return false;"> <label class="cursor <c:if test='${ !empty result.whoyaListUrl }'>red</c:if>"><c:out value="${result.order}"/>. <c:out value="${result.name}"/></label></a>
 			</td>
 		</tr>
 	</c:forEach>
