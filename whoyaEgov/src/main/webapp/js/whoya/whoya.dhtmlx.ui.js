@@ -134,6 +134,7 @@
 			cell_target: "a"
 			, width: ($(document).width() / 10 * 7)
 			, hideHeader: true
+			, setText: ""
 		};
 		$.extend(whoyaData, data);
 		
@@ -145,6 +146,8 @@
 		if ( whoyaData.hideHeader ) {  // 헤더 숨김여부
 			cell.hideHeader();  // 헤더 숨기기
 		}
+
+		cell.setText(whoyaData.setText);  // 헤더 타이틀
 		
 		return cell;
 	};
@@ -232,6 +235,48 @@
 	
 	/**
 	 * <pre>
+	 * 화면 layout에 dhtmlxWindows 객체 생성
+	 * @param data JSON형식의 UI셋팅 데이터
+	 * 	 layout: layout  // dhtmlXLayoutObject 객체
+	 *   id: ""  // dhtmlxWindows 객체의 id
+	 *   x: 20  // x좌표
+	 *   y: 30  // y좌표
+	 *   width: 800  // 넓이
+	 *   height: 240  // 높이
+	 *   setText: ""  // 타이틀
+	 *   setModal: true  // 모달창여부
+	 *   keepInViewport: true  //
+	 *   centerOnScreen: true  // 중앙에 위치
+	 * @returns dhtmlxWindows 객체
+	 * </pre>
+	 */
+	whoya.dhtmlx.layout.windows = function(data) {
+		var whoyaData = {
+			id: ""
+			, x: 20
+			, y: 30
+			, width: 800
+			, height: 240
+			, setText: ""
+			, setModal: true
+			, keepInViewport: true
+			, centerOnScreen: true
+		};
+		$.extend(whoyaData, data);
+		
+		var windows = whoyaData.layout.dhxWins.createWindow(whoyaData.id, whoyaData.x, whoyaData.y, whoyaData.width, whoyaData.height);
+		windows.setText(whoyaData.setText);
+		windows.setModal(whoyaData.setModal);
+		windows.keepInViewport(whoyaData.keepInViewport);
+		if ( whoyaData.centerOnScreen ) {
+			windows.centerOnScreen();
+		}
+		
+		return windows;
+	};
+	
+	/**
+	 * <pre>
 	 * grid 또는 form 등의 객체에서 서버로 저장
 	 * @param data JSON형식의 UI셋팅 데이터
 	 *   url: ""  // 저장 경로
@@ -267,78 +312,19 @@
 	 * 화면 layout에 statusbar 객체 생성
 	 * @param data JSON형식의 UI셋팅 데이터
 	 *   layout: layout  // dhtmlXLayoutObject 객체
+	 *   id:   // 상태바 id
 	 * @returns statusbar 객체
 	 * </pre>
 	 */
 	whoya.dhtmlx.statusbar = function(data) {
 		var whoyaData = {
+			id: ""
 		};
 		$.extend(whoyaData, data);
 			
 		var main_status = whoyaData.layout.attachStatusBar();
-		main_status.setText("<div><table><td id='activeImg'><img src='" + whoya.context + "/dhtmlx/dhtmlx_pro_full/imgs/run_exc.gif'></td><td id='activeStatusBar' valign='middle'></td></table></div>");
+		main_status.setText("<div><table><td id='" + whoyaData.id + "activeImg'><img src='" + whoya.context + "/dhtmlx/dhtmlx_pro_full/imgs/run_exc.gif'></td><td id='" + whoyaData.id + "activeStatusBar' valign='middle'></td></table></div>");
 		
 		return main_status;
     };
     
-    whoya.dhtmlx.form = {};
-    whoya.dhtmlx.form.format = {};
-    
-    /**
-     * <pre>
-     * form에 데이터만 출력시.
-     * @param name  // form의 name
-     * @param value  // form의 value
-     * </pre>
-     */
-    whoya.dhtmlx.form.format.printData = function(name, value) {
-    	return value;
-    };
-
-    /**
-     * <pre>
-     * XML메일보기 링크 만들기.
-     * @param name  // form의 name
-     * @param value  // form의 value
-     * </pre>
-     */
-    whoya.dhtmlx.form.format.xmlMailViewLink = function(name, value) {
-    	var xmlMailViewData = {
-    		value: [value]
-    	};
-    	return "<a href='#' onclick='whoya.common.xmlMailView(" + JSON.stringify(xmlMailViewData) + ");return false;'>" + value + ".xml</a>";
-    };
-
-    /**
-     * <pre>
-     * 첨부파일 목록 가져오기.
-     * @param name  // form의 name
-     * @param value  // form의 value
-     * </pre>
-     */
-    whoya.dhtmlx.form.format.getFileList = function(name, value) {
-    	var fileList = "";
-    	
-    	$.ajax({
-    		url: whoya.context + "/whoya/cmm/fms/selectFileInfs.do"
-    		, async: false
-    		, data: {
-    			atchFileId: value
-    		}
-    		, success: function(data, textStatus, jqXHR) {
-    			$.each(data, function() {
-    				var fileDownloadData = {
-			    		value: [this.atchFileId, this.fileSn]
-			    	};
-    				fileList += "<a href='#' onclick='whoya.common.fileDownload(" + JSON.stringify(fileDownloadData) + ");return false;' />" + this.orignlFileNm + " [ " + this.fileMg + " byte ]</a><br />";
-    			});
-    		}
-    		, error: function(jqXHR, textStatus, errorThrown) {
-    			console.log(jqXHR);
-    			console.log(textStatus);
-    			console.log(errorThrown);
-    			alert(errorThrown);
-    		}
-    	});
-    	return fileList;
-    };
