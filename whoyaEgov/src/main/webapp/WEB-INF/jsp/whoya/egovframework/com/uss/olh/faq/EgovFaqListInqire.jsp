@@ -22,7 +22,6 @@
  *   bCellRegFormData: bCellRegFormData  // dhtmlxForm의 UI데이터
  *   bCellDetailFormData: bCellDetailFormData  // dhtmlxForm의 UI데이터
  *   bCellUpdateFormData: bCellUpdateFormData  // dhtmlxForm의 UI데이터
- *   dp: dp  // dataProcessor 객체
  *   statusbar: statusbar  // statusbar 객체
  *   combo: combo  //  dhtmlXCombo 객체
  */
@@ -176,17 +175,6 @@ function init() {
 	
 	
 	// #########################################
-	// ## grid 또는 form 등의 객체에서 서버로 저장
-	// #########################################
-	var dpData = {
-		url: "<c:out value='/whoya/cop/ems/deleteSndngMailList.do' />"
-		, obj: whoyaGlobalData.aGrid
-	};
-	whoyaGlobalData.dp = whoya.dhtmlx.dataProcessor(dpData);
-	// #########################################
-
-	
-	// #########################################
 	// ## layout에 statusbar 생성
 	// #########################################
 	var statusbarData = {
@@ -221,7 +209,7 @@ function gridEvent() {
 		whoyaGlobalData.bForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.bCellDetailFormData);
 		
 		$.ajax({
-			url: "<c:out value='/whoya/uss/olh/faq/FaqListDetailInqire.do' />"
+			url: "<c:url value='/whoya/uss/olh/faq/FaqListDetailInqire.do' />"
 			, data: {
 				faqId: whoyaGlobalData.aGrid.cells(id, 4).getValue()
 			}
@@ -247,7 +235,7 @@ function formEvent() {
 				document.getElementById("activeStatusBar").innerHTML = "";
 				
 				$.ajaxFileUpload({
-					url: "<c:out value='/whoya/uss/olh/faq/FaqCnRegist.do' />"
+					url: "<c:url value='/whoya/uss/olh/faq/FaqCnRegist.do' />"
 					, secureuri: false
 					, fileElementId: ["file_1"]
 					, data: whoyaGlobalData.bForm.getFormData()
@@ -268,7 +256,7 @@ function formEvent() {
 			}
 		} else if ( name == "uptViewBtn" ) {  // 수정화면이동.
 			$.ajax({
-				url: "<c:out value='/whoya/uss/olh/faq/FaqListDetailInqire.do' />"
+				url: "<c:url value='/whoya/uss/olh/faq/FaqListDetailInqire.do' />"
 				, data: {
 					faqId: whoyaGlobalData.bForm.getFormData().faqId
 				}
@@ -298,7 +286,7 @@ function formEvent() {
 				document.getElementById("activeStatusBar").innerHTML = "";
 				
 				$.ajaxFileUpload({
-					url: "<c:out value='/whoya/uss/olh/faq/FaqCnUpdt.do' />"
+					url: "<c:url value='/whoya/uss/olh/faq/FaqCnUpdt.do' />"
 					, secureuri: false
 					, fileElementId: ["file_1"]
 					, data: whoyaGlobalData.bForm.getFormData()
@@ -322,7 +310,7 @@ function formEvent() {
 				document.getElementById("activeStatusBar").innerHTML = "";
 				
 				$.ajax({
-					url: "<c:out value='/whoya/uss/olh/faq/FaqCnDelete.do' />"
+					url: "<c:url value='/whoya/uss/olh/faq/FaqCnDelete.do' />"
 					, data: {
 						faqId: whoyaGlobalData.bForm.getFormData().faqId
 					}
@@ -355,7 +343,7 @@ function search() {
 	document.getElementById("activeStatusBar").innerHTML = "";
 
 	$.ajax({
-		url: "<c:out value='/whoya/uss/olh/faq/FaqListInqireJSON.do' />"
+		url: "<c:url value='/whoya/uss/olh/faq/FaqListInqireJSON.do' />"
 		, data: {
 			searchCondition : whoyaGlobalData.combo.getSelectedValue()
 			, searchKeyword : whoyaGlobalData.toolbar.getValue("searchKeyword")
