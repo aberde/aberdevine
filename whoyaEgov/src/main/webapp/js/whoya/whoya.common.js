@@ -60,3 +60,25 @@
     	
     	window.location = whoya.context + whoyaData.url + queryString;
     };
+    
+    /**
+	 * 템플릿 정보(팝업)에서 선택된 값 저장.
+	 * @pram tmplatId 템플릿 아이디
+	 * @pram tmplatNm 템플릿 명
+	 */
+    whoya.common.tmplatSelect = function(tmplatId, tmplatNm) {
+    	whoyaGlobalData.bForm.setItemValue("tmplatId", tmplatId);
+		$("#tmplatNm").val(tmplatNm);
+		whoyaGlobalData.tmplatPopupWindows.close();
+	};
+	
+	/**
+	 * 커뮤니티 관리자 정보(팝업)에서 선택된 값 저장.
+	 * @pram emplyrId 사용자 아이디
+	 * @pram emplyrNm 사용자 명
+	 */
+    whoya.common.emplyrSelect = function(emplyrId, emplyrNm) {
+    	whoyaGlobalData.bForm.setItemValue("emplyrId", emplyrId);
+    	$("#emplyrNm").val(emplyrNm);
+    	whoyaGlobalData.emplyrPopupWindows.close();
+	};
