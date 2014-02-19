@@ -164,17 +164,17 @@ function init() {
 	whoyaGlobalData.bCellUpdateFormData = {
 		cell: whoyaGlobalData.bCell
 		, formData: [
-   			{ type: "fieldset", name: "formField", label: "FAQ 상세조회", list: [
-   				{ type: "settings", labelWidth: 150, inputWidth: 170 },
-   				{ type: "input", label: "질문제목", name: "qestnSj", value: "" },
-   				{ type: "input", label: "질문내용", name: "qestnCn", value: "", rows: 3 },
-   				{ type: "input", label: "답변내용", name: "answerCn", value: "", rows: 3 },
-   				{ type: "template", label: "첨부파일 목록", name: "atchFileId", value: "", format: whoya.dhtmlx.form.format.getFileList },
-   				{ type: "input", name: "atchFileAt", value: "", hidden: true },
-   				{ type: "file", label: "파일첨부", name: "file_1", value: "" },
-   				{ type: "button", name: "uptBtn", value: "수정" }
-   			] }
-   		]
+			{ type: "fieldset", name: "formField", label: "Q&A내용등록", list: [
+				{ type: "settings", labelWidth: 150, inputWidth: 170 },
+				{ type: "input", label: "작성자명", name: "wrterNm", value: "" },
+				{ type: "password", label: "작성 비밀번호", name: "writngPassword", value: "" },
+				{ type: "template", label: "전화번호", name: "telForm", format: whoya.dhtmlx.form.format.telInputForm },
+				{ type: "template", label: "이메일", name: "emailForm", format: whoya.dhtmlx.form.format.emailInputForm },
+				{ type: "input", label: "질문제목", name: "qestnSj", value: "" },
+				{ type: "input", label: "질문내용", name: "qestnCn", value: "", rows: 10 },
+				{ type: "button", name: "uptBtn", value: "수정" }
+			] }
+		]
 	};
 	// #########################################
 	
@@ -186,6 +186,70 @@ function init() {
 		layout: whoyaGlobalData.layout	
 	};
 	whoyaGlobalData.statusbar = whoya.dhtmlx.statusbar(statusbarData);
+	// #########################################
+}
+
+/**
+ * 비밀번호 확인 Popup
+ */
+function passwdPopup(passwdData) {
+	// #########################################
+	// ## layout에 windows 생성
+	// #########################################
+	var passwdPopupWindowsData = {
+		layout: whoyaGlobalData.layout
+		, id: "passwdPopup"
+		, width: 400
+		, height: 140
+		, setText: "작성 비밀번호 확인"
+	};
+	whoyaGlobalData.passwdPopupWindows = whoya.dhtmlx.layout.windows(passwdPopupWindowsData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## 팝업창 레이아웃생성
+	// #########################################
+	var passwdPopupLayoutData = {
+		layout_target: whoyaGlobalData.passwdPopupWindows
+		, layout_Pattern: "1C"
+	};
+	whoyaGlobalData.passwdPopupLayout = whoya.dhtmlx.layout.init(passwdPopupLayoutData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## 팝업창 layout cell a
+	// #########################################
+	var passwdPopupaCellData = {
+		layout: whoyaGlobalData.passwdPopupLayout
+	};
+	// 팝업창 화면 layout의 해당 cell 정의 
+	whoyaGlobalData.passwdPopupaCell = whoya.dhtmlx.layout.cell.init(passwdPopupaCellData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## layout cell a에 form생성
+	// #########################################
+	// 비밀번호 확인 폼
+	whoyaGlobalData.aCellPasswdFormData = {
+		cell: whoyaGlobalData.passwdPopupaCell
+		, formData: [
+   			{ type: "fieldset", name: "formField", label: "작성 비밀번호 확인", list: [
+   				{ type: "settings", labelWidth: 150, inputWidth: 170 },
+   				{ type: "password", label: "작성글 비밀번호", name: "writngPassword", value: "" },
+   				{ type: "label", list: [
+					{ type: "button", name: "okBtn", value: "확인" },
+					{ type: "newcolumn" },
+					{ type: "button", name: "cancleBtn", value: "취소" }
+				] }
+   			] }
+   		]
+	};
+	// 화면 layout cell a에 dhtmlxForm 객체 생성.
+	whoyaGlobalData.aCellPasswdForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.aCellPasswdFormData);
+	passwdFormEvent(passwdData);
 	// #########################################
 }
 
@@ -202,6 +266,7 @@ function toolbarEvent() {
 		}
 		if(id == "btn_Append"){
 			// 화면 layout cell b에 dhtmlxForm 객체 생성.
+			whoyaGlobalData.bCell.attachForm("");
 			whoyaGlobalData.bForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.bCellRegFormData);
 			formEvent();
 			
@@ -227,8 +292,10 @@ function toolbarEvent() {
 // grid event 생성
 function gridEvent() {
 	whoyaGlobalData.aGrid.attachEvent("onRowSelect", function(id, ind) {
+		whoyaGlobalData.bCell.attachForm("");
 		// 화면 layout cell b에 dhtmlxForm 객체 생성.
 		whoyaGlobalData.bForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.bCellDetailFormData);
+		formEvent();
 		
 		$.ajax({
 			url: "<c:url value='/whoya/uss/olh/qna/QnaDetailInqire.do' />"
@@ -247,7 +314,6 @@ function gridEvent() {
 				if ( data.emailAnswerAt == "Y" ) {
 					$("#emailAnswerAt").attr("checked", "checked");
 				}
-				formEvent();
 			}
 			, error: function(jqXHR, textStatus, errorThrown) {
 				console.log(jqXHR);
@@ -292,43 +358,27 @@ function formEvent() {
 				});
 			}
 		} else if ( name == "uptViewBtn" ) {  // 수정화면이동.
-			$.ajax({
-				url: "<c:url value='/whoya/uss/olh/faq/FaqListDetailInqire.do' />"
-				, data: {
-					faqId: whoyaGlobalData.bForm.getFormData().faqId
-				}
-				, success: function(data, textStatus, jqXHR) {
-					// 화면 layout cell b에 dhtmlxForm 객체 생성.
-					whoyaGlobalData.bForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.bCellUpdateFormData);
-					
-					// atchFileAt(?)
-					if ( data.atchFileId ) {
-						data.atchFileAt = "Y";
-					} else {
-						data.atchFileAt = "N";
-					}
-					
-					whoyaGlobalData.bForm.setFormData(data);
-					formEvent();
-				}
-				, error: function(jqXHR, textStatus, errorThrown) {
-					console.log(jqXHR);
-					console.log(textStatus);
-					console.log(errorThrown);
-					alert(errorThrown);
-				}
-			});
+			var passwdData = {
+				mode: "update"
+			};
+			passwdPopup(passwdData);
 		} else if ( name == "uptBtn" ) {  // 수정
 			if ( confirm("저장하시겠습니까?") ) {
 				document.getElementById("activeStatusBar").innerHTML = "";
 				
-				$.ajaxFileUpload({
-					url: "<c:url value='/whoya/uss/olh/faq/FaqCnUpdt.do' />"
-					, secureuri: false
-					, fileElementId: ["file_1"]
-					, data: whoyaGlobalData.bForm.getFormData()
-					, dataType: 'json'
-					, success: function (data, status) {
+				var data = whoyaGlobalData.bForm.getFormData();
+				// template로 구성된 폼데이터 서버에 전송하기 위해 데이터 입력.
+				data.areaNo = $("#areaNo").val();
+				data.middleTelno = $("#middleTelno").val();
+				data.endTelno = $("#endTelno").val();
+				data.emailAdres = $("#emailAdres").val();
+				data.emailAnswerAt = $("#emailAnswerAt:checked").val();
+				
+				$.ajax({
+					url: "<c:url value='/whoya/uss/olh/qna/QnaCnUpdt.do' />"
+					, type: "POST"
+					, data: data
+					, success: function(data, textStatus, jqXHR) {
 						if ( data.status == "SUCCESS" ) {
 							alert("저장하였습니다.");
 							search();
@@ -336,25 +386,6 @@ function formEvent() {
 						} else {
 							alert("저장에 실패하였습니다.");
 						}
-					}
-					, error: function (data, status, e) {
-						alert(e);
-					}
-				});
-			}
-		} else if ( name == "dltBtn" ) {  // 삭제
-			if ( confirm("삭제하시겠습니까?") ) {
-				document.getElementById("activeStatusBar").innerHTML = "";
-				
-				$.ajax({
-					url: "<c:url value='/whoya/uss/olh/faq/FaqCnDelete.do' />"
-					, data: {
-						faqId: whoyaGlobalData.bForm.getFormData().faqId
-					}
-					, success: function(data, textStatus, jqXHR) {
-						alert("삭제하였습니다.");
-						search();
-						whoyaGlobalData.bCell.attachForm("");
 					}
 					, error: function(jqXHR, textStatus, errorThrown) {
 						console.log(jqXHR);
@@ -364,6 +395,94 @@ function formEvent() {
 					}
 				});
 			}
+		} else if ( name == "dltBtn" ) {  // 삭제
+			var passwdData = {
+				mode: "delete"
+			};
+			passwdPopup(passwdData);
+		}
+	});
+}
+
+// 비밀번호 확인 Popup form event 생성
+function passwdFormEvent(passwdData) {
+	whoyaGlobalData.aCellPasswdForm.attachEvent("onButtonClick", function(name) {
+		if ( name == "okBtn" ) {  // 확인
+			var qaId = whoyaGlobalData.bForm.getFormData().qaId;
+			$.ajax({
+				url: "<c:url value='/whoya/uss/olh/qna/QnaPasswordConfirm.do' />"
+				, type: "POST"
+				, data: {
+					qaId: qaId
+					, writngPassword: whoyaGlobalData.aCellPasswdForm.getItemValue("writngPassword")
+				}
+				, success: function(data, textStatus, jqXHR) {
+					if ( data.status == "SUCCESS" ){
+						whoyaGlobalData.passwdPopupWindows.close();
+						if ( passwdData.mode == "update" ) {
+							whoyaGlobalData.bForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.bCellUpdateFormData);
+							formEvent();
+							$.ajax({
+								url: "<c:url value='/whoya/uss/olh/qna/QnaDetailInqire.do' />"
+								, type: "POST"
+								, data: {
+									qaId: qaId
+									, passwordConfirmAt: ""
+								}
+								, success: function(data, textStatus, jqXHR) {
+									whoyaGlobalData.bForm.setFormData(data);
+									// template로 구성된 폼데이터에 서버에서 전송받은 데이터 입력.
+									$("#areaNo").val(data.areaNo);
+									$("#middleTelno").val(data.middleTelno);
+									$("#endTelno").val(data.endTelno);
+									$("#emailAdres").val(data.emailAdres);
+									if ( data.emailAnswerAt == "Y" ) {
+										$("#emailAnswerAt").attr("checked", "checked");
+									}
+								}
+								, error: function(jqXHR, textStatus, errorThrown) {
+									console.log(jqXHR);
+									console.log(textStatus);
+									console.log(errorThrown);
+									alert(errorThrown);
+								}
+							});
+						} else if ( passwdData.mode == "delete" ) {
+							$.ajax({
+								url: "<c:url value='/whoya/uss/olh/qna/QnaCnDelete.do' />"
+								, data: {
+									qaId: whoyaGlobalData.bForm.getFormData().qaId
+								}
+								, success: function(data, textStatus, jqXHR) {
+									if ( data.status == "SUCCESS" ) {
+										alert("삭제하였습니다.");
+										search();
+										whoyaGlobalData.bCell.attachForm("");
+									} else {
+										alert("삭제에 실패하였습니다.");
+									}
+								}
+								, error: function(jqXHR, textStatus, errorThrown) {
+									console.log(jqXHR);
+									console.log(textStatus);
+									console.log(errorThrown);
+									alert(errorThrown);
+								}
+							});
+						}
+					} else {
+						alert("작성 비밀번호를 확인 바랍니다.");
+					}
+				}
+				, error: function(jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR);
+					console.log(textStatus);
+					console.log(errorThrown);
+					alert(errorThrown);
+				}
+			});
+		} else if ( name == "cancleBtn" ) {  // 취소
+			whoyaGlobalData.passwdPopupWindows.close();
 		}
 	});
 }
