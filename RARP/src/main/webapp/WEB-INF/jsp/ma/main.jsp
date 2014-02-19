@@ -10,7 +10,7 @@
 <script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.3.custom.js"></script>
 <script src="${pageContext.request.contextPath}/grid/js/i18n/grid.locale-kr.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}grid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
-<SCRIPT language="JavaScript" type="text/javascript" src="http://map.vworld.kr/js/vworldMapInit.js.do?apiKey=041EFE0E-E19C-36C4-8641-E3148A5B1D39"></SCRIPT>
+<SCRIPT language="JavaScript" type="text/javascript" src="http://map.vworld.kr/js/vworldMapInit.js.do?apiKey=4BAAB4E4-05F1-3AC2-8159-F7E66C72EFBB"></SCRIPT>
 </head> 
 <script type="text/javaScript" language="javascript">
 <!--
