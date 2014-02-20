@@ -10,177 +10,207 @@
 <jsp:include page="/WEB-INF/jsp/whoya/include/header.jsp" />
 
 <script type="text/javascript">
-var oProc;
-var form;
+/**
+ * 전역변수로 사용할 데이터
+ * JSON형식의 데이터
+ *   layout: layout  // dhtmlXLayoutObject 객체
+ *   toolbar: toolbar // dhtmlXLayoutObject의 toolbar 객체
+ *   aCell: aCell  // dhtmlXLayoutObject의 cell 객체 'a'
+ *   aGrid: aGrid  // dhtmlXLayoutObject의 cell 객체 'a'의 dhtmlxGrid 객체
+ *   bCell: bCell  // dhtmlXLayoutObject의 cell 객체 'b'
+ *   bForm: bForm  // dhtmlXLayoutObject의 cell 객체 'b'의 dhtmlxForm 객체
+ *   bCellRegFormData: bCellRegFormData  // dhtmlxForm의 UI데이터
+ *   bCellDetailFormData: bCellDetailFormData  // dhtmlxForm의 UI데이터
+ *   bCellUpdateFormData: bCellUpdateFormData  // dhtmlxForm의 UI데이터
+ *   statusbar: statusbar  // statusbar 객체
+ *   combo: combo  //  dhtmlXCombo 객체
+ */
+var whoyaGlobalData = {};
 
 function init() {
-	dhtmlx.image_path = "<c:url value='/dhtmlx/dhtmlx_pro_full/imgs/'/>";
-    oProc = new dhtmlXLayoutObject(document.body, "2U");
-    oProc.dhxWins.setEffect("move", true);
-    
-    var toolbar;
-    var combo;
-    var grid;
+	// #########################################
+	// ## 레이아웃생성
+	// #########################################
+	whoyaGlobalData.layout = whoya.dhtmlx.layout.init();
+	// #########################################
 	
-	/** 
-	 * 등록될 formData UI 구성.
-	 */
-	function inputFormData() {
-		var formData = [
+	
+	// #########################################
+	// ## 툴바 생성
+	// #########################################
+	var toolbarData = {
+		layout: whoyaGlobalData.layout
+	};
+	whoyaGlobalData.toolbar = whoya.dhtmlx.layout.toolbar.init(toolbarData);
+	whoyaGlobalData.toolbar.addText("searchCnd", 1, "");
+	whoyaGlobalData.toolbar.addInput("searchWrd", 2, "", 200);
+
+	// selectBox 생성
+	var comboDIV = whoyaGlobalData.toolbar.objPull[whoyaGlobalData.toolbar.idPrefix+"searchCnd"].obj;
+	whoyaGlobalData.toolbar.objPull[whoyaGlobalData.toolbar.idPrefix+"searchCnd"].obj.innerHTML = "";
+	whoyaGlobalData.combo = new dhtmlXCombo(comboDIV,"alfa",140);
+	whoyaGlobalData.combo.addOption([
+   		["0", "템플릿명"]
+		, ["1", "템플릿구분"]
+   	]);
+	whoyaGlobalData.combo.selectOption(0);
+	
+	// toolbar의 Button정의
+	var toolbarAddButton = {
+		toolbar: whoyaGlobalData.toolbar
+		, btn_Delete: false
+		, btn_Undo: false
+		, btn_Save: false
+		, btn_Print: false
+		, btn_Excel: false
+	};
+	whoya.dhtmlx.layout.toolbar.addButton(toolbarAddButton);
+	toolbarEvent();
+	// #########################################
+
+	
+	// #########################################
+	// ## layout cell a 
+	// #########################################
+	var aCellData = {
+		layout: whoyaGlobalData.layout
+	};
+	// 화면 layout의 해당 cell 정의 
+	whoyaGlobalData.aCell = whoya.dhtmlx.layout.cell.init(aCellData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## layout cell a에 grid생성
+	// #########################################
+	var aCellGridData = {
+		cell: whoyaGlobalData.aCell
+		, setHeader: "번호,템플릿명,템플릿구분,템플릿경로,사용여부,등록일자,템플릿 아이디"
+		, setColumnIds: "no,tmplatNm,tmplatSeCodeNm,tmplatCours,useAt,frstRegisterPnttm,tmplatId"
+		, setInitWidths: "100,150,150,*,100,100,100"
+		, setColAlign: "center,center,center,center,center,center,center"
+		, setColTypes: "ro,ro,ro,ro,ro,ro,ro"
+		, enableResizing: "false,true,false,false,false,false,false"
+		, enableTooltips: "false,false,false,false,false,false,false"
+		, setColSorting: "str,str,str,str,str,str,str"
+		, setColumnHidden: [
+			{ id: 6 }
+		]
+	};
+	// 화면 layout cell a에 dhtmlxGrid 객체 생성.
+	whoyaGlobalData.aGrid = whoya.dhtmlx.layout.cell.grid(aCellGridData);
+	gridEvent();
+	// #########################################
+	
+	
+	// #########################################
+	// ## layout cell b
+	// #########################################
+	var bCellData = {
+		cell_target: "b"
+		, layout: whoyaGlobalData.layout
+		, width: ""
+	};
+	// 화면 layout의 해당 cell 정의 
+	whoyaGlobalData.bCell = whoya.dhtmlx.layout.cell.init(bCellData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## layout cell b에 form생성
+	// #########################################
+	// 등록 폼
+	whoyaGlobalData.bCellRegFormData = {
+		cell: whoyaGlobalData.bCell
+		, formData: [
 			{ type: "fieldset", name: "formField", label: "템플릿 정보등록", list: [
-				{ type: "block", list: [
-					{ type: "settings", labelWidth: 150, inputWidth: 170 },
-					{ type: "label", label: "템플릿명" },
-					{ type: "newcolumn" },
-					{ type: "input", name: "tmplatNm", value: "" }
+				{ type: "settings", labelWidth: 150, inputWidth: 170 },
+				{ type: "input", label: "템플릿명", name: "tmplatNm", value: "" },
+				{ type: "select", label: "템플릿 구분", name: "tmplatSeCode", options: [
+					{ value: "", text: "--선택하세요--" }
 				] },
-				{ type: "block", list: [
-					{ type: "settings", labelWidth: 150, inputWidth: 170 },
-					{ type: "label", label: "템플릿 구분" },
-					{ type: "newcolumn" },
-					{ type: "select", name: "tmplatSeCode", options: [
-   						{ value: "", text: "--선택하세요--" }
-   					] }
-				] },
-				{ type: "block", list: [
-					{ type: "settings", labelWidth: 150, inputWidth: 170 },
-					{ type: "label", label: "템플릿경로" },
-					{ type: "newcolumn" },
-					{ type: "input", name: "tmplatCours", value: "" }
-				] },
-				{ type: "block", list: [
-					{ type: "settings", labelWidth: 70, inputWidth: 170, position: "label-right" },
-					{ type: "label", label: "사용여부", labelWidth: 150 },
+				{ type: "input", label: "템플릿경로", name: "tmplatCours", value: "" },
+				{ type: "template", label: "사용여부", list: [
+					{ type: "settings", labelWidth: 50, inputWidth: 170, position: "label-right" },
+					{ type: "label", labelWidth: 130 },
 					{ type: "newcolumn" },
 					{ type: "radio", label: "사용", name: "useAt", value: "Y" },
 					{ type: "newcolumn" },
 					{ type: "radio", label: "미사용", name: "useAt", value: "N" }
 				] },
-				{ type: "block", list: [
-					{ type: "button", name: "regBtn", value: "등록" }
-				] }
+				{ type: "button", name: "regBtn", value: "등록" }
 			] }
-		];
-		
-		var oProcB = oProc.cells("b");
-		oProcB.hideHeader();
-		form = oProcB.attachForm(formData);
-		form.setFontSize("11px");
-		
-		getTmplatSeCode();
-		
-		// 버튼 클릭 이벤트.
-		form.attachEvent("onButtonClick", function(name) {
-			if ( name == "regBtn" ) {
-				if ( confirm("저장하시겠습니까?") ) {
-					document.getElementById("activeStatusBar").innerHTML = "";
-					
-					var DataProcessor = new dataProcessor("insertTemplateInf.do");
-					DataProcessor.setTransactionMode("POST", false);
-					DataProcessor.setUpdateMode("off");
-					DataProcessor.enableDataNames(true);
-					//DataProcessor.enablePartialDataSend(true);
-					DataProcessor.init(form);
-					
-					DataProcessor.attachEvent("onAfterUpdateFinish", function() {
-						alert("저장하였습니다.");
-						form = oProcB.attachForm("");
-						search();
-					});
-					
-					DataProcessor.sendData();
-				}
-			}
-		});
-	}
+		]
+	};
 
-	/** 
-	 * 수정될 formData UI 구성.
-	 */
-	function updateFormData() {
-		var formData = [
+	// 수정폼.
+	whoyaGlobalData.bCellUpdateFormData = {
+		cell: whoyaGlobalData.bCell
+		, formData: [
    			{ type: "fieldset", name: "formField", label: "템플릿 정보수정", list: [
-   				{ type: "block", list: [
-   					{ type: "settings", labelWidth: 150, inputWidth: 170 },
-   					{ type: "label", label: "템플릿명" },
-   					{ type: "newcolumn" },
-   					{ type: "input", name: "tmplatNm", value: "", readonly: true }
-   				] },
-   				{ type: "block", list: [
-   					{ type: "settings", labelWidth: 150, inputWidth: 170 },
-   					{ type: "label", label: "템플릿 구분" },
-   					{ type: "newcolumn" },
-   					{ type: "select", name: "tmplatSeCode", options: [
-      						{ value: "", text: "--선택하세요--" }
-      					] }
-   				] },
-   				{ type: "block", list: [
-   					{ type: "settings", labelWidth: 150, inputWidth: 170 },
-   					{ type: "label", label: "템플릿경로" },
-   					{ type: "newcolumn" },
-   					{ type: "input", name: "tmplatCours", value: "" }
-   				] },
-   				{ type: "block", list: [
-   					{ type: "settings", labelWidth: 70, inputWidth: 170, position: "label-right" },
-   					{ type: "label", label: "사용여부", labelWidth: 150 },
-   					{ type: "newcolumn" },
-   					{ type: "radio", label: "사용", name: "useAt", value: "Y" },
-   					{ type: "newcolumn" },
-   					{ type: "radio", label: "미사용", name: "useAt", value: "N" }
-   				] },
-   				{ type: "block", list: [
-   					{ type: "button", name: "uptBtn", value: "수정" }
-   				] }
+				{ type: "settings", labelWidth: 150, inputWidth: 170 },
+				{ type: "input", label: "템플릿명", name: "tmplatNm", value: "", readonly: true },
+				{ type: "select", label: "템플릿 구분", name: "tmplatSeCode", options: [
+					{ value: "", text: "--선택하세요--" }
+				] },
+				{ type: "input", label: "템플릿경로", name: "tmplatCours", value: "" },
+				{ type: "template", label: "사용여부", list: [
+  					{ type: "settings", labelWidth: 50, inputWidth: 170, position: "label-right" },
+					{ type: "label", labelWidth: 130 },
+					{ type: "newcolumn" },
+  					{ type: "radio", label: "사용", name: "useAt", value: "Y" },
+  					{ type: "newcolumn" },
+  					{ type: "radio", label: "미사용", name: "useAt", value: "N" }
+  				] },
+				{ type: "button", name: "uptBtn", value: "수정" }
    			] }
-   		];
-		
-		var oProcB = oProc.cells("b");
-		oProcB.hideHeader();
-		form = oProcB.attachForm(formData);
-		form.setFontSize("11px");
-		
-		getTmplatSeCode();
-		
-		// 버튼 클릭 이벤트.
-		form.attachEvent("onButtonClick", function(name) {
-			if ( name == "uptBtn" ) {
-				if ( confirm("저장하시겠습니까?") ) {
-					document.getElementById("activeStatusBar").innerHTML = "";
-					
-					var DataProcessor = new dataProcessor("updateTemplateInf.do");
-					DataProcessor.setTransactionMode("POST", false);
-					DataProcessor.setUpdateMode("off");
-					DataProcessor.enableDataNames(true);
-					//DataProcessor.enablePartialDataSend(true);
-					DataProcessor.init(form);
-					
-					DataProcessor.attachEvent("onAfterUpdateFinish", function() {
-						alert("저장하였습니다.");
-						form = oProcB.attachForm("");
-						search();
-					});
-					
-					DataProcessor.sendData();
-				}
-			}
-		});
-	}
+   		]
+	};
+	// #########################################
 	
-	/**
-	 * 탬플릿 구분 목록 가져오기.
-	 */
-	function getTmplatSeCode() {
+	
+	// #########################################
+	// ## layout에 statusbar 생성
+	// #########################################
+	var statusbarData = {
+		layout: whoyaGlobalData.layout	
+	};
+	whoyaGlobalData.statusbar = whoya.dhtmlx.statusbar(statusbarData);
+	// #########################################
+}
+
+
+// #######################################################################
+// ## event 생성
+// #######################################################################
+// toolbar event 생성
+function toolbarEvent() {
+	whoyaGlobalData.toolbar.attachEvent("onClick", function(id) {
+		if(id == "btn_Open"){
+			search();
+		}
+		if(id == "btn_Append"){
+			// 화면 layout cell b에 dhtmlxForm 객체 생성.
+			whoyaGlobalData.bForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.bCellRegFormData);
+			formEvent();
+		}
+    });
+}
+
+// grid event 생성
+function gridEvent() {
+	whoyaGlobalData.aGrid.attachEvent("onRowSelect", function(id, ind) {
+		// 화면 layout cell b에 dhtmlxForm 객체 생성.
+		whoyaGlobalData.bForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.bCellUpdateFormData);
+		formEvent();
+		
 		$.ajax({
-			url: "/whoya/cop/tpl/selectTemplateCodeList.do"
-			, dataType: "json"
+			url: "<c:url value='/whoya/cop/tpl/selectTemplateInf.do' />"
 			, data: {
-				codeId: "COM005"
+				tmplatId: whoyaGlobalData.aGrid.cells(id, 6).getValue()
 			}
 			, success: function(data, textStatus, jqXHR) {
-				var tmplatSeCode = form.getOptions("tmplatSeCode");
-				$.each(data, function() {
-					tmplatSeCode.add(new Option($(this)[0].codeNm, $(this)[0].code));
-				});
+				whoyaGlobalData.bForm.setFormData(data);
 			}
 			, error: function(jqXHR, textStatus, errorThrown) {
 				console.log(jqXHR);
@@ -189,146 +219,117 @@ function init() {
 				alert(errorThrown);
 			}
 		});
-	}
-
-    /**
-     * 툴바 생성.
-     */
-    function fn_toolbar() {
-		toolbar = oProc.attachToolbar(); /*툴바*/
-		toolbar.setIconsPath(dhtmlx.image_path);
-	
-		toolbar.addText("searchCnd", 1, "");
-		toolbar.addInput("searchWrd", 2, "", 200);
-		toolbar.addSeparator("button_Separator", 3);
-	
-		// selectBox 생성
-		var comboDIV = toolbar.objPull[toolbar.idPrefix+"searchCnd"].obj;
-		toolbar.objPull[toolbar.idPrefix+"searchCnd"].obj.innerHTML = "";
-		combo = new dhtmlXCombo(comboDIV,"alfa",140);
-		combo.addOption([
-       		["0", "템플릿명"]
-       		, ["1", "템플릿구분"]
-       	]);
-		combo.selectOption(0);
-	
-		var hideBtn = {
-			btn_Delete: false
-			, btn_Undo: false
-			, btn_Save: false
-			, btn_Print: false
-			, btn_Excel: false
-		};
-		comToolbarButton(toolbar, hideBtn);
-		
-		// event bar 생성
-		toolbar.attachEvent("onClick", function(id){
-			if(id == "btn_Open"){
-				search();
-			}
-			if(id == "btn_Append"){
-				inputFormData();
-			}
-	    });
-    }
-    
-    /**
-     * 조회
-     */
-    function search() {
-    	oProc.progressOn();
-		grid.clearAll();
-		document.getElementById("activeStatusBar").innerHTML = "";
-		$.post( 'selectTemplateJSONInfs.do'
-			  , { searchCnd : combo.getSelectedValue()
-				, searchWrd : toolbar.getValue("searchWrd") }
-		      , function(data, status, xhr){
-		    	  	//jsonAlert(data.list);
-		    	  	grid.attachEvent("onXLE", function(){
-		    			oProc.progressOff();
-		    		});
-		    	  	
-		    		grid.clearAll();
-		    		grid.parse(data.list, "json");
-		    		grid.setSelectedRow(0);
-		    		document.getElementById("activeStatusBar").innerHTML = "조회되었습니다";
-			    }
-		      , 'json'
-		 ).error(function(x,s,t) {httpError(x, s, t);});
-    }
-    
-	/**
-	 * layout a cell
-	 */
-    function fn_layout_a() {
-		var oProcA = oProc.cells("a");
-		oProcA.setWidth($(document).width() / 10 * 7);
-		oProcA.hideHeader();
-		
-		grid = oProcA.attachGrid();
-		grid.setIconsPath(dhtmlx.image_path);
-		
-		grid.setHeader("번호,템플릿명,템플릿구분,템플릿경로,사용여부,등록일자,템플릿 아이디");
-		grid.setColumnIds("no,tmplatNm,tmplatSeCodeNm,tmplatCours,useAt,frstRegisterPnttm,tmplatId");
-		grid.setInitWidths("100,150,150,*,100,100,100");
-		grid.setColAlign("center,center,center,center,center,center,center");
-		grid.setColTypes("ro,ro,ro,ro,ro,ro,ro");
-		grid.enableResizing("false,true,false,false,false,false,false");
-		grid.enableTooltips("false,false,false,false,false,false,false");
-		grid.setColSorting("str,str,str,str,str,str,str");
-		
-		grid.enableMultiselect("true"); 
-		grid.enableBlockSelection("false");
-		grid.enableUndoRedo();
-		grid.enableSmartRendering(true, 100);
-		
-		grid.setColumnHidden(6,true);
-		
-		grid.init();
-	
-		grid.attachEvent("onRowSelect", function(id, ind) {
-			updateFormData();
-			$.ajax({
-				url: "/whoya/cop/tpl/selectTemplateInf.do"
-				, data: {
-					tmplatId: grid.cells(id, 6).getValue()
-				}
-				, success: function(data, textStatus, jqXHR) {
-					form.setFormData(data);
-				}
-				, error: function(jqXHR, textStatus, errorThrown) {
-					console.log(jqXHR);
-					console.log(textStatus);
-					console.log(errorThrown);
-					alert(errorThrown);
-				}
-			});
-		});
-    }
-		
-	/**
-	 * layout a cell
-	 */
-	function fn_layout_b() {
-		var oProcB = oProc.cells("b");
-		oProcB.hideHeader();
-	}
-	
-    /**
-     * layout status bar
-     */
-    function fn_layout_statusbar() {
-		var main_status = oProc.attachStatusBar();
-		main_status.setText("<div><table><td id='activeImg'><img src='<c:url value="/dhtmlx/dhtmlx_pro_full/imgs/run_exc.gif" />'></td><td id='activeStatusBar' valign='middle'></td></table></div>"); 
-    }
-    
-    fn_toolbar();
-    fn_layout_a();
-    fn_layout_b();
-    fn_layout_statusbar();
+	});
 }
 
-$(document).ready(function() {
+// form event 생성
+function formEvent() {
+	getTmplatSeCode();
+	
+	whoyaGlobalData.bForm.attachEvent("onButtonClick", function(name) {
+		if ( name == "regBtn" ) {  // 등록
+			if ( confirm("저장하시겠습니까?") ) {
+				document.getElementById("activeStatusBar").innerHTML = "";
+				
+				var dpData = {
+					url: "<c:url value='/whoya/cop/tpl/insertTemplateInf.do' />"
+					, obj: whoyaGlobalData.bForm
+				};
+				whoyaGlobalData.dp = whoya.dhtmlx.dataProcessor(dpData);
+				
+				whoyaGlobalData.dp.attachEvent("onAfterUpdateFinish", function() {
+					alert("저장하였습니다.");
+					whoyaGlobalData.bForm = whoyaGlobalData.bCell.attachForm("");
+					search();
+				});
+				
+				whoyaGlobalData.dp.sendData();
+			}
+		} else if ( name == "uptBtn" ) {  // 수정
+			if ( confirm("저장하시겠습니까?") ) {
+				document.getElementById("activeStatusBar").innerHTML = "";
+				
+				var dpData = {
+					url: "<c:url value='/whoya/cop/tpl/updateTemplateInf.do' />"
+					, obj: whoyaGlobalData.bForm
+				};
+				whoyaGlobalData.dp = whoya.dhtmlx.dataProcessor(dpData);
+				
+				whoyaGlobalData.dp.attachEvent("onAfterUpdateFinish", function() {
+					alert("저장하였습니다.");
+					whoyaGlobalData.bForm = whoyaGlobalData.bCell.attachForm("");
+					search();
+				});
+				
+				whoyaGlobalData.dp.sendData();
+			}
+		}
+	});
+}
+// #######################################################################
+
+
+
+/**
+ * 조회버튼 클릭시
+ */
+function search() {
+	whoyaGlobalData.layout.progressOn();
+	whoyaGlobalData.aGrid.clearAll();
+	document.getElementById("activeStatusBar").innerHTML = "";
+
+	$.ajax({
+		url: "<c:url value='/whoya/cop/tpl/selectTemplateJSONInfs.do' />"
+		, data: {
+			searchCnd : whoyaGlobalData.combo.getSelectedValue()
+			, searchWrd : whoyaGlobalData.toolbar.getValue("searchWrd")
+		}
+		, dataType: "json"
+		, success: function(data, textStatus, jqXHR) {
+			whoyaGlobalData.aGrid.attachEvent("onXLE", function(){
+				whoyaGlobalData.layout.progressOff();
+    		});
+    	  	
+    	  	whoyaGlobalData.aGrid.clearAll();
+    	  	whoyaGlobalData.aGrid.parse(data.list, "json");
+    	  	whoyaGlobalData.aGrid.setSelectedRow(0);
+    		document.getElementById("activeStatusBar").innerHTML = "조회되었습니다";
+		}
+		, error: function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR);
+			console.log(textStatus);
+			console.log(errorThrown);
+			alert(errorThrown);
+		}
+	});
+}
+
+/**
+ * 탬플릿 구분 목록 가져오기.
+ */
+function getTmplatSeCode() {
+	$.ajax({
+		url: "<c:url value='/whoya/cop/tpl/selectTemplateCodeList.do' />"
+		, dataType: "json"
+		, data: {
+			codeId: "COM005"
+		}
+		, success: function(data, textStatus, jqXHR) {
+			var tmplatSeCode = whoyaGlobalData.bForm.getOptions("tmplatSeCode");
+			$.each(data, function() {
+				tmplatSeCode.add(new Option($(this)[0].codeNm, $(this)[0].code));
+			});
+		}
+		, error: function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR);
+			console.log(textStatus);
+			console.log(errorThrown);
+			alert(errorThrown);
+		}
+	});
+}
+
+$(function(document) {
 	init();
 });
 </script>
