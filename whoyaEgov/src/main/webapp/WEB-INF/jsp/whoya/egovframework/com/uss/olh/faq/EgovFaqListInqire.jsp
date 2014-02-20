@@ -207,6 +207,7 @@ function gridEvent() {
 	whoyaGlobalData.aGrid.attachEvent("onRowSelect", function(id, ind) {
 		// 화면 layout cell b에 dhtmlxForm 객체 생성.
 		whoyaGlobalData.bForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.bCellDetailFormData);
+		formEvent();
 		
 		$.ajax({
 			url: "<c:url value='/whoya/uss/olh/faq/FaqListDetailInqire.do' />"
@@ -215,7 +216,6 @@ function gridEvent() {
 			}
 			, success: function(data, textStatus, jqXHR) {
 				whoyaGlobalData.bForm.setFormData(data);
-				formEvent();
 			}
 			, error: function(jqXHR, textStatus, errorThrown) {
 				console.log(jqXHR);
@@ -263,6 +263,7 @@ function formEvent() {
 				, success: function(data, textStatus, jqXHR) {
 					// 화면 layout cell b에 dhtmlxForm 객체 생성.
 					whoyaGlobalData.bForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.bCellUpdateFormData);
+					formEvent();
 					
 					// atchFileAt(?)
 					if ( data.atchFileId ) {
@@ -272,7 +273,6 @@ function formEvent() {
 					}
 					
 					whoyaGlobalData.bForm.setFormData(data);
-					formEvent();
 				}
 				, error: function(jqXHR, textStatus, errorThrown) {
 					console.log(jqXHR);
