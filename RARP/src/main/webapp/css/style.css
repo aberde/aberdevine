@@ -671,6 +671,7 @@ input {
 	height:100%;
 	background:url(../images/login_bg.gif) repeat;
 	position:relative;
+	text-align: center;
 }
 .login02 {
 	width:800px;
