@@ -95,7 +95,6 @@ function fnForward(menu){
 </script>     
 </head>
 <body>
-<center>
 <div class="main01">
   <div class="map01 clear_both">
     <div class="map02 font10">차량사업소 선택</div>
@@ -106,6 +105,5 @@ function fnForward(menu){
     </a>
   </div>
 </div>
-</center>
 </body>
 </html>
