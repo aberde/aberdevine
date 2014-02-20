@@ -107,7 +107,7 @@ public class ACI0010Con extends MultiActionController {
 	    whoyaMap rows = new whoyaMap();
 	    whoyaMap cols = new whoyaMap();
 
-	    rows = data.dataProcess(request, response);
+	    rows = data.dataProcess(request);
 
 	    try {
     		for (int i = 0; i < ids.length; i++) {

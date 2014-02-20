@@ -97,7 +97,7 @@ public class WhoyaEgovBBSUseInfoManageController {
     		
     		whoyaDataProcess  data = new whoyaDataProcess();
     	    whoyaMap rows = new whoyaMap();
-    	    rows = data.dataProcess(request, response);
+    	    rows = data.dataProcess(request);
     	    
     		for (int i = 0; i < ids.length; i++) {
     			whoyaMap cols = (whoyaMap) rows.get(ids[i]);
@@ -182,7 +182,7 @@ public class WhoyaEgovBBSUseInfoManageController {
     		
     		whoyaDataProcess  data = new whoyaDataProcess();
     	    whoyaMap rows = new whoyaMap();
-    	    rows = data.dataProcess(request, response);
+    	    rows = data.dataProcess(request);
     	    
     		for (int i = 0; i < ids.length; i++) {
     			whoyaMap cols = (whoyaMap) rows.get(ids[i]);

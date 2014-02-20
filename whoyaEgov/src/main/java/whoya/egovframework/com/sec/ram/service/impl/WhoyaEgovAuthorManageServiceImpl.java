@@ -46,7 +46,7 @@ public class WhoyaEgovAuthorManageServiceImpl implements WhoyaEgovAuthorManageSe
 		
 	    whoyaDataProcess  data = new whoyaDataProcess();
 	    whoyaMap rows = new whoyaMap();
-	    rows = data.dataProcess(request, response);
+	    rows = data.dataProcess(request);
 	    
 		for (int i = 0; i < ids.length; i++) {
 			whoyaMap cols = (whoyaMap) rows.get(ids[i]);

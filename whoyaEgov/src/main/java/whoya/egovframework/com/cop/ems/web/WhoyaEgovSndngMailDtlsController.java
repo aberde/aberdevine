@@ -88,7 +88,7 @@ public class WhoyaEgovSndngMailDtlsController {
     		
     		whoyaDataProcess  data = new whoyaDataProcess();
     	    whoyaMap rows = new whoyaMap();
-    	    rows = data.dataProcess(request, response);
+    	    rows = data.dataProcess(request);
     	    
     	    String mssageId = "";
     	    String atchFileIdList = "";

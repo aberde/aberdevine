@@ -227,7 +227,7 @@ public class HRI0010Con extends MultiActionController {
 	    whoyaMap rows = new whoyaMap();
 	    whoyaMap cols = new whoyaMap();
 
-	    rows = data.dataProcess(request, response);
+	    rows = data.dataProcess(request);
 	    
 	    for (int i = 0; i < ids.length; i++) {
 		    cols = (whoyaMap) rows.get(ids[i]);

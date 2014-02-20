@@ -170,7 +170,7 @@ public class COI0010Con extends MultiActionController {
 		
 	    whoyaDataProcess  data = new whoyaDataProcess();
 	    whoyaMap rows = new whoyaMap();
-	    rows = data.dataProcess(request, response);
+	    rows = data.dataProcess(request);
 	    
 	    try {
 	    	int cnt = COI0010Service.COI0010Save(ids, rows);
