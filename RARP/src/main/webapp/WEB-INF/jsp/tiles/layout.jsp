@@ -891,7 +891,7 @@ $('#stDate').datepicker({
 	    beforeSelectRow : function (rowId) {
 			var rowIds = $("#gridBom").getDataIDs();
 			$.each(rowIds, function (index, value) {
-				if(rowId != value)
+// 				if(rowId != value)
 			    	$("#gridBom").collapseSubGridRow(value); 
 			});
 			return true;
