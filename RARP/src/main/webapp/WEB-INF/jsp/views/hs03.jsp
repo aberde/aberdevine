@@ -84,6 +84,11 @@ function fnSearchDataList(postdata)
 	{
 		postdata.PART_CD = $("#txtPart").val();
     }
+	// ##################################################
+	// ## 고장이력조회에서 하단 조회데이터 검색시 위수코드 제거(고장이력은 부품코스, 위수코드 둘다 검색 안함.)
+	// ##################################################
+    postdata.GRS_CD = "";
+	// ##################################################
 	var url = '${pageContext.request.contextPath}/hs/selectTrblList.do';
     $("#gridData").jqGrid('setGridParam', { url: url,datatype:'json',postData: postdata});
     $("#gridData").trigger("reloadGrid");
