@@ -110,6 +110,8 @@ public class WhoyaEgovSndngMailDtlsController {
     		sndngMailVO.setAtchFileIdList(atchFileIdList.substring(0, atchFileIdList.length() - 1));
     		// 1. 발송메일을 삭제한다.
     		sndngMailDtlsService.deleteSndngMailList(sndngMailVO);
+    		
+    		data.dataRefresh(request, response);
     	} catch ( Exception e ) {
     		e.printStackTrace();
     		throw e;

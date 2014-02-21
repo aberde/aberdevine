@@ -280,5 +280,7 @@ public class HRI0010Con extends MultiActionController {
 		    if (cols.get("!nativeeditor_status").equals("updated" ) ) { HRI0010Service.HRI0010Us(params); }   
 		    if (cols.get("!nativeeditor_status").equals("deleted" ) ) { HRI0010Service.HRI0010Ds(params); }  
 	    }
+	    
+	    data.dataRefresh(request, response);
 	}	
 }

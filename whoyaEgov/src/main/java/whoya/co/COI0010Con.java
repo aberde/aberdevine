@@ -178,6 +178,8 @@ public class COI0010Con extends MultiActionController {
 	    	if ( cnt == 0 ) {
 	    		throw new Exception("저장에 실패하였습니다.");
 	    	}
+	    	
+	    	data.dataRefresh(request, response);
 	    } catch ( Exception e ) {
 	    	e.printStackTrace();
 	    	throw e;
