@@ -517,7 +517,7 @@ public class EgovQnaManageController {
      * @return	"/uss/olh/qna/EgovQnaAnswerListInqire"
      * @throws Exception
      */
-    @IncludedInfo(name="Q&A답변관리", order = 551 ,gid = 50)
+    @IncludedInfo(name="Q&A답변관리", whoyaListUrl="/whoya/uss/olh/qnm/QnaAnswerListInqire.do", order = 551 ,gid = 50)
     @RequestMapping(value="/uss/olh/qnm/QnaAnswerListInqire.do")
     public String selectQnaAnswerList(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) throws Exception {
     	

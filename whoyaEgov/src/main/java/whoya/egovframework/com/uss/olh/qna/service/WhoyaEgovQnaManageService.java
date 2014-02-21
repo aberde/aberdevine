@@ -62,6 +62,29 @@ public interface WhoyaEgovQnaManageService {
 	 * @exception Exception
 	 */
     void updateQnaCn(QnaManageVO vo) throws Exception;
+	
+    /**
+	 * Q&A 답변 글 목록을 조회한다.
+	 * @param searchVO
+	 * @return 글 목록
+	 * @exception Exception
+	 */
+    List selectQnaAnswerList(QnaManageDefaultVO searchVO) throws Exception;
+  
+    /**
+	 * Q&A 답변 글을 조회한다.
+	 * @param vo
+	 * @return 조회한 글
+	 * @exception Exception
+	 */
+	QnaManageVO selectQnaAnswerListDetail(QnaManageVO vo) throws Exception;
+  
+	/**
+	* Q&A 답변 글을 수정한다.
+	* @param vo
+	* @exception Exception
+	*/
+	void updateQnaCnAnswer(QnaManageVO vo) throws Exception;
 //    
 //    /**
 //	 * Q&A 글 총 갯수를 조회한다.
@@ -72,22 +95,6 @@ public interface WhoyaEgovQnaManageService {
 //    int selectQnaListTotCnt(QnaManageDefaultVO searchVO);
 //    
 //    
-//    /**
-//	 * Q&A 답변 글을 조회한다.
-//	 * @param vo
-//	 * @return 조회한 글
-//	 * @exception Exception
-//	 */
-//	QnaManageVO selectQnaAnswerListDetail(QnaManageVO vo) throws Exception;
-//    
-//	
-//    /**
-//	 * Q&A 답변 글 목록을 조회한다.
-//	 * @param searchVO
-//	 * @return 글 목록
-//	 * @exception Exception
-//	 */
-//    List selectQnaAnswerList(QnaManageDefaultVO searchVO) throws Exception;
 //    
 //    /**
 //	 * Q&A 답변 글 총 갯수를 조회한다.
@@ -96,13 +103,6 @@ public interface WhoyaEgovQnaManageService {
 //	 * @exception
 //	 */
 //    int selectQnaAnswerListTotCnt(QnaManageDefaultVO searchVO);
-//            
-//	/**
-//	 * Q&A 답변 글을 수정한다.
-//	 * @param vo
-//	 * @exception Exception
-//	 */
-//    void updateQnaCnAnswer(QnaManageVO vo) throws Exception;
 //    
 //    
 }

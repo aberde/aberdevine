@@ -85,6 +85,35 @@ public class WhoyaEgovQnaManageServiceImpl extends AbstractServiceImpl implement
     public void updateQnaCn(QnaManageVO vo) throws Exception {
     	qnaManageService.updateQnaCn(vo);
     }
+  
+    /**
+	 * Q&A 답변 글 목록을 조회한다.
+	 * @param searchVO
+	 * @return 글 목록
+	 * @exception Exception
+	 */
+    public List selectQnaAnswerList(QnaManageDefaultVO searchVO) throws Exception {
+    	return qnaManageService.selectQnaAnswerList(searchVO);
+    }
+    
+    /**
+	 * Q&A 답변 글을 조회한다.
+	 * @param vo
+	 * @return 조회한 글
+	 * @exception Exception
+	 */
+    public QnaManageVO selectQnaAnswerListDetail(QnaManageVO vo) throws Exception {
+    	return qnaManageService.selectQnaAnswerListDetail(vo);
+    }
+	  
+	/**
+	* Q&A 답변 글을 수정한다.
+	* @param vo
+	* @exception Exception
+	*/
+	public void updateQnaCnAnswer(QnaManageVO vo) throws Exception {
+		qnaManageService.updateQnaCnAnswer(vo);
+	}
 //    @Resource(name="QnaManageDAO")
 //    private QnaManageDAO qnaManageDAO;
 //        
@@ -102,29 +131,6 @@ public class WhoyaEgovQnaManageServiceImpl extends AbstractServiceImpl implement
 //		return qnaManageDAO.selectQnaListTotCnt(searchVO);
 //	}
 //
-//    
-//    /**
-//	 * Q&A 답변 글을 조회한다.
-//	 * @param vo
-//	 * @return 조회한 글
-//	 * @exception Exception
-//	 */
-//    public QnaManageVO selectQnaAnswerListDetail(QnaManageVO vo) throws Exception {
-//        QnaManageVO resultVO = qnaManageDAO.selectQnaAnswerListDetail(vo);
-//        if (resultVO == null)
-//            throw processException("info.nodata.msg");
-//        return resultVO;
-//    }
-//    
-//    /**
-//	 * Q&A 답변 글 목록을 조회한다.
-//	 * @param searchVO
-//	 * @return 글 목록
-//	 * @exception Exception
-//	 */
-//    public List selectQnaAnswerList(QnaManageDefaultVO searchVO) throws Exception {
-//        return qnaManageDAO.selectQnaAnswerList(searchVO);
-//    }
 //
 //    /**
 //	 * Q&A 답변 글 총 갯수를 조회한다.
@@ -134,14 +140,5 @@ public class WhoyaEgovQnaManageServiceImpl extends AbstractServiceImpl implement
 //    public int selectQnaAnswerListTotCnt(QnaManageDefaultVO searchVO) {
 //		return qnaManageDAO.selectQnaListTotCnt(searchVO);
 //	}
-//            
-//	/**
-//	 * Q&A 답변 글을 수정한다.
-//	 * @param vo
-//	 * @exception Exception
-//	 */
-//    public void updateQnaCnAnswer(QnaManageVO vo) throws Exception {
-//    	qnaManageDAO.updateQnaCnAnswer(vo);    	
-//    }
     
 }
