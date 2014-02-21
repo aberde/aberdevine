@@ -82,3 +82,36 @@
     	$("#emplyrNm").val(emplyrNm);
     	whoyaGlobalData.emplyrPopupWindows.close();
 	};
+	
+	/**
+	 * 게시판 정보(팝업)에서 선택된 값 저장.
+	 * @pram bbsId 게시판 아이디
+	 * @pram bbsNm 게시판 명
+	 */
+	whoya.common.boardSelect = function(bbsId, bbsNm) {
+		whoyaGlobalData.bForm.setItemValue("bbsId", bbsId);
+    	$("#bbsNm").val(bbsNm);
+    	whoyaGlobalData.boardPopupWindows.close();
+	};
+
+	/**
+	 * 커뮤니티 정보(팝업)에서 선택된 값 저장.
+	 * @pram cmmntyId 커뮤니티 아이디
+	 * @pram cmmntyNm 커뮤니티 명
+	 */
+	whoya.common.communitySelect = function(cmmntyId, cmmntyNm) {
+		whoyaGlobalData.bForm.setItemValue("trgetId", cmmntyId);
+		whoyaGlobalData.bForm.setItemValue("trgetNm", cmmntyNm);
+		whoyaGlobalData.communityPopupWindows.close();
+	};
+
+	/**
+	 * 동호회 정보(팝업)에서 선택된 값 저장.
+	 * @pram clbId 동호회 아이디
+	 * @pram clbNm 동호회 명
+	 */
+	whoya.common.clulbSelect = function(clbId, clbNm) {
+		whoyaGlobalData.bForm.setItemValue("trgetId", clbId);
+		whoyaGlobalData.bForm.setItemValue("trgetNm", clbNm);
+		whoyaGlobalData.clubPopupWindows.close();
+	};
