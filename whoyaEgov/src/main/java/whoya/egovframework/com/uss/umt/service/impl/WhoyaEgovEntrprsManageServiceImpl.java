@@ -65,6 +65,8 @@ public class WhoyaEgovEntrprsManageServiceImpl extends AbstractServiceImpl imple
 		    	entrprsManageService.deleteEntrprsmber(checkedIdForDel);
 		    }
 		}
+		
+		data.dataRefresh(request, response);
 	}
 	
 	
