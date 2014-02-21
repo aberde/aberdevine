@@ -151,3 +151,18 @@
     	form += " <a href='#' onclick='emplyrPopup();return false;'><img src='" + whoya.context + "/images/egovframework/com/cmm/icon/search.gif' alt='search'></a>";
     	return form;
     };
+
+    /**
+     * <pre>
+     * 게시판 찾기(bbsId, bbsNm)
+     * @param name  // form의 name
+     * @param value  // form의 value
+     * </pre>
+     */
+    whoya.dhtmlx.form.format.boardInfo = function(name, value) {
+    	var form = "";
+    	form = "<input type='hidden' id='bbsId' class='dhxform_textarea' style='width: 150px;' />";
+    	form = "<input type='text' id='bbsNm' name='bbsNm' class='dhxform_textarea' style='width: 150px;' readonly='readonly' />";
+    	form += " <a href='#' onclick='boardPopup();return false;'><img src='" + whoya.context + "/images/egovframework/com/cmm/icon/search.gif' alt='search'></a>";
+    	return form;
+    };
