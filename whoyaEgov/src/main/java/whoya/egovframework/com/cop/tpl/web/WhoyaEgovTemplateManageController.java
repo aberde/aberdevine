@@ -198,6 +198,8 @@ public class WhoyaEgovTemplateManageController {
     				tmplatService.insertTemplateInf(templateInf);
     			}
     		}
+    		
+    		data.dataRefresh(request, response);
     	} catch ( Exception e ) {
     		e.printStackTrace();
     		throw e;
@@ -255,6 +257,8 @@ public class WhoyaEgovTemplateManageController {
     				tmplatService.updateTemplateInf(templateInf);
     			}
     		}
+    		
+    		data.dataRefresh(request, response);
     	} catch ( Exception e ) {
     		e.printStackTrace();
     		throw e;

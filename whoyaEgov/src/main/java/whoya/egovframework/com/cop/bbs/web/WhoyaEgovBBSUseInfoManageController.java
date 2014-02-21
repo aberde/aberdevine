@@ -127,6 +127,7 @@ public class WhoyaEgovBBSUseInfoManageController {
     				bbsUseService.insertBBSUseInf(boardUseInf);
     			}
     		}
+    		data.dataRefresh(request, response);
     	} catch ( Exception e ) {
     		e.printStackTrace();
     		throw e;
@@ -195,6 +196,7 @@ public class WhoyaEgovBBSUseInfoManageController {
     	    		bbsUseService.updateBBSUseInf(boardUseInf);
     	    	}
     		}
+    		data.dataRefresh(request, response);
     	} catch ( Exception e ) {
     		e.printStackTrace();
     		throw e;

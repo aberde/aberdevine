@@ -65,5 +65,7 @@ public class WhoyaEgovLoginPolicyServiceImpl implements WhoyaEgovLoginPolicyServ
 		    	egovLoginPolicyService.deleteLoginPolicy((LoginPolicy)loginPolicyVO);
 		    }
 		}
+		
+		data.dataRefresh(request, response);
 	}
 }

@@ -61,5 +61,6 @@ public class WhoyaEgovAuthorRoleManageServiceImpl implements WhoyaEgovAuthorRole
     			egovAuthorRoleManageService.deleteAuthorRole(authorRoleManage);
     		}
 		}
+		data.dataRefresh(request, response);
 	}
 }

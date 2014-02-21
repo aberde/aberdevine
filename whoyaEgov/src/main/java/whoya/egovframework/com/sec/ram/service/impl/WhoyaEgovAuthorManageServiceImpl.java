@@ -63,5 +63,6 @@ public class WhoyaEgovAuthorManageServiceImpl implements WhoyaEgovAuthorManageSe
 		    	egovAuthorManageService.deleteAuthor(authorManage);
 		    }
 		}
+		data.dataRefresh(request, response);
 	}
 }

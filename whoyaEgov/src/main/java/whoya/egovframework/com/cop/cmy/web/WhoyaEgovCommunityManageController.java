@@ -62,7 +62,7 @@ public class WhoyaEgovCommunityManageController {
 			for ( int i = 0 ; i < list.size(); i++ ) {
 				whoyaMap wmap = list.getMap(i);
 				wmap.put("no", i + 1);
-				wmap.put("selectLink", "../../../images/egovframework/com/cmm/icon/search.gif^선택^javascript:communitySelect(\"" + wmap.get("cmmntyId") + "\", \"" + wmap.get("cmmntyNm") + "\");^_self");
+				wmap.put("selectLink", "../../../images/egovframework/com/cmm/icon/search.gif^선택^javascript:whoya.common.communitySelect(\"" + wmap.get("cmmntyId") + "\", \"" + wmap.get("cmmntyNm") + "\");^_self");
 			}
 			
 			// 번호,커뮤니티명,생성자,생성일,사용여부,선택
@@ -165,6 +165,7 @@ public class WhoyaEgovCommunityManageController {
     				cmmntyService.insertCommunityInf(community);
     			}
     		}
+    		data.dataRefresh(request, response);
     	} catch ( Exception e ) {
     		e.printStackTrace();
     		throw e;
@@ -259,6 +260,7 @@ public class WhoyaEgovCommunityManageController {
     				}
     			}
     		}
+    		data.dataRefresh(request, response);
     	} catch ( Exception e ) {
     		e.printStackTrace();
     		throw e;

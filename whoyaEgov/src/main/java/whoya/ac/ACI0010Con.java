@@ -126,6 +126,7 @@ public class ACI0010Con extends MultiActionController {
 		    	if (cols.get("!nativeeditor_status").equals("updated" ) ) { ACI0010Service.ACI0010Uu(params); }   
 		    	if (cols.get("!nativeeditor_status").equals("deleted" ) ) { ACI0010Service.ACI0010Ud(params); }  
     		}
+    		data.dataRefresh(request, response);
 	    }	 catch(NumberFormatException e){
 	    		System.out.println("@@@@@@@@@@@@@@@@@@@>"+e+"<@@@@@@@@@@@@@@@@@@@");
 	    		throw e;

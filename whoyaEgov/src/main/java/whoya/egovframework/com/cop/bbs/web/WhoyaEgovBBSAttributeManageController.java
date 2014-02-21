@@ -137,7 +137,7 @@ public class WhoyaEgovBBSAttributeManageController {
 			for ( int i = 0 ; i < list.size(); i++ ) {
 				whoyaMap wmap = list.getMap(i);
 				wmap.put("no", i + 1);
-				wmap.put("selectLink", "../../../images/egovframework/com/cmm/icon/search.gif^선택^javascript:boardSelect(\"" + wmap.get("bbsId") + "\", \"" + wmap.get("bbsNm") + "\");^_self");
+				wmap.put("selectLink", "../../../images/egovframework/com/cmm/icon/search.gif^선택^javascript:whoya.common.boardSelect(\"" + wmap.get("bbsId") + "\", \"" + wmap.get("bbsNm") + "\");^_self");
 			}
 			
 			// 번호,게시판명,게시판유형,게시판속성,생성일,사용여부
@@ -187,6 +187,7 @@ public class WhoyaEgovBBSAttributeManageController {
     			    bbsAttrbService.insertBBSMastetInf(boardMaster);
     			}
     		}
+    		data.dataRefresh(request, response);
     	} catch ( Exception e ) {
     		e.printStackTrace();
     		throw e;
@@ -244,6 +245,7 @@ public class WhoyaEgovBBSAttributeManageController {
     			    bbsAttrbService.updateBBSMasterInf(boardMaster);
     			}
     		}
+    		data.dataRefresh(request, response);
     	} catch ( Exception e ) {
     		e.printStackTrace();
     		throw e;
@@ -281,6 +283,7 @@ public class WhoyaEgovBBSAttributeManageController {
     			    bbsAttrbService.deleteBBSMasterInf(boardMaster);
     			}
     		}
+    		data.dataRefresh(request, response);
     	} catch ( Exception e ) {
     		e.printStackTrace();
     		throw e;
