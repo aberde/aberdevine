@@ -21,7 +21,10 @@ import whoya.whoyaMap;
 import whoya.common.Common;
 import whoya.common.commonReturn;
 import whoya.egovframework.com.uss.olh.qna.service.WhoyaEgovQnaManageService;
+import egovframework.com.cmm.ComDefaultCodeVO;
 import egovframework.com.cmm.LoginVO;
+import egovframework.com.cmm.service.CmmnDetailCode;
+import egovframework.com.cmm.service.EgovCmmUseService;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.com.uss.olh.qna.service.QnaManageDefaultVO;
 import egovframework.com.uss.olh.qna.service.QnaManageVO;
@@ -36,13 +39,16 @@ public class WhoyaEgovQnaManageController {
 
 	@Resource(name = "WhoyaQnaManageService")
 	private WhoyaEgovQnaManageService qnaManageService;
+  
+	@Resource(name="EgovCmmUseService")
+	private EgovCmmUseService cmmUseService;
 	
 	/**
 	 * Q&A관리 화면
 	 * @return ModelAndView
 	 */
 	@RequestMapping(value="/whoya/uss/olh/qna/QnaListInqire.do")
-	public ModelAndView selectFaqList() {
+	public ModelAndView selectQnaist() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("whoya/egovframework/com/uss/olh/qna/EgovQnaListInqire");
 		return mav;
@@ -264,6 +270,120 @@ public class WhoyaEgovQnaManageController {
 		
 		return result;
 	}
+	
+	/**
+	 * Q&A답변관리 화면
+	 * @return ModelAndView
+	 */
+	@RequestMapping(value="/whoya/uss/olh/qnm/QnaAnswerListInqire.do")
+	public ModelAndView selectQnaAnswerList() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("whoya/egovframework/com/uss/olh/qna/EgovQnaAnswerListInqire");
+		return mav;
+	}
+	
+	/**
+     * Q&A답변정보 목록을 조회한다.
+     * @param searchVO
+     * @param model
+     * @return	"/uss/olh/qna/EgovQnaAnswerListInqire"
+     * @throws Exception
+     */
+	@RequestMapping(value="/whoya/uss/olh/qnm/QnaAnswerListInqireJSON.do")
+	public @ResponseBody JSONObject selectQnaAnswerListJSON(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) throws Exception {
+		JSONObject resultList = new JSONObject();
+		
+		try {
+			searchVO.setPageIndex(0);
+			List QnaAnswerList = qnaManageService.selectQnaAnswerList(searchVO);
+			whoyaList list = new whoyaList(Common.ConverObjectToWhoyaMap(QnaAnswerList));
+			
+			// 번호 컬럼 추가.
+			// TODO 수정필요 list목록이 많아지면 속도저하 whoyaLib에서 whoyaRenderGrid호출시 같이 처리되도록 해야됨.(aberdevine)  
+			for ( int i = 0 ; i < list.size(); i++ ) {
+				whoyaMap wmap = list.getMap(i);
+				wmap.put("no", i + 1);
+				String writngDe = (String)wmap.get("writngDe");
+				wmap.put("writngDe", writngDe.substring(0, 4) + "-" + writngDe.substring(4, 6) + "-" + writngDe.substring(6));
+			}
+
+			// 순번,질문제목,작성자,진행상태,조회수,작성일자,qaId
+		 	resultList.put("list", whoyaLib.whoyaRenderGrid(list, "no,qestnSj,wrterNm,qnaProcessSttusCodeNm,inqireCo,writngDe,qaId"));
+		 	resultList.put("status", commonReturn.SUCCESS);
+		 	resultList.put("message", "조회되었습니다");
+		} catch(Exception e) {
+			resultList.put("status", commonReturn.FAIL);
+			resultList.put("message", e.getMessage());
+			throw e;
+		}
+		
+		return resultList;
+	}
+  
+	/**
+     * Q&A답변정보 목록에 대한 상세정보를 조회한다.
+     * @param qnaManageVO
+     * @param searchVO
+     * @param model
+     * @return	QnaManageVO
+     * @throws Exception
+     */
+	@RequestMapping("/whoya/uss/olh/qnm/QnaAnswerDetailInqire.do")
+	public @ResponseBody QnaManageVO selectQnaAnswerListDetail(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) throws Exception {
+		try {
+			QnaManageVO vo = qnaManageService.selectQnaListDetail(qnaManageVO);
+			return vo;
+		} catch ( Exception e ) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	/**
+	 * 진행처리상태 목록을 조회한다.
+	 * @param boardMasterVO BoardMasterVO
+	 * @param model ModelMap
+	 * @return JSONObject
+	 * @exception Exception
+	 */
+	@RequestMapping(value="/whoya/uss/olh/qnm/selectQnaProcessSttusCodeList.do", headers="Accept=application/json")
+	public @ResponseBody List<CmmnDetailCode> selectQnaProcessSttusCodeList(ComDefaultCodeVO comDefaultCodeVO) throws Exception {
+		List<CmmnDetailCode> codeResult = null;
+		try {
+			codeResult = cmmUseService.selectCmmCodeDetail(comDefaultCodeVO);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+		return codeResult;
+	}
+	
+	/**
+     * Q&A답변정보를 수정처리한다.
+     * @param qnaManageVO
+     * @param searchVO
+     * @return	"forward:/uss/olh/qnm/QnaAnswerListInqire.do"
+     * @throws Exception
+     */
+	@RequestMapping("/whoya/uss/olh/qnm/QnaCnAnswerUpdt.do")
+	public @ResponseBody JSONObject updateQnaCnAnswer(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO) throws Exception {
+		JSONObject result = new JSONObject();
+		try {
+			// 로그인VO에서  사용자 정보 가져오기
+		  	LoginVO	loginVO = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+		  	String	lastUpdusrId = loginVO.getUniqId();
+		  	qnaManageVO.setLastUpdusrId(lastUpdusrId);    	// 최종수정자ID
+		  	qnaManageService.updateQnaCnAnswer(qnaManageVO);
+			result.put("status", commonReturn.SUCCESS);
+		} catch ( Exception e ) {
+			result.put("status", commonReturn.FAIL);
+			e.printStackTrace();
+			throw e;
+		}
+		
+		return result;
+	}
 //	 
 //
 //	protected Log log = LogFactory.getLog(this.getClass());
@@ -272,9 +392,6 @@ public class WhoyaEgovQnaManageController {
 //    /** EgovPropertyService */
 //    @Resource(name = "propertiesService")
 //    protected EgovPropertyService propertiesService;
-//    
-//	@Resource(name="EgovCmmUseService")
-//	private EgovCmmUseService cmmUseService;
 //        
 //	/** EgovMessageSource */
 //    @Resource(name="egovMessageSource")
@@ -423,62 +540,6 @@ public class WhoyaEgovQnaManageController {
 //                        
 //    }    
 //
-//    /**
-//     * Q&A답변정보 목록을 조회한다. (pageing)
-//     * @param searchVO
-//     * @param model
-//     * @return	"/uss/olh/qna/EgovQnaAnswerListInqire"
-//     * @throws Exception
-//     */
-//    @IncludedInfo(name="Q&A답변관리", order = 551 ,gid = 50)
-//    @RequestMapping(value="/uss/olh/qnm/QnaAnswerListInqire.do")
-//    public String selectQnaAnswerList(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) throws Exception {
-//    	
-//    	/** EgovPropertyService.SiteList */
-//    	searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
-//    	searchVO.setPageSize(propertiesService.getInt("pageSize"));
-//    	
-//    	/** pageing */
-//    	PaginationInfo paginationInfo = new PaginationInfo();
-//		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
-//		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
-//		paginationInfo.setPageSize(searchVO.getPageSize());
-//		
-//		searchVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
-//		searchVO.setLastIndex(paginationInfo.getLastRecordIndex());
-//		searchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-//		
-//        List QnaAnswerList = qnaManageService.selectQnaAnswerList(searchVO);
-//        model.addAttribute("resultList", QnaAnswerList);
-//        
-//        int totCnt = qnaManageService.selectQnaAnswerListTotCnt(searchVO);
-//		paginationInfo.setTotalRecordCount(totCnt);
-//        model.addAttribute("paginationInfo", paginationInfo);
-//        
-//        return "egovframework/com/uss/olh/qna/EgovQnaAnswerListInqire";
-//    } 
-//    
-//    /**
-//     * Q&A답변정보 목록에 대한 상세정보를 조회한다.
-//     * @param qnaManageVO
-//     * @param searchVO
-//     * @param model
-//     * @return	"/uss/olh/qna/EgovQnaAnswerDetailInqire"
-//     * @throws Exception
-//     */
-//    @RequestMapping("/uss/olh/qnm/QnaAnswerDetailInqire.do")
-//    public String	selectQnaAnswerListDetail(
-//    		QnaManageVO qnaManageVO,
-//            @ModelAttribute("searchVO") QnaManageDefaultVO searchVO,
-//            ModelMap model) throws Exception {  
-//    	    	
-//		QnaManageVO vo = qnaManageService.selectQnaListDetail(qnaManageVO);
-//		
-//		model.addAttribute("result", vo);
-//			
-//        return	"egovframework/com/uss/olh/qna/EgovQnaAnswerDetailInqire";
-//    }
-//
 //        
 //    /**
 //     * Q&A답변정보를 수정하기 위한 전 처리(공통코드 처리)        
@@ -506,32 +567,6 @@ public class WhoyaEgovQnaManageController {
 //        model.addAttribute(selectQnaAnswerListDetail(qnaManageVO, searchVO, model));
 //        
 //        return "egovframework/com/uss/olh/qna/EgovQnaCnAnswerUpdt";
-//    }
-//
-//    /**
-//     * Q&A답변정보를 수정처리한다.          
-//     * @param qnaManageVO
-//     * @param searchVO
-//     * @return	"forward:/uss/olh/qnm/QnaAnswerListInqire.do"
-//     * @throws Exception
-//     */
-//    @RequestMapping("/uss/olh/qnm/QnaCnAnswerUpdt.do")
-//    public String updateQnaCnAnswer(
-//            QnaManageVO qnaManageVO,
-//            @ModelAttribute("searchVO") QnaManageDefaultVO searchVO) 
-//            throws Exception {
-//    	    	
-//    	// 로그인VO에서  사용자 정보 가져오기
-//    	LoginVO	loginVO = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
-//    	
-//    	String	lastUpdusrId = loginVO.getUniqId();
-//    	    	
-//    	qnaManageVO.setLastUpdusrId(lastUpdusrId);    	// 최종수정자ID
-//    	
-//    	qnaManageService.updateQnaCnAnswer(qnaManageVO);
-//            	        
-//        return "forward:/uss/olh/qnm/QnaAnswerListInqire.do";
-//        
 //    }
 //
 	
