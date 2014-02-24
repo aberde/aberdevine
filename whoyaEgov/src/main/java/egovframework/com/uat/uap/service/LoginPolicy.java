@@ -11,8 +11,11 @@
 
 package egovframework.com.uat.uap.service;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import egovframework.com.cmm.ComDefaultVO;
 
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_DEFAULT)
 public class LoginPolicy extends ComDefaultVO {
 
     /**
