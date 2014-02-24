@@ -37,8 +37,45 @@ public class WhoyaEgovAuthorManageServiceImpl implements WhoyaEgovAuthorManageSe
     }
     
     /**
-	 * 권한관리 등록/수정/삭제한다.
-	 * @param ids 등록/수정/삭제 할 데이터 키.
+	 * 권한을 조회한다.
+	 * @param authorManageVO AuthorManageVO
+	 * @return AuthorManageVO
+	 * @exception Exception
+	 */
+    public AuthorManageVO selectAuthor(AuthorManageVO authorManageVO) throws Exception {
+    	return egovAuthorManageService.selectAuthor(authorManageVO);
+    }
+    
+    /**
+	 * 권한을 등록한다.
+	 * @param authorManage AuthorManage
+	 * @exception Exception
+	 */
+    public void insertAuthor(AuthorManage authorManage) throws Exception {
+    	egovAuthorManageService.insertAuthor(authorManage);
+    }
+
+    /**
+	 * 권한을 수정한다.
+	 * @param authorManage AuthorManage
+	 * @exception Exception
+	 */
+    public void updateAuthor(AuthorManage authorManage) throws Exception {
+    	egovAuthorManageService.updateAuthor(authorManage);
+    }
+
+    /**
+	 * 권한을 삭제한다.
+	 * @param authorManage AuthorManage
+	 * @exception Exception
+	 */
+    public void deleteAuthor(AuthorManage authorManage) throws Exception {
+    	egovAuthorManageService.deleteAuthor(authorManage);
+    }
+    
+    /**
+	 * 권한관리 다중 삭제한다.
+	 * @param ids 삭제 할 데이터 키.
 	 * @param rows 데이터.
 	 */
 	public void saveAuthor(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -53,12 +90,6 @@ public class WhoyaEgovAuthorManageServiceImpl implements WhoyaEgovAuthorManageSe
 			AuthorManage authorManage = new AuthorManage();
 			authorManage = (AuthorManage)Common.convertWhoyaMapToObject(cols, authorManage);
 		    
-			if (cols.get("!nativeeditor_status").equals("inserted") ) {
-		    	egovAuthorManageService.insertAuthor(authorManage);
-		    }
-		    if (cols.get("!nativeeditor_status").equals("updated" ) ) {
-		    	egovAuthorManageService.updateAuthor(authorManage);
-		    }
 		    if (cols.get("!nativeeditor_status").equals("deleted" ) ) {
 		    	egovAuthorManageService.deleteAuthor(authorManage);
 		    }

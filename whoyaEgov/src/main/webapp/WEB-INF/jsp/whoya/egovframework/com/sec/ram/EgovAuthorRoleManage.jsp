@@ -10,127 +10,174 @@
 <jsp:include page="/WEB-INF/jsp/whoya/include/header.jsp" />
 
 <script type="text/javascript">
+/**
+ * 전역변수로 사용할 데이터
+ * JSON형식의 데이터
+ *   layout: layout  // dhtmlXLayoutObject 객체
+ *   toolbar: toolbar // dhtmlXLayoutObject의 toolbar 객체
+ *   aCell: aCell  // dhtmlXLayoutObject의 cell 객체 'a'
+ *   aGrid: aGrid  // dhtmlXLayoutObject의 cell 객체 'a'의 dhtmlxGrid 객체
+ *   bCell: bCell  // dhtmlXLayoutObject의 cell 객체 'b'
+ *   bForm: bForm  // dhtmlXLayoutObject의 cell 객체 'b'의 dhtmlxForm 객체
+ *   bCellRegFormData: bCellRegFormData  // dhtmlxForm의 UI데이터
+ *   bCellDetailFormData: bCellDetailFormData  // dhtmlxForm의 UI데이터
+ *   bCellUpdateFormData: bCellUpdateFormData  // dhtmlxForm의 UI데이터
+ *   statusbar: statusbar  // statusbar 객체
+ *   combo: combo  //  dhtmlXCombo 객체
+ */
+var whoyaGlobalData = {};
+
 function init() {
-	dhtmlx.image_path = "<c:url value='/dhtmlx/dhtmlx_pro_full/imgs/'/>";
-    var oProc = new dhtmlXLayoutObject(document.body, "1C");
+	// #########################################
+	// ## 레이아웃생성
+	// #########################################
+	var layoutData = {
+		layout_Pattern: "1C"
+	};
+	whoyaGlobalData.layout = whoya.dhtmlx.layout.init(layoutData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## 툴바 생성
+	// #########################################
+	var toolbarData = {
+		layout: whoyaGlobalData.layout
+	};
+	whoyaGlobalData.toolbar = whoya.dhtmlx.layout.toolbar.init(toolbarData);
+	whoyaGlobalData.toolbar.addText("lbl_searchKeyword", 1, "권한코드");
+	whoyaGlobalData.toolbar.addInput("searchKeyword", 2, "${param.authorCode}", 200);
 
-	toolbar = oProc.attachToolbar(); /*툴바*/
-	toolbar.setIconsPath(dhtmlx.image_path);
+	// toolbar의 Button정의
+	var toolbarAddButton = {
+		toolbar: whoyaGlobalData.toolbar
+		, btn_Append: false
+		, btn_Delete: false
+		, btn_Undo: false
+		, btn_Print: false
+		, btn_Excel: false
+	};
+	whoya.dhtmlx.layout.toolbar.addButton(toolbarAddButton);
+	toolbarEvent();
+	// #########################################
 
-	toolbar.addText("lbl_searchKeyword", 1, "권한코드");
-	toolbar.addInput("searchKeyword", 2, "${param.authorCode}", 80);
-	toolbar.addSeparator("button_Separator", 3);
-	toolbar.disableItem("searchKeyword");
-
-	comToolbarButton(toolbar);
 	
-	toolbar.attachEvent("onClick", function(id){
-		if(id == "btn_Open"){
-			select();
-		}
-		if(id == "btn_Append"){ 
-			if(grid.getRowIndex(grid.getSelectedRowId()) < 0){ grid.addRow(grid.getUID());}
-           	else { grid.addRowAfter(grid.getUID(), "", grid.getSelectedRowId());}
-		}	
-		if(id == "btn_Delete"){
-			grid.deleteSelectedRows();
-			grid.selectRow(i,false,false,false);
-		}
-		if(id == "btn_Undo"){
-			grid.doUndo("Undo");
-		}
-		if(id == "btn_Save"){ /* 저장 */
-			document.getElementById("activeStatusBar").innerHTML = "";
-			DataProcessor.sendData();
-		}		
-		if(id == "btn_Print"){ grid.printView();}
-    });	
-	var oProcA = oProc.cells("a");
-	oProcA.hideHeader();
+	// #########################################
+	// ## layout cell a 
+	// #########################################
+	var aCellData = {
+		layout: whoyaGlobalData.layout
+	};
+	// 화면 layout의 해당 cell 정의 
+	whoyaGlobalData.aCell = whoya.dhtmlx.layout.cell.init(aCellData);
+	// #########################################
 	
-	var grid = oProcA.attachGrid();
-	grid.setIconsPath(dhtmlx.image_path);
 	
-	grid.setHeader("롤 ID,롤 명,롤 타입,롤 Sort,롤 설명,등록일자,등록여부,권한코드,롤 패턴");
-	grid.setColumnIds("roleCode,roleNm,roleTyp,roleSort,roleDc,creatDt,regYn,authorCode,rolePtn");
-	grid.setInitWidths("150,150,150,150,*,150,150,0,0");
-	grid.setColAlign("center,center,center,center,center,center,center,center,center");
-	grid.setColTypes("ed,ed,ed,ed,ed,ed,ed,ed,ed");
-	grid.enableResizing("false,true,false,false,false,false,false,false,false");
-	grid.enableTooltips("false,false,false,false,false,false,false,false,false");
-	grid.setColSorting("str,str,str,str,str,str,str,str,str");
+	// #########################################
+	// ## layout cell a에 grid생성
+	// #########################################
+	var aCellGridData = {
+		cell: whoyaGlobalData.aCell
+		, setHeader: "롤 ID,롤 명,롤 타입,롤 Sort,롤 설명,등록일자,등록여부,권한코드,롤 패턴"
+		, setColumnIds: "roleCode,roleNm,roleTyp,roleSort,roleDc,creatDt,regYn,authorCode,rolePtn"
+		, setInitWidths: "150,150,150,150,*,150,150,0,0"
+		, setColAlign: "center,center,center,center,center,center,center,center,center"
+		, setColTypes: "ro,ro,ro,ro,ro,ro,ed,ro,ro"
+		, enableResizing: "false,false,false,false,false,false,false,false"
+		, enableTooltips: "false,false,false,false,false,false,false,false"
+		, setColSorting: "str,str,false,false,false,false,false,false"
+		, setColumnHidden: [
+			{ id: 7 },
+			{ id: 8 }
+		]
+	};
+	// 화면 layout cell a에 dhtmlxGrid 객체 생성.
+	whoyaGlobalData.aGrid = whoya.dhtmlx.layout.cell.grid(aCellGridData);
+	// #########################################
 	
-	grid.setColumnHidden(7,true);
-	grid.setColumnHidden(8,true);
 	
-	grid.enableMultiselect("true"); 
-	grid.enableBlockSelection("false")
-	grid.enableUndoRedo();
-	grid.enableSmartRendering(true, 100);
+	// #########################################
+	// ## dataProcessor생성
+	// #########################################
+	var dpData = {
+		url: "<c:url value='/whoya/sec/ram/saveAuthorRole.do' />"
+		, obj: whoyaGlobalData.aGrid
+	};
+	whoyaGlobalData.dp = whoya.dhtmlx.dataProcessor(dpData);
 	
-	//grid.enablePaging(true, 10, 2, "activeStatusBar");
-	//grid.setPagingSkin("toolbar","dhx_skyblue");
-
-	grid.init();
-	//grid.enableRowsHover(true,'grid_hover');
-	//grid.enableLightMouseNavigation(true);
-	//grid.enableKeyboardSupport(true);
-	//grid.loadXML("/whoya/dhtmlx/data/accountCode.xml");
-
-	grid.attachEvent("onKeyPress", function(code, ctrl, shift){                        
-		//comKeyPress(grid, code, ctrl, shift, ",,,,0,,1");	
-    });    
-	DataProcessor = new dataProcessor("saveAuthorRole.do");
-	DataProcessor.setTransactionMode("POST", true);
-	DataProcessor.setUpdateMode("off");
-	DataProcessor.enableDataNames(true);
-	//DataProcessor.enablePartialDataSend(true);
-	DataProcessor.init(grid);
-	
-	DataProcessor.attachEvent("onAfterUpdateFinish", function() {
-	    log("onAfterUpdateFinish", arguments);
-	    return true;
+	whoyaGlobalData.dp.attachEvent("onAfterUpdateFinish", function() {
+		alert("저장하였습니다.");
+		search();
 	});
+	// #########################################
 	
-	function log(message, args) {
-	    var div = document.createElement("div");
-	    for (var i = 0; i < 3; i++) {
-	        message += "<li>" + args[i];
-	    };
-	    alert('aaaaaa', message);
-	    message += "<br/>";
-	    div.innerHTML = message;
-	    document.getElementById('zoneA').appendChild(div);
-	}
-
-	var main_status = oProc.attachStatusBar();
-	main_status.setText("<div><table><td id='activeImg'><img src='<c:url value="/dhtmlx/dhtmlx_pro_full/imgs/run_exc.gif" />'></td><td id='activeStatusBar' valign='middle'></td></table></div>");
 	
-	function select() {
-		oProc.progressOn();
-		grid.clearAll();
-		document.getElementById("activeStatusBar").innerHTML = "";
-		$.post( 'EgovAuthorRoleJSONList.do'
-			  , { searchKeyword : toolbar.getValue("searchKeyword") }
-		      , function(data, status, xhr){
-		    	  	//jsonAlert(data.list);
-		    	  	grid.attachEvent("onXLE", function(){
-		    			oProc.progressOff();
-		    		});
-		    	  	
-		    		grid.clearAll();
-		    		grid.parse(data.list, "json");
-		    		grid.setSelectedRow(0);
-		    		document.getElementById("activeStatusBar").innerHTML = "조회되었습니다";
-			    }
-		      , 'json'
-		 ).error(function(x,s,t) {httpError(x, s, t);});
-	}
-	
-	select();
+	// #########################################
+	// ## layout에 statusbar 생성
+	// #########################################
+	var statusbarData = {
+		layout: whoyaGlobalData.layout	
+	};
+	whoyaGlobalData.statusbar = whoya.dhtmlx.statusbar(statusbarData);
+	// #########################################
 }
 
-$(document).ready(function() {
+
+// #######################################################################
+// ## event 생성
+// #######################################################################
+// toolbar event 생성
+function toolbarEvent() {
+	whoyaGlobalData.toolbar.attachEvent("onClick", function(id) {
+		if(id == "btn_Open"){
+			search();
+		}
+		if(id == "btn_Save"){
+			if ( confirm("저장하시겠습니까?") ) {
+				whoyaGlobalData.dp.sendData();
+			}
+		}
+    });
+}
+
+// #######################################################################
+
+
+/**
+ * 조회버튼 클릭시
+ */
+function search() {
+	whoyaGlobalData.layout.progressOn();
+	whoyaGlobalData.aGrid.clearAll();
+	document.getElementById("activeStatusBar").innerHTML = "";
+
+	$.ajax({
+		url: "<c:url value='/whoya/sec/ram/EgovAuthorRoleJSONList.do' />"
+		, data: {
+			searchKeyword : whoyaGlobalData.toolbar.getValue("searchKeyword")
+		}
+		, dataType: "json"
+		, success: function(data, textStatus, jqXHR) {
+			whoyaGlobalData.aGrid.attachEvent("onXLE", function(){
+				whoyaGlobalData.layout.progressOff();
+    		});
+    	  	
+    	  	whoyaGlobalData.aGrid.clearAll();
+    	  	whoyaGlobalData.aGrid.parse(data.list, "json");
+    	  	whoyaGlobalData.aGrid.setSelectedRow(0);
+    		document.getElementById("activeStatusBar").innerHTML = "조회되었습니다";
+		}
+		, error: function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR);
+			console.log(textStatus);
+			console.log(errorThrown);
+			alert(errorThrown);
+		}
+	});
+}
+
+
+$(function(document) {
 	init();
 });
 </script>
