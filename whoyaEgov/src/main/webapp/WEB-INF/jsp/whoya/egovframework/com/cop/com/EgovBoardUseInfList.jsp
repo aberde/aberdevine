@@ -170,7 +170,7 @@ function init() {
 					{ type: "radio", label: "사용중지", name: "useAt", value: "N" }
   				] },
 				{ type: "template", label: "제공 URL", name: "provdUrl", value: "", format: whoya.dhtmlx.form.format.printData },
-				{ type: "button", name: "uptBtn", value: "등록" }
+				{ type: "button", name: "uptBtn", value: "수정" }
 			] }
    		]
 	};
