@@ -5,14 +5,77 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>::3D PLM 기반 스마트 철도차량 유지보수 시스템::</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+
+<style type="text/css">
+/* 스타일시트 link제거. map과 충돌. */
+html {
+	width:100%;
+	height:100%
+}
+body {
+	line-height:1;
+	background-color:#eee;
+	font-family:NanumGothic;
+	width:100%;
+	height:100%;
+	font-size:16px;
+	min-width:1920px
+}
+.main01 {
+	width:100%;
+	height:100%;
+	background:url(../images/login_bg.gif) repeat;
+	position:relative;
+	text-align: center;
+}
+/* 140106 지도 */
+.map01 {
+	width:90%;
+	height:90%;
+	margin:0 auto
+}
+.clear_both {
+	zoom:1;
+}
+.map02 {
+	background:#004871;
+	margin:50px 0 20px 0;
+	padding:10px;
+	text-align:left;
+}
+.map03 {
+	width:100%;
+	height:90%;
+	border:#aaa 1px solid
+}
+.map04 {
+	margin-top:10px
+}
+.font10 {
+	font-size:1.700em;
+	color:#fff;
+}
+.btn01 {
+	width:98px;
+	height:22px;
+	background:#327abb;
+	text-align:center;
+	border:#00417d 1px solid;
+	font-size:14px;
+	color:#fff;
+	padding:4px 0 0 0
+}
+.float_right {
+	float:right
+}
+</style>
 <script src="${pageContext.request.contextPath}/js/jquery-1.9.1.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.3.custom.js"></script>
 <script src="${pageContext.request.contextPath}/grid/js/i18n/grid.locale-kr.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}grid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
-<SCRIPT language="JavaScript" type="text/javascript" src="http://map.vworld.kr/js/vworldMapInit.js.do?apiKey=4BAAB4E4-05F1-3AC2-8159-F7E66C72EFBB"></SCRIPT>
+<script type="text/javascript" src="http://map.vworld.kr/js/vworldMapInit.js.do?apiKey=4BAAB4E4-05F1-3AC2-8159-F7E66C72EFBB"></script>
 </head> 
-<script type="text/javaScript" language="javascript">
+<script type="text/javaScript">
 <!--
 function fnForward(menu){
 
@@ -28,9 +91,6 @@ function fnForward(menu){
 }
 //-->
 </script>
- <style type="text/css">
-
- </style>
 <script type="text/javascript">
 	var testMarker = null;
 	var map = null;  
