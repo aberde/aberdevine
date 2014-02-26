@@ -113,7 +113,7 @@ function fnForward(menu){
    
 	function addMarker(lon, lat, message, icon){
 		var marker = new vworld.Marker(lon, lat,message,"");
-        var imgurl = "http://192.168.0.211:8010/rarp/images/icon_train"+icon+".png";
+        var imgurl = "http://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/images/icon_train"+icon+".png";
 		if (typeof imgurl == 'string') {marker.setIconImage(imgurl);}
 	
 		// 마커의 z-Index 설정
