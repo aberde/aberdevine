@@ -128,7 +128,7 @@ public class EgovQustnrManageController {
 	 * @return  "/uss/olp/qmc/EgovQustnrManageList"
 	 * @throws Exception
 	 */
-	@IncludedInfo(name="설문관리", order = 590 ,gid = 50)
+	@IncludedInfo(name="설문관리", whoyaListUrl="/whoya/uss/olp/qmc/EgovQustnrManageList.do", order = 590 ,gid = 50)
 	@RequestMapping(value="/uss/olp/qmc/EgovQustnrManageList.do")
 	public String egovQustnrManageList(
 			@ModelAttribute("searchVO") ComDefaultVO searchVO, 

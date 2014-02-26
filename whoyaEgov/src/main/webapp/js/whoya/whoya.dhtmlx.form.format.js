@@ -166,3 +166,43 @@
     	form += " <a href='#' onclick='boardPopup();return false;'><img src='" + whoya.context + "/images/egovframework/com/cmm/icon/search.gif' alt='search'></a>";
     	return form;
     };
+    
+    /**
+     * <pre>
+     * 템플릿 유형 목록
+     * @param name  // form의 name
+     * @param value  // form의 value
+     * </pre>
+     */
+    whoya.dhtmlx.form.format.qustnrTmplatList = function(name, value) {
+    	var qustnrTmplatList = "";
+    	
+    	$.ajax({
+    		url: whoya.context + "/whoya/uss/olp/qmc/selectQustnrTmplatList.do"
+    		, async: false
+    		, dataType: "json"
+    		, success: function(data, textStatus, jqXHR) {
+    			$.each(data, function(i) {
+    				qustnrTmplatList += "<div style='margin-bottom: 5px;'><label for='qestnrTmplatId_" + i + "'><img src='" + whoya.context + "/uss/olp/qtm/EgovQustnrTmplatManageImg.do?qestnrTmplatId=" + this.qestnrTmplatId + "' align='middle' alt='템플릿유형 이미지' title='템플릿유형 이미지'><br /><input type='radio' id='qestnrTmplatId_" + i + "' name='qestnrTmplatId_rdo' value='" + this.qestnrTmplatId + "' />" + this.qestnrTmplatTy + "</label></div>";
+    			});
+    		}
+    		, error: function(jqXHR, textStatus, errorThrown) {
+    			console.log(jqXHR);
+    			console.log(textStatus);
+    			console.log(errorThrown);
+    			alert(errorThrown);
+    		}
+    	});
+    	return qustnrTmplatList;
+    };
+
+    /**
+     * <pre>
+     * 템플릿 유형
+     * @param name  // form의 name
+     * @param value  // form의 value
+     * </pre>
+     */
+    whoya.dhtmlx.form.format.qustnrTmplat = function(name, value) {
+    	return "<img src='" + whoya.context + "/uss/olp/qtm/EgovQustnrTmplatManageImg.do?qestnrTmplatId=" + value + "' align='middle' alt='템플릿유형 이미지' title='템플릿유형 이미지'>";
+    };
