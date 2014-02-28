@@ -1,5 +1,7 @@
 package egovframework.com.cop.smt.wmr.service;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 /**
  * 개요
  * - 주간월간보고에 대한 Vo 클래스를 정의한다.
@@ -11,6 +13,7 @@ package egovframework.com.cop.smt.wmr.service;
  * @created 19-7-2010 오전 10:12:48
  */
 @SuppressWarnings("serial")
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_DEFAULT)
 public class WikMnthngReprtVO extends WikMnthngReprt {
 	
 	/** 검색조건 */

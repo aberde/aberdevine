@@ -115,3 +115,16 @@
 		whoyaGlobalData.bForm.setItemValue("trgetNm", clbNm);
 		whoyaGlobalData.clubPopupWindows.close();
 	};
+
+	/**
+	 * 보고대상자(팝업)에서 선택된 값 저장.
+	 * @pram uniqId 사용자ID
+	 * @pram emplNo 사원번호
+	 * @pram emplyrNm 사용자명
+	 * @pram orgnztNm 조직명
+	 */
+	whoya.common.reportrSelect = function(uniqId, emplNo, emplyrNm, orgnztNm) {
+		$("#reportrId").val(uniqId);
+		$("#reportrNm").val(emplyrNm);
+		whoyaGlobalData.reportrPopupWindows.close();
+	};

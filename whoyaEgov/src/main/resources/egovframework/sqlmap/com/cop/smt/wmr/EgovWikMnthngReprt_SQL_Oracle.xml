@@ -97,9 +97,15 @@
 	<![CDATA[	
 		) T0
 	) 
-	WHERE RNUM BETWEEN #firstIndex# + 1 AND #firstIndex# + #recordCountPerPage#
 	]]>	
-	</select>	
+	<isNotEmpty property="pageIndex">
+		<isNotEqual property="pageIndex" compareValue="0">
+		<![CDATA[
+			WHERE RNUM BETWEEN #firstIndex# + 1 AND #firstIndex# + #recordCountPerPage#
+		]]>
+		</isNotEqual>
+	</isNotEmpty>	
+	</select>
 	
 	<select id="WikMnthngReprtDAO.selectReportrListCnt" parameterClass="WikMnthngReportrVO" resultClass="java.lang.Integer" >
 		<![CDATA[
@@ -190,8 +196,14 @@
 	<![CDATA[	
 		) T0
 	) 
-	WHERE RNUM BETWEEN #firstIndex# + 1 AND #firstIndex# + #recordCountPerPage#
-	]]>	
+	]]>
+	<isNotEmpty property="pageIndex">
+		<isNotEqual property="pageIndex" compareValue="0">
+		<![CDATA[
+			WHERE RNUM BETWEEN #firstIndex# + 1 AND #firstIndex# + #recordCountPerPage#
+		]]>
+		</isNotEqual>
+	</isNotEmpty>
 	</select>
 	
 	<!-- 주간/월간보고::목록조회 Count -->

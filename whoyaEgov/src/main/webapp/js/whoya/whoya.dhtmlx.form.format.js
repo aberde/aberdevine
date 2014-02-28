@@ -206,3 +206,18 @@
     whoya.dhtmlx.form.format.qustnrTmplat = function(name, value) {
     	return "<img src='" + whoya.context + "/uss/olp/qtm/EgovQustnrTmplatManageImg.do?qestnrTmplatId=" + value + "' align='middle' alt='템플릿유형 이미지' title='템플릿유형 이미지'>";
     };
+    
+    /**
+     * <pre>
+     * 보고대상자 목록(emplyrId, emplyrNm)
+     * @param name  // form의 name
+     * @param value  // form의 value
+     * </pre>
+     */
+    whoya.dhtmlx.form.format.reportrInfo = function(name, value) {
+    	var form = "";
+    	form = "<input type='hidden' id='reportrId' class='dhxform_textarea' style='width: 150px;' />";
+    	form += "<input type='text' id='reportrNm' name='reportrNm' class='dhxform_textarea' style='width: 150px;' readonly='readonly' />";
+    	form += " <a href='#' onclick='reportrPopup();return false;'><img src='" + whoya.context + "/images/egovframework/com/cmm/icon/search.gif' alt='search'></a>";
+    	return form;
+    };
