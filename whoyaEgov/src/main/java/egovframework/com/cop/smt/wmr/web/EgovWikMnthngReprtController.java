@@ -137,7 +137,7 @@ public class EgovWikMnthngReprtController {
 	 * 
 	 * @param wikMnthngReprtVO
 	 */
-	@IncludedInfo(name="주간/월간보고관리", order = 410 ,gid = 40)
+	@IncludedInfo(name="주간/월간보고관리", whoyaListUrl="/whoya/cop/smt/wmr/selectWikMnthngReprtList.do", order = 410 ,gid = 40)
     @RequestMapping("/cop/smt/wmr/selectWikMnthngReprtList.do")
 	public String selectWikMnthngReprtList(@ModelAttribute("searchVO") WikMnthngReprtVO wikMnthngReprtVO, ModelMap model) throws Exception{
     	//LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();

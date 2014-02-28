@@ -83,7 +83,7 @@
 		};
 		$.extend(whoyaData, data);
 		
-		whoyaData.toolbar.addSeparator("button_Separator", 3);
+		whoyaData.toolbar.addSeparator("button_Separator", 10);
 		whoyaData.toolbar.addSpacer("button_Separator");
 		if ( whoyaData.btn_Open ) {
 			whoyaData.toolbar.addSeparator("sep_Open", 11); 
