@@ -127,8 +127,14 @@
 	<![CDATA[
 		) T0
 	)
-	WHERE RNUM BETWEEN #firstIndex# + 1 AND #firstIndex# + #recordCountPerPage#
 	]]>
+	<isNotEmpty property="pageIndex">
+		<isNotEqual property="pageIndex" compareValue="0">
+		<![CDATA[
+			WHERE RNUM BETWEEN #firstIndex# + 1 AND #firstIndex# + #recordCountPerPage#
+		]]>
+		</isNotEqual>
+	</isNotEmpty>
 	</select>
 
 	<select id="QustnrTmplatManage.selectQustnrTmplatManageCnt" parameterClass="comDefaultVO" resultClass="int">
