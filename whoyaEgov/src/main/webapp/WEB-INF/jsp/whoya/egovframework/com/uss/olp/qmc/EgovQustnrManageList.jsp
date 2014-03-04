@@ -9,23 +9,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <jsp:include page="/WEB-INF/jsp/whoya/include/header.jsp" />
 <script type="text/javascript">
-/**
- * 전역변수로 사용할 데이터
- * JSON형식의 데이터
- *   layout: layout  // dhtmlXLayoutObject 객체
- *   toolbar: toolbar // dhtmlXLayoutObject의 toolbar 객체
- *   aCell: aCell  // dhtmlXLayoutObject의 cell 객체 'a'
- *   aGrid: aGrid  // dhtmlXLayoutObject의 cell 객체 'a'의 dhtmlxGrid 객체
- *   bCell: bCell  // dhtmlXLayoutObject의 cell 객체 'b'
- *   bForm: bForm  // dhtmlXLayoutObject의 cell 객체 'b'의 dhtmlxForm 객체
- *   bCellRegFormData: bCellRegFormData  // dhtmlxForm의 UI데이터
- *   bCellDetailFormData: bCellDetailFormData  // dhtmlxForm의 UI데이터
- *   bCellUpdateFormData: bCellUpdateFormData  // dhtmlxForm의 UI데이터
- *   statusbar: statusbar  // statusbar 객체
- *   combo: combo  //  dhtmlXCombo 객체
- */
-var whoyaGlobalData = {};
-
 function init() {
 	// #########################################
 	// ## 레이아웃생성
