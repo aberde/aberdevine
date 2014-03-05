@@ -128,3 +128,16 @@
 		$("#reportrNm").val(emplyrNm);
 		whoyaGlobalData.reportrPopupWindows.close();
 	};
+
+	/**
+	 * 설문관리 목록(팝업)에서 선택된 값 저장.
+	 * @pram qestnrId 설문지ID
+	 * @pram qestnrTmplatId 템플릿 ID
+	 * @pram qestnrCn 설문지정보
+	 */
+	whoya.common.qestnrSelect = function(qestnrId, qestnrTmplatId, qestnrCn) {
+		$("#qestnrId").val(qestnrId);
+		$("#qestnrTmplatId").val(qestnrTmplatId);
+		$("#qestnrCn").val(qestnrCn);
+		whoyaGlobalData.qestnrPopupWindows.close();
+	};

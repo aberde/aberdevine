@@ -205,12 +205,7 @@ function reportrPopup() {
 	// toolbar의 Button정의
 	var reportrPopupToolbarAddButton = {
 		toolbar: whoyaGlobalData.reportrPopupToolbar
-		, btn_Append: false
-		, btn_Delete: false
-		, btn_Undo: false
-		, btn_Save: false
-		, btn_Print: false
-		, btn_Excel: false
+		, btn_Open: true
 	};
 	whoya.dhtmlx.layout.toolbar.addButton(reportrPopupToolbarAddButton);
 	reportrPopupToolbarEvent();
@@ -353,12 +348,7 @@ function tmplatPopup() {
 	// toolbar의 Button정의
 	var tmplatPopupToolbarAddButton = {
 		toolbar: whoyaGlobalData.tmplatPopupToolbar
-		, btn_Append: false
-		, btn_Delete: false
-		, btn_Undo: false
-		, btn_Save: false
-		, btn_Print: false
-		, btn_Excel: false
+		, btn_Open: true
 	};
 	whoya.dhtmlx.layout.toolbar.addButton(tmplatPopupToolbarAddButton);
 	tmplatPopupToolbarEvent();
@@ -502,12 +492,7 @@ function emplyrPopup() {
 	// toolbar의 Button정의
 	var emplyrPopupToolbarAddButton = {
 		toolbar: whoyaGlobalData.emplyrPopupToolbar
-		, btn_Append: false
-		, btn_Delete: false
-		, btn_Undo: false
-		, btn_Save: false
-		, btn_Print: false
-		, btn_Excel: false
+		, btn_Open: true
 	};
 	whoya.dhtmlx.layout.toolbar.addButton(emplyrPopupToolbarAddButton);
 	emplyrPopupToolbarEvent();
@@ -858,12 +843,7 @@ function boardPopup() {
  	// toolbar의 Button정의
  	var boardPopupToolbarAddButton = {
  		toolbar: whoyaGlobalData.boardPopupToolbar
- 		, btn_Append: false
- 		, btn_Delete: false
- 		, btn_Undo: false
- 		, btn_Save: false
- 		, btn_Print: false
- 		, btn_Excel: false
+ 		, btn_Open: true
  	};
  	whoya.dhtmlx.layout.toolbar.addButton(boardPopupToolbarAddButton);
  	boardPopupToolbarEvent();
@@ -1007,12 +987,7 @@ function communityPopup() {
  	// toolbar의 Button정의
  	var communityPopupToolbarAddButton = {
  		toolbar: whoyaGlobalData.communityPopupToolbar
- 		, btn_Append: false
- 		, btn_Delete: false
- 		, btn_Undo: false
- 		, btn_Save: false
- 		, btn_Print: false
- 		, btn_Excel: false
+ 		, btn_Open: true
  	};
  	whoya.dhtmlx.layout.toolbar.addButton(communityPopupToolbarAddButton);
  	communityPopupToolbarEvent();
@@ -1157,12 +1132,7 @@ function clubPopup() {
  	// toolbar의 Button정의
  	var clubPopupToolbarAddButton = {
  		toolbar: whoyaGlobalData.clubPopupToolbar
- 		, btn_Append: false
- 		, btn_Delete: false
- 		, btn_Undo: false
- 		, btn_Save: false
- 		, btn_Print: false
- 		, btn_Excel: false
+ 		, btn_Open: true
  	};
  	whoya.dhtmlx.layout.toolbar.addButton(clubPopupToolbarAddButton);
  	clubPopupToolbarEvent();
@@ -1248,6 +1218,152 @@ function clubPopupSearch() {
 			console.log(errorThrown);
 			alert(errorThrown);
 		}
+	});
+}
+/**
+ * #########################################
+ */
+
+
+/**
+ * #########################################
+ * 설문관리 목록 Popup
+ * #########################################
+ */
+function qestnrPopup() {
+	// #########################################
+	// ## layout에 windows 생성
+	// #########################################
+	var qestnrPopupWindowsData = {
+			layout: whoyaGlobalData.layout
+			, id: "qestnrPopup"
+				, setText: "설문관리 정보"
+	};
+	whoyaGlobalData.qestnrPopupWindows = whoya.dhtmlx.layout.windows(qestnrPopupWindowsData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## 팝업창 레이아웃생성
+	// #########################################
+	var qestnrPopupLayoutData = {
+			layout_target: whoyaGlobalData.qestnrPopupWindows
+			, layout_Pattern: "1C"
+	};
+	whoyaGlobalData.qestnrPopupLayout = whoya.dhtmlx.layout.init(qestnrPopupLayoutData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## 팝업창 툴바 생성
+	// #########################################
+	var qestnrPopupToolbarData = {
+			layout: whoyaGlobalData.qestnrPopupLayout
+	};
+	whoyaGlobalData.qestnrPopupToolbar = whoya.dhtmlx.layout.toolbar.init(qestnrPopupToolbarData);
+	whoyaGlobalData.qestnrPopupToolbar.addText("searchCondition", 1, "");
+	whoyaGlobalData.qestnrPopupToolbar.addInput("searchKeyword", 2, "", 200);
+	
+	// selectBox 생성
+	var comboDIV = whoyaGlobalData.qestnrPopupToolbar.objPull[whoyaGlobalData.qestnrPopupToolbar.idPrefix+"searchCondition"].obj;
+	whoyaGlobalData.qestnrPopupToolbar.objPull[whoyaGlobalData.qestnrPopupToolbar.idPrefix+"searchCondition"].obj.innerHTML = "";
+	whoyaGlobalData.qestnrPopupCombo = new dhtmlXCombo(comboDIV,"alfa",140);
+	whoyaGlobalData.qestnrPopupCombo.addOption([
+	    ["", "--선택하세요--"]
+        , ["QESTNR_TMPLAT_CN", "템플릿설명"]
+        , ["QESTNR_TMPLAT_TY", "템플릿유형"]
+    ]);
+	whoyaGlobalData.qestnrPopupCombo.selectOption(0);
+	
+	// toolbar의 Button정의
+	var qestnrPopupToolbarAddButton = {
+			toolbar: whoyaGlobalData.qestnrPopupToolbar
+			, btn_Open: true
+	};
+	whoya.dhtmlx.layout.toolbar.addButton(qestnrPopupToolbarAddButton);
+	qestnrPopupToolbarEvent();
+	// #########################################
+	
+	
+	// #########################################
+	// ## 팝업창 layout cell a 
+	// #########################################
+	var qestnrPopupaCellData = {
+			layout: whoyaGlobalData.qestnrPopupLayout
+	};
+	// 팝업창 화면 layout의 해당 cell 정의 
+	whoyaGlobalData.qestnrPopupaCell = whoya.dhtmlx.layout.cell.init(qestnrPopupaCellData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## 팝업창 layout cell a에 grid생성
+	// #########################################
+	var qestnrPopupaCellGridData = {
+			cell: whoyaGlobalData.qestnrPopupaCell
+			, setHeader: "번호,설문제목,설문기간,등록자,등록일자,선택"
+			, setColumnIds: "no,qestnrSj,qestnrDe,frstRegisterNm,frstRegisterPnttm,selectLink"
+			, setInitWidths: "100,*,100,100,100,100"
+			, setColAlign: "center,center,center,center,center,center"
+			, setColTypes: "ro,ro,ro,ro,ro,img"
+			, enableResizing: "true,true,true,true,true,true"
+			, enableTooltips: "false,false,false,false,false,false"
+			, setColSorting: "str,str,str,str,str,str"
+	};
+	// 팝업창 화면 layout cell a에 dhtmlxGrid 객체 생성.
+	whoyaGlobalData.qestnrPopupaGrid = whoya.dhtmlx.layout.cell.grid(qestnrPopupaCellGridData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## 팝업창 layout에 statusbar 생성
+	// #########################################
+	var qestnrPopupStatusbarData = {
+			layout: whoyaGlobalData.qestnrPopupLayout
+			, id: "qestnrPopup"
+	};
+	whoyaGlobalData.qestnrPopupStatusbar = whoya.dhtmlx.statusbar(qestnrPopupStatusbarData);
+	// #########################################
+}
+
+// clubPopup toolbar event 생성
+function qestnrPopupToolbarEvent() {
+	whoyaGlobalData.qestnrPopupToolbar.attachEvent("onClick", function(id) {
+		if(id == "btn_Open"){
+			qestnrPopupSearch();
+		}
+	});
+}
+
+// 조회(qestnrPopup popup용)
+function qestnrPopupSearch() {
+	whoyaGlobalData.qestnrPopupLayout.progressOn();
+	whoyaGlobalData.qestnrPopupaGrid.clearAll();
+	document.getElementById("qestnrPopupactiveStatusBar").innerHTML = "";
+	
+	$.ajax({
+		url: whoya.context + "/whoya/uss/olp/qmc/EgovQustnrManageListPopup.do"
+		, data: {
+			searchCondition : whoyaGlobalData.qestnrPopupCombo.getSelectedValue()
+			, searchKeyword : whoyaGlobalData.qestnrPopupToolbar.getValue("searchKeyword")
+		}
+	, dataType: "json"
+		, success: function(data, textStatus, jqXHR) {
+			whoyaGlobalData.qestnrPopupaGrid.attachEvent("onXLE", function(){
+				whoyaGlobalData.qestnrPopupLayout.progressOff();
+			});
+			
+			whoyaGlobalData.qestnrPopupaGrid.clearAll();
+			whoyaGlobalData.qestnrPopupaGrid.parse(data.list, "json");
+			whoyaGlobalData.qestnrPopupaGrid.setSelectedRow(0);
+			document.getElementById("qestnrPopupactiveStatusBar").innerHTML = "조회되었습니다";
+		}
+	, error: function(jqXHR, textStatus, errorThrown) {
+		console.log(jqXHR);
+		console.log(textStatus);
+		console.log(errorThrown);
+		alert(errorThrown);
+	}
 	});
 }
 /**
