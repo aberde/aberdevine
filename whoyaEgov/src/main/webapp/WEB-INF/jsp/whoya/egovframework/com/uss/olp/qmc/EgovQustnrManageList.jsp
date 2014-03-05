@@ -208,6 +208,7 @@ function init() {
 function toolbarEvent() {
 	whoyaGlobalData.toolbar.attachEvent("onClick", function(id) {
 		if(id == "btn_Open"){
+			whoyaGlobalData.bForm = whoyaGlobalData.bCell.attachForm("");
 			search();
 		}
 		if(id == "btn_Append"){

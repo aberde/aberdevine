@@ -10,23 +10,6 @@
 <jsp:include page="/WEB-INF/jsp/whoya/include/header.jsp" />
 
 <script type="text/javascript">
-/**
- * 전역변수로 사용할 데이터
- * JSON형식의 데이터
- *   layout: layout  // dhtmlXLayoutObject 객체
- *   toolbar: toolbar // dhtmlXLayoutObject의 toolbar 객체
- *   aCell: aCell  // dhtmlXLayoutObject의 cell 객체 'a'
- *   aGrid: aGrid  // dhtmlXLayoutObject의 cell 객체 'a'의 dhtmlxGrid 객체
- *   bCell: bCell  // dhtmlXLayoutObject의 cell 객체 'b'
- *   bForm: bForm  // dhtmlXLayoutObject의 cell 객체 'b'의 dhtmlxForm 객체
- *   bCellRegFormData: bCellRegFormData  // dhtmlxForm의 UI데이터
- *   bCellDetailFormData: bCellDetailFormData  // dhtmlxForm의 UI데이터
- *   bCellUpdateFormData: bCellUpdateFormData  // dhtmlxForm의 UI데이터
- *   statusbar: statusbar  // statusbar 객체
- *   combo: combo  //  dhtmlXCombo 객체
- */
-var whoyaGlobalData = {};
-
 function init() {
 	// #########################################
 	// ## 레이아웃생성
@@ -189,70 +172,6 @@ function init() {
 	// #########################################
 }
 
-/**
- * 비밀번호 확인 Popup
- */
-function passwdPopup(passwdData) {
-	// #########################################
-	// ## layout에 windows 생성
-	// #########################################
-	var passwdPopupWindowsData = {
-		layout: whoyaGlobalData.layout
-		, id: "passwdPopup"
-		, width: 400
-		, height: 140
-		, setText: "작성 비밀번호 확인"
-	};
-	whoyaGlobalData.passwdPopupWindows = whoya.dhtmlx.layout.windows(passwdPopupWindowsData);
-	// #########################################
-	
-	
-	// #########################################
-	// ## 팝업창 레이아웃생성
-	// #########################################
-	var passwdPopupLayoutData = {
-		layout_target: whoyaGlobalData.passwdPopupWindows
-		, layout_Pattern: "1C"
-	};
-	whoyaGlobalData.passwdPopupLayout = whoya.dhtmlx.layout.init(passwdPopupLayoutData);
-	// #########################################
-	
-	
-	// #########################################
-	// ## 팝업창 layout cell a
-	// #########################################
-	var passwdPopupaCellData = {
-		layout: whoyaGlobalData.passwdPopupLayout
-	};
-	// 팝업창 화면 layout의 해당 cell 정의 
-	whoyaGlobalData.passwdPopupaCell = whoya.dhtmlx.layout.cell.init(passwdPopupaCellData);
-	// #########################################
-	
-	
-	// #########################################
-	// ## layout cell a에 form생성
-	// #########################################
-	// 비밀번호 확인 폼
-	whoyaGlobalData.aCellPasswdFormData = {
-		cell: whoyaGlobalData.passwdPopupaCell
-		, formData: [
-   			{ type: "fieldset", name: "formField", label: "작성 비밀번호 확인", list: [
-   				{ type: "settings", labelWidth: 150, inputWidth: 170 },
-   				{ type: "password", label: "작성글 비밀번호", name: "writngPassword", value: "" },
-   				{ type: "label", list: [
-					{ type: "button", name: "okBtn", value: "확인" },
-					{ type: "newcolumn" },
-					{ type: "button", name: "cancleBtn", value: "취소" }
-				] }
-   			] }
-   		]
-	};
-	// 화면 layout cell a에 dhtmlxForm 객체 생성.
-	whoyaGlobalData.aCellPasswdForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.aCellPasswdFormData);
-	passwdFormEvent(passwdData);
-	// #########################################
-}
-
 
 // #######################################################################
 // ## event 생성
@@ -400,89 +319,6 @@ function formEvent() {
 				mode: "delete"
 			};
 			passwdPopup(passwdData);
-		}
-	});
-}
-
-// 비밀번호 확인 Popup form event 생성
-function passwdFormEvent(passwdData) {
-	whoyaGlobalData.aCellPasswdForm.attachEvent("onButtonClick", function(name) {
-		if ( name == "okBtn" ) {  // 확인
-			var qaId = whoyaGlobalData.bForm.getFormData().qaId;
-			$.ajax({
-				url: "<c:url value='/whoya/uss/olh/qna/QnaPasswordConfirm.do' />"
-				, type: "POST"
-				, data: {
-					qaId: qaId
-					, writngPassword: whoyaGlobalData.aCellPasswdForm.getItemValue("writngPassword")
-				}
-				, success: function(data, textStatus, jqXHR) {
-					if ( data.status == "SUCCESS" ){
-						whoyaGlobalData.passwdPopupWindows.close();
-						if ( passwdData.mode == "update" ) {
-							whoyaGlobalData.bForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.bCellUpdateFormData);
-							formEvent();
-							$.ajax({
-								url: "<c:url value='/whoya/uss/olh/qna/QnaDetailInqire.do' />"
-								, type: "POST"
-								, data: {
-									qaId: qaId
-									, passwordConfirmAt: ""
-								}
-								, success: function(data, textStatus, jqXHR) {
-									whoyaGlobalData.bForm.setFormData(data);
-									// template로 구성된 폼데이터에 서버에서 전송받은 데이터 입력.
-									$("#areaNo").val(data.areaNo);
-									$("#middleTelno").val(data.middleTelno);
-									$("#endTelno").val(data.endTelno);
-									$("#emailAdres").val(data.emailAdres);
-									if ( data.emailAnswerAt == "Y" ) {
-										$("#emailAnswerAt").attr("checked", "checked");
-									}
-								}
-								, error: function(jqXHR, textStatus, errorThrown) {
-									console.log(jqXHR);
-									console.log(textStatus);
-									console.log(errorThrown);
-									alert(errorThrown);
-								}
-							});
-						} else if ( passwdData.mode == "delete" ) {
-							$.ajax({
-								url: "<c:url value='/whoya/uss/olh/qna/QnaCnDelete.do' />"
-								, data: {
-									qaId: whoyaGlobalData.bForm.getFormData().qaId
-								}
-								, success: function(data, textStatus, jqXHR) {
-									if ( data.status == "SUCCESS" ) {
-										alert("삭제하였습니다.");
-										search();
-										whoyaGlobalData.bCell.attachForm("");
-									} else {
-										alert("삭제에 실패하였습니다.");
-									}
-								}
-								, error: function(jqXHR, textStatus, errorThrown) {
-									console.log(jqXHR);
-									console.log(textStatus);
-									console.log(errorThrown);
-									alert(errorThrown);
-								}
-							});
-						}
-					} else {
-						alert("작성 비밀번호를 확인 바랍니다.");
-					}
-				}
-				, error: function(jqXHR, textStatus, errorThrown) {
-					console.log(jqXHR);
-					console.log(textStatus);
-					console.log(errorThrown);
-					alert(errorThrown);
-				}
-			});
-		} else if ( name == "cancleBtn" ) {  // 취소
-			whoyaGlobalData.passwdPopupWindows.close();
 		}
 	});
 }

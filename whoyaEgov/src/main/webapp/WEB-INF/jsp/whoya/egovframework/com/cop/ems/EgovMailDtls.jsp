@@ -10,22 +10,6 @@
 <jsp:include page="/WEB-INF/jsp/whoya/include/header.jsp" />
 
 <script type="text/javascript">
-/**
- * 전역변수로 사용할 데이터
- * JSON형식의 데이터
- *   layout: layout  // dhtmlXLayoutObject 객체
- *   toolbar: toolbar // dhtmlXLayoutObject의 toolbar 객체
- *   aCell: aCell  // dhtmlXLayoutObject의 cell 객체 'a'
- *   aGrid: aGrid  // dhtmlXLayoutObject의 cell 객체 'a'의 dhtmlxGrid 객체
- *   bCell: bCell  // dhtmlXLayoutObject의 cell 객체 'b'
- *   bForm: bForm  // dhtmlXLayoutObject의 cell 객체 'b'의 dhtmlxForm 객체
- *   bCellFormData: bCellFormData  // dhtmlxForm의 UI데이터
- *   dp: dp  // dataProcessor 객체
- *   statusbar: statusbar  // statusbar 객체
- *   combo: combo  //  dhtmlXCombo 객체
- */
-var whoyaGlobalData = {};
-
 function init() {
 	// #########################################
 	// ## 레이아웃생성
@@ -167,6 +151,7 @@ function init() {
 function toolbarEvent() {
 	whoyaGlobalData.toolbar.attachEvent("onClick", function(id) {
 		if(id == "btn_Open"){
+			whoyaGlobalData.bForm = whoyaGlobalData.bCell.attachForm("");
 			search();
 		}
 		if(id == "btn_Append"){

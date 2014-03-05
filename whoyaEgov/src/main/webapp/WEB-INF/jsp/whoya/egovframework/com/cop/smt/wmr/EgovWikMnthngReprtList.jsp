@@ -10,23 +10,6 @@
 <jsp:include page="/WEB-INF/jsp/whoya/include/header.jsp" />
 
 <script type="text/javascript">
-/**
- * 전역변수로 사용할 데이터
- * JSON형식의 데이터
- *   layout: layout  // dhtmlXLayoutObject 객체
- *   toolbar: toolbar // dhtmlXLayoutObject의 toolbar 객체
- *   aCell: aCell  // dhtmlXLayoutObject의 cell 객체 'a'
- *   aGrid: aGrid  // dhtmlXLayoutObject의 cell 객체 'a'의 dhtmlxGrid 객체
- *   bCell: bCell  // dhtmlXLayoutObject의 cell 객체 'b'
- *   bForm: bForm  // dhtmlXLayoutObject의 cell 객체 'b'의 dhtmlxForm 객체
- *   bCellRegFormData: bCellRegFormData  // dhtmlxForm의 UI데이터
- *   bCellDetailFormData: bCellDetailFormData  // dhtmlxForm의 UI데이터
- *   bCellUpdateFormData: bCellUpdateFormData  // dhtmlxForm의 UI데이터
- *   statusbar: statusbar  // statusbar 객체
- *   combo: combo  //  dhtmlXCombo 객체
- */
-var whoyaGlobalData = {};
-
 function init() {
 	// #########################################
 	// ## 레이아웃생성
@@ -291,112 +274,6 @@ function init() {
 }
 
 
-/**
- * 보고대상자 목록 Popup
- */
-function reportrPopup() {
-	// #########################################
-	// ## layout에 windows 생성
-	// #########################################
-	var reportrPopupWindowsData = {
-		layout: whoyaGlobalData.layout
-		, id: "reportrPopup"
-		, setText: "보고대상자 선택"
-	};
-	whoyaGlobalData.reportrPopupWindows = whoya.dhtmlx.layout.windows(reportrPopupWindowsData);
-	// #########################################
-	
-	
-	// #########################################
-	// ## 팝업창 레이아웃생성
-	// #########################################
-	var reportrPopupLayoutData = {
-		layout_target: whoyaGlobalData.reportrPopupWindows
-		, layout_Pattern: "1C"
-	};
-	whoyaGlobalData.reportrPopupLayout = whoya.dhtmlx.layout.init(reportrPopupLayoutData);
-	// #########################################
-	
-	
-	// #########################################
-	// ## 팝업창 툴바 생성
-	// #########################################
-	var reportrPopupToolbarData = {
-		layout: whoyaGlobalData.reportrPopupLayout
-	};
-	whoyaGlobalData.reportrPopupToolbar = whoya.dhtmlx.layout.toolbar.init(reportrPopupToolbarData);
-	whoyaGlobalData.reportrPopupToolbar.addText("lbl_searchCnd", 1, "조회조건");
-	whoyaGlobalData.reportrPopupToolbar.addText("searchCnd", 2, "");
-	whoyaGlobalData.reportrPopupToolbar.addInput("searchWrd", 3, "", 200);
-
-	// selectBox 생성
-	var comboDIV = whoyaGlobalData.reportrPopupToolbar.objPull[whoyaGlobalData.reportrPopupToolbar.idPrefix+"searchCnd"].obj;
-	whoyaGlobalData.reportrPopupToolbar.objPull[whoyaGlobalData.reportrPopupToolbar.idPrefix+"searchCnd"].obj.innerHTML = "";
-	whoyaGlobalData.reportrPopupCombo = new dhtmlXCombo(comboDIV,"alfa",140);
-	whoyaGlobalData.reportrPopupCombo.addOption([
-   		["", "--선택하세요--"]
-   		, ["0", "부서명"]
-   		, ["1", "사원명"]
-   	]);
-	whoyaGlobalData.reportrPopupCombo.selectOption(0);
-	
-	// toolbar의 Button정의
-	var reportrPopupToolbarAddButton = {
-		toolbar: whoyaGlobalData.reportrPopupToolbar
-		, btn_Append: false
-		, btn_Delete: false
-		, btn_Undo: false
-		, btn_Save: false
-		, btn_Print: false
-		, btn_Excel: false
-	};
-	whoya.dhtmlx.layout.toolbar.addButton(reportrPopupToolbarAddButton);
-	reportrPopupToolbarEvent();
-	// #########################################
-	
-	
-	// #########################################
-	// ## 팝업창 layout cell a 
-	// #########################################
-	var reportrPopupaCellData = {
-		layout: whoyaGlobalData.reportrPopupLayout
-	};
-	// 팝업창 화면 layout의 해당 cell 정의 
-	whoyaGlobalData.reportrPopupaCell = whoya.dhtmlx.layout.cell.init(reportrPopupaCellData);
-	// #########################################
-	
-	
-	// #########################################
-	// ## 팝업창 layout cell a에 grid생성
-	// #########################################
-	var reportrPopupaCellGridData = {
-		cell: whoyaGlobalData.reportrPopupaCell
-		, setHeader: "번호,부서,직위,사번,사원명,선택"
-		, setColumnIds: "no,orgnztNm,ofcpsNm,emplNo,emplyrNm,selectLink"
-		, setInitWidths: "100,*,100,100,100,100"
-		, setColAlign: "center,center,center,center,center,center"
-		, setColTypes: "ro,ro,ro,ro,ro,img"
-		, enableResizing: "true,true,true,,true,true,true"
-		, enableTooltips: "false,false,false,false,false,false"
-		, setColSorting: "str,str,str,str,str,str"
-	};
-	// 팝업창 화면 layout cell a에 dhtmlxGrid 객체 생성.
-	whoyaGlobalData.reportrPopupaGrid = whoya.dhtmlx.layout.cell.grid(reportrPopupaCellGridData);
-	// #########################################
-	
-	
-	// #########################################
-	// ## 팝업창 layout에 statusbar 생성
-	// #########################################
-	var reportrPopupStatusbarData = {
-		layout: whoyaGlobalData.reportrPopupLayout
-		, id: "reportrPopup"
-	};
-	whoyaGlobalData.reportrPopupStatusbar = whoya.dhtmlx.statusbar(reportrPopupStatusbarData);
-	// #########################################
-}
-
-
 // #######################################################################
 // ## event 생성
 // #######################################################################
@@ -404,6 +281,7 @@ function reportrPopup() {
 function toolbarEvent() {
 	whoyaGlobalData.toolbar.attachEvent("onClick", function(id) {
 		if(id == "btn_Open"){
+			whoyaGlobalData.bForm = whoyaGlobalData.bCell.attachForm("");
 			search();
 		}
 		if(id == "btn_Append"){
@@ -559,15 +437,6 @@ function formEvent() {
 		}
 	});
 }
-
-//reportrPopup toolbar event 생성
-function reportrPopupToolbarEvent() {
-	whoyaGlobalData.reportrPopupToolbar.attachEvent("onClick", function(id) {
-		if(id == "btn_Open"){
-			reportrPopupSearch();
-		}
-    });
-}
 // #######################################################################
 
 
@@ -602,39 +471,6 @@ function search() {
     	  	whoyaGlobalData.aGrid.setSelectedRow(0);
     		document.getElementById("activeStatusBar").innerHTML = "조회되었습니다";
 		}
-		, error: function(jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR);
-			console.log(textStatus);
-			console.log(errorThrown);
-			alert(errorThrown);
-		}
-	});
-}
-
-/**
- * 조회(reportrPopup용)
- */
-function reportrPopupSearch() {
-	whoyaGlobalData.reportrPopupLayout.progressOn();
-	whoyaGlobalData.reportrPopupaGrid.clearAll();
-	document.getElementById("reportrPopupactiveStatusBar").innerHTML = "";
-	$.ajax({
-		url: "<c:url value='/whoya/cop/smt/wmr/selectReportrList.do' />"
-		, type: "POST"
-		, data: {
-			searchCnd : whoyaGlobalData.reportrPopupCombo.getSelectedValue()
-			, searchWrd : whoyaGlobalData.reportrPopupToolbar.getValue("searchWrd")
-		}
-		, success: function(data, textStatus, jqXHR) {
-			whoyaGlobalData.reportrPopupaGrid.attachEvent("onXLE", function(){
-				whoyaGlobalData.reportrPopupLayout.progressOff();
-    		});
-    	  	
-			whoyaGlobalData.reportrPopupaGrid.clearAll();
-			whoyaGlobalData.reportrPopupaGrid.parse(data.list, "json");
-			whoyaGlobalData.reportrPopupaGrid.setSelectedRow(0);
-    		document.getElementById("reportrPopupactiveStatusBar").innerHTML = "조회되었습니다";
-	    }
 		, error: function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR);
 			console.log(textStatus);

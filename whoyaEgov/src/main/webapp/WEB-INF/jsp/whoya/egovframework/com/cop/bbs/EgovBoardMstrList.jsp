@@ -10,23 +10,6 @@
 <jsp:include page="/WEB-INF/jsp/whoya/include/header.jsp" />
 
 <script type="text/javascript">
-/**
- * 전역변수로 사용할 데이터
- * JSON형식의 데이터
- *   layout: layout  // dhtmlXLayoutObject 객체
- *   toolbar: toolbar // dhtmlXLayoutObject의 toolbar 객체
- *   aCell: aCell  // dhtmlXLayoutObject의 cell 객체 'a'
- *   aGrid: aGrid  // dhtmlXLayoutObject의 cell 객체 'a'의 dhtmlxGrid 객체
- *   bCell: bCell  // dhtmlXLayoutObject의 cell 객체 'b'
- *   bForm: bForm  // dhtmlXLayoutObject의 cell 객체 'b'의 dhtmlxForm 객체
- *   bCellRegFormData: bCellRegFormData  // dhtmlxForm의 UI데이터
- *   bCellDetailFormData: bCellDetailFormData  // dhtmlxForm의 UI데이터
- *   bCellUpdateFormData: bCellUpdateFormData  // dhtmlxForm의 UI데이터
- *   statusbar: statusbar  // statusbar 객체
- *   combo: combo  //  dhtmlXCombo 객체
- */
-var whoyaGlobalData = {};
-
 function init() {
 	// #########################################
 	// ## 레이아웃생성
@@ -342,119 +325,7 @@ function formEvent() {
 		}
 	});
 }
-
-//tmplatPopup toolbar event 생성
-function tmplatPopupToolbarEvent() {
-	whoyaGlobalData.tmplatPopupToolbar.attachEvent("onClick", function(id) {
-		if(id == "btn_Open"){
-			tmplatPopupSearch();
-		}
-    });
-}
 // #######################################################################
-
-
-/**
- * 템플릿 정보 목록 Popup
- */
-function tmplatPopup() {
-	// #########################################
-	// ## layout에 windows 생성
-	// #########################################
-	var tmplatPopupWindowsData = {
-		layout: whoyaGlobalData.layout
-		, id: "tmplatPopup"
-		, setText: "템플릿 정보"
-	};
-	whoyaGlobalData.tmplatPopupWindows = whoya.dhtmlx.layout.windows(tmplatPopupWindowsData);
-	// #########################################
-	
-	
-	// #########################################
-	// ## 팝업창 레이아웃생성
-	// #########################################
-	var tmplatPopupLayoutData = {
-		layout_target: whoyaGlobalData.tmplatPopupWindows
-		, layout_Pattern: "1C"
-	};
-	whoyaGlobalData.tmplatPopupLayout = whoya.dhtmlx.layout.init(tmplatPopupLayoutData);
-	// #########################################
-	
-	
-	// #########################################
-	// ## 팝업창 툴바 생성
-	// #########################################
-	var tmplatPopupToolbarData = {
-		layout: whoyaGlobalData.tmplatPopupLayout
-	};
-	whoyaGlobalData.tmplatPopupToolbar = whoya.dhtmlx.layout.toolbar.init(tmplatPopupToolbarData);
-	whoyaGlobalData.tmplatPopupToolbar.addText("searchCnd", 1, "");
-	whoyaGlobalData.tmplatPopupToolbar.addInput("searchWrd", 2, "", 200);
-
-	// selectBox 생성
-	var comboDIV = whoyaGlobalData.tmplatPopupToolbar.objPull[whoyaGlobalData.tmplatPopupToolbar.idPrefix+"searchCnd"].obj;
-	whoyaGlobalData.tmplatPopupToolbar.objPull[whoyaGlobalData.tmplatPopupToolbar.idPrefix+"searchCnd"].obj.innerHTML = "";
-	whoyaGlobalData.tmplatPopupCombo = new dhtmlXCombo(comboDIV,"alfa",140);
-	whoyaGlobalData.tmplatPopupCombo.addOption([
-   		["0", "커뮤니티명"]
-   	]);
-	whoyaGlobalData.tmplatPopupCombo.selectOption(0);
-	
-	// toolbar의 Button정의
-	var tmplatPopupToolbarAddButton = {
-		toolbar: whoyaGlobalData.tmplatPopupToolbar
-		, btn_Append: false
-		, btn_Delete: false
-		, btn_Undo: false
-		, btn_Save: false
-		, btn_Print: false
-		, btn_Excel: false
-	};
-	whoya.dhtmlx.layout.toolbar.addButton(tmplatPopupToolbarAddButton);
-	tmplatPopupToolbarEvent();
-	// #########################################
-	
-	
-	// #########################################
-	// ## 팝업창 layout cell a 
-	// #########################################
-	var tmplatPopupaCellData = {
-		layout: whoyaGlobalData.tmplatPopupLayout
-	};
-	// 팝업창 화면 layout의 해당 cell 정의 
-	whoyaGlobalData.tmplatPopupaCell = whoya.dhtmlx.layout.cell.init(tmplatPopupaCellData);
-	// #########################################
-	
-	
-	// #########################################
-	// ## 팝업창 layout cell a에 grid생성
-	// #########################################
-	var tmplatPopupaCellGridData = {
-		cell: whoyaGlobalData.tmplatPopupaCell
-		, setHeader: "번호,템플릿명,템플릿구분,템플릿경로,사용여부,등록일자,선택"
-		, setColumnIds: "no,tmplatNm,tmplatSeCodeNm,tmplatCours,useAt,frstRegisterPnttm,selectLink"
-		, setInitWidths: "100,*,100,100,100,100,100"
-		, setColAlign: "center,center,center,center,center,center,center"
-		, setColTypes: "ro,ro,ro,ro,ro,ro,img"
-		, enableResizing: "true,true,true,true,true,true,true"
-		, enableTooltips: "false,false,false,false,false,false,false"
-		, setColSorting: "str,str,str,str,str,str,str"
-	};
-	// 팝업창 화면 layout cell a에 dhtmlxGrid 객체 생성.
-	whoyaGlobalData.tmplatPopupaGrid = whoya.dhtmlx.layout.cell.grid(tmplatPopupaCellGridData);
-	// #########################################
-	
-	
-	// #########################################
-	// ## 팝업창 layout에 statusbar 생성
-	// #########################################
-	var tmplatPopupStatusbarData = {
-		layout: whoyaGlobalData.tmplatPopupLayout
-		, id: "tmplatPopup"
-	};
-	whoyaGlobalData.tmplatPopupStatusbar = whoya.dhtmlx.statusbar(tmplatPopupStatusbarData);
-	// #########################################
-}
 
 
 /**
@@ -491,39 +362,6 @@ function search() {
 	});
 }
 
-/**
- * 조회(tmplatPopup용)
- */
-function tmplatPopupSearch() {
-	whoyaGlobalData.tmplatPopupLayout.progressOn();
-	whoyaGlobalData.tmplatPopupaGrid.clearAll();
-	document.getElementById("tmplatPopupactiveStatusBar").innerHTML = "";
-	$.ajax({
-		url: "<c:url value='/whoya/cop/tpl/selectTemplateInfsPop.do' />"
-		, type: "POST"
-		, data: {
-			searchCnd : whoyaGlobalData.tmplatPopupCombo.getSelectedValue()
-			, searchWrd : whoyaGlobalData.tmplatPopupToolbar.getValue("searchWrd")
-			, typeFlag: "CMY"
-		}
-		, success: function(data, textStatus, jqXHR) {
-			whoyaGlobalData.tmplatPopupaGrid.attachEvent("onXLE", function(){
-				whoyaGlobalData.tmplatPopupLayout.progressOff();
-    		});
-    	  	
-			whoyaGlobalData.tmplatPopupaGrid.clearAll();
-			whoyaGlobalData.tmplatPopupaGrid.parse(data.list, "json");
-			whoyaGlobalData.tmplatPopupaGrid.setSelectedRow(0);
-    		document.getElementById("tmplatPopupactiveStatusBar").innerHTML = "조회되었습니다";
-	    }
-		, error: function(jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR);
-			console.log(textStatus);
-			console.log(errorThrown);
-			alert(errorThrown);
-		}
-	});
-}
 
 /**
  * 게시판 유형 목록 가져오기.
