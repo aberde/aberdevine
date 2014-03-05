@@ -73,13 +73,13 @@
 	 */
 	whoya.dhtmlx.layout.toolbar.addButton = function(data) {
 		var whoyaData = {
-			btn_Open: true
-			, btn_Append: true
-			, btn_Delete: true
-			, btn_Undo: true
-			, btn_Save: true
-			, btn_Print: true
-			, btn_Excel: true
+			btn_Open: false
+			, btn_Append: false
+			, btn_Delete: false
+			, btn_Undo: false
+			, btn_Save: false
+			, btn_Print: false
+			, btn_Excel: false
 		};
 		$.extend(whoyaData, data);
 		
