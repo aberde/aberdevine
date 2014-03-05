@@ -65,8 +65,15 @@ public class WhoyaEgovBBSUseInfoManageController {
 			List<BoardUseInfVO> voList = (List<BoardUseInfVO>)map.get("resultList");
 			whoyaList list = new whoyaList(Common.ConverObjectToWhoyaMap(voList));
 			
-			// 게시판명,사용 커뮤니티 명,사용 동호회 명,등록일시,사용여부,게시판 아이디,대상시스템 아이디
-		 	resultList.put("list", whoyaLib.whoyaRenderGrid(list, "bbsNm,cmmntyNm,clbNm,frstRegisterPnttm,useAt,bbsId,trgetId"));
+			// 번호 컬럼 추가.
+			// TODO 수정필요 list목록이 많아지면 속도저하 whoyaLib에서 whoyaRenderGrid호출시 같이 처리되도록 해야됨.(aberdevine) 
+			for ( int i = 0 ; i < list.size(); i++ ) {
+				whoyaMap wmap = list.getMap(i);
+				wmap.put("no", i + 1);
+			}
+			
+			// 번호,게시판명,사용 커뮤니티 명,사용 동호회 명,등록일시,사용여부,게시판 아이디,대상시스템 아이디
+		 	resultList.put("list", whoyaLib.whoyaRenderGrid(list, "no,bbsNm,cmmntyNm,clbNm,frstRegisterPnttm,useAt,bbsId,trgetId"));
 		 	resultList.put("status", commonReturn.SUCCESS);
 		 	resultList.put("message", "조회되었습니다");
 		} catch(Exception e) {
