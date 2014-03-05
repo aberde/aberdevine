@@ -42,11 +42,8 @@ function init() {
 	// toolbar의 Button정의
 	var toolbarAddButton = {
 		toolbar: whoyaGlobalData.toolbar
-		, btn_Delete: false
-		, btn_Undo: false
-		, btn_Save: false
-		, btn_Print: false
-		, btn_Excel: false
+		, btn_Open: true
+		, btn_Append: true
 	};
 	whoya.dhtmlx.layout.toolbar.addButton(toolbarAddButton);
 	toolbarEvent();
