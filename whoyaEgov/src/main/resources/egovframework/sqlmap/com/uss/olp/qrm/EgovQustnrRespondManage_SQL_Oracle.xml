@@ -120,8 +120,14 @@
 	<![CDATA[
 		) T0
 	)
-	WHERE PAGE = #pageIndex#
 	]]>
+	<isNotEmpty property="pageIndex">
+		<isNotEqual property="pageIndex" compareValue="0">
+		<![CDATA[
+			WHERE PAGE = #pageIndex#
+		]]>
+		</isNotEqual>
+	</isNotEmpty>
 	</select>
 
 	<!-- 응답자결과(설문조사)::목록조회_게시물 총갯수  -->

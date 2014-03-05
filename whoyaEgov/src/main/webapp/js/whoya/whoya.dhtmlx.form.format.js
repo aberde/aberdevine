@@ -132,7 +132,7 @@
     whoya.dhtmlx.form.format.tmplatInfo = function(name, value) {
     	var form = "";
     	form = "<input type='hidden' id='tmplatId' class='dhxform_textarea' style='width: 150px;' />";
-    	form = "<input type='text' id='tmplatNm' name='tmplatNm' class='dhxform_textarea' style='width: 150px;' readonly='readonly' />";
+    	form += "<input type='text' id='tmplatNm' name='tmplatNm' class='dhxform_textarea' style='width: 150px;' readonly='readonly' />";
     	form += " <a href='#' onclick='tmplatPopup();return false;'><img src='" + whoya.context + "/images/egovframework/com/cmm/icon/search.gif' alt='search'></a>";
     	return form;
     };
@@ -147,7 +147,7 @@
     whoya.dhtmlx.form.format.emplyrInfo = function(name, value) {
     	var form = "";
     	form = "<input type='hidden' id='emplyrId' class='dhxform_textarea' style='width: 150px;' />";
-    	form = "<input type='text' id='emplyrNm' name='emplyrNm' class='dhxform_textarea' style='width: 150px;' readonly='readonly' />";
+    	form += "<input type='text' id='emplyrNm' name='emplyrNm' class='dhxform_textarea' style='width: 150px;' readonly='readonly' />";
     	form += " <a href='#' onclick='emplyrPopup();return false;'><img src='" + whoya.context + "/images/egovframework/com/cmm/icon/search.gif' alt='search'></a>";
     	return form;
     };
@@ -162,7 +162,7 @@
     whoya.dhtmlx.form.format.boardInfo = function(name, value) {
     	var form = "";
     	form = "<input type='hidden' id='bbsId' class='dhxform_textarea' style='width: 150px;' />";
-    	form = "<input type='text' id='bbsNm' name='bbsNm' class='dhxform_textarea' style='width: 150px;' readonly='readonly' />";
+    	form += "<input type='text' id='bbsNm' name='bbsNm' class='dhxform_textarea' style='width: 150px;' readonly='readonly' />";
     	form += " <a href='#' onclick='boardPopup();return false;'><img src='" + whoya.context + "/images/egovframework/com/cmm/icon/search.gif' alt='search'></a>";
     	return form;
     };
@@ -219,5 +219,21 @@
     	form = "<input type='hidden' id='reportrId' class='dhxform_textarea' style='width: 150px;' />";
     	form += "<input type='text' id='reportrNm' name='reportrNm' class='dhxform_textarea' style='width: 150px;' readonly='readonly' />";
     	form += " <a href='#' onclick='reportrPopup();return false;'><img src='" + whoya.context + "/images/egovframework/com/cmm/icon/search.gif' alt='search'></a>";
+    	return form;
+    };
+    
+    /**
+     * <pre>
+     * 설문지정보(qestnrId, qestnrTmplatId, qestnrCn)
+     * @param name  // form의 name
+     * @param value  // form의 value
+     * </pre>
+     */
+    whoya.dhtmlx.form.format.qestnrInfo = function(name, value) {
+    	var form = "";
+    	form = "<input type='hidden' id='qestnrId' class='dhxform_textarea' style='width: 150px;' />";
+    	form += "<input type='hidden' id='qestnrTmplatId' class='dhxform_textarea' style='width: 150px;' />";
+    	form += "<input type='text' id='qestnrCn' name='qestnrCn' class='dhxform_textarea' style='width: 150px;' />";
+    	form += " <a href='#' onclick='qestnrPopup();return false;'><img src='" + whoya.context + "/images/egovframework/com/cmm/icon/search.gif' alt='search'></a>";
     	return form;
     };
