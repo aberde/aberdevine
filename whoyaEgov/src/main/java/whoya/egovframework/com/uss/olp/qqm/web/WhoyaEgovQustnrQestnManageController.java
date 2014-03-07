@@ -42,7 +42,7 @@ public class WhoyaEgovQustnrQestnManageController {
     private EgovCmmUseService cmmUseService;
     
     /**
-     * 항목관리 화면
+     * 질문관리 화면
      * @return ModelAndView
      */
     @RequestMapping(value="/whoya/uss/olp/qqm/EgovQustnrQestnManageList.do")
