@@ -1,6 +1,7 @@
 package whoya.egovframework.com.uss.olp.qqm.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -66,6 +67,26 @@ public class WhoyaEgovQustnrQestnManageServiceImpl extends AbstractServiceImpl i
     public void updateQustnrQestnManage(QustnrQestnManageVO qustnrQestnManageVO) throws Exception{
         egovQustnrQestnManageService.updateQustnrQestnManage(qustnrQestnManageVO);
     }
+    
+    /**
+     * 설문조사 통계를 조회한다. 
+     * @param Map - 설문지 정보가 담김 Parameter
+     * @return Map
+     * @throws Exception
+     */
+    public List selectQustnrManageStatistics(Map map) throws Exception{
+        return egovQustnrQestnManageService.selectQustnrManageStatistics(map);
+    }
+  
+    /**
+     * 설문조사 응답자답변내용결과/기타답변내용결과 통계를 조회한다. 
+     * @param Map - 설문지 정보가 담김 Parameter
+     * @return Map
+     * @throws Exception
+     */
+    public List selectQustnrManageStatistics2(Map map) throws Exception{
+        return egovQustnrQestnManageService.selectQustnrManageStatistics2(map);
+    }
 //	//final private Log log = LogFactory.getLog(this.getClass());
 //	
 //	@Resource(name="qustnrQestnManageDao")
@@ -74,26 +95,6 @@ public class WhoyaEgovQustnrQestnManageServiceImpl extends AbstractServiceImpl i
 //	@Resource(name="egovQustnrQestnManageIdGnrService")
 //	private EgovIdGnrService idgenService;
 //	
-//	
-//    /**
-//	 * 설문조사 응답자답변내용결과/기타답변내용결과 통계를 조회한다. 
-//	 * @param Map - 설문지 정보가 담김 Parameter
-//	 * @return Map
-//	 * @throws Exception
-//	 */
-//	public List selectQustnrManageStatistics2(Map map) throws Exception{
-//		return (List)dao.selectQustnrManageStatistics2(map);
-//	}
-//	
-//    /**
-//	 * 설문조사 통계를 조회한다. 
-//	 * @param Map - 설문지 정보가 담김 Parameter
-//	 * @return Map
-//	 * @throws Exception
-//	 */
-//	public List selectQustnrManageStatistics(Map map) throws Exception{
-//		return (List)dao.selectQustnrManageStatistics(map);
-//	}
 //    /**
 //	 * 설문지정보 설문제목을 조회한다. 
 //	 * @param Map - 설문지 정보가 담김 Parameter
