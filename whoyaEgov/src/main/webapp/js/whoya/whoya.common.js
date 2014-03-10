@@ -14,7 +14,7 @@
      */
     whoya.common.xmlMailView = function(data) {
     	var whoyaData = {
-    		url: "/whoya/cop/ems/selectSndngMailXml.do"
+    		url: whoya.context + "/whoya/cop/ems/selectSndngMailXml.do"
     		, param: ["mssageId"]
     		, value: [""]
     	};
@@ -43,7 +43,7 @@
      */
     whoya.common.fileDownload = function(data) {
     	var whoyaData = {
-    		url: "/whoya/cmm/fms/FileDown.do"
+    		url: whoya.context + "/whoya/cmm/fms/FileDown.do"
 			, param: ["atchFileId", "fileSn"]
     		, value: ["", ""]
     	};
@@ -155,4 +155,62 @@
 			$("#qestnTyCode").val(qestnTyCode);
 		}
 		whoyaGlobalData.qestnrQesitmPopupWindows.close();
+	};
+	
+	/**
+	 * 설문문항 통계화면
+	 * @pram qestnrQesitmId 설문문항 ID
+	 */
+	whoya.common.qustnrStatisticsSelect = function(qestnrQesitmId) {
+		whoyaGlobalData.bForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.bCellStatisticsFormData);
+		formEvent();
+		
+		$.ajax({
+            url: whoya.context + "/whoya/uss/olp/qqm/EgovQustnrQestnManageStatistics.do"
+            , type: "POST"
+            , data: {
+            	qestnrQesitmId: qestnrQesitmId
+            }
+            , success: function(data, textStatus, jqXHR) {
+            	// 설문항목 결과
+            	var statisticsListIemCn = "";
+            	$.each(data.statisticsList, function(idx) {
+            		statisticsListIemCn += "<ul>";
+            		statisticsListIemCn += "<li>" + this.iemCn + "</li>";
+            		statisticsListIemCn += "<li>" + "<img src=" + whoya.context + "'/images/egovframework/com/uss/olp/qqm/chart/chart" + idx + ".JPG' width='" + this.qustnrPercent + "px' height='8' alt='차트이미지' /> " + this.qustnrPercent + "%</li>";
+            		statisticsListIemCn += "</ul>";
+            	});
+            	data.detail.statisticsListIemCn = statisticsListIemCn;
+
+            	// 응답자답변내용 결과
+            	var statisticsList2RespondAnswerCn = "";
+            	$.each(data.statisticsList2, function(idx) {
+            		if ( this.respondAnswerCn ) {
+            			statisticsList2RespondAnswerCn += "<ul>";
+            			statisticsList2RespondAnswerCn += "<li>" + this.respondAnswerCn + "</li>";
+            			statisticsList2RespondAnswerCn += "</ul>";
+            		}
+            	});
+            	data.detail.statisticsList2RespondAnswerCn = statisticsList2RespondAnswerCn;
+            	
+            	// 기타답변내용 결과
+            	var statisticsList2EtcAnswerCn = "";
+            	$.each(data.statisticsList2, function(idx) {
+            		if ( this.etcAnswerCn ) {
+            			statisticsList2EtcAnswerCn += "<ul>";
+            			statisticsList2EtcAnswerCn += "<li>" + this.etcAnswerCn + "</li>";
+            			statisticsList2EtcAnswerCn += "</ul>";
+            		}
+            	});
+            	data.detail.statisticsList2EtcAnswerCn = statisticsList2EtcAnswerCn;
+            	
+                whoyaGlobalData.bForm.setFormData(data.detail);
+            }
+            , error: function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+                alert(errorThrown);
+            }
+        });
 	};

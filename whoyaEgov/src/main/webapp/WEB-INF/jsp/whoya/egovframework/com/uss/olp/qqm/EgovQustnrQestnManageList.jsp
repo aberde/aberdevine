@@ -177,6 +177,24 @@ function init() {
             ] }
         ]
     };
+    
+    // 통계폼.
+    whoyaGlobalData.bCellStatisticsFormData = {
+        cell: whoyaGlobalData.bCell
+        , formData: [
+            { type: "fieldset", name: "formField", label: "설문문항 통계", list: [
+                { type: "settings", labelWidth: 150, inputWidth: 170 },
+                { type: "template", label: "설문지정보(제목)", name: "qestnrSj", format: whoya.dhtmlx.form.format.printData },
+                { type: "template", label: "질문순번", name: "qestnSn", format: whoya.dhtmlx.form.format.printData },
+                { type: "template", label: "질문유형", name: "qestnTyCode", format: whoya.dhtmlx.form.format.printData },
+                { type: "template", label: "질문 내용", name: "qestnCn", format: whoya.dhtmlx.form.format.printData },
+                { type: "template", label: "최대선택건수", name: "mxmmChoiseCo", format: whoya.dhtmlx.form.format.printData },
+                { type: "template", label: "설문항목 결과", name: "statisticsListIemCn", format: whoya.dhtmlx.form.format.printData },
+                { type: "template", label: "응답자답변내용 결과", name: "statisticsList2RespondAnswerCn", format: whoya.dhtmlx.form.format.printData },
+                { type: "template", label: "기타답변내용 결과", name: "statisticsList2EtcAnswerCn", format: whoya.dhtmlx.form.format.printData }
+            ] }
+        ]
+    };
     // #########################################
     
     
@@ -214,27 +232,29 @@ function toolbarEvent() {
 // grid event 생성
 function gridEvent() {
     whoyaGlobalData.aGrid.attachEvent("onRowSelect", function(id, ind) {
-        whoyaGlobalData.bCell.attachForm("");
-        // 화면 layout cell b에 dhtmlxForm 객체 생성.
-        whoyaGlobalData.bForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.bCellDetailFormData);
-        formEvent();
-        
-        $.ajax({
-            url: "<c:url value='/whoya/uss/olp/qqm/EgovQustnrQestnManageDetail.do' />"
-            , type: "POST"
-            , data: {
-            	qestnrQesitmId: whoyaGlobalData.aGrid.cells(id, 7).getValue()
-            }
-            , success: function(data, textStatus, jqXHR) {
-                whoyaGlobalData.bForm.setFormData(data);
-            }
-            , error: function(jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR);
-                console.log(textStatus);
-                console.log(errorThrown);
-                alert(errorThrown);
-            }
-        });
+    	if ( ind != 4 ) {  // 통계컬럼은 제외.
+	        whoyaGlobalData.bCell.attachForm("");
+	        // 화면 layout cell b에 dhtmlxForm 객체 생성.
+	        whoyaGlobalData.bForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.bCellDetailFormData);
+	        formEvent();
+	        
+	        $.ajax({
+	            url: "<c:url value='/whoya/uss/olp/qqm/EgovQustnrQestnManageDetail.do' />"
+	            , type: "POST"
+	            , data: {
+	            	qestnrQesitmId: whoyaGlobalData.aGrid.cells(id, 7).getValue()
+	            }
+	            , success: function(data, textStatus, jqXHR) {
+	                whoyaGlobalData.bForm.setFormData(data);
+	            }
+	            , error: function(jqXHR, textStatus, errorThrown) {
+	                console.log(jqXHR);
+	                console.log(textStatus);
+	                console.log(errorThrown);
+	                alert(errorThrown);
+	            }
+	        });
+    	}
     });
 }
 

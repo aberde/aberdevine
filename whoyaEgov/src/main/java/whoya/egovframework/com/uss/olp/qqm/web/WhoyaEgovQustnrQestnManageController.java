@@ -1,9 +1,11 @@
 package whoya.egovframework.com.uss.olp.qqm.web;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import net.sf.json.JSONObject;
 
@@ -62,7 +64,7 @@ public class WhoyaEgovQustnrQestnManageController {
      * @throws Exception
      */
     @RequestMapping(value="/whoya/uss/olp/qqm/EgovQustnrQestnManageListJSON.do")
-    public @ResponseBody JSONObject egovQustnrQestnManageListJSON(@ModelAttribute("searchVO") ComDefaultVO searchVO, @ModelAttribute("qustnrQestnManageVO") QustnrQestnManageVO qustnrQestnManageVO, Map commandMap, ModelMap model) throws Exception {
+    public @ResponseBody JSONObject egovQustnrQestnManageListJSON(@ModelAttribute("searchVO") ComDefaultVO searchVO, @ModelAttribute("qustnrQestnManageVO") QustnrQestnManageVO qustnrQestnManageVO, Map commandMap, ModelMap model, HttpServletRequest request) throws Exception {
         JSONObject resultList = new JSONObject();
         
         try {
@@ -84,7 +86,7 @@ public class WhoyaEgovQustnrQestnManageController {
             for ( int i = 0 ; i < list.size(); i++ ) {
                 whoyaMap wmap = list.getMap(i);
                 wmap.put("no", i + 1);
-                wmap.put("qustnrItem", "../../../images/egovframework/com/cmm/icon/search.gif^선택^javascript:whoya.common.qustnrItemSelect();^_self");
+                wmap.put("qustnrItem", "../../../images/egovframework/com/cmm/icon/search.gif^선택^" + request.getContextPath() + "/whoya/uss/olp/qim/EgovQustnrItemManageList.do?searchMode=Y^_self");
                 wmap.put("qustnrStatistics", "../../../images/egovframework/com/cmm/icon/search.gif^선택^javascript:whoya.common.qustnrStatisticsSelect(\"" + wmap.get("qestnrQesitmId") + "\");^_self");
             }
                         
@@ -272,53 +274,37 @@ public class WhoyaEgovQustnrQestnManageController {
         
         return resultList;
     }
-//	 
-//	 
-//	
-//	protected Log log = LogFactory.getLog(this.getClass());
-//	
-//	@Autowired
-//	private DefaultBeanValidator beanValidator;
-//	
-//	/** EgovMessageSource */
-//    @Resource(name="egovMessageSource")
-//    EgovMessageSource egovMessageSource;
-//	 
-//    /** EgovPropertyService */
-//    @Resource(name = "propertiesService")
-//    protected EgovPropertyService propertiesService;
-//    
-//    /**
-//     * 설문항목 통계를 조회한다. 
-//     * @param searchVO
-//     * @param qustnrQestnManageVO
-//     * @param commandMap
-//     * @param model
-//     * @return "egovframework/com/uss/olp/qqm/EgovQustnrQestnManageStatistics"
-//     * @throws Exception
-//     */
-//    @RequestMapping(value="/uss/olp/qqm/EgovQustnrQestnManageStatistics.do")
-//	public String egovQustnrQestnManageStatistics(
-//			@ModelAttribute("searchVO") ComDefaultVO searchVO, 
-//			QustnrQestnManageVO qustnrQestnManageVO,
-//			Map commandMap,
-//    		ModelMap model)
-//    throws Exception {
-//
-//		String sLocationUrl = "egovframework/com/uss/olp/qqm/EgovQustnrQestnManageStatistics";
-//		
-//        List sampleList = egovQustnrQestnManageService.selectQustnrQestnManageDetail(qustnrQestnManageVO);
-//        model.addAttribute("resultList", sampleList);
-//        // 객관식설문통계
-//        HashMap mapParam = new HashMap();
-//        mapParam.put("qestnrQesitmId", (String)qustnrQestnManageVO.getQestnrQesitmId());
-//        List statisticsList = egovQustnrQestnManageService.selectQustnrManageStatistics(mapParam);
-//        model.addAttribute("statisticsList", statisticsList);
-//        // 주관식설문통계
-//        List statisticsList2 = egovQustnrQestnManageService.selectQustnrManageStatistics2(mapParam);
-//        model.addAttribute("statisticsList2", statisticsList2);
-//		return sLocationUrl; 	
-//	}
+  
+    /**
+     * 설문항목 통계를 조회한다. 
+     * @param searchVO
+     * @param qustnrQestnManageVO
+     * @param commandMap
+     * @param model
+     * @return JSONObject
+     * @throws Exception
+     */
+    @RequestMapping(value="/whoya/uss/olp/qqm/EgovQustnrQestnManageStatistics.do")
+    public @ResponseBody JSONObject egovQustnrQestnManageStatistics(@ModelAttribute("searchVO") ComDefaultVO searchVO, QustnrQestnManageVO qustnrQestnManageVO, Map commandMap, ModelMap model) throws Exception {
+        JSONObject resultList = new JSONObject();
+        try {
+            EgovMap map = (EgovMap)(egovQustnrQestnManageService.selectQustnrQestnManageDetail(qustnrQestnManageVO).get(0));
+            resultList.put("detail", map);
+            
+            // 객관식설문통계
+            HashMap mapParam = new HashMap();
+            mapParam.put("qestnrQesitmId", (String)qustnrQestnManageVO.getQestnrQesitmId());
+            List statisticsList = egovQustnrQestnManageService.selectQustnrManageStatistics(mapParam);
+            resultList.put("statisticsList", statisticsList);
+            // 주관식설문통계
+            List statisticsList2 = egovQustnrQestnManageService.selectQustnrManageStatistics2(mapParam);
+            resultList.put("statisticsList2", statisticsList2);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        
+        return resultList;
+    }
 }
 
 
