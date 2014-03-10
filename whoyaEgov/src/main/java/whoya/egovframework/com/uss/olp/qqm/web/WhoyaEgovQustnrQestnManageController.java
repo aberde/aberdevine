@@ -224,6 +224,54 @@ public class WhoyaEgovQustnrQestnManageController {
         
         return result;
     }
+  
+    /**
+     * 설문문항 팝업 록을 조회한다. 
+     * @param searchVO
+     * @param qustnrQestnManageVO
+     * @param commandMap
+     * @param model
+     * @return JSONObject
+     * @throws Exception
+     */
+    @RequestMapping(value="/whoya/uss/olp/qqm/EgovQustnrQestnManageListPopup.do")
+    public @ResponseBody JSONObject egovQustnrQestnManageListPopup(@ModelAttribute("searchVO") ComDefaultVO searchVO, @ModelAttribute("qustnrQestnManageVO") QustnrQestnManageVO qustnrQestnManageVO, Map commandMap, ModelMap model) throws Exception {
+        JSONObject resultList = new JSONObject();
+        
+        try {
+            String sSearchMode = commandMap.get("searchMode") == null ? "" : (String)commandMap.get("searchMode");
+            
+            //설문지정보에서 넘어오면 자동검색 설정
+            if(sSearchMode.equals("Y")){
+                searchVO.setSearchCondition("QESTNR_ID");
+                searchVO.setSearchKeyword(qustnrQestnManageVO.getQestnrId());
+            }
+            
+            searchVO.setPageIndex(0);
+            // EgovMap 형식으로 받음.
+            List sampleList = egovQustnrQestnManageService.selectQustnrQestnManageList(searchVO);
+            whoyaList list = new whoyaList(Common.ConverObjectToWhoyaMap(sampleList));
+            
+            // 순번 컬럼 추가.
+            // TODO 수정필요 list목록이 많아지면 속도저하 whoyaLib에서 whoyaRenderGrid호출시 같이 처리되도록 해야됨.(aberdevine) 
+            for ( int i = 0 ; i < list.size(); i++ ) {
+                whoyaMap wmap = list.getMap(i);
+                wmap.put("no", i + 1);
+                wmap.put("selectLink", "../../../images/egovframework/com/cmm/icon/search.gif^선택^javascript:whoya.common.qestnrQesitmSelect(\"" + wmap.get("qestnrQesitmId") + "\", \"" + wmap.get("qestnCn") + "\", \"" + wmap.get("qestnTyCode") + "\");^_self");
+            }
+                        
+            // 순번,질문내용,질문유형,등록자,등록일자,선택
+            resultList.put("list", whoyaLib.whoyaRenderGrid(list, "no,qestnCn,qestnTyCode,frstRegisterNm,frstRegisterPnttm,selectLink"));
+            resultList.put("status", commonReturn.SUCCESS);
+            resultList.put("message", "조회되었습니다");
+        } catch(Exception e) {
+            e.printStackTrace();
+            resultList.put("status", commonReturn.FAIL);
+            resultList.put("message", e.getMessage());
+        }
+        
+        return resultList;
+    }
 //	 
 //	 
 //	
@@ -270,55 +318,6 @@ public class WhoyaEgovQustnrQestnManageController {
 //        List statisticsList2 = egovQustnrQestnManageService.selectQustnrManageStatistics2(mapParam);
 //        model.addAttribute("statisticsList2", statisticsList2);
 //		return sLocationUrl; 	
-//	}
-//	
-//	/**
-//	 * 설문문항 팝업 록을 조회한다. 
-//	 * @param searchVO
-//	 * @param qustnrQestnManageVO
-//	 * @param commandMap
-//	 * @param model
-//	 * @return "egovframework/com/uss/olp/qqm/EgovQustnrQestnManageListPopup"
-//	 * @throws Exception
-//	 */
-//	@RequestMapping(value="/uss/olp/qqm/EgovQustnrQestnManageListPopup.do")
-//	public String egovQustnrQestnManageListPopup(
-//			@ModelAttribute("searchVO") ComDefaultVO searchVO, 
-//			@ModelAttribute("qustnrQestnManageVO") QustnrQestnManageVO qustnrQestnManageVO,
-//			Map commandMap, 
-//    		ModelMap model)
-//    throws Exception {
-//		
-//		String sSearchMode = commandMap.get("searchMode") == null ? "" : (String)commandMap.get("searchMode");
-//
-//		//설문지정보에서 넘어오면 자동검색 설정
-//		if(sSearchMode.equals("Y")){
-//			searchVO.setSearchCondition("QESTNR_ID");
-//			searchVO.setSearchKeyword(qustnrQestnManageVO.getQestnrId());
-//		}
-//
-//    	/** EgovPropertyService.sample */
-//    	searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
-//    	searchVO.setPageSize(propertiesService.getInt("pageSize"));
-//
-//    	/** pageing */
-//    	PaginationInfo paginationInfo = new PaginationInfo();
-//		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
-//		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
-//		paginationInfo.setPageSize(searchVO.getPageSize());
-//		
-//		searchVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
-//		searchVO.setLastIndex(paginationInfo.getLastRecordIndex());
-//		searchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-//		
-//        List resultList = egovQustnrQestnManageService.selectQustnrQestnManageList(searchVO);
-//        model.addAttribute("resultList", resultList);
-//                
-//        int totCnt = (Integer)egovQustnrQestnManageService.selectQustnrQestnManageListCnt(searchVO);
-//		paginationInfo.setTotalRecordCount(totCnt);
-//        model.addAttribute("paginationInfo", paginationInfo);
-//		
-//		return "egovframework/com/uss/olp/qqm/EgovQustnrQestnManageListPopup"; 
 //	}
 }
 
