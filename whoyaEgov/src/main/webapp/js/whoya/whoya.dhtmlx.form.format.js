@@ -237,3 +237,18 @@
     	form += " <a href='#' onclick='qestnrPopup();return false;'><img src='" + whoya.context + "/images/egovframework/com/cmm/icon/search.gif' alt='search'></a>";
     	return form;
     };
+    
+    /**
+     * <pre>
+     * 설문문항정보(qestnrQesitmId, qestnrQesitmCn)
+     * @param name  // form의 name
+     * @param value  // form의 value
+     * </pre>
+     */
+    whoya.dhtmlx.form.format.qestnrQesitmInfo = function(name, value) {
+    	var form = "";
+    	form = "<input type='hidden' id='qestnrQesitmId' class='dhxform_textarea' style='width: 150px;' />";
+    	form += "<input type='text' id='qestnrQesitmCn' name='qestnrQesitmCn' class='dhxform_textarea' style='width: 150px;' />";
+    	form += " <a href='#' onclick='qestnrQesitmPopup();return false;'><img src='" + whoya.context + "/images/egovframework/com/cmm/icon/search.gif' alt='search'></a>";
+    	return form;
+    };
