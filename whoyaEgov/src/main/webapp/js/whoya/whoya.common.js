@@ -141,3 +141,18 @@
 		$("#qestnrCn").val(qestnrCn);
 		whoyaGlobalData.qestnrPopupWindows.close();
 	};
+	
+	/**
+	 * 설문문항 목록(팝업)에서 선택된 값 저장.
+	 * @pram qestnrQesitmId 설문문항 ID
+	 * @pram qestnCn 질문내용
+	 * @pram qestnTyCode 질문유형코드
+	 */
+	whoya.common.qestnrQesitmSelect = function(qestnrQesitmId, qestnCn, qestnTyCode) {
+		$("#qestnrQesitmId").val(qestnrQesitmId);
+		$("#qestnrQesitmCn").val(qestnCn);
+		if ( $("#qestnTyCode").length > 0 ) {
+			$("#qestnTyCode").val(qestnTyCode);
+		}
+		whoyaGlobalData.qestnrQesitmPopupWindows.close();
+	};
