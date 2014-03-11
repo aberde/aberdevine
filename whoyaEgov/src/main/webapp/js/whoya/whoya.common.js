@@ -177,7 +177,7 @@
             	$.each(data.statisticsList, function(idx) {
             		statisticsListIemCn += "<ul>";
             		statisticsListIemCn += "<li>" + this.iemCn + "</li>";
-            		statisticsListIemCn += "<li>" + "<img src=" + whoya.context + "'/images/egovframework/com/uss/olp/qqm/chart/chart" + idx + ".JPG' width='" + this.qustnrPercent + "px' height='8' alt='차트이미지' /> " + this.qustnrPercent + "%</li>";
+            		statisticsListIemCn += "<li>" + "<img src='" + whoya.context + "/images/egovframework/com/uss/olp/qqm/chart/chart" + (idx + 1) + ".JPG' width='" + this.qustnrPercent + "px' height='8' alt='차트이미지' /> " + this.qustnrPercent + "%</li>";
             		statisticsListIemCn += "</ul>";
             	});
             	data.detail.statisticsListIemCn = statisticsListIemCn;
@@ -213,4 +213,87 @@
                 alert(errorThrown);
             }
         });
+	};
+
+	/**
+	 * 설문문항 통계화면
+	 * @pram qestnrId 설문ID
+	 * @pram qestnrTmplatId 설문템플릿ID
+	 */
+	whoya.common.qustnrRespondStatisticsSelect = function(qestnrId, qestnrTmplatId) {
+		whoyaGlobalData.bForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.bCellStatisticsFormData);
+		
+		$.ajax({
+			url: whoya.context + "/whoya/uss/olp/qnn/EgovQustnrRespondInfoManageStatistics.do"
+			, type: "POST"
+			, data: {
+				qestnrId: qestnrId
+				, qestnrTmplatId: qestnrTmplatId
+			}
+			, success: function(data, textStatus, jqXHR) {
+				// 설문 결과
+				var Comtnqustnrqesitm = "";
+				$.each(data.Comtnqustnrqesitm, function(idx) {
+					Comtnqustnrqesitm += "<ul>";
+					Comtnqustnrqesitm += "<li>" + this.qestnCn + "</li>";
+					Comtnqustnrqesitm += "<li>";
+					
+					if ( this.qestnTyCode == '1' ) {  // 객관식
+						var $qestnrTmplatId = this.qestnrTmplatId;
+						var $qestnrId = this.qestnrId;
+						var $qestnrQesitmId = this.qestnrQesitmId;
+						
+						// 설문항목
+						$.each(data.Comtnqustnriem, function(idx1) {
+							
+							var $qustnrIemId = this.qustnrIemId;
+							var chartCheck = 0;
+							
+							if ( this.qestnrTmplatId == $qestnrTmplatId && this.qestnrId == $qestnrId && this.qestnrQesitmId == $qestnrQesitmId ) {
+								Comtnqustnrqesitm += "<ul>";
+								Comtnqustnrqesitm += "<li>" + this.iemCn + "</li>";
+								
+								// 설문통계(객관식)
+								$.each(data.qestnrStatistic1, function(idx2) {
+									if ( this.qestnrTmplatId == $qestnrTmplatId && this.qestnrId == $qestnrId && this.qestnrQesitmId == $qestnrQesitmId && this.qustnrIemId == $qustnrIemId ) {
+										Comtnqustnrqesitm += "<li>" + "<img src='" + whoya.context + "/images/egovframework/com/cmm/chart/chart" + (idx1 + 1) + ".JPG' width='" + this.qustnrPercent + "px' height='8' alt='차트이미지' /> " + this.qustnrPercent + "%</li>";
+										chartCheck++;
+									}
+								});
+								
+								if ( chartCheck == 0 ) {
+									Comtnqustnrqesitm += "<li>" + "<img src='" + whoya.context + "/images/egovframework/com/cmm/chart/chart" + (idx1 + 1) + ".JPG' width='0px' height='8' alt='차트이미지' /> 0%</li>";
+								}
+								Comtnqustnrqesitm += "</ul>";
+							}
+						});
+					} else if ( this.qestnTyCode == '2' ) {  // 주관식
+						var $qestnrTmplatId = this.qestnrTmplatId;
+						var $qestnrId = this.qestnrId;
+						var $qestnrQesitmId = this.qestnrQesitmId;
+						
+						// 설문통계(주관식)
+						$.each(data.qestnrStatistic2, function(idx1) {
+							Comtnqustnrqesitm += "<ul>";
+							if ( this.qestnrTmplatId == $qestnrTmplatId && this.qestnrId == $qestnrId && this.qestnrQesitmId == $qestnrQesitmId ) {
+								Comtnqustnrqesitm += "<li>" + this.respondNm + " : " + this.respondAnswerCn + "</li>";
+							}
+							Comtnqustnrqesitm += "</ul>";
+						});
+					}
+					
+					Comtnqustnrqesitm += "</li>";
+					Comtnqustnrqesitm += "</ul>";
+				});
+				data.Comtnqestnrinfo[0].Comtnqustnrqesitm = Comtnqustnrqesitm;
+				
+				whoyaGlobalData.bForm.setFormData(data.Comtnqestnrinfo[0]);
+			}
+			, error: function(jqXHR, textStatus, errorThrown) {
+				console.log(jqXHR);
+				console.log(textStatus);
+				console.log(errorThrown);
+				alert(errorThrown);
+			}
+		});
 	};
