@@ -128,7 +128,7 @@ function fnForward(menu){
 	
     function fnSelRSMO(id)
     {
-    	location.href ="<c:url value="/rf/tagStat.do"/>?RSMO=" + id //"<c:url value="/hs/ispt.do"/>?RSMO=" + id
+    	location.href = "<c:url value="/hs/ispt.do"/>?RSMO=" + id;  //"<c:url value="/rf/tagStat.do"/>?RSMO=" + id
     }
 	function fnGetRsmoData()
 	{
@@ -140,7 +140,7 @@ function fnForward(menu){
 	             // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
 				$.each(data, function(key, list) {
 					$.each(list, function(key, value) {
-							var info = "<br>" + value["RSMO_ZIP_CD"] +" "+ value["RSMO_ADDR"] + "<br><img src='http://192.168.0.211:8010/rarp/images/BTN_RSMO.png' onClick='javascript:fnSelRSMO(\""+value["RSMO_CD"]+"\")'>"
+							var info = "<br>" + value["RSMO_ZIP_CD"] +" "+ value["RSMO_ADDR"] + "<br><img src='http://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/images/BTN_RSMO.png' onClick='javascript:fnSelRSMO(\""+value["RSMO_CD"]+"\")'>"
 							addMarker(value["RSMO_X"], value["RSMO_Y"], info , value["RSMO_CD"]);
 					 })
 				})
