@@ -15,7 +15,7 @@ function init() {
 	// ## 레이아웃생성
 	// #########################################
 	var layoutData = {
-			layout_Pattern: "1C"
+		layout_Pattern: "1C"
 	};
 	whoyaGlobalData.layout = whoya.dhtmlx.layout.init(layoutData);
 	// #########################################
