@@ -77,10 +77,10 @@ public class WhoyaEgovQustnrManageController {
 				whoyaMap wmap = list.getMap(i);
 				wmap.put("no", i + 1);
 				wmap.put("qestnrDe", (String)wmap.get("qestnrBeginDe") + " ~ " + (String)wmap.get("qestnrEndDe"));
-				wmap.put("qustnrQRM", "../../../images/egovframework/com/cmm/icon/search.gif^선택^javascript:whoya.common.qestnrSelect(\"" + wmap.get("qestnrId") + "\", \"" + wmap.get("qestnrTmplatId") + "\", \"QRM\");^_self");
-				wmap.put("qustnrQQM", "../../../images/egovframework/com/cmm/icon/search.gif^선택^javascript:whoya.common.qestnrSelect(\"" + wmap.get("qestnrId") + "\", \"" + wmap.get("qestnrTmplatId") + "\", \"QQM\");^_self");
-				wmap.put("qustnrQRI", "../../../images/egovframework/com/cmm/icon/search.gif^선택^javascript:whoya.common.qestnrSelect(\"" + wmap.get("qestnrId") + "\", \"" + wmap.get("qestnrTmplatId") + "\", \"QRI\");^_self");
-				wmap.put("qustnrQST", "../../../images/egovframework/com/cmm/icon/search.gif^선택^javascript:whoya.common.qestnrSelect(\"" + wmap.get("qestnrId") + "\", \"" + wmap.get("qestnrTmplatId") + "\", \"QST\");^_self");
+				wmap.put("qustnrQRM", "../../../images/egovframework/com/cmm/icon/search.gif^선택^javascript:whoya.common.qustnrManageSelect(\"" + wmap.get("qestnrId") + "\", \"" + wmap.get("qestnrTmplatId") + "\", \"QRM\");^_self");
+				wmap.put("qustnrQQM", "../../../images/egovframework/com/cmm/icon/search.gif^선택^javascript:whoya.common.qustnrManageSelect(\"" + wmap.get("qestnrId") + "\", \"" + wmap.get("qestnrTmplatId") + "\", \"QQM\");^_self");
+				wmap.put("qustnrQRI", "../../../images/egovframework/com/cmm/icon/search.gif^선택^javascript:whoya.common.qustnrManageSelect(\"" + wmap.get("qestnrId") + "\", \"" + wmap.get("qestnrTmplatId") + "\", \"QRI\");^_self");
+				wmap.put("qustnrQST", "../../../images/egovframework/com/cmm/icon/search.gif^선택^javascript:whoya.common.qustnrManageStatisticsSelect(\"" + wmap.get("qestnrId") + "\", \"" + wmap.get("qestnrTmplatId") + "\");^_self");
 			}
 						
 			// 순번,설문제목,설문기간,설문응답자정보,설문문항,설문조사,통계,등록자,등록일자,설문지ID
