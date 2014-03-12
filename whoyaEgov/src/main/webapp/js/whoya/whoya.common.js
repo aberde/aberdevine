@@ -297,3 +297,109 @@
 			}
 		});
 	};
+	
+	/**
+	 * 설문관리 [설문응답자정보/설문문항/설문조사/통계] 화면 이동.
+	 * @pram qestnrId 설문ID
+	 * @pram qestnrTmplatId 설문템플릿ID
+	 * @pram type 질문유형코드
+	 */
+	whoya.common.qustnrManageSelect = function(qestnrId, qestnrTmplatId, type) {
+		var url = "";
+		var queryString = "?searchMode=Y&qestnrId=" + qestnrId + "&qestnrTmplatId=" + qestnrTmplatId;
+		
+		//QRM QQM QRI
+		if ( type == "QRM" ) {  //설문응답자정보
+			url = whoya.context + "/whoya/uss/olp/qrm/EgovQustnrRespondManageList.do";
+		} else if ( type == "QQM" ) {  //설문문항
+			url = whoya.context + "/whoya/uss/olp/qqm/EgovQustnrQestnManageList.do";
+		} else if ( type == "QRI" ) {  //응답자결과
+			url = whoya.context + "/whoya/uss/olp/qnn/EgovQustnrRespondInfoManageList.do";
+		}
+		
+		window.location = url + queryString;
+	};
+	
+	/**
+	 * 설문관리 통계화면
+	 * @pram qestnrId 설문ID
+	 * @pram qestnrTmplatId 설문템플릿ID
+	 */
+	whoya.common.qustnrManageStatisticsSelect = function(qestnrId, qestnrTmplatId) {
+		whoyaGlobalData.bForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.bCellStatisticsFormData);
+		
+		$.ajax({
+			url: whoya.context + "/whoya/uss/olp/qnn/EgovQustnrRespondInfoManageStatistics.do"
+			, type: "POST"
+			, data: {
+				qestnrId: qestnrId
+				, qestnrTmplatId: qestnrTmplatId
+				, searchMode: "Y"
+			}
+			, success: function(data, textStatus, jqXHR) {
+				// 설문 결과
+				var Comtnqustnrqesitm = "";
+				$.each(data.Comtnqustnrqesitm, function(idx) {
+					Comtnqustnrqesitm += "<ul>";
+					Comtnqustnrqesitm += "<li>" + this.qestnCn + "</li>";
+					Comtnqustnrqesitm += "<li>";
+					
+					if ( this.qestnTyCode == '1' ) {  // 객관식
+						var $qestnrTmplatId = this.qestnrTmplatId;
+						var $qestnrId = this.qestnrId;
+						var $qestnrQesitmId = this.qestnrQesitmId;
+						
+						// 설문항목
+						$.each(data.Comtnqustnriem, function(idx1) {
+							
+							var $qustnrIemId = this.qustnrIemId;
+							var chartCheck = 0;
+							
+							if ( this.qestnrTmplatId == $qestnrTmplatId && this.qestnrId == $qestnrId && this.qestnrQesitmId == $qestnrQesitmId ) {
+								Comtnqustnrqesitm += "<ul>";
+								Comtnqustnrqesitm += "<li>" + this.iemCn + "</li>";
+								
+								// 설문통계(객관식)
+								$.each(data.qestnrStatistic1, function(idx2) {
+									if ( this.qestnrTmplatId == $qestnrTmplatId && this.qestnrId == $qestnrId && this.qestnrQesitmId == $qestnrQesitmId && this.qustnrIemId == $qustnrIemId ) {
+										Comtnqustnrqesitm += "<li>" + "<img src='" + whoya.context + "/images/egovframework/com/cmm/chart/chart" + (idx1 + 1) + ".JPG' width='" + this.qustnrPercent + "px' height='8' alt='차트이미지' /> " + this.qustnrPercent + "%</li>";
+										chartCheck++;
+									}
+								});
+								
+								if ( chartCheck == 0 ) {
+									Comtnqustnrqesitm += "<li>" + "<img src='" + whoya.context + "/images/egovframework/com/cmm/chart/chart" + (idx1 + 1) + ".JPG' width='0px' height='8' alt='차트이미지' /> 0%</li>";
+								}
+								Comtnqustnrqesitm += "</ul>";
+							}
+						});
+					} else if ( this.qestnTyCode == '2' ) {  // 주관식
+						var $qestnrTmplatId = this.qestnrTmplatId;
+						var $qestnrId = this.qestnrId;
+						var $qestnrQesitmId = this.qestnrQesitmId;
+						
+						// 설문통계(주관식)
+						$.each(data.qestnrStatistic2, function(idx1) {
+							Comtnqustnrqesitm += "<ul>";
+							if ( this.qestnrTmplatId == $qestnrTmplatId && this.qestnrId == $qestnrId && this.qestnrQesitmId == $qestnrQesitmId ) {
+								Comtnqustnrqesitm += "<li>" + this.respondNm + " : " + this.respondAnswerCn + "</li>";
+							}
+							Comtnqustnrqesitm += "</ul>";
+						});
+					}
+					
+					Comtnqustnrqesitm += "</li>";
+					Comtnqustnrqesitm += "</ul>";
+				});
+				data.Comtnqestnrinfo[0].Comtnqustnrqesitm = Comtnqustnrqesitm;
+				
+				whoyaGlobalData.bForm.setFormData(data.Comtnqestnrinfo[0]);
+			}
+			, error: function(jqXHR, textStatus, errorThrown) {
+				console.log(jqXHR);
+				console.log(textStatus);
+				console.log(errorThrown);
+				alert(errorThrown);
+			}
+		});
+	};

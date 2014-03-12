@@ -184,6 +184,22 @@ function init() {
 			] }
 		]
 	};
+	
+	// 통계폼.
+    whoyaGlobalData.bCellStatisticsFormData = {
+        cell: whoyaGlobalData.bCell
+        , formData: [
+            { type: "fieldset", name: "formField", label: "설문 통계", list: [
+                { type: "settings", labelWidth: 150, inputWidth: 170 },
+                { type: "template", label: "설문제목", name: "qestnrSj", format: whoya.dhtmlx.form.format.printData },
+                { type: "template", label: "설문목적", name: "qestnrPurps", format: whoya.dhtmlx.form.format.printData },
+                { type: "template", label: "설문작성 안내내용", name: "qestnrWritngGuidanceCn", format: whoya.dhtmlx.form.format.printData },
+                { type: "template", label: "설문대상", name: "qestnrTrget", format: whoya.dhtmlx.form.format.printData },
+                { type: "template", label: "설문기간", name: "qestnrDe", format: whoya.dhtmlx.form.format.printData },
+                { type: "template", name: "Comtnqustnrqesitm", format: whoya.dhtmlx.form.format.printData },
+            ] }
+        ]
+    };
 	// #########################################
 	
 	
@@ -220,25 +236,27 @@ function toolbarEvent() {
 // grid event 생성
 function gridEvent() {
 	whoyaGlobalData.aGrid.attachEvent("onRowSelect", function(id, ind) {
-		// 화면 layout cell b에 dhtmlxForm 객체 생성.
-		whoyaGlobalData.bForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.bCellDetailFormData);
-		formEvent();
-		
-		$.ajax({
-			url: "<c:url value='/whoya/uss/olp/qmc/EgovQustnrManageDetail.do' />"
-			, data: {
-				qestnrId: whoyaGlobalData.aGrid.cells(id, 9).getValue()
-			}
-			, success: function(data, textStatus, jqXHR) {
-				whoyaGlobalData.bForm.setFormData(data);
-			}
-			, error: function(jqXHR, textStatus, errorThrown) {
-				console.log(jqXHR);
-				console.log(textStatus);
-				console.log(errorThrown);
-				alert(errorThrown);
-			}
-		});
+		if ( ind < 3 || ind > 6 ) {
+			// 화면 layout cell b에 dhtmlxForm 객체 생성.
+			whoyaGlobalData.bForm = whoya.dhtmlx.layout.cell.form(whoyaGlobalData.bCellDetailFormData);
+			formEvent();
+			
+			$.ajax({
+				url: "<c:url value='/whoya/uss/olp/qmc/EgovQustnrManageDetail.do' />"
+				, data: {
+					qestnrId: whoyaGlobalData.aGrid.cells(id, 9).getValue()
+				}
+				, success: function(data, textStatus, jqXHR) {
+					whoyaGlobalData.bForm.setFormData(data);
+				}
+				, error: function(jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR);
+					console.log(textStatus);
+					console.log(errorThrown);
+					alert(errorThrown);
+				}
+			});
+		}
 	});
 }
 
