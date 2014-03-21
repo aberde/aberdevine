@@ -393,7 +393,7 @@ public class EgovIndvdlSchdulManageController {
 	 * @return "egovframework/com/cop/smt/sim/EgovIndvdlSchdulManageList"
 	 * @throws Exception
 	 */
-	@IncludedInfo(name="일정관리", order = 330 ,gid = 40)
+	@IncludedInfo(name="일정관리", whoyaListUrl="/whoya/cop/smt/sim/EgovIndvdlSchdulManageList.do", order = 330 ,gid = 40)
 	@RequestMapping(value="/cop/smt/sim/EgovIndvdlSchdulManageList.do")
 	public String egovIndvdlSchdulManageList(
 			@ModelAttribute("searchVO") ComDefaultVO searchVO,

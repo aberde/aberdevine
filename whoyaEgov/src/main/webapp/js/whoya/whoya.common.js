@@ -403,3 +403,25 @@
 			}
 		});
 	};
+
+	/**
+	 * 부서목록(팝업)에서 선택된 값 저장.
+	 * @pram orgnztId 조직(부서)ID
+	 * @pram orgnztNm 조직(부서)명
+	 */
+	whoya.common.groupSelect = function(orgnztId, orgnztNm) {
+		$("#schdulDeptId").val(orgnztId);
+		$("#schdulDeptName").val(orgnztNm);
+		whoyaGlobalData.groupPopupWindows.close();
+	};
+	
+	/**
+	 * 담당자목록(팝업)에서 선택된 값 저장.
+	 * @pram esntlId 
+	 * @pram emplyrId 사용자 아이디
+	 */
+	whoya.common.schdulChargerSelect = function(esntlId, emplyrId) {
+		$("#schdulChargerId").val(esntlId);
+		$("#schdulChargerName").val(emplyrId);
+		whoyaGlobalData.schdulChargerPopupWindows.close();
+	};

@@ -6,6 +6,7 @@
 
 	// dhtmlx의 layout함수
 	whoya.dhtmlx.layout = {};
+	
 	/**
 	 * <pre>
 	 * 화면 layout 객체 생성
@@ -328,3 +329,48 @@
 		return main_status;
     };
     
+	/**
+	 * <pre>
+	 * dhtmlxWindows 객체 생성
+	 * @param data JSON형식의 UI셋팅 데이터
+	 *   id: ""  // dhtmlxWindows 객체의 id
+	 *   x: 20  // x좌표
+	 *   y: 30  // y좌표
+	 *   width: 800  // 넓이
+	 *   height: 240  // 높이
+	 *   setText: ""  // 타이틀
+	 *   setModal: true  // 모달창여부
+	 *   keepInViewport: true  //
+	 *   centerOnScreen: true  // 중앙에 위치
+	 * @returns dhtmlxWindows 객체
+	 * </pre>
+	 */
+	whoya.dhtmlx.windows = function(data) {
+		var whoyaData = {
+			attachViewportTo: "scheduler"
+			, id: ""
+			, x: 20
+			, y: 30
+			, width: 800
+			, height: 240
+			, setText: ""
+			, setModal: true
+			, keepInViewport: true
+			, centerOnScreen: true
+		};
+		$.extend(whoyaData, data);
+		
+		var dhxWins = new dhtmlXWindows();
+		dhtmlx.image_path = whoya.context + "/dhtmlx/dhtmlx_pro_full/imgs/";  // 기본 이미지 경로
+		dhxWins.setImagePath(dhtmlx.image_path);
+		dhxWins.attachViewportTo(whoyaData.attachViewportTo);
+		var windows = dhxWins.createWindow(whoyaData.id, whoyaData.x, whoyaData.y, whoyaData.width, whoyaData.height);
+		windows.setText(whoyaData.setText);
+		windows.setModal(whoyaData.setModal);
+		windows.keepInViewport(whoyaData.keepInViewport);
+		if ( whoyaData.centerOnScreen ) {
+			windows.centerOnScreen();
+		}
+		
+		return windows;
+	};
