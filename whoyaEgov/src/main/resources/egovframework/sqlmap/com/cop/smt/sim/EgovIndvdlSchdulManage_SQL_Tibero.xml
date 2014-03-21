@@ -219,8 +219,14 @@
 	<![CDATA[	
 		) T0
 	) 
-	WHERE RNUM BETWEEN #firstIndex# + 1 AND #firstIndex# + #recordCountPerPage#
 	]]>	
+	<isNotEmpty property="pageIndex">
+        <isNotEqual property="pageIndex" compareValue="0">
+        <![CDATA[
+			WHERE RNUM BETWEEN #firstIndex# + 1 AND #firstIndex# + #recordCountPerPage#
+        ]]>
+        </isNotEqual>
+    </isNotEmpty>
 	</select>
 	
 	<!-- 개인일정정보::목록조회_게시물 총갯수  -->

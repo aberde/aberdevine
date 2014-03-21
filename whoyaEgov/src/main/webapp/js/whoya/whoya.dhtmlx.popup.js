@@ -233,7 +233,7 @@ function reportrPopup() {
 		, setInitWidths: "100,*,100,100,100,100"
 		, setColAlign: "center,center,center,center,center,center"
 		, setColTypes: "ro,ro,ro,ro,ro,img"
-		, enableResizing: "true,true,true,,true,true,true"
+		, enableResizing: "true,true,true,true,true,true"
 		, enableTooltips: "false,false,false,false,false,false"
 		, setColSorting: "str,str,str,str,str,str"
 	};
@@ -1504,6 +1504,303 @@ function qestnrQesitmPopupSearch() {
 			whoyaGlobalData.qestnrQesitmPopupaGrid.setSelectedRow(0);
 			document.getElementById("qestnrQesitmPopupactiveStatusBar").innerHTML = "조회되었습니다";
 		}
+		, error: function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR);
+			console.log(textStatus);
+			console.log(errorThrown);
+			alert(errorThrown);
+		}
+	});
+}
+/**
+ * #########################################
+ */
+
+
+/**
+ * #########################################
+ * 부서 목록 Popup
+ * #########################################
+ */
+function groupPopup() {
+	// #########################################
+	// ## layout에 windows 생성
+	// #########################################
+	var groupPopupWindowsData = {
+		id: "groupPopup"
+		, setText: "부서 목록"
+	};
+	whoyaGlobalData.groupPopupWindows = whoya.dhtmlx.windows(groupPopupWindowsData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## 팝업창 레이아웃생성
+	// #########################################
+	var groupPopupLayoutData = {
+		layout_target: whoyaGlobalData.groupPopupWindows
+		, layout_Pattern: "1C"
+	};
+	whoyaGlobalData.groupPopupLayout = whoya.dhtmlx.layout.init(groupPopupLayoutData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## 팝업창 툴바 생성
+	// #########################################
+	var groupPopupToolbarData = {
+		layout: whoyaGlobalData.groupPopupLayout
+	};
+	whoyaGlobalData.groupPopupToolbar = whoya.dhtmlx.layout.toolbar.init(groupPopupToolbarData);
+	whoyaGlobalData.groupPopupToolbar.addText("lbl_searchCondition", 1, "조회조건");
+	whoyaGlobalData.groupPopupToolbar.addText("searchCondition", 2, "");
+	whoyaGlobalData.groupPopupToolbar.addInput("searchKeyword", 3, "", 200);
+
+	// selectBox 생성
+	var comboDIV = whoyaGlobalData.groupPopupToolbar.objPull[whoyaGlobalData.groupPopupToolbar.idPrefix+"searchCondition"].obj;
+	whoyaGlobalData.groupPopupToolbar.objPull[whoyaGlobalData.groupPopupToolbar.idPrefix+"searchCondition"].obj.innerHTML = "";
+	whoyaGlobalData.groupPopupCombo = new dhtmlXCombo(comboDIV,"alfa",140);
+	whoyaGlobalData.groupPopupCombo.addOption([
+   		["", "--선택하세요--"]
+   		, ["ORGNZT_NM", "부서명"]
+   		, ["ORGNZT_DC", "부서설명"]
+   	]);
+	whoyaGlobalData.groupPopupCombo.selectOption(0);
+	
+	// toolbar의 Button정의
+	var groupPopupToolbarAddButton = {
+		toolbar: whoyaGlobalData.groupPopupToolbar
+		, btn_Open: true
+	};
+	whoya.dhtmlx.layout.toolbar.addButton(groupPopupToolbarAddButton);
+	groupPopupToolbarEvent();
+	// #########################################
+	
+	
+	// #########################################
+	// ## 팝업창 layout cell a 
+	// #########################################
+	var groupPopupaCellData = {
+		layout: whoyaGlobalData.groupPopupLayout
+	};
+	// 팝업창 화면 layout의 해당 cell 정의 
+	whoyaGlobalData.groupPopupaCell = whoya.dhtmlx.layout.cell.init(groupPopupaCellData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## 팝업창 layout cell a에 grid생성
+	// #########################################
+	var groupPopupaCellGridData = {
+		cell: whoyaGlobalData.groupPopupaCell
+		, setHeader: "순번,부서명,부서설명,선택"
+		, setColumnIds: "no,orgnztNm,orgnztDc,selectLink"
+		, setInitWidths: "100,100,*,100"
+		, setColAlign: "center,center,center,center"
+		, setColTypes: "ro,ro,ro,img"
+		, enableResizing: "true,true,true,true"
+		, enableTooltips: "false,false,false,false"
+		, setColSorting: "str,str,str,str"
+	};
+	// 팝업창 화면 layout cell a에 dhtmlxGrid 객체 생성.
+	whoyaGlobalData.groupPopupaGrid = whoya.dhtmlx.layout.cell.grid(groupPopupaCellGridData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## 팝업창 layout에 statusbar 생성
+	// #########################################
+	var groupPopupStatusbarData = {
+		layout: whoyaGlobalData.groupPopupLayout
+		, id: "groupPopup"
+	};
+	whoyaGlobalData.groupPopupStatusbar = whoya.dhtmlx.statusbar(groupPopupStatusbarData);
+	// #########################################
+	
+	$("div.dhx_modal_cover_dv").css("z-index", "20000");
+	$("div.dhtmlx_window_active").css("z-index", "20001");
+}
+
+// groupPopup toolbar event 생성
+function groupPopupToolbarEvent() {
+	whoyaGlobalData.groupPopupToolbar.attachEvent("onClick", function(id) {
+		if(id == "btn_Open"){
+			groupPopupSearch();
+		}
+    });
+}
+
+// 조회(groupPopup용)
+function groupPopupSearch() {
+	whoyaGlobalData.groupPopupLayout.progressOn();
+	whoyaGlobalData.groupPopupaGrid.clearAll();
+	document.getElementById("groupPopupactiveStatusBar").innerHTML = "";
+	$.ajax({
+		url: whoya.context + "/whoya/uss/olp/mgt/EgovMeetingManageLisAuthorGroupPopup.do"
+		, type: "POST"
+		, data: {
+			searchCondition : whoyaGlobalData.groupPopupCombo.getSelectedValue()
+			, searchKeyword : whoyaGlobalData.groupPopupToolbar.getValue("searchKeyword")
+		}
+		, success: function(data, textStatus, jqXHR) {
+			whoyaGlobalData.groupPopupaGrid.attachEvent("onXLE", function(){
+				whoyaGlobalData.groupPopupLayout.progressOff();
+    		});
+    	  	
+			whoyaGlobalData.groupPopupaGrid.clearAll();
+			whoyaGlobalData.groupPopupaGrid.parse(data.list, "json");
+			whoyaGlobalData.groupPopupaGrid.setSelectedRow(0);
+    		document.getElementById("groupPopupactiveStatusBar").innerHTML = "조회되었습니다";
+	    }
+		, error: function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR);
+			console.log(textStatus);
+			console.log(errorThrown);
+			alert(errorThrown);
+		}
+	});
+}
+/**
+ * #########################################
+ */
+
+
+/**
+ * #########################################
+ * 담당자 목록 Popup
+ * #########################################
+ */
+function schdulChargerPopup() {
+	// #########################################
+	// ## layout에 windows 생성
+	// #########################################
+	var schdulChargerPopupWindowsData = {
+		id: "schdulChargerPopup"
+		, setText: "사용자 검색"
+	};
+	whoyaGlobalData.schdulChargerPopupWindows = whoya.dhtmlx.windows(schdulChargerPopupWindowsData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## 팝업창 레이아웃생성
+	// #########################################
+	var schdulChargerPopupLayoutData = {
+		layout_target: whoyaGlobalData.schdulChargerPopupWindows
+		, layout_Pattern: "1C"
+	};
+	whoyaGlobalData.schdulChargerPopupLayout = whoya.dhtmlx.layout.init(schdulChargerPopupLayoutData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## 팝업창 툴바 생성
+	// #########################################
+	var schdulChargerPopupToolbarData = {
+		layout: whoyaGlobalData.schdulChargerPopupLayout
+	};
+	whoyaGlobalData.schdulChargerPopupToolbar = whoya.dhtmlx.layout.toolbar.init(schdulChargerPopupToolbarData);
+	whoyaGlobalData.schdulChargerPopupToolbar.addText("lbl_searchCondition", 1, "조회조건");
+	whoyaGlobalData.schdulChargerPopupToolbar.addText("searchCondition", 2, "");
+	whoyaGlobalData.schdulChargerPopupToolbar.addInput("searchKeyword", 3, "", 200);
+
+	// selectBox 생성
+	var comboDIV = whoyaGlobalData.schdulChargerPopupToolbar.objPull[whoyaGlobalData.schdulChargerPopupToolbar.idPrefix+"searchCondition"].obj;
+	whoyaGlobalData.schdulChargerPopupToolbar.objPull[whoyaGlobalData.schdulChargerPopupToolbar.idPrefix+"searchCondition"].obj.innerHTML = "";
+	whoyaGlobalData.schdulChargerPopupCombo = new dhtmlXCombo(comboDIV,"alfa",140);
+	whoyaGlobalData.schdulChargerPopupCombo.addOption([
+   		["", "--선택하세요--"]
+   		, ["USER_NM", "이름"]
+   		, ["EMPLYR_ID", "아이디"]
+   		, ["OFFM_TELNO", "전화번호"]
+   	]);
+	whoyaGlobalData.schdulChargerPopupCombo.selectOption(0);
+	
+	// toolbar의 Button정의
+	var schdulChargerPopupToolbarAddButton = {
+		toolbar: whoyaGlobalData.schdulChargerPopupToolbar
+		, btn_Open: true
+	};
+	whoya.dhtmlx.layout.toolbar.addButton(schdulChargerPopupToolbarAddButton);
+	schdulChargerPopupToolbarEvent();
+	// #########################################
+	
+	
+	// #########################################
+	// ## 팝업창 layout cell a 
+	// #########################################
+	var schdulChargerPopupaCellData = {
+		layout: whoyaGlobalData.schdulChargerPopupLayout
+	};
+	// 팝업창 화면 layout의 해당 cell 정의 
+	whoyaGlobalData.schdulChargerPopupaCell = whoya.dhtmlx.layout.cell.init(schdulChargerPopupaCellData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## 팝업창 layout cell a에 grid생성
+	// #########################################
+	var schdulChargerPopupaCellGridData = {
+		cell: whoyaGlobalData.schdulChargerPopupaCell
+		, setHeader: "순번,아이디,이름,전화번호,주소,선택"
+		, setColumnIds: "no,emplyrId,userNm,offmTelno,adres,selectLink"
+		, setInitWidths: "100,100,100,100,*,100"
+		, setColAlign: "center,center,center,center,center,center"
+		, setColTypes: "ro,ro,ro,ro,ro,img"
+		, enableResizing: "true,true,true,true,true,true"
+		, enableTooltips: "false,false,false,false,false,false"
+		, setColSorting: "str,str,str,str,str,str"
+	};
+	// 팝업창 화면 layout cell a에 dhtmlxGrid 객체 생성.
+	whoyaGlobalData.schdulChargerPopupaGrid = whoya.dhtmlx.layout.cell.grid(schdulChargerPopupaCellGridData);
+	// #########################################
+	
+	
+	// #########################################
+	// ## 팝업창 layout에 statusbar 생성
+	// #########################################
+	var schdulChargerPopupStatusbarData = {
+		layout: whoyaGlobalData.schdulChargerPopupLayout
+		, id: "schdulChargerPopup"
+	};
+	whoyaGlobalData.schdulChargerPopupStatusbar = whoya.dhtmlx.statusbar(schdulChargerPopupStatusbarData);
+	// #########################################
+	
+	$("div.dhx_modal_cover_dv").css("z-index", "20000");
+	$("div.dhtmlx_window_active").css("z-index", "20001");
+}
+
+// schdulChargerPopup toolbar event 생성
+function schdulChargerPopupToolbarEvent() {
+	whoyaGlobalData.schdulChargerPopupToolbar.attachEvent("onClick", function(id) {
+		if(id == "btn_Open"){
+			schdulChargerPopupSearch();
+		}
+    });
+}
+
+// 조회(schdulChargerPopup용)
+function schdulChargerPopupSearch() {
+	whoyaGlobalData.schdulChargerPopupLayout.progressOn();
+	whoyaGlobalData.schdulChargerPopupaGrid.clearAll();
+	document.getElementById("schdulChargerPopupactiveStatusBar").innerHTML = "";
+	$.ajax({
+		url: whoya.context + "/whoya/uss/olp/mgt/EgovMeetingManageLisEmpLyrPopup.do"
+		, type: "POST"
+		, data: {
+			searchCondition : whoyaGlobalData.schdulChargerPopupCombo.getSelectedValue()
+			, searchKeyword : whoyaGlobalData.schdulChargerPopupToolbar.getValue("searchKeyword")
+		}
+		, success: function(data, textStatus, jqXHR) {
+			whoyaGlobalData.schdulChargerPopupaGrid.attachEvent("onXLE", function(){
+				whoyaGlobalData.schdulChargerPopupLayout.progressOff();
+    		});
+    	  	
+			whoyaGlobalData.schdulChargerPopupaGrid.clearAll();
+			whoyaGlobalData.schdulChargerPopupaGrid.parse(data.list, "json");
+			whoyaGlobalData.schdulChargerPopupaGrid.setSelectedRow(0);
+    		document.getElementById("schdulChargerPopupactiveStatusBar").innerHTML = "조회되었습니다";
+	    }
 		, error: function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR);
 			console.log(textStatus);
