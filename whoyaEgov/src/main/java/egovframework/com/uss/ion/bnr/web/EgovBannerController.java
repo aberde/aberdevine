@@ -95,7 +95,7 @@ public class EgovBannerController {
 	 * @return String - 리턴 URL
 	 * @throws Exception
 	 */
-    @IncludedInfo(name="배너관리", order = 740 ,gid = 50)
+    @IncludedInfo(name="배너관리", whoyaListUrl="/whoya/uss/ion/bnr/selectBannerList.do", order = 740 ,gid = 50)
     @RequestMapping(value="/uss/ion/bnr/selectBannerList.do")
 	public String selectBannerList(@ModelAttribute("bannerVO") BannerVO bannerVO,
                              		ModelMap model) throws Exception{
