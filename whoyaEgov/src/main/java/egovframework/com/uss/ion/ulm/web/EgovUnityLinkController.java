@@ -101,7 +101,7 @@ public class EgovUnityLinkController {
      * @return "egovframework/com/uss/ion/ulm/EgovOnlinePollList"
      * @throws Exception
      */
-    @IncludedInfo(name="통합링크관리", order = 780 ,gid = 50)
+    @IncludedInfo(name="통합링크관리", whoyaListUrl="/whoya/uss/ion/ulm/listUnityLink.do", order = 780 ,gid = 50)
     @RequestMapping(value = "/uss/ion/ulm/listUnityLink.do")
     public String egovUnityLinkList(
             @ModelAttribute("searchVO") ComDefaultVO searchVO, Map commandMap,
