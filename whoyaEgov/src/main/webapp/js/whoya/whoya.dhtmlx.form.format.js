@@ -252,3 +252,16 @@
     	form += " <a href='#' onclick='qestnrQesitmPopup();return false;'><img src='" + whoya.context + "/images/egovframework/com/cmm/icon/search.gif' alt='search'></a>";
     	return form;
     };
+    
+    /**
+     * <pre>
+     * 웹에디터
+     * @param name  // form의 name
+     * @param value  // form의 value
+     * </pre>
+     */
+    whoya.dhtmlx.form.format.webEditor = function(name, value) {
+    	var form = "";
+    	form += "<div id='" + name + "' style='width: 100%; height: 300px; border: #909090 1px solid;'></div>";
+    	return form;
+    };

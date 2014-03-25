@@ -32,7 +32,12 @@ public class HTMLTagFilter implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		
-		chain.doFilter(new HTMLTagFilterRequestWrapper((HttpServletRequest)request), response);		
+	    HttpServletRequest req = (HttpServletRequest)request;
+	    if ( req.getRequestURI().indexOf("/whoya/uss/ion/ulm/registUnityLink.do") > -1 || req.getRequestURI().indexOf("/whoya/uss/ion/ulm/updtUnityLink.do") > -1 ) {
+	        chain.doFilter(request, response);
+	    } else {
+	        chain.doFilter(new HTMLTagFilterRequestWrapper((HttpServletRequest)request), response);
+	    }
 	}
 
 	public void init(FilterConfig config) throws ServletException {
