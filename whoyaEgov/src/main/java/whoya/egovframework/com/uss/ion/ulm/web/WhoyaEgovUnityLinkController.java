@@ -42,7 +42,7 @@ public class WhoyaEgovUnityLinkController {
      * @return ModelAndView
      */
     @RequestMapping(value = "/whoya/uss/ion/ulm/listUnityLink.do")
-    public ModelAndView selectEntrprsMberList() {
+    public ModelAndView egovUnityLinkList() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("whoya/egovframework/com/uss/ion/ulm/EgovUnityLinkList");
         return mav;
@@ -124,8 +124,7 @@ public class WhoyaEgovUnityLinkController {
      * @param unityLinkVO
      * @param commandMap
      * @param model
-     * @return 
-     *         "/uss/ion/ulm/EgovOnlinePollDetail"
+     * @return UnityLink
      * @throws Exception
      */
     @RequestMapping(value = "/whoya/uss/ion/ulm/detailUnityLink.do")

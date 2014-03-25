@@ -63,7 +63,7 @@ public class WhoyaEgovBannerController {
      * @return ModelAndView
      */
     @RequestMapping(value="/whoya/uss/ion/bnr/selectBannerList.do")
-    public ModelAndView selectEntrprsMberList() {
+    public ModelAndView selectBannerList() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("whoya/egovframework/com/uss/ion/bnr/EgovBannerList");
         return mav;
