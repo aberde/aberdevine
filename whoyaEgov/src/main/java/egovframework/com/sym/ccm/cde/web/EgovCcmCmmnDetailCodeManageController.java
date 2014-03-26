@@ -221,7 +221,7 @@ public class EgovCcmCmmnDetailCodeManageController {
      * @return "egovframework/com/sym/ccm/cde/EgovCcmCmmnDetailCodeList"
      * @throws Exception
      */
-	@IncludedInfo(name="공통상세코드", listUrl="/sym/ccm/cde/EgovCcmCmmnDetailCodeList.do", order = 970 ,gid = 60)
+	@IncludedInfo(name="공통상세코드", listUrl="/sym/ccm/cde/EgovCcmCmmnDetailCodeList.do", whoyaListUrl="/whoya/sym/ccm/cde/EgovCcmCmmnDetailCodeList.do", order = 970 ,gid = 60)
     @RequestMapping(value="/sym/ccm/cde/EgovCcmCmmnDetailCodeList.do")
 	public String selectCmmnDetailCodeList (@ModelAttribute("loginVO") LoginVO loginVO
 			, @ModelAttribute("searchVO") CmmnDetailCodeVO searchVO
