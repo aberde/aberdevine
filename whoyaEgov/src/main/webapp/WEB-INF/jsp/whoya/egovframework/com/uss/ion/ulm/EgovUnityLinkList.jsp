@@ -383,7 +383,5 @@ $(function(document) {
 </script>
 </head>
 <body>
-<form name="testFrm">
-</form>
 </body>
 </html>
