@@ -42,10 +42,15 @@
 			/* 구현 Sql */
 				    ) ALL_LIST
 				    )
-			 WHERE  RNUM  > #firstIndex#
-			   AND  RNUM <= #firstIndex# + #recordCountPerPage#
 		]]>
-
+        <isNotEmpty property="pageIndex">
+            <isNotEqual property="pageIndex" compareValue="0">
+                <![CDATA[
+				 WHERE  RNUM  > #firstIndex#
+				   AND  RNUM <= #firstIndex# + #recordCountPerPage#
+                ]]>
+            </isNotEqual>
+        </isNotEmpty>
 	</select>
 
 	<select id="CmmnCodeManageDAO.selectCmmnCodeListTotCnt" parameterClass="CmmnCodeVO" resultClass="int">
