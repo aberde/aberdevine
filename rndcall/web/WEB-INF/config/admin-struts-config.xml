@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+  <form-beans>   
+  	<form-bean name="AdminForm" type="kr.go.rndcall.mgnt.admin.form.AdminForm" />
+  </form-beans>
+  <action-mappings>
+    <action path="/switch" type="org.apache.struts.actions.SwitchAction">
+    </action>
+    <action path="/welcome" type="org.apache.struts.actions.ForwardAction" parameter="/switch.do?prefix=/humanResource&amp;page=/humanResource.do?method=setForm">
+    </action>
+    <action path="/downLoad" type="org.apache.struts.actions.ForwardAction" parameter="/downLoad">
+    </action>
+    <action path="/makeExcel" type="org.apache.struts.actions.ForwardAction" parameter="/makeExcel">
+    </action>
+
+    <action name="AdminForm" parameter="method" path="/Admin" scope="request" type="kr.go.rndcall.mgnt.admin.action.AdminAction" validate="false">
+      <forward name="getOfflineDataForm" path="/offlineDataForm.jsp" />
+      <forward name="getOfflineDataInsert" path="/offlineDataForm.jsp" />
+    </action>
+  </action-mappings>
+</struts-config>

@@ -1,0 +1,60 @@
+
+@charset "utf-8";
+
+/*
+ * =================================================================================
+ * INFORMATION
+ * ---------------------------------------------------------------------------------
+ * @File Name 	: Header.css
+ * @Description :  Header Style Sheet
+ * @Version 	: 1.0.0
+ * @Create Date : 2012.08.21
+ * @Update Date : N/A
+ * @History		: N/A
+ * =================================================================================
+ */
+
+
+/*=================================================================================
+ * Default Style Definition
+ =================================================================================*/
+/* 로고 */
+.Top-Logo { position:absolute; left:0px; top:37px;}
+
+/* 유틸메뉴 */
+.Top-UtileMenu 							{ float:right; padding-top:15px;}
+.Top-UtileMenu ul li 					{ float:left; margin-left:15px; padding-top:4px;}
+.Top-UtileMenu ul li.Join-infor		{ background:url(../images/icon/icon_Member.gif) no-repeat left 7px; padding-left:15px;}
+.Top-UtileMenu ul li.Search 			{ height:22px; background:url(../images/header/TopSearch_Bg.gif) no-repeat left top; padding:0 0 0 14px;}
+.Top-UtileMenu ul li.Search input	{ border:0px; color:#000; padding-right:10px;}
+
+/* 메인 메뉴 */
+#Top-Menu 								{ position:absolute; top:54px; left:290px; list-style:none outside;}
+#Top-Menu li 							{ float:left; background:url(../images/Menu/tm_Pt.gif) no-repeat right center; padding:0 33px 0 33px;}
+#Top-Menu ul.Top-Menu-Sub 		{ position: absolute; top:49px; padding-top: 6px; height: 31px;	list-style: none outside;	display: none;}
+#Top-Menu ul.Top-Menu-Sub li 	{ padding:0 0 0 0;}
+#Top-Menu ul.Top-Menu-SubAdmin 		{ position: absolute; top:49px; padding-top: 6px; height: 31px;	list-style: none outside;	display: none;}
+#Top-Menu ul.Top-Menu-SubAdmin li 	{ padding:0 0 0 0;}
+#Top-Menu ul.Top-Menu-SubGov 		{ position: absolute; top:49px; padding-top: 6px; height: 31px;	list-style: none outside;	display: none;}
+#Top-Menu ul.Top-Menu-SubGov li 	{ padding:0 0 0 0;}
+
+/* 메인 서브메뉴 */
+#Top-Menu li#Top-Menu-01 ul.Top-Menu-Sub 		{ z-index:100; left:15px; top:43px; width:330px; background:url(../images/Menu/subMenu_bg01.png) no-repeat left top;}
+#Top-Menu li#Top-Menu-01 ul.Top-Menu-Sub li	{ margin:0 0 0 23px;}
+
+#Top-Menu li#Top-Menu-01 ul.Top-Menu-SubAdmin 		{ z-index:100; left:15px; top:43px; width:330px; background:url(../images/Menu/subMenu_bg04.png) no-repeat left top;}
+#Top-Menu li#Top-Menu-01 ul.Top-Menu-SubAdmin li	{ margin:0 0 0 23px;}
+
+#Top-Menu li#Top-Menu-01 ul.Top-Menu-SubGov 		{ z-index:100; left:15px; top:43px; width:330px; background:url(../images/Menu/subMenu_bg02.png) no-repeat left top;}
+#Top-Menu li#Top-Menu-01 ul.Top-Menu-SubGov li	{ margin:0 0 0 23px;}
+
+#Top-Menu li#Top-Menu-02 ul.Top-Menu-Sub 		{ left:112px; top:43px; width:330px; background:url(../images/Menu/subMenu_bg02.png) no-repeat left top;}
+#Top-Menu li#Top-Menu-02 ul.Top-Menu-Sub li	{ margin:0 0 0 23px;}
+
+#Top-Menu li#Top-Menu-03 ul.Top-Menu-Sub 		{ left:130px; top:43px; width:450px; background:url(../images/Menu/subMenu_bg03.png) no-repeat left top;}
+#Top-Menu li#Top-Menu-03 ul.Top-Menu-Sub li	{ margin:0 0 0 23px;}
+
+
+
+
+ 
