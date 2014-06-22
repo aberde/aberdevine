@@ -1,0 +1,19 @@
+########################################################################### 
+# ���� Query
+###########################################################################
+
+#==============================================================
+# ����� ��ȸ
+#==============================================================
+@sql.login.member_select
+SELECT AUTH_ID, USER_ID, NAME, AUTH, DECODE(EMAIL, '', ' @ ', EMAIL) AS EMAIL, 
+CASE WHEN LENGTH(MOBILE) > 10 
+	THEN 
+		SUBSTR(MOBILE, 1, 3) || '-' || 
+		SUBSTR(MOBILE, 4, LENGTH(MOBILE) - 4) || '-' || 
+		SUBSTR(MOBILE, LENGTH(MOBILE) - 4) 
+	ELSE 
+		DECODE(MOBILE, '', '-', MOBILE) 
+	END AS MOBILE, ORG_CD, ORG_NM, ATTACHED_NM, REG_ID, REG_DT
+  FROM RNDCALL_AUTH A
+ WHERE 1 = 1

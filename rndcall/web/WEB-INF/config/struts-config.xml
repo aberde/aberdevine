@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+  <data-sources>
+  </data-sources>
+  <form-beans>   
+    <form-bean name="loginForm" type="kr.go.rndcall.mgnt.login.LoginForm"/>
+    <form-bean name="memberForm" type="kr.go.rndcall.mgnt.member.MemberForm"/>
+    <form-bean name="memberAdminForm" type="kr.go.rndcall.mgnt.member.admin.MemberAdminForm"/>
+    <form-bean name="categoryForm" type="kr.go.rndcall.mgnt.category.CategoryForm"/>
+    <form-bean name="discussionForm" type="kr.go.rndcall.mgnt.discussion.DiscussionForm"/>
+  </form-beans>
+  <global-exceptions>
+  </global-exceptions>
+  <global-forwards>
+    <forward name="main" path="/index.jsp" redirect="true"/>
+    <forward name="mypage" path="/switch.do?prefix=/mypage&amp;page=/mypage.do?method=get" redirect="true"/>
+    <forward name="loginFormDo" path="/login.do?method=loginForm"/>
+    <forward name="loginGuestDo" path="/login.do?method=loginGuest"/>
+    <forward name="delSessionDo" path="/login.do?method=delSession" redirect="true"/>
+  </global-forwards>
+  <action-mappings>
+    <action path="/switch" type="org.apache.struts.actions.SwitchAction">
+    </action>
+    <action path="/downLoad" type="org.apache.struts.actions.ForwardAction" parameter="/downLoad">
+    </action>
+    <action path="/makeExcel" type="org.apache.struts.actions.ForwardAction" parameter="/makeExcel">
+    </action>
+    <action path="/login" name="loginForm" type="kr.go.rndcall.mgnt.login.LoginAction" scope="session" input="login" parameter="method">
+      <forward name="login" path="/login.jsp"/>
+      <forward name="index" path="/index.jsp"/>
+      <forward name="noLogin" path="/noLogin.jsp"/>
+      <forward name="getListTopDo" path="/index.jsp"/>
+      <forward name="displayNoAccess" path="/login/noAccess.jsp"/>
+    </action>
+    <action path="/member" name="memberForm" type="kr.go.rndcall.mgnt.member.MemberAction" scope="session" input="member" parameter="method">
+      <forward name="getUserInsertForm" path="/member/userInsertForm.jsp"/>
+      <forward name="getIdCheckForm" path="/member/idCheck.jsp"/>
+      <forward name="getUserUpdateForm" path="/member/userUpdateForm.jsp"/>
+      <forward name="idFind" path="/member/idView.jsp"/>
+      <forward name="pwFind" path="/member/pwView.jsp"/>
+      <forward name="oldDocFind" path="/member/oldDocFind.jsp"/>
+    </action>
+    <action path="/memberAdmin" name="memberAdminForm" type="kr.go.rndcall.mgnt.member.admin.MemberAdminAction" scope="session" input="memberAdmin" parameter="method">
+      <forward name="getUserList" path="/member/admin/userList.jsp"/>
+      <forward name="getUserInfo" path="/member/admin/userInfo.jsp"/>
+    </action>
+    <action path="/category" name="categoryForm" type="kr.go.rndcall.mgnt.category.CategoryAction" scope="session" input="category" parameter="method">
+      <forward name="getCategoryList" path="/category/categoryList.jsp"/>
+      <forward name="getCategoryListDtl" path="/category/categoryListDtl.jsp"/>
+      <forward name="getCategoryInfo" path="/category/categoryInfo.jsp"/>
+    </action>
+    <action path="/discussion" name="discussionForm" type="kr.go.rndcall.mgnt.discussion.DiscussionAction" scope="session" input="discussion" parameter="method">
+      <forward name="retrieveDiscussDetail" path="/discussion/discussDetail.jsp"/>
+      <forward name="retrieveDiscussDetailAfterSave" path="/discussion.do?method=retrieveDiscussDetail" />
+      <forward name="updateIssueDetailsForm" path="/discussion/updateIssueDetailsForm.jsp" />
+      <forward name="updateDiscussContentsForm" path="/discussion/updateDiscussContentsForm.jsp" />
+      <forward name="updateCommentContentsForm" path="/discussion/updateCommentContentsForm.jsp" />
+    </action>
+  </action-mappings>
+  <controller />
+  <message-resources parameter="properties.ApplicationResources"/>
+</struts-config>
+
+

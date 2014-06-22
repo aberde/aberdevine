@@ -1,0 +1,151 @@
+########################################################################### 
+# ���� Query
+###########################################################################
+
+#==============================================================
+# ÷������ ���
+#=============================================================== 
+@sql.offlineData.getAttachfileInsert
+
+INSERT INTO RNDCALL_FILE (
+   SEQ, 
+   REG_ID,
+   REG_DT, 
+   FILE_UP_PATH,
+   FILE_TYPE, 
+   FILE_SIZE, 
+   FILE_NM, 
+   FILE_ID, 
+   FILE_DOWN_PATH, 
+   FILE_DESC, 
+   FILE_DEL_YN, 
+   EDIT_ID, 
+   EDIT_DT) 
+VALUES ( ?,
+         ?,
+         sysdatetime,
+         ?,
+         null,
+         ?,
+         ?,
+         ?,
+         null,
+		 null,
+		 'N',
+		 null,
+		 null )
+		 
+		 
+#==============================================================
+# �������� �ڷ� ��  ���
+#=============================================================== 
+@sql.offlineData.getOfflineDataQuestionInsert
+INSERT INTO RNDCALL_BOARD_QUESTION (
+   TITLE, 
+   SEQ, 
+   REG_NM, 
+   REG_ID, 
+   REG_DT, 
+   READ_COUNT,  
+   INSERT_TYPE, 
+   FILE_ID, 
+   EMAIL_RECEIVE_YN, 
+   EMAIL, 
+   DEL_YN, 
+   OPEN_YN,
+   CONTENTS, 
+   CELL_RECEIVE_YN, 
+   CELL_NUMBER,  
+   CATEGORY1,
+   CATEGORY2, 
+   BOARD_TYPE) 
+VALUES (    ?,
+	        ?,
+	        ?,
+	        ?,
+	  cast('REGDATETIME' as datetime),
+            0,
+            ?,
+            ?,
+            ?,
+            ?,
+       	  'N',
+       	  'N',
+ CHAR_TO_CLOB(?),
+          'Y',
+           ?,
+           ?,
+           ?,
+           ? )
+		 
+#==============================================================
+# �������� �ڷ� �亯  ���
+#=============================================================== 
+@sql.offlineData.getOfflineDataAnswerInsert
+INSERT INTO RNDCALL_BOARD_ANSWER (
+   TITLE, 
+   SEQ, 
+   REG_ID, 
+   REG_DT, 
+   Q_SEQ, 
+   FILE_ID, 
+   EDIT_ID, 
+   EDIT_DT,
+   DEL_YN, 
+   ANSWER_CONT) 
+VALUES ( null,
+ 		 ?,
+         ?,
+         sysdatetime,
+         ?,
+         ?,
+		 null,
+		 null,
+		 'N',
+		 CHAR_TO_CLOB(?)
+		)
+		
+#==============================================================
+# ��з� �ڵ�
+#=============================================================== 
+@sql.offlineData.retrieveCategory1Code_old
+SELECT a.CATEGORY_ID AS code,
+       a.CATEGORY_NM AS code_nm 
+FROM RNDCALL_CATEGORY a
+WHERE a.TREE_LEVEL = '1'
+	  AND a.CATEGORY_ID <> 99999999
+ORDER BY  a.CATEGORY_ID
+
+#==============================================================
+# �Һз� �ڵ�
+#=============================================================== 
+@sql.offlineData.retrieveCategory2Code_old  
+SELECT a.CATEGORY_ID AS code,
+       a.CATEGORY_NM AS code_nm ,
+       a.PARENT_ID AS p_code
+FROM RNDCALL_CATEGORY a
+WHERE a.TREE_LEVEL = '2'
+ORDER BY  a.CATEGORY_ID
+
+ #==============================================================
+# ��з� �ڵ�
+#=============================================================== 
+@sql.offlineData.retrieveCategory1Code
+SELECT a.CATEGORY_ID AS code,
+       a.CATEGORY_NM AS code_nm 
+FROM RNDCALL_CATEGORY a
+WHERE a.TREE_LEVEL = '1'
+	  AND a.ISUSE = 'Y'
+ORDER BY  a.CATEGORY_ID
+ 
+#==============================================================
+# �Һз� �ڵ�
+#=============================================================== 
+@sql.offlineData.retrieveCategory2Code
+SELECT a.CATEGORY_ID AS code,
+       a.CATEGORY_NM AS code_nm ,
+       a.PARENT_ID AS p_code
+FROM RNDCALL_CATEGORY a
+WHERE a.TREE_LEVEL = '2'
+	  AND a.ISUSE = 'Y'
+ORDER BY  a.CATEGORY_ID
