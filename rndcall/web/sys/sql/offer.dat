@@ -1,0 +1,362 @@
+#==============================================================
+# ÷������ ���
+#=============================================================== 
+@sql.offer.getAttachfileInsert
+
+INSERT INTO RNDCALL_FILE (
+   SEQ, 
+   REG_ID,
+   REG_DT, 
+   FILE_UP_PATH,
+   FILE_TYPE, 
+   FILE_SIZE, 
+   FILE_NM, 
+   FILE_ID, 
+   FILE_DOWN_PATH, 
+   FILE_DESC, 
+   FILE_DEL_YN, 
+   EDIT_ID, 
+   EDIT_DT) 
+VALUES ( ?,
+         ?,
+         sysdatetime,
+         ?,
+         null,
+         ?,
+         ?,
+         ?,
+         null,
+		 null,
+		 'N',
+		 null,
+		 null )
+#==============================================================
+# �����ϱ� ���
+#=============================================================== 
+@sql.offer.offerInsert
+INSERT INTO RNDCALL_BOARD_QUESTION (
+   TITLE, 
+   SEQ, 
+   REG_NM, 
+   REG_ID, 
+   REG_DT, 
+   READ_COUNT,  
+   INSERT_TYPE, 
+   FILE_ID, 
+   EMAIL_RECEIVE_YN, 
+   EMAIL, 
+   DEL_YN, 
+   CONTENTS, 
+   CELL_RECEIVE_YN, 
+   CELL_NUMBER,  
+   CATEGORY1,
+   CATEGORY2, 
+   BOARD_TYPE,
+   OPEN_YN
+   ) 
+VALUES (    ?,
+	        ?,
+	        ?,
+	        ?,
+	  sysdatetime,
+            0,
+            ?,
+            ?,
+            ?,
+            ?,
+       	  'N',
+ CHAR_TO_CLOB(?),
+           ?,
+           ?,
+           ?,
+           ?,
+           ?,
+           ?
+           )
+#==============================================================
+# RNDCALL_BOARD_QUESTION ����Ʈ
+#==============================================================
+@sql.offer.question.offerList
+SELECT  Q.SEQ,             Q.BOARD_TYPE,       Q.TITLE,            CLOB_TO_CHAR(Q.CONTENTS) AS CONTENTS,
+Q.CELL_RECEIVE_YN, NVL(Q.CELL_NUMBER,'-'),      Q.EMAIL_RECEIVE_YN, NVL(Q.EMAIL,'@'),
+Q.OPEN_YN,         NVL(Q.PUBLIC_TRANS_YN,'N') AS PUBLIC_TRANS_YN, Q.PUBLIC_TRANS_ID,  Q.INSERT_TYPE,
+Q.NTIS_REG_ID,     Q.FILE_ID,          Q.DEL_YN,           Q.READ_COUNT,
+Q.REG_ID,          to_char(Q.REG_DT, 'YYYY.MM.DD') AS REG_DT,           Q.REG_NM,           
+(SELECT CD_DTL_NM FROM RNDCALL_CODE WHERE CD_DTL_ID = Q.CATEGORY1) AS CATEGORY1,
+(SELECT CD_DTL_NM FROM RNDCALL_CODE WHERE CD_DTL_ID = Q.CATEGORY2) AS CATEGORY2,
+DECODE(A.SEQ,null,'N','Y') AS STAT
+FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_BOARD_ANSWER A ON Q.SEQ = A.Q_SEQ
+WHERE Q.DEL_YN='N'
+
+#==============================================================
+# RNDCALL_BOARD_QUESTION ����Ʈ
+#==============================================================
+@sql.offer.question.offerList2
+SELECT  Q.SEQ,             Q.BOARD_TYPE,       Q.TITLE,            CLOB_TO_CHAR(Q.CONTENTS) AS CONTENTS,
+Q.CELL_RECEIVE_YN, NVL(Q.CELL_NUMBER,'-'),      Q.EMAIL_RECEIVE_YN, NVL(Q.EMAIL,'@'),
+Q.OPEN_YN,         NVL(Q.PUBLIC_TRANS_YN,'N') AS PUBLIC_TRANS_YN, Q.PUBLIC_TRANS_ID,  Q.INSERT_TYPE,
+Q.NTIS_REG_ID,     Q.FILE_ID,          Q.DEL_YN,           Q.READ_COUNT,
+Q.REG_ID,          to_char(Q.REG_DT, 'YYYY.MM.DD') AS REG_DT,           Q.REG_NM,           
+(SELECT CD_DTL_NM FROM RNDCALL_CODE WHERE CD_DTL_ID = Q.CATEGORY1) AS CATEGORY1,
+(SELECT CD_DTL_NM FROM RNDCALL_CODE WHERE CD_DTL_ID = Q.CATEGORY2) AS CATEGORY2,
+DECODE(A.SEQ,null,'N','Y') AS STAT
+FROM RNDCALL_BOARD_QUESTION Q, RNDCALL_BOARD_ANSWER A
+WHERE Q.DEL_YN='N'
+
+#==============================================================
+# Q&A ��Ȳ���� ��ȸ
+#==============================================================
+@sql.offer.question.qnaStatInfo
+SELECT CNT1, CNT2, CNT3 FROM
+(
+SELECT COUNT(*) AS CNT1
+FROM RNDCALL_BOARD_QUESTION Q
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='QNA'
+      AND Q.INSERT_TYPE!='TEL'
+      AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)
+) c1,
+(
+SELECT COUNT(*) AS CNT2
+FROM RNDCALL_BOARD_QUESTION Q
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='QNA'
+      AND Q.INSERT_TYPE!='TEL'
+      AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)
+      AND NVL(Q.PUBLIC_TRANS_YN,'N') != 'Y'
+) c2,
+(
+SELECT COUNT(*) AS CNT3
+FROM RNDCALL_BOARD_QUESTION Q
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='QNA'
+      AND Q.INSERT_TYPE!='TEL'
+      AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)
+      AND NVL(Q.PUBLIC_TRANS_YN,'N') = 'Y'
+) c3
+
+
+#==============================================================
+# �����ϱ� ��Ȳ���� ��ȸ
+#==============================================================
+@sql.offer.question.proposalStatInfo
+SELECT CNT1, CNT2, CNT3 FROM
+(
+SELECT COUNT(*) AS CNT1
+FROM RNDCALL_BOARD_QUESTION Q
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='OFFER'
+      AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)
+) c1,
+(
+SELECT COUNT(*) AS CNT2
+FROM RNDCALL_BOARD_QUESTION Q
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='OFFER'
+      AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)
+      AND NVL(Q.PUBLIC_TRANS_YN,'N') != 'Y'
+) c2,
+(
+SELECT COUNT(*) AS CNT3
+FROM RNDCALL_BOARD_QUESTION Q
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='OFFER'
+      AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)
+      AND NVL(Q.PUBLIC_TRANS_YN,'N') = 'Y'
+) c3
+#==============================================================
+# RNDCALL_BOARD_QUESTION �����ϱ� ����ȸ
+#==============================================================
+@sql.offer.question.view
+SELECT  Q.SEQ,             Q.BOARD_TYPE,       Q.TITLE,            CLOB_TO_CHAR(Q.CONTENTS) AS CONTENTS,
+        Q.CELL_RECEIVE_YN, NVL(Q.CELL_NUMBER,'-') AS CELL_NUMBER,      Q.EMAIL_RECEIVE_YN, NVL(Q.EMAIL,'@') AS EMAIL,
+        NVL(Q.OPEN_YN,'Y') AS OPEN_YN,         NVL(Q.PUBLIC_TRANS_YN,'N') AS PUBLIC_TRANS_YN, Q.PUBLIC_TRANS_ID,  Q.INSERT_TYPE,
+        Q.NTIS_REG_ID,     Q.FILE_ID AS QUESTION_FILE_ID,          Q.DEL_YN,           Q.READ_COUNT,
+        Q.REG_ID,          to_char(Q.REG_DT, 'YYYY.MM.DD') AS REG_DT,           Q.REG_NM,           NVL(Q.CATEGORY1,'0000000') AS CATEGORY1,
+        NVL(Q.CATEGORY2,'0000000') AS CATEGORY2,
+        NVL((SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY1),'선택') AS CATEGORY1_NM, 
+        NVL((SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY2),'선택') AS CATEGORY2_NM,
+        A.ANSWER_CONT, A.FILE_ID AS ANSWER_FILE_ID,
+        (CASE WHEN DECODE(A.SEQ,NULL,'N','Y')  = 'Y' THEN 'N'
+                      WHEN TO_CHAR(Q.REG_DT,'YYYYMMDD') < (TO_CHAR(sysdatetime,'YYYYMMDD')-1) THEN 'N'
+                      ELSE 'Y'
+                 END ) AS UP_DEL_STAT,
+                 DECODE(A.SEQ,NULL,'N','Y') AS STAT, NVL(A.SEQ,'0') AS ANSWER_SEQ
+FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_BOARD_ANSWER A ON Q.SEQ = A.Q_SEQ
+WHERE Q.DEL_YN='N'
+#==============================================================
+# RNDCALL_FILE��ȸ
+#==============================================================
+@sql.offer.question.fileinfo
+SELECT FILE_ID,   SEQ,          FILE_NM,
+       FILE_TYPE, FILE_UP_PATH, FILE_DOWN_PATH,
+       FILE_SIZE, FILE_DESC,    FILE_DEL_YN
+FROM RNDCALL_FILE
+WHERE FILE_ID = ?
+      AND FILE_DEL_YN='N'
+#==============================================================
+# �������� ���� ��ȸ
+#==============================================================
+@sql.offer.question.satiInfo.avgAppPoint
+SELECT AVG(app_point) AS AVG_APP_POINT  FROM RNDCALL_SATI
+WHERE WRITE_ID = ?
+#==============================================================
+# �������� �Ǽ� ��ȸ
+#==============================================================
+@sql.offer.question.satiInfo.satiRegCnt
+SELECT COUNT(*) AS SATI_REG_CNT  FROM RNDCALL_SATI
+WHERE WRITE_ID = ?
+#==============================================================
+# �������� ��Ͽ���
+#==============================================================
+@sql.offer.question.satiInfo.satiRegYn
+SELECT DECODE(COUNT(*),0,'N','Y') AS SATI_REG_YN  FROM RNDCALL_SATI
+WHERE WRITE_ID = ?
+      AND REG_ID = ?
+#==============================================================
+# ������ �� seq��ȸ
+#==============================================================
+@sql.offer.getSatiSeq
+SELECT RNDCALL_SATI_SEQ.NEXT_VALUE AS ID
+#==============================================================
+# ������ �� ���
+#==============================================================
+@sql.offer.question.satiInsert
+INSERT INTO RNDCALL_SATI (
+	SATI_ID, WRITE_ID, BOARD_TYPE, 
+	REG_ID, APP_POINT, REG_IP, REG_DT
+)VALUES(
+	?, ?, ?, 
+	?, ?, ?, sysdatetime
+)
+#==============================================================
+# ��ȸ�� ������Ʈ
+#==============================================================
+@sql.offer.question.readCountUpdate
+UPDATE RNDCALL_BOARD_QUESTION SET
+READ_COUNT = READ_COUNT+1
+WHERE SEQ = ?
+#==============================================================
+# seq��ȸ
+#==============================================================
+@sql.offer.getSeq
+SELECT RNDCALL_QUESTION_SEQ.NEXT_VALUE AS ID   
+#==============================================================
+# �����ϱ� �亯����ϱ�
+#=============================================================== 
+@sql.offer.question.getAnswerInsert
+INSERT INTO RNDCALL_BOARD_ANSWER (
+	SEQ,
+	Q_SEQ,
+	TITLE,
+	ANSWER_CONT,
+	FILE_ID,
+	DEL_YN,
+	REG_ID,
+	REG_DT
+) VALUES(
+	?,
+	?,
+	?,
+	CHAR_TO_CLOB(?),
+	?,
+	'N',
+	?,
+	sysdatetime
+)
+#==============================================================
+# ÷������ ����(FILE_DEL_YN�÷���  ����(Y)�� ������Ʈ)
+#=============================================================== 
+@sql.offer.question.getFileDelete
+UPDATE RNDCALL_FILE SET
+FILE_DEL_YN = 'Y',
+EDIT_ID= ?,
+EDIT_DT =sysdatetime
+WHERE FILE_ID=? 
+      AND SEQ= ?
+#==============================================================
+# �亯����
+#=============================================================== 
+@sql.offer.question.getAnswerUpdate
+UPDATE RNDCALL_BOARD_ANSWER SET
+	ANSWER_CONT = CHAR_TO_CLOB(?),
+	FILE_ID = ?,
+	EDIT_ID = ?,
+	EDIT_DT = sysdatetime
+WHERE SEQ= ?
+#==============================================================
+# ���ǳ��� ����
+#==============================================================
+@sql.offer.question.update
+UPDATE RNDCALL_BOARD_QUESTION SET
+TITLE = ?,
+CONTENTS = CHAR_TO_CLOB(?),
+CELL_RECEIVE_YN = ?,
+CELL_NUMBER = ?,
+EMAIL_RECEIVE_YN = ?,
+EMAIL = ?,
+OPEN_YN = ?,
+FILE_ID = ?,
+EDIT_ID = ?,
+EDIT_DT =sysdatetime
+WHERE SEQ = ?
+#==============================================================
+# �����ϱ� ����
+#==============================================================
+@sql.offer.question.delete
+UPDATE RNDCALL_BOARD_QUESTION SET
+    DEL_YN = 'Y' 
+WHERE SEQ = ?
+#==============================================================
+# ÷������ seq��ȸ
+#==============================================================
+@sql.offer.getFileSeq
+SELECT RNDCALL_FILE_ID_SEQ.NEXT_VALUE AS ID  
+#==============================================================
+# ÷������ ���
+#=============================================================== 
+@sql.offer.question.getAttachfileInsert
+INSERT INTO RNDCALL_FILE (
+   	FILE_ID,
+	SEQ,
+	FILE_NM,
+	FILE_UP_PATH,
+	FILE_SIZE,
+	FILE_DEL_YN,
+	REG_ID,
+	REG_DT
+)VALUES (
+	?,
+    ?,
+    ?,
+    ?,
+    ?,
+    'N',
+    ?,
+	sysdatetime
+)				
+#==============================================================
+# SMS_�̸��� �߼��̷� ������ ��ȸ
+#=============================================================== 
+@sql.offer.question.getSendHistorySeq
+SELECT RNDCALL_SEND_HISTORY_SEQ.NEXT_VALUE AS ID 
+#==============================================================
+# �о����� ������Ʈ
+#=============================================================== 
+@sql.offer.question.getSendHistoryInsert
+INSERT INTO RNDCALL_SEND_HISTORY(
+	SEQ,       GUBUN,      BOARD_TYPE, BOARD_SEQ,
+	REG_PHONE, CALL_PHONE, REG_EMAIL,  CALL_EMAIL,
+	MESSAGE,   STATUS,     REG_ID,     REG_DT
+)VALUES(
+	?, ?, ?, ?,
+	?, ?, ?, ?,
+	?, ?, ?, sysdatetime
+)  
+#==============================================================
+# SMS_�̸��� �߼��̷� ������ ��ȸ
+#=============================================================== 
+@sql.offer.question.getSendHistorySeq
+SELECT RNDCALL_SEND_HISTORY_SEQ.NEXT_VALUE AS ID   
+
+ 

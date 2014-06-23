@@ -1,0 +1,529 @@
+########################################################################### 
+# 파일 Query
+###########################################################################
+
+#==============================================================
+# seq조회
+#==============================================================
+@sql.inquire.getSeq
+select rndcall_question_seq.next_value AS ID
+
+#==============================================================
+# 첨부파일 seq조회
+#==============================================================
+@sql.inquire.getFileSeq
+SELECT RNDCALL_FILE_ID_SEQ.next_value AS ID 
+
+#==============================================================
+# 문의하기(QUESTION) 등록
+#==============================================================
+@sql.inquire.question.insert
+INSERT INTO RNDCALL_BOARD_QUESTION (
+SEQ,             BOARD_TYPE,       TITLE,            CONTENTS,
+CELL_RECEIVE_YN, CELL_NUMBER,      EMAIL_RECEIVE_YN, EMAIL,
+OPEN_YN,         PUBLIC_TRANS_YN,  PUBLIC_TRANS_ID,  INSERT_TYPE,
+NTIS_REG_ID,     FILE_ID,          DEL_YN,           READ_COUNT,
+REG_ID,          REG_DT,           REG_NM,           CATEGORY1,
+CATEGORY2
+) VALUES (
+?, ?, ?, CHAR_TO_CLOB(?),
+?, ?, ?, ?,
+?, ?, ?,  ?,
+?, ?, ?, 0,
+?, sysdatetime, ?, ?,
+?)
+
+#==============================================================
+# 문의하기(QUESTION) 수정
+#==============================================================
+@sql.inquire.question.update
+UPDATE RNDCALL_BOARD_QUESTION SET
+TITLE = ?,
+CONTENTS =  CHAR_TO_CLOB(?),
+CELL_RECEIVE_YN = ?,
+CELL_NUMBER = ?,
+EMAIL_RECEIVE_YN = ?,
+EMAIL = ?,
+OPEN_YN = ?,
+FILE_ID = ?,
+EDIT_ID = ?,
+EDIT_DT =sysdatetime
+WHERE SEQ = ?
+
+#==============================================================
+# 문의하기(QUESTION) 삭제
+#==============================================================
+@sql.inquire.question.delete
+UPDATE RNDCALL_BOARD_QUESTION SET
+    DEL_YN = 'Y' 
+WHERE SEQ = ?
+				   
+#==============================================================
+# RNDCALL_BOARD_QUESTION 리스트
+#==============================================================
+@sql.inquire.question.list
+SELECT  Q.SEQ, Q.BOARD_TYPE, Q.TITLE, CLOB_TO_CHAR(Q.CONTENTS) AS CONTENTS,
+        Q.CELL_RECEIVE_YN, NVL(Q.CELL_NUMBER,'-') AS CELL_NUMBER, 
+        Q.EMAIL_RECEIVE_YN, NVL(Q.EMAIL,'@') AS EMAIL,
+        NVL(Q.OPEN_YN,'Y') AS OPEN_YN,         
+        NVL(Q.PUBLIC_TRANS_YN,'N') AS PUBLIC_TRANS_YN, 
+        Q.PUBLIC_TRANS_ID,  Q.INSERT_TYPE,
+        Q.NTIS_REG_ID, Q.FILE_ID, Q.DEL_YN, Q.READ_COUNT,
+        Q.REG_ID, Q.REG_DT, TO_CHAR(Q.REG_DT,'yyyy.mm.dd') AS REG_DT1, Q.REG_NM,
+        (SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY1) AS CATEGORY1, 
+        (SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY2) AS CATEGORY2,
+        DECODE(A.SEQ,null,'N','Y') AS STAT, 
+        DECODE(U.USER_ID,null,'-',U.USER_ID) AS TRANS_ID,
+        DECODE(U.ORG_NM,null,'-',U.ORG_NM) AS TRANS_NM,
+        DECODE(U.NAME,null,'-',U.NAME) AS TRANS_ORG_NM,
+        DECODE(U.ATTACHED_NM,null,'-',U.ATTACHED_NM) AS TRANS_ATTACHED_NM
+   FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_AUTH U ON Q.PUBLIC_TRANS_ID = U.USER_ID
+        LEFT OUTER JOIN RNDCALL_BOARD_ANSWER A ON Q.SEQ = A.Q_SEQ
+ WHERE 1=1
+   
+#==============================================================
+# RNDCALL_BOARD_QUESTION 리스트
+#==============================================================
+@sql.inquire.question.list.count
+SELECT  COUNT(*) AS CNT
+   FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_AUTH U ON Q.PUBLIC_TRANS_ID = U.USER_ID
+        LEFT OUTER JOIN RNDCALL_BOARD_ANSWER A ON Q.SEQ = A.Q_SEQ
+ WHERE 1=1
+   
+#==============================================================
+# RNDCALL_BOARD_QUESTION 리스트
+#==============================================================
+@sql.inquire.question.list2
+SELECT  Q.SEQ, Q.BOARD_TYPE, Q.TITLE, CLOB_TO_CHAR(Q.CONTENTS) AS CONTENTS,
+        Q.CELL_RECEIVE_YN, NVL(Q.CELL_NUMBER,'-') AS CELL_NUMBER, 
+        Q.EMAIL_RECEIVE_YN, NVL(Q.EMAIL,'@') AS EMAIL,
+        NVL(Q.OPEN_YN,'Y') AS OPEN_YN,         
+        NVL(Q.PUBLIC_TRANS_YN,'N') AS PUBLIC_TRANS_YN, 
+        Q.PUBLIC_TRANS_ID,  Q.INSERT_TYPE,
+        Q.NTIS_REG_ID, Q.FILE_ID, Q.DEL_YN, Q.READ_COUNT,
+        Q.REG_ID, Q.REG_DT, TO_CHAR(Q.REG_DT,'yyyy.mm.dd') AS REG_DT1, Q.REG_NM,
+        (SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY1) AS CATEGORY1, 
+        (SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY2) AS CATEGORY2,
+        DECODE(A.SEQ,null,'N','Y') AS STAT, 
+        DECODE(U.USER_ID,null,'-',U.USER_ID) AS TRANS_ID,
+        DECODE(U.ORG_NM,null,'-',U.ORG_NM) AS TRANS_NM,
+        DECODE(U.NAME,null,'-',U.NAME) AS TRANS_ORG_NM,
+        DECODE(U.ATTACHED_NM,null,'-',U.ATTACHED_NM) AS TRANS_ATTACHED_NM
+   FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_AUTH U ON Q.PUBLIC_TRANS_ID = U.USER_ID
+        INNER JOIN RNDCALL_BOARD_ANSWER A ON Q.SEQ = A.Q_SEQ
+ WHERE Q.SEQ = A.Q_SEQ
+  
+#==============================================================
+# RNDCALL_BOARD_QUESTION 리스트
+#==============================================================
+@sql.inquire.question.list2.count
+SELECT  COUNT(*) AS CNT
+   FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_AUTH U ON Q.PUBLIC_TRANS_ID = U.USER_ID
+        INNER JOIN RNDCALL_BOARD_ANSWER A ON Q.SEQ = A.Q_SEQ
+ WHERE Q.SEQ = A.Q_SEQ
+  
+#==============================================================
+# Q&A 현황정보 조회
+#==============================================================
+@sql.inquire.question.qnaStatInfo
+SELECT CNT1, CNT2, CNT3 FROM
+(
+SELECT COUNT(*) AS CNT1
+FROM RNDCALL_BOARD_QUESTION Q
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='QNA'
+      AND Q.INSERT_TYPE!='TEL'
+      AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)
+) c1,
+(
+SELECT COUNT(*) AS CNT2
+FROM RNDCALL_BOARD_QUESTION Q
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='QNA'
+      AND Q.INSERT_TYPE!='TEL'
+      AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)
+      AND NVL(Q.PUBLIC_TRANS_YN,'N') != 'Y'
+) c2,
+(
+SELECT COUNT(*) AS CNT3
+FROM RNDCALL_BOARD_QUESTION Q
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='QNA'
+      AND Q.INSERT_TYPE!='TEL'
+      AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)
+      AND NVL(Q.PUBLIC_TRANS_YN,'N') = 'Y'
+) c3
+#==============================================================
+# 부처담당자 현황정보 조회
+#==============================================================
+@sql.inquire.question.qnaStatInfoOrg
+SELECT COUNT(*) AS CNT1
+FROM RNDCALL_BOARD_QUESTION Q
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='QNA'
+      AND Q.INSERT_TYPE!='TEL'
+      AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)
+      AND NVL(Q.PUBLIC_TRANS_YN,'N') = 'Y'
+      AND Q.PUBLIC_TRANS_ID = ?
+
+#==============================================================
+# FAQ 현황정보 조회
+#==============================================================
+@sql.inquire.question.offerStatInfo
+SELECT CNT1, CNT2, CNT3 FROM
+(
+SELECT COUNT(*) AS CNT1
+FROM RNDCALL_BOARD_QUESTION Q
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='OFFER'
+      AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)
+) c1,
+(
+SELECT COUNT(*) AS CNT2
+FROM RNDCALL_BOARD_QUESTION Q
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='OFFER'
+      AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)
+      AND NVL(Q.PUBLIC_TRANS_YN,'N') != 'Y'
+) c2,
+(
+SELECT COUNT(*) AS CNT3
+FROM RNDCALL_BOARD_QUESTION Q
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='OFFER'
+      AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)
+      AND NVL(Q.PUBLIC_TRANS_YN,'N') = 'Y'
+) c3
+
+
+#==============================================================
+# RNDCALL_BOARD_QUESTION 상세조회
+#==============================================================
+@sql.inquire.question.view
+SELECT  Q.SEQ,             Q.BOARD_TYPE,       Q.TITLE,            CLOB_TO_CHAR(Q.CONTENTS) AS CONTENTS,
+        Q.CELL_RECEIVE_YN, NVL(Q.CELL_NUMBER,'-') AS CELL_NUMBER,      Q.EMAIL_RECEIVE_YN, NVL(Q.EMAIL,'@') AS EMAIL,
+        NVL(Q.OPEN_YN,'Y') AS OPEN_YN,         NVL(Q.PUBLIC_TRANS_YN,'N') AS PUBLIC_TRANS_YN, Q.PUBLIC_TRANS_ID,  Q.INSERT_TYPE,
+        Q.NTIS_REG_ID,     Q.FILE_ID AS QUESTION_FILE_ID,          Q.DEL_YN,           Q.READ_COUNT,
+        Q.REG_ID,    Q.REG_DT,      TO_CHAR(Q.REG_DT,'yyyy.mm.dd') AS REG_DT1,           Q.REG_NM,           NVL(Q.CATEGORY1,'0000000') AS CATEGORY1,
+        NVL(Q.CATEGORY2,'0000000') AS CATEGORY2,
+        NVL((SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY1), '선택') AS CATEGORY1_NM, 
+        NVL((SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY2), '선택') AS CATEGORY2_NM,
+        A.ANSWER_CONT, A.FILE_ID AS ANSWER_FILE_ID,
+        (CASE WHEN DECODE(A.SEQ,NULL,'N','Y')  = 'Y' THEN 'N'
+         WHEN TO_CHAR(Q.REG_DT,'YYYYMMDD') < (TO_CHAR(sysdatetime,'YYYYMMDD')-1) THEN 'N'
+         ELSE 'Y'
+         END ) AS UP_DEL_STAT,
+        DECODE(A.SEQ,NULL,'N','Y') AS STAT, NVL(A.SEQ,'0') AS ANSWER_SEQ, NVL(A.GOV_ANSWER, 'N') AS GOV_ANSWER,
+        DECODE(U.USER_ID,null,'-',U.USER_ID) AS TRANS_ID,
+        DECODE(U.ORG_NM,null,'-',U.ORG_NM) AS TRANS_NM,
+        DECODE(U.NAME,null,'-',U.NAME) AS TRANS_ORG_NM,
+        DECODE(U.ATTACHED_NM,null,'-',U.ATTACHED_NM) AS TRANS_ATTACHED_NM,
+        U.TEL
+   FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_AUTH U ON Q.PUBLIC_TRANS_ID = U.USER_ID
+                                 LEFT OUTER JOIN RNDCALL_BOARD_ANSWER A ON Q.SEQ = A.Q_SEQ
+  WHERE Q.DEL_YN='N'
+  
+#==============================================================
+# RNDCALL_FILE조회
+#==============================================================
+@sql.inquire.question.fileinfo
+SELECT FILE_ID,   SEQ,          FILE_NM,
+       FILE_TYPE, FILE_UP_PATH, FILE_DOWN_PATH,
+       FILE_SIZE, FILE_DESC,    FILE_DEL_YN
+FROM RNDCALL_FILE
+WHERE FILE_ID = ?
+      AND FILE_DEL_YN='N'
+
+#==============================================================
+# 만족도평가 건수 조회
+#==============================================================
+@sql.inquire.question.satiInfo.satiRegCnt
+SELECT COUNT(*) AS SATI_REG_CNT  FROM RNDCALL_SATI
+WHERE WRITE_ID = ?
+
+#==============================================================
+# 만족도평가 등록여부
+#==============================================================
+@sql.inquire.question.satiInfo.satiRegYn
+SELECT DECODE(COUNT(*),0,'N','Y') AS SATI_REG_YN  FROM RNDCALL_SATI
+WHERE WRITE_ID = ?
+      AND REG_ID = ?
+
+#==============================================================
+# 만족도평가 점수 조회
+#==============================================================
+@sql.inquire.question.satiInfo.avgAppPoint
+SELECT NVL(ROUND(AVG(app_point),1), 0) AS AVG_APP_POINT  FROM RNDCALL_SATI
+WHERE WRITE_ID = ?
+
+#==============================================================
+# 만족도 평가 seq조회
+#==============================================================
+@sql.inquire.getSatiSeq
+SELECT RNDCALL_SATI_SEQ.NEXT_VALUE AS ID
+
+
+#==============================================================
+# 만족도 평가 등록
+#==============================================================
+@sql.inquire.question.satiInsert
+INSERT INTO RNDCALL_SATI (
+	SATI_ID, WRITE_ID, BOARD_TYPE, 
+	REG_ID, APP_POINT, REG_IP, REG_DT
+)VALUES(
+	?, ?, ?, 
+	?, ?, ?, sysdatetime
+)
+
+#==============================================================
+# 조회수 업데이트
+#==============================================================
+@sql.inquire.question.readCountUpdate
+SELECT INCR(READ_COUNT)
+  FROM RNDCALL_BOARD_QUESTION
+ WHERE SEQ = ?
+
+#==============================================================
+# 대분류 코드
+#=============================================================== 
+@sql.inquire.question.Category1Code
+SELECT a.CATEGORY_ID AS code,
+       a.CATEGORY_NM AS code_nm 
+FROM RNDCALL_CATEGORY a
+WHERE a.TREE_LEVEL = '1'
+	  AND a.CATEGORY_ID <> 99999999
+	  AND a.ISUSE = 'Y'
+ORDER BY  a.CATEGORY_ID
+ 
+#==============================================================
+# 소분류 코드
+#=============================================================== 
+@sql.inquire.question.Category2Code 
+SELECT a.CATEGORY_ID AS code,
+       a.CATEGORY_NM AS code_nm ,
+       a.PARENT_ID AS p_code
+FROM RNDCALL_CATEGORY a
+WHERE a.TREE_LEVEL = '2'
+	  AND a.ISUSE = 'Y'
+ORDER BY  a.CATEGORY_ID
+
+#==============================================================
+# 첨부파일 등록
+#=============================================================== 
+@sql.inquire.question.getAttachfileInsert
+INSERT INTO RNDCALL_FILE (
+   	FILE_ID,
+	SEQ,
+	FILE_NM,
+	FILE_UP_PATH,
+	FILE_SIZE,
+	FILE_DEL_YN,
+	REG_ID,
+	REG_DT
+)VALUES (
+	?,
+    ?,
+    ?,
+    ?,
+    ?,
+    'N',
+    ?,
+	sysdatetime
+)
+
+#==============================================================
+# 첨부파일 삭제(FILE_DEL_YN컬럼에  삭제(Y)로 업데이트)
+#=============================================================== 
+@sql.inquire.question.getFileDelete
+UPDATE RNDCALL_FILE SET
+FILE_DEL_YN = 'Y',
+EDIT_ID= ?,
+EDIT_DT =sysdatetime
+WHERE FILE_ID=? 
+      AND SEQ= ?
+
+#==============================================================
+# 기관담당자 답변등록
+#=============================================================== 
+@sql.inquire.question.getAnswerInsertOrg
+INSERT INTO RNDCALL_BOARD_ANSWER (
+	SEQ,
+	Q_SEQ,
+	TITLE,
+	ANSWER_CONT,
+	FILE_ID,
+	DEL_YN,
+	REG_ID,
+	REG_DT,
+	GOV_ANSWER
+) VALUES(
+	?,
+	?,
+	?,
+	CHAR_TO_CLOB(?),
+	?,
+	'N',
+	?,
+	sysdatetime,
+	'CHECK'
+)
+#==============================================================
+# 답변등록
+#=============================================================== 
+@sql.inquire.question.getAnswerInsert
+INSERT INTO RNDCALL_BOARD_ANSWER (
+SEQ,
+Q_SEQ,
+TITLE,
+ANSWER_CONT,
+FILE_ID,
+DEL_YN,
+REG_ID,
+REG_DT
+) VALUES(
+?,
+?,
+?,
+CHAR_TO_CLOB(?),
+?,
+'N',
+?,
+sysdatetime
+)
+
+
+#==============================================================
+# 답변수정
+#=============================================================== 
+@sql.inquire.question.getAnswerUpdate
+UPDATE RNDCALL_BOARD_ANSWER SET
+ANSWER_CONT = CHAR_TO_CLOB(?),
+FILE_ID = ?,
+EDIT_ID = ?,
+EDIT_DT = sysdatetime
+WHERE SEQ= ?
+
+
+#==============================================================
+# 분야정보 업데이트
+#=============================================================== 
+@sql.inquire.question.getCategoryUpdate
+UPDATE RNDCALL_BOARD_QUESTION SET
+	CATEGORY1 = ?,
+	CATEGORY2 = ?
+WHERE SEQ = ?
+
+
+#==============================================================
+# 타기관담당자 정보조회
+#=============================================================== 
+@sql.inquire.question.getOrgAuthList
+SELECT USER_ID, NAME, ORG_CD, ORG_NM, ATTACHED_NM, EMAIL, MOBILE
+FROM RNDCALL_AUTH
+
+#==============================================================
+# 타기관담당자 업데이트
+#=============================================================== 
+@sql.inquire.question.getOrgTransInsert
+UPDATE RNDCALL_BOARD_QUESTION SET
+	PUBLIC_TRANS_YN='Y',
+	PUBLIC_TRANS_ID = ?
+WHERE SEQ = ?
+
+
+
+#==============================================================
+# SMS_이메일 발송이력 시퀀스 조회
+#=============================================================== 
+@sql.inquire.question.getSendHistorySeq
+SELECT RNDCALL_SEND_HISTORY_SEQ.NEXT_VALUE AS ID
+
+
+#==============================================================
+# SMS_이메일 발송이력 인서트
+#=============================================================== 
+@sql.inquire.question.getSendHistoryInsert
+INSERT INTO RNDCALL_SEND_HISTORY(
+	SEQ,       GUBUN,      BOARD_TYPE, BOARD_SEQ,
+	REG_PHONE, CALL_PHONE, REG_EMAIL,  CALL_EMAIL,
+	MESSAGE,   STATUS,     REG_ID,     REG_DT
+)VALUES(
+	?, ?, ?, ?,
+	?, ?, ?, ?,
+	?, ?, ?, sysdatetime
+)
+
+
+#==============================================================
+# Q&A 엑셀다운로드 조회정보
+#=============================================================== 
+@sql.inquire.question.getInquireExcelDown
+SELECT (CASE WHEN Q.BOARD_TYPE = 'QNA' THEN '문의'
+WHEN Q.BOARD_TYPE = 'FAQ' THEN '자주하는 질문'
+            WHEN Q.BOARD_TYPE = 'OFFER' THEN '제안'
+       END) AS BOARD_TYPE_NM,        
+       Q.TITLE,       
+       CLOB_TO_CHAR(Q.CONTENTS) AS CONTENTS,    
+       Q.CELL_RECEIVE_YN,
+       DECODE(Q.CELL_RECEIVE_YN,'N','미수신','수신') AS CELL_RECEIVE_YN_NM, 
+       NVL(Q.CELL_NUMBER,'-') AS CELL_NUMBER,      
+       Q.EMAIL_RECEIVE_YN,
+       DECODE(Q.EMAIL_RECEIVE_YN,'N','미수신','수신') AS EMAIL_RECEIVE_YN_NM, 
+       Q.EMAIL,
+       DECODE(NVL(Q.OPEN_YN,'Y'),'N','비공개','공개') AS OPEN_YN,     
+       NVL(Q.PUBLIC_TRANS_YN,'N') AS PUBLIC_TRANS_YN,
+       DECODE( NVL(Q.PUBLIC_TRANS_YN,'N'),'Y','타기관지정','자체') AS PUBLIC_TRANS_YN_NM, 
+       Q.PUBLIC_TRANS_ID, 
+       --GETUSER_NM(Q.PUBLIC_TRANS_ID) AS PUBLIC_TRANS_NM,
+       (SELECT NAME FROM RNDCALL_AUTH WHERE USER_ID = Q.PUBLIC_TRANS_ID) AS PUBLIC_TRANS_NM,
+       (SELECT ORG_NM FROM RNDCALL_AUTH WHERE USER_ID = Q.PUBLIC_TRANS_ID) AS PUBLIC_TRANS_ORG_NM,
+       Q.INSERT_TYPE,      
+       Q.NTIS_REG_ID, 
+       Q.FILE_ID,     
+       Q.DEL_YN,
+       Q.READ_COUNT,      
+       Q.REG_ID,           
+       Q.REG_DT,      
+       TO_CHAR(Q.REG_DT,'yyyy.mm.dd') AS REG_DT1,
+       Q.EDIT_ID,     
+       TO_CHAR(Q.EDIT_DT,'yyyy.mm.dd') AS EDIT_DT,
+       Q.REG_NM,          
+       (SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY1) AS CATEGORY1, 
+       (SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY2) AS CATEGORY2, 
+       CLOB_TO_CHAR(A.ANSWER_CONT) AS ANSWER_CONT, 
+       A.FILE_ID AS ANSWER_FILE_ID,
+       A.DEL_YN AS ANSWER_DEL_YN,
+       --GETUSER_NM(A.REG_ID) AS ANSWER_REG_NM,
+       (SELECT NAME FROM RNDCALL_AUTH WHERE USER_ID = A.REG_ID) AS ANSWER_REG_NM,
+       TO_CHAR(A.REG_DT,'yyyy.mm.dd') AS ANSWER_REG_DT,
+       --GETUSER_NM(A.EDIT_ID) AS ANSWER_EDIT_NM,
+       (SELECT NAME FROM RNDCALL_AUTH WHERE USER_ID = A.EDIT_ID) AS ANSWER_EDIT_NM,
+       TO_CHAR(A.EDIT_DT,'yyyy.mm.dd') AS ANSWER_EDIT_DT,
+       DECODE(A.SEQ,null,'처리중','완료') AS STAT
+FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_BOARD_ANSWER A ON Q.SEQ = A.Q_SEQ
+WHERE Q.DEL_YN='N'
+
+
+#==============================================================
+# Q&A 로그인 사용자 정보 조회
+#=============================================================== 
+@sql.inquire.question.userinfo
+SELECT USER_ID,ORG_NM, ATTACHED_NM, NAME, NVL(EMAIL, ' @ ') AS EMAIL, NVL(MOBILE, '-') AS CELL_NUMBER
+FROM RNDCALL_AUTH
+WHERE USER_ID = ?
+
+#==============================================================
+# Q&A스크랩 시퀀스 조회
+#==============================================================
+@sql.inquire.getScrapSeq
+SELECT RNDCALL_SCRAP_SEQ.next_value AS ID
+
+#==============================================================
+# Q&A스크랩 등록
+#==============================================================
+@sql.inquire.question.scrapinsert
+INSERT INTO RNDCALL_SCRAP (
+	SCRAP_ID, BOARD_TYPE, BOARD_SEQ, REG_ID, REG_DT, IS_USE
+) VALUES (
+	?, ?, ?, ?, sysdatetime, 'Y'
+)

@@ -1,0 +1,147 @@
+########################################################################### 
+# ������
+#  2011-07-28
+###########################################################################
+#===============================================================
+# TCO_USER_INFO ȸ���Ծ��̵� �ߺ�üũ
+#=============================================================== 
+@sql.member.getIdCheck
+SELECT COUNT(*) AS CNT
+FROM RNDCALL_AUTH
+
+#===============================================================
+# TCO_USER_INFO ȸ���Ծ��̵� �ߺ�üũ
+#=============================================================== 
+@sql.member.idFind
+SELECT USER_ID
+  FROM RNDCALL_AUTH
+ WHERE NAME = ?
+   AND EMAIL = ?
+
+#===============================================================
+# TCO_USER_INFO ȸ���Ծ��̵� �ߺ�üũ
+#=============================================================== 
+@sql.member.pwFind
+SELECT PASSWORD
+  FROM RNDCALL_AUTH
+ WHERE NAME = ?
+   AND USER_ID = ?
+   AND EMAIL = ?
+
+#===============================================================
+# TCO_USER_INFO ȸ��������ȸ
+#=============================================================== 
+@sql.member.getUserView
+SELECT AUTH_ID
+     , USER_ID
+     , NAME
+     , ORG_CD
+     , ORG_NM
+     , ATTACHED_NM
+     , DECODE(EMAIL,null,' @ ',EMAIL) AS EMAIL
+     , DECODE(MOBILE,null,'-',MOBILE) AS MOBILE
+     , REG_ID
+     , REG_DT
+     , EDIT_ID
+     , EDIT_DT
+     , PASSWORD
+     , AUTH
+     , TEL
+  FROM RNDCALL_AUTH A
+ WHERE 1=1
+ 
+#===============================================================
+# TCO_USER_INFO ȸ���� ���
+#=============================================================== 
+@sql.member.getInsert
+INSERT INTO RNDCALL_AUTH (
+AUTH_ID,
+USER_ID,
+NAME,
+ORG_CD,
+ORG_NM,
+ATTACHED_NM,
+EMAIL,
+MOBILE,
+REG_ID,
+REG_DT,
+PASSWORD,
+AUTH
+) 
+VALUES (
+AUTH_ID_SEQ.NEXT_VALUE,
+?,
+?,
+NULL,
+NULL,
+NULL,
+?,
+?,
+?,
+sysdatetime,
+?,
+?
+)
+
+#===============================================================
+# TCO_USER_INFO ȸ��������ȸ
+#=============================================================== 
+@sql.member.getUserList
+SELECT AUTH_ID
+     , USER_ID
+     , NAME
+     , ORG_CD
+     , ORG_NM
+     , ATTACHED_NM
+     , EMAIL
+     , MOBILE
+     , REG_ID
+     , REG_DT
+     , EDIT_ID
+     , EDIT_DT
+     , PASSWORD
+     , (SELECT CD_DTL_NM FROM RNDCALL_CODE WHERE CD_DTL_ID = AUTH) AS AUTH
+  FROM RNDCALL_AUTH A
+ WHERE 1=1
+ 
+#===============================================================
+# TCO_USER_INFO ȸ��������ȸ
+#=============================================================== 
+@sql.member.getOrgCD
+SELECT CD_DTL_ID, CD_DTL_NM
+  FROM RNDCALL_CODE
+ WHERE CD_ID = '102'
+   AND USE_YN = 'Y'
+ORDER BY CD_DTL_NM
+   
+#===============================================================
+# getOldDocCnt ������ϱ� ���� ��ȸ
+#=============================================================== 
+@sql.member.getOldDocCnt
+SELECT COUNT(*) AS CNT
+  FROM RNDCALL_BOARD_QUESTION
+ WHERE BOARD_TYPE = 'QNA'
+   AND (REG_ID IS NULL OR REG_ID = '')
+   AND INSERT_TYPE = 'ONLINE'
+   AND DEL_YN = 'N'
+   AND REG_NM = ?
+   AND EMAIL = ?
+   
+#===============================================================
+# getOldDocList ������ϱ� ��� ��ȸ
+#=============================================================== 
+@sql.member.getOldDocList
+SELECT SEQ
+     , TITLE
+     , CLOB_TO_CHAR(CONTENTS) AS CONTENTS
+     , CELL_NUMBER
+     , EMAIL
+     , REG_NM
+     , TO_CHAR(REG_DT, 'YYYY-MM-DD') AS REG_DT
+  FROM RNDCALL_BOARD_QUESTION
+ WHERE BOARD_TYPE = 'QNA'
+   AND (REG_ID IS NULL OR REG_ID = '')
+   AND DEL_YN = 'N'
+   AND INSERT_TYPE = 'ONLINE'
+   AND REG_NM = ?
+   AND EMAIL = ?   

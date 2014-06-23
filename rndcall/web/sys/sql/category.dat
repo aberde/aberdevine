@@ -1,0 +1,79 @@
+########################################################################### 
+#  2012-08-28
+###########################################################################
+#===============================================================
+# RNDCALL_CATEGORY
+#=============================================================== 
+@sql.category.getCategoryList
+SELECT CATEGORY_ID, CATEGORY_NM, TREE_LEVEL, ORDER_NO, ISUSE, PARENT_ID, REG_ID, REG_DT, EDIT_ID, EDIT_DT
+     , (SELECT COUNT(*) FROM RNDCALL_CATEGORY WHERE PARENT_ID = A.CATEGORY_ID AND ISUSE = 'Y' AND TREE_LEVEL = 2) AS DTL_CNT
+  FROM RNDCALL_CATEGORY A
+ WHERE TREE_LEVEL = 1
+   AND ISUSE = 'Y'
+   AND CATEGORY_ID != 99999999
+
+#===============================================================
+# RNDCALL_CATEGORY
+#=============================================================== 
+@sql.category.getCategoryListDtl
+SELECT CATEGORY_ID, CATEGORY_NM, TREE_LEVEL, ORDER_NO, ISUSE, PARENT_ID, REG_ID, REG_DT, EDIT_ID, EDIT_DT
+     , (SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = A.PARENT_ID AND ISUSE = 'Y' AND TREE_LEVEL = 1) AS PARENT_NM
+  FROM RNDCALL_CATEGORY A
+ WHERE TREE_LEVEL = 2
+   AND ISUSE = 'Y'
+
+#===============================================================
+# RNDCALL_CATEGORY
+#=============================================================== 
+@sql.category.getCategoryInfo
+SELECT CATEGORY_ID, CATEGORY_NM, TREE_LEVEL, ORDER_NO, ISUSE, PARENT_ID, REG_ID, REG_DT, EDIT_ID, EDIT_DT
+     , (SELECT COUNT(*) FROM RNDCALL_CATEGORY WHERE PARENT_ID = A.CATEGORY_ID AND ISUSE = 'Y' AND TREE_LEVEL = 2) AS DTL_CNT
+  FROM RNDCALL_CATEGORY A
+ WHERE ISUSE = 'Y'
+       
+#===============================================================
+# RNDCALL_CATEGORY
+#=============================================================== 
+@sql.category.insert
+INSERT INTO RNDCALL_CATEGORY
+( CATEGORY_ID
+, CATEGORY_NM
+, TREE_LEVEL
+, ORDER_NO
+, ISUSE
+, PARENT_ID
+, REG_ID
+, REG_DT)
+VALUES
+(CATEGORY_ID_SEQ.NEXT_VALUE
+, ?
+, ?
+, ?
+, 'Y'
+, ?
+, ?
+, sysdatetime)
+
+#===============================================================
+# RNDCALL_CATEGORY
+#=============================================================== 
+@sql.category.update
+UPDATE RNDCALL_CATEGORY
+   SET CATEGORY_NM = ?
+     , ORDER_NO = ?
+     , EDIT_ID = ?
+     , EDIT_DT = sysdatetime
+ WHERE CATEGORY_ID = ?
+ 
+#===============================================================
+# RNDCALL_CATEGORY
+#=============================================================== 
+@sql.category.delete
+UPDATE RNDCALL_CATEGORY
+   SET ISUSE = 'N'
+     , EDIT_ID = ?
+     , EDIT_DT = sysdatetime
+ WHERE CATEGORY_ID = ?
+    OR PARENT_ID = ?
+ 
+

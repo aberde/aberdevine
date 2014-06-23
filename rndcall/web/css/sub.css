@@ -1,0 +1,129 @@
+@charset "utf-8";
+
+/* 자료실 2014-06-21 김민서 */
+.data-con{margin-top:40px; padding:80px 0 0 360px; background: url(../img/sub/data_bg.gif) no-repeat 0 0; width:370px; height:350px;}
+.data-con .txt{margin:35px 0 40px; color:#636565; font-size:30px; letter-spacing:-1px;}
+
+/* input-area */
+.input-set input[type="text"] {border:1px solid #e5e5e5; background:#f9f9f9 !important;}
+
+/* 2014-06-21 온라인 스탭 02*/
+.inquiry-bx {background: url(../img/bg/inquiry_bg.gif) no-repeat 0 0; height:322px;}
+.inquiry-bx ul li {float:left; margin-top:33px; width:365px; text-align:center;}
+.inquiry-list {margin-top:25px; background: url(../img/bg/inquiry_bg02.gif) no-repeat 0 0;  height:201px;  padding:15px 20px 0;}
+.inquiry-list h4 {border-bottom:2px solid #1f8eba; padding-bottom:10px; }
+.inquiry-list .best:first-child {margin-left:0px;}
+.inquiry-list .best {float:left; width:340px; position:relative; margin-left:20px; }
+.inquiry-list .best .more a{position:absolute; top:20px; right:0; font-weight:bold; color:#bababa;}
+.inquiry-list .best .list li a{font-size:12px;}
+.inquiry-list .best .list li:first-child {margin-top:15px;}
+.inquiry-list .best .list li {background: url(../img/bg/inquiry_number.gif) no-repeat 0 0; padding-left:20px; height:16px; line-height:16px; margin-top:6px;}
+.inquiry-list .best .list li.num02 {background-position: 0 -16px;}
+.inquiry-list .best .list li.num03 {background-position: 0 -32px;}
+.inquiry-list .best .list li.num04 {background-position: 0 -48px;}
+.inquiry-list .best .list li.num05 {background-position: 0 -64px;}
+
+.inquiry-icon {background: url(../img/bg/inquiry_list_bg.gif) no-repeat 0 0; width:87px; height:16px; text-align:center; line-height:16px; font-size:10px; color:#fff;  vertical-align:top; margin-right:8px;}
+
+/* tab */
+.tab-type01 ul{border-bottom:1px solid #ededed;}
+.tab-type01 ul li{float:left; border:1px solid #ededed; border-left:none; border-bottom:none; }
+.tab-type01 ul li a{display:inline-block; padding:9px 20px 8px; color:#7c7c7c; font-weight:bold; font-size:14px;letter-spacing: -1px}
+.tab-type01 ul li.on{border:1px solid #b9294f; background-color:#d23962;}
+.tab-type01 ul li.on a{color:#ededed;}
+
+/* my page */
+.my-bx h4 {font-size:20px; font-weight:bold; padding:0 0 5px 1px; }
+.my-bx .bx{width:565px; height:146px; background: url(../img/bg/my_bx01.gif) no-repeat 0 0 ; float:left; padding:15px 10px 20px 20px; }
+
+.my-bx .inquiry {float:left; width:280px;}
+.my-bx ul {margin-top:15px;}
+.my-bx ul li {background: url(../img/bg/icon_bg01.gif) no-repeat 0 0; padding-top:85px; margin-left:15px; text-align:center; font-weight:bold; float:left; width:73px; height:100px;}
+.my-bx .inquiry ul li:first-child {margin-left:12px;}
+.my-bx .inquiry ul li {color:#d13962;}
+.my-bx .inquiry ul li.bg01 {background-position:-0px 0;}
+.my-bx .inquiry ul li.bg02 {background-position:-73px 0;}
+.my-bx .inquiry ul li.bg03 {background-position:-146px 0;}
+
+.my-bx .sinmungo {float:left; width:270px;}
+.my-bx .sinmungo ul li:first-child {margin-left:12px;}
+.my-bx .sinmungo ul li { color:#6094c3;}
+.my-bx .sinmungo ul li.bg01 {background-position:-219px 0;}
+.my-bx .sinmungo ul li.bg02 {background-position:-292px 0;}
+.my-bx .sinmungo ul li.bg03 {background-position:-365px 0;}
+.my-bx  ul li span {color:#000; vertical-align:top;}
+
+.my-bx .red {color:#d13962; border-bottom:1px solid #e3e3e3;}
+.my-bx .blue {color:#6094c3; border-bottom:1px solid #e3e3e3; margin-left:15px;}
+.my-bx .orange {color:#f6b20e}
+
+.my-bx .scrap{width:120px; height:146px; text-align:center;  padding:15px 10px 20px 10px; background: url(../img/bg/my_bx02.gif) no-repeat 0 0 ; float:left; margin-left:5px;}
+.my-bx .scrap .number {color:#f6b20e; width:73px; height:100px;  font-weight:bold; margin:0 auto; margin-top:16px; background: url(../img/bg/icon_bg01.gif) no-repeat -438px 0; padding-top:85px;}
+.my-bx .scrap .number span {color:#000; vertical-align:top;}
+
+
+/* 온라인신문고 2014-06-21 김민서 */
+.sinmungo01{margin-top:25px; padding-top:27px; background:url(../img/sub/sinmungo_bg.gif) no-repeat; text-align:center; width:747px; height:218px;}
+.sinmungo01 h4{color:#262626; font-size:26px;}
+.sinmungo01 ul{margin:20px auto; padding-top:130px; text-align:center; background:url(../img/sub/sinmungo01.gif) no-repeat center top; width:747px;}
+.sinmungo01 ul li:first-child{margin-left:110px;}
+.sinmungo01 ul li{float:left; margin-left:35px; color:#262626; font-size:19px; font-weight:bold; width:150px;}
+
+
+/* 센터소개  2014-06-23 김민서*/
+.center-bx{padding-bottom:70px; background:url(../img/sub/center_bg.gif) no-repeat right top;}
+.center-bx h4{margin-bottom:5px; color:#313131; font-size:44px; line-height:44px;}
+.center-bx .txt{margin-bottom:30px; color:#686767; font-size:14px;}
+.center-bx li{padding-left:90px; margin-bottom:18px; background:url(../img/sub/center_bg01.gif) no-repeat 7px top; width:330px; min-height:80px;}
+.center-bx li p{color:#686767; font-size:12px; letter-spacing:-1px;}
+.center-bx .bg01{background-position:7px -106px;}
+.center-bx .bg02{background-position:7px -291px;}
+.center-bx .tit {margin-bottom:5px;}
+.center-bx .tit span{margin-right:10px; color:#6095c3; font-size:18px; font-weight:bold;}
+.center-bx .tit.color-p span{color:#d23962;}
+.center-bx .tit.color-y span{color:#d5ae35;}
+.center-bx .tit strong{margin-right:2px; color:#313131; font-size:12px;}
+
+.center-lst{margin:10px 0 35px; border-top:1px solid #f4f4f4; border-bottom:1px solid #f4f4f4;}
+.center-lst .info:first-child{border:0;}
+.center-lst .info{position:relative; float:left; border-left:1px solid #ececec; background:url(../img/sub/center_lst01.jpg) no-repeat center 117px; width:246px; height:260px;}
+.center-lst .info.bg01{background:url(../img/sub/center_lst02.jpg) no-repeat center 117px;}
+.center-lst .info.bg02{background:url(../img/sub/center_lst03.jpg) no-repeat center 117px;}
+.center-lst .info div{padding:20px 0 15px 25px;}
+.center-lst .info strong{margin-bottom:10px; color:#333; font-size:20px;}
+.center-lst .info .lst-type li{color:#6c6c6c; font-size:11px; line-height:15px; margin-bottom:5px;}
+.center-lst .info .arrow{position:absolute; right:-12px; bottom:50px; background: url(../img/sub/center_arrow.png) no-repeat right; width:24px; height:62px;}
+
+.center-info{margin-top:10px; padding-top:20px; border-top:1px solid #f1f1f1;}
+.center-info li{padding-left:10px; color:#6c6c6c; font-size:11px; background:url(../img/sub/bullet_black.gif) no-repeat left center;}
+.center-info li strong{color:#323131; font-size:11px;}
+.center-info li.txt{background:url(../img/sub/bullet_pink.gif) no-repeat left center;}
+.center-info li.txt strong{color:#d23962;}
+.center-info li.txt01{background:url(../img/sub/bullet_blue.gif) no-repeat left center;}
+.center-info li.txt01 strong{color:#6095c3;}
+
+
+/* 국가연구개발 - 사업추진체계 2014-06-23 김민서  */
+.develop-tbl {margin-top:30px; background:#eef9fc; border-top:2px solid #474747;}
+.develop-tbl li:first-child{border:0; width:119px;}
+.develop-tbl li{float:left; padding:13px 0; color:#3a7fa3; font-size:14px; font-weight:bold; border-left:1px solid #e2e2e2; text-align:center; width:207px;}
+.develop-tbl li.last{width:204px;}
+
+.develop-txt{margin-top:20px; color:#767676; font-size:12px;}
+.develop-txt a{color:#3a7fa3; font-size:12px; text-decoration:underline;}
+
+
+/*  국가연구개발 사업이란> 정의 및 법령체게  2014-06-23  고재광*/
+.develop02 .dif-bx h4{font-size:43px;color:#313131; line-height: 43px;}
+
+/*  국가연구개발 사업이란> 정의 및 법령체계 2014-06-23  고재광 */
+.develop02 .dif-bx h4{font-size:43px; font-weight:normal;color:#313131; line-height: 43px;}
+.develop02 .dif-bx {background:url(../img/bg/development02_bg.gif) right 0 no-repeat;}
+.develop02 .dif-bx p.dif-txt{margin-bottom:30px; width:450px; line-height:22px; font-size:13px; color:#686767;}
+.develop02 .dif-bx .dif2-bx{border-top:2px solid #4b4b4b; border-bottom:2px solid #4b4b4b;}
+/*.develop02 .dif-bx .dif2-bx dl{padding-bottom:20px;border-bottom:1px solid #eeeeee;}*/
+.develop02 .dif-bx .dif2-bx dl dd{padding-bottom:20px;}
+.develop02 .dif-bx .dif2-bx dl dd.b-line{border-bottom:1px solid #eeeeee;}
+
+.develop02 .dif-bx .dif2-bx dl dt{font-weight:bold; font-size:12px; color:#222222; }
+.develop02 .dif-bx .dif2-bx dl dd, .develop02 .dif-bx .dif2-bx dl dd ul li{font-size: 12px; color:#474747; }

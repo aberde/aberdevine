@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="StrutsProcess">
+ <PROCESS-ITEM ID="#switch" NAME="action0" PATH="/switch"
+  SHAPE="240,33,0,0" SUBTYPE="switch" TYPE="action" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="#makeExcel" NAME="action1" PATH="/makeExcel"
+  SHAPE="32,945,0,0" SUBTYPE="parameter" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="action1" PATH="/makeExcel" TARGET="action1"
+   TITLE="parameter" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#welcome" NAME="action2" PATH="/welcome"
+  SHAPE="32,17,0,0" SUBTYPE="parameter" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="action2"
+   PATH="/switch.do?prefix=/humanResource&amp;page=/humanResource.do?method=setForm"
+   TARGET="action0" TITLE="parameter" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#downLoad" NAME="action3" PATH="/downLoad"
+  SHAPE="240,961,0,0" SUBTYPE="parameter" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="action3" PATH="/downLoad" TARGET="action3"
+   TITLE="parameter" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#Mypage" NAME="action4" PATH="/Mypage"
+  SHAPE="32,129,0,0" TITLE="MypageForm" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="getMypageListscrap" NAME="forward0"
+   PATH="/listscrap.jsp" TARGET="page0" TITLE="getMypageListscrap"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="getMypageUpdate" NAME="forward1"
+   PATH="/view.jsp" TARGET="page1" TITLE="getMypageUpdate"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="getMypageList" NAME="forward2"
+   PATH="/list.jsp" TARGET="page2" TITLE="getMypageList" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="getMypageDelete" NAME="forward3"
+   PATH="/list.jsp" TARGET="page2" TITLE="getMypageDelete"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="getSatiInsert" NAME="forward4"
+   PATH="/view.jsp" TARGET="page1" TITLE="getSatiInsert" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="getMypageUpdateForm" NAME="forward5"
+   PATH="/form.jsp" TARGET="page3" TITLE="getMypageUpdateForm"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="getMypageViewscrap" NAME="forward6"
+   PATH="/viewscrap.jsp" TARGET="page4" TITLE="getMypageViewscrap"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="getMypageView" NAME="forward7"
+   PATH="/view.jsp" TARGET="page1" TITLE="getMypageView" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="getMypageScrapDelete" NAME="forward8"
+   PATH="/list.jsp" TARGET="page2" TITLE="getMypageScrapDelete"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page0" PATH="/listscrap.jsp" SHAPE="304,146,0,0"
+  SUBTYPE="jsp" TITLE="listscrap.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page1" PATH="/view.jsp" SHAPE="304,514,0,0"
+  SUBTYPE="jsp" TITLE="view.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page2" PATH="/list.jsp" SHAPE="304,626,0,0"
+  SUBTYPE="jsp" TITLE="list.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page3" PATH="/form.jsp" SHAPE="304,738,0,0"
+  SUBTYPE="jsp" TITLE="form.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page4" PATH="/viewscrap.jsp" SHAPE="304,850,0,0"
+  SUBTYPE="jsp" TITLE="viewscrap.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+</PROCESS>

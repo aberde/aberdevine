@@ -1,0 +1,227 @@
+########################################################################### 
+# 파일 Query
+###########################################################################
+   
+#==============================================================
+# 마이페이지 리스트
+#==============================================================
+@sql.mypage.list
+SELECT  Q.SEQ,             Q.BOARD_TYPE,       Q.TITLE,            
+CLOB_TO_CHAR(Q.CONTENTS) AS CONTENTS,
+Q.CELL_RECEIVE_YN, NVL(Q.CELL_NUMBER,'-') AS CELL_NUMBER,      Q.EMAIL_RECEIVE_YN, NVL(Q.EMAIL,'@') AS EMAIL,
+Q.OPEN_YN,         NVL(Q.PUBLIC_TRANS_YN,'N') AS PUBLIC_TRANS_YN, Q.PUBLIC_TRANS_ID,  Q.INSERT_TYPE,
+Q.NTIS_REG_ID,     Q.FILE_ID,          Q.DEL_YN,           Q.READ_COUNT,
+Q.REG_ID,          Q.REG_DT,           TO_CHAR(Q.REG_DT,'yyyy.mm.dd') AS REG_DT1,     Q.REG_NM,
+NVL((SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY1), '-') AS CATEGORY1, 
+NVL((SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY2), '-') AS CATEGORY2,
+DECODE(A.SEQ,null,'N','Y') AS STAT,
+TO_CHAR(A.REG_DT,'yyyy.mm.dd') AS ANSWER_REG_DT
+FROM RNDCALL_BOARD_QUESTION Q, RNDCALL_BOARD_ANSWER A
+WHERE Q.DEL_YN='N'
+
+#==============================================================
+# 마이페이지 리스트
+#==============================================================
+@sql.mypage.list2
+SELECT  Q.SEQ,             Q.BOARD_TYPE,       Q.TITLE,            
+CLOB_TO_CHAR(Q.CONTENTS) AS CONTENTS,
+Q.CELL_RECEIVE_YN, NVL(Q.CELL_NUMBER,'-') AS CELL_NUMBER,      Q.EMAIL_RECEIVE_YN, NVL(Q.EMAIL,'@') AS EMAIL,
+Q.OPEN_YN,         NVL(Q.PUBLIC_TRANS_YN,'N') AS PUBLIC_TRANS_YN, Q.PUBLIC_TRANS_ID,  Q.INSERT_TYPE,
+Q.NTIS_REG_ID,     Q.FILE_ID,          Q.DEL_YN,           Q.READ_COUNT,
+Q.REG_ID,          Q.REG_DT,           TO_CHAR(Q.REG_DT,'yyyy.mm.dd') AS REG_DT1,     Q.REG_NM,
+NVL((SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY1), '-') AS CATEGORY1, 
+NVL((SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY2), '-') AS CATEGORY2,
+DECODE(A.SEQ,null,'N','Y') AS STAT,
+TO_CHAR(A.REG_DT,'yyyy.mm.dd') AS ANSWER_REG_DT
+FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_BOARD_ANSWER A ON Q.SEQ = A.Q_SEQ
+WHERE Q.DEL_YN='N'
+
+#==============================================================
+# 마이페이지 스크랩 리스트
+#==============================================================
+@sql.mypage.listscrap
+SELECT  Q.SEQ,             Q.BOARD_TYPE,       Q.TITLE,            CLOB_TO_CHAR(Q.CONTENTS) AS CONTENTS,
+	    Q.CELL_RECEIVE_YN, NVL(Q.CELL_NUMBER,'-') AS CELL_NUMBER,      Q.EMAIL_RECEIVE_YN, NVL(Q.EMAIL,'@') AS EMAIL,
+	    Q.OPEN_YN,         NVL(Q.PUBLIC_TRANS_YN,'N') AS PUBLIC_TRANS_YN, Q.PUBLIC_TRANS_ID,  Q.INSERT_TYPE,
+	    Q.NTIS_REG_ID,     Q.FILE_ID,          Q.DEL_YN,           Q.READ_COUNT,
+	    Q.REG_ID,          Q.REG_DT,           TO_CHAR(Q.REG_DT,'yyyy.mm.dd') AS REG_DT1,     Q.REG_NM,
+	    NVL((SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY1), '-') AS CATEGORY1,
+	    NVL((SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY2), '-') AS CATEGORY2,
+	    DECODE(A.SEQ,null,'N','Y') AS STAT,
+	    TO_CHAR(A.REG_DT,'yyyy.mm.dd') AS ANSWER_REG_DT,
+		S.IS_USE
+FROM RNDCALL_BOARD_QUESTION Q, RNDCALL_BOARD_ANSWER A, RNDCALL_SCRAP S
+WHERE Q.DEL_YN='N'
+AND Q.BOARD_TYPE = 'QNA'
+AND Q.SEQ = A.Q_SEQ
+AND Q.SEQ = S.BOARD_SEQ
+AND S.IS_USE = 'Y'
+
+#==============================================================
+# Q&A 현황정보 조회
+#==============================================================
+@sql.mypage.qnaStatInfo
+SELECT CNT1, CNT2, CNT3, CNT4 FROM
+(
+SELECT COUNT(*) AS CNT1
+FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_BOARD_ANSWER A ON Q.SEQ = A.Q_SEQ
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='QNA'
+      AND Q.REG_ID = ?
+) c1,
+(
+SELECT COUNT(*) AS CNT2
+FROM RNDCALL_BOARD_QUESTION Q
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='QNA'
+      AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)
+      AND Q.REG_ID = ?
+) c2,
+(
+SELECT COUNT(*) AS CNT3
+FROM RNDCALL_BOARD_QUESTION Q
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='QNA'
+      AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)
+      AND Q.REG_ID = ?
+) c3,
+(
+SELECT COUNT(*) AS CNT4
+FROM RNDCALL_SCRAP S
+WHERE S.BOARD_TYPE='QNA'
+      AND S.IS_USE = 'Y'
+      AND S.REG_ID = ?
+) c4
+
+#==============================================================
+# 제안하기 현황정보 조회
+#==============================================================
+@sql.mypage.proposalStatInfo
+SELECT CNT1, CNT2, CNT3 FROM
+(
+SELECT COUNT(*) AS CNT1
+FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_BOARD_ANSWER A ON Q.SEQ = A.Q_SEQ
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='OFFER'
+      AND Q.REG_ID = ?
+) c1,
+(
+SELECT COUNT(*) AS CNT2
+FROM RNDCALL_BOARD_QUESTION Q
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='OFFER'
+      AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)
+      AND Q.REG_ID = ?
+) c2,
+(
+SELECT COUNT(*) AS CNT3
+FROM RNDCALL_BOARD_QUESTION Q
+WHERE Q.DEL_YN='N'
+      AND Q.BOARD_TYPE='OFFER'
+      AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)
+      AND Q.REG_ID = ?
+) c3
+
+
+#==============================================================
+# RNDCALL_BOARD_QUESTION 상세조회
+#==============================================================
+@sql.mypage.view
+SELECT  Q.SEQ,             Q.BOARD_TYPE,       Q.TITLE,            CLOB_TO_CHAR(Q.CONTENTS) AS CONTENTS,
+Q.CELL_RECEIVE_YN, NVL(Q.CELL_NUMBER,'-') AS CELL_NUMBER,      Q.EMAIL_RECEIVE_YN, NVL(Q.EMAIL,'@') AS EMAIL,
+NVL(Q.OPEN_YN,'Y') AS OPEN_YN,         NVL(Q.PUBLIC_TRANS_YN,'N') AS PUBLIC_TRANS_YN, Q.PUBLIC_TRANS_ID,  Q.INSERT_TYPE,
+Q.NTIS_REG_ID,     Q.FILE_ID AS QUESTION_FILE_ID,          Q.DEL_YN,           Q.READ_COUNT,
+Q.REG_ID,          Q.REG_DT,           TO_CHAR(Q.REG_DT,'yyyy.mm.dd') AS REG_DT1,           Q.REG_NM,           NVL(Q.CATEGORY1,'0000000') AS CATEGORY1,
+NVL(Q.CATEGORY2,'0000000') AS CATEGORY2,
+NVL((SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY1), '선택') AS CATEGORY1_NM, 
+NVL((SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY2), '선택') AS CATEGORY2_NM,
+A.ANSWER_CONT, A.FILE_ID AS ANSWER_FILE_ID,
+(CASE WHEN DECODE(A.SEQ,NULL,'N','Y')  = 'Y' THEN 'N'
+              WHEN TO_CHAR(Q.REG_DT,'YYYYMMDD') < (TO_CHAR(sysdatetime,'YYYYMMDD')-1) THEN 'N'
+              ELSE 'Y'
+         END ) AS UP_DEL_STAT,
+         DECODE(A.SEQ,NULL,'N','Y') AS STAT, NVL(A.SEQ,'0') AS ANSWER_SEQ
+FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_BOARD_ANSWER A ON Q.SEQ = A.Q_SEQ
+WHERE Q.DEL_YN='N'
+
+#==============================================================
+# RNDCALL_BOARD_QUESTION 스크랩 상세조회
+#==============================================================
+@sql.mypage.viewscrap
+SELECT  Q.SEQ,             Q.BOARD_TYPE,       Q.TITLE,            Q.CONTENTS,
+	    Q.CELL_RECEIVE_YN, NVL(Q.CELL_NUMBER,'-') AS CELL_NUMBER,      Q.EMAIL_RECEIVE_YN, NVL(Q.EMAIL,'@') AS EMAIL,
+	    NVL(Q.OPEN_YN,'Y') AS OPEN_YN,         NVL(Q.PUBLIC_TRANS_YN,'N') AS PUBLIC_TRANS_YN, Q.PUBLIC_TRANS_ID,  Q.INSERT_TYPE,
+	    Q.NTIS_REG_ID,     Q.FILE_ID AS QUESTION_FILE_ID,          Q.DEL_YN,           Q.READ_COUNT,
+	    Q.REG_ID,          Q.REG_DT,           TO_CHAR(Q.REG_DT,'yyyy.mm.dd') AS REG_DT1,           Q.REG_NM,           NVL(Q.CATEGORY1,'0000000') AS CATEGORY1,
+	    NVL(Q.CATEGORY2,'0000000') AS CATEGORY2,
+	    NVL((SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY1), '선택') AS CATEGORY1_NM, NVL((SELECT CATEGORY_NM FROM RNDCALL_CATEGORY WHERE CATEGORY_ID = Q.CATEGORY2), '선택') AS CATEGORY2_NM,
+	    A.ANSWER_CONT, A.FILE_ID AS ANSWER_FILE_ID,
+	    (CASE WHEN DECODE(A.SEQ,NULL,'N','Y')  = 'Y' THEN 'N'
+              WHEN TO_CHAR(Q.REG_DT,'YYYYMMDD') < (TO_CHAR(sysdatetime,'YYYYMMDD')-1) THEN 'N'
+              ELSE 'Y'
+         END ) AS UP_DEL_STAT,
+         DECODE(A.SEQ,NULL,'N','Y') AS STAT, NVL(A.SEQ,'0') AS ANSWER_SEQ,
+		 S.SCRAP_ID,
+		 TO_CHAR(S.REG_DT,'yyyy.mm.dd') AS REGDT_SCRAP
+FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_BOARD_ANSWER A ON Q.SEQ = A.Q_SEQ, RNDCALL_SCRAP S
+WHERE Q.DEL_YN='N'
+AND Q.BOARD_TYPE='QNA'
+AND Q.SEQ = S.BOARD_SEQ
+
+#==============================================================
+# RNDCALL_FILE조회
+#==============================================================
+@sql.mypage.fileinfo
+SELECT FILE_ID,   SEQ,          FILE_NM,
+       FILE_TYPE, FILE_UP_PATH, FILE_DOWN_PATH,
+       FILE_SIZE, FILE_DESC,    FILE_DEL_YN
+FROM RNDCALL_FILE
+WHERE FILE_ID = ?
+      AND FILE_DEL_YN='N'
+      
+#==============================================================
+# 마이페이지 (QUESTION) 수정
+#==============================================================
+@sql.mypage.update
+UPDATE RNDCALL_BOARD_QUESTION SET
+TITLE = ?,
+CONTENTS = CHAR_TO_CLOB(?),
+CELL_RECEIVE_YN = ?,
+CELL_NUMBER = ?,
+EMAIL_RECEIVE_YN = ?,
+EMAIL = ?,
+OPEN_YN = ?,
+FILE_ID = ?,
+EDIT_ID = ?,
+EDIT_DT =sysdatetime
+WHERE SEQ = ?
+
+#==============================================================
+# 마이페이지 (QUESTION) 수정
+#==============================================================
+@sql.Mypage.question.getFileDelete
+UPDATE RNDCALL_FILE SET
+FILE_DEL_YN = 'Y',
+EDIT_ID= ?,
+EDIT_DT =sysdatetime
+WHERE FILE_ID=? 
+      AND SEQ= ?
+      
+#==============================================================
+# 마이페이지(QUESTION) 삭제
+#==============================================================
+@sql.mypage.delete
+UPDATE RNDCALL_BOARD_QUESTION SET
+    DEL_YN = 'Y' 
+WHERE SEQ = ?
+
+#==============================================================
+# 마이페이지 스크랩(QUESTION) 삭제
+#==============================================================
+@sql.mypage.scrapDelete
+UPDATE RNDCALL_SCRAP SET
+	IS_USE = 'N',
+	EDIT_ID = ?,
+	EDIT_DT = sysdatetime,
+	BOARD_SEQ = 0
+WHERE SCRAP_ID = ?

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="StrutsProcess">
+ <PROCESS-ITEM ID="#Offer" NAME="action0" PATH="/Offer"
+  SHAPE="32,17,0,0" TITLE="OfferForm" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="offerAnswerInsertForm" NAME="forward0"
+   PATH="/offerAnswerInsertForm.jsp" TARGET="page0"
+   TITLE="offerAnswerInsertForm" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="offerInsert" NAME="forward1"
+   PATH="/switch.do?prefix=/inquire&amp;page=/Inquire.do?method=getInquireMainList"
+   TARGET="action1" TITLE="offerInsert" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="offerDelete" NAME="forward2"
+   PATH="/offerList.jsp" TARGET="page1" TITLE="offerDelete"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="offerUpdate" NAME="forward3"
+   PATH="/offerDetailView.jsp" TARGET="page2" TITLE="offerUpdate"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="offerSatiInsert" NAME="forward4"
+   PATH="/offerDetailView.jsp" TARGET="page2" TITLE="offerSatiInsert"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="offerAnswerInsert" NAME="forward5"
+   PATH="/offerDetailView.jsp" TARGET="page2" TITLE="offerAnswerInsert"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="offerDetailView" NAME="forward6"
+   PATH="/offerDetailView.jsp" TARGET="page2" TITLE="offerDetailView"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="myPageMethod" NAME="forward7"
+   PATH="/switch.do?prefix=/mypage&amp;page=/Mypage.do?method=getMypageList"
+   TARGET="action1" TITLE="myPageMethod" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="offerInsertForm" NAME="forward8"
+   PATH="/offerInsertForm.jsp" TARGET="page3" TITLE="offerInsertForm"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="offerAnswerUpdate" NAME="forward9"
+   PATH="/offerDetailView.jsp" TARGET="page2" TITLE="offerAnswerUpdate"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="offerUpdateForm" NAME="forward10"
+   PATH="/offerUpdateForm.jsp" TARGET="page4" TITLE="offerUpdateForm"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="offerList" NAME="forward11"
+   PATH="/offerList.jsp" TARGET="page1" TITLE="offerList" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#switch" NAME="action1" PATH="/switch"
+  SHAPE="304,497,0,0" SUBTYPE="switch" TYPE="action" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="#makeExcel" NAME="action2" PATH="/makeExcel"
+  SHAPE="32,1041,0,0" SUBTYPE="parameter" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="action2" PATH="/makeExcel" TARGET="action2"
+   TITLE="parameter" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#welcome" NAME="action3" PATH="/welcome"
+  SHAPE="32,481,0,0" SUBTYPE="parameter" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="action3"
+   PATH="/switch.do?prefix=/humanResource&amp;page=/humanResource.do?method=setForm"
+   TARGET="action1" TITLE="parameter" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#downLoad" NAME="action4" PATH="/downLoad"
+  SHAPE="240,1057,0,0" SUBTYPE="parameter" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="action4" PATH="/downLoad" TARGET="action4"
+   TITLE="parameter" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page0" PATH="/offerAnswerInsertForm.jsp"
+  SHAPE="304,34,0,0" SUBTYPE="jsp" TITLE="offerAnswerInsertForm.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page1" PATH="/offerList.jsp" SHAPE="304,610,0,0"
+  SUBTYPE="jsp" TITLE="offerList.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page2" PATH="/offerDetailView.jsp"
+  SHAPE="304,722,0,0" SUBTYPE="jsp" TITLE="offerDetailView.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page3" PATH="/offerInsertForm.jsp"
+  SHAPE="304,834,0,0" SUBTYPE="jsp" TITLE="offerInsertForm.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page4" PATH="/offerUpdateForm.jsp"
+  SHAPE="304,946,0,0" SUBTYPE="jsp" TITLE="offerUpdateForm.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+</PROCESS>
