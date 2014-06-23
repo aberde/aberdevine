@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+  <form-beans>   
+  	<form-bean name="NoticeForm" type="kr.go.rndcall.mgnt.notice.form.NoticeForm" />
+  </form-beans>
+  <action-mappings>
+    <action path="/switch" type="org.apache.struts.actions.SwitchAction">
+    </action>
+    <action path="/welcome" type="org.apache.struts.actions.ForwardAction" parameter="/switch.do?prefix=/humanResource&amp;page=/humanResource.do?method=setForm">
+    </action>
+    <action path="/downLoad" type="org.apache.struts.actions.ForwardAction" parameter="/downLoad">
+    </action>
+    <action path="/makeExcel" type="org.apache.struts.actions.ForwardAction" parameter="/makeExcel">
+    </action>
+
+    <action name="NoticeForm" parameter="method" path="/Notice" scope="request" type="kr.go.rndcall.mgnt.notice.action.NoticeAction" validate="false">
+      <forward name="noticeInsertForm" path="/noticeInsertForm.jsp" />
+      <forward name="noticeList" path="/noticeList.jsp" />
+      <forward name="noticeInsert" path="/noticeForward.jsp" />
+      <forward name="noticeDetailView" path="/noticeDetailView.jsp" />
+      <forward name="noticeUpdateForm" path="/noticeUpdateForm.jsp" />
+      <forward name="noticeUpdate" path="/noticeForward.jsp" />
+      <forward name="noticeDelete" path="/noticeList.jsp" />
+    </action>
+  </action-mappings>
+</struts-config>

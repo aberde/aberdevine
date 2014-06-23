@@ -1,0 +1,137 @@
+
+@charset "utf-8";
+
+/*
+ * =================================================================================
+ * INFORMATION
+ * ---------------------------------------------------------------------------------
+ * @File Name 	: Base.css
+ * @Description :  Base Style Sheet
+ * @Version 	: 1.0.0
+ * @Create Date : 2012.08.21
+ * @Update Date : N/A
+ * @History		: N/A
+ * =================================================================================
+ */
+
+
+/*=================================================================================
+ * Default Style Definition
+ =================================================================================*/
+* {
+	margin: 0;
+	padding: 0;
+}
+	
+html, body {
+	height:100%;
+	margin: 0;
+	padding: 0;
+	font-family: Dotum, "돋움", Gulim, "굴림",  Tahoma, Verdana, AppleGothic, sans-serif;
+	font-size:12px;
+	color: #444444;
+	line-height: 18px;
+	border-collapse: collapse;
+}
+
+div, ul,  li, dl, dt, dd, form, iframe, p, a, span, blockquote {
+	margin: 0;
+	padding: 0;
+	list-style:none;
+}
+
+
+hr, legend {
+	display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+}
+
+
+
+img {
+	margin: 0;
+	padding: 0;
+	border: none;
+	vertical-align:middle;
+}
+
+table, th, td {
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	border-collapse: collapse;
+}
+
+fieldset {
+	margin: 0;
+	padding: 0;
+	border: 0 solid transparent;		/* : BUG : Opera 7 에서 border: none 버그 있음 */
+}
+
+select, textarea {
+	margin: 0;
+	padding: 0;
+	font-family: "굴림", Gulim, "돋움", Dotum,  Tahoma, Verdana, AppleGothic, sans-serif;
+	font-size: 12px;
+	color: #7F7F7F;
+	border: 1px solid #D5D5D5;
+	background: #FFF;
+	vertical-align: middle;
+}
+
+input {
+	margin: 0;
+	padding-top: 2px;
+	font-family: "굴림", Gulim, "돋움", Dotum,  Tahoma, Verdana, AppleGothic, sans-serif;
+	font-size: 12px;
+	color: #7F7F7F;
+	border: 1px solid #D5D5D5;
+	background: #FFF;
+	vertical-align: middle;
+	height: 14px;
+}
+input[type="image"], input[type="radio"], input[type="checkbox"] {
+	padding: 0;
+	height: auto;
+	border: none;
+}
+input.image, input.radio, input.checkbox {		/* : FILTER : IE 6 에서 속성 선택자 지원 안함 */
+	padding: 0;
+	height: auto;
+	border: none;
+}
+input[type="file"] {
+	padding: 2px 0 2px 0;
+	height: auto;
+}
+input.file {		/* : FILTER : IE 6 에서 속성 선택자 지원 안함 */
+	padding: 2px 0 2px 0;
+	height: auto;
+	background: #F1F1F1;
+}
+input[type="text"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="password"]:focus, select:focus,
+textarea:focus {
+	background-color: #FFFFFF;
+	border: 1px solid #D5D5D5;
+	outline-style:none;
+}
+
+textarea {
+	padding: 4px 4px 4px 4px;
+}
+
+a:link, a:visited {
+	font-size: 12px;
+	color: #000000;
+	text-decoration: none;
+}
+a:hover, a:active {
+	font-size: 12px;
+	color: #346f7f;
+	text-decoration: none;
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+  <form-beans>   
+  	<form-bean name="MypageForm" type="kr.go.rndcall.mgnt.mypage.form.MypageForm" />
+  </form-beans>
+  <action-mappings>
+    <action path="/switch" type="org.apache.struts.actions.SwitchAction">
+    </action>
+    <action path="/welcome" type="org.apache.struts.actions.ForwardAction" parameter="/switch.do?prefix=/humanResource&amp;page=/humanResource.do?method=setForm">
+    </action>
+    <action path="/downLoad" type="org.apache.struts.actions.ForwardAction" parameter="/downLoad">
+    </action>
+    <action path="/makeExcel" type="org.apache.struts.actions.ForwardAction" parameter="/makeExcel">
+    </action>
+
+    <action name="MypageForm" parameter="method" path="/Mypage" scope="request" type="kr.go.rndcall.mgnt.mypage.action.MypageAction" validate="false">
+      <forward name="getMypageList" path="/list.jsp" />
+      <forward name="getMypageView" path="/view.jsp" />
+      <forward name="getMypageUpdateForm" path="/form.jsp" />
+      <forward name="getMypageUpdate" path="/view.jsp" />
+      <forward name="getMypageDelete" path="/list.jsp" />
+      <forward name="getSatiInsert" path="/view.jsp" />
+      <forward name="getMypageScrapDelete" path="/list.jsp" />
+      <forward name="getMypageListscrap" path="/listscrap.jsp" />
+      <forward name="getMypageViewscrap" path="/viewscrap.jsp" />
+      
+    </action>
+  </action-mappings>
+</struts-config>

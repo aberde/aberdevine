@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+  <form-beans>   
+  	<form-bean name="FaqForm" type="kr.go.rndcall.mgnt.faq.form.FaqForm" />
+  </form-beans>
+  <action-mappings>
+    <action path="/switch" type="org.apache.struts.actions.SwitchAction">
+    </action>
+    <action path="/welcome" type="org.apache.struts.actions.ForwardAction" parameter="/switch.do?prefix=/humanResource&amp;page=/humanResource.do?method=setForm">
+    </action>
+    <action path="/downLoad" type="org.apache.struts.actions.ForwardAction" parameter="/downLoad">
+    </action>
+    <action path="/makeExcel" type="org.apache.struts.actions.ForwardAction" parameter="/makeExcel">
+    </action>
+
+    <action name="FaqForm" parameter="method" path="/Faq" scope="request" type="kr.go.rndcall.mgnt.faq.action.FaqAction" validate="false">
+      <forward name="faqInsertForm" path="/faqInsertForm.jsp" />
+      <forward name="faqInsert" path="/faqForward.jsp" />
+      <forward name="faqList" path="/faqList.jsp" />
+      <forward name="faqDetailView" path="/faqDetailView.jsp" />
+      <forward name="faqAnswerInsert" path="/faqList.jsp" />
+      <forward name="faqSatiInsert" path="/faqDetailView.jsp" />
+      <forward name="faqContentConfirm" path="/faqContentConfirmForm.jsp" />
+      <forward name="faqUpdate" path="/faqForward.jsp" />
+      <forward name="faqDelete" path="/faqList.jsp" />
+      <forward name="smsPopForm" path="/popup/smsPopForm.jsp" />
+      <forward name="smsCommit" path="/popup/smsPopForm.jsp" />
+      <forward name="orgTelNum" path="/popup/orgTelNum.jsp" />
+    </action>
+  </action-mappings>
+</struts-config>

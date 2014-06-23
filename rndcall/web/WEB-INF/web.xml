@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>RndCall Application</display-name>
+  <context-param>
+    <param-name>uploadPath</param-name>
+    <param-value>/FILE/</param-value>
+  </context-param>  
+  <filter> 
+    <filter-name>Set Character Encoding</filter-name>
+    <filter-class>kr.go.rndcall.mgnt.common.SetCharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter> 
+  <filter-mapping>
+    <filter-name>Set Character Encoding</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!-- 
+  <servlet>
+    <servlet-name>log4j-init</servlet-name>
+    <servlet-class>kr.go.rndcall.mgnt.common.Log4jInitServlet</servlet-class>
+    <init-param>
+      <param-name>log4j-init-file</param-name>
+      <param-value>/WEB-INF/properties/log4j.properties</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+   -->
+  <servlet>
+    <servlet-name>downLoad</servlet-name>
+    <servlet-class>kr.go.rndcall.mgnt.common.DownLoadServlet</servlet-class>
+  </servlet>
+   <servlet>
+  <servlet-name>makeExcel</servlet-name>
+    <servlet-class>kr.go.rndcall.mgnt.common.MakeExcelServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/config/struts-config.xml,
+      			   /WEB-INF/config/inquire-struts-config.xml,
+      			   /WEB-INF/config/faq-struts-config.xml,
+      			   /WEB-INF/config/admin-struts-config.xml,
+      			   /WEB-INF/config/offer-struts-config.xml,
+      			   /WEB-INF/config/mypage-struts-config.xml,
+      			   /WEB-INF/config/notice-struts-config.xml,
+      			   /WEB-INF/config/data-struts-config.xml,
+      			   /WEB-INF/config/mypage-struts-config.xml,
+      			   /WEB-INF/config/statistic-struts-config.xml,
+      			   /WEB-INF/config/unisearch-struts-config.xml
+      </param-value>
+    </init-param>
+    <init-param>
+      <param-name>config/inquire</param-name>
+      <param-value>/WEB-INF/config/inquire-struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>config/faq</param-name>
+      <param-value>/WEB-INF/config/faq-struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>config/admin</param-name>
+      <param-value>/WEB-INF/config/admin-struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>config/offer</param-name>
+      <param-value>/WEB-INF/config/offer-struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>config/mypage</param-name>
+      <param-value>/WEB-INF/config/mypage-struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>config/notice</param-name>
+      <param-value>/WEB-INF/config/notice-struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>config/data</param-name>
+      <param-value>/WEB-INF/config/data-struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>config/statistic</param-name>
+      <param-value>/WEB-INF/config/statistic-struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>config/unisearch</param-name>
+      <param-value>/WEB-INF/config/unisearch-struts-config.xml</param-value>
+    </init-param>
+    
+    <load-on-startup>2</load-on-startup>
+  </servlet>  
+  <!-- 
+   <servlet-mapping>
+    <servlet-name>ajax</servlet-name>
+    <url-pattern>/ajax</url-pattern>
+  </servlet-mapping>
+   -->
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <!-- 
+  <servlet-mapping>
+    <servlet-name>debugjsp</servlet-name>
+    <url-pattern>*.jsp</url-pattern>
+  </servlet-mapping>
+   -->
+   <servlet-mapping>
+    <servlet-name>downLoad</servlet-name>
+    <url-pattern>/downLoad</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>makeExcel</servlet-name>
+    <url-pattern>/makeExcel</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>1800</session-timeout>
+  </session-config>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  
+  <jsp-config>
+	  <taglib>
+	    <taglib-uri>/tags/struts-bean</taglib-uri>
+	    <taglib-location>/WEB-INF/tld/struts-bean.tld</taglib-location>
+	  </taglib>
+	  <taglib>
+	    <taglib-uri>/tags/struts-html</taglib-uri>
+	    <taglib-location>/WEB-INF/tld/struts-html.tld</taglib-location>
+	  </taglib>
+	  <taglib>
+	    <taglib-uri>/tags/struts-logic</taglib-uri>
+	    <taglib-location>/WEB-INF/tld/struts-logic.tld</taglib-location>
+	  </taglib>
+	  <taglib>
+	    <taglib-uri>/tags/struts-nested</taglib-uri>
+	    <taglib-location>/WEB-INF/tld/struts-nested.tld</taglib-location>
+	  </taglib>
+	  <taglib>
+	    <taglib-uri>/tags/pager-taglib</taglib-uri>
+	    <taglib-location>/WEB-INF/tld/pager-taglib.tld</taglib-location>
+	  </taglib>
+	  <taglib>
+	    <taglib-uri>/tags/taglibs-log</taglib-uri>
+	    <taglib-location>/WEB-INF/tld/taglibs-log.tld</taglib-location>
+	  </taglib>
+	  <taglib>
+	    <taglib-uri>/tags/struts-template</taglib-uri>
+	    <taglib-location>/WEB-INF/tld/struts-template.tld</taglib-location>
+	  </taglib>
+	  <taglib>
+	    <taglib-uri>/tags/struts-tiles</taglib-uri>
+	    <taglib-location>/WEB-INF/tld/struts-tiles.tld</taglib-location>
+	  </taglib>
+	</jsp-config>
+	
+  <resource-ref>
+    <description>DB Connection</description>
+    <res-ref-name>jdbc/callcenter</res-ref-name>
+    <res-type>cubrid.jdbc.driver.CUBRIDDriver</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>   
+   
+  <!-- 
+  <env-entry>
+	<env-entry-name>properties.config.file.devserver</env-entry-name>
+	<env-entry-value>/NCIA/WebApp/deploy/rndcall.war/WEB-INF/properties/conf.properties</env-entry-value>
+	<env-entry-type>java.lang.String</env-entry-type>
+  </env-entry>
+   -->
+   <!--
+   <error-page>
+		<error-code>400</error-code>
+		<location>/noPage.jsp</location>
+	</error-page>
+	
+   <error-page>
+		<error-code>401</error-code>
+		<location>/noPage.jsp</location>
+	</error-page>
+	
+   <error-page>
+		<error-code>403</error-code>
+		<location>/noPage.jsp</location>
+	</error-page>
+	
+   <error-page>
+		<error-code>404</error-code>
+		<location>/noPage.jsp</location>
+	</error-page>
+	
+   <error-page>
+		<error-code>405</error-code>
+		<location>/noPage.jsp</location>
+	</error-page>
+	
+   <error-page>
+		<error-code>406</error-code>
+		<location>/noPage.jsp</location>
+	</error-page>
+	
+   <error-page>
+		<error-code>407</error-code>
+		<location>/noPage.jsp</location>
+	</error-page>
+	
+   <error-page>
+		<error-code>408</error-code>
+		<location>/noPage.jsp</location>
+	</error-page>
+	
+   <error-page>
+		<error-code>409</error-code>
+		<location>/noPage.jsp</location>
+	</error-page>
+	
+   <error-page>
+		<error-code>410</error-code>
+		<location>/noPage.jsp</location>
+	</error-page>
+	
+   <error-page>
+		<error-code>411</error-code>
+		<location>/noPage.jsp</location>
+	</error-page>
+	
+   <error-page>
+		<error-code>412</error-code>
+		<location>/noPage.jsp</location>
+	</error-page>
+	
+   <error-page>
+		<error-code>413</error-code>
+		<location>/noPage.jsp</location>
+	</error-page>
+	
+   <error-page>
+		<error-code>414</error-code>
+		<location>/noPage.jsp</location>
+	</error-page>
+	
+   <error-page>
+		<error-code>415</error-code>
+		<location>/noPage.jsp</location>
+	</error-page>
+	
+   <error-page>
+		<error-code>417</error-code>
+		<location>/noPage.jsp</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>500</error-code>
+		<location>/errorPage.jsp</location>
+	</error-page>
+   
+	<error-page>
+		<error-code>501</error-code>
+		<location>/errorPage.jsp</location>
+	</error-page>
+   
+	<error-page>
+		<error-code>502</error-code>
+		<location>/errorPage.jsp</location>
+	</error-page>
+   
+	<error-page>
+		<error-code>503</error-code>
+		<location>/errorPage.jsp</location>
+	</error-page>
+   
+	<error-page>
+		<error-code>504</error-code>
+		<location>/errorPage.jsp</location>
+	</error-page>
+   
+	<error-page>
+		<error-code>505</error-code>
+		<location>/errorPage.jsp</location>
+	</error-page>
+   -->
+</web-app>

@@ -1,0 +1,57 @@
+
+@charset "utf-8";
+
+/*
+ * =================================================================================
+ * INFORMATION
+ * ---------------------------------------------------------------------------------
+ * @File Name 	: main.css
+ * @Description :  main Style Sheet
+ * @Version 	: 1.0.0
+ * @Create Date : 2012.08.21
+ * @Update Date : N/A
+ * @History		: N/A
+ * =================================================================================
+ */
+
+
+/*=================================================================================
+ * Default Style Definition
+ =================================================================================*/
+
+/* 메인 Layout  */
+.LY-Main-BG 						{ background:url(../images/main/main_Bg.jpg) repeat-x top;}
+
+/* 메인 Header Layout  */
+.LY-Main-Header					{ height:130px; position:relative; background:url(../images/main/main_HeaderBg.jpg) no-repeat left top; }
+
+/* 메인 Content  */
+.LY-Main-Img 						{ position:relative; height:467px; background:url(../images/main/main_ImgBg.jpg) no-repeat left top;}
+.LY-Main-Img .Slogan 			{ position:absolute; left:0px; top:42px;}
+.LY-Main-Img .Q-Link 			{ position:absolute; left:0px; top:180px;}
+.LY-Main-Img .Main-Movie 		{ position:absolute; left:475px; top:0px;}
+
+/* 메인 공지사항 및 배너 영역   */
+.LY-Main-Ninfor 						{ position:relative; height:183px;}
+.LY-Main-Ninfor ul 					{ float:left; width:294px; margin-right:43px;}
+/* 기본정보 */
+.Main-Ninfor 							{ padding-top:21px;}
+.Main-Ninfor .Title 					{ height:34px; border-bottom:1px #cfcfcf solid;}
+.Main-Ninfor .Title li.Title			{ float:left;}
+.Main-Ninfor .Title li.More		{ float:right; padding-top:15px;}
+.Main-Ninfor .List 					{ padding-top:14px;}
+/* 기본정보 리스트 */
+.Main-NinforList 						{ width:100%;}
+.Main-NinforList tr td 				{ background:url(../images/icon/icon_dot01.gif) no-repeat 7px 7px; padding-left:14px; height:19px;}
+.Main-NinforList tr td a 			{ color:#777777;}
+.Main-NinforList tr td a:hover 	{ color:#FF6600;}
+.Main-NinforList tr td.Day 		{ background-image:none; text-align:right; font-size:11px; color:#999;}
+/* 전화상담 */
+.Main-Nhelpline 						{ position:absolute; left:674px; top:21px; width:326px;}
+
+
+
+
+
+
+
