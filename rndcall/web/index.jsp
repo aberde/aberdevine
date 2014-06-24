@@ -190,7 +190,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>:: R&D도우미센터 ::</title>
+	<title>R&D도우미센터</title>
 	<link rel="stylesheet" type="text/css" href="/css/common.css" />
 	<link rel="stylesheet" type="text/css" href="/css/main.css" />
 	<script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
@@ -208,9 +208,6 @@
 	}
 	</style>
 	<![endif]-->
-	<script language="JavaScript" src="/js/prototype.js"></script>
-	<script language="JavaScript" src="/js/Field.js"></script>
-	<script language="JavaScript" src="/js/EventMenu.js"></script>
 	<script language="JavaScript" type="text/JavaScript">
 	<!--
 		function goData(){
@@ -392,10 +389,10 @@
 		<div class="gnb">
 			<div class="gnb-bx clearfix">
 				<ul class="menu-lst fl clearfix">
-					<li class="menu"><a href="/development/development01.html">국가연구개발사업이란?</a>
+					<li class="menu"><a href="/development/development01.jsp">국가연구개발사업이란?</a>
 						<ul class="snb">
-							<li><a href="/development/development01.html">정의 및 법령 체계</a></li>
-							<li><a href="/development/development02.html">사업추진체계</a></li>
+							<li><a href="/development/development01.jsp">정의 및 법령 체계</a></li>
+							<li><a href="/development/development02.jsp">사업추진체계</a></li>
 						</ul>
 					</li>
 					<li class="menu"><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireMainList&searchVO.menu_sn=01">온라인 상담</a>
@@ -419,7 +416,7 @@
 							<li><a href="#none;">기타</a></li>
 						</ul>
 					</li>
-					<li class="menu"><a href="#none;">센터소개</a></li>
+					<li class="menu"><a href="/center/center.jsp">센터소개</a></li>
 					<%
 						if ( mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C") ) {
 					%>
@@ -607,7 +604,7 @@
 	<!-- footer -->
 	<div id="footer">
 		<div class="footer clearfix">
-			<p class="foot-logo"><img src="img/common/foot_logo.gif" alt="미래창조과학부" /></p>
+			<p class="foot-logo"><img src="/img/common/foot_logo.gif" alt="미래창조과학부" /></p>
 			<div class="add">
 				<ul class="add-lst clearfix">
 					<li><a href="/info.jsp">개인정보처리방침 </a></li>
