@@ -15,11 +15,10 @@ package kr.go.rndcall.mgnt.common;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
-import cubrid.jdbc.driver.CUBRIDConnection;
 
 public class ConnectionManager  
 {
@@ -49,13 +48,18 @@ public class ConnectionManager
 	
 		try 
 		{
-			con = getDataSource("java:/jdbc/callcenter").getConnection();
+			con = getDataSource(Configuration.getInstance().get("conf.datasource.name")).getConnection();
 		}
 		catch(SQLException e) 
 		{
 			System.err.println("ConnectionManager.getConnection():SQLException .....");			
 			e.printStackTrace();
 		}
+		catch(Exception e)
+		{
+		    e.printStackTrace();
+		}
+		
 
 		return con;
 	}
