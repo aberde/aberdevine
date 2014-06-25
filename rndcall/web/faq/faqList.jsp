@@ -276,7 +276,7 @@
 						%>
 						<span class="btn-set pink"><a href="JavaScript:goInquireForm()">상담하기</a></span>
 <!-- 						// TODO 취소 이벤트 추가. -->
-						<span class="btn-set"><a href="#">취소</a></span>
+						<span class="btn-set"><a href="JavaScript:goCancel()">취소</a></span>
 						<%
 							}
 						%>
