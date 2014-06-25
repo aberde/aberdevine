@@ -1,7 +1,7 @@
 <%@page contentType="text/html; charset=utf-8" %>
-<%@ page import="kr.go.rndcall.mgnt.faq.vo.*" %>
+<%@page import="kr.go.rndcall.mgnt.faq.vo.*" %>
 
-<%@  include file="/include/top.jsp"%>
+<%@include file="/include/top.jsp"%>
 
 	<bean:define name="FaqForm" property="searchVO.roleCD" id="roleCd" type="java.lang.String"/>
 	<bean:define name="FaqForm" property="totRowCount" id="totRowCount" type="java.lang.Integer"/>
@@ -238,7 +238,7 @@
 									</logic:empty>
 									<logic:notEmpty name="FaqForm" property="voList">
 										<logic:iterate name="FaqForm" property="voList" indexId="rowNum" id="vo">
-											<tr <%= rowNum.intValue() % 2 = 0 ? "class=\"on\"" : "" %>>
+											<tr <%= rowNum.intValue() % 2 == 0 ? "class=\"on\"" : "" %>>
 												<td><%= totRowCount.intValue() - rowNum.intValue() -  Util.replaceNull((String)pagerOffset, 0) %></td>
 												<td class="txt-l">
 													<bean:define name="vo" property="title" id="title" type="java.lang.String"/>
@@ -265,39 +265,28 @@
 						</div>
 					</div>
 					<!-- // board-type01 -->
+					
 					<!-- page-area-->
 					<%@ include file="/include/page.jsp"%>
+					
 					<!-- btn-set-->
 					<div class="btn-lst txt-r">
 						<%
-	if (roleCd.equals("0000A") || roleCd.equals("0000B") || roleCd.equals("0000Z")) {
-	%>
-	<div class="LY-ContentTitle">
-		<h1><img src="../images/content/Content_Title01_3_1.gif" width="600px" height="55px" alt="찾으시는 질문이 없다면 문의하기를 통해 작성해주시면 친절하게 답변드리겠습니다.." /><a href="JavaScript:goInquireForm()" class="btn_Basic"><strong>온라인상담</strong></a></h1>
-		
-	</div>
-	<%
-	}
-	%>
-	<%
-	if (roleCd.equals("0000Z") || roleCd.equals("0000C")) {
-	%>
-	<div style="margin:10px 0; display:block">
-		<ul class="Center">
-			<div class="Basic-Button">
-			<ul class="Right">
-				<li><a href="javascript:create()"  class="btn_Basic"><strong>자주묻는질문 등록</strong></a></li>
-			</ul>
-		</ul>
-	</div>
-	<%
-	}
-	%>
-					
-					
-					
-						<span class="btn-set pink"><a href="#">상담하기</a></span>
+							if ( roleCd.equals("0000A") || roleCd.equals("0000B") || roleCd.equals("0000Z") ) {
+						%>
+						<span class="btn-set pink"><a href="JavaScript:goInquireForm()">상담하기</a></span>
+<!-- 						// TODO 취소 이벤트 추가. -->
 						<span class="btn-set"><a href="#">취소</a></span>
+						<%
+							}
+						%>
+						<%
+							if ( roleCd.equals("0000Z") || roleCd.equals("0000C") ) {
+						%>
+						<span class="btn-set pink"><a href="javascript:create()">자주묻는질문 등록</a></span>
+						<%
+							}
+						%>
 					</div>
 					<!-- //btn-set-->
 					<!-- //page-area -->
@@ -308,50 +297,5 @@
 		<!-- //content -->
 	</div>
 	<!-- // container -->
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<%
-	if (roleCd.equals("0000A") || roleCd.equals("0000B") || roleCd.equals("0000Z")) {
-	%>
-	<div class="LY-ContentTitle">
-		<h1><img src="../images/content/Content_Title01_3_1.gif" width="600px" height="55px" alt="찾으시는 질문이 없다면 문의하기를 통해 작성해주시면 친절하게 답변드리겠습니다.." /><a href="JavaScript:goInquireForm()" class="btn_Basic"><strong>온라인상담</strong></a></h1>
-		
-	</div>
-	<%
-	}
-	%>
-	<%
-	if (roleCd.equals("0000Z") || roleCd.equals("0000C")) {
-	%>
-	<div style="margin:10px 0; display:block">
-		<ul class="Center">
-			<div class="Basic-Button">
-			<ul class="Right">
-				<li><a href="javascript:create()"  class="btn_Basic"><strong>자주묻는질문 등록</strong></a></li>
-			</ul>
-		</ul>
-	</div>
-	<%
-	}
-	%>
 
-	</table>
-	</ul>
-	</div>
-
-	</html:form>
-	
-	<br />
-	<br />
-	<!-- end .ntiscontents -->
-	</div>
-<!-- end .container -->
-</div>
-<%@  include file="/include/bottom.jsp"%>
+<%@include file="/include/bottom.jsp"%>
