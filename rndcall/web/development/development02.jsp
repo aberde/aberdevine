@@ -18,7 +18,6 @@
 		<div class="lnb">
 			<div class="tit-area">
 				<h2 class="develop-lnb">국가연구개발 <br />사업이란?</h2>
-				<span><img src="/img/common/h2_entxt02.gif" alt="Online Consultation" /></span>
 			</div>
 			<ul class="lnb-lst">
 				<li><a href="/development/development01.jsp">정의 및 법령체계</a></li>
@@ -50,7 +49,7 @@
 				</ul>
 				<!-- //develop-tbl -->	
 				<div class="grap-bg"><img src="/img/sub/develop_bg.gif" alt="" /></div>
-				<p class="develop-txt"><a href="#none;">국가연구개발사업 공고문 모두 보러가기</a> (NTIS의 “사업공고” 페이지와 링크)</p>
+				<p class="develop-txt"><a href="http://rndgate.ntis.go.kr/switch.do?prefix=/un&page=/unRndList.do?method=retrieveList" target="_blank">국가연구개발사업 공고문 모두 보러가기</a></p>
 			</div>	
 			<!-- //section -->	
 		</div>

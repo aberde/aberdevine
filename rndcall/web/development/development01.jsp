@@ -18,7 +18,6 @@
 		<div class="lnb">
 			<div class="tit-area">
 				<h2 class="develop-lnb">국가연구개발 <br />사업이란?</h2>
-				<span><img src="/img/common/h2_entxt02.gif" alt="Online Consultation" /></span>
 			</div>
 			<ul class="lnb-lst">
 				<li class="on"><a href="#none;">정의 및 법령체계</a></li>
