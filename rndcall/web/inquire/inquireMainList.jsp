@@ -79,7 +79,7 @@
 			<div class="location txt-r">
 				<ul class="fr clearfix">
 					<li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-					<li><a href="JavaScript:goInquireForm()">온라인상담</a></li>
+					<li><a href="JavaScript:goInquireList()">온라인상담</a></li>
 					<li class="on"><a href="JavaScript:goInquireForm()">온라인상담</a></li>
 				</ul>
 			</div>
@@ -102,51 +102,11 @@
 					<html:hidden name="InquireForm" property="searchVO.type"/>
 					<html:hidden name="InquireForm" property="searchVO.menu_sn"/>
 				
-					<%
-						if(mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C")){
-					%>
-					<!-- // Adim-Infor -->
-<!-- 					// TODO admin 로그인시 출력 -->
-					<div class="OnlineInfor">
-						<ul class="Infor">
-							<li title="미처리 현황정보">
-							<table border="0" cellspacing="0" cellpadding="0" class="On-untreat"  >
-				  			<thead>
-							<tr><th>&nbsp;</th>
-				    			<th>미처리 총건수</th>
-				    			<th>자체처리</th>
-				    			<th>타기관처리</th>
-				    			<th class="End">&nbsp;</th>
-				  			</tr>
-							</thead>
-							<tbody>
-				  			<tr><th>문의현황</th>
-				  				<td><a href="JavaScript:goStatList('QNA','1')"><span class="Orenge"><bean:write name="InquireForm" property="vo.statCnt1"/>건</span></a></td>
-								<td><a href="JavaScript:goStatList('QNA','2')"><span class="Orenge"><bean:write name="InquireForm" property="vo.statCnt2"/>건</span></a></td>
-								<td><a href="JavaScript:goStatList('QNA','3')"><span class="Orenge"><bean:write name="InquireForm" property="vo.statCnt3"/>건</span></a></td>
-								<td><a href="JavaScript:goStatList('QNA','4')"class="btn_TList"><strong>전체보기</strong></a></td>
-				  			</tr>
-				  			<tr><th>제안현황</th>
-					  			<td><a href="JavaScript:goStatList1('OFFER','1')"><span class="Orenge"><bean:write name="InquireForm" property="vo.statCnt4"/>건</span></a></td>
-								<td><a href="JavaScript:goStatList1('OFFER','2')"><span class="Orenge"><bean:write name="InquireForm" property="vo.statCnt5"/>건</span></a></td>
-								<td><a href="JavaScript:goStatList1('OFFER','3')"><span class="Orenge"><bean:write name="InquireForm" property="vo.statCnt6"/>건</span></a></td>
-								<td><a href="JavaScript:goStatList1('OFFER','4')" class="btn_TList"><strong>전체보기</strong></a></td>
-				  			</tr>
-							</tbody>
-							</table>
-							</li>
-						</ul>
-					</div>
-					<!-- // Adim-Infor -->
-					<%
-						}
-					%>
-						
 					<!-- inquiry -->
 					<div class="inquiry-bx mt30">
 						<ul class="clearfix">
-							<li><a href="#"><img src="/img/sub/inquiry_img01.gif" alt="국가연구개발사업 공통법령 및 제도 질의 바로가기" /></a></li>
-							<li><a href="#"><img src="/img/sub/inquiry_img02.gif" alt="중앙행정기관별 국가연구개발사업 질의 바로가기" /></a></li>
+							<li><a href="JavaScript:goInquireForm()"><img src="/img/sub/inquiry_img01.gif" alt="국가연구개발사업 공통법령 및 제도 질의 바로가기" /></a></li>
+							<li><a href="JavaScript:goInquireForm()"><img src="/img/sub/inquiry_img02.gif" alt="중앙행정기관별 국가연구개발사업 질의 바로가기" /></a></li>
 						</ul>
 					</div>
 					<div class="inquiry-list clearfix">
