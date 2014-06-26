@@ -18,10 +18,10 @@
 		<div class="lnb">
 			<div class="tit-area">
 				<h2>센터소개</h2>
-				<span><img src="/img/common/h2_entxt02.gif" alt="Online Consultation" /></span>
+				<span><img src="/img/common/h2_entxt06.gif" alt="Introduce" /></span>
 			</div>
 			<ul class="lnb-lst">
-				<li class="on"><a href="#none;">센터소개</a></li>
+				<li class="on"><a href="/center/center.jsp">센터소개</a></li>
 			</ul>				
 		</div>
 		<!-- //lnb -->
