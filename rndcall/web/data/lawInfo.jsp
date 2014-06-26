@@ -1,94 +1,99 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!--
-### 경로   : <%= request.getRequestURI() %>
-### 사업명 : 11년도 개방형 연구성과분석지원서비스
-### 사업일 : 2011-07-10 ~ 2011-08-31
-### 개발일 : 2011-07-14
-### 개발자 : 박인선
--->
-<%@ page contentType="text/html; charset=utf-8" %>
-<%@  include file="/include/top.jsp"%>
-<%@ page import="kr.go.rndcall.mgnt.common.Util" %>
+<%@page contentType="text/html; charset=utf-8" %>
+<%@page import="kr.go.rndcall.mgnt.common.Util" %>
 
-<bean:define name="DataForm" property="totRowCount" id="totRowCount" type="java.lang.Integer" />
-<bean:define name="DataForm" property="maxIndexPages" id="maxIndexPages" type="java.lang.String" />
-<bean:define name="DataForm" property="maxPageItems" id="maxPageItems" type="java.lang.String" />
-<bean:define name="DataForm" property="pagerOffset" id="pagerOffset" type="java.lang.String" />
-<bean:define name="DataForm" property="searchVO.loginId" id="loginId" type="java.lang.String" />
-<bean:define name="DataForm" property="searchVO.roleCD" id="roleCd" type="java.lang.String" />
-<bean:define name="DataForm" property="searchVO.board_type" id="board_type" type="java.lang.String" />
+<%@include file="/include/top.jsp"%>
 
-<bean:define id="path" type="java.lang.String" value="/Data.do" />
-<script type="text/javascript">
-activeDebug = true;  
-module = '/switch.do?prefix=/data&method=dataList&page=';
+	<bean:define name="DataForm" property="totRowCount" id="totRowCount" type="java.lang.Integer" />
+	<bean:define name="DataForm" property="maxIndexPages" id="maxIndexPages" type="java.lang.String" />
+	<bean:define name="DataForm" property="maxPageItems" id="maxPageItems" type="java.lang.String" />
+	<bean:define name="DataForm" property="pagerOffset" id="pagerOffset" type="java.lang.String" />
+	<bean:define name="DataForm" property="searchVO.loginId" id="loginId" type="java.lang.String" />
+	<bean:define name="DataForm" property="searchVO.roleCD" id="roleCd" type="java.lang.String" />
+	<bean:define name="DataForm" property="searchVO.board_type" id="board_type" type="java.lang.String" />
 
-function goSearch(){
-	fm.elements["method"].value="dataList";
-	fm.submit();
-}
-function goIns(arg){
-	fm.elements["searchVO.board_type"].value=arg;	
-	fm.elements["method"].value="dataList";
-	fm.submit();
-}
-function dataDetailView(arg){
-	fm.elements["searchVO.seq"].value=arg;	
-	fm.elements["method"].value="dataDetailView";
-	fm.submit();
-}
-function goLawInfo(){
-	var url = "http://rndgate.ntis.go.kr/switch.do?prefix=/un/rndLaw&page=/unRndLaw.do?method=retrieveLawSearchByKey";
-	window.open(url);
-	document.location.href = "/switch.do?prefix=/data&page=/Data.do?method=dataListLaw&searchVO.menu_sn=02";
-}
+    <bean:define id="path" type="java.lang.String" value="/Data.do" />
+    
+    <script type="text/javascript">
+    <!--
+        var data = {
+            num : 4 // 위치순번
+        };
+        // 현재메뉴 위치.
+        menuFocus(data);
+    //-->
+    </script>
+    
+    <script type="text/javascript">
+        activeDebug = true;  
+        module = '/switch.do?prefix=/data&method=dataList&page=';
 
-
-</script>
-</head>
-<div class="LY-Container">
-	<html:form action="/Data" method="post" name="fm" type="kr.go.rndcall.mgnt.data.form.DataForm">
-	<html:hidden name="DataForm" property="method" value="noticeList" />
-	<html:hidden name="DataForm" property="searchVO.loginId" />
-	<html:hidden name="DataForm" property="searchVO.name" />
-	<html:hidden name="DataForm" property="searchVO.board_type" />
-	<html:hidden name="DataForm" property="searchVO.seq" />
-	<html:hidden name="DataForm" property="searchVO.type" />
-	<html:hidden name="DataForm" property="searchVO.menu_sn"/>
-	<html:hidden name="DataForm" property="searchVO.pagerOffset"/>
-	<!-- end # LY-ContentTitle -->
-	<!-- start # 레프트 메뉴 -->
-	<div id="LY-Left">
-			<!-- start # left menu  -->
-			<ul id="Left-Menu">
-				<li><a href="#" onclick="goLawInfo()"; onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image8','','/images/Menu/left/lm02_01_on.gif',8)"><img src="/images/Menu/left/lm02_01_off.gif" name="Image8" border="0" id="Image8" alt="기타자료실" /></a></li>
-				<li><a href="JavaScript:goIns('DATA')"><img src="../images/Menu/left/lm02_03_off.gif" alt="기타자료" /></a></li>
-			</ul>
-			<SCRIPT type=text/javascript>
-			<!--
-			var ObjEventLeftMenu = new EventLeftMenu(2, 1, 0);
-			//-->
-			</SCRIPT>
-	</div>
-	<!-- end # 레프트 메뉴 -->
-	<!-- start # 컨텐츠 영역 -->
-	<div class="LY-Content">
-		<!-- start # LY-ContentTitle -->
-		<div class="LY-ContentTitle">
-			<h1><img src="/images/content/Content_Title02_1.gif" alt="법령자료 - R&amp;D법령 관련 기타 규정 및 안내자료를 조회할 수 있습니다." /></h1>
-		</div>
-		<!-- end # LY-ContentTitle -->
-		<!-- start # InforSearch // 멀티라인 -->
-	<br/>
-	<!-- start # InforSearch // 멀티라인 -->
-	<div class="Basic-List-area">
-		<ul class="List">
-		<img src="/images/content/law_PageImg.gif" border="0" usemap="#Map" />
-		<map name="Map" id="Map"><area shape="rect" coords="261,257,463,290" href="http://rndgate.ntis.go.kr/switch.do?prefix=/un/rndLaw&page=/unRndLaw.do?method=retrieveLawSearchByKey" target="_blank"/></map> 
+		function goSearch(){
+			fm.elements["method"].value="dataList";
+			fm.submit();
+		}
 		
-	</ul>
-	</div>
-	</div>
-</html:form> <!-- end 검색 테이블 감싸기 --> <br />
-</div>
-<%@  include file="/include/bottom.jsp"%>
+		function goIns(arg){
+			fm.elements["searchVO.board_type"].value=arg;	
+			fm.elements["method"].value="dataList";
+			fm.submit();
+		}
+		
+		function dataDetailView(arg){
+			fm.elements["searchVO.seq"].value=arg;	
+			fm.elements["method"].value="dataDetailView";
+			fm.submit();
+		}
+		
+		function goLawInfo(){
+			var url = "http://rndgate.ntis.go.kr/switch.do?prefix=/un/rndLaw&page=/unRndLaw.do?method=retrieveLawSearchByKey";
+			window.open(url);
+			document.location.href = "/switch.do?prefix=/data&page=/Data.do?method=dataListLaw&searchVO.menu_sn=02";
+		}
+	</script>
+
+    <!-- container -->
+    <div id="container">
+        <!-- lnb -->
+        <div class="lnb">
+            <div class="tit-area">
+                <h2>자료실</h2>
+                <span><img src="/img/common/h2_data_entxt01.gif" alt="Library" /></span>
+            </div>
+            <ul class="lnb-lst">
+                <li class="on"><a href="Javascript:goLawInfo()">법령 및 행정규칙</a></li>
+<!--                 // TODO 제도 링크 확인. -->
+                <li><a href="#none;">제도</a></li>
+                <li><a href="JavaScript:goIns('DATA')">기타</a></li>
+            </ul>               
+        </div>
+        <!-- //lnb -->
+        <!-- content -->
+        <div class="content clearfix">
+            <div class="location txt-r">        
+                <ul class="fr clearfix">
+                    <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
+                    <li><a href="JavaScript:goIns('DATA')">자료실</a></li>
+                    <li class="on"><a href="Javascript:goLawInfo()">법령 및 행정규칙</a></li>
+                </ul>
+            </div>
+            <!-- section -->
+            <div class="section">       
+                <div class="tit-area">
+                    <h3>법령 및 행정규칙</h3>
+                    <p>국가연구개발사업 관련 법령 및 행정규칙 검색이 가능합니다.  NTIS의 법령정보와 연계하여 제공해드리는 서비스입니다.</p>
+                </div>
+                <!-- data-con -->
+                <div class="data-con">
+                    <p><img src="/img/sub/data_txt.png" alt="법령자료는 NTIS 종합법령 서비스로 " /></p>
+                    <p class="txt">연계되어 제공합니다.</p>
+                    <span class="btn-set sky"><a href="http://rndgate.ntis.go.kr/switch.do?prefix=/un/rndLaw&page=/unRndLaw.do?method=retrieveLawSearchByKey" target="_blank">법령서비스 바로가기</a><span class="bullet">아이콘 실제 사용시 텍스트 삭제</span></span>            
+                </div>
+                <!-- //data-con -->
+            </div>
+            <!-- //section -->  
+        </div>
+        <!-- //content -->
+    </div>
+    <!-- // container -->
+    
+<%@include file="/include/bottom.jsp"%>
