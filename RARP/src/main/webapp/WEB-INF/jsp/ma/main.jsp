@@ -72,7 +72,7 @@ body {
 <script src="${pageContext.request.contextPath}/js/jquery-1.9.1.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.3.custom.js"></script>
 <script src="${pageContext.request.contextPath}/grid/js/i18n/grid.locale-kr.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}grid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/grid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="http://map.vworld.kr/js/vworldMapInit.js.do?apiKey=4BAAB4E4-05F1-3AC2-8159-F7E66C72EFBB"></script>
 </head> 
 <script type="text/javaScript">
