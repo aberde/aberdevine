@@ -7,7 +7,7 @@
 <script src="${pageContext.request.contextPath}/js/jquery-1.9.1.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.3.custom.js"></script>
 <script src="${pageContext.request.contextPath}/grid/js/i18n/grid.locale-kr.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}grid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/grid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 <script type="text/javaScript" language="javascript">
 <!--
