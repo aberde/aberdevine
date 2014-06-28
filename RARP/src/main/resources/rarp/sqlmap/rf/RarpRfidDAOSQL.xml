@@ -214,33 +214,46 @@
 
 	</select>	
 	<select id="RarpRfidDAO.selectTagSensingPartList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-			SELECT 
-			   DISTINCT A.PART_CD || '_' || A.GRS_CD AS SEL_PART_ID,
-				A.PART_SN, A.PART_CD, A.CRG_CD, A.PRG_CD, A.GRS_CD, A.CRG_TYPE_CD, A.PART_NM,
-				B.BOM_ID, 
-				TO_CHAR(A.SNS_CALC_TIME, 'yyyy-mm-dd hh24 mi ss') SNS_DT, D.RFID_TAG_ID, INFRA_RSC_ID, SNS_TYPE, SNS_VAL, INFRA_RSC_NM 
-				FROM RARP_PART_TAG A, RARP_BOM_INFO C
-				, ( SELECT RFID_TAG_ID, MAX(SNS_DT) SNS_DT fROM RARP_PART_TAG B GROUP BY RFID_TAG_ID) D
-				, ( SELECT BOM_ID, PART_CD, TRN_KIND_CD FROM RARP_BOM_PART WHERE TRN_KIND_CD = #TRN_KIND_CD#) B
-			WHERE A.SNS_DT = D.SNS_DT
-			AND A.RFID_TAG_ID = D.RFID_TAG_ID
-			AND A.CRG_TYPE_CD = #CRG_TYPE_CD#
-			AND A.CRG_CD = #CRG_CD# 
-			AND A.PRG_CD = #PRG_CD#
-			AND A.PART_CD = B.PART_CD
-			AND B.BOM_ID = C.BOM_ID
-			AND B.TRN_KIND_CD = C.TRN_KIND_CD
-		 <isNotEmpty prepend="AND" property="GRS_CD">
-			 A.GRS_CD = #GRS_CD#
-		 </isNotEmpty>
-	     <isNotEmpty property="BOM_ID">
-			 AND (C.BOM_ID = #BOM_ID#
-			 <isNotEmpty property="OR_PARENT_BOM_ID">
-				OR C.PARENT_BOM_ID = #OR_PARENT_BOM_ID#
-			  </isNotEmpty>
-			 )
-		 </isNotEmpty>
-	</select>	
+        SELECT DISTINCT
+            A.PART_CD || '_' || A.GRS_CD AS SEL_PART_ID
+            , A.PART_SN
+            , A.PART_CD
+            , A.CRG_CD
+            , A.PRG_CD
+            , A.GRS_CD
+            , A.CRG_TYPE_CD
+            , A.PART_NM
+            , C.BOM_ID
+            , TO_CHAR(A.SNS_CALC_TIME, 'yyyy-mm-dd hh24:mi:ss') SNS_DT
+            , B.RFID_TAG_ID
+            , INFRA_RSC_ID
+            , SNS_TYPE
+            , SNS_VAL
+            , INFRA_RSC_NM
+        FROM RARP_PART_TAG A
+        INNER JOIN (SELECT RFID_TAG_ID, MAX(SNS_DT) SNS_DT fROM RARP_PART_TAG B GROUP BY RFID_TAG_ID) B
+            ON B.RFID_TAG_ID = A.RFID_TAG_ID
+            AND B.SNS_DT = A.SNS_DT
+        INNER JOIN (SELECT BOM_ID, PART_CD, TRN_KIND_CD FROM RARP_BOM_PART WHERE TRN_KIND_CD = #TRN_KIND_CD#) C
+            ON C.PART_CD = A.PART_CD
+        INNER JOIN RARP_BOM_INFO D
+            ON D.BOM_ID = C.BOM_ID
+            AND D.TRN_KIND_CD = C.TRN_KIND_CD
+        WHERE
+            A.CRG_TYPE_CD = #CRG_TYPE_CD#
+            AND A.CRG_CD = #CRG_CD# 
+            AND A.PRG_CD = #PRG_CD#
+            <isNotEmpty prepend="AND" property="GRS_CD">
+            A.GRS_CD = #GRS_CD#
+            </isNotEmpty>
+            <isNotEmpty property="BOM_ID">
+            AND (C.BOM_ID = #BOM_ID#
+                <isNotEmpty property="OR_PARENT_BOM_ID">
+                OR C.PARENT_BOM_ID = #OR_PARENT_BOM_ID#
+                </isNotEmpty>
+            )
+            </isNotEmpty>
+    </select>
 	<select id="RarpRfidDAO.selectTagPartList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 			SELECT 
 				DISTINCT A.PART_CD || '_' || A.GRS_CD AS SEL_PART_ID,
