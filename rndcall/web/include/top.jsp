@@ -260,7 +260,7 @@
 							<li><a href="/development/development02.jsp">사업추진체계</a></li>
 						</ul>
 					</li>
-					<li class="menu"><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireMainList&searchVO.menu_sn=01">온라인 상담</a>
+					<li class="menu"><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireList&searchVO.menu_sn=01">온라인 상담</a>
 						<ul class="snb">
 							<li><a href="JavaScript:goInquireForm()">온라인 상담</a></li>
 							<li><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
