@@ -122,7 +122,7 @@
                                     </logic:empty>
                                     <logic:notEmpty name="NoticeForm" property="voList">
                                         <logic:iterate name="NoticeForm" property="voList" indexId="rowNum" id="vo">
-                                            <tr <%= rowNum.intValue() % 2 == 0 ? "class=\"on\"" : "" %>>
+                                            <tr <%= rowNum.intValue() % 2 == 1 ? "class=\"on\"" : "" %>>
                                                 <td><%=totRowCount.intValue() - rowNum.intValue() - Util.replaceNull((String) pagerOffset, 0)%></td>
                                                 <td class="txt-l"><a href="JavaScript:noticeDetailView('NOTICE',<bean:write name="vo" property="seq"/>)"><bean:write name="vo" property="title" /></a></td>
                                                 <td>

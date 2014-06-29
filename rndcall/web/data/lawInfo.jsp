@@ -96,4 +96,14 @@
     </div>
     <!-- // container -->
     
+    <html:form action="/Data" method="post" name="fm" type="kr.go.rndcall.mgnt.data.form.DataForm">
+		<html:hidden name="DataForm" property="method" value="noticeList" />
+		<html:hidden name="DataForm" property="searchVO.loginId" />
+		<html:hidden name="DataForm" property="searchVO.name" />
+		<html:hidden name="DataForm" property="searchVO.board_type" />
+		<html:hidden name="DataForm" property="searchVO.seq" />
+		<html:hidden name="DataForm" property="searchVO.type" />
+		<html:hidden name="DataForm" property="searchVO.menu_sn"/>
+		<html:hidden name="DataForm" property="searchVO.pagerOffset"/>
+    </html:form>
 <%@include file="/include/bottom.jsp"%>

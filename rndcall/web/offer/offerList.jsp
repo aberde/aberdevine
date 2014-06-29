@@ -183,7 +183,7 @@
                                     </logic:empty>
                                     <logic:notEmpty name="OfferForm" property="voList">
                                         <logic:iterate name="OfferForm" property="voList" indexId="rowNum" id="vo">
-                                            <tr <%= rowNum.intValue() % 2 == 0 ? "class=\"on\"" : "" %>>
+                                            <tr <%= rowNum.intValue() % 2 == 1 ? "class=\"on\"" : "" %>>
                                                 <td><%= totRowCount.intValue() - rowNum.intValue() -  Util.replaceNull((String)pagerOffset, 0) %></td>
                                                 <td class="txt-l">
                                                     <bean:define name="vo" property="title" id="title" type="java.lang.String"/>
