@@ -1,20 +1,12 @@
-﻿<!--
-### 경로   : <%= request.getRequestURI() %>
-### 사업명 : 2012년 사업고나리 서비스 - R&D도우미센터
-### 사업일 : 2012.04 ~2012.10
-### 개발일 : 2012.09.17
-### 개발자 : 박인선
-### Copyright (C) 2007 by SYSTEM GATE INC. All right reserved. 
--->
-<%@ page contentType="text/html; charset=utf-8" %>
-<%@ taglib uri="/tags/struts-html" prefix="html"%>
-<%@ taglib uri="/tags/struts-logic" prefix="logic"%>
-<%@ taglib uri="/tags/struts-bean" prefix="bean"%>
-<%@ taglib uri="/tags/pager-taglib" prefix="pg"%>
-<%@ taglib uri="/tags/taglibs-log" prefix="log"%>
+﻿<%@page contentType="text/html; charset=utf-8" %>
+<%@taglib uri="/tags/struts-html" prefix="html"%>
+<%@taglib uri="/tags/struts-logic" prefix="logic"%>
+<%@taglib uri="/tags/struts-bean" prefix="bean"%>
+<%@taglib uri="/tags/pager-taglib" prefix="pg"%>
+<%@taglib uri="/tags/taglibs-log" prefix="log"%>
 
-<%@ page import="kr.go.rndcall.mgnt.common.Util" %>
-<%@ page import="kr.go.rndcall.mgnt.login.LoginVO" %>
+<%@page import="kr.go.rndcall.mgnt.common.Util" %>
+<%@page import="kr.go.rndcall.mgnt.login.LoginVO" %>
 
 <%
 	boolean mainIsLogin =false;
