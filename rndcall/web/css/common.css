@@ -41,10 +41,11 @@ input[type="radio"],
 input[type="checkbox"] {margin:0;padding:0;}
 
 /* Form Element */
-input[type="text"] {border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#24292c;padding:2px 5px 2px 5px;} 
+input[type="text"]{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#24292c;padding:2px 5px 2px 5px;} 
+input[type="password"]{border:1px solid #e5e5e5; font-weight:normal; font-size:12px; color:#24292c;padding:2px 5px 2px 5px; background-color:#f9f9f9;} 
 input[type="radio"]{margin-left:10px; background:#fff;}
 textarea{padding:15px 9px; overflow:auto; border:1px solid #e5e5e5; background-color:#f9f9f9; font-size:12px;}
-select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#24292c; line-height:12px; padding:1px 5px 1px 5px;}
+select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#24292c; line-height:12px; padding:1px 1px 1px 5px;}
 
 /* 스킵네비 */
 .skip {position:absolute;top:0;left:0;width:100%;height:0;line-height:0; z-index:9999;}
@@ -53,6 +54,8 @@ select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#2429
 .skip a:active,
 .skip a:focus{position:absolute;top:0;left:0;width:100%;height:19px;line-height:100%;margin:0;padding:5px 0 0 0; border:1px solid #54a51b !important; background:#63c31e; font-weight:bold;font-size:14px;color:#ffffff;text-align:center;} 
 
+/* font 사이즈  */
+.small-txt{font-size:12px; color:#24292c; letter-spacing:-0.5px;}
 
 /* 플롯헤제 */
 .clearfix {*zoom:1;} /* IE5.5~7 브라우저 대응 Hack */
@@ -75,6 +78,7 @@ select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#2429
 
 /* font color */
 .txt-red{color:#ff0000; font-size:12px;}
+.txt-em{color:#4393c6 !important; font-weight:bold; }
 
 /* 여백 마진, 페딩 필요시 추가 */
 .mt0 {margin-top:0px !important;}
@@ -96,6 +100,8 @@ select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#2429
 
 .ml10 {margin-left:10px !important;}
 .ml20 {margin-left:20px !important;}
+.ml50 {margin-left:50px !important;}
+.ml70 {margin-left:70px !important;}
 .mr0 {margin-right:0px !important;}
 .mr10 {margin-right:10px !important;}
 
@@ -117,6 +123,9 @@ select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#2429
 .btn-set.green a {background-position:0 -93px;}
 .btn-set.sky {background-position:100% -124px; padding-right:35px}
 .btn-set.sky a {background-position:0 -124px; font-size:12px; padding-left:30px; line-height:36px }
+
+.btn-set.login {background-position:100% -447px; padding-right:10px}
+.btn-set.login a {background-position:0 -447px; font-size:24px; padding-left:20px; line-height:66px }
 
 .btn-set.set2 {padding-right:12px}
 .btn-set.set2 a {padding-left:12px; font-size:11px; line-height:21px }

@@ -42,6 +42,16 @@
 	<link rel="stylesheet" type="text/css" href="/css/layout.css" />
 	<link rel="stylesheet" type="text/css" href="/css/sub.css" />
 	<script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.popup.js"></script>
+    <script type="text/javascript" src="/js/topNav.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            // 전체 보기 
+            totalMenuBtnHandler("/pop/total_menu.html");
+            // 메뉴 
+            topNav();
+        });
+    </script>
 	<!--[if lt IE 7]>
 	<style media="screen" type="text/css">
 	#container {
@@ -169,7 +179,7 @@
 		 *   num : 위치순번
 		 */
 		function menuFocus(data) {
-			$(".menu > a:eq(" + data.num + ")").css("color", "#d23962");
+			$("#gnb > .gnbContainer > ul > li > a:eq(" + data.num + ")").css("color", "#d23962");
 		}
 	//-->
 	</script>
@@ -251,63 +261,80 @@
 			</div>
 		</div>
 		<!-- gnb -->
-		<div class="gnb">
-			<div class="gnb-bx clearfix">
-				<ul class="menu-lst fl clearfix">
-					<li class="menu"><a href="/development/development01.jsp">국가연구개발사업이란?</a>
-						<ul class="snb">
-							<li><a href="/development/development01.jsp">정의 및 법령 체계</a></li>
-							<li><a href="/development/development02.jsp">사업추진체계</a></li>
-						</ul>
-					</li>
-					<li class="menu"><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireList&searchVO.menu_sn=01">온라인 상담</a>
-						<ul class="snb">
-							<li><a href="JavaScript:goInquireForm()">온라인 상담</a></li>
-							<li><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
-<!-- 							// TODO Q&A는 사라지는건지? -->
-<!-- 							<li><a href="JavaScript:goInquireList()">Q&A</a></li> -->
-						</ul>
-					</li>
-					<li class="menu"><a href="JavaScript:goOffer()">온라인신문고</a></li>
-					<li class="menu"><a href="JavaScript:goNotice()">알림</a>
-						<ul class="snb">
-							<li><a href="JavaScript:goNotice()">공지사항</a></li>
-						</ul>
-					</li>
-					<li class="menu"><a href="JavaScript:goData()">자료실</a>
-						<ul class="snb">
-							<li><a href="#none;">법령 및 행정 규칙</a></li>
-							<li><a href="#none;">제도</a></li>
-							<li><a href="#none;">기타</a></li>
-						</ul>
-					</li>
-					<li class="menu"><a href="/center/center.jsp">센터소개</a></li>
-					<%
-						if ( mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C") ) {
-					%>
-					<li class="menu"><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=05">관리자</a>
-						<ul class="snb">
-							<li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=05">권한관리</a></li>
-							<li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=05">분야관리</a></li>
-							<li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=05">오프라인자료등록</a></li>
-							<li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=05">통계정보</a></li>
-						</ul>
-					</li>
-					<%
-						}
-					%>
+        <div class="gnb" id="gnb">
+            <div class="gnbContainer">
+                <!-- gnb-menu -->
+                <ul>
+                    <li>
+                        <a href="/development/development01.jsp">국가연구개발사업이란?</a>
+                        <div class="snb"> <!-- gnbSub -->
+                            <div class="snb-bx"> <!-- gnbSubFix -->
+                                <ul>
+                                    <li><a href="/development/development01.jsp">정의 및 법령 체계</a></li>
+                                    <li><a href="/development/development02.jsp">사업추진체계</a></li>
+                                </ul>
+                            </div>
+                        </div>  
+                    </li>
+                    <li>
+                        <a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireList&searchVO.menu_sn=01">온라인 상담</a>
+                        <div class="snb">
+                            <div class="snb-bx">
+                                <ul>
+                                    <li><a href="JavaScript:goInquireForm()">온라인 상담</a></li>
+                                    <li><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
+                                </ul>
+                            </div>
+                        </div>  
+                    </li>
+                    <li>
+                        <a href="JavaScript:goOffer()">온라인신문고</a>
+                    </li>
+                    <li>
+                        <a href="JavaScript:goNotice()">알림</a>
+                    </li>
+                    <li>
+                        <a href="JavaScript:goData()">자료실</a>
+                        <div class="snb">
+                            <div class="snb-bx">
+                                <ul>
+                                    <li><a href="#none;">법령 및 행정 규칙</a></li>
+                                    <li><a href="#none;">제도</a></li>
+                                    <li><a href="#none;">기타</a></li>
+                                </ul>
+                            </div>
+                        </div>  
+                    </li>
+                    <li>
+                        <a href="/center/center.jsp">센터소개</a>
+                    </li>
+<%-- 					<% --%>
+<!-- // 						if ( mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C") ) { -->
+<%-- 					%> --%>
+<!-- 					<li class="menu"><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=05">관리자</a> -->
+<!-- 						<ul class="snb"> -->
+<!-- 							<li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=05">권한관리</a></li> -->
+<!-- 							<li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=05">분야관리</a></li> -->
+<!-- 							<li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=05">오프라인자료등록</a></li> -->
+<!-- 							<li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=05">통계정보</a></li> -->
+<!-- 						</ul> -->
+<!-- 					</li> -->
+<%-- 					<% --%>
+<!-- // 						} -->
+<%-- 					%> --%>
 <!-- 					// TODO 기관담당자 -->
-					<%
-						if ( mainRoleCD.equals("0000B") ) {
-					%>
-					<li id="Top-Menu-06" class="menu"><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireOrgList&searchVO.board_type=QNA&searchVO.menu_sn=12">기관담당자</a></li>
-					<%
-						}
-					%>
-				</ul>
-				<p class="all-menu fr"><a href="#none;">전체보기</a></p>
-			</div>		
-		</div>
-		<!-- //gnb -->
+<%-- 					<% --%>
+<!-- // 						if ( mainRoleCD.equals("0000B") ) { -->
+<%-- 					%> --%>
+<!-- 					<li id="Top-Menu-06" class="menu"><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireOrgList&searchVO.board_type=QNA&searchVO.menu_sn=12">기관담당자</a></li> -->
+<%-- 					<% --%>
+<!-- // 						} -->
+<%-- 					%> --%>
+                    <p class="all-menu fr "><a href="#none;" class="btn-menu">전체보기</a></p>
+                </ul>
+                <!-- //gnb-menu -->
+            </div>
+        </div>
+        <!-- // gnb -->
 	</div>
 	<!-- // header -->
