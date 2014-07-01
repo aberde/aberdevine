@@ -192,15 +192,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>R&D도우미센터</title>
 	<link rel="stylesheet" type="text/css" href="/css/common.css" />
-	<link rel="stylesheet" type="text/css" href="/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/css/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="/css/owl.theme.css" />
 	<script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" src="/js/main.js"></script>
-	<script type="text/javascript">
-		/** 메인슬라이드 **/
-		$(document).ready(function(){
-			$("div.bn-slide").ImgRolling();  
-		});
-	</script>
+    <script type="text/javascript" src="/js/jquery.popup.js"></script>
+    <script type="text/javascript" src="/js/owl.carousel.js"></script>
+    <script type="text/javascript" src="/js/topNav.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
 	<!--[if lt IE 7]>
 	<style media="screen" type="text/css">
 	#container {
@@ -386,175 +385,208 @@
 			</div>
 		</div>
 		<!-- gnb -->
-		<div class="gnb">
-			<div class="gnb-bx clearfix">
-				<ul class="menu-lst fl clearfix">
-					<li class="menu"><a href="/development/development01.jsp">국가연구개발사업이란?</a>
-						<ul class="snb">
-							<li><a href="/development/development01.jsp">정의 및 법령 체계</a></li>
-							<li><a href="/development/development02.jsp">사업추진체계</a></li>
-						</ul>
-					</li>
-					<li class="menu"><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireMainList&searchVO.menu_sn=01">온라인 상담</a>
-						<ul class="snb">
-							<li><a href="JavaScript:goInquireForm()">온라인 상담</a></li>
-							<li><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
-<!-- 							// TODO Q&A는 사라지는건지? -->
-<!-- 							<li><a href="JavaScript:goInquireList()">Q&A</a></li> -->
-						</ul>
-					</li>
-					<li class="menu"><a href="JavaScript:goOffer()">온라인신문고</a></li>
-					<li class="menu"><a href="JavaScript:goNotice()">알림</a>
-						<ul class="snb">
-							<li><a href="JavaScript:goNotice()">공지사항</a></li>
-						</ul>
-					</li>
-					<li class="menu"><a href="JavaScript:goData()">자료실</a>
-						<ul class="snb">
-							<li><a href="#none;">법령 및 행정 규칙</a></li>
-							<li><a href="#none;">제도</a></li>
-							<li><a href="#none;">기타</a></li>
-						</ul>
-					</li>
-					<li class="menu"><a href="/center/center.jsp">센터소개</a></li>
-					<%
-						if ( mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C") ) {
-					%>
-					<li class="menu"><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=05">관리자</a>
-						<ul class="snb">
-							<li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=05">권한관리</a></li>
-							<li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=05">분야관리</a></li>
-							<li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=05">오프라인자료등록</a></li>
-							<li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=05">통계정보</a></li>
-						</ul>
-					</li>
-					<%
-						}
-					%>
+        <div class="gnb" id="gnb">
+            <div class="gnbContainer">
+                <ul>
+                    <li>
+                        <a href="/development/development01.jsp">국가연구개발사업이란?</a>
+                        <div class="snb"> <!-- gnbSub -->
+                            <div class="snb-bx"> <!-- gnbSubFix -->
+                                <ul>
+                                    <li><a href="/development/development01.jsp">정의 및 법령 체계</a></li>
+                                    <li><a href="/development/development02.jsp">사업추진체계</a></li>
+                                </ul>
+                            </div>
+                        </div>  
+                    </li>
+                    <li>
+                        <a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireMainList&searchVO.menu_sn=01">온라인 상담</a>
+                        <div class="snb">
+                            <div class="snb-bx">
+                                <ul>
+                                    <li><a href="JavaScript:goInquireForm()">온라인 상담</a></li>
+                                    <li><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
+                                </ul>
+                            </div>
+                        </div>  
+                    </li>
+                    <li>
+                        <a href="JavaScript:goOffer()">온라인신문고</a>
+                    </li>
+                    <li>
+                        <a href="JavaScript:goNotice()">알림</a>
+                    </li>
+                    <li>
+                        <a href="JavaScript:goData()">자료실</a>
+                        <div class="snb">
+                            <div class="snb-bx">
+                                <ul>
+                                    <li><a href="#none;">법령 및 행정 규칙</a></li>
+                                    <li><a href="#none;">제도</a></li>
+                                    <li><a href="#none;">기타</a></li>
+                                </ul>
+                            </div>
+                        </div>  
+                    </li>
+                    <li>
+                        <a href="/center/center.jsp">센터소개</a>
+                    </li>
+                    <p class="all-menu fr"><a href="#none;" class="btn-menu">전체보기</a></p>
+                </ul>
+                <!-- //gnb-menu -->
+            </div>
+        </div>
+        <!-- // gnb -->
+		
+		
+<!-- 		            // TODO 관리자 -->
+<%-- 					<% --%>
+<!-- // 						if ( mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C") ) { -->
+<%-- 					%> --%>
+<!-- 					<li class="menu"><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=05">관리자</a> -->
+<!-- 						<ul class="snb"> -->
+<!-- 							<li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=05">권한관리</a></li> -->
+<!-- 							<li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=05">분야관리</a></li> -->
+<!-- 							<li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=05">오프라인자료등록</a></li> -->
+<!-- 							<li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=05">통계정보</a></li> -->
+<!-- 						</ul> -->
+<!-- 					</li> -->
+<%-- 					<% --%>
+<!-- // 						} -->
+<%-- 					%> --%>
 <!-- 					// TODO 기관담당자 -->
-					<%
-						if ( mainRoleCD.equals("0000B") ) {
-					%>
-					<li id="Top-Menu-06" class="menu"><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireOrgList&searchVO.board_type=QNA&searchVO.menu_sn=12">기관담당자</a></li>
-					<%
-						}
-					%>
-				</ul>
-				<p class="all-menu fr"><a href="#none;">전체보기</a></p>
-			</div>		
-		</div>
-		<!-- //gnb -->
-	</div>
-	<!-- // header -->	
-	<!-- container -->
-	<div id="container">
-		<!-- content -->
-		<div class="content">
-			<!-- main-slide -->
-			<div class="main-visual">
-				<ul class="main-slide clearfix">
-					<li>
-						<a href="#none;">
-							<img src="img/main/main_visual.jpg" alt="" />
-							<span class="txt"><img src="img/main/visual_txt.png" alt="R&D 도우미 홀씨가 연구자 여러분을 찾아갑니다.연구자 여러분들의 목소리를 귀담아 듣겠습니다." /></span>
-						</a>
-					</li>
-					<li>
-						<a href="#none;">
-							<img src="img/main/main_visual.jpg" alt="" />
-							<span class="txt"><img src="img/main/visual_txt.png" alt="R&D 도우미 홀씨가 연구자 여러분을 찾아갑니다.연구자 여러분들의 목소리를 귀담아 듣겠습니다." /></span>
-						</a>
-					</li>
-				</ul>
-		        <div class="page-set">
-		        	<a href="#none;" class="on"></a>
-		        	<a href="#none;"></a>
-		        </div>	        
-			</div>
-			<!-- main-slide -->	
-			<!-- banner -->
-			<div class="banner">
-				<!-- board-lst -->
-				<ul class="board-lst">
-					<li class="bg01">
-						<strong>온라인상담</strong>
-						<p>규정 및 제도에 대한 <br />궁금증을 문의 하세요</p>
-						<a href="JavaScript:goInquireForm();" class="btn-go">GO</a>
-					</li>
-					<li class="bg02">
-						<strong>온라인신문고</strong>
-						<p>규정 및 제도에 대한 <br />궁금증을 문의 하세요</p>
-						<a href="JavaScript:goOffer();" class="btn-go">GO</a>
-					</li>
-					<li class="bg03">
-						<strong class="mb20">자료실</strong>
-						<a href="JavaScript:goData();" class="btn-go">GO</a>
-					</li>
-					<li class="bg04">
-						<strong class="mb20">알림</strong>
-						<a href="JavaScript:goNotice();" class="btn-go">GO</a>
-					</li>
-				</ul>
-				<!-- //board-lst -->
-				<!-- bn-slide -->
-				<div class="bn-slide">
-					<ul class="slide">
-						<li id="bnr1"><img src="img/main/bn_slide01.jpg" alt="국가연구개발사업 학생인건비. 통합관리제 운영 매뉴얼. 일시 : 2013년 4월 03일 미래창조과학부 장관 " /></li>
-						<li id="bnr2"><img src="img/main/bn_slide01.jpg" alt="국가연구개발사업 학생인건비. 통합관리제 운영 매뉴얼. 일시 : 2013년 4월 03일 미래창조과학부 장관 " /></li>
-						<li id="bnr3"><img src="img/main/bn_slide01.jpg" alt="국가연구개발사업 학생인건비. 통합관리제 운영 매뉴얼. 일시 : 2013년 4월 03일 미래창조과학부 장관 " /></li>
-						<li id="bnr4"><img src="img/main/bn_slide01.jpg" alt="국가연구개발사업 학생인건비. 통합관리제 운영 매뉴얼. 일시 : 2013년 4월 03일 미래창조과학부 장관 " /></li>
-					</ul>
-					<div class="btn-bx">
-						<span class="btn-con">
-							<button class="stop"><strong>정지</strong></button>
-							<button class="play"><strong>재생</strong></button>
-						</span>
-						<span class="page-set">
-							<a class="on" href="#bnr1"><strong class="hidden">1번 슬라이드</strong></a>
-							<a class="" href="#bnr2"><strong class="hidden">2번 슬라이드</strong></a>
-							<a class="" href="#bnr3"><strong class="hidden">3번 슬라이드</strong></a>
-							<a class="" href="#bnr4"><strong class="hidden">4번 슬라이드</strong></a>
-						</span>						
-					</div>					
-				</div>
-				<!-- //bn-slide -->
-				<!-- bn-tel -->
-				<div class="bn-tel">
-					<p><img src="img/main/bn_tel.png" alt="친한연구 1800 - 7109" /></p>
-					<ul class="mt15">
-						<li>평일 : 09:00 ~ 11:30, 13:30 ~18:00</li>
-						<li>국가R&D사업 관련 규정 및 제도에 대한 <br />궁금증을 문의하세요.</li>
-					</ul>				
-				</div>
-			</div>
-			<!-- //banner -->
-		</div>
-		<!-- //content -->
-		<div class="cont-foot">
-			<ul class="cont-lst clearfix">
-				<li>
-					<strong>공지사항</strong>
-					
-					<%
-						InquireVO noticeVO = new InquireVO();
-						String title= "";
-					
-						for(int i=0; i <voList1.size(); i++){
-							noticeVO = (InquireVO)voList1.get(i);
-							title= "";
-							if(noticeVO.getTitle().length() > 14){
-								title = noticeVO.getTitle().substring(0,14)+"...";
-							}else{
-								title = noticeVO.getTitle();
-							}
+<%-- 					<% --%>
+<!-- // 						if ( mainRoleCD.equals("0000B") ) { -->
+<%-- 					%> --%>
+<!-- 					<li id="Top-Menu-06" class="menu"><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireOrgList&searchVO.board_type=QNA&searchVO.menu_sn=12">기관담당자</a></li> -->
+<%-- 					<% --%>
+<!-- // 						} -->
+<%-- 					%> --%>
 				
-					%>
-					<span><%= title %>'이 게시되었습니다. <a href="JavaScript:goNotice()">더보기</a></span>
-					<%
-						}
-					%>
-
-
+				
+	</div>
+	<!-- // header -->
+	<!-- slide -->
+    <div id="main-visual" class="main-visual">
+        <div class="main-slide clearfix">
+          <div id="visual" class="visual">
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+          </div>
+        </div>
+    </div>
+    <!-- //slide -->
+	<!-- container -->
+    <div id="container">
+        <!-- content -->
+        <div class="content">
+            <!-- banner -->
+            <div class="banner">
+                <!-- board-lst -->
+                <ul class="board-lst">
+                    <li class="bg01">
+                        <strong>온라인상담</strong>
+                        <p>규정 및 제도에 대한 <br />궁금증을 문의 하세요</p>
+                        <a href="JavaScript:goInquireForm();" class="btn-go">GO</a>
+                    </li>
+                    <li class="bg02">
+                        <strong>온라인신문고</strong>
+                        <p>규정 및 제도에 대한 <br />궁금증을 문의 하세요</p>
+                        <a href="JavaScript:goOffer();" class="btn-go">GO</a>
+                    </li>
+                    <li class="bg03">
+                        <strong class="mb20">자료실</strong>
+                        <a href="JavaScript:goData();" class="btn-go">GO</a>
+                    </li>
+                    <li class="bg04">
+                        <strong class="mb20">새소식</strong>
+                        <a href="JavaScript:goNotice();" class="btn-go">GO</a>
+                    </li>
+                </ul>
+                <!-- //board-lst -->
+                <!-- bn-slide -->
+                <div class="bn-slide">
+                    <div class="slide " id="owl-banner">
+                        <div><img src="img/main/bn_slide01.jpg" alt="국가연구개발사업 학생인건비. 통합관리제 운영 매뉴얼. 일시 : 2013년 4월 03일 미래창조과학부 장관 " /></div>
+                        <div><img src="img/main/bn_slide01.jpg" alt="국가연구개발사업 학생인건비. 통합관리제 운영 매뉴얼. 일시 : 2013년 4월 03일 미래창조과학부 장관 " /></div>
+                        <div><img src="img/main/bn_slide01.jpg" alt="국가연구개발사업 학생인건비. 통합관리제 운영 매뉴얼. 일시 : 2013년 4월 03일 미래창조과학부 장관 " /></div>
+                        <div><img src="img/main/bn_slide01.jpg" alt="국가연구개발사업 학생인건비. 통합관리제 운영 매뉴얼. 일시 : 2013년 4월 03일 미래창조과학부 장관 " /></div>
+                    </div>
+                    <div class="btn-bx">
+                        <span class="btn-con">
+                            <button class="stop"><strong>정지</strong></button>
+                            <button class="play"><strong>재생</strong></button>
+                        </span>
+                        <span class="page-set">
+                            <a class="" href="#bnr1"><strong class="hidden">1번 슬라이드</strong></a>
+                            <a class="" href="#bnr2"><strong class="hidden">2번 슬라이드</strong></a>
+                            <a class="" href="#bnr3"><strong class="hidden">3번 슬라이드</strong></a>
+                            <a class="" href="#bnr4"><strong class="hidden">4번 슬라이드</strong></a>
+                        </span>                     
+                    </div>                  
+                </div>
+                <!-- //bn-slide -->
+                <!-- bn-tel -->
+                <div class="bn-tel">
+                    <p><img src="img/main/bn_tel.png" alt="친한연구 1800 - 7109" /></p>
+                    <ul class="mt15">
+                        <li>평일 : 09:00 ~ 11:30, 13:30 ~18:00</li>
+                        <li>국가R&amp;D사업 관련 규정 및 제도에 대한 <br />궁금증을 문의하세요.</li>
+                    </ul>               
+                </div>
+                <!-- //bn-tel -->
+                <!--div class="bn-service fl">
+                    <strong>바로가기 서비스</strong>
+                    <p>R&D 도우미센터 관련 부처 <br />웹사이트로  바로 이동하실 수 있습니다.</p> 
+                    <div>
+                        <select>
+                            <option>R&D관련부처 바로가기</option>
+                        </select>
+                        <span class="btn-go"><a href="#none;">go</a></span>
+                    </div>
+                    <div>
+                        <select>
+                            <option>전문기관 바로가기</option>
+                        </select>
+                        <span class="btn-go"><a href="#none;">go</a></span>
+                    </div>
+                    <div>
+                        <select>
+                            <option>관련기관 바로가기</option>
+                        </select>
+                        <span class="btn-go"><a href="#none;">go</a></span>
+                    </div>
+                </div-->
+            </div>
+            <!-- //banner -->
+        </div>
+        <!-- //content -->
+        <div class="cont-foot">
+            <ul class="cont-lst clearfix">
+                <li>
+                    <strong>공지사항</strong>
+                    <%
+                        InquireVO noticeVO = new InquireVO();
+                        String title= "";
+                    
+                        for(int i=0; i <voList1.size(); i++){
+                            noticeVO = (InquireVO)voList1.get(i);
+                            title= "";
+                            if(noticeVO.getTitle().length() > 14){
+                                title = noticeVO.getTitle().substring(0,14)+"...";
+                            }else{
+                                title = noticeVO.getTitle();
+                            }
+                
+                    %>
+                    <span><%= title %>'이 게시되었습니다. <a href="JavaScript:goNotice()">더보기</a></span>
+                    <%
+                        }
+                    %>
+                </li>
+                <li class="txt">
+                    <strong>자료실</strong>
 <!-- 					// TODO  -->
 <!-- 					최근게시판 -->
 <%-- 					<% --%>
@@ -589,106 +621,99 @@
 <%-- 					<% --%>
 <!-- 						} -->
 <!-- 					%> -->
-					
-					
-					
-				</li>
-				<li class="txt">
-					<strong>공지사항</strong>
-					<span><%= title %>'이 게시되었습니다. <a href="JavaScript:goNotice()">더보기</a></span>
-				</li>
-			</ul>			
-		</div>
-	</div>
-	<!-- // container -->
-	<!-- footer -->
-	<div id="footer">
-		<div class="footer clearfix">
-			<p class="foot-logo"><img src="/img/common/foot_logo.gif" alt="미래창조과학부" /></p>
-			<div class="add">
-				<ul class="add-lst clearfix">
-					<li><a href="/info.jsp">개인정보처리방침 </a></li>
-					<li><a href="/email.jsp">이메일무단수집거부</a></li>
-				</ul>
-				<address>427-700 경기도 과천시 관문로 47 정부과천청사 4동(중앙동)<br /> 대표번호 02-2110-2737   팩스 02-2110-0256</address>
-				<p class="copyright">COPYRIGHT ⓒ 2014 MINISTRY OF SCIENCE,ICT &amp; PLANNING, ALL RIGHTS RESERVED. </p>	
-			</div>
-			<div class="family-site clearfix">
-				<p class="txt fl">바로가기</p>
-				<div class="bn-service fl">					
-					<form name="siteUrlForm" method="post">
-						<div>
-							<select name="siteurl1" id="siteurl1" title="R&D관련부처 바로가기">
-							  	<option value="#" selected="selected">R&D관련부처 바로가기</option>
-								<option value="http://www.mest.go.kr">교육과학기술부 </option>
-								<option value="http://www.mcst.go.kr">문화체육관광부</option>
-								<option value="http://www.maf.go.kr">농림수산식품부</option>
-								<option value="http://www.mke.go.kr">지식경제부</option>
-								<option value="http://www.mohw.go.kr">보건복지가족부</option>
-								<option value="http://www.me.go.kr">환경부</option>
-								<option value="http://www.moct.go.kr">국토해양부</option>
-								<option value="http://www.dapa.go.kr">방위사업청</option>
-								<option value="http://www.nema.go.kr">소방방재청</option>
-								<option value="http://www.cha.go.kr">문화재청</option>
-								<option value="http://www.rda.go.kr">농촌진흥청</option>
-								<option value="http://www.forest.go.kr">산림청</option>
-								<option value="http://www.smba.go.kr">중소기업청</option>
-								<option value="http://www.kfda.go.kr">식품의약품안전청</option>
-								<option value="http://www.kma.go.kr">기상청</option>
-							</select>
-							<span class="btn-go"><a href="JavaScript:goSiteUrl(1)">go</a></span>
-						</div>
-						<div>
-							<select name="siteurl2" id="siteurl2" title="전문기관 바로가기">
-							  	<option value="#" selected="selected">전문기관 바로가기</option>
-								<option value="http://www.nrf.re.kr">한국연구재단</option>
-								<option value="http://www.kocca.kr">한국문화콘텐츠진흥원</option>
-								<option value="http://www.ipet.re.kr">농림수산식품기획평가원</option>
-								<option value="http://www.rda.go.kr">농촌진흥청</option>
-								<option value="http://www.keit.re.kr">한국산업기술평가관리원</option>
-								<option value="http://www.nipa.re.kr">정보통신산업진흥원</option>
-								<option value="http://www.khidi.or.kr">한국보건산업진흥원</option>
-								<option value="http://www.keiti.re.kr">한국환경산업기술원</option>
-								<option value="http://www.kicttep.re.kr">한국건설교통기술평가원</option>
-								<option value="http://www.kimst.re.kr">한국해양과학기술진흥원</option>
-								<option value="http://www.dtaq.re.kr">국방기술품질원</option>
-								<option value="http://www.kma.go.kr">기상청</option>
-								<option value="http://www.kfda.go.kr">식품의약품품안전청</option>
-								<option value="http://www.forest.go.kr">산림청</option>
-								<option value="http://www.nema.go.kr">소방방재청</option>
-							</select> 
-							<span class="btn-go"><a href="JavaScript:goSiteUrl(2)">go</a></span>
-						</div>
-						<div>
-							<select name="siteurl3" id="siteurl3" title="관련기관 바로가기">
-							  	<option value="#" selected="selected">관련기관 바로가기</option>
-								<option value="#">----성과물전담기관-------</option>
-								<option value="http://www.socop.or.kr/">컴퓨터프로그램보호위원회(소프트웨어) </option>
-								<option value="http://kctc.kribb.re.kr/">한국생명공학연구원 생물자원센터(생물소재) </option>
-								<option value="http://scholar.ndsl.kr/">한국과학기술정보연구원(논문) </option>
-								<option value="http://www.kipi.or.kr/">특허청 한국특허정보원(특허) </option>
-								<option value="http://report.ndsl.kr/">한국과학기술정보연구원(보고서) </option>
-								<option value="http://www.kobic.re.kr/">한국생명공학연구원 국가생물자원정보관리센터(생물정보) </option>
-								<option value="http://www.chembank.org/">한국화학연구원 한국화합물은행(화합물) </option>
-								<option value="http://nfec.ntis.go.kr/">한국기초과학지원연구원(장비 및 기자재) </option>
-								<option value="#">---------기타-----------</option>
-								<option value="http://www.nstc.go.kr/">국가과학기술위원회 </option>
-								<option value="http://sntnet.mest.go.kr/">교육과학기술부(SnT-Net) </option>
-								<option value="http://www.ndsl.kr/">과학기술정보통합서시스(NDSL) </option>
-								<option value="http://www.kosen21.org/">한국과학기술정보연구원(한민족과학기술자네트워크) </option>
-								<option value="http://society.kisti.re.kr/">한국과학기술정보연구원(과학기술학회마을) </option>
-								<option value="http://fact.kisti.re.kr/">한국과학기술정보연구원(과학기술 사실정보 데이터베이스) </option>
-								<option value="http://www.ntb.kr/">한국기술거래소(국가기술은행) </option>
-								<option value="http://www.kird.re.kr/">연구개발인력교육원 </option>
-							</select> 
-							<span class="btn-go"><a href="JavaScript:goSiteUrl(3)">go</a></span>
-						</div>
-					</form>
-				</div>
-			</div>					
-		</div>
-	</div>
-	<!-- footer -->
+                    <span><%= title %>'이 게시되었습니다. <a href="JavaScript:goNotice()">더보기</a></span>
+                </li>
+            </ul>           
+        </div>          
+    </div>
+    <!-- // container -->
+    <!-- footer -->
+    <div id="footer">
+        <div class="footer clearfix">
+            <p class="foot-logo"><img src="img/common/foot_logo.gif" alt="미래창조과학부" /></p>
+            <div class="add">
+                <ul class="add-lst clearfix">
+                    <li><a href="/info.jsp">개인정보처리방침 </a></li>
+                    <li><a href="/email.jsp">이메일무단수집거부</a></li>
+                </ul>
+                <!-- 02-2110-2737 -->
+                <address>427-700 경기도 과천시 관문로 47 정부과천청사 4동(중앙동)<br /> 대표번호 1809-7109   팩스 02-2110-0256</address>
+                <p class="copyright">COPYRIGHT ⓒ 2014 MINISTRY OF SCIENCE,ICT &amp; PLANNING, ALL RIGHTS RESERVED. </p> 
+            </div>
+            <div class="family-site clearfix">
+                <p class="txt fl">바로가기</p>
+                <div class="bn-service fl">                 
+                    <div>
+                        <select name="siteurl1" id="siteurl1" title="R&D관련부처 바로가기">
+                            <option value="#" selected="selected">R&D관련부처 바로가기</option>
+                            <option value="http://www.mest.go.kr">교육과학기술부 </option>
+                            <option value="http://www.mcst.go.kr">문화체육관광부</option>
+                            <option value="http://www.maf.go.kr">농림수산식품부</option>
+                            <option value="http://www.mke.go.kr">지식경제부</option>
+                            <option value="http://www.mohw.go.kr">보건복지가족부</option>
+                            <option value="http://www.me.go.kr">환경부</option>
+                            <option value="http://www.moct.go.kr">국토해양부</option>
+                            <option value="http://www.dapa.go.kr">방위사업청</option>
+                            <option value="http://www.nema.go.kr">소방방재청</option>
+                            <option value="http://www.cha.go.kr">문화재청</option>
+                            <option value="http://www.rda.go.kr">농촌진흥청</option>
+                            <option value="http://www.forest.go.kr">산림청</option>
+                            <option value="http://www.smba.go.kr">중소기업청</option>
+                            <option value="http://www.kfda.go.kr">식품의약품안전청</option>
+                            <option value="http://www.kma.go.kr">기상청</option>
+                        </select>
+                        <span class="btn-go"><a href="JavaScript:goSiteUrl(1)">go</a></span>
+                    </div>
+                    <div>
+                        <select name="siteurl2" id="siteurl2" title="전문기관 바로가기">
+                            <option value="#" selected="selected">전문기관 바로가기</option>
+                            <option value="http://www.nrf.re.kr">한국연구재단</option>
+                            <option value="http://www.kocca.kr">한국문화콘텐츠진흥원</option>
+                            <option value="http://www.ipet.re.kr">농림수산식품기획평가원</option>
+                            <option value="http://www.rda.go.kr">농촌진흥청</option>
+                            <option value="http://www.keit.re.kr">한국산업기술평가관리원</option>
+                            <option value="http://www.nipa.re.kr">정보통신산업진흥원</option>
+                            <option value="http://www.khidi.or.kr">한국보건산업진흥원</option>
+                            <option value="http://www.keiti.re.kr">한국환경산업기술원</option>
+                            <option value="http://www.kicttep.re.kr">한국건설교통기술평가원</option>
+                            <option value="http://www.kimst.re.kr">한국해양과학기술진흥원</option>
+                            <option value="http://www.dtaq.re.kr">국방기술품질원</option>
+                            <option value="http://www.kma.go.kr">기상청</option>
+                            <option value="http://www.kfda.go.kr">식품의약품품안전청</option>
+                            <option value="http://www.forest.go.kr">산림청</option>
+                            <option value="http://www.nema.go.kr">소방방재청</option>
+                        </select> 
+                        <span class="btn-go"><a href="JavaScript:goSiteUrl(2)">go</a></span>
+                    </div>
+                    <div>
+                        <select name="siteurl3" id="siteurl3" title="관련기관 바로가기">
+                            <option value="#" selected="selected">관련기관 바로가기</option>
+                            <option value="#">----성과물전담기관-------</option>
+                            <option value="http://www.socop.or.kr/">컴퓨터프로그램보호위원회(소프트웨어) </option>
+                            <option value="http://kctc.kribb.re.kr/">한국생명공학연구원 생물자원센터(생물소재) </option>
+                            <option value="http://scholar.ndsl.kr/">한국과학기술정보연구원(논문) </option>
+                            <option value="http://www.kipi.or.kr/">특허청 한국특허정보원(특허) </option>
+                            <option value="http://report.ndsl.kr/">한국과학기술정보연구원(보고서) </option>
+                            <option value="http://www.kobic.re.kr/">한국생명공학연구원 국가생물자원정보관리센터(생물정보) </option>
+                            <option value="http://www.chembank.org/">한국화학연구원 한국화합물은행(화합물) </option>
+                            <option value="http://nfec.ntis.go.kr/">한국기초과학지원연구원(장비 및 기자재) </option>
+                            <option value="#">---------기타-----------</option>
+                            <option value="http://www.nstc.go.kr/">국가과학기술위원회 </option>
+                            <option value="http://sntnet.mest.go.kr/">교육과학기술부(SnT-Net) </option>
+                            <option value="http://www.ndsl.kr/">과학기술정보통합서시스(NDSL) </option>
+                            <option value="http://www.kosen21.org/">한국과학기술정보연구원(한민족과학기술자네트워크) </option>
+                            <option value="http://society.kisti.re.kr/">한국과학기술정보연구원(과학기술학회마을) </option>
+                            <option value="http://fact.kisti.re.kr/">한국과학기술정보연구원(과학기술 사실정보 데이터베이스) </option>
+                            <option value="http://www.ntb.kr/">한국기술거래소(국가기술은행) </option>
+                            <option value="http://www.kird.re.kr/">연구개발인력교육원 </option>
+                        </select> 
+                        <span class="btn-go"><a href="JavaScript:goSiteUrl(3)">go</a></span>
+                    </div>
+                </div>          
+            </div>                  
+        </div>
+    </div>
+    <!-- footer -->
 </div>
 <!-- // wrap -->
 

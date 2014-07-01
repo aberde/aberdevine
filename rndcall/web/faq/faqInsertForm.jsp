@@ -176,112 +176,111 @@
 	</script>
 	
 	<!-- container -->
-	<div id="container">
-		<!-- lnb -->
-		<div class="lnb">
-			<div class="tit-area">
-				<h2>온라인상담</h2>
-				<span><img src="/img/common/h2_entxt02.gif" alt="Online Consultation" /></span>
-			</div>
-			<ul class="lnb-lst">
-				<li><a href="JavaScript:goInquireForm()">온라인상담</a></li>
-				<li class="on"><a href="JavaScript:goFaq()">자주묻는질문</a></li>
-			</ul>				
-		</div>
-		<!-- //lnb -->
-		<!-- content -->
-		<div class="content clearfix">
-			<div class="location txt-r">		
-				<ul class="fr clearfix">
-					<li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-					<li><a href="JavaScript:goInquireForm()">온라인상담</a></li>
-					<li class="on"><a href="JavaScript:goFaq()">자주묻는질문</a></li>
-<!-- 					// TODO 존재여부 확인필요. -->
-<!-- 					<li><a href="JavaScript:goInquireList('QNA')">Q&amp;A</a></li> -->
-<!-- 					<li><a href="JavaScript:goOffer()">제안하기</a></li> -->
-				</ul>
-			</div>
-			<!-- section -->
-			<div class="section">
-				<div class="tit-area">
-					<h3>자주묻는 질문</h3>
-					<p>가장 많이 묻는 질의 응답을 카테고리별로 검색이 가능합니다.</p>
-				</div>
-				
-				<html:form action="/Faq" method="post" name="fm" type="kr.go.rndcall.mgnt.faq.form.FaqForm" enctype="multipart/form-data" onsubmit="return checkOnSubmit(this)">
-				    <html:hidden name="FaqForm" property="method" value="faqInsert"/>
-					<html:hidden name="FaqForm" property="vo.cell_number"/>
-					<html:hidden name="FaqForm" property="vo.email"/>
-					<html:hidden name="FaqForm" property="searchVO.loginId"/>
-					<html:hidden name="FaqForm" property="searchVO.name"/>
-					<html:hidden name="FaqForm" property="searchVO.menu_sn"/>
-					
-					<!-- board-write -->
-					<div class="board-write mt30">
-						<div class="board-box">
-							<table summary="질의자 정보, 공개여부, 제목, 내용 보기 등록 페이지">
-								<caption>자주묻는 질문 등록 페이지 </caption>
-								<colgroup>
-									<col width="16%"/>
-									<col width="*"/>
-								</colgroup>
-								<tbody>
-									<tr>
-										<th scope="row"><label for="info1">분류선택</label></th>
-										<td>
-											<html:select name="FaqForm" property="vo.category1" styleId="category1" title="대분류" onchange="f_cate_change(this.value)">
-												<html:option value="">::: 선택 :::</html:option>
-												<html:optionsCollection name="FaqForm" property="voList" label="cd_nm" value="cd_nm"/>
-											</html:select>
-											<html:select name="FaqForm" property="vo.category2" styleId="category2" title="소분류">
-												<html:option value="">::: 선택 :::</html:option>
-												<html:optionsCollection name="FaqForm" property="voList" label="cd_nm" value="cd_nm"/>
-											</html:select>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="vo.analysis_yn">유권해석</label></th>
-										<td>
-											<input type="checkbox" id="vo.analysis_yn" name="vo.analysis_yn" title="유권해석" value="Y"/> (유권해석인 경우 체크)
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="title">제목</label></th>
-										<td>
-											<input type="text" name="vo.title" title="제목" style="width:98%" title="제목"/>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="vo.contents">질의내용</label></th>
-										<td>
-											<textarea id="vo.contents" name="vo.contents" cols="0" rows="0" style="width:97%; min-height:254px;" title="자주하는질문 내용" ></textarea>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="vo.answer_cont">답변내용</label></th>
-										<td>
-											<textarea id="vo.answer_cont" name="vo.answer_cont" cols="0" rows="0" style="width:97%; min-height:254px;" title="자주하는질문 내용답변" ></textarea>
-										</td>
-									</tr>
-								</tbody>
-							  </table>
-						</div>
-					</div>
-					<!-- // board-write -->
-					<!-- btn-set -->
-					<div class="btn-lst txt-r">
-						<span class="btn-set pink"><a href="JavaScript:Save()">등록</a></span>
-						<span class="btn-set"><a href="JavaScript:history.back()">취소</a></span>
-					</div>
-					<!-- //btn-set-->
+    <div id="container">
+        <!-- lnb -->
+        <div class="lnb">
+            <div class="tit-area">
+                <h2>온라인상담</h2>
+                <span><img src="/img/common/h2_entxt02.gif" alt="Online Consultation" /></span>
+            </div>
+            <ul class="lnb-lst">
+                <li><a href="JavaScript:goInquireForm()">온라인상담</a></li>
+                <li class="on"><a href="JavaScript:goFaq()">자주묻는질문</a></li>
+            </ul>               
+        </div>
+        <!-- //lnb -->
+        <!-- content -->
+        <div class="content clearfix">
+            <div class="location txt-r">        
+                <ul class="fr clearfix">
+                    <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
+                    <li><a href="JavaScript:goInquireForm()">온라인상담</a></li>
+                    <li class="on"><a href="JavaScript:goFaq()">자주묻는 질문</a></li>
+                </ul>
+            </div>
+            <!-- section -->
+            <div class="section">       
+                <div class="tit-area">
+                    <h3>자주묻는 질문</h3>
+                    <p>가장 많이 묻는 질의 응답을 카테고리별로 검색이 가능합니다.</p>
+                </div>
+                
+                <html:form action="/Faq" method="post" name="fm" type="kr.go.rndcall.mgnt.faq.form.FaqForm" enctype="multipart/form-data" onsubmit="return checkOnSubmit(this)">
+                    <html:hidden name="FaqForm" property="method" value="faqInsert"/>
+                    <html:hidden name="FaqForm" property="vo.cell_number"/>
+                    <html:hidden name="FaqForm" property="vo.email"/>
+                    <html:hidden name="FaqForm" property="searchVO.loginId"/>
+                    <html:hidden name="FaqForm" property="searchVO.name"/>
+                    <html:hidden name="FaqForm" property="searchVO.menu_sn"/>
+                    
+	                <!-- board-detail -->
+	                <div class="board-detail mt30">
+	                    <div class="board-box">
+	                        <table summary="제목, 분류, 질의내용, 답변내용  페이지">
+	                            <caption>자주묻는 질문 페이지</caption>
+	                            <colgroup>
+	                                <col width="16%"/>
+	                                <col width="*"/>
+	                            </colgroup>
+	                            <tbody>
+	                                <tr>
+	                                    <th scope="row">제목</th>
+	                                    <td><input type="text" name="vo.title" title="제목" style="width:98%" title="제목"/></td>
+	                                </tr>
+	                                <tr>
+	                                    <th scope="row">분류</th>
+	                                    <td>
+                                            <html:select name="FaqForm" property="vo.category1" styleId="category1" title="대분류" onchange="f_cate_change(this.value)">
+                                                <html:option value="">::: 선택 :::</html:option>
+                                                <html:optionsCollection name="FaqForm" property="voList" label="cd_nm" value="cd_nm"/>
+                                            </html:select>
+                                            <html:select name="FaqForm" property="vo.category2" styleId="category2" title="소분류">
+                                                <html:option value="">::: 선택 :::</html:option>
+                                                <html:optionsCollection name="FaqForm" property="voList" label="cd_nm" value="cd_nm"/>
+                                            </html:select>
+                                        </td>
+	                                </tr>
+	                                <tr>
+	                                    <th scope="row"><label for="txtarea1">질의내용</label></th>
+	                                    <td>
+	                                        <textarea id="vo.contents" name="vo.contents" cols="0" rows="0" style="width:97%; min-height:154px;" title="자주하는질문 내용" >*원활한 답변 처리를 위해 질의 등록 후 24시간 이내에만 수정, 삭제가 가능하오니 양해바랍니다.*답변을 이메일로 받고자 하는 경우에는 내용에 이메일 주소를 남겨주시기 바랍니다.
+	                                        </textarea>
+	                                    </td>
+	                                </tr>
+	                                <tr>
+	                                    <th scope="row"><label for="txtarea2">답변내용</label></th>
+	                                    <td>
+	                                        <textarea id="vo.answer_cont" name="vo.answer_cont" cols="0" rows="0" style="width:97%; min-height:154px;" title="자주하는질문 내용답변" >*원활한 답변 처리를 위해 질의 등록 후 24시간 이내에만 수정, 삭제가 가능하오니 양해바랍니다.*답변을 이메일로 받고자 하는 경우에는 내용에 이메일 주소를 남겨주시기 바랍니다.
+	                                        </textarea>
+	                                    </td>
+	                                </tr>
+	                                <tr>
+	                                    <th scope="row"><label for="file">첨부파일</label></th>
+	                                    <td>
+	                                        <span class="btn-set set2 black"><a href="javascript:fncFileAddLenChk('fileArea', '<%=size%>');">파일첨부</a></span>
+	                                        <span class="btn-set set2 black"><a href="javascript:fncFileDel('fileArea');">파일제거</a></span>
+                                            <div id="fileArea"></div>
+	                                    </td>
+	                                </tr>
+	                            </tbody>
+	                         </table>
+	                    </div>
+	                </div>      
+	                <!-- //board-detail -->
+	                <!-- btn-set-->
+	                <div class="btn-lst txt-r">
+	                    <span class="btn-set pink"><a href="JavaScript:Save()">등록하기</a></span>
+	                    <span class="btn-set"><a href="JavaScript:history.back()">취소</a></span>
+	                </div>
+	                <!-- //btn-set-->
+	            
+	            </html:form>
+	            
+            </div>
+            <!-- //section -->  
+        </div>
+        <!-- //content -->
+    </div>
+    <!-- // container -->
 
-				</html:form>
-				
-			</div>
-			<!-- //section -->	
-		</div>
-		<!-- //content -->
-	</div>
-	<!-- // container -->
-	
 <%@include file="/include/bottom.jsp"%>
