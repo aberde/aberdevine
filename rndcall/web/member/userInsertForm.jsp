@@ -284,12 +284,14 @@
 	                                    <th scope="row"><label for="vo.password">비밀번호</label></th>
 	                                    <td>
 	                                        <html:password name="memberForm" styleId="vo.password" property="vo.password" style="width:150px" title="비밀번호" tabindex="3"/>
+	                                        <span class="small-txt"> * 영문자와 숫자 및 특수 문자를 사용하여 9자리 이상으로 조합(예시 : abc123!@#)</span>
 	                                    </td>
 	                                </tr>
 	                                <tr>
 	                                    <th scope="row"><label for="vo.re_password">비밀번호 확인</label></th>
 	                                    <td>
 	                                        <html:password name="memberForm" styleId="vo.re_password" property="vo.re_password" style="width:150px" title="비밀번호확인" tabindex="4"/>
+	                                        <span class="small-txt"> * 비밀번호를 한 번 더 입력하십시오</span>
 	                                    </td>
 	                                </tr>
 	<!--                                 // TODO 아이디찾기, 비밀번호찾기 질문 -->

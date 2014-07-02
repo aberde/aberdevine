@@ -82,11 +82,6 @@ function goIns(arg){
 	fm.elements["method"].value="dataList";
 	fm.submit();
 }
-function goLawInfo(){
-	var url = "http://rndgate.ntis.go.kr/switch.do?prefix=/un/rndLaw&page=/unRndLaw.do?method=retrieveLawSearchByKey";
-	window.open(url);
-	document.location.href = "/switch.do?prefix=/data&page=/Data.do?method=dataListLaw&searchVO.menu_sn=02";
-}
 //-->
 </script>
 </head>

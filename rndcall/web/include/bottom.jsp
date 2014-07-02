@@ -14,7 +14,7 @@ function goSiteUrl(num){
 	<!-- footer -->
     <div id="footer">
         <div class="footer clearfix">
-            <p class="foot-logo"><img src="img/common/foot_logo.gif" alt="미래창조과학부" /></p>
+            <p class="foot-logo"><img src="/img/common/foot_logo.gif" alt="미래창조과학부" /></p>
             <div class="add">
                 <ul class="add-lst clearfix">
                     <li><a href="/info.jsp">개인정보처리방침 </a></li>

@@ -173,6 +173,12 @@
 		//	}
 		}
 		
+		function goLawInfo(){
+            var url = "http://rndgate.ntis.go.kr/switch.do?prefix=/un/rndLaw&page=/unRndLaw.do?method=retrieveLawSearchByKey";
+            window.open(url);
+            document.location.href = "/switch.do?prefix=/data&page=/Data.do?method=dataListLaw&searchVO.menu_sn=02";
+        }
+		
 		/**
 		 * 현재메뉴 위치.
 		 * @param data
@@ -221,13 +227,13 @@
 				<!-- 로그아웃 상태 -->
 				<ul class="nav-lst fl">
 					<li><a href="/index.jsp">홈</a></li>
-					<li><a href="/sitemap.jsp?searchVO.menu_sn=08">사이트맵</a></li>
+<!-- 					<li><a href="/sitemap.jsp?searchVO.menu_sn=08">사이트맵</a></li> -->
 					<li><a href="/switch.do?prefix=&page=/member.do?method=getUserInsertForm&searchVO.menu_sn=06">회원가입</a></li>
 					<li><a href="JavaScript:login();">로그인</a></li>
 				</ul>
 				<div class="search-bx fl">
 					<label for="search"><strong>통합검색</strong></label>
-					<input type="text" id="search" name="word" defaltvalue="검색어 입력창" onkeydown="checkKey();" />
+					<input type="text" id="search" name="word" onkeydown="checkKey();" />
 					<a href="JavaScript:goUniSearch();" class="search-btn">검색</a>
 				</div>
 				<%
@@ -236,12 +242,12 @@
 				<!-- 로그인 상태 -->
 				<ul class="nav-lst fl">
 					<li><a href="/index.jsp">홈</a></li>
-					<li><a href="/sitemap.jsp?searchVO.menu_sn=08">사이트맵</a></li>
+<!-- 					<li><a href="/sitemap.jsp?searchVO.menu_sn=08">사이트맵</a></li> -->
 					<li><a href="javascript:update();">개인정보변경</a></li>
 					<%
 						if ( mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C") ) {
 					%>
-					<li><a href="/switch.do?prefix=&page=/discussion.do?method=retrieveDiscussDetail&searchVO.menu_sn=09">커뮤니티</a></li>
+<!-- 					<li><a href="/switch.do?prefix=&page=/discussion.do?method=retrieveDiscussDetail&searchVO.menu_sn=09">커뮤니티</a></li> -->
 					<%
 						}
 					%>
@@ -298,9 +304,9 @@
                         <div class="snb">
                             <div class="snb-bx">
                                 <ul>
-                                    <li><a href="#none;">법령 및 행정 규칙</a></li>
+                                    <li><a href="Javascript:goLawInfo()">법령 및 행정 규칙</a></li>
                                     <li><a href="#none;">제도</a></li>
-                                    <li><a href="#none;">기타</a></li>
+                                    <li><a href="JavaScript:goIns('DATA')">기타</a></li>
                                 </ul>
                             </div>
                         </div>  
