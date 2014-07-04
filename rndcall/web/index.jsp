@@ -234,7 +234,7 @@
 		
 		function login() {	
 			
-			var winfeatures = "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=525,height=305";
+			var winfeatures = "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=580,height=305";
 			var url = "/login.jsp?returnURL=" + escape(document.location.href);
 		
 			loginWin = window.open( url, "login", winfeatures);
@@ -252,7 +252,7 @@
 				alert("로그인 후 이용하실 수 있습니다.");
 				return;
 			}else{		
-				document.location.href = "/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireForm&searchVO.menu_sn=01";
+				document.location.href = "/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireMainList&searchVO.menu_sn=01";
 			}
 		}
 		
@@ -406,7 +406,7 @@
                         </div>  
                     </li>
                     <li>
-                        <a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireMainList&searchVO.menu_sn=01">온라인 상담</a>
+                        <a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireList&searchVO.menu_sn=01">온라인 상담</a>
                         <div class="snb">
                             <div class="snb-bx">
                                 <ul>

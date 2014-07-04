@@ -110,7 +110,7 @@ html,body {height:100%;}
 #pop .menu .txt ul li a{color:#34373a; font-size:14px;}
 
 /* popup 회원가입 */
-#pop-join{position:relative; padding:35px 40px; background:#fff; z-index:999; width:500px; height:420px;}
+#pop-join{position:relative; padding:35px 40px; background:#fff; z-index:999; width:500px; height:210px;}
 #pop-join .btn-close{display:block; position:absolute; right:40px; top:46px; background:url(../img/icon/btn_close.gif) no-repeat left; width:27px; height:27px;}
 #pop-join .btn-close span{font-size:0; line-height:0; text-indent:-9999px; color:#fff;}
 #pop-join .btn-close span{font-size:0; line-height:0; text-indent:-9999px; color:#fff;}

@@ -105,8 +105,8 @@
 					<!-- inquiry -->
 					<div class="inquiry-bx mt30">
 						<ul class="clearfix">
-							<li><a href="JavaScript:goInquireForm()"><img src="/img/sub/inquiry_img01.gif" alt="국가연구개발사업 공통법령 및 제도 질의 바로가기" /></a></li>
-							<li><a href="JavaScript:goInquireForm()"><img src="/img/sub/inquiry_img02.gif" alt="중앙행정기관별 국가연구개발사업 질의 바로가기" /></a></li>
+							<li><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireForm&searchVO.menu_sn=01"><img src="/img/sub/inquiry_img01.gif" alt="국가연구개발사업 공통법령 및 제도 질의 바로가기" /></a></li>
+							<li><a href="/inquire/inquireForm2.jsp"><img src="/img/sub/inquiry_img02.gif" alt="중앙행정기관별 국가연구개발사업 질의 바로가기" /></a></li>
 						</ul>
 					</div>
 					<div class="inquiry-list clearfix">

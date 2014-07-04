@@ -17,7 +17,6 @@
     <filter-name>Set Character Encoding</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  <!-- 
   <servlet>
     <servlet-name>log4j-init</servlet-name>
     <servlet-class>kr.go.rndcall.mgnt.common.Log4jInitServlet</servlet-class>
@@ -27,7 +26,6 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
-   -->
   <servlet>
     <servlet-name>downLoad</servlet-name>
     <servlet-class>kr.go.rndcall.mgnt.common.DownLoadServlet</servlet-class>

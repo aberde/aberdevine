@@ -156,7 +156,7 @@
         </div>
         <!-- // board-write -->
         
-        <a href="#" class="btn-close" onclick="popClose()"><span >닫기</span></a>
+        <a href="#" class="btn-close" onclick="window.close()"><span >닫기</span></a>
     </div>
     <!-- // pop -->
 </body>
