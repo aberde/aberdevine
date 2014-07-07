@@ -143,6 +143,8 @@ function topNav(gnbActiveNum, gnbActiveSub) {
 				node.find('ul').css({'left': "500px"});
 			}else if(node.index() <= 4){
 				node.find('ul').css({'left': "580px"});
+			}else if(node.index() <= 5){
+				node.find('ul').css({'left': "680px"});
 			}
 			
 		}

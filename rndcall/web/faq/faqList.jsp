@@ -183,11 +183,11 @@
                             <bean:define name="FaqForm" property="searchVO.searchCategory" id="category" type="java.lang.String"/>
                             <input name="catr_list" type="hidden" value="<%= category %>" />
                             <!--        // TODO 검색 function 추가. -->
-                            <li <% if(category.equals("")){ %>class="on"<% } %>><a href="">전체</a></li>
+                            <li <% if(category.equals("")){ %>class="on"<% } %>><a href="/switch.do?prefix=/faq&page=/Faq.do?method=faqList&searchVO.menu_sn=01">전체</a></li>
                             <logic:notEmpty name="FaqForm" property="voList2">
                                 <logic:iterate name="FaqForm" property="voList2" indexId="comRowNm" id="mCode">
                                     <bean:define name="mCode" property="code" id="code" type="java.lang.String"/>
-                                    <li <% if(category.equals(code)){ %>class="on"<% } %>><a href="<bean:write name="mCode" property="code" />"><bean:write name="mCode" property="code_nm" /></a></li>
+                                    <li <% if(category.equals(code)){ %>class="on"<% } %>><a href="/switch.do?prefix=/faq&page=/Faq.do?method=faqList&searchVO.menu_sn=01&searchVO.searchCategory=<bean:write name="mCode" property="code" />"><bean:write name="mCode" property="code_nm" /></a></li>
                                 </logic:iterate>
                             </logic:notEmpty>
                         </ul>

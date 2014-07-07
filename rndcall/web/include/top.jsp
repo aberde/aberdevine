@@ -71,12 +71,12 @@
 
 		//문의하기 링크
 		function goInquireForm(){
-			if("<%=login_id%>" == ""){
-				alert("로그인 후 이용하실 수 있습니다.");
-				return;
-			}else{		
+<%-- 			if("<%=login_id%>" == ""){ --%>
+// 				alert("로그인 후 이용하실 수 있습니다.");
+// 				return;
+// 			}else{		
 				document.location.href = "/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireMainList&searchVO.menu_sn=01";
-			}
+// 			}
 		}
 
 		//Q&A링크
@@ -314,20 +314,25 @@
                     <li>
                         <a href="/center/center.jsp">센터소개</a>
                     </li>
-<%-- 					<% --%>
-<!-- // 						if ( mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C") ) { -->
-<%-- 					%> --%>
-<!-- 					<li class="menu"><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=05">관리자</a> -->
-<!-- 						<ul class="snb"> -->
-<!-- 							<li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=05">권한관리</a></li> -->
-<!-- 							<li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=05">분야관리</a></li> -->
-<!-- 							<li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=05">오프라인자료등록</a></li> -->
-<!-- 							<li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=05">통계정보</a></li> -->
-<!-- 						</ul> -->
-<!-- 					</li> -->
-<%-- 					<% --%>
-<!-- // 						} -->
-<%-- 					%> --%>
+					<%
+ 						if ( mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C") ) {
+ 					%>
+					<li>
+					    <a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=05">관리자</a>
+						<div class="snb">
+                            <div class="snb-bx">
+								<ul>
+									<li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=05">권한관리</a></li>
+									<li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=05">분야관리</a></li>
+									<li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=05">오프라인자료등록</a></li>
+									<li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=05">통계정보</a></li>
+								</ul>
+							</div>
+					    </div>
+					</li>
+					<%
+						}
+ 					%>
 <!-- 					// TODO 기관담당자 -->
 <%-- 					<% --%>
 <!-- // 						if ( mainRoleCD.equals("0000B") ) { -->

@@ -465,8 +465,8 @@ public class InquireAction extends DispatchAction {
 
 		fm.setVoList(resultFileVO.getVoList());
 		fm.setLoginVO(loginResultVO.getLoginVO());
-		System.out.println("MOBILE :::::: " + fm.getLoginVO().getMobile());
-		System.out.println("EMAIL :::::: " + fm.getLoginVO().getEmail());
+//		System.out.println("MOBILE :::::: " + fm.getLoginVO().getMobile());
+//		System.out.println("EMAIL :::::: " + fm.getLoginVO().getEmail());
 		fm.setErrCd("0");
 		
 		return mapping.findForward(target);
