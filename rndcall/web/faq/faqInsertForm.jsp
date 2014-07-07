@@ -53,7 +53,7 @@
 		function Save(){
 			var cate = fm.elements["vo.analysis_yn"];
 			//alert(cate);
-			if(cate.checked){
+			if( cate && cate.checked ){
 				if(validate()) {
 					fm.elements["method"].value="faqInsert";
 					fm.submit();

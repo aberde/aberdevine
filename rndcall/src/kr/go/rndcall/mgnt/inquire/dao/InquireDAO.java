@@ -1,49 +1,28 @@
 package kr.go.rndcall.mgnt.inquire.dao;
 
 import java.io.Reader;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.naming.NamingException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import oracle.jdbc.OracleCallableStatement;
-import oracle.jdbc.OracleResultSet;
-import oracle.jdbc.OracleTypes;
-import oracle.sql.ARRAY;
-import oracle.sql.ArrayDescriptor;
-import oracle.sql.CHAR;
-import oracle.sql.CLOB;
-
-import org.apache.log4j.Logger;
-import org.apache.struts.action.ActionError;
-import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
-import kr.go.rndcall.mgnt.common.DesCipher;
-import kr.go.rndcall.mgnt.common.Util;
+import kr.go.rndcall.mgnt.common.AttachVO;
 import kr.go.rndcall.mgnt.common.BaseSqlDAO;
 import kr.go.rndcall.mgnt.common.DAOBaseException;
-import kr.go.rndcall.mgnt.inquire.biz.InquireBiz;
+import kr.go.rndcall.mgnt.common.DesCipher;
+import kr.go.rndcall.mgnt.common.MailSend;
+import kr.go.rndcall.mgnt.common.SSOUtil;
+import kr.go.rndcall.mgnt.common.SmsSend;
+import kr.go.rndcall.mgnt.common.Util;
 import kr.go.rndcall.mgnt.inquire.vo.InquireAttachVO;
 import kr.go.rndcall.mgnt.inquire.vo.InquireResultVO;
 import kr.go.rndcall.mgnt.inquire.vo.InquireSearchVO;
 import kr.go.rndcall.mgnt.inquire.vo.InquireVO;
 import kr.go.rndcall.mgnt.inquire.vo.SatiVO;
 import kr.go.rndcall.mgnt.login.LoginVO;
-import kr.go.rndcall.mgnt.common.AttachVO;
-import kr.go.rndcall.mgnt.common.SmsSend;
-import kr.go.rndcall.mgnt.common.MailSend;
-import kr.go.rndcall.mgnt.login.LoginVO;
+
+import org.apache.log4j.Logger;
 
 public class InquireDAO extends BaseSqlDAO{
 
@@ -215,9 +194,13 @@ public class InquireDAO extends BaseSqlDAO{
 				countQuery += " AND Q.INSERT_TYPE='ONLINE'";
 			}
 			
-			query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+			if ( searchVO.getBoard_type() != null && !searchVO.getBoard_type().isEmpty() ) {
+			    query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+			}
 			query += " AND Q.DEL_YN='N'";
-			countQuery += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+			if ( searchVO.getBoard_type() != null && !searchVO.getBoard_type().isEmpty() ) {
+			    countQuery += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+			}
 			countQuery += " AND Q.DEL_YN='N'";
 			
 			if(!searchVO.getSearchCategory().equals("")){
@@ -588,6 +571,9 @@ public class InquireDAO extends BaseSqlDAO{
 			pstmt.setString(param++, searchVO.getName());
 			pstmt.setString(param++, "");
 			pstmt.setString(param++, "");
+			SSOUtil ssoUtil = new SSOUtil();
+			pstmt.setString(param++, ssoUtil.encrypt(vo.getPassword()));
+			pstmt.setString(param++, vo.getQuery_user_info());
 			
 			System.out.println("query ::::::::::: " + insert_sql);
 

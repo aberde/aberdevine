@@ -197,7 +197,7 @@
                                                             title_n = title;
                                                         }
                                                     %>
-                                                    <a href="JavaScript:goInquireView('QNA',<bean:write name="vo" property="seq"/>)"><%=title_n %></a>                           
+                                                    <a href="JavaScript:goInquireView('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>)"><%=title_n %></a>                           
                                                 </td>
                                                 <td><bean:write name="vo" property="reg_nm"/></td>
                                                 <td><bean:write name="vo" property="reg_dt"/></td>

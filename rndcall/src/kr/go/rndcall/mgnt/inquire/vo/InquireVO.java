@@ -60,7 +60,27 @@ public class InquireVO extends BaseVO{
 	private String gov_answer; //타기관담당자 답변등록 여부
 	private String tel; //타기관담당자 연락처
 	private String mem_table_nm = "";
-	public String getPublic_trans_org_nm() {
+	
+	private String password; // 비밀번호
+	private String query_user_info; // 질의자정보
+	
+	public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getQuery_user_info() {
+        return query_user_info;
+    }
+
+    public void setQuery_user_info(String query_user_info) {
+        this.query_user_info = query_user_info;
+    }
+
+    public String getPublic_trans_org_nm() {
 		return public_trans_org_nm;
 	}
 
@@ -132,6 +152,9 @@ public class InquireVO extends BaseVO{
 		this.trans_nm = "";
 		this.trans_org_nm = "";
 		this.trans_attached_nm = "";
+		
+		this.password = "";
+		this.query_user_info = "";
 	}
 	
 	/**

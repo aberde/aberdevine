@@ -24,14 +24,14 @@ CELL_RECEIVE_YN, CELL_NUMBER,      EMAIL_RECEIVE_YN, EMAIL,
 OPEN_YN,         PUBLIC_TRANS_YN,  PUBLIC_TRANS_ID,  INSERT_TYPE,
 NTIS_REG_ID,     FILE_ID,          DEL_YN,           READ_COUNT,
 REG_ID,          REG_DT,           REG_NM,           CATEGORY1,
-CATEGORY2
+CATEGORY2,       PASSWORD,         QUERY_USER_INFO
 ) VALUES (
 ?, ?, ?, CHAR_TO_CLOB(?),
 ?, ?, ?, ?,
 ?, ?, ?,  ?,
 ?, ?, ?, 0,
 ?, sysdatetime, ?, ?,
-?)
+?, ?, ?)
 
 #==============================================================
 # 문의하기(QUESTION) 수정
