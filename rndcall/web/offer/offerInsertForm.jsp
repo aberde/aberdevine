@@ -61,32 +61,32 @@
 		
 		function validate() {
 			//SMS수신 체크시 핸드폰번호 체크
-			var sms="";		
-			for(i=0; i < fm.elements["vo.call_receive_yn"].length; i++){
-	     		if(fm.elements["vo.call_receive_yn"][i].checked){
-	     			sms = fm.elements["vo.call_receive_yn"][i].value;
-	    		}
-	   		}
+// 			var sms="";		
+// 			for(i=0; i < fm.elements["vo.call_receive_yn"].length; i++){
+// 	     		if(fm.elements["vo.call_receive_yn"][i].checked){
+// 	     			sms = fm.elements["vo.call_receive_yn"][i].value;
+// 	    		}
+// 	   		}
 			
-			if(sms == "Y"){
-				fm.elements["vo.cell_number"].value = fm.elements["cell_no1"].value+ "-" +fm.elements["cell_no2"].value+ "-" +fm.elements["cell_no3"].value;
-				if (!isNotValidTel(fm.elements["vo.cell_number"])) return false;
-			}		
+// 			if(sms == "Y"){
+// 				fm.elements["vo.cell_number"].value = fm.elements["cell_no1"].value+ "-" +fm.elements["cell_no2"].value+ "-" +fm.elements["cell_no3"].value;
+// 				if (!isNotValidTel(fm.elements["vo.cell_number"])) return false;
+// 			}		
 			
-			//EMAIL수신 체크시 EMAIL 체크
-			var email="";		
-			for(i=0; i < fm.elements["vo.email_receive_yn"].length; i++){
-	     		if(fm.elements["vo.email_receive_yn"][i].checked){
-	     			email = fm.elements["vo.email_receive_yn"][i].value;
-	    		}
-	   		}
+// 			//EMAIL수신 체크시 EMAIL 체크
+// 			var email="";		
+// 			for(i=0; i < fm.elements["vo.email_receive_yn"].length; i++){
+// 	     		if(fm.elements["vo.email_receive_yn"][i].checked){
+// 	     			email = fm.elements["vo.email_receive_yn"][i].value;
+// 	    		}
+// 	   		}
 	   		
-	   		if(email == "Y"){
-				fm.elements["vo.email"].value = fm.elements["email1"].value + "@" + fm.elements["email2"].value;
-				if(!isEMailAddr(fm.elements["vo.email"])){
-					return false;
-				}
-			}
+// 	   		if(email == "Y"){
+// 				fm.elements["vo.email"].value = fm.elements["email1"].value + "@" + fm.elements["email2"].value;
+// 				if(!isEMailAddr(fm.elements["vo.email"])){
+// 					return false;
+// 				}
+// 			}
 			
 			
 			//제목 필수 입력 체크
@@ -153,19 +153,18 @@
 	                                <tr>
 	                                    <th scope="row"><label for="info0">비밀번호</label></th>
 	                                    <td>
-	                                        <input type="password" id="info0" name="su0" /> 
-	                                        <span class="btn-set set2 black"><a href="#">확인</a></span>
+	                                        <input type="password" id="vo.password" name="vo.password" /> 
 	                                    </td>
 	                                </tr>
 	                                <tr>
 	                                    <th scope="row"><label for="info1">질의자 정보</label></th>
 	                                    <td>
-	                                        <input type="radio" id="info1" name="su" checked /> <label for="info1">중앙행정기관</label>
-	                                        <input type="radio" id="info2" name="su" /> <label for="info2">전문기관</label>
-	                                        <input type="radio" id="info3" name="su" /> <label for="info3">정부출연연구기관</label>
-	                                        <input type="radio" id="info4" name="su" /> <label for="info4">대학</label>
-	                                        <input type="radio" id="info5" name="su" /> <label for="info5">기업</label>
-	                                        <input type="radio" id="info6" name="su" /> <label for="info6">기타</label>
+	                                        <input type="radio" id="info1" name="vo.query_user_info" value="1" checked /> <label for="info1">중앙행정기관</label>
+	                                        <input type="radio" id="info2" name="vo.query_user_info" value="2" /> <label for="info2">전문기관</label>
+	                                        <input type="radio" id="info3" name="vo.query_user_info" value="3" /> <label for="info3">정부출연연구기관</label>
+	                                        <input type="radio" id="info4" name="vo.query_user_info" value="4" /> <label for="info4">대학</label>
+	                                        <input type="radio" id="info5" name="vo.query_user_info" value="5" /> <label for="info5">기업</label>
+	                                        <input type="radio" id="info6" name="vo.query_user_info" value="6" /> <label for="info6">기타</label>
 	                                    </td>
 	                                </tr>
 	                                <tr>

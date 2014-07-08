@@ -1,38 +1,25 @@
 package kr.go.rndcall.mgnt.offer.dao;
 
 import java.io.Reader;
-import java.sql.CallableStatement;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import javax.naming.NamingException;
-import oracle.jdbc.OracleCallableStatement;
-import oracle.jdbc.OracleResultSet;
-import oracle.jdbc.OracleTypes;
-import oracle.sql.ARRAY;
-import oracle.sql.ArrayDescriptor;
-import oracle.sql.CHAR;
-import oracle.sql.CLOB;
-
-import org.apache.log4j.Logger;
 
 import kr.go.rndcall.mgnt.common.AttachVO;
 import kr.go.rndcall.mgnt.common.BaseSqlDAO;
 import kr.go.rndcall.mgnt.common.DAOBaseException;
 import kr.go.rndcall.mgnt.common.DesCipher;
 import kr.go.rndcall.mgnt.common.MailSend;
+import kr.go.rndcall.mgnt.common.SSOUtil;
 import kr.go.rndcall.mgnt.common.SmsSend;
-import kr.go.rndcall.mgnt.common.StringUtil;
-import kr.go.rndcall.mgnt.common.Util;
-import kr.go.rndcall.mgnt.inquire.vo.InquireVO;
 import kr.go.rndcall.mgnt.offer.vo.OfferAttachVO;
 import kr.go.rndcall.mgnt.offer.vo.OfferResultVO;
 import kr.go.rndcall.mgnt.offer.vo.OfferSearchVO;
 import kr.go.rndcall.mgnt.offer.vo.OfferVO;
 import kr.go.rndcall.mgnt.offer.vo.SatiVO;
+
+import org.apache.log4j.Logger;
 
 public class OfferDAO extends BaseSqlDAO{
 
@@ -673,6 +660,9 @@ public class OfferDAO extends BaseSqlDAO{
                 pstmt.setString(param++, vo.getCategory2());
                 pstmt.setString(param++, vo.getBoard_type());
                 pstmt.setString(param++, vo.getOpen_yn());
+                SSOUtil ssoUtil = new SSOUtil();
+                pstmt.setString(param++, ssoUtil.encrypt(vo.getPassword()));
+                pstmt.setString(param++, vo.getQuery_user_info());
                 
                 executeQueryForCUD();
                 

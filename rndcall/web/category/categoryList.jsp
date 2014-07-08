@@ -198,7 +198,7 @@
 	                                            <td><bean:write name="vo" property="category_id"/></td>
 	                                            <td><bean:write name="vo" property="category_nm"/></td>
 												<td><a href="javascript:getDtlList('<bean:write name="vo" property="category_id"/>');" class="btn_Blue" style="color:#FFFFFF;"><strong><bean:write name="vo" property="dtl_cnt"/>건</strong></a></td>
-												<span class="btn-set"><a href="javascript:cate_update('<bean:write name="vo" property="category_id"/>');">수정</a></span>
+												<td><span class="btn-set"><a href="javascript:cate_update('<bean:write name="vo" property="category_id"/>');">수정</a></span></td>
 												<td><span class="btn-set"><a href="javascript:fn_delete('<bean:write name="vo" property="category_id"/>');">삭제</a></span></td>
 	                                        </tr>
 	                                    </logic:iterate>

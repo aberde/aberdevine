@@ -60,12 +60,28 @@ public class OfferVO extends BaseVO{
 	private String question_file_id;
 	private String category1_nm;
 	private String category2_nm;
+	private String password;  // 비밀번호
+	private String query_user_info; // 질의자정보
     
-	public String getAnswer_file_id() {
+	public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getQuery_user_info() {
+        return query_user_info;
+    }
+
+    public void setQuery_user_info(String query_user_info) {
+        this.query_user_info = query_user_info;
+    }
+
+    public String getAnswer_file_id() {
 		return answer_file_id;
 	}
-
-
 
 	public void setAnswer_file_id(String answer_file_id) {
 		this.answer_file_id = answer_file_id;
