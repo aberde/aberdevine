@@ -125,11 +125,11 @@
         <!-- btn-set -->
         <div class="btn-lst txt-c">
             <span class="btn-set green"><a href="javascript:useCheckId('<%=id%>');">아이디 사용</a></span>
-            <span class="btn-set"><a href="#" onclick="popClose()">창닫기</a></span>
+            <span class="btn-set"><a href="#" onclick="window.close();">창닫기</a></span>
         </div>
         <!-- //btn-set-->
 
-        <a href="#" class="btn-close" onclick="popClose()"><span >닫기</span></a>
+        <a href="#" class="btn-close" onclick="window.close();"><span >닫기</span></a>
     </div>
     <!-- // pop -->
 

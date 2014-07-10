@@ -15,8 +15,8 @@ FROM RNDCALL_AUTH
 @sql.member.idFind
 SELECT USER_ID
   FROM RNDCALL_AUTH
- WHERE NAME = ?
-   AND EMAIL = ?
+ WHERE IDFINDQUESTION = ?
+    AND IDFINDANSWER = ?
 
 #===============================================================
 # TCO_USER_INFO ȸ���Ծ��̵� �ߺ�üũ
@@ -24,9 +24,9 @@ SELECT USER_ID
 @sql.member.pwFind
 SELECT PASSWORD
   FROM RNDCALL_AUTH
- WHERE NAME = ?
-   AND USER_ID = ?
-   AND EMAIL = ?
+ WHERE USER_ID = ?
+   AND PWFINDQUESTION = ?
+   AND PWFINDANSWER = ?
 
 #===============================================================
 # TCO_USER_INFO ȸ��������ȸ
@@ -66,7 +66,11 @@ MOBILE,
 REG_ID,
 REG_DT,
 PASSWORD,
-AUTH
+AUTH,
+IDFINDQUESTION,
+IDFINDANSWER,
+PWFINDQUESTION,
+PWFINDANSWER
 ) 
 VALUES (
 AUTH_ID_SEQ.NEXT_VALUE,
@@ -79,6 +83,10 @@ NULL,
 ?,
 ?,
 sysdatetime,
+?,
+?,
+?,
+?,
 ?,
 ?
 )

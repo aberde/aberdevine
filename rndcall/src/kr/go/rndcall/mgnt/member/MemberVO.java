@@ -21,6 +21,43 @@ public class MemberVO extends BaseVO{
 	private String title = "";
 	private String contents = "";
 	
+	private String idFindQuestion = "";
+	private String idFindAnswer = "";
+	private String pwFindQuestion = "";
+	private String pwFindAnswer = "";
+	
+	public String getIdFindQuestion() {
+        return idFindQuestion;
+    }
+
+	public void setIdFindQuestion(String idFindQuestion) {
+        this.idFindQuestion = idFindQuestion;
+    }
+    
+	public String getIdFindAnswer() {
+        return idFindAnswer;
+    }
+    
+	public void setIdFindAnswer(String idFindAnswer) {
+        this.idFindAnswer = idFindAnswer;
+    }
+    
+	public String getPwFindQuestion() {
+        return pwFindQuestion;
+    }
+    
+	public void setPwFindQuestion(String pwFindQuestion) {
+        this.pwFindQuestion = pwFindQuestion;
+    }
+    
+	public String getPwFindAnswer() {
+        return pwFindAnswer;
+    }
+    
+	public void setPwFindAnswer(String pwFindAnswer) {
+        this.pwFindAnswer = pwFindAnswer;
+    }
+    
 	public String getContents() {
 		return contents;
 	}

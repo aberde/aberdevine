@@ -78,6 +78,10 @@ public class MemberDAO extends BaseSqlDAO {
 				pstmt.setString(param++, vo.getLogin_id());
 				pstmt.setString(param++, ssoPw);
 				pstmt.setString(param++, "0000A");
+				pstmt.setString(param++, vo.getIdFindQuestion());
+				pstmt.setString(param++, vo.getIdFindAnswer());
+				pstmt.setString(param++, vo.getPwFindQuestion());
+				pstmt.setString(param++, vo.getPwFindAnswer());
 							
 				pstmt.execute();
 				pstmt.close();
@@ -271,8 +275,8 @@ public class MemberDAO extends BaseSqlDAO {
 			System.out.println("vo.getName():::"+vo.getName());
 			System.out.println("vo.getEmail():::"+vo.getEmail());
 			
-			pstmt.setString(1, vo.getName());
-			pstmt.setString(2, vo.getEmail());
+			pstmt.setString(1, vo.getIdFindQuestion());
+			pstmt.setString(2, vo.getIdFindAnswer());
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -301,9 +305,9 @@ public class MemberDAO extends BaseSqlDAO {
 			String query = loadQueryString("sql.member.pwFind"); 
 			
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, vo.getName());
-			pstmt.setString(2, vo.getLogin_id());
-			pstmt.setString(3, vo.getEmail());
+			pstmt.setString(1, vo.getLogin_id());
+			pstmt.setString(2, vo.getPwFindQuestion());
+			pstmt.setString(3, vo.getPwFindAnswer());
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
