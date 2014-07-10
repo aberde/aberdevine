@@ -7,6 +7,12 @@
 
     <bean:define id="path" type="java.lang.String" value="/member.do"/>
 
+    <html:form action="/member" method="post" name="fmDoc" type="kr.go.rndcall.mgnt.member.MemberForm">
+        <html:hidden name="memberForm" property="method" value="getOldDocList"/>
+        <html:hidden name="memberForm" property="vo.login_id"/>
+        <html:hidden name="memberForm" property="searchVO.menu_sn" value="06"/>
+    </html:form>
+    
     <%
         if ( mainLoginVO != null && mainLoginVO.getLogin_id() != null && !mainLoginVO.getLogin_id().equals("guest") ) {
     %>
@@ -23,7 +29,7 @@
     %>
 
     <script type="text/javascript" src="/js/validate.js"></script>
-    <script>
+    <script type="text/javascript">
     <!--
 		var mod_newPwIsNotExp = "변경 비밀번호는 9~20자 이내 영문 ,숫자 및 특수문자로만 입력하셔야 합니다";
 		var mod_newPw2IsNull = "변경비밀번호를 한번 더 입력하세요.";
@@ -61,7 +67,7 @@
 				fm.elements["vo.login_id"].focus();
 				return;
 			}
-			var winfeatures = "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=435,height=245";
+			var winfeatures = "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=580,height=280";
 			var url = idcheckUrl + "&searchVO.login_id=" + fm.elements["vo.login_id"].value;
 			//var url = idcheckUrl;
 			if( idcheckWin != null ) {
@@ -86,15 +92,15 @@
 		// 입력한두개의  비밀번호가 같은지 비교
 		function fnCompare(){
 			if(fm.elements["vo.password"].value != fm.elements["vo.re_password"].value){
-		//		alert(mod_newPwNotEquals);
-				document.getElementById("repw").style.color = '#FF0000';
-				document.getElementById("repw").innerHTML = '<font="red">* ' + reg_pwNotEquals + '</font>';
+				alert(reg_newPwNotEquals);
+// 				document.getElementById("repw").style.color = '#FF0000';
+// 				document.getElementById("repw").innerHTML = '<font="red">* ' + reg_pwNotEquals + '</font>';
 		//		fm.elements["vo.password"].value ="";
 				fm.elements["vo.re_password"].value = "";
 				fm.elements["vo.re_password"].focus();
 				return false;
 			} else {
-				document.getElementById("repw").innerHTML = '<font="blue">* ' + reg_pwEquals + '</font>';
+// 				document.getElementById("repw").innerHTML = '<font="blue">* ' + reg_pwEquals + '</font>';
 				return true;
 			}
 		}
@@ -146,7 +152,7 @@
 		}
 
 		function checkRegisterForm(){
-			fm.elements["vo.email"].value = fm.email_id.value+"@"+fm.email_domain.value;
+// 			fm.elements["vo.email"].value = fm.email_id.value+"@"+fm.email_domain.value;
 			
 			if(validate()) {
 				if(fm.elements["vo.checkIdVal"].value !="Y"){
@@ -171,8 +177,8 @@
 				return false;
 			} else if (!fnCompare()) {
 				return false;
-			} else if (isRequired(fm.elements["vo.name"])){
-				return false;
+// 			} else if (isRequired(fm.elements["vo.name"])){
+// 				return false;
 		//	} else if (isRequired(fm.elements["email_id"])||isRequired(fm.elements["email_domain"])){
 		//		return false;
 			} else {
@@ -296,21 +302,39 @@
 	                                </tr>
 	<!--                                 // TODO 아이디찾기, 비밀번호찾기 질문 -->
 	                                <tr>
-	                                    <th scope="row"><label for="id01">아이디찾기 질문</label></th>
+	                                    <th scope="row"><label for="vo.idFindQuestion">아이디찾기 질문</label></th>
 	                                    <td>
-	                                        <select id="id01" style="width:230px;">
-	                                            <option>졸업한 초등학교는?</option>
+	                                        <select id="vo.idFindQuestion" name="vo.idFindQuestion" style="width:230px;">
+	                                            <option value="1">기억에 남은 추억의 장소는</option>
+			                                    <option value="2">내가 다닌 초등학교는?</option>
+			                                    <option value="3">자신 인생의 좌우명은?</option>
+			                                    <option value="4">자신의 보물 제1호는?</option>
+			                                    <option value="5">가장 기억에 남는 영화 이름은?</option>
+			                                    <option value="6">자신만의 비밀이 있다면?</option>
+			                                    <option value="7">추억하고 싶은 날짜가 있다면?</option>
+			                                    <option value="8">받은 선물 중 기억에 남는 선물은?</option>
+			                                    <option value="9">인상 깊게 읽은 책 이름은?</option>
+			                                    <option value="10">내가 좋아 하는 케릭터 이름은?</option>
 	                                        </select> 
-	                                        <input type="text" title="아이디 질문을 입력해주세요." style="width:310px"/>
+	                                        <input type="text" id="vo.idFindAnswer" name="vo.idFindAnswer" title="아이디 질문을 입력해주세요." style="width:310px"/>
 	                                    </td>
 	                                </tr>
 	                                <tr>
-	                                    <th scope="row"><label for="pw02">비밀번호 찾기 질문</label></th>
+	                                    <th scope="row"><label for="vo.pwFindQuestion">비밀번호 찾기 질문</label></th>
 	                                    <td>
-	                                        <select id="pw02" style="width:230px;">
-	                                            <option>졸업한 초등학교는?</option>
+	                                        <select id="vo.pwFindQuestion" name="vo.pwFindQuestion" style="width:230px;">
+	                                            <option value="1">기억에 남은 추억의 장소는</option>
+                                                <option value="2">내가 다닌 초등학교는?</option>
+                                                <option value="3">자신 인생의 좌우명은?</option>
+                                                <option value="4">자신의 보물 제1호는?</option>
+                                                <option value="5">가장 기억에 남는 영화 이름은?</option>
+                                                <option value="6">자신만의 비밀이 있다면?</option>
+                                                <option value="7">추억하고 싶은 날짜가 있다면?</option>
+                                                <option value="8">받은 선물 중 기억에 남는 선물은?</option>
+                                                <option value="9">인상 깊게 읽은 책 이름은?</option>
+                                                <option value="10">내가 좋아 하는 케릭터 이름은?</option>
 	                                        </select> 
-	                                        <input type="text" title="비밀번호 질문을 입력해주세요." style="width:310px"/>
+	                                        <input type="text" id="vo.pwFindAnswer" name="vo.pwFindAnswer" title="비밀번호 질문을 입력해주세요." style="width:310px"/>
 	                                    </td>
 	                                </tr>
 	                            </tbody>
@@ -333,13 +357,5 @@
         <!-- //content -->
     </div>
     <!-- // container -->
-
-	<html:form action="/member" method="post" name="fmDoc" type="kr.go.rndcall.mgnt.member.MemberForm">
-	    <html:hidden name="memberForm" property="method" value="getOldDocList"/>
-	    <html:hidden name="memberForm" property="vo.email"/>
-	    <html:hidden name="memberForm" property="vo.name"/>
-	    <html:hidden name="memberForm" property="vo.login_id"/>
-	    <html:hidden name="memberForm" property="searchVO.menu_sn" value="06"/>
-	</html:form>
 
 <%@include file="/include/bottom.jsp"%>
