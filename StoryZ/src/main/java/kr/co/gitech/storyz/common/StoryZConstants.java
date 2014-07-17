@@ -7,6 +7,16 @@ package kr.co.gitech.storyz.common;
 public class StoryZConstants {
 
 	/**
+	 * 성공 코드
+	 */
+	public static final int SUCCESS = 0;
+
+	/**
+	 * 성공 코드
+	 */
+	public static final String SUCCESS_MESSAGE = "성공";
+	
+	/**
 	 * 플랫폼 종류: 아이폰 {@value}
 	 */
 	public static final String PLATFORM_KIND_IPHONE = "20";

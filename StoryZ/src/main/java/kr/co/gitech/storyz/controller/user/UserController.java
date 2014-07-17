@@ -1,13 +1,13 @@
 package kr.co.gitech.storyz.controller.user;
 
-import java.util.HashMap;
-
 import kr.co.gitech.storyz.common.message.errorcode.ErrorCode;
 import kr.co.gitech.storyz.dto.user.FindIdDTO;
 import kr.co.gitech.storyz.dto.user.UserDTO;
 import kr.co.gitech.storyz.exception.StoryZException;
 import kr.co.gitech.storyz.service.user.UserService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user/")
 public class UserController {
 
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private UserService userService = null;
 
@@ -48,19 +50,15 @@ public class UserController {
 	 */
 	@RequestMapping(value = UserUrl.FIND_ID)
 	public void findId(ModelMap model) throws Exception {
-		HashMap<String, String> map = userService.findId(model);
+		UserDTO userDTO = userService.findId(model);
 		
-		if (map == null) {  // 아이디 미존재시
+		if ( userDTO.getUser_id() != null ) {  // 아이디 미존재시
 			throw new StoryZException(ErrorCode.USER_NOT_EXIST_ID);
 		}
-
+		
 		FindIdDTO dto = new FindIdDTO();
-		dto.setStatus(0);
-		dto.setMessage("성공");
-		UserDTO userDTO = new UserDTO();
-		userDTO.setUser_id(map.get("ID"));
-		userDTO.setUser_name(map.get("NAME"));
 		dto.setUser(userDTO);
+		
 		model.addAttribute("data", dto);
 	}
 }

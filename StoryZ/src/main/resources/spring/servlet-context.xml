@@ -36,7 +36,7 @@
 	                <beans:entry key="xml" value="application/xml" />
 	            </beans:map>
 		</beans:property>
-        <beans:property name="defaultContentType" value="text/html" />
+        <beans:property name="defaultContentType" value="application/xml" />
         <beans:property name="ignoreAcceptHeader" value="true" />
         <beans:property name="defaultViews">
             <beans:list>
@@ -56,6 +56,7 @@
         <beans:property name="classesToBeBound">
             <beans:list>
                 <beans:value>kr.co.gitech.storyz.dto.common.BasicDTO</beans:value><!-- 기본 DTO -->
+                <beans:value>kr.co.gitech.storyz.dto.common.ExceptionDTO</beans:value><!-- 예외처리 DTO -->
                 <beans:value>kr.co.gitech.storyz.dto.user.UserDTO</beans:value><!-- 사용자정보 -->
                 <beans:value>kr.co.gitech.storyz.dto.user.FindIdDTO</beans:value><!-- 아이디 찾기 -->
             </beans:list>
@@ -75,8 +76,8 @@
 	<beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<beans:property name="basenames">
 			<beans:list>
-				<beans:value>classpath:properties/errorcode/errorcode</beans:value>
-				<beans:value>classpath:properties/pushcode/pushcode</beans:value>
+				<beans:value>classpath:properties/errorcode/errorCode</beans:value>
+				<beans:value>classpath:properties/pushcode/pushCode</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

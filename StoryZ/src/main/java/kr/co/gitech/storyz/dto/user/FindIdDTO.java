@@ -12,7 +12,7 @@ import kr.co.gitech.storyz.dto.common.BasicDTO;
 public class FindIdDTO extends BasicDTO {
 
 	/** 사용자 객체 */
-	@XmlElement(name = "user")
+	@XmlElement(name = "user", nillable = true)
 	private UserDTO user;
 
 	public UserDTO getUser() {
