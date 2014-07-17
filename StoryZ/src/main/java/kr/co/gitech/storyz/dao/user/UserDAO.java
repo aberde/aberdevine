@@ -1,6 +1,6 @@
 package kr.co.gitech.storyz.dao.user;
 
-import java.util.HashMap;
+import kr.co.gitech.storyz.dto.user.UserDTO;
 
 import org.springframework.ui.ModelMap;
 
@@ -9,5 +9,5 @@ import org.springframework.ui.ModelMap;
  */
 public interface UserDAO {
 
-	public HashMap<String, String> findId(ModelMap model) throws Exception;
+	public UserDTO findId(ModelMap model) throws Exception;
 }

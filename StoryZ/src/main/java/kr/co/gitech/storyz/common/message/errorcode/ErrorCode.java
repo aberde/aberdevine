@@ -12,7 +12,7 @@ public enum ErrorCode {
 	SUCCESS(0, HttpStatus.OK, "common.success")
 
 	/*
-	 * Common errors (1xx)
+	 * Common errors (10x)
 	 */
 
 	/** 서버 내부 오류 */
@@ -97,8 +97,22 @@ public enum ErrorCode {
 	, USER_NO_DEVICE_ID_V3(2200, HttpStatus.UNAUTHORIZED, "user.not_exist.device")
 	
 	/** 기기변경중 에러 */
-	, USER_CHANGE_DEVICE_V3(2201, HttpStatus.UNAUTHORIZED, "user.change.device");
+	, USER_CHANGE_DEVICE_V3(2201, HttpStatus.UNAUTHORIZED, "user.change.device")
+	
+	/*
+	 * File upload errors (16x)
+	 */
+	/** 파일 업로드 실패 */
+	, FILE_UPLOAD_FAILED(161, HttpStatus.INTERNAL_SERVER_ERROR, "file.failed.save")
 
+	/** 파일 찾기 실패 */
+	, FILE_UPLOAD_FILE_NOT_FOUND(162, HttpStatus.BAD_REQUEST, "file.not_found")
+
+	/** 파일 사이즈 초과 */
+	, FILE_UPLOAD_SIZE_EXCEEDED(163, HttpStatus.BAD_REQUEST, "file.exceeded.size")
+
+	/** 지원하지 않는 파일 유형 */
+	, FILE_UPLOAD_UNSUPPORTED_FILE_TYPE(164, HttpStatus.BAD_REQUEST, "file.unsupported.file_type");
 	
 	/**
 	 * 에러코드

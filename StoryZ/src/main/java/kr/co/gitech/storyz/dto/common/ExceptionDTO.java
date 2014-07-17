@@ -3,11 +3,13 @@ package kr.co.gitech.storyz.dto.common;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import kr.co.gitech.storyz.common.StoryZConstants;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class BasicDTO {
+@XmlRootElement(name = "root")
+public class ExceptionDTO {
 	
 	/** 처리결과 코드 (성공:0 / 실패:기타) */
 	@XmlElement(name = "status")
