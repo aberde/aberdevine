@@ -128,8 +128,13 @@
             <div class="section">       
                 <div class="tit-area">
                     <h3>온라인상담</h3>
-                    <p>R&amp;D 관련 규정 및 제도에 대해 궁금하신 사항에 담당자가 답변해 드립니다.기존 답변을 검색 후 질의해주세요.</p>
                 </div>
+                <!--  explain-bx -->
+                <div class="explain-bx mt10">
+                    <strong>국가연구개발사업 관련 공통법령 및 제도에 대해 궁금하신 사항에 답변해드립니다.</strong>
+                    <p>*기존 질의응답을 검색 후 질의해주시기 바랍니다.</p>
+                </div>
+                <!--  //explain-bx -->
                 
                 <html:form action="/Inquire" method="post" name="fm" type="kr.go.rndcall.mgnt.inquire.form.InquireForm">
 		            <html:hidden name="InquireForm" property="method" value="getInquireList"/>
@@ -143,7 +148,7 @@
 		            <html:hidden name="InquireForm" property="searchVO.menu_sn"/>
             
 	                <!-- search-box -->
-	                <div class="search-box">
+	                <div class="search-box mt10">
 	                    <div class="search-form">
 	                        <html:select name="InquireForm" property="searchVO.whichSearch" style="width:90px;">
                                 <html:option value="title">제목</html:option>
@@ -156,7 +161,7 @@
 	                </div>
 	                <!-- //search-box -->
 	                <!-- board-type01 -->
-	                <div class="board-type01 mt20">
+	                <div class="board-type01 mt10">
 	                    <div class="board-box">
 	                        <table border="0" summary="번호, 제목, 글쓴이, 등록일, 상태, 조회수 목록 페이지">
 	                            <caption>온라인상담 목록 페이지</caption>
@@ -226,7 +231,6 @@
 	                <!-- btn-set-->
 	                <div class="btn-lst txt-r">
 	                    <span class="btn-set pink"><a href="JavaScript:goInquireForm()">상담하기</a></span>
-	                    <span class="btn-set"><a href="JavaScript:goCancel()">취소</a></span>
 	                </div>
 	                <!-- //btn-set-->
 	            

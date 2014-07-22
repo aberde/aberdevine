@@ -81,11 +81,11 @@
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
-                <h2>온라인신문고</h2>
+                <h2>R&D 신문고</h2>
                 <span><img src="/img/common/h2_entxt03.gif" alt="Online Sinmungo" /></span>
             </div>
             <ul class="lnb-lst">
-                <li class="on"><a href="JavaScript:goOffer()">온라인신문고</a></li>
+                <li class="on"><a href="JavaScript:goOffer()">R&D 신문고</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -94,17 +94,12 @@
             <div class="location txt-r">        
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goOffer()">온라인신문고</a></li>
-                    <li class="on"><a href="JavaScript:goOffer()">온라인신문고</a></li>
+                    <li><a href="JavaScript:goOffer()">R&D 신문고</a></li>
+                    <li class="on"><a href="JavaScript:goOffer()">R&D 신문고</a></li>
                 </ul>
             </div>
             <!-- section -->
             <div class="section">       
-                <div class="tit-area">
-                    <h3>온라인 신문고</h3>
-                    <p>규정 및 제도에 대한 개선사항을 건의해주세요</p>
-                </div>
-                
                 <html:form action="/Offer" method="post" name="fm" type="kr.go.rndcall.mgnt.offer.form.OfferForm">
 				    <html:hidden name="OfferForm" property="method" value="getInquireInsert"/>
 				    <html:hidden name="OfferForm" property="vo.cell_number"/>
@@ -118,10 +113,10 @@
 				    <html:hidden name="OfferForm" property="searchVO.pagerOffset"/>
 				    
 	                <!-- board-detail -->
-	                <div class="board-detail mt30">
+	                <div class="board-detail mt60">
 	                    <div class="board-box">
 	                        <table summary="규정 및 제도에 대한 개선사항을 건의 페이지">
-	                            <caption>온라인 신문고 페이지</caption>
+	                            <caption>R&D 신문고 페이지</caption>
 	                            <colgroup>
 	                                <col width="16%"/>
 	                                <col width="*"/>

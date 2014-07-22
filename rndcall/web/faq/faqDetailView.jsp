@@ -171,8 +171,8 @@
 	                    <%
 	                        if ( roleCd.equals("0000Z") || roleCd.equals("0000C") ) {
                         %>
-	                    <span class="btn-set"><a href="javascript:faqContentConfirm();">답변</a></span>
-	                    <span class="btn-set"><a href="JavaScript:faqContentDelete()">수정</a></span>
+	                    <span class="btn-set"><a href="javascript:faqContentConfirm();">수정</a></span>
+	                    <span class="btn-set"><a href="JavaScript:faqContentDelete()">삭제</a></span>
 	                    <% 
 	                        }
                         %>

@@ -35,23 +35,29 @@
 				</ul>
 			</div>
 			<!-- section -->
-			<div class="section">		
-				<div class="tit-area">
-					<h3>사업추진체계</h3>
-					<p class="txt-f">국가연구개발사업은  일반적으로 ‘사업공고 및 신청’→’과제평가 및 선정’→’연구협약’ 및 ‘연구비 지급’→’결과보고 및 최종평가’→’연구비 정산’의 절차로 진행됩니다.</p>
-				</div>
-				<!-- develop-tbl -->
-				<ul class="develop-tbl clearfix">
-					<li>구분</li>
-					<li>중앙행정기관</li>
-					<li class="last">전문기관</li>
-					<li>주관연구기관</li>
-				</ul>
-				<!-- //develop-tbl -->	
-				<div class="grap-bg"><img src="/img/sub/develop_bg.gif" alt="" /></div>
-				<p class="develop-txt"><a href="http://rndgate.ntis.go.kr/switch.do?prefix=/un&page=/unRndList.do?method=retrieveList" target="_blank">국가연구개발사업 공고문 모두 보러가기</a></p>
-			</div>	
-			<!-- //section -->	
+            <div class="section">       
+                <div class="tit-area">
+                    <h3>사업추진체계</h3>
+                    <p class="txt-f">국가연구개발사업은  일반적으로 ‘사업공고 및 신청’→’과제평가 및 선정’→’연구협약’ 및 ‘연구비 지급’→’결과보고 및 최종평가’→’연구비 정산’의 절차로 진행됩니다.</p>
+                </div>
+                <!-- develop-tbl -->
+                <ul class="develop-tbl clearfix">
+                    <li>구분</li>
+                    <li>중앙행정기관</li>
+                    <li class="last">전문기관</li>
+                    <li>주관연구기관</li>
+                </ul>
+                <!-- //develop-tbl -->  
+                <div class="grap-bg"><img src="../../img/sub/develop_bg.gif" alt="" /></div>
+                <!-- <p class="develop-txt"><a href="#none;">국가연구개발사업 공고문 보러가기</a> (NTIS의 “사업공고” 페이지와 링크)</p> -->
+                <div class="btn-area txt-c">
+                    <span class="btn-set red">
+                        <a href="http://rndgate.ntis.go.kr/switch.do?prefix=/un&page=/unRndList.do?method=retrieveList" target="_blank">국가연구개발사업 공고문 보러가기</a>
+                    </span>
+                    <p class="develop-txt mt5"> (NTIS의 “사업공고” 페이지와 링크)</p>
+                </div>
+            </div>  
+            <!-- //section -->
 		</div>
 		<!-- //content -->
 	</div>

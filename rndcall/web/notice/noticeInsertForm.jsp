@@ -84,11 +84,11 @@
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
-                <h2>알림</h2>
-                <span><img src="/img/common/h2_entxt04.gif" alt="알림" /></span>
+                <h2>새소식</h2>
+                <span><img src="/img/common/h2_entxt04.gif" alt="새소식" /></span>
             </div>
             <ul class="lnb-lst">
-                <li class="on"><a href="JavaScript:goNotice()">알림</a></li>
+                <li class="on"><a href="JavaScript:goNotice()">새소식</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -97,17 +97,12 @@
             <div class="location txt-r">        
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goNotice()">알림</a></li>
-                    <li class="on"><a href="JavaScript:goNotice()">알림</a></li>
+                    <li><a href="JavaScript:goNotice()">새소식</a></li>
+                    <li class="on"><a href="JavaScript:goNotice()">새소식</a></li>
                 </ul>
             </div>
             <!-- section -->
             <div class="section">       
-                <div class="tit-area">
-                    <h3>알림</h3>
-                    <p>규정 및 제도에 대한 개선사항을 건의해주세요</p>
-                </div>
-
                 <html:form action="/Notice" method="post" name="fm" type="kr.go.rndcall.mgnt.notice.form.NoticeForm" enctype="multipart/form-data" onsubmit="return checkOnSubmit(this)">
 					<html:hidden name="NoticeForm" property="method" value="noticeInsert"/>
 					<html:hidden name="NoticeForm" property="searchVO.loginId"/>
@@ -115,10 +110,10 @@
 					<html:hidden name="NoticeForm" property="searchVO.menu_sn"/>
     
 	                <!-- board-detail -->
-	                <div class="board-detail mt30">
-	                    <div class="board-box">
-	                        <table summary="알림 페이지">
-	                            <caption>알림 페이지</caption>
+	                <div class="board-detail mt60">
+                        <div class="board-box">
+                            <table summary="새소식 페이지">
+                                <caption>새소식 페이지</caption>
 	                            <colgroup>
 	                                <col width="16%"/>
 	                                <col width="*"/>

@@ -87,17 +87,12 @@
 		//제안하기 질문 링크
 		function goOffer(){
 			var url;
-			if("<%=login_id%>" == ""){
-				alert("로그인 후 이용하실 수 있습니다.");
-				return;		
+			if("<%=mainRoleCD%>" == "0000Z" || "<%=mainRoleCD%>" == "0000C"){
+				url ="/switch.do?prefix=/offer&page=/Offer.do?method=offerList&searchVO.menu_sn=14";
 			}else{
-				if("<%=mainRoleCD%>" == "0000Z" || "<%=mainRoleCD%>" == "0000C"){
-					url ="/switch.do?prefix=/offer&page=/Offer.do?method=offerList&searchVO.menu_sn=14";
-				}else{
-					url ="/switch.do?prefix=/offer&page=/Offer.do?method=offerInsertForm&searchVO.menu_sn=14";
-				}
-				document.location.href = url;
+				url ="/switch.do?prefix=/offer&page=/Offer.do?method=offerInsertForm&searchVO.menu_sn=14";
 			}
+			document.location.href = url;
 		}
 		
 		//자주하느질문 링크
@@ -243,7 +238,6 @@
 				<ul class="nav-lst fl">
 					<li><a href="/index.jsp">홈</a></li>
 <!-- 					<li><a href="/sitemap.jsp?searchVO.menu_sn=08">사이트맵</a></li> -->
-					<li><a href="javascript:update();">개인정보변경</a></li>
 					<%
 						if ( mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C") ) {
 					%>
@@ -294,10 +288,10 @@
                         </div>  
                     </li>
                     <li>
-                        <a href="JavaScript:goOffer()">온라인신문고</a>
+                        <a href="JavaScript:goOffer()">R&D 신문고</a>
                     </li>
                     <li>
-                        <a href="JavaScript:goNotice()">알림</a>
+                        <a href="JavaScript:goNotice()">새소식</a>
                     </li>
                     <li>
                         <a href="JavaScript:goData()">자료실</a>
@@ -305,7 +299,7 @@
                             <div class="snb-bx">
                                 <ul>
                                     <li><a href="Javascript:goLawInfo()">법령 및 행정 규칙</a></li>
-                                    <li><a href="#none;">제도</a></li>
+                                    <li><a href="JavaScript:goIns('SYSTEM')">제도</a></li>
                                     <li><a href="JavaScript:goIns('DATA')">기타</a></li>
                                 </ul>
                             </div>

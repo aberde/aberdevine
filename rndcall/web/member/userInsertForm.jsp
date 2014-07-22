@@ -258,10 +258,11 @@
             </div>
             <!-- section -->
             <div class="section">       
-                <div class="tit-area">
-                    <h3>회원가입</h3>
-                    <p>R&amp;D 도우미센터의 회원가입을 위한 페이지입니다.</p>
+                <!--  explain-bx -->
+                <div class="explain-bx mt60">
+                    <strong>회원가입 후 로그인하시면, 마이페이지에서 작성글 및 답변내용 확인이 가능합니다.</strong>
                 </div>
+                <!--  //explain-bx -->
                 
                 <html:form action="/member" method="post" name="fm" type="kr.go.rndcall.mgnt.member.MemberForm">
 					<html:hidden name="memberForm" property="method" value="getInsert"/>
@@ -270,7 +271,7 @@
 					<html:hidden name="memberForm" property="searchVO.menu_sn" value="06"/>
     
 	                <!-- board-write -->
-	                <div class="board-write mt30">
+	                <div class="board-write mt10">
 	                    <div class="board-box">
 	                        <table summary="질의자 정보, 공개여부, 제목, 내용 보기 등록 페이지">
 	                            <caption>온라인상담 등록 페이지 </caption>
@@ -290,7 +291,7 @@
 	                                    <th scope="row"><label for="vo.password">비밀번호</label></th>
 	                                    <td>
 	                                        <html:password name="memberForm" styleId="vo.password" property="vo.password" style="width:150px" title="비밀번호" tabindex="3"/>
-	                                        <span class="small-txt"> * 영문자와 숫자 및 특수 문자를 사용하여 9자리 이상으로 조합(예시 : abc123!@#)</span>
+	                                        <span class="small-txt mt10"> * 4자리 이상</span>
 	                                    </td>
 	                                </tr>
 	                                <tr>
@@ -300,6 +301,17 @@
 	                                        <span class="small-txt"> * 비밀번호를 한 번 더 입력하십시오</span>
 	                                    </td>
 	                                </tr>
+									<tr>
+                                        <th scope="row"><label for="be1">소속</label></th>
+                                        <td>
+											<input type="radio" id="info1" name="vo.query_user_info" value="1" checked /> <label for="info1">중앙행정기관</label>
+                                            <input type="radio" id="info2" name="vo.query_user_info" value="2" /> <label for="info2">전문기관</label>
+                                            <input type="radio" id="info3" name="vo.query_user_info" value="3" /> <label for="info3">정부출연연구기관</label>
+                                            <input type="radio" id="info4" name="vo.query_user_info" value="4" /> <label for="info4">대학</label>
+                                            <input type="radio" id="info5" name="vo.query_user_info" value="5" /> <label for="info5">기업</label>
+                                            <input type="radio" id="info6" name="vo.query_user_info" value="6" /> <label for="info6">기타</label>
+                                        </td>
+                                    </tr>
 	<!--                                 // TODO 아이디찾기, 비밀번호찾기 질문 -->
 	                                <tr>
 	                                    <th scope="row"><label for="vo.idFindQuestion">아이디찾기 질문</label></th>

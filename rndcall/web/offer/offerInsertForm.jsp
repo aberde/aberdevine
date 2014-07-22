@@ -13,16 +13,6 @@
             size = request.getParameter("size");
         }
     %>
-    <%
-        if ( mainLoginVO == null || !mainIsLogin ) {	
-    %>
-	<script type="text/javascript">
-		alert('로그인이 필요한 메뉴입니다.');
-		document.location.href = "/index.jsp";
-	</script>
-	<%
-		}
-	%>
     <script type="text/JavaScript">
 		function fncFileAddLenChk(fileObjName, size){
 		   
@@ -107,11 +97,11 @@
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
-                <h2>온라인신문고</h2>
+                <h2>R&D 신문고</h2>
                 <span><img src="/img/common/h2_entxt03.gif" alt="Online Sinmungo" /></span>
             </div>
             <ul class="lnb-lst">
-                <li class="on"><a href="JavaScript:goOffer()">온라인신문고</a></li>
+                <li class="on"><a href="JavaScript:goOffer()">R&D 신문고</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -120,16 +110,19 @@
             <div class="location txt-r">        
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goOffer()">온라인신문고</a></li>
-                    <li class="on"><a href="JavaScript:goOffer()">온라인신문고</a></li>
+                    <li><a href="JavaScript:goOffer()">R&D 신문고</a></li>
+                    <li class="on"><a href="JavaScript:goOffer()">R&D 신문고</a></li>
                 </ul>
             </div>
             <!-- section -->
             <div class="section">       
-                <div class="tit-area">
-                    <h3>온라인 신문고</h3>
-                    <p>규정 및 제도에 대한 개선사항을 건의해주세요</p>
+                <!--  explain-bx -->
+                <div class="explain-bx mt60">
+                    <strong>연구현장의 불합리한 제도나 관행 등 제도개선 건의 또는 기타 연구제도 관련 불편·불만사항을 건의해주세요.</strong>
+                    <p>*활한 제안 처리를 위해 등록 후 24시간 이내에만 수정, 삭제가 가능하오니 양해바랍니다.</p>
+                    <p>*답변을 이메일로 받고자 하는 경우에는 내용에 이메일 주소를 남겨주시기 바랍니다.</p>
                 </div>
+                <!--  //explain-bx -->
                 
                 <html:form action="/Offer" method="post" name="fm" type="kr.go.rndcall.mgnt.offer.form.OfferForm" enctype="multipart/form-data" onsubmit="return checkOnSubmit(this)">
 					<html:hidden name="OfferForm" property="method" value="offerInsert"/>
@@ -141,10 +134,10 @@
 					<html:hidden name="OfferForm" property="searchVO.type"/>
     
 	                <!-- board-write -->
-	                <div class="board-write mt30">
+	                <div class="board-write mt10">
 	                    <div class="board-box">
-	                        <table summary="온라인 신문고 페이지">
-	                            <caption>온라인 신문고 페이지 </caption>
+	                        <table summary="R&D 신문고 페이지">
+	                            <caption>R&D 신문고 페이지 </caption>
 	                            <colgroup>
 	                                <col width="16%"/>
 	                                <col width="*"/>

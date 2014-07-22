@@ -123,6 +123,8 @@
                 <li class="on"><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=09">질문분야관리</a></li>
                 <li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=09">오프라인자료 등록</a></li>
                 <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=09">통계정보</a></li>
+                <li><a href="#none;">온라인 상담</a></li>
+                <li><a href="#none;">R&D 신문고</a></li>
             </ul>               
         </div>
         <!-- //lnb -->

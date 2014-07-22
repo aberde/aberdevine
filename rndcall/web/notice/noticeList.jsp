@@ -46,11 +46,11 @@
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
-                <h2>알림</h2>
-                <span><img src="/img/common/h2_entxt04.gif" alt="알림" /></span>
+                <h2>새소식</h2>
+                <span><img src="/img/common/h2_entxt04.gif" alt="새소식" /></span>
             </div>
             <ul class="lnb-lst">
-                <li class="on"><a href="JavaScript:goNotice()">알림</a></li>
+                <li class="on"><a href="JavaScript:goNotice()">새소식</a></li>
             </ul>
         </div>
         <!-- //lnb -->
@@ -59,17 +59,12 @@
             <div class="location txt-r">  
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goNotice()">알림</a></li>
-                    <li class="on"><a href="JavaScript:goNotice()">알림</a></li>
+                    <li><a href="JavaScript:goNotice()">새소식</a></li>
+                    <li class="on"><a href="JavaScript:goNotice()">새소식</a></li>
                 </ul>
             </div>
             <!-- section -->
             <div class="section">  
-                <div class="tit-area">
-                    <h3>알림</h3>
-                    <p>규정 및 제도에 대한 개선사항을 건의해주세요</p>
-                </div>
-    
                 <html:form action="/Notice" method="post" name="fm" type="kr.go.rndcall.mgnt.notice.form.NoticeForm">
                     <html:hidden name="NoticeForm" property="method" value="noticeList" />
                     <html:hidden name="NoticeForm" property="searchVO.loginId" />
@@ -81,7 +76,7 @@
                     <html:hidden name="NoticeForm" property="searchVO.pagerOffset"/>
  
                     <!-- search-box -->
-                    <div class="search-box">
+                    <div class="search-box mt60">
                         <div class="search-form">
                             <html:select name="NoticeForm" property="searchVO.whichSearch" style="width:90px;">
                                 <html:option value="title">제목</html:option>
@@ -96,8 +91,8 @@
                     <!-- board-type01 -->
                     <div class="board-type01 mt20">    
                         <div class="board-box">
-                            <table border="0" summary="번호, 제목, 첨부파일, 등록일, 조회수 목록페이지">
-                                <caption>알림 목록 페이지</caption>
+                            <table border="0" summary="번호, 제목, 첨부파일, 등록일 새소식 페이지">
+                                <caption>새소식 페이지</caption>
                                 <colgroup>
                                     <col width="7%" />
                                     <col width="*" />
@@ -152,7 +147,7 @@
                     %>
                     <!-- btn-set-->
                     <div class="btn-lst txt-r">
-                        <span class="btn-set pink"><a href="/switch.do?prefix=/notice&page=/Notice.do?method=noticeInsertForm&searchVO.menu_sn=04">알림등록</a></span>
+                        <span class="btn-set pink"><a href="/switch.do?prefix=/notice&page=/Notice.do?method=noticeInsertForm&searchVO.menu_sn=04">새소식 등록</a></span>
                     </div>
                     <!-- //btn-set-->
                     <%

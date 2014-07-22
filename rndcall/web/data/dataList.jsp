@@ -58,7 +58,7 @@
             <ul class="lnb-lst">
                 <li><a href="Javascript:goLawInfo()">법령 및 행정규칙</a></li>
 <!--                 // TODO 제도 링크 확인. -->
-                <li><a href="#none;">제도</a></li>
+                <li><a href="JavaScript:goIns('SYSTEM')">연구제도</a></li>
                 <li  class="on"><a href="JavaScript:goIns('DATA')">기타</a></li>
             </ul>               
         </div>
