@@ -232,7 +232,7 @@ public class DataAction extends DispatchAction {
 		//}else{
 		//	searchVO.setBoard_type("INS"); 
 		//}
-		searchVO.setBoard_type("DATA"); 
+//		searchVO.setBoard_type("DATA"); 
 		searchVO.setPagerOffset(Util.replaceNull(request.getParameter("pager.offset"), "0"));
     	try{
     		DataBiz biz = new DataBiz();

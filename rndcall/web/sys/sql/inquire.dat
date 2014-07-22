@@ -47,7 +47,8 @@ EMAIL = ?,
 OPEN_YN = ?,
 FILE_ID = ?,
 EDIT_ID = ?,
-EDIT_DT =sysdatetime
+EDIT_DT =sysdatetime,
+QUERY_USER_INFO = ?
 WHERE SEQ = ?
 
 #==============================================================
@@ -218,7 +219,7 @@ SELECT  Q.SEQ,             Q.BOARD_TYPE,       Q.TITLE,            CLOB_TO_CHAR(
         DECODE(U.ORG_NM,null,'-',U.ORG_NM) AS TRANS_NM,
         DECODE(U.NAME,null,'-',U.NAME) AS TRANS_ORG_NM,
         DECODE(U.ATTACHED_NM,null,'-',U.ATTACHED_NM) AS TRANS_ATTACHED_NM,
-        U.TEL
+        U.TEL, Q.QUERY_USER_INFO 
    FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_AUTH U ON Q.PUBLIC_TRANS_ID = U.USER_ID
                                  LEFT OUTER JOIN RNDCALL_BOARD_ANSWER A ON Q.SEQ = A.Q_SEQ
   WHERE Q.DEL_YN='N'

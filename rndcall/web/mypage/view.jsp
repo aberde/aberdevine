@@ -68,12 +68,7 @@
                 </ul>
             </div>
             <!-- section -->
-            <div class="section">
-                <div class="tit-area">
-                    <h3>마이페이지</h3>
-                    <p>R&amp;D 도우미센터 마이페이지입니다.</p>
-                </div>
-                
+            <div class="section mt60">
                 <html:form action="/Mypage" method="post" name="fm" type="kr.go.rndcall.mgnt.mypage.form.MypageForm">
 			        <html:hidden name="MypageForm" property="method" value="getMypageView"/>
 			        <html:hidden name="MypageForm" property="searchVO.loginId"/>

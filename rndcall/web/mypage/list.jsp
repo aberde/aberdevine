@@ -61,12 +61,8 @@
             </div>
             <!-- section -->
             <div class="section">
-                <div class="tit-area">
-                    <h3>마이페이지</h3>
-                    <p>R&amp;D 도우미센터 마이페이지입니다.</p>
-                </div>
                 <!-- my-bx -->
-                <div class="my-bx mt30 clearfix">
+                <div class="my-bx mt60 clearfix">
                     <div class="bx">
                         <div class="inquiry">
                             <h4 class="red">문의하기</h4>
@@ -106,7 +102,7 @@
 
 <!--                     // TODO 검색기능 추가. -->
 	                <!-- search-box -->
-	                <div class="search-box">
+	                <div class="search-box mt20">
 	                    <div class="search-form">
 	                        <select style="width:90px;">
 	                            <option>전체</option>

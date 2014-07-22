@@ -82,6 +82,7 @@ select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#2429
 
 /* 여백 마진, 페딩 필요시 추가 */
 .mt0 {margin-top:0px !important;}
+.mt5 {margin-top:5px !important;}
 .mt10 {margin-top:10px !important;}
 .mt15 {margin-top:15px !important;}
 .mt20 {margin-top:20px !important;}
@@ -107,25 +108,32 @@ select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#2429
 
 .pt10 {padding-top:10px !important;}
 .pb10 {padding-bottom:10px !important;}
-.pl10 {padding-left:10px !important;}
+.pl5 {padding-left:5px !important;}
 .pr10 {padding-right:10px !important;}
 
 
 /* btn-set */
 .btn-area {margin-top:50px;}
+
 .btn-set {display:inline-block; background: url(../img/btn/btn_set.gif) 100% 0 ; padding-right:17px;}
-.btn-set a {display:inline-block;  background: url(../img/btn/btn_set.gif) 0 0; color:#fff; padding-left:18px; line-height:26px; font-size:11px; font-weight:bold;}
+.btn-set a {display:inline-block;  background: url(../img/btn/btn_set.gif) 0 0; color:#fff; padding-left:18px; line-height:31px; font-size:12px; font-weight:bold;}
 .btn-set.pink {background-position:100% -31px;}
 .btn-set.pink a {background-position:0 -31px;}
 .btn-set.gray {background-position:100% -62px;}
 .btn-set.gray a {background-position:0 -62px;}
 .btn-set.green {background-position:100% -93px;}
 .btn-set.green a {background-position:0 -93px;}
+
+
+
 .btn-set.sky {background-position:100% -124px; padding-right:35px}
 .btn-set.sky a {background-position:0 -124px; font-size:12px; padding-left:30px; line-height:36px }
 
 .btn-set.login {background-position:100% -447px; padding-right:10px}
 .btn-set.login a {background-position:0 -447px; font-size:24px; padding-left:20px; line-height:66px }
+
+.btn-set.red {background-position:100% -520px; padding-right:35px}
+.btn-set.red a {background-position:0 -520px; font-size:14px; padding-left:30px; line-height:36px }
 
 .btn-set.set2 {padding-right:12px}
 .btn-set.set2 a {padding-left:12px; font-size:11px; line-height:21px }
@@ -148,7 +156,6 @@ select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#2429
 .btn-set.set4.yellow {background: url(../img/btn/bg_yellow.gif) 0 0;}
 .btn-set.set4.gray {background: url(../img/btn/bg_gray.gif) 0 0; }
 .btn-set.set4.green {background: url(../img/btn/bg_green.gif) 0 0; }
-
 
 /* 버튼 아이콘 셋 */
 .btn-set .bullet {background: url(../img/btn/btn_icon.png) 0 0; width:8px; height:15px; margin-left:9px; text-indent:-9999px;}
@@ -201,6 +208,7 @@ select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#2429
 .board-write td{padding:7px 8px;border:1px solid #e2e2e2; border-right:none;}
 .board-write input[type="text"]{border:1px solid #e5e5e5;background-color:#f9f9f9;}
 
+.board-write .explain{padding-left:10px;font-size:11px;font-weight:normal; }
 /* board-detail*/
 .board-detail .board-box{border-top:2px solid #474747; border-bottom:1px solid #474747;}
 .board-detail  th{padding:7px 0 8px 26px;border-bottom:1px solid #eeeeee;font-size:12px; font-weight:bold;color:#474747; vertical-align:top; letter-spacing:-2px;background:#fafafa url(../img/sub/bullet_rect.jpg) 19px 14px no-repeat;}
@@ -217,10 +225,10 @@ select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#2429
 .tbl-type01 {border-top:2px solid #474747; border-bottom:2px solid #474747;}
 .tbl-type01 thead tr th:first-child {border-left:0}
 .tbl-type01 thead tr th {text-align:center; vertical-align:middle; font-size:14px;  color:#3a7fa3; background:#eef9fc; font-weight:bold; border-bottom:1px solid #eeeeee;  padding:10px 0 13px; border-left:1px solid #e2e2e2;}
-.tbl-type01 thead tr.on th {background:#f6fdff; color:#6caccd; font-size:12px; }
+.tbl-type01 thead tr.on th {background:#f6fdff; color:#6caccd; font-size:14px; }
 .tbl-type01 tbody tr td:first-child {border-left:0;}
-.tbl-type01 tbody tr td {vertical-align:middle; padding:8px 10px 10px; font-size:12px; color:#474747; border-top:1px solid #eeeeee; border-left:1px solid #e2e2e2; letter-spacing:-1px;}
-.tbl-type01 tbody tr td a{color:#2279a6;}
+.tbl-type01 tbody tr td {vertical-align:middle; padding:8px 10px 10px; font-size:14px; color:#474747; border-top:1px solid #eeeeee; border-left:1px solid #e2e2e2; letter-spacing:-1px;}
+.tbl-type01 tbody tr td a{font-size:14px; color:#2279a6;}
 .tbl-type01 tbody tr.on td, 
 .tbl-type01 tbody tr td.on{background:#fafafa}
 .tbl-type01 tbody tr:first-child td,
@@ -228,13 +236,15 @@ select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#2429
 .tbl-type01 tbody tr th {text-align:center; vertical-align:middle; font-size:14px; color:#3a7fa3; background:#eef9fc; font-weight:bold; text-align:center; border-top:1px solid #eeeeee;}
 .tbl-type01 tbody tr td.row-line{border-left:1px solid #e2e2e2;}
 /* blullet */
-.bullet{padding-left:15px; background: url(../img/common/bullet.gif) no-repeat left center; color:#171717; font-size:12px; font-weight:bold; line-height:15px;}
+.bullet{padding-left:15px; background: url(../img/common/bullet.gif) no-repeat left center; color:#171717; font-size:16px; font-weight:bold; line-height:15px;}
 
 /* lst-type */
 .lst-type li{padding-left:15px; background: url(../img/sub/bullet_rect.jpg) no-repeat left 8px; color:#6c6c6c; font-size:11px;}
 
 /*line*/
 .line-l {border-left:1px solid #e2e2e2 !important; }
-	
-	
-	
+
+/* 설명 박스 */
+.explain-bx{padding:15px 22px; background-color:#fce8b9 ;border:1px solid #fad57b;}
+.explain-bx strong{font-size:12px;font-weight:bold; color:#595959;}
+.explain-bx p{font-size:12px; color:#595959;}

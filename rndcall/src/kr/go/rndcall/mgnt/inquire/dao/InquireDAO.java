@@ -399,6 +399,7 @@ public class InquireDAO extends BaseSqlDAO{
 				vo.setReg_nm(rs.getString("REG_NM"));
 				vo.setRead_count(rs.getInt("READ_COUNT"));
 				vo.setContents(rs.getString("CONTENTS"));
+				vo.setQuery_user_info(rs.getString("QUERY_USER_INFO"));
 //				content_clob = rs.getCharacterStream("CONTENTS");
 //				vo.setContents(Util.streamToBuf(content_clob).toString());
 				if(searchVO.getFlag().equals("U")){
@@ -756,6 +757,7 @@ public class InquireDAO extends BaseSqlDAO{
 			pstmt.setString(param++, vo.getOpen_yn());
 			pstmt.setString(param++, vo.getFile_id());
 			pstmt.setString(param++, searchVO.getLoginId());
+			pstmt.setString(param++, vo.getQuery_user_info());
 			pstmt.setString(param++, searchVO.getSeq());
 			
 			pstmt.executeUpdate();

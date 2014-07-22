@@ -11,14 +11,26 @@ function popClose(){
 function popH(){
 	var $popAll = $('#popAll');
 	var $popH = $popAll.height();
+	var $popW = $popAll.width();
+
+	var $winW = $(window).width();
 	var $winH = $(window).height();
 
 	if($popH < $winH){
 		//$popAll.css({'top':'30%', 'left':'50%', 'margin-top':-$popH/2, 'margin-left':'-360px'});
-		$popAll.css({'top':'13%', 'left':'30%'});//margin-top':"-$popH/2",
+		$popAll.css({
+			'top':'119px'
+			
+		//	, 'left':'50%'
+			//'margin-top' : '119px'
+			, 'margin-right': 'auto'
+			, 'margin-left': 'auto'
+
+		});
 	}else{
 		$popAll.css({'top':'0', 'left':'50%', 'margin-top':'0', 'margin-left':'-160px'});
 	}
+
 }
 
 /*  전체 메뉴 */
@@ -26,14 +38,16 @@ function totalMenuBtnHandler(_url)
 {
 	var $popTriger = $(".btn-menu");
 	$popTriger.bind('click', function() {
-		var $popAll = $('#popAll');
-		popAppend();
+		// var $popAll = $('#popAll');
+		// popAppend();
 
-		$('#popAll').load(_url, function(){
-			popH();		
-			$popAll.css({'top':'0'});
-		});
+		// $('#popAll').load(_url, function(){
+		// 	popH();		
+		// 	$popAll.css({'top':'0'});
+		// });
+		location.href="/sitemap/sitemap.jsp";
 	});
+	
 }
 
 

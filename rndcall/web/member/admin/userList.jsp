@@ -74,6 +74,8 @@
                 <li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=09">질문분야관리</a></li>
                 <li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=09">오프라인자료 등록</a></li>
                 <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=09">통계정보</a></li>
+                <li><a href="#none;">온라인 상담</a></li>
+                <li><a href="#none;">R&D 신문고</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -125,7 +127,7 @@
 	                            <colgroup>
 	                                <col width="7%" />
 	                                <col width="10%" />
-	                                <col width="12%" />
+<!-- 	                                <col width="12%" /> -->
 	                                <col width="*" />
 	                                <col width="12%" />
 	                                <col width="12%" />
@@ -135,7 +137,7 @@
 	                                <tr>
 	                                    <th scope="col">번호</th>
 	                                    <th scope="col">ID</th>
-	                                    <th scope="col">이름</th>
+<!-- 	                                    <th scope="col">이름</th> -->
 	                                    <th scope="col">소속기관</th>
 	                                    <th scope="col">부서</th>
 	                                    <th scope="col">권한</th>
@@ -153,7 +155,7 @@
                                             <tr <%= rowNum.intValue() % 2 == 1 ? "class=\"on\"" : "" %>>
                                                 <td><%= Integer.valueOf(pagerOffset).intValue() + rowNum.intValue() + 1 %></td>
                                                 <td><bean:write name="vo" property="login_id"/></td>
-                                                <td><bean:write name="vo" property="name"/></td>
+<%--                                                 <td><bean:write name="vo" property="name"/></td> --%>
                                                 <td><bean:write name="vo" property="org_nm"/></td>
                                                 <td><bean:write name="vo" property="attached_nm"/></td>
                                                 <td><bean:write name="vo" property="roleCD"/></td>

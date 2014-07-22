@@ -4,8 +4,8 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>:: R&amp;D도우미센터 ::</title>
-	<link rel="stylesheet" type="text/css" href="css/common.css" />
-	<link rel="stylesheet" type="text/css" href="css/layout.css" />
+	<link rel="stylesheet" type="text/css" href="/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="/css/layout.css" />
 	<!--[if lt IE 7]>
 	<style media="screen" type="text/css">
 	#container {
@@ -22,40 +22,45 @@
 <!--[if !IE]><!--> <body> <!--<![endif]-->
 
 	<!-- pop -->
-	<div id="pop">
-		<div class="tit">
-			<strong>R&amp;D도우미센터</strong>
-			<p>R&amp;D도우미센터 홈페이지 전체메뉴</p>
-		</div>
-		<ul class="menu">
-			<li class="txt">
-				<a href="/development/development01.jsp">국가연구개발 사업이란?</a>
-				<ul>
-					<li><a href="/development/development01.jsp">정의 및 법령 체계</a></li>
-					<li><a href="/development/development02.jsp">사업추진체계</a></li>
-				</ul>
-			</li>
-			<li class="txt">
-				<a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireList&searchVO.menu_sn=01">온라인 상담</a>
-				<ul>
-					<li><a href="JavaScript:goInquireForm()">온라인 상담</a></li>
-					<li><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
-				</ul>
-			</li>
-			<li class="txt"><a href="JavaScript:goOffer()">온라인 신문고</a></li>
-			<li class="txt"><a href="JavaScript:goNotice()">알림</a></li>
-			<li class="txt">
-				<a href="JavaScript:goData()">자료실</a>
-				<ul>
-					<li><a href="#">법령 및 행정규칙</a></li>
-					<li><a href="#">제도</a></li>
-					<li><a href="#">기타</a></li>
-				</ul>
-			</li>
-			<li class="txt"><a href="/center/center.jsp">센터 소개</a></li>
-		</ul>
-		<a href="#" class="btn-close" onclick="popClose()"><span >닫기</span></a>
-	</div>
-	<!-- // pop -->
+    <div id="pop">
+        <div class="tit">
+            <strong>R&amp;D도우미센터 전체메뉴</strong>
+            <!-- <p>R&amp;D도우미센터 홈페이지 전체메뉴</p> -->
+        </div>
+        <ul class="menu clearfix">
+            <li class="txt">
+                <a href="/development/development01.jsp">국가연구개발 사업이란?</a>
+                <ul>
+                    <li><a href="/development/development01.jsp">정의 및 법령 체계</a></li>
+                    <li><a href="/development/development02.jsp">사업추진체계</a></li>
+                </ul>
+            </li>
+            <li class="txt">
+                <a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireList&searchVO.menu_sn=01">온라인 상담</a>
+                <ul>
+                    <li><a href="JavaScript:goInquireForm()">온라인 상담</a></li>
+                    <li><a href="JavaScript:goFaq()">자주 찾는 질문</a></li>
+                </ul>
+            </li>
+            <li class="txt"><a href="JavaScript:goOffer()">R&D 신문고</a></li>
+            <li class="txt">
+                <a href="JavaScript:goNotice()">알림</a>
+                <ul>
+                    <li><a href="JavaScript:goNotice()">공지사항</a></li>
+                </ul>
+            </li>
+            <li class="txt">
+                <a href="JavaScript:goData()">자료실</a>
+                <ul>
+                    <li><a href="Javascript:goLawInfo()">법령 및 행정규칙</a></li>
+                    <li><a href="JavaScript:goIns('SYSTEM')">제도</a></li>
+                    <li><a href="JavaScript:goIns('DATA')">기타</a></li>
+                </ul>
+            </li>
+            <li class="txt"><a href="/center/center.jsp">센터 소개</a></li>
+        </ul>
+        <a href="#" class="btn-close" onclick="popClose()"><span >닫기</span></a>
+    </div>
+    <!-- // pop -->
 </body>
 </html>

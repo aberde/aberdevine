@@ -162,6 +162,8 @@
                 <li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=09">질문분야관리</a></li>
                 <li class="on"><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=09">오프라인자료등록</a></li>
                 <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=09">통계정보</a></li>
+                <li><a href="#none;">온라인 상담</a></li>
+                <li><a href="#none;">R&D 신문고</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -202,36 +204,6 @@
 	                                    <td colspan="3">
 	                                        <html:text name="AdminForm" property="vo.title" title="제목" style="width:98%" />
 	                                    </td>
-	                                </tr>
-	                                <tr>
-	                                    <th scope="col"><label for="name">이름</label></th>
-	                                    <td><html:text name="AdminForm" property="vo.name" style="width:230px" /></td>
-	                                    <th scope="col"><label for="cate1">분류선택(대)</label></th>
-	                                    <td>
-	                                        <html:select name="AdminForm" property="vo.category1" styleId="category1" title="분류선택(대)" onchange="f_cate_change(this.value)" style="width:187px;">
-	                                            <html:option value="">::: 선택 :::</html:option>
-	                                            <!-- <html:optionsCollection name="AdminForm" property="voList" label="cd_nm" value="cd_nm"/>-->
-	                                        </html:select>
-	                                    </td>       
-	                                </tr>
-	                                <tr>
-	                                    <th scope="col"><label for="tel">연락처</label></th>
-	                                    <td>
-	                                        <html:select name="AdminForm" property="vo.cell_number1" style="width:62px;" title="">
-	                                            <html:option value="010">010</html:option>
-	                                        </html:select>
-	                                        -
-	                                        <html:text name="AdminForm" property="vo.cell_number2" style="width:62px;" maxlength="4"/>
-	                                        -
-	                                        <html:text name="AdminForm" property="vo.cell_number3" style="width:62px;" maxlength="4" />
-	                                    </td>
-	                                    <th scope="col"><label for="cate2">분류선택(중)</label></th>
-	                                    <td>
-	                                        <html:select name="AdminForm" property="vo.category2" styleId="category2" style="width:187px;" title="분류선택(중)">
-	                                            <html:option value="">::: 선택 :::</html:option>
-	                                            <!-- <html:optionsCollection name="AdminForm" property="voList" label="cd_nm" value="cd_nm"/>-->
-	                                        </html:select>
-	                                    </td>       
 	                                </tr>
 	                                <tr>
 	                                    <th scope="col"><label for="qu">질문일자</label></th>

@@ -96,11 +96,11 @@
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
-                <h2>온라인신문고</h2>
+                <h2>R&D 신문고</h2>
                 <span><img src="/img/common/h2_entxt03.gif" alt="Online Sinmungo" /></span>
             </div>
             <ul class="lnb-lst">
-                <li class="on"><a href="JavaScript:goOffer()">온라인신문고</a></li>
+                <li class="on"><a href="JavaScript:goOffer()">R&D 신문고</a></li>
             </ul>
         </div>
         <!-- //lnb -->
@@ -109,20 +109,17 @@
             <div class="location txt-r">  
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goOffer()">온라인신문고</a></li>
-                    <li class="on"><a href="JavaScript:goOffer()">온라인신문고</a></li>
+                    <li><a href="JavaScript:goOffer()">R&D 신문고</a></li>
+                    <li class="on"><a href="JavaScript:goOffer()">R&D 신문고</a></li>
                 </ul>
             </div>
             <!-- section -->
             <div class="section">  
-                <div class="tit-area">
-                    <h3>온라인 신문고</h3>
-                    <p>규정 및 제도에 대한 개선사항을 건의해주세요</p>
-                </div>
-                <div class="sinmungo01">
-                    <h4>온라인신문고 제안 처리 절차</h4>
+                <div class="sinmungo01 mt60">
+                    <h4>R&D 신문고 제안 처리 절차</h4>
                     <ul class="clearfix">
                         <li>의견제시</li>
+                        <li>접수중</li>
                         <li>검토중</li>
                         <li>답변완료</li>
                     </ul>
@@ -158,7 +155,7 @@
                     <div class="board-type01 mt20">
                         <div class="board-box">
                             <table border="0" summary="번호, 제목, 글쓴이, 등록일, 상태, 조회수 목록페이지">
-                                <caption>온라인신문고 목록페이지</caption>
+                                <caption>R&D 신문고 목록페이지</caption>
                                 <colgroup>
                                     <col width="7%" />
                                     <col width="*" />

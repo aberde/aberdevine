@@ -149,8 +149,15 @@
             <div class="section">       
                 <div class="tit-area">
                     <h3>온라인상담</h3>
-                    <p>R&amp;D 관련 규정 및 제도에 대해 궁금하신 사항에 담당자가 답변해 드립니다.기존 답변을 검색 후 질의해주세요.</p>
+                    <!-- <p>R&amp;D 관련 규정 및 제도에 대해 궁금하신 사항에 담당자가 답변해 드립니다.기존 답변을 검색 후 질의해주세요.</p> -->
                 </div>
+                <!--  explain-bx -->
+                <div class="explain-bx mt10">
+                    <strong>국가연구개발사업 관련 공통법령 및 제도에 대해 궁금하신 사항에 답변해드립니다.</strong>
+                    <p>*기존 질의응답을 검색 후 질의 부탁드리며, 원활한 답변 처리를 위해 질의 등록 후 24시간 이내에만 수정, 삭제가 가능하오니 양해바랍니다.</p>
+                    <p>*답변을 이메일로 받고자 하는 경우에는 내용에 이메일 주소를 남겨주시기 바랍니다.</p>
+                </div>
+                <!--  //explain-bx -->
                 
                 <html:form action="/Inquire" method="post" name="fm" enctype="multipart/form-data" type="kr.go.rndcall.mgnt.inquire.form.InquireForm">
                     <html:hidden name="InquireForm" property="method" value="getInquireInsert"/>
@@ -161,7 +168,7 @@
                     <html:hidden name="InquireForm" property="searchVO.menu_sn"/>
                     
 	                <!-- board-write -->
-	                <div class="board-write mt30">
+	                <div class="board-write mt10">
 	                    <div class="board-box">
 	                        <table summary="질의자 정보, 공개여부, 제목, 내용 보기 등록 페이지">
 	                            <caption>온라인상담 등록 페이지 </caption>
@@ -176,7 +183,8 @@
 	                                <tr>
 	                                    <th scope="row"><label for="info0">비밀번호</label></th>
 	                                    <td>
-	                                        <input type="password" id="vo.password" name="vo.password" /> 
+	                                        <input type="password" id="vo.password" name="vo.password" />
+	                                        <span class="explain">- 비회원은 마이페이지 메뉴 서비스가 제공되지 않습니다. <br />- 질의응답 사항을 개별적으로 검색하여야 합니다.</span>
 	                                    </td>
 	                                </tr>
 	                                <%
@@ -211,8 +219,7 @@
 	                                <tr>
 	                                    <th scope="row"><label for="txtarea1">내용</label></th>
 	                                    <td>
-	                                        <textarea name="vo.contents" cols="0" rows="0" style="width:97%; min-height:254px;" title="질문 내용">*원활한 답변 처리를 위해 질의 등록 후 24시간 이내에만 수정, 삭제가 가능하오니 양해바랍니다.*답변을 이메일로 받고자 하는 경우에는 내용에 이메일 주소를 남겨주시기 바랍니다.
-                                            </textarea>
+	                                        <textarea id="txtarea1" name="vo.contents" cols="0" rows="0" style="width:97%; min-height:254px;" title="질문 내용"></textarea>
 	                                    </td>
 	                                </tr>
 	                                <tr>
