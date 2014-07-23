@@ -10,25 +10,19 @@ import kr.co.gitech.storyz.common.StoryZConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * 안드로이드, 아이폰 메시지 통합 발송 서비스
  */
-public class StoryZMessageImpl {
+@Service("storyZMessageService")
+public class StoryZMessageServiceImpl implements StoryZMessageService {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	private IosApnsImpl iosApnsImpl;
+	private IosApnsService iosApnsService;
 	
-	public IosApnsImpl getIosApnsImpl() {
-		return iosApnsImpl;
-	}
-
-	public void setIosApnsImpl(IosApnsImpl iosApnsImpl) {
-		this.iosApnsImpl = iosApnsImpl;
-	}
-
 	public int send(MessageContext context, PushMessage message) {
 		if (context == null || context.getMessageEntries() == null || context.getMessageEntries().size() == 0) {
 			return 0;
@@ -62,7 +56,7 @@ public class StoryZMessageImpl {
 		int success = 0;
 		if (messages.size() > 0) {
 			try {
-				Future<Integer> future = iosApnsImpl.send(messages, customMessage, message);
+				Future<Integer> future = iosApnsService.send(messages, customMessage, message);
 				success = future.get();
 				logger.warn("PNS : sending success result of iOS <{}>, sum <{}>", success, messages.size());
 			} catch (Exception e) {
