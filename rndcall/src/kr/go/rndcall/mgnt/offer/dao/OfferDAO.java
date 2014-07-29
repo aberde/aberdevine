@@ -208,6 +208,7 @@ public class OfferDAO extends BaseSqlDAO{
 				vo.setStat(rs.getString("STAT"));
 				vo.setAnswer_seq(rs.getString("ANSWER_SEQ"));
 				vo.setPublic_trans_yn(rs.getString("PUBLIC_TRANS_YN"));
+				vo.setQuery_user_info(rs.getString("QUERY_USER_INFO"));
 			}
 			
 			resultVO.setVo(vo);			

@@ -61,6 +61,7 @@ public class LoginDAO extends BaseSqlDAO{
 	        	vo.setRoleCD(rs.getString("AUTH"));
 	        	vo.setEmail(rs.getString("EMAIL"));
 	        	vo.setMobile(rs.getString("MOBILE"));
+	        	vo.setSector(rs.getString("SECTOR"));
 
 		        resultVO.setErrCd("Y");
 	        }

@@ -89,6 +89,7 @@ public class MemberAdminDAO extends BaseSqlDAO {
 				vo.setEmail(rs.getString("EMAIL"));
 				vo.setMobile(rs.getString("MOBILE"));
 				vo.setRoleCD(rs.getString("AUTH"));
+				vo.setSector(rs.getString("SECTOR"));
 
 				voList.add(vo);
 			}
@@ -116,7 +117,7 @@ public class MemberAdminDAO extends BaseSqlDAO {
 			
 			query += " AND AUTH_ID = '" + searchVO.getAuth_id() + "' \n";
 			
-			openPreparedStatementForR(query, true);
+			openPreparedStatementForR(query, false);
 
 			executeQueryForR(searchVO); // 검색조건을 던진다.
 			

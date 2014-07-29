@@ -148,3 +148,30 @@ function topNav(gnbActiveNum, gnbActiveSub) {
 		}
 	}).init();
 }
+
+
+function FNfamily_go(_type){
+	var goUrl="";
+	if(_type=="1") {
+		goUrl=$("#family1").val();
+		if(goUrl=="") {
+			alert("사이트를 선택해 주세요.");
+			return;
+		}
+	}else if(_type=="2"){
+		goUrl=$("#family2").val();
+		if(goUrl=="") {
+			alert("사이트를 선택해 주세요.");
+			return;
+		}
+	}else{
+		goUrl=$("#family3").val();
+		if(goUrl=="") {
+			alert("사이트를 선택해 주세요.");
+			return;
+		}
+	}
+	console.log("goUrl : "+goUrl);
+	window.open(goUrl)
+}
+

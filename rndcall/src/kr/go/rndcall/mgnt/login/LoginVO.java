@@ -20,7 +20,18 @@ public class LoginVO extends BaseVO {
 	private String roleCD = "";
 	private String roleNM = "";
 	private String username = "";
-	/**
+	
+	private String sector = "";
+	
+	public String getSector() {
+        return sector;
+    }
+
+    public void setSector(String sector) {
+        this.sector = sector;
+    }
+
+    /**
 	 * BuAdNotiLVO 생성자
 	 */
 	public LoginVO(){

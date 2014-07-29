@@ -26,7 +26,17 @@ public class MemberVO extends BaseVO{
 	private String pwFindQuestion = "";
 	private String pwFindAnswer = "";
 	
-	public String getIdFindQuestion() {
+	private String sector = "";
+	
+	public String getSector() {
+        return sector;
+    }
+
+    public void setSector(String sector) {
+        this.sector = sector;
+    }
+
+    public String getIdFindQuestion() {
         return idFindQuestion;
     }
 

@@ -97,11 +97,11 @@
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
-                <h2>R&D 신문고</h2>
+                <h2>R&amp;D 신문고</h2>
                 <span><img src="/img/common/h2_entxt03.gif" alt="Online Sinmungo" /></span>
             </div>
             <ul class="lnb-lst">
-                <li class="on"><a href="JavaScript:goOffer()">R&D 신문고</a></li>
+                <li class="on"><a href="JavaScript:goOffer()">R&amp;D 신문고</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -110,8 +110,8 @@
             <div class="location txt-r">        
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goOffer()">R&D 신문고</a></li>
-                    <li class="on"><a href="JavaScript:goOffer()">R&D 신문고</a></li>
+                    <li><a href="JavaScript:goOffer()">R&amp;D 신문고</a></li>
+                    <li class="on"><a href="JavaScript:goOffer()">R&amp;D 신문고</a></li>
                 </ul>
             </div>
             <!-- section -->
@@ -119,8 +119,7 @@
                 <!--  explain-bx -->
                 <div class="explain-bx mt60">
                     <strong>연구현장의 불합리한 제도나 관행 등 제도개선 건의 또는 기타 연구제도 관련 불편·불만사항을 건의해주세요.</strong>
-                    <p>*활한 제안 처리를 위해 등록 후 24시간 이내에만 수정, 삭제가 가능하오니 양해바랍니다.</p>
-                    <p>*답변을 이메일로 받고자 하는 경우에는 내용에 이메일 주소를 남겨주시기 바랍니다.</p>
+                    <p>*원활한 제안 처리를 위해 등록 후 24시간 이내에만 수정, 삭제가 가능하오니 양해바랍니다.</p>
                 </div>
                 <!--  //explain-bx -->
                 
@@ -136,30 +135,36 @@
 	                <!-- board-write -->
 	                <div class="board-write mt10">
 	                    <div class="board-box">
-	                        <table summary="R&D 신문고 페이지">
-	                            <caption>R&D 신문고 페이지 </caption>
+	                        <table summary="R&amp;D 신문고 페이지">
+	                            <caption>R&amp;D 신문고 페이지 </caption>
 	                            <colgroup>
 	                                <col width="16%"/>
 	                                <col width="*"/>
 	                            </colgroup>
 	                            <tbody>
+	                                <%
+                                        if ( mainLoginVO == null ) {
+                                    %>
 	                                <tr>
 	                                    <th scope="row"><label for="info0">비밀번호</label></th>
 	                                    <td>
 	                                        <input type="password" id="vo.password" name="vo.password" /> 
 	                                    </td>
 	                                </tr>
-	                                <tr>
-	                                    <th scope="row"><label for="info1">질의자 정보</label></th>
-	                                    <td>
-	                                        <input type="radio" id="info1" name="vo.query_user_info" value="1" checked /> <label for="info1">중앙행정기관</label>
-	                                        <input type="radio" id="info2" name="vo.query_user_info" value="2" /> <label for="info2">전문기관</label>
-	                                        <input type="radio" id="info3" name="vo.query_user_info" value="3" /> <label for="info3">정부출연연구기관</label>
-	                                        <input type="radio" id="info4" name="vo.query_user_info" value="4" /> <label for="info4">대학</label>
-	                                        <input type="radio" id="info5" name="vo.query_user_info" value="5" /> <label for="info5">기업</label>
-	                                        <input type="radio" id="info6" name="vo.query_user_info" value="6" /> <label for="info6">기타</label>
-	                                    </td>
-	                                </tr>
+	                                <%
+                                        }
+                                    %>
+	                                <tr <%= mainLoginVO == null ? "" : "style=\"display: none;\"" %>>
+                                        <th scope="row"><label for="info1">질의자 정보</label></th>
+                                        <td>
+                                            <input type="radio" id="info1" name="vo.query_user_info" value="1" <%= mainLoginVO != null && "1".equals(mainLoginVO.getSector()) ? "checked=\"checked\"" : "" %> /> <label for="info1">중앙행정기관</label>
+                                            <input type="radio" id="info2" name="vo.query_user_info" value="2" <%= mainLoginVO != null && "2".equals(mainLoginVO.getSector()) ? "checked=\"checked\"" : "" %> /> <label for="info2">전문기관</label>
+                                            <input type="radio" id="info3" name="vo.query_user_info" value="3" <%= mainLoginVO != null && "3".equals(mainLoginVO.getSector()) ? "checked=\"checked\"" : "" %> /> <label for="info3">정부출연연구기관</label>
+                                            <input type="radio" id="info4" name="vo.query_user_info" value="4" <%= mainLoginVO != null && "4".equals(mainLoginVO.getSector()) ? "checked=\"checked\"" : "" %> /> <label for="info4">대학</label>
+                                            <input type="radio" id="info5" name="vo.query_user_info" value="5" <%= mainLoginVO != null && "5".equals(mainLoginVO.getSector()) ? "checked=\"checked\"" : "" %> /> <label for="info5">기업</label>
+                                            <input type="radio" id="info6" name="vo.query_user_info" value="6" <%= mainLoginVO != null && "6".equals(mainLoginVO.getSector()) ? "checked=\"checked\"" : "" %> /> <label for="info6">기타</label>
+                                        </td>
+                                    </tr>
 	                                <tr>
 	                                    <th scope="row"><label for="open1">공개여부</label></th>
 	                                    <td>
@@ -176,8 +181,7 @@
 	                                <tr>
 	                                    <th scope="row"><label for="txtarea1">내용</label></th>
 	                                    <td>
-	                                        <textarea name="vo.contents" cols="0" rows="0" style="width:97%; min-height:254px;" title="자주하는질문 내용" >*원활한 답변 처리를 위해 질의 등록 후 24시간 이내에만 수정, 삭제가 가능하오니 양해바랍니다.*답변을 이메일로 받고자 하는 경우에는 내용에 이메일 주소를 남겨주시기 바랍니다.
-	                                        </textarea>
+	                                        <textarea name="vo.contents" cols="0" rows="0" style="width:97%; min-height:254px;" title="자주하는질문 내용" ></textarea>
 	                                    </td>
 	                                </tr>
 	                                <tr>

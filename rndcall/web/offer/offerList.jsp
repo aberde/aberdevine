@@ -22,23 +22,6 @@
     //-->
     </script>
  
-    <%
-        if ( mainLoginVO == null || !mainIsLogin ) { 
-    %>
-    <script type="text/javascript">
-        alert('로그인이 필요한 메뉴입니다.');
-        document.location.href = "/index.jsp";
-    </script>
-    <%
-        } else if ( !mainRoleCD.equals("0000C") && !mainRoleCD.equals("0000Z") ) {
-    %>
-    <script type="text/javascript">
-        alert('권한이 없습니다.');
-        document.location.href = "/index.jsp";
-    </script>
-    <%
-        }
-    %>
     <script type="text/javascript">
     <!--
         activeDebug = true;  
@@ -96,11 +79,11 @@
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
-                <h2>R&D 신문고</h2>
+                <h2>R&amp;D 신문고</h2>
                 <span><img src="/img/common/h2_entxt03.gif" alt="Online Sinmungo" /></span>
             </div>
             <ul class="lnb-lst">
-                <li class="on"><a href="JavaScript:goOffer()">R&D 신문고</a></li>
+                <li class="on"><a href="JavaScript:goOffer()">R&amp;D 신문고</a></li>
             </ul>
         </div>
         <!-- //lnb -->
@@ -109,14 +92,14 @@
             <div class="location txt-r">  
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goOffer()">R&D 신문고</a></li>
-                    <li class="on"><a href="JavaScript:goOffer()">R&D 신문고</a></li>
+                    <li><a href="JavaScript:goOffer()">R&amp;D 신문고</a></li>
+                    <li class="on"><a href="JavaScript:goOffer()">R&amp;D 신문고</a></li>
                 </ul>
             </div>
             <!-- section -->
             <div class="section">  
                 <div class="sinmungo01 mt60">
-                    <h4>R&D 신문고 제안 처리 절차</h4>
+                    <h4>R&amp;D 신문고 제안 처리 절차</h4>
                     <ul class="clearfix">
                         <li>의견제시</li>
                         <li>접수중</li>
@@ -155,7 +138,7 @@
                     <div class="board-type01 mt20">
                         <div class="board-box">
                             <table border="0" summary="번호, 제목, 글쓴이, 등록일, 상태, 조회수 목록페이지">
-                                <caption>R&D 신문고 목록페이지</caption>
+                                <caption>R&amp;D 신문고 목록페이지</caption>
                                 <colgroup>
                                     <col width="7%" />
                                     <col width="*" />
@@ -196,27 +179,26 @@
                                                     <a href="JavaScript:offerDetailView('OFFER',<bean:write name="vo" property="seq"/>)"><bean:write name="vo" property="title"/></a>
                                                 </td>
                                                 <td>
-                                                    <bean:write name="vo" property="reg_nm"/>
+                                                    <logic:notEmpty name="vo" property="reg_nm">
+	                                                    <bean:write name="vo" property="reg_nm"/>
+                                                    </logic:notEmpty>
+                                                    <logic:empty name="vo" property="reg_nm">
+                                                                비회원
+                                                    </logic:empty>
                                                 </td>
                                                 <td>
                                                     <bean:write name="vo" property="reg_dt"/>
                                                 </td>
-                                                <%
-                                                    if ( roleCd.equals("0000Z") || roleCd.equals("0000C") ) {
-                                                %>
                                                 <td class="center">
                                                     <bean:define name="vo" property="stat" id="stat" type="java.lang.String"/>
                                                     <%
                                                         if ( stat.equals("Y") ) {
-                                                            out.print("<span class=\"btn-set set4 gray\">접수완료</span>");
+                                                            out.print("<span class=\"btn-set set4 gray\">답변완료</span>");
                                                         } else {
                                                             out.print("<span class=\"btn-set set4 yellow\">접수중</span>");
                                                         }
                                                     %>
                                                 </td>
-                                                <%
-                                                    }
-                                                %>
                                                 <td>
                                                     <bean:write name="vo" property="read_count"/>
                                                 </td>

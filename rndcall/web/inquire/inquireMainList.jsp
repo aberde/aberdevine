@@ -69,7 +69,7 @@
 				<span><img src="/img/common/h2_entxt02.gif" alt="Online Consultation" /></span>
 			</div>
 			<ul class="lnb-lst">
-				<li class="on"><a href="JavaScript:goInquireForm()">온라인상담</a></li>
+				<li class="on"><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
 				<li><a href="JavaScript:goFaq()">자주묻는질문</a></li>
 			</ul>
 		</div>
@@ -79,8 +79,8 @@
 			<div class="location txt-r">
 				<ul class="fr clearfix">
 					<li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-					<li><a href="JavaScript:goInquireList()">온라인상담</a></li>
-					<li class="on"><a href="JavaScript:goInquireForm()">온라인상담</a></li>
+					<li><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
+					<li class="on"><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
 				</ul>
 			</div>
 			<!-- section -->
@@ -105,8 +105,8 @@
 					<!-- inquiry -->
 					<div class="inquiry-bx mt30">
 						<ul class="clearfix">
-							<li><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireForm&searchVO.menu_sn=01"><img src="/img/sub/inquiry_img01.gif" alt="국가연구개발사업 공통법령 및 제도 질의 바로가기" /><img src="/img/sub/inquiry_img_txt01.png" alt="국가연구개발사업의 관리 등에 관한 규정 및 연구제도 상담이 이루어집니다." class="txt1" /></a></li>
-                            <li><a href="/inquire/inquireForm2.jsp"><img src="/img/sub/inquiry_img02.gif" alt="중앙행정기관별 국가연구개발사업 질의 바로가기" /><img src="/img/sub/inquiry_img_txt02.png" alt="각 사업 관련 상담을 위해 관련 전문기관으로 연결 서비스를 제공합니다." class="txt2" /></a></li>
+							<li><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireList&searchVO.board_type=QNA&searchVO.type=&searchVO.searchCategory=&searchVO.menu_sn=01"><img src="/img/sub/inquiry_img01.gif" alt="국가연구개발사업 공통법령 및 제도 질의 바로가기" /></a></li>
+                            <li><a href="/inquire/inquireForm2.jsp"><img src="/img/sub/inquiry_img02.gif" alt="중앙행정기관별 국가연구개발사업 질의 바로가기" /></a></li>
 						</ul>
 					</div>
 					<div class="inquiry-list clearfix">

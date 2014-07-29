@@ -9,11 +9,11 @@
 
 /* 2014-06-21 온라인 스탭 02*/
 .inquiry-bx {background: url(../img/bg/inquiry_bg.gif) no-repeat 0 0; height:322px;}
-.inquiry-bx ul li {float:left; margin-top:33px; width:365px; text-align:center;}
+.inquiry-bx ul li {float:left; margin-top:33px; width:345px; text-align:center;}
 .inquiry-bx ul li a{display:block;position:absolute;}
-.inquiry-bx ul li a img:first-child{padding-left:60px; *margin-left:-200px;}
-.inquiry-bx ul li a img.txt1{position:absolute;top:200px; left:183px; *left:0px}
-.inquiry-bx ul li a img.txt2{position:absolute;top:200px; left:183px; *left:0px}
+.inquiry-bx ul li a img:first-child{padding-left:80px; *margin-left:-200px;}
+/*.inquiry-bx ul li a img.txt1{position:absolute;top:200px; left:183px; *left:0px}*/
+/*.inquiry-bx ul li a img.txt2{position:absolute;top:200px; left:183px; *left:0px}*/
 
 .inquiry-list {margin-top:25px; background: url(../img/bg/inquiry_bg02.gif) no-repeat 0 0;  height:201px;  padding:15px 20px 0;}
 .inquiry-list h4 {border-bottom:2px solid #1f8eba; padding-bottom:10px; }
@@ -67,7 +67,7 @@
 .my-bx .scrap .number span {color:#000; vertical-align:top;}
 
 
-/* R&D 신문고 2014-06-21 김민서 */
+/* 온라인신문고 2014-06-21 김민서 */
 .sinmungo01{margin-top:25px; padding-top:27px; background:url(../img/sub/sinmungo_bg.gif) no-repeat; text-align:center; width:747px; height:218px;}
 .sinmungo01 h4{color:#262626; font-size:26px;}
 .sinmungo01 ul{margin:20px auto; padding-top:130px; text-align:center; background:url(../img/sub/sinmungo01.gif) no-repeat center top; width:747px;}
@@ -91,17 +91,20 @@
 
 .center-lst{margin:10px 0 35px; border-top:1px solid #f4f4f4; border-bottom:1px solid #f4f4f4;}
 .center-lst .info:first-child{border:0;}
-.center-lst .info{position:relative; float:left; border-left:1px solid #ececec; background:url(../img/sub/center_lst01.jpg) no-repeat center 117px; width:246px; height:260px;}
-.center-lst .info.bg01{background:url(../img/sub/center_lst02.jpg) no-repeat center 117px;}
-.center-lst .info.bg02{background:url(../img/sub/center_lst03.jpg) no-repeat center 117px;}
-.center-lst .info div{padding:20px 0 15px 25px;}
+.center-lst .info{position:relative; float:left;width:258px; height:260px;border-left:1px solid #ececec; background:url(../img/sub/center_lst_blue01.gif) no-repeat center 30px;}
+.center-lst .info.bg01{width:242px;}
+.center-lst .info.bg02{width:230px;}
+.center-lst .info.bg01{background:url(../img/sub/center_lst_blue02.gif) no-repeat center 30px;}
+.center-lst .info.bg02{background:url(../img/sub/center_lst_blue03.gif) no-repeat center 30px;}
+
+.center-lst .info div{padding:150px 10px 20px 10px; text-align:center;}
 .center-lst .info strong{margin-bottom:10px; color:#333; font-size:20px;}
 .center-lst .info .lst-type li{color:#6c6c6c; font-size:11px; line-height:15px; margin-bottom:5px;}
-.center-lst .info .arrow{position:absolute; right:-12px; bottom:50px; background: url(../img/sub/center_arrow.png) no-repeat right; width:24px; height:62px;}
+.center-lst .info .arrow{z-index:9;position:absolute; right:-12px; top:50px; background: url(../img/sub/center_arrow.png) no-repeat right; width:24px; height:62px;}
 
 .center-info{margin-top:10px; padding-top:20px; border-top:1px solid #f1f1f1;}
-.center-info li{padding-left:10px; color:#6c6c6c; font-size:11px; background:url(../img/sub/bullet_black.gif) no-repeat left center;}
-.center-info li strong{color:#323131; font-size:11px;}
+.center-info li{padding-left:10px; color:#6c6c6c; font-size:13px; background:url(../img/sub/bullet_black.gif) no-repeat left center;}
+.center-info li strong{color:#323131; font-size:13px;}
 .center-info li.txt{background:url(../img/sub/bullet_pink.gif) no-repeat left center;}
 .center-info li.txt strong{color:#d23962;}
 .center-info li.txt01{background:url(../img/sub/bullet_blue.gif) no-repeat left center;}
@@ -135,14 +138,69 @@
 
 
 
+/* 2014-07-25 sitemap */
+.sitemap-area{*zoom:1;}
+.sitemap-area:after{content:"";clear:both;display:block;}
+.sitebox{float:left;width:228px;height:200px;padding-left:25px;}
+.sitebox.rnd, .sitebox.notic{padding-left:0;}
+.sitebox h3{display:block;height:36px; padding-top:15px;padding-left:10px;margin-bottom:20px;}
+.sitebox h3 a{font-size:18px;line-height:25px; color:#fff;}
+.sitebox ul {padding-left:15px;}
+.sitebox ul li a{font-size:13px;padding-bottom:5px; color:#000000;}
 
-/* 2014-07-18 sitemap */
-.sitemap-area {}
-.sitemap > li:first-child {background:none;}
-.sitemap > li {background: url(../img/bg/sitemap_line.gif) repeat-x; height:90px; line-height:90px; }
-.sitemap > li strong {display:block; float:left; width: 220px; font-size:18px; color:#333; padding-left:10px;}
-.sitemap > li strong a{display:block;width: 220px; font-size:18px; color:#333; padding-left:10px;}
-.sitemap > li ul {float:left;}
-.sitemap > li ul li {float:left; font-weight:normal;}
-.sitemap > li ul li a { line-height:90px; font-size:14px; width:160px; font-weight:normal;}
-.sitemap > li.end {border-bottom:1px solid #c7c7c7}
+.rnd h3{background-color:#6095c3;}
+.rnd ul li{padding-left:20px;background:url(../img/sub/bullet_site01.gif) 0px 8px no-repeat; }
+
+.online h3{background-color:#f5cb49;}
+.online ul li{padding-left:20px;background:url(../img/sub/bullet_site02.gif) 0px 8px no-repeat; }
+
+.sinmungo h3{background-color:#aaca5c;}
+.notic h3{background-color:#959191;}
+.notic ul li{padding-left:20px;background:url(../img/sub/bullet_site03.gif) 0px 8px no-repeat; }
+.data h3{background-color:#2a4266;}
+.data ul li{padding-left:20px;background:url(../img/sub/bullet_site04.gif) 0px 8px no-repeat; }
+.center h3{background-color:#d23962;}
+
+
+/* 2014-07-24  정현주 private */
+.private,.private p,.private li{color:#333;}
+.private h4{padding-left:20px;margin-bottom:20px;background:url(../img/sub/bullet_big.gif) 0 0 no-repeat;font-size:16px;}
+.private p{padding:0 0 10px 20px;font-size:13px;}
+.private .private_box{padding:15px 25px 0 0;margin-bottom:30px;background-color:#fafafa;border:1px solid #ddd;}
+.private .private_box > p{margin-bottom:15px;}
+.private dl{margin-bottom:40px;}
+.private dl dt{height:14px;line-height:14px;padding-left:20px;margin-bottom:20px;font-weight:bold;background:url(../img/sub/bullet_tri.gif) 5px 0 no-repeat;}
+.private dl dd{padding-left:20px;margin-bottom:20px;}
+.private ul.private_list01{padding-left:15px;}
+.private ul.private_list01 > li{padding-left:15px;margin-bottom:5px;background:url(../img/sub/bullet_pink.gif) 5px 6px no-repeat;}
+.private ul.private_list01 span{padding:10px 0;}
+.private strong{padding-left:20px;margin-bottom:10px;background:url(../img/sub/bullet_cir.gif) 5px 4px no-repeat;}
+.private ul.private_list02 > li{margin:10px 0 0 25px;list-style-type:lower-alpha;}
+
+
+
+/* 2014-07-24 search */
+.search-item{margin-top:40px;}
+.search-item h3{padding-left:28px;margin-bottom:12px;background:url(../img/sub/bullet_rect_search.gif) 0 0 no-repeat; font-size:20px; color:#4c4c4c;}
+.search-item dl dt{clear:both; padding:11px 19px; border-top:2px solid #4c4c4c; border-bottom:1px solid #cccccc;background-color:#f9f9f9; font-size:12px; color:#666666;}
+.search-item dl dt strong{font-size:16px;color:#b4274d;}
+.search-item dl dt span.date{float:right; font-size:12px;color:#333333;}
+.search-item dl dd{margin:25px 40px; font-size:13px;color:#333333;}
+
+
+/* 2014-07-25  정현주 email */
+.email,.email p,.email li{color:#333;}
+.email .email_box{padding:15px 25px 0 25px;margin-bottom:30px;background-color:#fafafa;border:1px solid #ddd;}
+.email p{padding-bottom:15px;font-size:13px;}
+.email h4{padding-left:25px;margin-bottom:15px;background:url(../img/sub/bullet_big.gif) 0 0 no-repeat;font-size:16px;}
+.email ol{margin:0 0 35px 45px;}
+.email ol > li{margin-bottom:10px;list-style-type:decimal;}
+.email ol > li > ul{margin-left:30px;padding:15px 0 5px 0;}
+.email ol > li > ul li{margin-bottom:3px;list-style-type:lower-alpha;}
+
+
+/* 2014-07-28 회원가입 완료*/
+.welcome{padding:70px 0;padding-left:238px;border-top: 2px solid #474747; border-bottom: 1px solid #474747; background-color:#fafafa;}
+.welcome .welcome-bx{background:url(../img/sub/join_result.gif) 0 0 no-repeat;}
+.welcome .welcome-bx strong{padding-left:63px;padding-top:3px;font-size:18px;color:#000000;}
+.welcome .welcome-bx p{padding-left:63px;font-size:14px; line-height:20px;color:#686767;}

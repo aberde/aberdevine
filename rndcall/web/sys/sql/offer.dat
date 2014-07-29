@@ -186,6 +186,7 @@ SELECT  Q.SEQ,             Q.BOARD_TYPE,       Q.TITLE,            CLOB_TO_CHAR(
                       ELSE 'Y'
                  END ) AS UP_DEL_STAT,
                  DECODE(A.SEQ,NULL,'N','Y') AS STAT, NVL(A.SEQ,'0') AS ANSWER_SEQ
+        , QUERY_USER_INFO
 FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_BOARD_ANSWER A ON Q.SEQ = A.Q_SEQ
 WHERE Q.DEL_YN='N'
 #==============================================================

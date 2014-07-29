@@ -7,7 +7,7 @@ $(document).ready(function(){
 		mouseDrag : false
 		// responsive : true
 	});
- 	// 배너 슬라이드 
+	// 배너 슬라이드
 	$("#owl-banner").owlCarousel({
 		autoPlay :3600,
 		singleItem : true,
@@ -17,8 +17,21 @@ $(document).ready(function(){
 	var owlbanner = $("#owl-banner").data('owlCarousel');
 	$(".stop").click(function(){owlbanner.stop();});
 	$(".play").click(function(){owlbanner.play();});
-	// 전체 보기 
+	// 전체 보기
 	//totalMenuBtnHandler("html/pop/total_menu.html");
-	// 메뉴 
-	 topNav();
+	// 메뉴
+	topNav();
+	contentBanner()
 });
+
+function contentBanner(){
+	var $target=$(".content .banner ul li");
+	$target.css({"cursor" : "pointer"});
+	$target.each(function(index){
+		$(this).click(function(){
+			var link=$(this).find("a").attr("href");
+			//console.log(link);
+			location.href=link;
+		});
+	});
+}

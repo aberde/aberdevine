@@ -215,6 +215,11 @@ select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#2429
 .board-detail td{padding:7px 8px;border:1px solid #e2e2e2; border-right:none;}
 .board-detail input[type="text"]{border:1px solid #e5e5e5;background-color:#f9f9f9;}
 .board-detail .comment p{min-height:130px;}
+.board-detail h3{margin-bottom:15px;background: url("../img/common/bullet.gif") no-repeat scroll left center rgba(0, 0, 0, 0); color: #171717; font-size: 16px; font-weight: bold; line-height: 15px; padding-left: 15px; }
+
+
+
+
 /* color */
 .txt-blue{color:#4393c6 !important;}
 
@@ -235,6 +240,9 @@ select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#2429
 .tbl-type01 tbody tr:first-child th {border-top:0;}
 .tbl-type01 tbody tr th {text-align:center; vertical-align:middle; font-size:14px; color:#3a7fa3; background:#eef9fc; font-weight:bold; text-align:center; border-top:1px solid #eeeeee;}
 .tbl-type01 tbody tr td.row-line{border-left:1px solid #e2e2e2;}
+.tbl-type01 .bg-butterfly{position:absolute; bottom:25px; right:30px; width:354px;height:366px; background:url(../img/sub/bg_butterfly.png) 0 0 no-repeat;}
+
+.tbl-type01 tbody td .small{font-size:12px;}
 /* blullet */
 .bullet{padding-left:15px; background: url(../img/common/bullet.gif) no-repeat left center; color:#171717; font-size:16px; font-weight:bold; line-height:15px;}
 
@@ -245,6 +253,6 @@ select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#2429
 .line-l {border-left:1px solid #e2e2e2 !important; }
 
 /* 설명 박스 */
-.explain-bx{padding:15px 22px; background-color:#fce8b9 ;border:1px solid #fad57b;}
-.explain-bx strong{font-size:12px;font-weight:bold; color:#595959;}
-.explain-bx p{font-size:12px; color:#595959;}
+.explain-bx{padding:15px 22px; border:1px solid #fad57b;}
+.explain-bx strong{font-size:14px;line-height:22px;font-weight:bold; color:#595959;}
+.explain-bx p{font-size:14px; color:#595959;}

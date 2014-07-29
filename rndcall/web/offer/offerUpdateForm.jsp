@@ -1,9 +1,14 @@
-<%@ page contentType="text/html; charset=utf-8" %>
-<%@ page import="kr.go.rndcall.mgnt.common.Util" %>
-<%@ include file="/include/top.jsp"%>
-<bean:define id="path" type="java.lang.String" value="/Offer.do"/>
-<script language="JavaScript" src="/js/file.js"></script>
-<%  String size = "70"; // default size
+<%@page contentType="text/html; charset=utf-8" %>
+<%@page import="kr.go.rndcall.mgnt.common.Util" %>
+
+<%@include file="/include/top.jsp"%>
+
+    <bean:define id="path" type="java.lang.String" value="/Offer.do"/>
+    
+    <script type="text/javascript" src="/js/file.js"></script>
+    
+<%  
+    String size = "70"; // default size
     if(!Util.isNull(request.getParameter("size"))) {
     	size = request.getParameter("size");
     }		
@@ -18,250 +23,241 @@
 <%
 	}
 %>
-<script type="text/javascript">
-<!--		
-	function offerUpdate(){
-		if(validate()){
-			fm.elements["method"].value="offerUpdate";
-			fm.elements["vo.file_id"].value = fm.elements["vo.question_file_id"].value;
-			fm.submit();
+	<script type="text/javascript">
+	<!--		
+		function offerUpdate(){
+			if(validate()){
+				fm.elements["method"].value="offerUpdate";
+				fm.elements["vo.file_id"].value = fm.elements["vo.question_file_id"].value;
+				fm.submit();
+			}
 		}
-	}
-	function fncFileAddLenChk(fileObjName, size){
-	   
-	    var fileArea = document.getElementById(fileObjName);
-	    var childNds = fileArea.childNodes;
-	    
-	    //alert(childNds.length);
-	    //최대 3개까지 첨부 가능
-	    if(childNds.length < 3){
-	        fncFileAdd(fileObjName, size);
-	    }else{
-	    	alert("첨부파일은 3개까지 가능합니다.");
-	    	return;
-	    }
-	}
-	function downLoad(fileNM, saveFileNM, filePath, yn){
-	    fileDownLoad.elements["fileNM"].value = fileNM;
-	    fileDownLoad.elements["saveFileNM"].value = saveFileNM;
-	    fileDownLoad.elements["filePath"].value = filePath;
-	    fileDownLoad.elements["desCipher"].value = yn;
-	    fileDownLoad.submit();
-	}
-	
-	function offerUpdateCancle(){
-		document.location.href="/index.jsp";
-	}
-	
-	function putEmailHost(){
-		if(fm.elements["putEmail"].value != ""){		
-			fm.elements["email1"].focus();
-			fm.elements["email2"].readonly=true;
-			fm.elements["email2"].value = fm.elements["putEmail"].value;
-		}else{
-			fm.elements["email1"].focus();
-			fm.elements["email2"].value = "";
-			fm.elements["email2"].readonly=false;
+		function fncFileAddLenChk(fileObjName, size){
+		   
+		    var fileArea = document.getElementById(fileObjName);
+		    var childNds = fileArea.childNodes;
+		    
+		    //alert(childNds.length);
+		    //최대 3개까지 첨부 가능
+		    if(childNds.length < 3){
+		        fncFileAdd(fileObjName, size);
+		    }else{
+		    	alert("첨부파일은 3개까지 가능합니다.");
+		    	return;
+		    }
 		}
-	}
-	
-	function validate() {
-		//SMS수신 체크시 핸드폰번호 체크
-		var sms="";		
-		for(i=0; i < fm.elements["vo.call_receive_yn"].length; i++){
-     		if(fm.elements["vo.call_receive_yn"][i].checked){
-     			sms = fm.elements["vo.call_receive_yn"][i].value;
-    		}
-   		}
+		function downLoad(fileNM, saveFileNM, filePath, yn){
+		    fileDownLoad.elements["fileNM"].value = fileNM;
+		    fileDownLoad.elements["saveFileNM"].value = saveFileNM;
+		    fileDownLoad.elements["filePath"].value = filePath;
+		    fileDownLoad.elements["desCipher"].value = yn;
+		    fileDownLoad.submit();
+		}
 		
-		if(sms == "Y"){
-			fm.elements["vo.cell_number"].value = fm.elements["cell_no1"].value+ "-" +fm.elements["cell_no2"].value+ "-" +fm.elements["cell_no3"].value;
-			if (!isNotValidTel(fm.elements["vo.cell_number"])) return false;
-		}		
+		function offerUpdateCancle(){
+			document.location.href="/index.jsp";
+		}
 		
-		//EMAIL수신 체크시 EMAIL 체크
-		var email="";		
-		for(i=0; i < fm.elements["vo.email_receive_yn"].length; i++){
-     		if(fm.elements["vo.email_receive_yn"][i].checked){
-     			email = fm.elements["vo.email_receive_yn"][i].value;
-    		}
-   		}
-   		
-   		if(email == "Y"){
-			fm.elements["vo.email"].value = fm.elements["email1"].value + "@" + fm.elements["email2"].value;
-			if(!isEMailAddr(fm.elements["vo.email"])){
-				return false;
+		function putEmailHost(){
+			if(fm.elements["putEmail"].value != ""){		
+				fm.elements["email1"].focus();
+				fm.elements["email2"].readonly=true;
+				fm.elements["email2"].value = fm.elements["putEmail"].value;
+			}else{
+				fm.elements["email1"].focus();
+				fm.elements["email2"].value = "";
+				fm.elements["email2"].readonly=false;
 			}
 		}
 		
+		function validate() {
+			//SMS수신 체크시 핸드폰번호 체크
+			var sms="";		
+			for(i=0; i < fm.elements["vo.call_receive_yn"].length; i++){
+	     		if(fm.elements["vo.call_receive_yn"][i].checked){
+	     			sms = fm.elements["vo.call_receive_yn"][i].value;
+	    		}
+	   		}
+			
+			if(sms == "Y"){
+				fm.elements["vo.cell_number"].value = fm.elements["cell_no1"].value+ "-" +fm.elements["cell_no2"].value+ "-" +fm.elements["cell_no3"].value;
+				if (!isNotValidTel(fm.elements["vo.cell_number"])) return false;
+			}		
+			
+			//EMAIL수신 체크시 EMAIL 체크
+			var email="";		
+			for(i=0; i < fm.elements["vo.email_receive_yn"].length; i++){
+	     		if(fm.elements["vo.email_receive_yn"][i].checked){
+	     			email = fm.elements["vo.email_receive_yn"][i].value;
+	    		}
+	   		}
+	   		
+	   		if(email == "Y"){
+				fm.elements["vo.email"].value = fm.elements["email1"].value + "@" + fm.elements["email2"].value;
+				if(!isEMailAddr(fm.elements["vo.email"])){
+					return false;
+				}
+			}
+			
+			
+			//제목 필수 입력 체크
+			if (isRequired(fm.elements["vo.title"])){
+				return false;
+			}
+			//질의내용 필수 입력 체크
+			if (isRequired(fm.elements["vo.contents"])){
+				return false;
+			}
 		
-		//제목 필수 입력 체크
-		if (isRequired(fm.elements["vo.title"])){
-			return false;
+		 	return true;
 		}
-		//질의내용 필수 입력 체크
-		if (isRequired(fm.elements["vo.contents"])){
-			return false;
+		
+		function goInquireMainList(){
+			fm.elements["method"].value="getInquireMainList";
+			fm.submit();
 		}
+	//-->
+	</script>
 	
-	 	return true;
-	}
-	
-	function goInquireMainList(){
-		fm.elements["method"].value="getInquireMainList";
-		fm.submit();
-	}
-//-->
-</script>
-<div class="LY-Container">
-	
-	<!-- end # 레프트 메뉴 -->
-	<html:form action="/Offer" method="post" name="fm" enctype="multipart/form-data" type="kr.go.rndcall.mgnt.offer.form.OfferForm">
-	<html:hidden name="OfferForm" property="method" value="offerUpdate"/>
-	<html:hidden name="OfferForm" property="vo.cell_number"/>
-	<html:hidden name="OfferForm" property="vo.email"/>
-	<html:hidden name="OfferForm" property="vo.file_id"/>
-	<html:hidden name="OfferForm" property="vo.question_file_id"/>
-	<html:hidden name="OfferForm" property="searchVO.loginId"/>
-	<html:hidden name="OfferForm" property="searchVO.name"/>
-	<html:hidden name="OfferForm" property="searchVO.seq"/>
-	<html:hidden name="OfferForm" property="searchVO.board_type"/>
-	<html:hidden name="OfferForm" property="searchVO.menu_sn"/>
-		<div class="LY-ContentTitle">
-			<h1><img src="/images/content/Content_Title06_1.gif" alt="제안하기 - 가장 많이 묻는 질의응답을 카테고리별로 보실 수 있습니다." /></h1>
-		</div>&nbsp;&nbsp;&nbsp;
-	<table border="0" cellspacing="0" cellpadding="0" class="Basic-Write">
-		<colgroup>
-			<col width="130px" />
-			<col width="*" />
-		</colgroup>
-		<tr>
-			<th class="Btmline">SMS</th>
-			<td><html:radio name="OfferForm" property="vo.call_receive_yn" value="Y" >수신</html:radio>
-				<html:radio name="OfferForm" property="vo.call_receive_yn" value="N" >미수신</html:radio>
-				<bean:define name="OfferForm" property="vo.call_receive_yn" id="call_receive_yn" type="java.lang.String"/>
-				<bean:define name="OfferForm" property="vo.cell_number" id="cell_number" type="java.lang.String"/>
-<%
-					String[] cell = null;
-
-					if(call_receive_yn.equals("Y")){
-						cell = cell_number.split("-");
-					}else{
-						cell = new String[3];
-						cell[0]="";
-						cell[1]="";
-						cell[2]="";
-					}
-					
-%>					
-			<select name="cell_no1" id="cell_no1" title="핸드폰 앞자리 선택">
-			   	<option value="">::: 선택 :::</option>
-			  	<option value="010" <% if(cell[0].equals("010")){%> selected <% } %>>010</option>
-				<option value="011" <% if(cell[0].equals("011")){%> selected <% } %>>011</option>
-				<option value="016" <% if(cell[0].equals("016")){%> selected <% } %>>016</option>
-				<option value="017" <% if(cell[0].equals("017")){%> selected <% } %>>017</option>
-				<option value="018" <% if(cell[0].equals("018")){%> selected <% } %>>018</option>
-				<option value="019" <% if(cell[0].equals("019")){%> selected <% } %>>019</option>
-			<select>
-				<input type="text" class="Num" title="핸드폰 중간자리 입력" name="cell_no2" value="<%=cell[1]%>" id="cell_no2" maxlength="4" onkeypress="return numeralsOnly(event)" /> -
-				<input type="text" class="Num" title="핸드폰 끝자리 입력" name="cell_no3"  value="<%=cell[2]%>" id="cell_no3" maxlength="4" onkeypress="return numeralsOnly(event)" />
-			</td>
-		</tr>
-		<tr>
-			<th class="Btmline">EMAIL</th>
-			<td><html:radio name="OfferForm" property="vo.email_receive_yn" value="Y">수신</html:radio>
-				<html:radio name="OfferForm" property="vo.email_receive_yn" value="N">미수신</html:radio>
-				<bean:define name="OfferForm" property="vo.email_receive_yn" id="email_receive_yn" type="java.lang.String"/>
-				<bean:define name="OfferForm" property="vo.email" id="email" type="java.lang.String"/>
-<%
-					String[] email_addr = null;
-
-					if(email_receive_yn.equals("Y")){
-						email_addr = email.split("@");
-					}else{
-						email_addr = new String[2];
-						email_addr[0]="";
-						email_addr[1]="";
-					}
-					
-%>	
-				<input type="text" name="email1" class="Out_lineY W20" value="<%=email_addr[0]%>" />@<input type="text" name="email2" class="Out_lineY W20"  value="<%=email_addr[1]%>"/>
-				<select name="putEmail" id="drEmailHost" onchange="putEmailHost();" class="sel1">
-					<option value="">직접입력</option>
-					<option value="naver.com" <% if(email_addr[1].equals("naver.com")){%> selected <% } %>>naver.com</option>
-					<option value="hanmail.net"<% if(email_addr[1].equals("hanmail.net")){%> selected <% } %>>hanmail.net</option>
-					<option value="nate.com"<% if(email_addr[1].equals("nate.com")){%> selected <% } %>>nate.com</option>
-					<option value="gmail.com"<% if(email_addr[1].equals("gmail.com")){%> selected <% } %>>gmail.com</option>
-					<option value="chol.com"<% if(email_addr[1].equals("chol.com")){%> selected <% } %>>chol.com</option>
-					<option value="dreamwiz.com"<% if(email_addr[1].equals("dreamwiz.com")){%> selected <% } %>>dreamwiz.com</option>
-					<option value="empal.com"<% if(email_addr[1].equals("empal.com")){%> selected <% } %>>empal.com</option>
-					<option value="freechal.com"<% if(email_addr[1].equals("freechal.com")){%> selected <% } %>>freechal.com</option>
-					<option value="hanmir.com"<% if(email_addr[1].equals("hanmir.com")){%> selected <% } %>>hanmir.com</option>
-					<option value="netian.com"<% if(email_addr[1].equals("netian.com")){%> selected <% } %>>netian.com</option>
-					<option value="hitel.net"<% if(email_addr[1].equals("hitel.net")){%> selected <% } %>>hitel.net</option>
-					<option value="hotmail.com"<% if(email_addr[1].equals("hotmail.com")){%> selected <% } %>>hotmail.com</option>
-					<option value="korea.com"<% if(email_addr[1].equals("korea.com")){%> selected <% } %>>korea.com</option>
-					<option value="lycos.co.kr"<% if(email_addr[1].equals("lycos.co.kr")){%> selected <% } %>>lycos.co.kr</option>
-					<option value="paran.com"<% if(email_addr[1].equals("paran.com")){%> selected <% } %>>paran.com</option>
-					<option value="yahoo.com"<% if(email_addr[1].equals("yahoo.com")){%> selected <% } %>>yahoo.com</option>
-					<option value="yahoo.co.kr"<% if(email_addr[1].equals("yahoo.co.kr")){%> selected <% } %>>yahoo.co.kr</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<th class="Btmline">공개여부</th>
-			<td><html:radio name="OfferForm" property="vo.open_yn" value="Y">공개</html:radio>
-				<html:radio name="OfferForm" property="vo.open_yn" value="N">비공개</html:radio>
-			</td>
-		</tr>
-		<tr>
-			<th class="Btmline">제목</th>
-			<td>
-				<html:text name="OfferForm" property="vo.title" size="90" alt="제목" title="제목"/>
-			</td>
-		</tr>
-		<tr>
-			<th class="Btmline">질의 내용</th>
-			<td><html:textarea name="OfferForm" property="vo.contents" rows="20" cols="90"  alt="질의 내용" title="질의 내용"/></td>
-		</tr>
-		  	<logic:notEmpty name="OfferForm" property="voList">
-			<tr>
-				<th class="Btmline">기존파일 삭제여부</th>
-				<td>
-					<logic:iterate name="OfferForm" property="voList" indexId="rowNum" id="attachVO">						
-						<bean:define name="attachVO" property="file_id" id="file_id" type="java.lang.String"/>
-						<bean:define name="attachVO" property="seq" id="seq" type="java.lang.String"/>
-<%
-						String f_id = file_id+"-"+seq;
-%>
-						<input type="checkbox" name="file_del" value="<%=f_id%>"/>
-						<a href="javascript:downLoad('<bean:write name="attachVO" property="file_nm"/>', '<bean:write name="attachVO" property="file_path"/>', '', 'Y');" ><bean:write name="attachVO" property="file_nm" /></a><br/>
-					</logic:iterate>
-				</td>
-			</tr>
-		</logic:notEmpty>
-		<tr><th class="Btmline">첨부파일</th>
-			<td colspan="3">
-				<a href="#" onclick="fncFileAddLenChk('fileArea', '<%=size%>')" class="btn_TLadd"><strong>파일추가</strong></a>
-				<a href="#" onclick="fncFileDel('fileArea')" class="btn_TLdel"><strong>파일제거</strong></a>
-				<div id="fileArea"></div>
-			</td>
-		</tr>
-	</table>
-	<div style="margin:10px 0; display:block">
-	<ul class="Center">
-		<div class="Basic-Button">
-		<ul class="Center">
-			<li><a href="JavaScript:offerUpdate()"  class="btn_Basic"><strong>수정</strong></a>
-			<a href="JavaScript:history.back()" class="btn_Basic"><strong>취소</strong></a></li>
-		</ul>	
-		</div>
-	</html:form>
-	<!-- end 검색 테이블 감싸기 -->
-	<br />
-	<br />
-	<!-- end .ntiscontents -->
-	</div>
-<!-- end .container -->
-</div>
-<%@  include file="/include/bottom.jsp"%>
+	<!-- container -->
+    <div id="container">
+        <!-- lnb -->
+        <div class="lnb">
+            <div class="tit-area">
+                <h2>R&amp;D 신문고</h2>
+                <span><img src="/img/common/h2_entxt03.gif" alt="Online Sinmungo" /></span>
+            </div>
+            <ul class="lnb-lst">
+                <li class="on"><a href="JavaScript:goOffer()">R&amp;D 신문고</a></li>
+            </ul>               
+        </div>
+        <!-- //lnb -->
+        <!-- content -->
+        <div class="content clearfix">
+            <div class="location txt-r">        
+                <ul class="fr clearfix">
+                    <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
+                    <li><a href="JavaScript:goOffer()">R&amp;D 신문고</a></li>
+                    <li class="on"><a href="JavaScript:goOffer()">R&amp;D 신문고</a></li>
+                </ul>
+            </div>
+            
+            <html:form action="/Offer" method="post" name="fm" enctype="multipart/form-data" type="kr.go.rndcall.mgnt.offer.form.OfferForm">
+			    <html:hidden name="OfferForm" property="method" value="offerUpdate"/>
+			    <html:hidden name="OfferForm" property="vo.cell_number"/>
+			    <html:hidden name="OfferForm" property="vo.email"/>
+			    <html:hidden name="OfferForm" property="vo.file_id"/>
+			    <html:hidden name="OfferForm" property="vo.question_file_id"/>
+			    <html:hidden name="OfferForm" property="searchVO.loginId"/>
+			    <html:hidden name="OfferForm" property="searchVO.name"/>
+			    <html:hidden name="OfferForm" property="searchVO.seq"/>
+			    <html:hidden name="OfferForm" property="searchVO.board_type"/>
+			    <html:hidden name="OfferForm" property="searchVO.menu_sn"/>
+    
+	            <!-- section -->
+	            <div class="section">       
+	                <!--  explain-bx -->
+	                <div class="explain-bx mt60">
+	                    <strong>연구현장의 불합리한 제도나 관행 등 제도개선 건의 또는 기타 연구제도 관련 불편·불만사항을 건의해주세요.</strong>
+	                    <p>*원활한 제안 처리를 위해 등록 후 24시간 이내에만 수정, 삭제가 가능하오니 양해바랍니다.</p>
+	                </div>
+	                <!--  //explain-bx -->
+	                
+	                <html:form action="/Offer" method="post" name="fm" type="kr.go.rndcall.mgnt.offer.form.OfferForm" enctype="multipart/form-data" onsubmit="return checkOnSubmit(this)">
+	                    <html:hidden name="OfferForm" property="method" value="offerInsert"/>
+	                    <html:hidden name="OfferForm" property="vo.cell_number"/>
+	                    <html:hidden name="OfferForm" property="vo.email"/>
+	                    <html:hidden name="OfferForm" property="searchVO.loginId"/>
+	                    <html:hidden name="OfferForm" property="searchVO.name"/>
+	                    <html:hidden name="OfferForm" property="searchVO.menu_sn"/>
+	                    <html:hidden name="OfferForm" property="searchVO.type"/>
+	    
+	                    <!-- board-write -->
+	                    <div class="board-write mt10">
+	                        <div class="board-box">
+	                            <table summary="R&amp;D 신문고 페이지">
+	                                <caption>R&amp;D 신문고 페이지 </caption>
+	                                <colgroup>
+	                                    <col width="16%"/>
+	                                    <col width="*"/>
+	                                </colgroup>
+	                                <tbody>
+	                                    <tr>
+	                                        <th scope="row"><label for="info1">질의자 정보</label></th>
+	                                        <td>
+	                                            <html:radio styleId="info1" name="OfferForm" property="vo.query_user_info" value="1"></html:radio> <label for="info1">중앙행정기관</label>
+	                                            <html:radio styleId="info2" name="OfferForm" property="vo.query_user_info" value="2"></html:radio> <label for="info2">전문기관</label>
+	                                            <html:radio styleId="info3" name="OfferForm" property="vo.query_user_info" value="3"></html:radio> <label for="info3">정부출연연구기관</label>
+	                                            <html:radio styleId="info4" name="OfferForm" property="vo.query_user_info" value="4"></html:radio> <label for="info4">대학</label>
+	                                            <html:radio styleId="info5" name="OfferForm" property="vo.query_user_info" value="5"></html:radio> <label for="info5">기업</label>
+	                                            <html:radio styleId="info6" name="OfferForm" property="vo.query_user_info" value="6"></html:radio> <label for="info6">기타</label>
+	                                        </td>
+	                                    </tr>
+	                                    <tr>
+	                                        <th scope="row"><label for="open1">공개여부</label></th>
+	                                        <td>
+	                                            <html:radio name="OfferForm" property="vo.open_yn" styleId="vo.open_yn1" value="Y"></html:radio> <label for="vo.open_yn1">공개</label>
+	                                            <html:radio name="OfferForm" property="vo.open_yn" styleId="vo.open_yn2" value="N"></html:radio> <label for="vo.open_yn2">비공개</label>
+	                                        </td>
+	                                    </tr>
+	                                    <tr>
+	                                        <th scope="row"><label for="title">제목</label></th>
+	                                        <td>
+	                                            <html:text name="OfferForm" property="vo.title" style="width:98%" alt="제목" title="제목"/>
+	                                        </td>
+	                                    </tr>
+	                                    <tr>
+	                                        <th scope="row"><label for="txtarea1">내용</label></th>
+	                                        <td>
+	                                            <html:textarea name="OfferForm" property="vo.contents" cols="0" rows="0" style="width:97%; min-height:254px;" alt="질의 내용" title="질의 내용"/>
+	                                        </td>
+	                                    </tr>
+	                                    <logic:notEmpty name="OfferForm" property="voList">
+                                        <tr>
+                                            <th scope="row">기존파일 삭제여부</th>
+                                            <td>
+                                                <logic:iterate name="OfferForm" property="voList" indexId="rowNum" id="attachVO">                       
+                                                    <bean:define name="attachVO" property="file_id" id="file_id" type="java.lang.String"/>
+                                                    <bean:define name="attachVO" property="seq" id="seq" type="java.lang.String"/>
+                                                    <%
+                                                        String f_id = file_id+"-"+seq;
+                                                    %>
+                                                    <input type="checkbox" name="file_del" value="<%=f_id%>"/>
+                                                    <a href="javascript:downLoad('<bean:write name="attachVO" property="file_nm"/>', '<bean:write name="attachVO" property="file_path"/>', '', 'Y');" ><bean:write name="attachVO" property="file_nm" /></a><br/>
+                                                </logic:iterate>
+                                            </td>
+                                        </tr>
+                                        </logic:notEmpty>
+	                                    <tr>
+	                                        <th scope="row"><label for="file">첨부파일</label></th>
+	                                        <td>
+	                                            <span class="btn-set set2 black"><a href="javascript:fncFileAddLenChk('fileArea', '<%=size%>');">파일첨부</a></span>
+	                                            <span class="btn-set set2 black"><a href="javascript:fncFileDel('fileArea');">파일제거</a></span>
+	                                            <div id="fileArea"></div>
+	                                        </td>
+	                                    </tr>
+	                                </tbody>
+	                              </table>
+	                        </div>
+	                    </div>
+	                    <!-- // board-write -->
+	                    <!-- btn-set -->
+	                    <div class="btn-lst txt-r">
+	                        <span class="btn-set pink"><a href="JavaScript:offerUpdate()">수정</a></span>
+	                        <span class="btn-set"><a href="JavaScript:history.back()">취소</a></span>
+	                    </div>
+	                    <!-- //btn-set-->
+	                    
+	                </html:form>
+	                
+	            </div>
+	            <!-- //section -->
+	            
+	        </html:form>
+	        
+        </div>
+        <!-- //content -->
+    </div>
+    <!-- // container -->
+    
+<%@include file="/include/bottom.jsp"%>

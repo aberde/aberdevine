@@ -17,8 +17,15 @@ public class MemberAdminVO extends BaseVO {
 	private String checkIdVal = "";
 	private String re_password = "";
 	private String tel = "";
+	private String sector = "";
 	
-	public String getTel() {
+	public String getSector() {
+        return sector;
+    }
+    public void setSector(String sector) {
+        this.sector = sector;
+    }
+    public String getTel() {
 		return tel;
 	}
 	public void setTel(String tel) {
