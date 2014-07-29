@@ -110,7 +110,7 @@
                 <span><img src="/img/common/h2_entxt02.gif" alt="Online Consultation" /></span>
             </div>
             <ul class="lnb-lst">
-                <li class="on"><a href="JavaScript:goInquireForm()">온라인상담</a></li>
+                <li class="on"><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
                 <li><a href="JavaScript:goFaq()">자주묻는질문</a></li>
             </ul>               
         </div>
@@ -120,8 +120,8 @@
             <div class="location txt-r">        
                 <ul class="fr clearfix">
                     <li><a href="index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goInquireForm()">온라인상담</a></li>
-                    <li class="on"><a href="JavaScript:goInquireForm()">온라인상담</a></li>
+                    <li><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
+                    <li class="on"><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
                 </ul>
             </div>
             <!-- section -->
@@ -129,12 +129,6 @@
                 <div class="tit-area">
                     <h3>온라인상담</h3>
                 </div>
-                <!--  explain-bx -->
-                <div class="explain-bx mt10">
-                    <strong>국가연구개발사업 관련 공통법령 및 제도에 대해 궁금하신 사항에 답변해드립니다.</strong>
-                    <p>*기존 질의응답을 검색 후 질의해주시기 바랍니다.</p>
-                </div>
-                <!--  //explain-bx -->
                 
                 <html:form action="/Inquire" method="post" name="fm" type="kr.go.rndcall.mgnt.inquire.form.InquireForm">
 		            <html:hidden name="InquireForm" property="method" value="getInquireList"/>
@@ -204,7 +198,14 @@
                                                     %>
                                                     <a href="JavaScript:goInquireView('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>)"><%=title_n %></a>                           
                                                 </td>
-                                                <td><bean:write name="vo" property="reg_nm"/></td>
+                                                <td>
+                                                    <logic:notEmpty name="vo" property="reg_nm">
+	                                                    <bean:write name="vo" property="reg_nm"/>
+                                                    </logic:notEmpty>
+                                                    <logic:empty name="vo" property="reg_nm">
+                                                                비회원
+                                                    </logic:empty>
+                                                </td>
                                                 <td><bean:write name="vo" property="reg_dt"/></td>
                                                 <td>
                                                     <bean:define name="vo" property="stat" id="stat" type="java.lang.String"/>

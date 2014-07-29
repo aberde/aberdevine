@@ -12,6 +12,16 @@
 
     <bean:define id="path" type="java.lang.String" value="/Inquire.do"/>
     
+    <script type="text/javascript">
+    <!--
+        var data = {
+            num : 1 // 위치순번
+        };
+        // 현재메뉴 위치.
+        menuFocus(data);
+    //-->
+    </script>
+    
     <script type="text/javascript" src="/js/file.js"></script>
     
 <%  
@@ -294,9 +304,44 @@
                         </div>
                     </div>
                     <!-- // board-write -->
+                    
+                    <!-- board-detail -->
+	                <div class="board-detail mt30">
+	                    <h3>등록자 정보</h3>
+	                    <div class="board-box">
+	                        <table summary="제목, 분류, 질의내용, 답변내용  페이지">
+	                            <caption>자주묻는 질문 페이지</caption>
+	                            <colgroup>
+	                                <col width="15%"/>
+	                                <col width="35%"/>
+	                                <col width="15%"/>
+	                                <col width="*"/>
+	                            </colgroup>
+	                            <tbody>
+	                                <tr>
+	                                    <th scope="row">이름</th>
+	                                    <td><bean:write name="InquireForm" property="vo.reg_nm"/></td>
+	                                    <th scope="row">공개여부</th>
+	                                    <td>
+	                                        <bean:define name="InquireForm" property="vo.open_yn" id="open_yn" type="java.lang.String"/>
+                                            <%
+                                                if(open_yn.equals("Y")){
+                                                    out.println("공개");
+                                                }else{
+                                                    out.println("비공개");
+                                                }
+                                            %>                  
+	                                    </td>
+	                                </tr>
+	                            </tbody>
+	                         </table>
+	                    </div>
+	                </div>
+	                <!-- //board-detail -->
+                    
                     <!-- btn-set -->
                     <div class="btn-lst txt-r">
-                        <span class="btn-set pink"><a href="JavaScript:goUpdate()">수정</a></span>
+                        <span class="btn-set pink"><a href="JavaScript:goAnswerCreate()">답변등록</a></span>
                         <span class="btn-set"><a href="JavaScript:goCancel()">취소</a></span>
                     </div>
                     <!-- //btn-set-->

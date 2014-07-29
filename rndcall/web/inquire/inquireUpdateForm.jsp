@@ -7,6 +7,15 @@
 <%
     String size = "70";
 %>
+    <script type="text/javascript">
+    <!--
+        var data = {
+            num : 1 // 위치순번
+        };
+        // 현재메뉴 위치.
+        menuFocus(data);
+    //-->
+    </script>
     
     <script type="text/javascript" src="/js/file.js"></script>
     
@@ -140,7 +149,7 @@
                 <span><img src="/img/common/h2_entxt02.gif" alt="Online Consultation" /></span>
             </div>
             <ul class="lnb-lst">
-                <li class="on"><a href="JavaScript:goInquireForm()">온라인상담</a></li>
+                <li class="on"><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
                 <li><a href="JavaScript:goFaq()">자주묻는질문</a></li>
             </ul>               
         </div>
@@ -150,8 +159,8 @@
             <div class="location txt-r">        
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goInquireForm()">온라인상담</a></li>
-                    <li class="on"><a href="JavaScript:goInquireForm()">온라인상담</a></li>
+                    <li><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
+                    <li class="on"><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
                 </ul>
             </div>
             <!-- section -->
@@ -183,7 +192,7 @@
                                     <col width="*"/>
                                 </colgroup>
                                 <tbody>
-                                    <tr>
+                                    <tr <%= mainLoginVO == null ? "" : "style=\"display: none;\"" %>>
                                         <th scope="row"><label for="info1">질의자 정보</label></th>
                                         <td>
                                             <html:radio name="InquireForm" styleId="info1" property="vo.query_user_info" value="1"></html:radio> <label for="info1">중앙행정기관</label>

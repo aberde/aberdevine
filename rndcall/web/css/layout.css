@@ -115,7 +115,7 @@ html,body {height:100%;}
 
 
 /* popup 회원가입 */
-#pop-join{position:relative; padding:35px 40px; background:#fff; z-index:999; width:500px; height:420px;}
+#pop-join{position:relative; padding:35px 40px; background:#fff; z-index:999; width:500px;}
 #pop-join .btn-close{display:block; position:absolute; right:40px; top:46px; background:url(../img/icon/btn_close.gif) no-repeat left; width:27px; height:27px;}
 #pop-join .btn-close span{font-size:0; line-height:0; text-indent:-9999px; color:#fff;}
 #pop-join .btn-close span{font-size:0; line-height:0; text-indent:-9999px; color:#fff;}
@@ -123,3 +123,5 @@ html,body {height:100%;}
 #pop-join .tit strong{font-size:26px; line-height:26px;  color:#333;}
 #pop-join .bdl-n{border-left:none;}
 #pop-join select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#24292c; line-height:12px; padding:1px 1px 1px 5px; background-color:#f9f9f9;}
+
+#pop-join span.tbox{ background-color:#f9f9f9; border:1px solid #e5e5e5; padding:0 5px;font-weight:bold;color:#666;font-size:14px;}

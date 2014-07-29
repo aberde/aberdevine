@@ -1,6 +1,6 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@page contentType="text/html; charset=utf-8" %>
 
-<%@  include file="/include/top.jsp"%>
+<%@include file="/include/top.jsp"%>
 	
 	<script type="text/javascript">
 	<!--
@@ -42,22 +42,22 @@
                     <ul>
                         <li>
                             <p class="tit"><span>온라인상담</span> <strong>바로가기</strong><a href="JavaScript:goInquireForm()"><img src="/img/sub/go_btn01.gif" alt="go" /></a></p>
-                            <p>‘국가연구개발사업의 관리 등에 관한 규정, 및 관련 주요제도에 대해 궁금할 때 전문상담원이 연구 자가 질의한 사항에 대한 명쾌한 답변을 해드립니다.</p>
+                            <p>「국가연구개발사업의 관리 등에 관한 규정」 및 관련 주요제도에 대해 궁금할 때 전문상담원이 연구 자가 질의한 사항에 대한 명쾌한 답변을 해드립니다.</p>
                         </li>
                         <li class="bg01">
-                            <p class="tit color-p"><span>R&D 신문고</span> <strong>바로가기</strong><a href="JavaScript:goOffer()"><img src="/img/sub/go_btn02.gif" alt="go" /></a></p>
+                            <p class="tit color-p"><span>R&amp;D 신문고</span> <strong>바로가기</strong><a href="JavaScript:goOffer()"><img src="/img/sub/go_btn02.gif" alt="go" /></a></p>
                             <p>연구현장의 불합리한 제도나 관행 등에 대한 개선사항이나 좋은 아이디어가 있을 때 제안해 주신 의견을 수렴하여 제도개선을 추진합니다.<br /><br />
-                                최근 신설되거나 개선된 연구관리 제도를 현장에 적용하는 과정에서 생기는 애로사항이 있을 때 R&D 신문고를 통해 제안해 주시면 법적·제도적으로 직접 해결하여 드립니다.</p>
+                                최근 신설되거나 개선된 연구관리 제도를 현장에 적용하는 과정에서 생기는 애로사항이 있을 때 온라인 신문고를 통해 제안해 주시면 법적·제도적으로 직접 해결하여 드립니다.</p>
                         </li>
                         <li class="bg02">
                             <p class="tit color-y"><span>자료실</span> <strong>바로가기</strong><a href="JavaScript:goData()"><img src="/img/sub/go_btn03.gif" alt="go" /></a></p>
-                            <p>‘국가연구개발사업의 관리 등에 관한 규정, 및 관련 주요제도에 대해 궁금할 때 전문상담원이 연구 자가 질의한 사항에 대한 명쾌한 답변을 해드립니다</p>
+                            <p>국가연구개발사업 관련 규정, 지침 등을 한 곳에서 확인할 수 있도록 자료를 제공합니다.</p>
                         </li>
                     </ul>               
                 </div>
                 <!-- //center_bx -->
                 <div>
-                    <p class="bullet">접수 및 절차처리</p>
+                    <p class="bullet">접수 및 처리절차</p>
                     <ul class="center-lst clearfix">
                         <li class="info">
                             <div>
@@ -93,9 +93,9 @@
                 <div>
                     <p class="bullet">이용안내</p>
                     <ul class="center-info">
-                        <li><strong>상담전화 :</strong> 1800-7109(친한연구) (상담 가능시간 : 오전 9:00 ~ 11:30, 오후 1:30 ~ 6:00)</li>
-                        <li class="txt"><strong>온라인상담 :</strong> “온라인상담” 메뉴 이용</li>
-                        <li class="txt01"><strong>각종 건의 :</strong> “R&D 신문고” 메뉴 이용</li>
+                        <li><strong>상담전화 :</strong> 1800-7109(친한연구) (상담 가능시간 : 평일 오전 9:00 ~ 11:30, 오후 1:30 ~ 6:00)</li>
+                        <li class="txt"><strong>온라인상담 :</strong> 「온라인상담」 메뉴 이용</li>
+                        <li class="txt01"><strong>각종 건의 :</strong> 「온라인신문고」 메뉴 이용</li>
                     </ul>
                 </div>
             </div>  
@@ -105,4 +105,4 @@
 	</div>
 	<!-- // container -->
 		
-<%@  include file="/include/bottom.jsp"%>
+<%@include file="/include/bottom.jsp"%>

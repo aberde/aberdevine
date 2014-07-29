@@ -81,11 +81,11 @@
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
-                <h2>R&D 신문고</h2>
+                <h2>R&amp;D 신문고</h2>
                 <span><img src="/img/common/h2_entxt03.gif" alt="Online Sinmungo" /></span>
             </div>
             <ul class="lnb-lst">
-                <li class="on"><a href="JavaScript:goOffer()">R&D 신문고</a></li>
+                <li class="on"><a href="JavaScript:goOffer()">R&amp;D 신문고</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -94,8 +94,8 @@
             <div class="location txt-r">        
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goOffer()">R&D 신문고</a></li>
-                    <li class="on"><a href="JavaScript:goOffer()">R&D 신문고</a></li>
+                    <li><a href="JavaScript:goOffer()">R&amp;D 신문고</a></li>
+                    <li class="on"><a href="JavaScript:goOffer()">R&amp;D 신문고</a></li>
                 </ul>
             </div>
             <!-- section -->
@@ -116,7 +116,7 @@
 	                <div class="board-detail mt60">
 	                    <div class="board-box">
 	                        <table summary="규정 및 제도에 대한 개선사항을 건의 페이지">
-	                            <caption>R&D 신문고 페이지</caption>
+	                            <caption>R&amp;D 신문고 페이지</caption>
 	                            <colgroup>
 	                                <col width="16%"/>
 	                                <col width="*"/>
@@ -167,7 +167,30 @@
 	                    </div>
 	                </div>      
 	                <!-- //board-detail -->
-	                
+	                <!-- btn-set -->
+                    <div class="btn-lst txt-r">
+                        <bean:define name="OfferForm" property="vo.up_del_stat" id="up_del_stat" type="java.lang.String"/>
+                        <bean:define name="OfferForm" property="vo.stat" id="stat" type="java.lang.String"/>    
+                        <span class="btn-set"><a href="JavaScript:goOfferList()">목록</a></span>
+                        <%
+                            if(roleCd.equals("0000Z") || roleCd.equals("0000C")){
+                        %>
+                        <span class="btn-set pink"><a href="JavaScript:goOfferUpdate()">질의수정</a></span>
+                        <%
+                            }
+                            if(stat.equals("N")){
+                        %>
+                        <span class="btn-set pink"><a href="JavaScript:goOfferAnswerInsert()">답변달기</a></span>
+                        <%
+                            }else{
+                        %>
+                        <span class="btn-set pink"><a href="JavaScript:goOfferAnswerInsert()">답변수정</a></span>
+                        <span class="btn-set pink"><a href="JavaScript:goOfferDelete()">삭제</a></span>
+                        <% 
+                            }
+                        %>
+                    </div>
+                    <!-- //btn-set-->
 	            </html:form>
 	            
 	        </div>

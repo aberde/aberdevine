@@ -45,7 +45,7 @@ function totalMenuBtnHandler(_url)
 		// 	popH();		
 		// 	$popAll.css({'top':'0'});
 		// });
-		location.href="/sitemap/sitemap.jsp";
+		location.href="../sitemap/sitemap.html"
 	});
 	
 }

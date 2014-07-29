@@ -140,7 +140,7 @@
                 <span><img src="/img/common/h2_entxt02.gif" alt="Online Consultation" /></span>
             </div>
             <ul class="lnb-lst">
-                <li><a href="JavaScript:goInquireForm()">온라인상담</a></li>
+                <li><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
                 <li class="on"><a href="JavaScript:goFaq()">자주묻는질문</a></li>
             </ul>    
         </div>
@@ -150,7 +150,7 @@
             <div class="location txt-r">  
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goInquireForm()">온라인상담</a></li>
+                    <li><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
                     <li class="on"><a href="JavaScript:goFaq()">자주묻는 질문</a></li>
                 </ul>
             </div>
@@ -226,14 +226,13 @@
                                         <th scope="col">제목</th>
                                         <th scope="col">글쓴이</th>
                                         <th scope="col">등록일</th>
-                                        <th scope="col">상태</th>
                                         <th scope="col">조회수</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <logic:empty name="FaqForm" property="voList">
                                         <tr>
-                                            <td colspan="6">검색된 결과가 없습니다.</td>
+                                            <td colspan="5">검색된 결과가 없습니다.</td>
                                         </tr>
                                     </logic:empty>
                                     <logic:notEmpty name="FaqForm" property="voList">
@@ -255,8 +254,6 @@
                                                 </td>
                                                 <td><bean:write name="vo" property="reg_nm"/></td>
                                                 <td><bean:write name="vo" property="reg_dt"/></td>
-<!--                                                 // TODO 상태 적용.  -->
-                                                <td><span class="btn-set set4 yellow">답변중</span></td>
                                                 <td><bean:write name="vo" property="read_count"/></td>
                                             </tr>
                                         </logic:iterate>

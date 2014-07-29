@@ -10,7 +10,7 @@
 
 	<script type="text/javascript">
 		var reg_idIsNull = "아이디를 입력하세요.";
-		var reg_idIsNotExp = "아이디는 6~20자 이내 영문 또는 영문+숫자로만 입력하셔야 합니다.";
+		var reg_idIsNotExp = "아이디는 4자 이상으로 입력하셔야 합니다.";
 	
 		/**
 		* 아이디 사용
@@ -62,7 +62,7 @@
 		* 아이디 정규표현식 체크
 		*/
 		function chkIdExp( str ) {
-			chk1 = /^[a-zA-Z\d]{6,20}$/i;  //a-z와 0-9이외의 문자가 있는지 확인
+			chk1 = /^[a-zA-Z\d]{4,20}$/i;  //a-z와 0-9이외의 문자가 있는지 확인
 		//    chk2 = /[a-z]/i;  //적어도 한개의 a-z 확인
 		    return chk1.test( str ); //&& chk3.test( str );
 		}

@@ -20,8 +20,9 @@
         if ("<%= errMsg %>" == "0") {
             document.location.href = "/index.jsp";
         } else {
-			fmDoc.method.value = "getOldDocList";
-			fmDoc.submit();
+            document.location.href = "/member/join02.jsp";
+// 			fmDoc.method.value = "getOldDocList";
+// 			fmDoc.submit();
 		}
     </script>
     <%
@@ -40,6 +41,7 @@
 		var reg_pwIsNotExp = "비밀번호는 영문자, 숫자 또는 특수문자를 조합하여 9자리 이상 입력하셔야 합니다.";
 		var reg_pwIsNotExp1 = "비밀번호는 9~20자 이내로 입력하셔야 합니다.";
 		var reg_pwIsNotExp2 = "비밀번호는 사용자ID와 중복 될 수 없습니다. 다시 입력하여 주십시오.";
+		var reg_pwIsNotExp3 = "비밀번호는 4자리이상으로 입력하셔야 합니다.";
 		var reg_pwIsNull = "비밀번호를 입력하세요.";
 		var reg_pw2IsNull = "비밀번호를 한번 더 입력하세요.";
 		var reg_pwNotEquals = "비밀번호 불일치. 다시 입력하세요.";
@@ -80,11 +82,11 @@
 		function fnCheck(){
 			var str = fm.elements["vo.password"].value;	
 			
-			if( !chkPWExp(str)) {
-				alert(reg_pwIsNotExp);
+			if( str.length < 4 ) {
+				alert(reg_pwIsNotExp3);
 				fm.elements["vo.password"].value = "";
 				fm.elements["vo.password"].focus();
-				return false;
+				return true;
 			}
 		
 		}
@@ -135,7 +137,7 @@
 		* 아이디 정규표현식 체크
 		*/
 		function chkIdExp( str ) {
-			chk1 = /^[a-zA-Z\d]{6,20}$/i;  //a-z와 0-9이외의 문자가 있는지 확인
+			chk1 = /^[a-zA-Z\d]{4,20}$/i;  //a-z와 0-9이외의 문자가 있는지 확인
 		    chk2 = /[a-z]/i;  //적어도 한개의 a-z 확인
 		    return chk1.test( str ) && chk2.test( str ); //&& chk3.test( str );
 		}
@@ -181,6 +183,12 @@
 // 				return false;
 		//	} else if (isRequired(fm.elements["email_id"])||isRequired(fm.elements["email_domain"])){
 		//		return false;
+			} else if (isRequired(fm.elements["vo.sector"])){
+				return false;
+			} else if (isRequired(fm.elements["vo.idFindAnswer"])){
+				return false;
+			} else if (isRequired(fm.elements["vo.pwFindAnswer"])){
+				return false;
 			} else {
 				return true;
 			}
@@ -304,15 +312,23 @@
 									<tr>
                                         <th scope="row"><label for="be1">소속</label></th>
                                         <td>
-											<input type="radio" id="info1" name="vo.query_user_info" value="1" checked /> <label for="info1">중앙행정기관</label>
-                                            <input type="radio" id="info2" name="vo.query_user_info" value="2" /> <label for="info2">전문기관</label>
-                                            <input type="radio" id="info3" name="vo.query_user_info" value="3" /> <label for="info3">정부출연연구기관</label>
-                                            <input type="radio" id="info4" name="vo.query_user_info" value="4" /> <label for="info4">대학</label>
-                                            <input type="radio" id="info5" name="vo.query_user_info" value="5" /> <label for="info5">기업</label>
-                                            <input type="radio" id="info6" name="vo.query_user_info" value="6" /> <label for="info6">기타</label>
+											<input type="radio" id="info1" name="vo.sector" value="1" checked /> <label for="info1">중앙행정기관</label>
+                                            <input type="radio" id="info2" name="vo.sector" value="2" /> <label for="info2">전문기관</label>
+                                            <input type="radio" id="info3" name="vo.sector" value="3" /> <label for="info3">정부출연연구기관</label>
+                                            <input type="radio" id="info4" name="vo.sector" value="4" /> <label for="info4">대학</label>
+                                            <input type="radio" id="info5" name="vo.sector" value="5" /> <label for="info5">기업</label>
+                                            <input type="radio" id="info6" name="vo.sector" value="6" /> <label for="info6">기타</label>
                                         </td>
                                     </tr>
-	<!--                                 // TODO 아이디찾기, 비밀번호찾기 질문 -->
+                                    <tr>
+                                        <th scope="row"><label for="se02">소속기관</label></th>
+                                        <td>
+                                            <html:select styleId="se02" name="memberForm" property="vo.org_cd" style="width:160px;">
+                                                <html:option value="">없음</html:option>
+                                                <html:optionsCollection name="memberForm" property="orgCdList" label="org_nm" value="org_cd"/>
+                                            </html:select>
+                                        </td>
+                                    </tr>
 	                                <tr>
 	                                    <th scope="row"><label for="vo.idFindQuestion">아이디찾기 질문</label></th>
 	                                    <td>

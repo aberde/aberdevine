@@ -9,6 +9,7 @@ import kr.go.rndcall.mgnt.member.MemberBiz;
 import kr.go.rndcall.mgnt.member.MemberForm;
 import kr.go.rndcall.mgnt.member.MemberResultVO;
 import kr.go.rndcall.mgnt.member.MemberSearchVO;
+import kr.go.rndcall.mgnt.member.admin.MemberAdminDAO;
 
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionError;
@@ -49,6 +50,10 @@ public class MemberAction extends DispatchAction {
 		}
 		saveErrors(request, errors);
 		fm.setErrCd("");
+		
+		MemberAdminDAO dao = new MemberAdminDAO();
+		fm.setOrgCdList(dao.getOrgCD(null));
+		
 		fm.setVo(new MemberVO());
 
 		logger.debug("target: " + target);

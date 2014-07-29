@@ -73,6 +73,8 @@ public class MemberDAO extends BaseSqlDAO {
 				pstmt = conn.prepareStatement(query);
 				pstmt.setString(param++, vo.getLogin_id());
 				pstmt.setString(param++, vo.getName());
+				pstmt.setString(param++, vo.getOrg_cd());
+				pstmt.setString(param++, vo.getOrg_cd());
 				pstmt.setString(param++, vo.getEmail());
 				pstmt.setString(param++, vo.getMobile());
 				pstmt.setString(param++, vo.getLogin_id());
@@ -82,6 +84,7 @@ public class MemberDAO extends BaseSqlDAO {
 				pstmt.setString(param++, vo.getIdFindAnswer());
 				pstmt.setString(param++, vo.getPwFindQuestion());
 				pstmt.setString(param++, vo.getPwFindAnswer());
+				pstmt.setString(param++, vo.getSector());
 							
 				pstmt.execute();
 				pstmt.close();

@@ -75,8 +75,12 @@
 // 				alert("로그인 후 이용하실 수 있습니다.");
 // 				return;
 // 			}else{		
-				document.location.href = "/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireMainList&searchVO.menu_sn=01";
+				document.location.href = "/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireForm&searchVO.menu_sn=01";
 // 			}
+		}
+
+		function goInquireMainList(){
+		    document.location.href = "/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireMainList&searchVO.menu_sn=01";
 		}
 
 		//Q&A링크
@@ -87,11 +91,11 @@
 		//제안하기 질문 링크
 		function goOffer(){
 			var url;
-			if("<%=mainRoleCD%>" == "0000Z" || "<%=mainRoleCD%>" == "0000C"){
+<%-- 			if("<%=mainRoleCD%>" == "0000Z" || "<%=mainRoleCD%>" == "0000C"){ --%>
 				url ="/switch.do?prefix=/offer&page=/Offer.do?method=offerList&searchVO.menu_sn=14";
-			}else{
-				url ="/switch.do?prefix=/offer&page=/Offer.do?method=offerInsertForm&searchVO.menu_sn=14";
-			}
+// 			}else{
+// 				url ="/switch.do?prefix=/offer&page=/Offer.do?method=offerInsertForm&searchVO.menu_sn=14";
+// 			}
 			document.location.href = url;
 		}
 		
@@ -169,9 +173,10 @@
 		}
 		
 		function goLawInfo(){
-            var url = "http://rndgate.ntis.go.kr/switch.do?prefix=/un/rndLaw&page=/unRndLaw.do?method=retrieveLawSearchByKey";
-            window.open(url);
+//             var url = "http://rndgate.ntis.go.kr/switch.do?prefix=/un/rndLaw&page=/unRndLaw.do?method=retrieveLawSearchByKey";
+//             window.open(url);
             document.location.href = "/switch.do?prefix=/data&page=/Data.do?method=dataListLaw&searchVO.menu_sn=02";
+//             document.location.href = "http://rndgate.ntis.go.kr/switch.do?prefix=/un/rndLaw&page=/unRndLaw.do?method=retrieveLawSearchByKey";
         }
 		
 		/**
@@ -277,18 +282,18 @@
                         </div>  
                     </li>
                     <li>
-                        <a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireList&searchVO.menu_sn=01">온라인 상담</a>
+                        <a href="javascript:goInquireMainList()">온라인 상담</a>
                         <div class="snb">
                             <div class="snb-bx">
                                 <ul>
-                                    <li><a href="JavaScript:goInquireForm()">온라인 상담</a></li>
+                                    <li><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
                                     <li><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
                                 </ul>
                             </div>
                         </div>  
                     </li>
                     <li>
-                        <a href="JavaScript:goOffer()">R&D 신문고</a>
+                        <a href="JavaScript:goOffer()">R&amp;D 신문고</a>
                     </li>
                     <li>
                         <a href="JavaScript:goNotice()">새소식</a>
@@ -335,7 +340,7 @@
 <%-- 					<% --%>
 <!-- // 						} -->
 <%-- 					%> --%>
-                    <p class="all-menu fr "><a href="#none;" class="btn-menu">전체보기</a></p>
+                    <p class="all-menu fr "><a href="/sitemap/sitemap.jsp" class="btn-menu">전체보기</a></p>
                 </ul>
                 <!-- //gnb-menu -->
             </div>

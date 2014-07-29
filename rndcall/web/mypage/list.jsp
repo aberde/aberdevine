@@ -65,7 +65,7 @@
                 <div class="my-bx mt60 clearfix">
                     <div class="bx">
                         <div class="inquiry">
-                            <h4 class="red">문의하기</h4>
+                            <h4 class="red">온라인 상담</h4>
                             <ul>
                                 <li class="bg01">전체 : <span><a href="JavaScript:goStatList('QNA','1')"><bean:write name="MypageForm" property="vo.statCnt1"/>건</a></span></li>
                                 <li class="bg02">처리중 : <span><a href="JavaScript:goStatList('QNA','2')"><bean:write name="MypageForm" property="vo.statCnt2"/>건</a></span></li>
@@ -73,7 +73,7 @@
                             </ul>
                         </div>
                         <div class="sinmungo">
-                            <h4 class="blue">신문고</h4>
+                            <h4 class="blue">R&amp;D 신문고</h4>
                             <ul>
                                 <li class="bg01">전체 : <span><a href="JavaScript:goStatList('OFFER','1')"><bean:write name="MypageForm" property="vo.statCnt4"/>건</a></span></li>
                                 <li class="bg02">처리중 : <span><a href="JavaScript:goStatList('OFFER','2')"><bean:write name="MypageForm" property="vo.statCnt5"/>건</a></span></li>
