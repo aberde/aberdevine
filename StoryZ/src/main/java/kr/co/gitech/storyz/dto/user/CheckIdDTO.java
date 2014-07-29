@@ -10,19 +10,19 @@ import kr.co.gitech.storyz.dto.common.BasicDTO;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "root")
 /**
- * 아이디 찾기
+ * 아이디 중복 체크
  */
-public class FindIdDTO extends BasicDTO {
+public class CheckIdDTO extends BasicDTO {
 
-	/** 사용자 객체 */
-	@XmlElement(name = "user", nillable = true)
-	private UserDTO user;
+	/** 아이디 사용가능 여부(Y: 등록가능, N: 중복, R: 예약ID) */
+	@XmlElement(name = "result", nillable = true)
+	private String result;
 
-	public UserDTO getUser() {
-		return user;
+	public String getResult() {
+		return result;
 	}
 
-	public void setUser(UserDTO user) {
-		this.user = user;
+	public void setResult(String result) {
+		this.result = result;
 	}
 }

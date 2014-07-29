@@ -2,6 +2,26 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
     
 <sqlMap namespace="user">
+	<!-- 가입한 사용자가 있는 지 체크 -->
+	<select id="checkId" resultClass="string">
+		SELECT
+			lower(user_id) AS user_id
+		FROM
+			tb_user
+		WHERE
+			user_id = upper(#user_id#)
+	</select>
+
+	<!-- 예약아이디에 포함이 되어 있는 지 체크 -->
+	<select id="_checkIdWithReserv" resultClass="string">
+		SELECT
+			reserv_id
+		FROM
+			tb_reserv_id
+		WHERE
+			reserv_id = upper(#user_id#)
+	</select>
+	
 	<select id="findId" parameterClass="java.util.HashMap" resultClass="kr.co.gitech.storyz.dto.user.UserDTO">
 		SELECT
 			'user' user_id
