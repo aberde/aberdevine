@@ -40,6 +40,22 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	/**
+	 * 이메일 중복 체크(Y: 등록가능, N: 중복)
+	 */
+	public String checkEmail(Map<String, Object> map) throws Exception {
+		String result = "";
+		// 이메일 존재 확인
+		UserDTO dto = (UserDTO)userDAO.checkEmail(map);
+		if ( dto == null ) {
+			result = "Y";
+		} else {
+			result = "N";
+		}
+
+		return result;
+	}
+	
+	/**
 	 * 아이디 찾기
 	 */
 	public UserDTO findId(Map<String, Object> map) throws Exception {

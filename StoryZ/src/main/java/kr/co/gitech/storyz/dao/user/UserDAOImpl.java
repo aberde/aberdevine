@@ -25,6 +25,14 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	/**
+	 * 이메일 중복 체크
+	 */
+	public UserDTO checkEmail(Map<String, Object> map) throws Exception {
+		UserDTO userDTO = (UserDTO)sqlMapClientTemplate.queryForObject("user.checkEmail", map);
+		return userDTO;
+	}
+	
+	/**
 	 * 예약아이디에 포함이 되어 있는지 체크
 	 */
 	public Object checkIdWithReserv(Map<String, Object> map) throws Exception {
