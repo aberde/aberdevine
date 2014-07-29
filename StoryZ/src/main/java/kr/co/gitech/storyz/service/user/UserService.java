@@ -11,15 +11,23 @@ public interface UserService {
 
 	/**
 	 * 아이디 중복 체크
-	 * @param model
+	 * @param map
 	 * @return
 	 * @throws Exception
 	 */
-	public String checkId(Map<String, Object> model) throws Exception;
+	public String checkId(Map<String, Object> map) throws Exception;
+	
+	/**
+	 * 이메일 중복 체크
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public String checkEmail(Map<String, Object> map) throws Exception;
 	
 	/**
 	 * 아이디 찾기
-	 * @param model
+	 * @param map
 	 * @return
 	 * @throws Exception
 	 */

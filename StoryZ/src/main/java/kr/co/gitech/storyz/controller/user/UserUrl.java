@@ -11,6 +11,16 @@ public class UserUrl {
 	public static final String CHECK_ID = "check/id";
 	
 	/**
+	 * 이메일 중복 체크
+	 */
+	public static final String CHECK_EMAIL = "check/email";
+	
+	/**
+	 * 회원 가입
+	 */
+	public static final String CREATE_PROFILE = "create/profile";
+
+	/**
 	 * 아이디 찾기
 	 */
 	public static final String FIND_ID = "find/id";

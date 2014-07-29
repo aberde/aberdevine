@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
@@ -58,6 +59,7 @@
                 <beans:value>kr.co.gitech.storyz.dto.common.BasicDTO</beans:value><!-- 기본 DTO -->
                 <beans:value>kr.co.gitech.storyz.dto.common.ExceptionDTO</beans:value><!-- 예외처리 DTO -->
                 <beans:value>kr.co.gitech.storyz.dto.user.CheckIdDTO</beans:value><!-- 아이디 중복 체크 -->
+                <beans:value>kr.co.gitech.storyz.dto.user.CheckEmailDTO</beans:value><!-- 이메일 중복 체크 -->
                 <beans:value>kr.co.gitech.storyz.dto.user.UserDTO</beans:value><!-- 사용자정보 -->
                 <beans:value>kr.co.gitech.storyz.dto.user.FindIdDTO</beans:value><!-- 아이디 찾기 -->
             </beans:list>
@@ -92,4 +94,12 @@
 	</beans:bean>
 	<!-- ################################################################### -->
 	
+	<!-- ################################################################### -->
+	<!-- ## 파일업로드 처리 -->
+	<!-- ################################################################### -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="5242880"/>
+		<beans:property name="maxInMemorySize" value="5242880"/>
+	</beans:bean>
+	<!-- ################################################################### -->	
 </beans:beans>

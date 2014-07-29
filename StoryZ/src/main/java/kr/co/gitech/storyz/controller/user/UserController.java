@@ -13,6 +13,8 @@ import kr.co.gitech.storyz.common.push.MessageEntryImpl;
 import kr.co.gitech.storyz.common.push.PushMessage;
 import kr.co.gitech.storyz.common.push.PushMessageType;
 import kr.co.gitech.storyz.common.push.StoryZMessageService;
+import kr.co.gitech.storyz.common.util.CommonUtil;
+import kr.co.gitech.storyz.dto.user.CheckEmailDTO;
 import kr.co.gitech.storyz.dto.user.CheckIdDTO;
 import kr.co.gitech.storyz.dto.user.FindIdDTO;
 import kr.co.gitech.storyz.dto.user.UserDTO;
@@ -43,16 +45,20 @@ public class UserController {
 	private StoryZMessageService storyZMessageService = null;
 
 	/**
-	 * 아이디 중복여부(URL : /user/check/id)
+	 * 아이디 중복 체크(URL : /user/check/id)
+	 * @param map
 	 * @param model
 	 * @throws Exception
 	 */
 	@RequestMapping(value=UserUrl.CHECK_ID)
 	public void checkId(@RequestParam Map<String, Object> map, ModelMap model) throws Exception {
 		try {
-			if ( map.get("user_id") == null ) {
-				throw new StoryZException(ErrorCode.PARAMETER_ERROR);
-			}
+			// ################################################
+			// ## 필수 입력 확인.
+			// ################################################
+			String[] params = {"user_id"};
+			CommonUtil.isRequire(map, params);
+			// ################################################
 			
 			String result = userService.checkId(map);
 			
@@ -66,6 +72,59 @@ public class UserController {
 		}
 	}
 	
+	/**
+	 * 이메일 중복 체크(URL : /user/check/email)
+	 * @param map
+	 * @param model
+	 * @throws Exception
+	 */
+	@RequestMapping(value=UserUrl.CHECK_EMAIL)
+	public void checkEmail(@RequestParam Map<String, Object> map, ModelMap model) throws Exception {
+		try {
+			// ################################################
+			// ## 필수 입력 확인.
+			// ################################################
+			String[] params = {"user_email"};
+			CommonUtil.isRequire(map, params);
+			// ################################################
+			
+			String register_yn = userService.checkEmail(map);
+			
+			CheckEmailDTO dto = new CheckEmailDTO();
+			dto.setRegister_yn(register_yn);
+			
+			model.addAttribute("data", dto);
+		} catch ( Exception e ) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	/**
+	 * 회원 가입(URL : /user/create/profile)
+	 */
+	@RequestMapping(value = UserUrl.CREATE_PROFILE)
+	public void createProfile(@RequestParam Map<String, Object> map, ModelMap model) throws Exception {
+		try {
+			// ################################################
+			// ## 필수 입력 확인.
+			// ################################################
+			String[] params = {"user_email"};
+			CommonUtil.isRequire(map, params);
+			// ################################################
+			
+//			String user_key = userService.createProfile(map);
+			
+//			CheckEmailDTO dto = new CheckEmailDTO();
+//			dto.setRegister_yn(user_key);
+			
+//			model.addAttribute("data", dto);
+		} catch ( Exception e ) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
 	/**
 	 * 아이디 찾기(URL : /user/find/id)
 	 * @param model
