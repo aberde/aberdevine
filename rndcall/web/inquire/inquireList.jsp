@@ -1,4 +1,7 @@
-﻿<%@page contentType="text/html; charset=utf-8" %>
+﻿<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
+<%@page contentType="text/html; charset=utf-8" %>
 <%@page import="kr.go.rndcall.mgnt.inquire.vo.*" %>
 
 <%@include file="/include/top.jsp"%>
@@ -102,16 +105,16 @@
 	</script>
 	
 	<!-- container -->
-    <div id="container">
+    <div id="container" class="advice">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
-                <h2>온라인상담</h2>
+                <h2>온라인 상담</h2>
                 <span><img src="/img/common/h2_entxt02.gif" alt="Online Consultation" /></span>
             </div>
             <ul class="lnb-lst">
-                <li class="on"><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
-                <li><a href="JavaScript:goFaq()">자주묻는질문</a></li>
+                <li class="on"><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
+                <li><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -120,14 +123,14 @@
             <div class="location txt-r">        
                 <ul class="fr clearfix">
                     <li><a href="index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
-                    <li class="on"><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
+                    <li><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
+                    <li class="on"><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
                 </ul>
             </div>
             <!-- section -->
             <div class="section">       
                 <div class="tit-area">
-                    <h3>온라인상담</h3>
+                    <h3>온라인 상담</h3>
                 </div>
                 
                 <html:form action="/Inquire" method="post" name="fm" type="kr.go.rndcall.mgnt.inquire.form.InquireForm">
@@ -143,13 +146,17 @@
             
 	                <!-- search-box -->
 	                <div class="search-box mt10">
-	                    <div class="search-form">
+	                    <div class="search-form" style="width: 450px;">
+							<html:select name="InquireForm" property="searchVO.searchCategory">
+							    <html:option value=""> == 분류선택 == </html:option>
+							    <html:optionsCollection name="InquireForm" property="voList2" value="code" label="code_nm"/>
+							</html:select>
 	                        <html:select name="InquireForm" property="searchVO.whichSearch" style="width:90px;">
                                 <html:option value="title">제목</html:option>
                                 <html:option value="contents">내용</html:option>
                                 <html:option value="all">제목+내용</html:option>
                             </html:select>
-                            <html:text name="InquireForm" property="searchVO.searchTxt" title="검색어를 입력하세요" maxlength="35" onchange="trim(this)"  />
+                            <html:text name="InquireForm" property="searchVO.searchTxt" title="검색어를 입력하세요" maxlength="35" onchange="trim(this)" />
 	                        <a href="javascript:goSearch()" class="search-btn"><img src="/img/sub/icon_zoom.gif" alt="검색" /></a>
 	                    </div>
 	                </div>
@@ -158,10 +165,11 @@
 	                <div class="board-type01 mt10">
 	                    <div class="board-box">
 	                        <table border="0" summary="번호, 제목, 글쓴이, 등록일, 상태, 조회수 목록 페이지">
-	                            <caption>온라인상담 목록 페이지</caption>
+	                            <caption>온라인 상담 목록 페이지</caption>
 	                            <colgroup>
 	                                <col width="7%" />
 	                                <col width="*" />
+	                                <col width="15%" />
 	                                <col width="8%" />
 	                                <col width="12%" />
 	                                <col width="12%" />
@@ -171,6 +179,7 @@
 	                                <tr>
 	                                    <th scope="col">번호</th>
 	                                    <th scope="col">제목</th>
+	                                    <th scope="col">분야</th>
 	                                    <th scope="col">글쓴이</th>
 	                                    <th scope="col">등록일</th>
 	                                    <th scope="col">상태</th>
@@ -187,6 +196,9 @@
                                                 <td><%= totRowCount.intValue() - rowNum.intValue() -  Util.replaceNull((String)pagerOffset, 0) %></td>
                                                 <td class="txt-l">
                                                     <bean:define name="vo" property="title" id="title" type="java.lang.String"/>
+                                                    <bean:define name="vo" property="reg_id" id="reg_id" type="java.lang.String"/>
+                                                    <bean:define name="vo" property="open_yn" id="open_yn" type="java.lang.String"/>
+                                                    <bean:define name="vo" property="reg_dt" id="reg_dt" type="java.lang.String"/>
                                                     <%
                                                         String title_n = "";
                                                         int len = 24;
@@ -195,14 +207,52 @@
                                                         } else {
                                                             title_n = title;
                                                         }
+                                                        
                                                     %>
-                                                    <a href="JavaScript:goInquireView('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>)"><%=title_n %></a>                           
+                                                    <%
+                                                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd");
+                                                        Date compareDay = simpleDateFormat.parse(reg_dt);
+                                                        Calendar cal = Calendar.getInstance();
+                                                        cal.add(Calendar.DATE, -1);
+                                                        
+                                                        String new_img = "";
+                                                        if ( compareDay.after(cal.getTime()) ) {
+                                                            new_img = "<span><img src=\"/img/icon/new_icon.png\" alt=\"new\" /></span>";
+                                                        }
+                                                    %>
+                                                    
+                                                    <%
+                                                        if ( "Y".equals(open_yn) ) {
+                                                    %>
+                                                    <a href="JavaScript:goInquireView('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>)"><%=title_n %> <%= new_img %></a>
+                                                    <%
+                                                        } else {
+	                                                        if ( (login_id != null && !login_id.isEmpty() && login_id.equals(reg_id)) || mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C") ) {
+                                                    %>
+                                                    <a href="JavaScript:goInquireView('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>)"><span style="color: blue">[비공개]</span> <%=title_n %> <%= new_img %></a>
+                                                    <%
+	                                                        } else {
+                                                    %>
+                                                    <logic:empty name="vo" property="reg_id">
+	                                                    <a href="javascript:goPasswordCheckForm('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>, 'goPasswordCheck()')">[비공개] <%=title_n %> <%= new_img %></a>
+                                                    </logic:empty>
+                                                    <logic:notEmpty name="vo" property="reg_id">
+                                                        <span style="padding-left: 20px;">[비공개] <%=title_n %> <%= new_img %></span>
+                                                    </logic:notEmpty>
+<%--                                                     <span style="padding-left: 20px;"><span style="color: blue">[비공개]</span> <%=title_n %> <%= new_img %></span> --%>
+                                                    <%
+                                                            }
+                                                        }
+                                                    %>
                                                 </td>
                                                 <td>
-                                                    <logic:notEmpty name="vo" property="reg_nm">
-	                                                    <bean:write name="vo" property="reg_nm"/>
+                                                    <bean:write name="vo" property="category1"/>
+                                                </td>
+                                                <td>
+                                                    <logic:notEmpty name="vo" property="reg_id">
+	                                                    <bean:write name="vo" property="reg_id"/>
                                                     </logic:notEmpty>
-                                                    <logic:empty name="vo" property="reg_nm">
+                                                    <logic:empty name="vo" property="reg_id">
                                                                 비회원
                                                     </logic:empty>
                                                 </td>
@@ -211,9 +261,9 @@
                                                     <bean:define name="vo" property="stat" id="stat" type="java.lang.String"/>
                                                     <%
                                                         if ( stat.equals("Y") ) {
-                                                            out.print("<span class=\"btn-set set4 gray\">완료</span>");
+                                                            out.print("<span class=\"btn-set set4 gray\">답변완료</span>");
                                                         } else {
-                                                            out.print("<span class=\"btn-set set4 yellow\">처리중</span>");
+                                                            out.print("<span class=\"btn-set set4 yellow\">접수중</span>");
                                                         }
                                                     %>
                                                 </td>

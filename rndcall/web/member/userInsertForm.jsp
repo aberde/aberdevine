@@ -183,7 +183,7 @@
 // 				return false;
 		//	} else if (isRequired(fm.elements["email_id"])||isRequired(fm.elements["email_domain"])){
 		//		return false;
-			} else if (isRequired(fm.elements["vo.sector"])){
+			} else if (isRequired($("input[name='vo.sector']:checked").get(0))){
 				return false;
 			} else if (isRequired(fm.elements["vo.idFindAnswer"])){
 				return false;
@@ -282,7 +282,7 @@
 	                <div class="board-write mt10">
 	                    <div class="board-box">
 	                        <table summary="질의자 정보, 공개여부, 제목, 내용 보기 등록 페이지">
-	                            <caption>온라인상담 등록 페이지 </caption>
+	                            <caption>온라인 상담 등록 페이지 </caption>
 	                            <colgroup>
 	                                <col width="20%"/>
 	                                <col width="*"/>
@@ -320,15 +320,6 @@
                                             <input type="radio" id="info6" name="vo.sector" value="6" /> <label for="info6">기타</label>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row"><label for="se02">소속기관</label></th>
-                                        <td>
-                                            <html:select styleId="se02" name="memberForm" property="vo.org_cd" style="width:160px;">
-                                                <html:option value="">없음</html:option>
-                                                <html:optionsCollection name="memberForm" property="orgCdList" label="org_nm" value="org_cd"/>
-                                            </html:select>
-                                        </td>
-                                    </tr>
 	                                <tr>
 	                                    <th scope="row"><label for="vo.idFindQuestion">아이디찾기 질문</label></th>
 	                                    <td>
@@ -343,6 +334,7 @@
 			                                    <option value="8">받은 선물 중 기억에 남는 선물은?</option>
 			                                    <option value="9">인상 깊게 읽은 책 이름은?</option>
 			                                    <option value="10">내가 좋아 하는 케릭터 이름은?</option>
+			                                    <option value="11">자신의 소속기관은?</option>
 	                                        </select> 
 	                                        <input type="text" id="vo.idFindAnswer" name="vo.idFindAnswer" title="아이디 질문을 입력해주세요." style="width:310px"/>
 	                                    </td>
@@ -361,6 +353,7 @@
                                                 <option value="8">받은 선물 중 기억에 남는 선물은?</option>
                                                 <option value="9">인상 깊게 읽은 책 이름은?</option>
                                                 <option value="10">내가 좋아 하는 케릭터 이름은?</option>
+                                                <option value="11">자신의 소속기관은?</option>
 	                                        </select> 
 	                                        <input type="text" id="vo.pwFindAnswer" name="vo.pwFindAnswer" title="비밀번호 질문을 입력해주세요." style="width:310px"/>
 	                                    </td>

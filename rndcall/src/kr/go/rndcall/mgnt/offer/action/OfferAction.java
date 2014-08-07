@@ -120,7 +120,7 @@ public class OfferAction extends DispatchAction {
 			vo.setReg_id(Util.getLoginId(request));
 		}
 	    
-	    if(searchVO.getType().equals("03")){
+	    if(searchVO.getType().equals("03") && Util.getLoginUserVO(request) != null ){
 	    	target = "myPageMethod";
 	    	searchVO.setMenu_sn("03");
 	    }
@@ -1112,5 +1112,62 @@ public class OfferAction extends DispatchAction {
         System.out.println("seq::"+seq+"에 "+msg+" 되어  메일을 발송하였습니다.");
     }
     
-    
+
+    //제안하기 리스트조회 
+    public ActionForward adminOfferList(ActionMapping mapping, ActionForm form, HttpServletRequest request
+            , HttpServletResponse response) throws Exception {
+        
+        String target = "adminOfferList";   
+        
+        ActionErrors errors = null;
+        if (request.getAttribute("org.apache.struts.action.ERROR") == null) {
+            errors = new ActionErrors();
+        } else {
+            errors = (ActionErrors) request
+            .getAttribute("org.apache.struts.action.ERROR");
+        }
+        
+        OfferForm fm = (OfferForm) form;
+        OfferSearchVO searchVO = fm.getSearchVO();
+        OfferResultVO resultVO = new OfferResultVO();
+        OfferVO vo = fm.getVo();
+        
+        if(Util.getLoginUserVO(request) != null){
+            searchVO.setLoginId(Util.getLoginId(request)); //로그인 아이디정보
+            searchVO.setName(Util.getName(request)); //로그인 이름정보
+            searchVO.setRoleCD(Util.getLoginUserVO(request).getRoleCD());
+        }
+        
+        searchVO.setLoginId("admin"); //로그인 아이디정보
+        searchVO.setName("관리자"); //로그인 이름정보
+        searchVO.setBoard_type("OFFER"); //임시로 사용
+        
+        searchVO.setPagerOffset(Util.replaceNull(request.getParameter("pager.offset"), "0"));
+        try{
+            OfferBiz biz = new OfferBiz();
+            resultVO = biz.offerList(searchVO);
+            //seq = FaqDAO.getSeq();
+        } catch (Exception e) {
+            logger.debug("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
+        }
+        
+        if (errors.isEmpty()) {
+            if (resultVO.getTotRowCount().intValue() == 0) {
+                errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                "errors.getList.DataNotFound"));
+            } else {
+                errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                "errors.getList.success"));
+            }
+        }
+        fm.setPagerOffset(Util.replaceNull(request.getParameter("pager.offset"), "0"));
+        fm.setVoList(resultVO.getVoList());
+        fm.setVo(resultVO.getVo());
+        fm.setTotRowCount(resultVO.getTotRowCount());
+        String title = resultVO.getVo().getTitle();
+        System.out.println("타이틀"+title);
+        saveErrors(request, errors);        
+        return mapping.findForward(target);
+    }
 }

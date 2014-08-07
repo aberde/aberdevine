@@ -29,7 +29,13 @@
 				fm.elements["method"].value="offerInsert";
 				fm.elements["searchVO.type"].value="03";
 				fm.submit();
+				<%
+				    if ( mainLoginVO != null && mainIsLogin ) {    
+				%>
 				alert("마이페이지에서 등록한 글에대한 정보를 확인할수 있습니다.");
+				<%
+				    }
+				%>
 			}
 		}
 		
@@ -93,7 +99,7 @@
 	</script>
 
     <!-- container -->
-    <div id="container">
+    <div id="container" class="sinmungo">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
@@ -120,6 +126,7 @@
                 <div class="explain-bx mt60">
                     <strong>연구현장의 불합리한 제도나 관행 등 제도개선 건의 또는 기타 연구제도 관련 불편·불만사항을 건의해주세요.</strong>
                     <p>*원활한 제안 처리를 위해 등록 후 24시간 이내에만 수정, 삭제가 가능하오니 양해바랍니다.</p>
+                    <p>*답변을 이메일로 받고자 하는 경우에는 내용에 이메일 주소를 남겨주시기 바랍니다.</p>
                 </div>
                 <!--  //explain-bx -->
                 

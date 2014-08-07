@@ -152,7 +152,7 @@ a.btn_Basic:hover span,a.btn_Basic:hover strong{display:block; padding:1px 8px 0
 .On-untreat tbody tr th 			{ color:#645c59; border-right:1px #dad9d9 solid; border-bottom:1px #dad9d9 solid;}
 .On-untreat tbody tr td 			{ text-align:center; padding:3px 0 3px 0; border-left:1px #dad9d9 solid; border-bottom:1px #dad9d9 solid; font-weight:bold; }
 
-/* 하단 이미지 [자주묻는질문] */
+/* 하단 이미지 [자주 묻는 질문] */
 .OnLine-inquiry 					{ height:60px;}
 .OnLine-inquiry ul 				{ margin:0 auto; width:825px; padding-top:10px; }
 .OnLine-inquiry ul li 			{ float:left; height:55px;}

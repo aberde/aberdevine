@@ -42,7 +42,7 @@ public class OfferDAO extends BaseSqlDAO{
 			getConnection(dsname);
 			
 			String query = "";
-			if(searchVO.getRoleCD().equals("0000C") ||  searchVO.getRoleCD().equals("0000Z")){
+//			if(searchVO.getRoleCD().equals("0000C") ||  searchVO.getRoleCD().equals("0000Z")){
 				query = loadQueryString("sql.offer.question.offerList");
 				if(searchVO.getType().equals("1")){
 //					query += " AND Q.SEQ = A.Q_SEQ(+) ";
@@ -58,10 +58,10 @@ public class OfferDAO extends BaseSqlDAO{
 //				}else{
 //					query += " AND Q.SEQ = A.Q_SEQ(+) ";
 				}
-			}else{
-				query = loadQueryString("sql.offer.question.offerList2");
-				query += " AND Q.SEQ = A.Q_SEQ ";
-			}
+//			}else{
+//				query = loadQueryString("sql.offer.question.offerList2");
+//				query += " AND Q.SEQ = A.Q_SEQ ";
+//			}
 
 			query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
 			
@@ -77,6 +77,8 @@ public class OfferDAO extends BaseSqlDAO{
 					query = new StringBuffer(query).append(" AND (Q.CONTENTS LIKE '%").append(searchVO.getSearchTxt()).append("%' ")
 					.append(" or Q.title LIKE '%").append(searchVO.getSearchTxt()).append("%') ")
 				 	.toString();
+				}else if(searchVO.getWhichSearch().equals("reg_id")){
+				    query += " AND Q.reg_id like '%"+searchVO.getSearchTxt()+"%' ";
 				}
 			}
 			query += " ORDER BY Q.REG_DT DESC";
@@ -94,6 +96,8 @@ public class OfferDAO extends BaseSqlDAO{
 				vo.setReg_nm(rs.getString("REG_NM"));
 				vo.setRead_count(rs.getInt("READ_COUNT"));
 				vo.setStat(rs.getString("STAT"));
+				vo.setReg_id(rs.getString("REG_ID"));
+				vo.setOpen_yn(rs.getString("OPEN_YN"));
 				
 				voList.add(vo);
 			}
@@ -209,6 +213,8 @@ public class OfferDAO extends BaseSqlDAO{
 				vo.setAnswer_seq(rs.getString("ANSWER_SEQ"));
 				vo.setPublic_trans_yn(rs.getString("PUBLIC_TRANS_YN"));
 				vo.setQuery_user_info(rs.getString("QUERY_USER_INFO"));
+				vo.setReg_id(rs.getString("REG_ID"));
+				vo.setComplete_yn(rs.getString("COMPLETE_YN"));
 			}
 			
 			resultVO.setVo(vo);			
@@ -662,7 +668,11 @@ public class OfferDAO extends BaseSqlDAO{
                 pstmt.setString(param++, vo.getBoard_type());
                 pstmt.setString(param++, vo.getOpen_yn());
                 SSOUtil ssoUtil = new SSOUtil();
-                pstmt.setString(param++, ssoUtil.encrypt(vo.getPassword()));
+                if ( vo.getPassword() != null && !vo.getPassword().isEmpty() ) {
+                    pstmt.setString(param++, ssoUtil.encrypt(vo.getPassword()));
+                } else {
+                    pstmt.setString(param++, "");
+                }
                 pstmt.setString(param++, vo.getQuery_user_info());
                 
                 executeQueryForCUD();
@@ -709,6 +719,7 @@ public class OfferDAO extends BaseSqlDAO{
 			pstmt.setString(param++, vo.getAnswerContents());
 			pstmt.setString(param++, vo.getFile_id());
 			pstmt.setString(param++, searchVO.getLoginId());
+			pstmt.setString(param++, vo.getComplete_yn());
 			
 			executeQueryForCUD();
 			pstmt.close();
@@ -780,6 +791,7 @@ public class OfferDAO extends BaseSqlDAO{
 			pstmt.setString(param++, vo.getAnswerContents());
 			pstmt.setString(param++, vo.getFile_id());
 			pstmt.setString(param++, searchVO.getLoginId());			
+			pstmt.setString(param++, vo.getComplete_yn());
 			pstmt.setString(param++, vo.getAnswer_seq());
 			
 			executeQueryForCUD();

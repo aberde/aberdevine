@@ -42,7 +42,7 @@
     </script>
  
     <!-- container -->
-    <div id="container">
+    <div id="container" class="notice">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
@@ -119,10 +119,23 @@
                                         <logic:iterate name="NoticeForm" property="voList" indexId="rowNum" id="vo">
                                             <tr <%= rowNum.intValue() % 2 == 1 ? "class=\"on\"" : "" %>>
                                                 <td><%=totRowCount.intValue() - rowNum.intValue() - Util.replaceNull((String) pagerOffset, 0)%></td>
-                                                <td class="txt-l"><a href="JavaScript:noticeDetailView('NOTICE',<bean:write name="vo" property="seq"/>)"><bean:write name="vo" property="title" /></a></td>
+                                                <td class="txt-l">
+                                                    <a href="JavaScript:noticeDetailView('NOTICE',<bean:write name="vo" property="seq"/>)">
+                                                    <logic:equal name="vo" property="category1" value="1">
+	                                                    <span class="icon">공지</span>
+                                                    </logic:equal>
+                                                    <logic:equal name="vo" property="category1" value="2">
+                                                        <span class="icon icon01">행사</span>
+                                                    </logic:equal>
+                                                    <logic:equal name="vo" property="category1" value="3">
+                                                        <span class="icon icon02">기타</span>
+                                                    </logic:equal>
+                                                    <bean:write name="vo" property="title" />
+                                                    </a>
+                                                </td>
                                                 <td>
                                                     <logic:equal name="vo" property="file_id" value="N">
-                                                        <span class="btn-set save">첨부파일</span>
+                                                        <span class="btn-set save"><a href="#">첨부파일</a></span>
                                                     </logic:equal>
                                                     <logic:notEqual name="vo" property="file_id" value="N">
                                                     </logic:notEqual>

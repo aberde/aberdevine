@@ -24,8 +24,18 @@ public class NoticeVO extends BaseVO{
 	private String reg_nm; //등록자이름
 	private String del_file_id; //첨부파일 삭제
 		
+	private String category1;
+	
 		
-	public String getBoard_type() {
+	public String getCategory1() {
+        return category1;
+    }
+
+    public void setCategory1(String category1) {
+        this.category1 = category1;
+    }
+
+    public String getBoard_type() {
 		return board_type;
 	}
 

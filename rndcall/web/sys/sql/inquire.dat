@@ -528,3 +528,13 @@ INSERT INTO RNDCALL_SCRAP (
 ) VALUES (
 	?, ?, ?, ?, sysdatetime, 'Y'
 )
+
+#==============================================================
+# 비회원 비밀번호 확인
+#==============================================================
+@sql.inquire.getPasswordCheck
+SELECT *
+FROM RNDCALL_BOARD_QUESTION A
+WHERE
+    A.SEQ = ?
+    AND A.PASSWORD = ?

@@ -88,14 +88,18 @@
 		
 		function goIns(arg){
 			fm.elements["searchVO.board_type"].value=arg;	
-			fm.elements["method"].value="dataList";
+			if ( arg == "SYSTEM" ) {
+                fm.elements["method"].value="dataSystemList";
+            } else {
+                fm.elements["method"].value="dataList";
+            }
 			fm.submit();
 		}
 	//-->
 	</script>
 
     <!-- container -->
-    <div id="container">
+    <div id="container" class="dataroom">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
@@ -104,7 +108,7 @@
             </div>
             <ul class="lnb-lst">
                 <li><a href="Javascript:goLawInfo()">법령 및 행정규칙</a></li>
-                <li><a href="JavaScript:goIns('SYSTEM')">제도</a></li>
+                <li><a href="JavaScript:goIns('SYSTEM')">연구관리제도</a></li>
                 <li  class="on"><a href="JavaScript:goIns('DATA')">기타</a></li>
             </ul>               
         </div>
@@ -148,7 +152,7 @@
                                 </colgroup>
                                 <tbody>
                                     <tr>
-                                        <th scope="row">기타</th>
+                                        <th scope="row">제목</th>
                                         <td><bean:write name="DataForm" property="vo.title" filter="false"/></td>
                                     </tr>
                                     <tr class="comment">

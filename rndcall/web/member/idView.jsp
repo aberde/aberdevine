@@ -45,9 +45,11 @@
                         <tr>
                             <th scope="row"><label for="id">아이디</label></th>
                             <td>
-                                <logic:iterate name="memberForm" property="voList" id="vo">
-                                    <span class="tbox"><bean:write name="vo" property="login_id"/></span>
-                                </logic:iterate>
+                                <div class="pop-bx">
+	                                <logic:iterate name="memberForm" property="voList" id="vo">
+	                                    <a href="javascript:opener.login('<bean:write name="vo" property="login_id"/>')"><span class="tbox"><bean:write name="vo" property="login_id"/></span></a><br/>
+	                                </logic:iterate>
+	                            </div>
                             </td>
                         </tr>
                     </tbody>

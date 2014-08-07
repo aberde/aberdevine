@@ -119,8 +119,8 @@
                 <span><img src="/img/common/h2_admin_entxt.gif" alt="Online Consultation" /></span>
             </div>
             <ul class="lnb-lst">
-                <li><a href="#none;">온라인 상담</a></li>
-                <li><a href="#none;">R&amp;D 신문고</a></li>
+                <li><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getAdminInquireList&searchVO.board_type=QNA&searchVO.type=&searchVO.searchCategory=&searchVO.menu_sn=01">온라인 상담</a></li>
+                <li><a href="/switch.do?prefix=/offer&page=/Offer.do?method=adminOfferList&searchVO.menu_sn=14">R&amp;D 신문고</a></li>
                 <li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=09">회원관리</a></li>
                 <li class="on"><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=09">질문분야관리</a></li>
                 <li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=09">오프라인자료 등록</a></li>
@@ -173,10 +173,9 @@
 	                                <col width="7%" />
 	                                <col width="13%" />
 	                                <col width="*" />
-	                                <col width="16%" />
-	                                <col width="11%" />
-	                                <col width="11%" />
-	                                <col width="11%" />
+	                                <col width="18%" />
+	                                <col width="12%" />
+	                                <col width="12%" />
 	                            </colgroup>
 	                            <thead>
 	                                <tr>
@@ -186,7 +185,6 @@
 	                                    <th scope="col">하위분야</th>
 	                                    <th scope="col">수정</th>
 	                                    <th scope="col">삭제</th>
-	                                    <th scope="col">추가</th>
 	                                </tr>
 	                            </thead>
 	                            <tbody>
@@ -204,7 +202,6 @@
 												<td><a href="javascript:getDtlList('<bean:write name="vo" property="category_id"/>');"><bean:write name="vo" property="dtl_cnt"/>건</a></td>
 												<td><span class="btn-set"><a href="javascript:cate_update('<bean:write name="vo" property="category_id"/>');">수정</a></span></td>
 												<td><span class="btn-set"><a href="javascript:fn_delete('<bean:write name="vo" property="category_id"/>');">삭제</a></span></td>
-												<td><span class="btn-set"><a href="#">추가</a></span></td>
 	                                        </tr>
 	                                    </logic:iterate>
 	                                </logic:notEmpty>

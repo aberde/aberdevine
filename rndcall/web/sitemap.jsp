@@ -26,7 +26,7 @@
 					<h1><img src="../images/content/SiteMap_Title01.gif" alt="상담센터" /></h1>
 							<li><a href="JavaScript:goInquireForm()"><img src="../images/content/SiteMap_Title01_1.gif" border="0" alt="온라인상담" /></a></li>
 							<li><a href="JavaScript:goFaq()"><img src="../images/content/SiteMap_Title01_2.gif" border="0" alt="Q&A" /></a></li>
-							<li><a href="JavaScript:goInquireList()"><img src="../images/content/SiteMap_Title01_3.gif" border="0" alt="자주묻는질문" /></a></li>
+							<li><a href="JavaScript:goInquireList()"><img src="../images/content/SiteMap_Title01_3.gif" border="0" alt="자주 묻는 질문" /></a></li>
 					</ul>
 			</div>														
 	</td>
@@ -91,7 +91,7 @@
 					<h1><img src="../images/content/SiteMap_Title01.gif" alt="상담센터" /></h1>
 							<li><a href="JavaScript:goInquireForm()"><img src="../images/content/SiteMap_Title01_1.gif" border="0" alt="온라인상담" /></a></li>
 							<li><a href="JavaScript:goFaq()"><img src="../images/content/SiteMap_Title01_2.gif" border="0" alt="Q&A" /></a></li>
-							<li><a href="JavaScript:goInquireList()"><img src="../images/content/SiteMap_Title01_3.gif" border="0" alt="자주묻는질문" /></a></li>
+							<li><a href="JavaScript:goInquireList()"><img src="../images/content/SiteMap_Title01_3.gif" border="0" alt="자주 묻는 질문" /></a></li>
 							</ul>
 			</div>														
 	</td>
@@ -151,7 +151,7 @@
 					<h1><img src="../images/content/SiteMap_Title01.gif" alt="상담센터" /></h1>
 							<li><a href="JavaScript:goInquireForm()"><img src="../images/content/SiteMap_Title01_1.gif" border="0" alt="온라인상담" /></a></li>
 							<li><a href="JavaScript:goFaq()"><img src="../images/content/SiteMap_Title01_2.gif" border="0" alt="Q&A" /></a></li>
-							<li><a href="JavaScript:goInquireList()"><img src="../images/content/SiteMap_Title01_3.gif" border="0" alt="자주묻는질문" /></a></li>
+							<li><a href="JavaScript:goInquireList()"><img src="../images/content/SiteMap_Title01_3.gif" border="0" alt="자주 묻는 질문" /></a></li>
 							</ul>
 			</div>														
 	</td>

@@ -55,4 +55,16 @@ public class DataBiz {
 		DataDAO DataDAO = new DataDAO();
 		return DataDAO.dataUpdate(vo, searchVO);
 	}
+	//연구관리제도의 리스트를 가져온다.
+    public DataResultVO dataSystemList(DataSearchVO searchVO) throws DAOBaseException, SQLException, NamingException {
+        DataDAO DataDAO = new DataDAO();
+        return DataDAO.dataSystemList(searchVO);
+    }
+    //연구관리제도에 등록한다.
+    public DataResultVO dataSystemInsert(DataVO vo, DataSearchVO searchVO) throws Exception {
+        DataResultVO reslutVO = new DataResultVO();
+        DataDAO dao =  new DataDAO();
+        reslutVO =  dao.dataSystemInsert(vo, searchVO);
+        return reslutVO;
+    }
 }

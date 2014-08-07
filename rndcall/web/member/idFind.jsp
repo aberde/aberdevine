@@ -56,13 +56,13 @@
 // 		    document.fm.elements["vo.email"].value = document.all.email_id.value+"@"+document.all.email_domain.value;
 		
 		
-		    var winfeatures = "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=580,height=280";
+		    var winfeatures = "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=580,height=340";
 // 		    var url = "/switch.do?prefix=&page=/member.do?method=idFind&vo.name=" + document.all.name.value + "&vo.email=" + escape(document.all.email_id.value+"@"+document.all.email_domain.value);
 		    var url = "/switch.do?prefix=&page=/member.do?method=idFind&vo.idFindQuestion=" + document.all.idFindQuestion.value + "&vo.idFindAnswer=" + document.all.idFindQuestion.value;
-		
-		    idFindWin = window.open( url, "idFind", winfeatures);
+		    document.location.href = url;
+// 		    idFindWin = window.open( url, "idFind", winfeatures);
 		    
-		    self.close();
+// 		    self.close();
 		}
 		
 		/**
@@ -120,6 +120,7 @@
                                     <option value="8">받은 선물 중 기억에 남는 선물은?</option>
                                     <option value="9">인상 깊게 읽은 책 이름은?</option>
                                     <option value="10">내가 좋아 하는 케릭터 이름은?</option>
+                                    <option value="11">자신의 소속기관은?</option>
                                 </select>
                             </td>
                         </tr>

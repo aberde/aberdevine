@@ -109,7 +109,7 @@
 	</script>
 	
 	<!-- container -->
-    <div id="container">
+    <div id="container" class="sinmungo">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
@@ -165,8 +165,8 @@
 	                                    <td colspan="3"><bean:write name="OfferForm" property="vo.title" filter="false"/></td>
 	                                </tr>
 	                                <tr>
-	                                    <th scope="row">이름</th>
-	                                    <td><bean:write name="OfferForm" property="vo.reg_nm"/></td>
+	                                    <th scope="row">아이디</th>
+	                                    <td><bean:write name="OfferForm" property="vo.reg_id"/></td>
 	                                    <th scope="row">상태</th>
 	                                    <td>
 	                                        <bean:define name="OfferForm" property="vo.stat" id="stat" type="java.lang.String"/>
@@ -209,6 +209,12 @@
 	                                    <th scope="row" class="txt-blue">답변내용</th>
 	                                    <td colspan="3" class="txt-blue">
 	                                        <html:textarea styleId="txtarea1" name="OfferForm" property="vo.answerContents" cols="0" rows="0" style="width:97%; min-height:254px; " alt="답변 내용" title="답변 내용"/>
+	                                    </td>
+	                                </tr>
+	                                <tr class="comment">
+	                                    <th scope="row" class="txt-blue">답변완료여부</th>
+	                                    <td colspan="3" class="txt-blue">
+	                                        <html:checkbox name="OfferForm" property="vo.complete_yn" value="Y" styleId="complete_yn"></html:checkbox> <label for="complete_yn">답변완료여부</label>
 	                                    </td>
 	                                </tr>
 	                                <logic:notEmpty name="OfferForm" property="voList1">

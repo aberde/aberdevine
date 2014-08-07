@@ -36,7 +36,11 @@
 			fm.elements["searchVO.whichSearch"].value="";
 			fm.elements["searchVO.searchTxt"].value="";
 			fm.elements["searchVO.board_type"].value=arg;	
-			fm.elements["method"].value="dataList";
+			if ( arg == "SYSTEM" ) {
+				fm.elements["method"].value="dataSystemList";
+			} else {
+				fm.elements["method"].value="dataList";
+			}
 			fm.submit();
 		}
 		
@@ -48,7 +52,7 @@
 	</script>
 
     <!-- container -->
-    <div id="container">
+    <div id="container" class="dataroom">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
@@ -147,7 +151,7 @@
                                                 </td>
                                                 <td>
 	                                                <logic:equal name="vo" property="file_id" value="N">
-	                                                    <span class="btn-set save">첨부파일</span>
+	                                                    <span class="btn-set save"><a href="#">첨부파일</a></span>
 	                                                </logic:equal>
 	                                                <logic:notEqual name="vo" property="file_id" value="N">
 	                                                </logic:notEqual>

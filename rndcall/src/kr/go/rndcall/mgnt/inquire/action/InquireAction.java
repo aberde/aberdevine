@@ -1,8 +1,20 @@
 package kr.go.rndcall.mgnt.inquire.action;
 
-import java.util.List;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import kr.go.rndcall.mgnt.common.AttachVO;
+import kr.go.rndcall.mgnt.common.FileUpload;
+import kr.go.rndcall.mgnt.common.FileVO;
+import kr.go.rndcall.mgnt.common.Util;
+import kr.go.rndcall.mgnt.inquire.biz.InquireBiz;
+import kr.go.rndcall.mgnt.inquire.form.InquireForm;
+import kr.go.rndcall.mgnt.inquire.vo.InquireResultVO;
+import kr.go.rndcall.mgnt.inquire.vo.InquireSearchVO;
+import kr.go.rndcall.mgnt.inquire.vo.InquireVO;
+import kr.go.rndcall.mgnt.inquire.vo.SatiVO;
 
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionError;
@@ -11,20 +23,6 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
-
-import kr.go.rndcall.mgnt.inquire.form.InquireForm;
-import kr.go.rndcall.mgnt.inquire.vo.InquireSearchVO;
-import kr.go.rndcall.mgnt.inquire.vo.InquireAttachVO;
-import kr.go.rndcall.mgnt.inquire.vo.InquireResultVO;
-import kr.go.rndcall.mgnt.inquire.vo.InquireVO;
-import kr.go.rndcall.mgnt.inquire.vo.SatiVO;
-import kr.go.rndcall.mgnt.common.AttachVO;
-import kr.go.rndcall.mgnt.common.FileUpload;
-import kr.go.rndcall.mgnt.common.FileVO;
-import kr.go.rndcall.mgnt.common.Util;
-
-import kr.go.rndcall.mgnt.inquire.biz.InquireBiz;
-import kr.go.rndcall.mgnt.inquire.dao.InquireDAO;
 
 public class InquireAction extends DispatchAction {
 
@@ -440,6 +438,8 @@ public class InquireAction extends DispatchAction {
 		InquireResultVO resultVO = new InquireResultVO();
 		InquireResultVO loginResultVO = new InquireResultVO();
 		InquireResultVO resultFileVO = new InquireResultVO();
+		InquireResultVO cateResultVO1 = new InquireResultVO();//대분야정보
+        InquireResultVO cateResultVO2 = new InquireResultVO();//소분야정보
 		
 		if(Util.getLoginUserVO(request) != null){
 			searchVO.setLoginId(Util.getLoginId(request)); //로그인 아이디정보
@@ -462,9 +462,28 @@ public class InquireAction extends DispatchAction {
             logger.debug("Exception: " + e.getMessage());
             errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
         }
+		
+		try{
+            InquireBiz InquireBiz = new InquireBiz();
+            cateResultVO1 = InquireBiz.getCodeInfo();
+        } catch (Exception e) {
+            logger.debug("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
+        }
+        
+        //소분류정보조회
+        try{
+            InquireBiz InquireBiz = new InquireBiz();
+            cateResultVO2 = InquireBiz.getCodeInfo1();
+        } catch (Exception e) {
+            logger.debug("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
+        }
 
 		fm.setVoList(resultFileVO.getVoList());
 		fm.setLoginVO(loginResultVO.getLoginVO());
+		fm.setVoList2(cateResultVO1.getVoList());
+        fm.setVoList3(cateResultVO2.getVoList());
 //		System.out.println("MOBILE :::::: " + fm.getLoginVO().getMobile());
 //		System.out.println("EMAIL :::::: " + fm.getLoginVO().getEmail());
 		fm.setErrCd("0");
@@ -2414,5 +2433,107 @@ public class InquireAction extends DispatchAction {
 
 
     }  
+ 
+    /**
+     * 온라인상담(관리자)
+     */        
+    public ActionForward getAdminInquireList(ActionMapping mapping, ActionForm form, HttpServletRequest request
+                                 , HttpServletResponse response) throws Exception {
+        
+        String target = "getAdminInquireList";
+        ActionErrors errors = null;
+        if (request.getAttribute("org.apache.struts.action.ERROR") == null) {
+            errors = new ActionErrors();
+        } else {
+            errors = (ActionErrors) request
+                    .getAttribute("org.apache.struts.action.ERROR");
+        }
+
+        InquireForm fm = (InquireForm) form;
+        InquireSearchVO searchVO = fm.getSearchVO();
+        InquireResultVO resultVO = new InquireResultVO();
+        InquireResultVO cateResultVO1 = new InquireResultVO();//대분야정보
+        InquireVO vo = fm.getVo();
+        
+        if(Util.getLoginUserVO(request) != null){
+            searchVO.setLoginId(Util.getLoginId(request)); //로그인 아이디정보
+            searchVO.setName(Util.getName(request)); //로그인 이름정보
+            searchVO.setRoleCD(Util.getLoginUserVO(request).getRoleCD());
+        }
+        
+        searchVO.setMenu_sn("01");
+        searchVO.setPagerOffset(Util.replaceNull(request.getParameter("pager.offset"), "0"));
+        
+        try{
+            InquireBiz InquireBiz = new InquireBiz();
+            resultVO = InquireBiz.getInquireList(searchVO);
+        } catch (Exception e) {
+            logger.debug("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
+        }
+        
+        // 대분류 정보 조회
+        try{
+            InquireBiz InquireBiz = new InquireBiz();
+            cateResultVO1 = InquireBiz.getCodeInfo();
+        } catch (Exception e) {
+            logger.debug("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
+        }
+        
+                
+        fm.setPagerOffset(Util.replaceNull(request.getParameter("pager.offset"), "0"));
+        fm.setVoList(resultVO.getVoList());
+        fm.setTotRowCount(resultVO.getTotRowCount());
+        fm.setVo(resultVO.getVo());     
+        fm.setVoList2(cateResultVO1.getVoList());
+        
+        if (errors.isEmpty()) {
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                    "errors.getList.success"));
+        }
+        saveErrors(request, errors);         
+        return mapping.findForward(target); ///inquire/inquire.jsp로 forward
+    }
     
+    /**
+     * 비회원 비밀번호 확인.
+     */        
+    public ActionForward getPasswordCheck(ActionMapping mapping, ActionForm form, HttpServletRequest request
+                                 , HttpServletResponse response) throws Exception {
+        
+        String target = "getPasswordCheck";
+        ActionErrors errors = null;
+        if (request.getAttribute("org.apache.struts.action.ERROR") == null) {
+            errors = new ActionErrors();
+        } else {
+            errors = (ActionErrors) request
+                    .getAttribute("org.apache.struts.action.ERROR");
+        }
+
+        InquireForm fm = (InquireForm) form;
+        InquireVO vo = fm.getVo();
+        
+        boolean result = false;
+        try{
+            InquireBiz InquireBiz = new InquireBiz();
+            result = InquireBiz.getPasswordCheck(vo);
+        } catch (Exception e) {
+            logger.debug("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
+        }
+        
+        response.setContentType("application/json;charset=utf-8");
+        response.setHeader("cache-control", "no-cache");
+        PrintWriter out = response.getWriter();
+        out.println("{\"success\" : \"" + result + "\"}");
+        out.flush();
+        
+        if (errors.isEmpty()) {
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                    "errors.getList.success"));
+        }
+        saveErrors(request, errors);         
+        return null;
+    }
 }

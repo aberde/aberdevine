@@ -28,21 +28,21 @@
                 <!-- center_bx -->
                 <div class="sitemap-area mt60 ">
                     <div class="sitebox rnd">
-                        <h3><a href="/development/development01.jsp">국가연구개발 사업이란?</a></h3>
+                        <h3><a href="/development/development01.jsp">국가연구개발사업이란?</a></h3>
                         <ul>
                             <li><a href="/development/development01.jsp">정의 및 법령체계</a></li>
                             <li><a href="/development/development02.jsp">사업추진체계</a></li>
                         </ul>
                     </div>
                     <div class="sitebox online">
-                        <h3><a href="JavaScript:goInquireMainList()">온라인상담</a></h3>
+                        <h3><a href="JavaScript:goInquireMainList()">온라인 상담</a></h3>
                         <ul>
                             <li><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
                             <li><a href="JavaScript:goFaq()">자주찾는 질문</a></li>
                         </ul>
                     </div>
                     <div class="sitebox sinmungo">
-                        <h3><a href="JavaScript:goOffer()">R&amp;D신문고</a></h3>
+                        <h3><a href="JavaScript:goOffer()">R&amp;D 신문고</a></h3>
                     </div>
                     <div class="sitebox notic">
                         <h3><a href="JavaScript:goNotice()">새소식</a></h3>
@@ -54,7 +54,7 @@
                         <h3><a href="JavaScript:goData()">자료실</a></h3>
                         <ul>
                             <li><a href="Javascript:goLawInfo()">법령 및 행정규칙</a></li>
-                            <li><a href="JavaScript:goIns('SYSTEM')">연구관리제도</a></li>
+                            <li><a href="/switch.do?prefix=/data&page=/Data.do?method=dataSystemList&searchVO.menu_sn=02">연구관리제도</a></li>
                             <li><a href="JavaScript:goData()">기타</a></li>
                         </ul>
                     </div>

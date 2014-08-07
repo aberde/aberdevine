@@ -59,7 +59,7 @@
                 <span><img src="/img/common/h2_admin_entxt.gif" alt="Online Consultation" /></span>
             </div>
             <ul class="lnb-lst">
-                <li><a href="#none;">온라인 상담</a></li>
+                <li><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getAdminInquireList&searchVO.board_type=QNA&searchVO.type=&searchVO.searchCategory=&searchVO.menu_sn=01">온라인 상담</a></li>
                 <li><a href="#none;">R&amp;D 신문고</a></li>
                 <li class="on"><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.roleCD=&searchVO.search_sel=&searchVO.search_word=&searchVO.menu_sn=09">회원관리</a></li>
                 <li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=09">질문분야관리</a></li>

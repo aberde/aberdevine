@@ -88,7 +88,7 @@ Q.NTIS_REG_ID,     Q.FILE_ID,          Q.DEL_YN,           Q.READ_COUNT,
 Q.REG_ID,          to_char(Q.REG_DT, 'YYYY.MM.DD') AS REG_DT,           Q.REG_NM,           
 (SELECT CD_DTL_NM FROM RNDCALL_CODE WHERE CD_DTL_ID = Q.CATEGORY1) AS CATEGORY1,
 (SELECT CD_DTL_NM FROM RNDCALL_CODE WHERE CD_DTL_ID = Q.CATEGORY2) AS CATEGORY2,
-DECODE(A.SEQ,null,'N','Y') AS STAT
+DECODE(A.SEQ,null,'N',DECODE(A.COMPLETE_YN, NULL, 'S', 'Y')) AS STAT
 FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_BOARD_ANSWER A ON Q.SEQ = A.Q_SEQ
 WHERE Q.DEL_YN='N'
 
@@ -103,7 +103,7 @@ Q.NTIS_REG_ID,     Q.FILE_ID,          Q.DEL_YN,           Q.READ_COUNT,
 Q.REG_ID,          to_char(Q.REG_DT, 'YYYY.MM.DD') AS REG_DT,           Q.REG_NM,           
 (SELECT CD_DTL_NM FROM RNDCALL_CODE WHERE CD_DTL_ID = Q.CATEGORY1) AS CATEGORY1,
 (SELECT CD_DTL_NM FROM RNDCALL_CODE WHERE CD_DTL_ID = Q.CATEGORY2) AS CATEGORY2,
-DECODE(A.SEQ,null,'N','Y') AS STAT
+DECODE(A.SEQ,null,'N',DECODE(A.COMPLETE_YN, NULL, 'S', 'Y')) AS STAT
 FROM RNDCALL_BOARD_QUESTION Q, RNDCALL_BOARD_ANSWER A
 WHERE Q.DEL_YN='N'
 
@@ -186,7 +186,7 @@ SELECT  Q.SEQ,             Q.BOARD_TYPE,       Q.TITLE,            CLOB_TO_CHAR(
                       ELSE 'Y'
                  END ) AS UP_DEL_STAT,
                  DECODE(A.SEQ,NULL,'N','Y') AS STAT, NVL(A.SEQ,'0') AS ANSWER_SEQ
-        , QUERY_USER_INFO
+        , QUERY_USER_INFO, COMPLETE_YN
 FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_BOARD_ANSWER A ON Q.SEQ = A.Q_SEQ
 WHERE Q.DEL_YN='N'
 #==============================================================
@@ -258,7 +258,8 @@ INSERT INTO RNDCALL_BOARD_ANSWER (
 	FILE_ID,
 	DEL_YN,
 	REG_ID,
-	REG_DT
+	REG_DT,
+	COMPLETE_YN
 ) VALUES(
 	?,
 	?,
@@ -267,7 +268,8 @@ INSERT INTO RNDCALL_BOARD_ANSWER (
 	?,
 	'N',
 	?,
-	sysdatetime
+	sysdatetime,
+	?
 )
 #==============================================================
 # ÷������ ����(FILE_DEL_YN�÷���  ����(Y)�� ������Ʈ)
@@ -287,7 +289,8 @@ UPDATE RNDCALL_BOARD_ANSWER SET
 	ANSWER_CONT = CHAR_TO_CLOB(?),
 	FILE_ID = ?,
 	EDIT_ID = ?,
-	EDIT_DT = sysdatetime
+	EDIT_DT = sysdatetime,
+	COMPLETE_YN = ?
 WHERE SEQ= ?
 #==============================================================
 # ���ǳ��� ����

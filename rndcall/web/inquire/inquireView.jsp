@@ -1,9 +1,11 @@
-﻿<%@page contentType="text/html; charset=utf-8" %>
+﻿<%@page import="kr.go.rndcall.mgnt.inquire.form.InquireForm"%>
+<%@page contentType="text/html; charset=utf-8" %>
 <%@page import="kr.go.rndcall.mgnt.inquire.vo.*" %>
 
 <%@include file="/include/top.jsp"%>
 
     <bean:define name="InquireForm" property="searchVO" id="searchVO" type="kr.go.rndcall.mgnt.inquire.vo.InquireSearchVO"/>
+    <bean:define name="InquireForm" property="vo" id="vo" type="kr.go.rndcall.mgnt.inquire.vo.InquireVO"/>
     <bean:define name="InquireForm" property="pagerOffset" id="pagerOffset" type="java.lang.String"/>
     <bean:define name="InquireForm" property="voList" id="file_list" type="java.util.ArrayList"/>
     <bean:define name="InquireForm" property="voList2" id="cateL" type="java.util.ArrayList"/>
@@ -139,16 +141,16 @@
     </script>
 
     <!-- container -->
-    <div id="container">
+    <div id="container" class="advice">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
-                <h2>온라인상담</h2>
+                <h2>온라인 상담</h2>
                 <span><img src="/img/common/h2_entxt02.gif" alt="Online Consultation" /></span>
             </div>
             <ul class="lnb-lst">
-                <li class="on"><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
-                <li><a href="JavaScript:goFaq()">자주묻는질문</a></li>
+                <li class="on"><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
+                <li><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -157,14 +159,14 @@
             <div class="location txt-r">        
                 <ul class="fr clearfix">
                     <li><a href="index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
-                    <li class="on"><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
+                    <li><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
+                    <li class="on"><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
                 </ul>
             </div>
             <!-- section -->
             <div class="section">       
                 <div class="tit-area">
-                    <h3>온라인상담</h3>
+                    <h3>온라인 상담</h3>
                     <!-- <p>R&amp;D 관련 규정 및 제도에 대해 궁금하신 사항에 담당자가 답변해 드립니다.기존 답변을 검색 후 질의해주세요.</p> -->
                 </div>
 	            <!--  explain-bx -->
@@ -194,6 +196,58 @@
 	                <html:hidden name="InquireForm" property="searchVO.start_mm"/>
 	                <html:hidden name="InquireForm" property="searchVO.end_yy"/>
 	                <html:hidden name="InquireForm" property="searchVO.end_mm"/>
+	                
+	                <!-- board-detail -->
+                    <div class="board-detail mt30">
+                        <h3>등록자 정보</h3>
+                        <div class="board-box">
+                            <table summary="제목, 분류, 질의내용, 답변내용  페이지">
+                                <caption>자주묻는 질문 페이지</caption>
+                                <colgroup>
+                                    <col width="15%"/>
+                                    <col width="20%"/>
+                                    <col width="15%"/>
+                                    <col width="20%"/>
+                                    <col width="15%"/>
+                                    <col width="*"/>
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">아이디</th>
+                                        <td>
+                                            <logic:empty name="InquireForm" property="vo.reg_id">
+                                                   비회원
+                                            </logic:empty>
+                                            <logic:notEmpty name="InquireForm" property="vo.reg_id">
+                                                <bean:write name="InquireForm" property="vo.reg_id"/>
+                                            </logic:notEmpty>
+                                        </td>
+                                        <th scope="row">소속</th>
+                                        <td>
+                                            <logic:equal name="InquireForm" property="vo.query_user_info" value="1">중앙행정기관</logic:equal>
+                                            <logic:equal name="InquireForm" property="vo.query_user_info" value="2">전문기관</logic:equal>
+                                            <logic:equal name="InquireForm" property="vo.query_user_info" value="3">정부출연연구기관</logic:equal>
+                                            <logic:equal name="InquireForm" property="vo.query_user_info" value="4">대학</logic:equal>
+                                            <logic:equal name="InquireForm" property="vo.query_user_info" value="5">기업</logic:equal>
+                                            <logic:equal name="InquireForm" property="vo.query_user_info" value="6">기타</logic:equal>
+                                        </td>
+                                        <th scope="row">공개여부</th>
+                                        <td>
+                                            <bean:define name="InquireForm" property="vo.open_yn" id="open_yn" type="java.lang.String"/>
+                                            <%
+                                                if(open_yn.equals("Y")){
+                                                    out.println("공개");
+                                                }else{
+                                                    out.println("비공개");
+                                                }
+                                            %>                  
+                                        </td>
+                                    </tr>
+                                </tbody>
+                             </table>
+                        </div>
+                    </div>
+                    <!-- //board-detail -->
 	                <%
 	                    }
 	                %>
@@ -250,28 +304,47 @@
 	                <!-- btn-set-->
 	                <div class="btn-lst txt-r">
 	                    <%
+	                        if ( mainLoginVO != null && mainIsLogin ) {
+	                    %>
+	                    <span class="btn-set"><a href="JavaScript:goScrap('QNA','<bean:write name="InquireForm" property="vo.seq"/>');">스크랩하기</a></span>
+	                    <%
+	                        }
+	                    %>
+	                    <%
 	                        if ( mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C") ) {
 	                    %>
 	                    <logic:equal name="InquireForm" property="vo.stat" value="N">
-	                    <span class="btn-set"><a href="JavaScript:goAnswerInsert()">답변</a></span>
+	                       <span class="btn-set"><a href="JavaScript:goAnswerInsert()">답변</a></span>
 	                    </logic:equal>
+	                    <logic:notEqual name="InquireForm" property="vo.stat" value="N">
+                            <span class="btn-set"><a href="JavaScript:goAnswerInsert()">답변수정</a></span>
+                        </logic:notEqual>
 	                    <span class="btn-set"><a href="JavaScript:goUpdate()">수정</a></span>
+	                    <span class="btn-set"><a href="JavaScript:goDelete()">삭제</a></span>
 	                    <%
-	                        } else {
+	                        } else if ( login_id != null && !login_id.isEmpty() && login_id.equals(vo.getReg_id()) ) {
 	                    %>
 	                    <logic:equal name="InquireForm" property="vo.up_del_stat" value="Y">
-	                    <span class="btn-set"><a href="JavaScript:goUpdate()">수정</a></span>
+		                    <span class="btn-set"><a href="JavaScript:goUpdate()">수정</a></span>
+		                    <span class="btn-set"><a href="JavaScript:goDelete()">삭제</a></span>
 	                    </logic:equal>
+	                    <%
+	                        } else if ( vo.getReg_id() == null || vo.getReg_id().isEmpty() ) {
+	                    %>
+	                        <span class="btn-set"><a href="javascript:goPasswordCheckForm('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>, 'goUpdate()')">수정</a></span>
+                            <span class="btn-set"><a href="javascript:goPasswordCheckForm('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>, 'goDelete()')">삭제</a></span>
 	                    <%
 	                        }
 	                    %>
 	                    <%
 	                        if ( uni.equals("uni") ) {
 	                    %>
+	                    <span class="btn-set"><a href="JavaScript:goPrint('QNA','<bean:write name="InquireForm" property="vo.seq"/>');">인쇄</a></span>
 	                    <span class="btn-set"><a href="JavaScript:history.back()">목록</a></span>
 	                    <%
 	                        } else {
 	                    %>
+	                    <span class="btn-set"><a href="JavaScript:goPrint('QNA','<bean:write name="InquireForm" property="vo.seq"/>');">인쇄</a></span>
 	                    <span class="btn-set"><a href="JavaScript:goInquireList()">목록</a></span>
 	                    <%
 	                        }

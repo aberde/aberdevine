@@ -436,6 +436,7 @@ public class DataDAO extends BaseSqlDAO{
 	    	pstmt.setString(param++, vo.getContents());
 			pstmt.setString(param++, searchVO.getLoginId());
 			pstmt.setString(param++, vo.getFile_id());
+			pstmt.setString(param++, vo.getBoard_type());
 			pstmt.setString(param++, searchVO.getSeq());
 			
 			pstmt.executeUpdate();
@@ -476,4 +477,107 @@ public class DataDAO extends BaseSqlDAO{
 
 		return success;
 	}
+	
+	
+	public DataResultVO dataSystemList(DataSearchVO searchVO) throws SQLException, DAOBaseException {
+
+
+        DataVO vo = null;
+        ArrayList voList = new ArrayList();
+
+        DataResultVO resultVO = new DataResultVO();
+
+        try {
+            getConnection(dsname);
+            System.out.println("board_type="+searchVO.getBoard_type());
+            String query = loadQueryString("sql.data.question.dataSystemList");
+            //����Ʈ ��ȸ
+            if(!searchVO.getWhichSearch().equals("") && !searchVO.getSearchTxt().equals("")){
+                if(searchVO.getWhichSearch().equals("title")){
+                    query += " where TITLE like '%"+searchVO.getSearchTxt()+"%' ";
+                }else if(searchVO.getWhichSearch().equals("contents")){
+                    query += " WHERE CLOB_TO_CHAR(CONTENTS) like '%"+searchVO.getSearchTxt()+"%' ";
+                    
+                }else if(searchVO.getWhichSearch().equals("all") && !searchVO.getSearchTxt().equals("")){ 
+                    query = new StringBuffer(query).append(" where CLOB_TO_CHAR(CONTENTS) LIKE '%").append(searchVO.getSearchTxt()).append("%' ")
+                    .append(" or title LIKE '%").append(searchVO.getSearchTxt()).append("%' ")
+                    .toString();
+                }
+            }
+            //query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+            //query += " AND Q.FILE_ID = F.FILE_ID(+) ";
+            query += "  ORDER BY REG_DT1 DESC";
+            
+            openPreparedStatementForR(query, true);
+            executeQueryForR(searchVO);
+//          System.out.println("����Ʈ ���ҿ��� ����"+query);
+            while (rs.next()) {
+                vo = new DataVO();
+                vo.setSeq(rs.getString("SEQ"));
+                vo.setBoard_type(rs.getString("BOARD_TYPE"));
+                vo.setTitle(rs.getString("TITLE"));
+                vo.setReg_dt(rs.getString("REG_DT"));
+                vo.setReg_nm(rs.getString("REG_NM"));
+                vo.setFile_id(rs.getString("FILE_ID"));
+                vo.setRead_count(rs.getInt("READ_COUNT"));
+                voList.add(vo);
+            }
+            
+            resultVO.setTotRowCount(searchVO.getTotRowCount());
+            resultVO.setVoList(voList);
+            
+        } catch (Exception e) {
+            throwDAOBaseException(e, "not");
+            System.out.println(e.getStackTrace());
+            return null;
+        } finally {
+            close();
+        }
+
+        return resultVO;
+    }
+	
+    public DataResultVO dataSystemInsert(DataVO vo, DataSearchVO searchVO) throws SQLException, DAOBaseException {
+        
+        ArrayList voList = new ArrayList();
+        DataResultVO resultVO = new DataResultVO();
+        String seq = "";
+        String query =  "";
+        String orderTp= "";
+        int param =1;
+        
+        try {
+            getConnection(dsname);
+//            getConnection_clob();
+            
+//          RNDCALL_BOARD_QUESTION insert����
+            try{
+                
+                query = loadQueryString("sql.data.dataSystemInsert");
+  
+                param =1;
+    
+                openPreparedStatementForCUD(query);
+                pstmt.setString(param++, vo.getTitle().replaceAll("'","′"));
+                pstmt.setString(param++, vo.getQuestion_id());
+                pstmt.setString(param++, searchVO.getName());
+                pstmt.setString(param++, vo.getReg_id());
+                pstmt.setString(param++, vo.getInsert_type());
+                pstmt.setString(param++, vo.getFile_id());
+                pstmt.setString(param++, vo.getContents());
+                
+                executeQueryForCUD();
+                
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+            
+        } catch (Exception e) {
+            throwDAOBaseException(e, "not");
+            return null;
+        } finally {
+            close();
+        }
+        return resultVO;
+    }
 }

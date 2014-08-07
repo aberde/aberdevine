@@ -76,7 +76,7 @@ public class InquireDAO extends BaseSqlDAO{
 			query = loadQueryString("sql.inquire.question.list");
 			//자주하는 질문 리스트 조회
 			if(!searchVO.getRoleCD().equals("0000C") &&  !searchVO.getRoleCD().equals("0000Z")){
-				query += " AND Q.OPEN_YN = 'Y'";
+//				query += " AND Q.OPEN_YN = 'Y'";
 			}
 			query += " AND Q.DEL_YN='N'";
 			query += " AND Q.BOARD_TYPE='FAQ'";
@@ -155,7 +155,7 @@ public class InquireDAO extends BaseSqlDAO{
 			String query = "";
 			String countQuery = "";
 			//리스트 조회
-			if(searchVO.getRoleCD().equals("0000C") ||  searchVO.getRoleCD().equals("0000Z")){
+//			if(searchVO.getRoleCD().equals("0000C") ||  searchVO.getRoleCD().equals("0000Z")){
 				query = loadQueryString("sql.inquire.question.list");
 				countQuery = loadQueryString("sql.inquire.question.list.count");
 				if(searchVO.getType().equals("1")){
@@ -185,14 +185,14 @@ public class InquireDAO extends BaseSqlDAO{
 					query += " AND Q.PUBLIC_TRANS_YN='" + searchVO.getPublic_trans_yn() + "'";
 					countQuery += " AND Q.PUBLIC_TRANS_YN='" + searchVO.getPublic_trans_yn() + "'";
 				}
-			}else{
-				query = loadQueryString("sql.inquire.question.list2");
-				countQuery = loadQueryString("sql.inquire.question.list2.count");
-				query += " AND Q.OPEN_YN = 'Y'";
-				query += " AND Q.INSERT_TYPE='ONLINE'";
-				countQuery += " AND Q.OPEN_YN = 'Y'";
-				countQuery += " AND Q.INSERT_TYPE='ONLINE'";
-			}
+//			}else{
+//				query = loadQueryString("sql.inquire.question.list2");
+//				countQuery = loadQueryString("sql.inquire.question.list2.count");
+//				query += " AND Q.OPEN_YN = 'Y'";
+//				query += " AND Q.INSERT_TYPE='ONLINE'";
+//				countQuery += " AND Q.OPEN_YN = 'Y'";
+//				countQuery += " AND Q.INSERT_TYPE='ONLINE'";
+//			}
 			
 			if ( searchVO.getBoard_type() != null && !searchVO.getBoard_type().isEmpty() ) {
 			    query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
@@ -227,6 +227,9 @@ public class InquireDAO extends BaseSqlDAO{
 				}else if(searchVO.getWhichSearch().equals("name")){
 					query += "       AND Q.REG_NM like '%"+searchVO.getSearchTxt()+"%' ";
 					countQuery += " AND Q.REG_NM like '%"+searchVO.getSearchTxt()+"%' ";
+				}else if(searchVO.getWhichSearch().equals("reg_id")){
+				    query += "       AND Q.REG_ID like '%"+searchVO.getSearchTxt()+"%' ";
+				    countQuery += " AND Q.REG_ID like '%"+searchVO.getSearchTxt()+"%' ";
 				}
 			}
 			
@@ -269,6 +272,8 @@ public class InquireDAO extends BaseSqlDAO{
 				vo.setTrans_nm(rs.getString("TRANS_NM"));
 				vo.setTrans_org_nm(rs.getString("TRANS_ORG_NM"));
 				vo.setTrans_attached_nm(rs.getString("TRANS_ATTACHED_NM"));
+				vo.setReg_id(rs.getString("REG_ID"));
+				vo.setOpen_yn(rs.getString("OPEN_YN"));
 				
 				voList.add(vo);
 			}
@@ -432,6 +437,7 @@ public class InquireDAO extends BaseSqlDAO{
 				vo.setTrans_nm(rs.getString("TRANS_NM"));
 				vo.setTrans_org_nm(rs.getString("TRANS_ORG_NM"));
 				vo.setTel(rs.getString("TEL"));
+				vo.setReg_id(rs.getString("REG_ID"));
 			}
 			
 			resultVO.setVo(vo);	
@@ -570,10 +576,14 @@ public class InquireDAO extends BaseSqlDAO{
 			pstmt.setString(param++, "N");
 			pstmt.setString(param++, searchVO.getLoginId());
 			pstmt.setString(param++, searchVO.getName());
-			pstmt.setString(param++, "");
-			pstmt.setString(param++, "");
+			pstmt.setString(param++, vo.getCategory1());
+			pstmt.setString(param++, vo.getCategory2());
 			SSOUtil ssoUtil = new SSOUtil();
-			pstmt.setString(param++, ssoUtil.encrypt(vo.getPassword()));
+			if ( vo.getPassword() != null && !vo.getPassword().isEmpty() ) {
+			    pstmt.setString(param++, ssoUtil.encrypt(vo.getPassword()));
+			} else {
+			    pstmt.setString(param++, "");
+			}
 			pstmt.setString(param++, vo.getQuery_user_info());
 			
 			System.out.println("query ::::::::::: " + insert_sql);
@@ -2048,5 +2058,36 @@ public class InquireDAO extends BaseSqlDAO{
 		}
 		return resultVO;
     }
+	
+	/**
+	 * 비회원 비밀번호 확인
+	 */
+	public boolean getPasswordCheck(InquireVO vo) throws SQLException, DAOBaseException {
+	    boolean result = false; 
+	    try {
+            getConnection(dsname);  
+            String sql = loadQueryString("sql.inquire.getPasswordCheck");
+            openPreparedStatementForR(sql, false);
+            
+            SSOUtil ssoUtil = new SSOUtil();
+            pstmt.setString(1, vo.getSeq());
+            pstmt.setString(2, ssoUtil.encrypt(vo.getPassword()));
+            
+            executeQueryForR();
+
+            if (rs.next()) {
+                result = true;
+            }
+            rs.close();
+            pstmt.close();
+            pstmt.close();
+        } catch (Exception e) {
+            throwDAOBaseException(e, "not");
+        } finally {
+            close();
+        }
+	    
+	    return result;
+	}
 }
 

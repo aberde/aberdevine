@@ -61,16 +61,16 @@
 	</script>
 	
 	<!-- container -->
-	<div id="container">
+	<div id="container" class="advice">
 		<!-- lnb -->
 		<div class="lnb">
 			<div class="tit-area">
-				<h2>온라인상담</h2>
+				<h2>온라인 상담</h2>
 				<span><img src="/img/common/h2_entxt02.gif" alt="Online Consultation" /></span>
 			</div>
 			<ul class="lnb-lst">
-				<li class="on"><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
-				<li><a href="JavaScript:goFaq()">자주묻는질문</a></li>
+				<li class="on"><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
+				<li><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
 			</ul>
 		</div>
 		<!-- //lnb -->
@@ -79,14 +79,14 @@
 			<div class="location txt-r">
 				<ul class="fr clearfix">
 					<li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-					<li><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
-					<li class="on"><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
+					<li><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
+					<li class="on"><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
 				</ul>
 			</div>
 			<!-- section -->
 			<div class="section">
 				<div class="tit-area">
-					<h3>온라인상담</h3>
+					<h3>온라인 상담</h3>
 					<p>R&amp;D 관련 규정 및 제도에 대해 궁금하신 사항에 담당자가 답변해 드립니다.기존 답변을 검색 후 질의해주세요.</p>
 				</div>
 				
@@ -124,8 +124,8 @@
 												<bean:define name="vo" property="title" id="title" type="java.lang.String"/>
 												<%
 													String title_n = "";
-													if ( title.length() > 22 ) {
-														title_n = title.substring(0,22) + "...";
+													if ( title.length() > 20 ) {
+														title_n = title.substring(0,20) + "...";
 													} else {
 														title_n = title;
 													}
@@ -152,8 +152,8 @@
 												<bean:define name="vo" property="title" id="title" type="java.lang.String"/>
 												<%
 													String title_n = "";
-													if ( title.length() > 22 ) {
-														title_n = title.substring(0,22) + "...";
+													if ( title.length() > 20 ) {
+														title_n = title.substring(0,20) + "...";
 													} else {
 														title_n = title;
 													}
