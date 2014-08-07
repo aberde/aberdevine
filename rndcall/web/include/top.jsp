@@ -147,13 +147,16 @@
 			}
 		}
 		
-		function login() {	
-			
-			var winfeatures = "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=580,height=305";
-			var url = "/login.jsp?returnURL=" + escape(document.location.href);
-		
-			loginWin = window.open( url, "login", winfeatures);
-		}
+	    function login(id) {  
+            
+            var winfeatures = "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=580,height=305";
+            var url = "/login.jsp?returnURL=" + escape(document.location.href);
+        
+            if ( id ) {
+                url +=  "&id=" + id;
+            }
+            loginWin = window.open( url, "login", winfeatures);
+        }
 		
 		function goUniSearch() {
 		//	if("<%=login_id%>" == ""){
@@ -299,12 +302,12 @@
                         <a href="JavaScript:goNotice()">새소식</a>
                     </li>
                     <li>
-                        <a href="JavaScript:goData()">자료실</a>
+                        <a href="JavaScript:goLawInfo()">자료실</a>
                         <div class="snb">
                             <div class="snb-bx">
                                 <ul>
                                     <li><a href="Javascript:goLawInfo()">법령 및 행정 규칙</a></li>
-                                    <li><a href="JavaScript:goIns('SYSTEM')">제도</a></li>
+                                    <li><a href="JavaScript:goIns('SYSTEM')">연구관리제도</a></li>
                                     <li><a href="JavaScript:goIns('DATA')">기타</a></li>
                                 </ul>
                             </div>
@@ -317,12 +320,14 @@
  						if ( mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C") ) {
  					%>
 					<li>
-					    <a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=05">관리자</a>
+					    <a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getAdminInquireList&searchVO.board_type=QNA&searchVO.type=&searchVO.searchCategory=&searchVO.menu_sn=01">관리자</a>
 						<div class="snb">
                             <div class="snb-bx">
 								<ul>
-									<li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=05">권한관리</a></li>
-									<li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=05">분야관리</a></li>
+								    <li><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getAdminInquireList&searchVO.board_type=QNA&searchVO.type=&searchVO.searchCategory=&searchVO.menu_sn=01">온라인 상담</a></li>
+                                    <li><a href="/switch.do?prefix=/offer&page=/Offer.do?method=adminOfferList&searchVO.menu_sn=14">R&D신문고</a></li>
+									<li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=05">회원관리</a></li>
+									<li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=05">질문분야관리</a></li>
 									<li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=05">오프라인자료등록</a></li>
 									<li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=05">통계정보</a></li>
 								</ul>

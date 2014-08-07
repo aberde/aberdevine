@@ -39,6 +39,7 @@ public class MypageVO extends BaseVO{
 	private String statCnt5; //제안하기 자체처리현황정보
 	private String statCnt6; //제안하기 타기관처리현황정보
 	private String statCnt7; //Q&A 스크랩현황정보
+	private String statCnt8; //R&D 신문고 답변완료
 	private String stat;     //처리현황정보
 	private String up_del_stat; //수정 삭제 가능여부
 	private String del_file_id; //삭제 파일번호정보
@@ -49,7 +50,7 @@ public class MypageVO extends BaseVO{
 	private String is_use; //스크랩구분자
 	private String scrap_id; //스크랩 id
 	private String regdt_scrap; //스크랩 날짜
-
+	
 	/**
 	 * BuAdNotiLVO 생성자
 	 */
@@ -87,6 +88,7 @@ public class MypageVO extends BaseVO{
 		this.statCnt5 = ""; //제안하기 자체처리현황정보
 		this.statCnt6 = ""; //제안하기 타기관처리현황정보
 		this.statCnt7 = ""; //Q&A 스크랩 정보
+		this.statCnt8 = ""; //R&D 신문고 답변완료
 		this.stat = "";     //처리현황정보
 		this.up_del_stat = ""; //수장 삭제 가능여부
 		this.del_file_id = ""; //삭제 파일번호정보
@@ -473,5 +475,12 @@ public class MypageVO extends BaseVO{
 	public void setStatCnt7(String statCnt7) {
 		this.statCnt7 = statCnt7;
 	}
-	
+
+    public String getStatCnt8() {
+        return statCnt8;
+    }
+
+    public void setStatCnt8(String statCnt8) {
+        this.statCnt8 = statCnt8;
+    }
 }

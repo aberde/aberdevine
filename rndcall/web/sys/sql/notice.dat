@@ -41,7 +41,8 @@ INSERT INTO RNDCALL_BOARD_QUESTION (
    FILE_ID, 
    DEL_YN, 
    CONTENTS, 
-   BOARD_TYPE
+   BOARD_TYPE,
+   CATEGORY1
    ) 
 VALUES (    ?,
 ?,
@@ -53,13 +54,14 @@ sysdatetime,
 ?,
 'N',
 CHAR_TO_CLOB(?),
+?,
 ?
 )
 #==============================================================
 # �������� ����Ʈ�� ��ȸ�Ѵ�.
 #==============================================================
 @sql.notice.question.noticeList
-select SEQ, BOARD_TYPE, TITLE, CONTENTS, INSERT_TYPE, decode(file_id,0,'Y','N') As FILE_ID, DEL_YN, READ_COUNT, REG_ID, REG_DT, REG_NM, REG_DT1
+select SEQ, BOARD_TYPE, TITLE, CONTENTS, INSERT_TYPE, decode(file_id,0,'Y','N') As FILE_ID, DEL_YN, READ_COUNT, REG_ID, REG_DT, REG_NM, REG_DT1, CATEGORY1
 from 
 (SELECT Q.SEQ, 
 Q.BOARD_TYPE, 
@@ -70,7 +72,8 @@ Q.INSERT_TYPE,
 Q.DEL_YN, 
 Q.READ_COUNT, 
 Q.REG_ID, TO_CHAR(Q.REG_DT, 'YYYY.MM.DD') AS REG_DT, Q.REG_DT AS REG_DT1,
-Q.REG_NM
+Q.REG_NM,
+Q.CATEGORY1
 FROM RNDCALL_BOARD_QUESTION Q
 WHERE Q.DEL_YN='N'
  AND Q.BOARD_TYPE='NOTICE' 
@@ -89,7 +92,8 @@ Q.DEL_YN,
 Q.READ_COUNT,
 Q.REG_ID,          
 to_char(Q.REG_DT, 'YYYY.MM.DD') AS REG_DT,           
-Q.REG_NM
+Q.REG_NM,
+Q.CATEGORY1
 FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_FILE F ON Q.SEQ = F.FILE_ID
 WHERE Q.DEL_YN='N'
 #==============================================================

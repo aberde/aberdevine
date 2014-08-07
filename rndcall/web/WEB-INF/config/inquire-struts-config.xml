@@ -44,6 +44,8 @@
       <forward name="getInquireScrap" path="/inquireView.jsp" />
       <forward name="update_result_iframe_ok" path="/_iframeok.jsp" />
       <forward name="update_result_iframe_er" path="/_iframeer.jsp" />
+      <forward name="getAdminInquireList" path="/adminInquireList.jsp" />
+      <forward name="getAdminInquireForm" path="/adminInquireForm.jsp" />
     </action>
   </action-mappings>
 </struts-config>

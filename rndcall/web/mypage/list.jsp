@@ -68,7 +68,7 @@
                             <h4 class="red">온라인 상담</h4>
                             <ul>
                                 <li class="bg01">전체 : <span><a href="JavaScript:goStatList('QNA','1')"><bean:write name="MypageForm" property="vo.statCnt1"/>건</a></span></li>
-                                <li class="bg02">처리중 : <span><a href="JavaScript:goStatList('QNA','2')"><bean:write name="MypageForm" property="vo.statCnt2"/>건</a></span></li>
+                                <li class="bg02">접수중 : <span><a href="JavaScript:goStatList('QNA','2')"><bean:write name="MypageForm" property="vo.statCnt2"/>건</a></span></li>
                                 <li class="bg03">완료 : <span><a href="JavaScript:goStatList('QNA','3')"><bean:write name="MypageForm" property="vo.statCnt3"/>건</a></span></li>
                             </ul>
                         </div>
@@ -76,8 +76,9 @@
                             <h4 class="blue">R&amp;D 신문고</h4>
                             <ul>
                                 <li class="bg01">전체 : <span><a href="JavaScript:goStatList('OFFER','1')"><bean:write name="MypageForm" property="vo.statCnt4"/>건</a></span></li>
-                                <li class="bg02">처리중 : <span><a href="JavaScript:goStatList('OFFER','2')"><bean:write name="MypageForm" property="vo.statCnt5"/>건</a></span></li>
-                                <li class="bg03">완료 : <span><a href="JavaScript:goStatList('OFFER','3')"><bean:write name="MypageForm" property="vo.statCnt6"/>건</a></span></li>
+                                <li class="bg02">접수중 : <span><a href="JavaScript:goStatList('OFFER','2')"><bean:write name="MypageForm" property="vo.statCnt5"/>건</a></span></li>
+                                <li class="bg03">검토중 : <span><a href="JavaScript:goStatList('OFFER','3')"><bean:write name="MypageForm" property="vo.statCnt6"/>건</a></span></li>
+                                <li class="bg04">완료 : <span><a href="JavaScript:goStatList('OFFER','5')"><bean:write name="MypageForm" property="vo.statCnt8"/>건</a></span></li>
                             </ul>
                         </div>
                     </div>
@@ -190,11 +191,15 @@
                                                     <%
                                                         if ( stat.equals("Y") ) {
                                                     %>
-                                                    <span class="btn-set set4 green">완료</span>
+                                                    <span class="btn-set set4 green">답변완료</span>
+                                                    <%
+                                                        } else if ( stat.equals("S") ) {
+                                                    %>
+                                                    <span class="btn-set set4 green">검토중</span>
                                                     <%
                                                         } else {
                                                     %>
-                                                    <span class="btn-set set4 green">처리중</span>
+                                                    <span class="btn-set set4 green">접수중</span>
                                                     <%
                                                         }
                                                     %>

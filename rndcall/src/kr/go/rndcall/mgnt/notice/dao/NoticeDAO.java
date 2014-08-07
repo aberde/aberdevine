@@ -1,31 +1,19 @@
 package kr.go.rndcall.mgnt.notice.dao;
 
 import java.io.Reader;
-import java.sql.CallableStatement;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.naming.NamingException;
-import oracle.jdbc.OracleCallableStatement;
-import oracle.jdbc.OracleResultSet;
-import oracle.jdbc.OracleTypes;
-import oracle.sql.ARRAY;
-import oracle.sql.ArrayDescriptor;
-import oracle.sql.CHAR;
-import oracle.sql.CLOB;
-
-import org.apache.log4j.Logger;
 
 import kr.go.rndcall.mgnt.common.AttachVO;
 import kr.go.rndcall.mgnt.common.BaseSqlDAO;
 import kr.go.rndcall.mgnt.common.DAOBaseException;
 import kr.go.rndcall.mgnt.common.DesCipher;
-import kr.go.rndcall.mgnt.common.StringUtil;
-import kr.go.rndcall.mgnt.common.Util;
 import kr.go.rndcall.mgnt.notice.vo.NoticeAttachVO;
 import kr.go.rndcall.mgnt.notice.vo.NoticeResultVO;
 import kr.go.rndcall.mgnt.notice.vo.NoticeSearchVO;
 import kr.go.rndcall.mgnt.notice.vo.NoticeVO;
+
+import org.apache.log4j.Logger;
 
 public class NoticeDAO extends BaseSqlDAO{
 
@@ -156,6 +144,7 @@ public class NoticeDAO extends BaseSqlDAO{
                 pstmt.setString(param++, vo.getFile_id());
                 pstmt.setString(param++, vo.getContents());
                 pstmt.setString(param++, vo.getBoard_type());
+                pstmt.setString(param++, vo.getCategory1());
                 
                 executeQueryForCUD();
                 
@@ -229,6 +218,7 @@ public class NoticeDAO extends BaseSqlDAO{
 				vo.setReg_nm(rs.getString("REG_NM"));
 				vo.setFile_id(rs.getString("FILE_ID"));
 				vo.setRead_count(rs.getInt("READ_COUNT"));
+				vo.setCategory1(rs.getString("CATEGORY1"));
 				voList.add(vo);
 			}
 			
@@ -288,6 +278,7 @@ public class NoticeDAO extends BaseSqlDAO{
 					vo.setContents(vo.getContents().replaceAll("\n", "<br>"));					
 				}	
 				vo.setFile_id(rs.getString("FILE_ID"));
+				vo.setCategory1(rs.getString("CATEGORY1"));
 			}
 			
 			resultVO.setVo(vo);			

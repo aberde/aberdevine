@@ -23,6 +23,13 @@
       <forward name="dataDelete" path="/dataList.jsp" />
       <forward name="dataUpdateForm" path="/dataUpdateForm.jsp" />
       <forward name="dataUpdate" path="/dataForward.jsp" />
+      <forward name="dataSystemList" path="/dataSystemList.jsp" />
+      <forward name="dataSystemInsertForm" path="/dataSystemInsertForm.jsp" />
+      <forward name="dataSystemInsert" path="/dataSystemForward.jsp" />
+      <forward name="dataSystemDetailView" path="/dataSystemDetailView.jsp" />
+      <forward name="dataSystemUpdateForm" path="/dataSystemUpdateForm.jsp" />
+      <forward name="dataSystemUpdate" path="/dataSystemForward.jsp" />
+      <forward name="dataSystemDelete" path="/dataSystemList.jsp" />
     </action>
   </action-mappings>
 </struts-config>

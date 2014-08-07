@@ -75,7 +75,7 @@
     </script>
  
     <!-- container -->
-    <div id="container">
+    <div id="container" class="sinmungo">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
@@ -97,8 +97,11 @@
                 </ul>
             </div>
             <!-- section -->
-            <div class="section">  
-                <div class="sinmungo01 mt60">
+            <div class="section">
+                <div class="explain-bx mt60">
+                    <strong>연구현장의 불합리한 제도나 관행 등에 대한 개선사항이나 좋은 아이디어가 있을 때 제안해 주신 의견을 수렴하여 제도개선을 추진합니다.<br />최근 신설되거나 개선된 연구관리 제도를 현장에 적용하는 과정에서 생기는 애로사항이 있을 때 R&D 신문고를 통해 제안해 주시면 법적·제도적으로 직접 해결하여 드립니다</strong>
+                </div>
+                <div class="sinmungo01">
                     <h4>R&amp;D 신문고 제안 처리 절차</h4>
                     <ul class="clearfix">
                         <li>의견제시</li>
@@ -167,6 +170,8 @@
                                                 <td><%= totRowCount.intValue() - rowNum.intValue() -  Util.replaceNull((String)pagerOffset, 0) %></td>
                                                 <td class="txt-l">
                                                     <bean:define name="vo" property="title" id="title" type="java.lang.String"/>
+                                                    <bean:define name="vo" property="reg_id" id="reg_id" type="java.lang.String"/>
+                                                    <bean:define name="vo" property="open_yn" id="open_yn" type="java.lang.String"/>
                                                     <%
                                                         String title_n = "";
                                                         int len = 14;
@@ -176,13 +181,29 @@
                                                             title_n = title;
                                                         }
                                                     %>
+                                                    <%
+                                                        if ( "Y".equals(open_yn) ) {
+                                                    %>
                                                     <a href="JavaScript:offerDetailView('OFFER',<bean:write name="vo" property="seq"/>)"><bean:write name="vo" property="title"/></a>
+                                                    <%
+                                                        } else {
+                                                            if ( (login_id != null && !login_id.isEmpty() && login_id.equals(reg_id)) || mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C") ) {
+                                                    %>
+                                                    <a href="JavaScript:offerDetailView('OFFER',<bean:write name="vo" property="seq"/>)"><bean:write name="vo" property="title"/></a>
+                                                    <%
+                                                            } else {
+                                                    %>
+                                                    <span style="padding-left: 20px;"><span style="color: blue">[비공개]</span> <%=title_n %></span>
+                                                    <%
+                                                            }
+                                                        }
+                                                    %>
                                                 </td>
                                                 <td>
-                                                    <logic:notEmpty name="vo" property="reg_nm">
-	                                                    <bean:write name="vo" property="reg_nm"/>
+                                                    <logic:notEmpty name="vo" property="reg_id">
+	                                                    <bean:write name="vo" property="reg_id"/>
                                                     </logic:notEmpty>
-                                                    <logic:empty name="vo" property="reg_nm">
+                                                    <logic:empty name="vo" property="reg_id">
                                                                 비회원
                                                     </logic:empty>
                                                 </td>
@@ -194,6 +215,8 @@
                                                     <%
                                                         if ( stat.equals("Y") ) {
                                                             out.print("<span class=\"btn-set set4 gray\">답변완료</span>");
+                                                        } else if ( stat.equals("S") ) {
+                                                            out.print("<span class=\"btn-set set4 gray\">검토중</span>");
                                                         } else {
                                                             out.print("<span class=\"btn-set set4 yellow\">접수중</span>");
                                                         }

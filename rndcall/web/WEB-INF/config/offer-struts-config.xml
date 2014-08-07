@@ -16,7 +16,7 @@
 
     <action name="OfferForm" parameter="method" path="/Offer" scope="request" type="kr.go.rndcall.mgnt.offer.action.OfferAction" validate="false">
       <forward name="offerInsertForm" path="/offerInsertForm.jsp" />
-      <forward name="offerInsert" path="/switch.do?prefix=/inquire&amp;page=/Inquire.do?method=getInquireMainList" />
+      <forward name="offerInsert" path="/switch.do?prefix=/offer&amp;page=/Offer.do?method=offerList" />
       <forward name="offerList" path="/offerList.jsp" />
       <forward name="offerDetailView" path="/offerDetailView.jsp" />
       <forward name="offerAnswerInsertForm" path="/offerAnswerInsertForm.jsp" />
@@ -27,6 +27,7 @@
       <forward name="offerSatiInsert" path="/offerDetailView.jsp" />
       <forward name="offerDelete" path="/offerList.jsp" />
       <forward name="myPageMethod" path="/switch.do?prefix=/mypage&amp;page=/Mypage.do?method=getMypageList"/>
+      <forward name="adminOfferList" path="/adminOfferList.jsp" />
     </action>
   </action-mappings>
 </struts-config>

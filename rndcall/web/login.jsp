@@ -22,7 +22,8 @@
         System.out.println("======>>>" + mainLoginVO.getLogin_id());
 %>
     <script type="text/javascript">
-        opener.document.location.reload();
+//         opener.document.location.reload();
+        opener.document.location.href = "/index.jsp";
         window.close();
     </script>
 <%
@@ -123,7 +124,10 @@
                         <tr>
                             <th scope="row"><label for="id">아이디</label></th>
                             <td>
-                                <input name="id" type="text" style="width:190px" onkeypress="onEnter()"/>
+                                <%
+                                    String id = request.getParameter("id") == null ? "" : request.getParameter("id");
+                                %>
+                                <input name="id" type="text" style="width:190px" value="<%= id %>" onkeypress="onEnter()"/>
                             </td>
                             <td rowspan="2">
                                 <span class="btn-set login"><a href="javascript:login();">로그인</a><span class="bullet"></span></span>

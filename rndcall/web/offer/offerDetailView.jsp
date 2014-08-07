@@ -6,6 +6,7 @@
 	<bean:define name="OfferForm" property="pagerOffset" id="pagerOffset" type="java.lang.String"/>
 	<bean:define name="OfferForm" property="searchVO.loginId" id="loginId" type="java.lang.String"/>
 	<bean:define name="OfferForm" property="searchVO.roleCD" id="roleCd" type="java.lang.String"/>
+	<bean:define name="OfferForm" property="vo" id="vo" type="kr.go.rndcall.mgnt.offer.vo.OfferVO"/>
 	<bean:define name="OfferForm" property="vo.stat" id="stat" type="java.lang.String"/>
 	
 	<bean:define id="path" type="java.lang.String" value="/Offer.do"/>
@@ -77,7 +78,7 @@
 	</script>
 	
 	<!-- container -->
-    <div id="container">
+    <div id="container" class="sinmungo">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
@@ -122,6 +123,17 @@
 	                                <col width="*"/>
 	                            </colgroup>
 	                            <tbody>
+	                                <tr>
+	                                    <th scope="row">아이디</th>
+	                                    <td>
+	                                        <logic:empty name="OfferForm" property="vo.reg_id">
+	                                               비회원
+	                                        </logic:empty>
+	                                        <logic:notEmpty name="OfferForm" property="vo.reg_id">
+		                                        <bean:write name="OfferForm" property="vo.reg_id" filter="false"/>
+	                                        </logic:notEmpty>
+	                                    </td>
+	                                </tr>
 	                                <tr>
 	                                    <th scope="row">제목</th>
 	                                    <td><bean:write name="OfferForm" property="vo.title" filter="false"/></td>
@@ -173,20 +185,22 @@
                         <bean:define name="OfferForm" property="vo.stat" id="stat" type="java.lang.String"/>    
                         <span class="btn-set"><a href="JavaScript:goOfferList()">목록</a></span>
                         <%
-                            if(roleCd.equals("0000Z") || roleCd.equals("0000C")){
+                            if ( login_id != null && !login_id.isEmpty() && login_id.equals(vo.getReg_id()) ) {
                         %>
                         <span class="btn-set pink"><a href="JavaScript:goOfferUpdate()">질의수정</a></span>
                         <%
                             }
-                            if(stat.equals("N")){
+                            if ( roleCd.equals("0000Z") || roleCd.equals("0000C") ) {
+                                if(stat.equals("N")){
                         %>
                         <span class="btn-set pink"><a href="JavaScript:goOfferAnswerInsert()">답변달기</a></span>
                         <%
-                            }else{
+                                }else{
                         %>
                         <span class="btn-set pink"><a href="JavaScript:goOfferAnswerInsert()">답변수정</a></span>
                         <span class="btn-set pink"><a href="JavaScript:goOfferDelete()">삭제</a></span>
                         <% 
+                                }
                             }
                         %>
                     </div>

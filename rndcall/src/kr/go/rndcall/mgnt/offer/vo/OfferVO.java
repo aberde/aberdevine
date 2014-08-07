@@ -62,6 +62,15 @@ public class OfferVO extends BaseVO{
 	private String category2_nm;
 	private String password;  // 비밀번호
 	private String query_user_info; // 질의자정보
+	private String complete_yn;
+    
+    public String getComplete_yn() {
+        return complete_yn;
+    }
+
+    public void setComplete_yn(String complete_yn) {
+        this.complete_yn = complete_yn;
+    }
     
 	public String getPassword() {
         return password;

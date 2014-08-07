@@ -132,16 +132,16 @@
     </script>
  
     <!-- container -->
-    <div id="container">
+    <div id="container" class="advice">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
-                <h2>온라인상담</h2>
+                <h2>온라인 상담</h2>
                 <span><img src="/img/common/h2_entxt02.gif" alt="Online Consultation" /></span>
             </div>
             <ul class="lnb-lst">
-                <li><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
-                <li class="on"><a href="JavaScript:goFaq()">자주묻는질문</a></li>
+                <li><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
+                <li class="on"><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
             </ul>    
         </div>
         <!-- //lnb -->
@@ -150,14 +150,14 @@
             <div class="location txt-r">  
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
-                    <li class="on"><a href="JavaScript:goFaq()">자주묻는 질문</a></li>
+                    <li><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
+                    <li class="on"><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
                 </ul>
             </div>
             <!-- section -->
             <div class="section">  
                 <div class="tit-area">
-                    <h3>자주묻는 질문</h3>
+                    <h3>자주 묻는 질문</h3>
                     <p>가장 많이 묻는 질의 응답을 카테고리별로 검색이 가능합니다.</p>
                 </div>
                 
@@ -211,7 +211,7 @@
                     <div class="board-type01 mt20">
                         <div class="board-box">
                             <table border="0" summary="번호, 제목, 글쓴이, 등록일, 상태, 조회수">
-                                <caption>자주묻는질문 목록</caption>
+                                <caption>자주 묻는 질문 목록</caption>
                                 <colgroup>
                                     <col width="7%" />
                                     <col width="*" />
@@ -281,7 +281,7 @@
                     <%
                         if ( roleCd.equals("0000Z") || roleCd.equals("0000C") ) {
                     %>
-                        <span class="btn-set pink"><a href="javascript:create()">자주묻는질문 등록</a></span>
+                        <span class="btn-set pink"><a href="javascript:create()">자주 묻는 질문 등록</a></span>
                     <%
                         }
                     %>

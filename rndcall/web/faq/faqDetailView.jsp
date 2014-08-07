@@ -83,16 +83,16 @@
 	</script>
 	
     <!-- container -->
-    <div id="container">
+    <div id="container" class="advice">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
-                <h2>온라인상담</h2>
+                <h2>온라인 상담</h2>
                 <span><img src="/img/common/h2_entxt02.gif" alt="Online Consultation" /></span>
             </div>
             <ul class="lnb-lst">
-                <li><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
-                <li class="on"><a href="JavaScript:goFaq()">자주묻는질문</a></li>
+                <li><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
+                <li class="on"><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -101,7 +101,7 @@
             <div class="location txt-r">        
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href=JavaScript:goInquireMainList()>온라인상담</a></li>
+                    <li><a href=JavaScript:goInquireMainList()>온라인 상담</a></li>
                     <li class="on"><a href="JavaScript:goFaq()">자주묻는 질문</a></li>
                 </ul>
             </div>

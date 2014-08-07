@@ -280,10 +280,10 @@ function goUniSearch() {
 <!-- start # Top-Menu -->
 		<div id="LY-Top">
 			<ul id="Top-Menu">
-				<li id="Top-Menu-01"><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireMainList&searchVO.menu_sn=01"><img src="/images/Menu/tm01_off.gif" alt="온라인상담" border="0" /></a>
+				<li id="Top-Menu-01"><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireMainList&searchVO.menu_sn=01"><img src="/images/Menu/tm01_off.gif" alt="온라인 상담" border="0" /></a>
 				<ul class="Top-Menu-Sub">
 					<li><a href="JavaScript:goInquireForm()"><img src="/images/Menu/tm01_01_off.gif" alt="문의하기" /></a></li>
-					<li><a href="JavaScript:goFaq()"><img src="/images/Menu/tm01_02_off.gif" alt="자주묻는질문" /></a></li>
+					<li><a href="JavaScript:goFaq()"><img src="/images/Menu/tm01_02_off.gif" alt="자주 묻는 질문" /></a></li>
 					<li><a href="JavaScript:goInquireList()"><img src="/images/Menu/tm01_03_off.gif" alt="Q&A" /></a></li>
 					<li><a href="JavaScript:goOffer()"><img src="/images/Menu/tm01_04_off.gif" alt="제안하기" /></a></li>
 				</ul>

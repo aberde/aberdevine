@@ -23,14 +23,38 @@
 	<script type="text/javascript" src="/js/file.js"></script>
 	<script type="text/javascript">
 	<!--
+		// 중분류 자바스크립트 객체를 저장할 배열변수
+		var categoryL = new Array();
+		var categoryM = new Array();
+		
+		// 자바스크립트 사용자정의 객체
+		function category_obejct(codeName, codeValue, parentCode) {
+		    this.codeName = codeName;
+		    this.codeValue = codeValue;
+		    this.parentCode = parentCode;
+		}
+		
 		window.onload = function() { // onload 시 호출. 데이터 초기화.
 			if ( "<%=errCd%>" == "true" ) {
 				alert("정상적으로 등록되었습니다.");
-				document.location.href="/switch.do?prefix=/mypage&page=/Mypage.do?method=getMypageList&searchVO.menu_sn=03";
+				<% if ( mainLoginVO == null || !mainIsLogin ) { %>
+			    document.location.href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireList&searchVO.board_type=QNA&searchVO.type=&searchVO.searchCategory=&searchVO.menu_sn=01";
+				<% } else { %>
+			    document.location.href="/switch.do?prefix=/mypage&page=/Mypage.do?method=getMypageList&searchVO.menu_sn=03";
+				<% } %>
 			} else if ( "<%=errCd%>" == "false" ) {    	
 	    		alert("등록이 실패하였습니다.");
 	    		return;
 			}
+		
+			<logic:iterate name="InquireForm" property="voList2" id="mCode" indexId="comRowNm">
+            categoryL[<%=comRowNm.intValue()%>] = new category_obejct("<bean:write name="mCode" property="code_nm" />", "<bean:write name="mCode" property="code" />", "<bean:write name="mCode" property="subjectNo" />");
+            </logic:iterate>
+            <logic:iterate name="InquireForm" property="voList3" id="mCode" indexId="comRowNm">
+            categoryM[<%=comRowNm.intValue()%>] = new category_obejct("<bean:write name="mCode" property="code_nm" />", "<bean:write name="mCode" property="code" />", "<bean:write name="mCode" property="p_code" />");
+            </logic:iterate>
+            
+            f_cate_change2();
 		};
 		
 		function goCreate(){
@@ -119,20 +143,51 @@
 		    	return;
 		    }
 		}
+		
+		function f_cate_change2() { // 대분류 값 가져옴. 중분류 객체의 parentCode 에 해당하는 값.
+		    // 모든 option 제거.
+		    var cateL = document.getElementById("category1"); //중분류 select 박스 객체
+		    var opts = cateL.options; // select 박스의 모든 option 을 가져옴.
+		    while(opts.length>1) { // 최초 == 선택 == 이라고 된 부분 제외하고 모두 삭제
+		        opts[1]=null;
+		    }
+		    
+		    var idx = opts.length; // 남은 option 갯수. 여기선 당연히 1 이겠지만 다른곳에서 응용을 위해..
+		    for(var i=0; i<categoryL.length; i++) { // 중분류객체들 모두 조사         
+	            cateL[idx++] = new Option(categoryL[i].codeName, categoryL[i].codeValue);
+		    } // for끝
+		} // function f_cate_change 끝
+		
+		function f_cate_change(value) { // 대분류 값 가져옴. 중분류 객체의 parentCode 에 해당하는 값.
+		    // 모든 option 제거.
+		    var cateM = document.getElementById("category2"); //중분류 select 박스 객체
+		    var opts = cateM.options; // select 박스의 모든 option 을 가져옴.
+		    while(opts.length>1) { // 최초 == 선택 == 이라고 된 부분 제외하고 모두 삭제
+		        opts[1]=null;
+		    }
+
+		    var idx = opts.length; // 남은 option 갯수. 여기선 당연히 1 이겠지만 다른곳에서 응용을 위해..
+		    for(var i=0; i<categoryM.length; i++) { // 중분류객체들 모두 조사
+		        if(categoryM[i].parentCode == value) { // 중분류객체의 parentCode 와 대분류값 비교.. 같다면..
+		        // option 생성하여 현재 객체의 codeName, codeValue 추가.
+	                cateM[idx++] = new Option(categoryM[i].codeName, categoryM[i].codeValue); 
+		        } // if끝
+		    } // for끝
+		} // function f_cate_change 끝
 	//-->
 	</script>
 	
 	<!-- container -->
-    <div id="container">
+    <div id="container" class="advice">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
-                <h2>온라인상담</h2>
+                <h2>온라인 상담</h2>
                 <span><img src="/img/common/h2_entxt02.gif" alt="Online Consultation" /></span>
             </div>
             <ul class="lnb-lst">
-                <li class="on"><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
-                <li><a href="JavaScript:goFaq()">자주묻는질문</a></li>
+                <li class="on"><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
+                <li><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -141,14 +196,14 @@
             <div class="location txt-r">        
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
-                    <li class="on"><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
+                    <li><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
+                    <li class="on"><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
                 </ul>
             </div>
             <!-- section -->
             <div class="section">       
                 <div class="tit-area">
-                    <h3>온라인상담</h3>
+                    <h3>온라인 상담</h3>
                     <!-- <p>R&amp;D 관련 규정 및 제도에 대해 궁금하신 사항에 담당자가 답변해 드립니다.기존 답변을 검색 후 질의해주세요.</p> -->
                 </div>
                 <!--  explain-bx -->
@@ -171,7 +226,7 @@
 	                <div class="board-write mt10">
 	                    <div class="board-box">
 	                        <table summary="질의자 정보, 공개여부, 제목, 내용 보기 등록 페이지">
-	                            <caption>온라인상담 등록 페이지 </caption>
+	                            <caption>온라인 상담 등록 페이지 </caption>
 	                            <colgroup>
 	                                <col width="16%"/>
 	                                <col width="*"/>
@@ -208,6 +263,17 @@
                                             <label for="vo.open_yn1">공개</label>
                                             <html:radio name="InquireForm" styleId="vo.open_yn2" property="vo.open_yn" value="N"></html:radio>
                                             <label for="vo.open_yn2">비공개</label>
+	                                    </td>
+	                                </tr>
+	                                <tr>
+	                                    <th scope="row"><label for="category1">분야 선택</label></th>
+	                                    <td>
+	                                        <html:select name="InquireForm" property="vo.category1" styleId="category1" title="대분류" onchange="f_cate_change(this.value)">
+						                    <html:option value="">::: 선택 :::</html:option>
+						                    </html:select>
+						                    <html:select name="InquireForm" property="vo.category2" styleId="category2" title="소분류">
+						                    <html:option value="">::: 선택 :::</html:option>
+						                    </html:select>
 	                                    </td>
 	                                </tr>
 	                                <tr>

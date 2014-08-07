@@ -42,15 +42,15 @@
 	</script>
 
 	<!-- container -->
-    <div id="container">
+    <div id="container" class="notice">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
-                <h2>알림</h2>
-                <span><img src="/img/common/h2_entxt04.gif" alt="알림" /></span>
+                <h2>새소식</h2>
+                <span><img src="/img/common/h2_entxt04.gif" alt="새소식" /></span>
             </div>
             <ul class="lnb-lst">
-                <li class="on"><a href="JavaScript:goNotice()">알림</a></li>
+                <li class="on"><a href="JavaScript:goNotice()">새소식</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -59,14 +59,14 @@
             <div class="location txt-r">        
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goNotice()">알림</a></li>
-                    <li class="on"><a href="JavaScript:goNotice()">알림</a></li>
+                    <li><a href="JavaScript:goNotice()">새소식</a></li>
+                    <li class="on"><a href="JavaScript:goNotice()">새소식</a></li>
                 </ul>
             </div>
             <!-- section -->
             <div class="section">       
                 <div class="tit-area">
-                    <h3>알림</h3>
+                    <h3>새소식</h3>
                     <p>규정 및 제도에 대한 개선사항을 건의해주세요</p>
                 </div>
                 

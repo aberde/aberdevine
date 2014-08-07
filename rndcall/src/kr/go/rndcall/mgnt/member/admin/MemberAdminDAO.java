@@ -73,6 +73,8 @@ public class MemberAdminDAO extends BaseSqlDAO {
 				query += " AND AUTH = '" + searchVO.getRoleCD() + "' \n";
 			}
 			
+			query += " ORDER BY USER_ID";
+			
 			openPreparedStatementForR(query, true);
 
 			executeQueryForR(searchVO); // 검색조건을 던진다.

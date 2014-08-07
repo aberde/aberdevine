@@ -83,7 +83,7 @@ Q.REG_ID, TO_CHAR(Q.REG_DT, 'YYYY.MM.DD') AS REG_DT, Q.REG_DT AS REG_DT1,
 Q.REG_NM
 FROM RNDCALL_BOARD_QUESTION Q
 WHERE Q.DEL_YN='N'
-AND Q.BOARD_TYPE LIKE 'DATA%' 
+AND Q.BOARD_TYPE = 'DATA' 
 ) A
 
  
@@ -122,7 +122,8 @@ TITLE = ?,
 CONTENTS = CHAR_TO_CLOB(?),
 EDIT_ID = ?,
 EDIT_DT =sysdatetime,
-FILE_ID = ?
+FILE_ID = ?,
+BOARD_TYPE = ?
 WHERE SEQ = ?
 #==============================================================
 # �ڷ�� ����
@@ -141,3 +142,51 @@ EDIT_ID= ?,
 EDIT_DT =sysdatetime
 WHERE FILE_ID=? 
       AND SEQ= ?
+      
+      
+#==============================================================
+@sql.data.question.dataSystemList
+select SEQ, BOARD_TYPE, TITLE, CONTENTS, INSERT_TYPE, decode(file_id,0,'Y','N') As FILE_ID, DEL_YN, READ_COUNT, REG_ID, REG_DT, REG_NM, REG_DT1
+from 
+(SELECT Q.SEQ, 
+Q.BOARD_TYPE, 
+Q.TITLE, 
+CLOB_TO_CHAR(Q.CONTENTS) AS CONTENTS,
+Q.INSERT_TYPE, 
+(select count(*) from rndcall_file where q.file_id = file_id and file_del_yn='N') AS file_id ,
+Q.DEL_YN, 
+Q.READ_COUNT, 
+Q.REG_ID, TO_CHAR(Q.REG_DT, 'YYYY.MM.DD') AS REG_DT, Q.REG_DT AS REG_DT1,
+Q.REG_NM
+FROM RNDCALL_BOARD_QUESTION Q
+WHERE Q.DEL_YN='N'
+AND Q.BOARD_TYPE = 'SYSTEM' 
+) A
+
+#=============================================================== 
+@sql.data.dataSystemInsert
+INSERT INTO RNDCALL_BOARD_QUESTION (
+   TITLE, 
+   SEQ, 
+   REG_NM, 
+   REG_ID, 
+   REG_DT, 
+   READ_COUNT,  
+   INSERT_TYPE, 
+   FILE_ID, 
+   DEL_YN, 
+   CONTENTS, 
+   BOARD_TYPE
+   ) 
+VALUES (    ?,
+            ?,
+            ?,
+            ?,
+      sysdatetime,
+            0,
+            ?,
+            ?,
+          'N',
+CHAR_TO_CLOB(?),
+           'SYSTEM'
+           )

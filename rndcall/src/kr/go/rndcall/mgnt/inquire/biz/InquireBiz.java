@@ -227,4 +227,14 @@ public class InquireBiz {
 		
 		return InquireDAO.getInquireScrap(searchVO);
 	}
+	
+    /**
+     * 비회원 비밀번호 확인
+     */
+    public boolean getPasswordCheck(InquireVO vo) throws Exception {
+            
+        InquireDAO InquireDAO = new InquireDAO();
+        
+        return InquireDAO.getPasswordCheck(vo);
+    }
 }

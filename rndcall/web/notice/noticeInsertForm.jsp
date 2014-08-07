@@ -80,7 +80,7 @@
 	</script>
 
     <!-- container -->
-    <div id="container">
+    <div id="container" class="notice">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
@@ -122,10 +122,10 @@
 	                                <tr>
 	                                    <th scope="row"><label for="ip1">제목</label></th>
 	                                    <td>
-	                                        <select style="width:90px;" id="ip1" >
-	                                            <option>공지</option>
-	                                            <option>행사</option>
-	                                            <option>기타</option>
+	                                        <select name="vo.category1" style="width:90px;" id="ip1" >
+	                                            <option value="1">공지</option>
+	                                            <option value="2">행사</option>
+	                                            <option value="3">기타</option>
 	                                        </select>
 	                                        <input type="text" name="vo.title" style="width:82%;" title="제목"/>
 	                                    </td>

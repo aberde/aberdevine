@@ -208,16 +208,16 @@
 	</script>
 	
     <!-- container -->
-    <div id="container">
+    <div id="container" class="advice">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
-                <h2>온라인상담</h2>
+                <h2>온라인 상담</h2>
                 <span><img src="/img/common/h2_entxt02.gif" alt="Online Consultation" /></span>
             </div>
             <ul class="lnb-lst">
-                <li class="on"><a href="JavaScript:goInquireForm()">온라인상담</a></li>
-                <li><a href="JavaScript:goFaq()">자주묻는질문</a></li>
+                <li class="on"><a href="JavaScript:goInquireForm()">온라인 상담</a></li>
+                <li><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -226,71 +226,145 @@
             <div class="location txt-r">        
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goInquireForm()">온라인상담</a></li>
-                    <li class="on"><a href="JavaScript:goInquireForm()">온라인상담</a></li>
+                    <li><a href="JavaScript:goInquireForm()">온라인 상담</a></li>
+                    <li class="on"><a href="JavaScript:goInquireForm()">온라인 상담</a></li>
                 </ul>
             </div>
             <!-- section -->
             <div class="section">       
                 <div class="tit-area">
-                    <h3>온라인상담</h3>
-                    <p>R&amp;D 관련 규정 및 제도에 대해 궁금하신 사항에 담당자가 답변해 드립니다.기존 답변을 검색 후 질의해주세요.</p>
+                    <h3>온라인 상담</h3>
+                    <!-- <p>R&amp;D 관련 규정 및 제도에 대해 궁금하신 사항에 담당자가 답변해 드립니다.기존 답변을 검색 후 질의해주세요.</p> -->
                 </div>
                 
-                <html:form action="/Inquire" method="post" name="fm" enctype="multipart/form-data" type="kr.go.rndcall.mgnt.inquire.form.InquireForm">
-                    <html:hidden name="InquireForm" property="method" value="getInquireUpdate"/>
-                    <html:hidden name="InquireForm" property="vo.cell_number"/>
-                    <html:hidden name="InquireForm" property="vo.email"/>
-                    <html:hidden name="InquireForm" property="vo.question_file_id"/>
-                    <html:hidden name="InquireForm" property="vo.file_id"/>
-                    <html:hidden name="InquireForm" property="searchVO.loginId"/>
-                    <html:hidden name="InquireForm" property="searchVO.name"/>
-                    <html:hidden name="InquireForm" property="searchVO.seq"/>
-                    <html:hidden name="InquireForm" property="searchVO.board_type"/>
-                    <html:hidden name="InquireForm" property="searchVO.menu_sn"/>
+                <html:form action="/Inquire" method="post" name="fm" enctype="multipart/form-data" type="kr.go.rndcall.mgnt.inquire.form.InquireForm" onsubmit="return checkOnSubmit(this)">
+		            <html:hidden name="InquireForm" property="method" value="getAnswerInsert"/>
+		            <html:hidden name="InquireForm" property="vo.cell_number"/>
+		            <html:hidden name="InquireForm" property="vo.email"/>
+		            <html:hidden name="InquireForm" property="searchVO.loginId"/>
+		            <html:hidden name="InquireForm" property="searchVO.name"/>
+		            <html:hidden name="InquireForm" property="searchVO.seq"/>
+		            <html:hidden name="InquireForm" property="searchVO.board_type"/>
+		            <html:hidden name="InquireForm" property="vo.del_file_id"/>
+		            <html:hidden name="InquireForm" property="vo.answer_seq"/>
+		            <html:hidden name="InquireForm" property="vo.title"/>
+		            <html:hidden name="InquireForm" property="vo.file_id"/>             
+		            <html:hidden name="InquireForm" property="vo.answer_file_id"/>              
+		            <html:hidden name="InquireForm" property="searchVO.menu_sn"/>
+                    
+                    <!-- board-detail -->
+                    <div class="board-detail mt30">
+                        <h3>등록자 정보</h3>
+                        <div class="board-box">
+                            <table summary="제목, 분류, 질의내용, 답변내용  페이지">
+                                <caption>자주묻는 질문 페이지</caption>
+                                <colgroup>
+                                    <col width="15%"/>
+                                    <col width="20%"/>
+                                    <col width="15%"/>
+                                    <col width="20%"/>
+                                    <col width="15%"/>
+                                    <col width="*"/>
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">아이디</th>
+                                        <td>
+                                            <logic:empty name="InquireForm" property="vo.reg_id">
+                                                   비회원
+                                            </logic:empty>
+                                            <logic:notEmpty name="InquireForm" property="vo.reg_id">
+	                                            <bean:write name="InquireForm" property="vo.reg_id"/>
+                                            </logic:notEmpty>
+                                        </td>
+                                        <th scope="row">소속</th>
+                                        <td>
+                                            <logic:equal name="InquireForm" property="vo.query_user_info" value="1">중앙행정기관</logic:equal>
+                                            <logic:equal name="InquireForm" property="vo.query_user_info" value="2">전문기관</logic:equal>
+                                            <logic:equal name="InquireForm" property="vo.query_user_info" value="3">정부출연연구기관</logic:equal>
+                                            <logic:equal name="InquireForm" property="vo.query_user_info" value="4">대학</logic:equal>
+                                            <logic:equal name="InquireForm" property="vo.query_user_info" value="5">기업</logic:equal>
+                                            <logic:equal name="InquireForm" property="vo.query_user_info" value="6">기타</logic:equal>
+                                        </td>
+                                        <th scope="row">공개여부</th>
+                                        <td>
+                                            <bean:define name="InquireForm" property="vo.open_yn" id="open_yn" type="java.lang.String"/>
+                                            <%
+                                                if(open_yn.equals("Y")){
+                                                    out.println("공개");
+                                                }else{
+                                                    out.println("비공개");
+                                                }
+                                            %>                  
+                                        </td>
+                                    </tr>
+                                </tbody>
+                             </table>
+                        </div>
+                    </div>
+                    <!-- //board-detail -->
                     
                     <!-- board-write -->
-                    <div class="board-write mt30">
+                    <div class="board-detail mt30">
+                        <h3>질의 및 답변내용</h3>
                         <div class="board-box">
                             <table summary="질의자 정보, 공개여부, 제목, 내용 보기 등록 페이지">
-                                <caption>온라인상담 등록 페이지 </caption>
+                                <caption>온라인 상담 등록 페이지 </caption>
                                 <colgroup>
                                     <col width="16%"/>
                                     <col width="*"/>
                                 </colgroup>
                                 <tbody>
                                     <tr>
-                                        <th scope="row"><label for="info1">질의자 정보</label></th>
+	                                    <th scope="row">제목</th>
+	                                    <td><bean:write name="InquireForm" property="vo.title" filter="false"/></td>
+	                                </tr>
+                                    <tr>
+                                        <th scope="row"><label for="txtarea1">질의내용</label></th>
                                         <td>
-                                            <html:radio name="InquireForm" styleId="info1" property="vo.query_user_info" value="1"></html:radio> <label for="info1">중앙행정기관</label>
-                                            <html:radio name="InquireForm" styleId="info2" property="vo.query_user_info" value="2"></html:radio> <label for="info2">전문기관</label>
-                                            <html:radio name="InquireForm" styleId="info3" property="vo.query_user_info" value="3"></html:radio> <label for="info3">정부출연연구기관</label>
-                                            <html:radio name="InquireForm" styleId="info4" property="vo.query_user_info" value="4"></html:radio> <label for="info4">대학</label>
-                                            <html:radio name="InquireForm" styleId="info5" property="vo.query_user_info" value="5"></html:radio> <label for="info5">기업</label>
-                                            <html:radio name="InquireForm" styleId="info6" property="vo.query_user_info" value="6"></html:radio> <label for="info6">기타</label>
+                                            <bean:write name="InquireForm" property="vo.contents" filter="false"/>
+						                    <br/><br/>
+						                    <logic:iterate name="InquireForm" property="voList" indexId="rowNum" id="attachVO">
+						                    첨부파일:                       
+						                        <bean:define name="attachVO" property="file_id" id="file_id" type="java.lang.String"/>
+						                        <bean:define name="attachVO" property="seq" id="seq" type="java.lang.String"/>
+						                        <a href="javascript:downLoad('<bean:write name="attachVO" property="file_nm"/>', '<bean:write name="attachVO" property="file_path"/>', '', 'Y');"><bean:write name="attachVO" property="file_nm" /></a><br/>
+						                    </logic:iterate>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row"><label for="open1">공개여부</label></th>
-                                        <td>
-                                            <html:radio name="InquireForm" styleId="vo.open_yn1" property="vo.open_yn" value="Y"></html:radio>
-                                            <label for="vo.open_yn1">공개</label>
-                                            <html:radio name="InquireForm" styleId="vo.open_yn2" property="vo.open_yn" value="N"></html:radio>
-                                            <label for="vo.open_yn2">비공개</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><label for="title">제목</label></th>
-                                        <td>
-                                            <html:text name="InquireForm" property="vo.title" alt="제목" title="제목" style="width:98%" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><label for="txtarea1">내용</label></th>
-                                        <td>
-                                            <html:textarea name="InquireForm" property="vo.contents" cols="0" rows="0" style="width:97%; min-height:254px;" alt="질의 내용" title="질의 내용"/>
-                                        </td>
-                                    </tr>
+	                                    <th scope="row">분야 선택</th>
+	                                    <td>
+	                                        <html:select name="InquireForm" property="vo.category1" styleId="category1" title="대분류" onchange="f_cate_change(this.value)">
+						                        <html:option value="">::: 선택 :::</html:option>
+						                    </html:select>
+						                    <html:select name="InquireForm" property="vo.category2" styleId="category2" title="소분류">
+						                        <html:option value="">::: 선택 :::</html:option>
+						                    </html:select>
+	                                    </td>
+	                                </tr>
+	                                <tr>
+						                <th scope="row" class="txt-blue"><label for="txtarea2">답변내용</label></th>
+	                                    <td>
+	                                        <html:textarea styleId="txtarea2" name="InquireForm" property="vo.answerContents" cols="0" rows="0" style="width:97%; min-height:154px; " alt="답변 내용" title="답변 내용"/>
+	                                    </td>
+						            </tr>
+						            <logic:notEmpty name="InquireForm" property="voList1">
+						            <tr>
+						                <th scope="row">기존파일 삭제여부</th>
+						                <td>
+						                    <logic:iterate name="InquireForm" property="voList1" indexId="rowNum1" id="attachVO">                       
+						                        <bean:define name="attachVO" property="file_id" id="file_id" type="java.lang.String"/>
+						                        <bean:define name="attachVO" property="seq" id="seq" type="java.lang.String"/>
+						<%
+						                        String f_id = file_id+"-"+seq;
+						%>
+						                        <input type="checkbox" name="file_del" value="<%=f_id%>"/>
+						                        <a href="javascript:downLoad('<bean:write name="attachVO" property="file_nm"/>', '<bean:write name="attachVO" property="file_path"/>', '', 'Y');"><bean:write name="attachVO" property="file_nm" /></a><br/>
+						                    </logic:iterate>
+						                </td>
+						            </tr>
+						            </logic:notEmpty>
                                     <tr>
                                         <th scope="row"><label for="file">첨부파일</label></th>
                                         <td>
@@ -304,40 +378,6 @@
                         </div>
                     </div>
                     <!-- // board-write -->
-                    
-                    <!-- board-detail -->
-	                <div class="board-detail mt30">
-	                    <h3>등록자 정보</h3>
-	                    <div class="board-box">
-	                        <table summary="제목, 분류, 질의내용, 답변내용  페이지">
-	                            <caption>자주묻는 질문 페이지</caption>
-	                            <colgroup>
-	                                <col width="15%"/>
-	                                <col width="35%"/>
-	                                <col width="15%"/>
-	                                <col width="*"/>
-	                            </colgroup>
-	                            <tbody>
-	                                <tr>
-	                                    <th scope="row">이름</th>
-	                                    <td><bean:write name="InquireForm" property="vo.reg_nm"/></td>
-	                                    <th scope="row">공개여부</th>
-	                                    <td>
-	                                        <bean:define name="InquireForm" property="vo.open_yn" id="open_yn" type="java.lang.String"/>
-                                            <%
-                                                if(open_yn.equals("Y")){
-                                                    out.println("공개");
-                                                }else{
-                                                    out.println("비공개");
-                                                }
-                                            %>                  
-	                                    </td>
-	                                </tr>
-	                            </tbody>
-	                         </table>
-	                    </div>
-	                </div>
-	                <!-- //board-detail -->
                     
                     <!-- btn-set -->
                     <div class="btn-lst txt-r">

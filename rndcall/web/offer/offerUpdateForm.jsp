@@ -71,33 +71,33 @@
 		}
 		
 		function validate() {
-			//SMS수신 체크시 핸드폰번호 체크
-			var sms="";		
-			for(i=0; i < fm.elements["vo.call_receive_yn"].length; i++){
-	     		if(fm.elements["vo.call_receive_yn"][i].checked){
-	     			sms = fm.elements["vo.call_receive_yn"][i].value;
-	    		}
-	   		}
+// 			//SMS수신 체크시 핸드폰번호 체크
+// 			var sms="";		
+// 			for(i=0; i < fm.elements["vo.call_receive_yn"].length; i++){
+// 	     		if(fm.elements["vo.call_receive_yn"][i].checked){
+// 	     			sms = fm.elements["vo.call_receive_yn"][i].value;
+// 	    		}
+// 	   		}
 			
-			if(sms == "Y"){
-				fm.elements["vo.cell_number"].value = fm.elements["cell_no1"].value+ "-" +fm.elements["cell_no2"].value+ "-" +fm.elements["cell_no3"].value;
-				if (!isNotValidTel(fm.elements["vo.cell_number"])) return false;
-			}		
+// 			if(sms == "Y"){
+// 				fm.elements["vo.cell_number"].value = fm.elements["cell_no1"].value+ "-" +fm.elements["cell_no2"].value+ "-" +fm.elements["cell_no3"].value;
+// 				if (!isNotValidTel(fm.elements["vo.cell_number"])) return false;
+// 			}		
 			
-			//EMAIL수신 체크시 EMAIL 체크
-			var email="";		
-			for(i=0; i < fm.elements["vo.email_receive_yn"].length; i++){
-	     		if(fm.elements["vo.email_receive_yn"][i].checked){
-	     			email = fm.elements["vo.email_receive_yn"][i].value;
-	    		}
-	   		}
+// 			//EMAIL수신 체크시 EMAIL 체크
+// 			var email="";		
+// 			for(i=0; i < fm.elements["vo.email_receive_yn"].length; i++){
+// 	     		if(fm.elements["vo.email_receive_yn"][i].checked){
+// 	     			email = fm.elements["vo.email_receive_yn"][i].value;
+// 	    		}
+// 	   		}
 	   		
-	   		if(email == "Y"){
-				fm.elements["vo.email"].value = fm.elements["email1"].value + "@" + fm.elements["email2"].value;
-				if(!isEMailAddr(fm.elements["vo.email"])){
-					return false;
-				}
-			}
+// 	   		if(email == "Y"){
+// 				fm.elements["vo.email"].value = fm.elements["email1"].value + "@" + fm.elements["email2"].value;
+// 				if(!isEMailAddr(fm.elements["vo.email"])){
+// 					return false;
+// 				}
+// 			}
 			
 			
 			//제목 필수 입력 체크
@@ -120,7 +120,7 @@
 	</script>
 	
 	<!-- container -->
-    <div id="container">
+    <div id="container" class="sinmungo">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
@@ -182,7 +182,7 @@
 	                                    <col width="*"/>
 	                                </colgroup>
 	                                <tbody>
-	                                    <tr>
+	                                    <tr <%= mainLoginVO == null ? "" : "style=\"display: none;\"" %>>
 	                                        <th scope="row"><label for="info1">질의자 정보</label></th>
 	                                        <td>
 	                                            <html:radio styleId="info1" name="OfferForm" property="vo.query_user_info" value="1"></html:radio> <label for="info1">중앙행정기관</label>

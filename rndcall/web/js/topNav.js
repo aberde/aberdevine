@@ -105,7 +105,7 @@ function topNav(gnbActiveNum, gnbActiveSub) {
 			node.siblings().find('div').hide();
 			node.find('div').show();
 			if(node.index() > 0){
-				nav.eq(node.index()-1).find('div').show();	
+				//nav.eq(node.index()-1).find('div').show();	
 			}			
 			$gnb.menuPosition(node);
 		},
@@ -134,17 +134,12 @@ function topNav(gnbActiveNum, gnbActiveSub) {
 			//nodeImg.attr('src', nodeImg.attr('src').replace('_over.png', '.png'));		
 		},//usually menu control for position of menu sub 
 		menuPosition :function (node){
-			
-			if(node.index() == 0){
-				node.find('ul').css({'left': "10px"});
-			}else if(node.index() <= 1){
-				node.find('ul').css({'left': "220px"});
-			}else if(node.index() <= 3){
-				node.find('ul').css({'left': "500px"});
-			}else if(node.index() <= 4){
-				node.find('ul').css({'left': "580px"});
+			if(node.offset() !=undefined){
+				var position=node.offset();
+				var posX=Math.round(position.left);
+				//console.log("posX :"+posX)
+				node.find('ul').css({'left': (posX+11)+"px"});
 			}
-			
 		}
 	}).init();
 }
@@ -171,7 +166,7 @@ function FNfamily_go(_type){
 			return;
 		}
 	}
-	console.log("goUrl : "+goUrl);
+	//console.log("goUrl : "+goUrl);
 	window.open(goUrl)
 }
 

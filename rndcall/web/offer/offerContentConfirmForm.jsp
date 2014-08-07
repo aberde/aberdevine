@@ -32,7 +32,7 @@
 </script>
 <body onload="init_data()">
 <div class="location">
-	<a href="#" target="_self" >NTIS 홈</a> &gt; <a href="http://rndgate.ntis.go.kr:9998/indexfaq.jsp" target="_self">R&amp;D 도우미센터</a> &gt; <a href="#" target="_self">온라인상담</a> &gt;제안하기
+	<a href="#" target="_self" >NTIS 홈</a> &gt; <a href="http://rndgate.ntis.go.kr:9998/indexfaq.jsp" target="_self">R&amp;D 도우미센터</a> &gt; <a href="#" target="_self">온라인 상담</a> &gt;제안하기
 </div>
 <div class="ntiscontent1000">
 	<h1>제안하기</h1>

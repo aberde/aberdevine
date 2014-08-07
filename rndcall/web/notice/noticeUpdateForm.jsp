@@ -90,15 +90,15 @@
 	</script>
 
     <!-- container -->
-    <div id="container">
+    <div id="container" class="notice">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
-                <h2>알림</h2>
-                <span><img src="/img/common/h2_entxt04.gif" alt="알림" /></span>
+                <h2>새소식</h2>
+                <span><img src="/img/common/h2_entxt04.gif" alt="새소식" /></span>
             </div>
             <ul class="lnb-lst">
-                <li class="on"><a href="JavaScript:goNotice()">알림</a></li>
+                <li class="on"><a href="JavaScript:goNotice()">새소식</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -107,14 +107,14 @@
             <div class="location txt-r">        
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goNotice()">알림</a></li>
-                    <li class="on"><a href="JavaScript:goNotice()">알림</a></li>
+                    <li><a href="JavaScript:goNotice()">새소식</a></li>
+                    <li class="on"><a href="JavaScript:goNotice()">새소식</a></li>
                 </ul>
             </div>
             <!-- section -->
             <div class="section">       
                 <div class="tit-area">
-                    <h3>알림</h3>
+                    <h3>새소식</h3>
                     <p>규정 및 제도에 대한 개선사항을 건의해주세요</p>
                 </div>
 
@@ -131,8 +131,8 @@
                     <!-- board-detail -->
                     <div class="board-detail mt30">
                         <div class="board-box">
-                            <table summary="알림 페이지">
-                                <caption>알림 페이지</caption>
+                            <table summary="새소식 페이지">
+                                <caption>새소식 페이지</caption>
                                 <colgroup>
                                     <col width="16%"/>
                                     <col width="*"/>
@@ -141,11 +141,11 @@
                                     <tr>
                                         <th scope="row"><label for="vo.title">제목</label></th>
                                         <td>
-                                            <select style="width:90px;" id="ip1" >
-                                                <option>공지</option>
-                                                <option>행사</option>
-                                                <option>기타</option>
-                                            </select>
+                                            <html:select name="NoticeForm" property="vo.category1" style="width:90px;">
+                                                <html:option value="1">공지</html:option>
+                                                <html:option value="2">행사</html:option>
+                                                <html:option value="3">기타</html:option>
+                                            </html:select>
                                             <html:text name="NoticeForm" styleId="vo.title" property="vo.title" style="width:82%;" alt="제목" title="제목"/>
                                         </td>
                                     </tr>

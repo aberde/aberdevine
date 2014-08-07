@@ -56,11 +56,16 @@ public class MypageDAO extends BaseSqlDAO{
 			}else if(searchVO.getType().equals("2")){ //미답변
 				query = loadQueryString("sql.mypage.list2");
 				query += " AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER AA WHERE Q.SEQ = AA.Q_SEQ) ";
-			}else if(searchVO.getType().equals("3")){ //답변완료
+			}else if(searchVO.getType().equals("3")){ //검토중
 				query = loadQueryString("sql.mypage.list");
+				query += " AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER AA WHERE Q.SEQ = AA.Q_SEQ AND A.COMPLETE_YN IS NULL) ";
 				query += " AND Q.SEQ = A.Q_SEQ ";
 			}else if(searchVO.getType().equals("4")){ //스크랩
 				query = loadQueryString("sql.mypage.listscrap");
+			}else if(searchVO.getType().equals("5")){ //답변완료
+			    query = loadQueryString("sql.mypage.list");
+			    query += " AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ AND A.COMPLETE_YN = 'Y') ";
+			    query += " AND Q.SEQ = A.Q_SEQ ";
 			}
 			
 			if(searchVO.getType().equals("4")){
@@ -133,12 +138,14 @@ public class MypageDAO extends BaseSqlDAO{
 			pstmt.setString(1, searchVO.getLoginId()) ;
 			pstmt.setString(2, searchVO.getLoginId()) ;
 			pstmt.setString(3, searchVO.getLoginId()) ;			
+			pstmt.setString(4, searchVO.getLoginId()) ;			
 			executeQueryForR();
 
 			if(rs.next()) {
 				statVo.setStatCnt4(rs.getString("CNT1"));
 				statVo.setStatCnt5(rs.getString("CNT2"));
 				statVo.setStatCnt6(rs.getString("CNT3"));
+				statVo.setStatCnt8(rs.getString("CNT4"));
 			}
 			
 			resultVO.setVo(statVo);

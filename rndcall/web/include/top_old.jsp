@@ -202,7 +202,7 @@ DD_belatedPNG.fix('.gnbSub ul');
 				<div id="gnbMenu">
 					<ul id="gnb">
 						<li class="gnbMenu2 first ">
-							<a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireMainList"><img src="http://www.rndcall.go.kr/common/images/layout/gnb1_off.gif" alt="온라인상담"/></a>
+							<a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getInquireMainList"><img src="http://www.rndcall.go.kr/common/images/layout/gnb1_off.gif" alt="온라인 상담"/></a>
 							<p class="gnbSub"></p>
 						</li>
 						<li class="gnbMenu2">

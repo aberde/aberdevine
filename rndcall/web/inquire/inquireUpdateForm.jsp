@@ -18,25 +18,6 @@
     </script>
     
     <script type="text/javascript" src="/js/file.js"></script>
-    
-<%
-	if (mainLoginVO == null || !mainIsLogin) {	
-%>
-	<script type="text/javascript">
-		alert('로그인이 필요한 메뉴입니다.');
-		document.location.href = "/index.jsp";
-	</script>
-<%
-	} else if (!mainRoleCD.equals("0000B") && !mainRoleCD.equals("0000C") && !mainRoleCD.equals("0000Z")) {
-%>
-	<script type="text/javascript">
-		alert('권한이 없습니다.');
-		document.location.href = "/index.jsp";
-	</script>
-<%		
-	}
-%>
-
 
 	<script type="text/javascript">
 	<!--		
@@ -141,16 +122,16 @@
 	</script>
 	
 	<!-- container -->
-    <div id="container">
+    <div id="container" class="advice">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
-                <h2>온라인상담</h2>
+                <h2>온라인 상담</h2>
                 <span><img src="/img/common/h2_entxt02.gif" alt="Online Consultation" /></span>
             </div>
             <ul class="lnb-lst">
-                <li class="on"><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
-                <li><a href="JavaScript:goFaq()">자주묻는질문</a></li>
+                <li class="on"><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
+                <li><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -159,14 +140,14 @@
             <div class="location txt-r">        
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
-                    <li class="on"><a href="JavaScript:goInquireMainList()">온라인상담</a></li>
+                    <li><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
+                    <li class="on"><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
                 </ul>
             </div>
             <!-- section -->
             <div class="section">       
                 <div class="tit-area">
-                    <h3>온라인상담</h3>
+                    <h3>온라인 상담</h3>
                     <p>R&amp;D 관련 규정 및 제도에 대해 궁금하신 사항에 담당자가 답변해 드립니다.기존 답변을 검색 후 질의해주세요.</p>
                 </div>
                 
@@ -186,7 +167,7 @@
                     <div class="board-write mt30">
                         <div class="board-box">
                             <table summary="질의자 정보, 공개여부, 제목, 내용 보기 등록 페이지">
-                                <caption>온라인상담 등록 페이지 </caption>
+                                <caption>온라인 상담 등록 페이지 </caption>
                                 <colgroup>
                                     <col width="16%"/>
                                     <col width="*"/>

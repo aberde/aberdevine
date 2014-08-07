@@ -66,7 +66,11 @@
 			fm.elements["searchVO.whichSearch"].value="";
 			fm.elements["searchVO.searchTxt"].value="";
 			fm.elements["searchVO.board_type"].value=arg;	
-			fm.elements["method"].value="dataList";
+			if ( arg == "SYSTEM" ) {
+                fm.elements["method"].value="dataSystemList";
+            } else {
+                fm.elements["method"].value="dataList";
+            }
 			fm.submit();
 		}
 		
@@ -86,7 +90,7 @@
 	</script>
 
     <!-- container -->
-    <div id="container">
+    <div id="container" class="dataroom">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
