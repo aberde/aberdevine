@@ -189,6 +189,11 @@ public class MemberDAO extends BaseSqlDAO {
 				}
 				vo.setPassword(ssoPw);
 				vo.setRe_password(ssoPw);
+				vo.setIdFindQuestion(rs.getString("IDFINDQUESTION"));
+			    vo.setIdFindAnswer(rs.getString("IDFINDANSWER"));
+			    vo.setPwFindQuestion(rs.getString("PWFINDQUESTION"));
+			    vo.setPwFindAnswer(rs.getString("PWFINDANSWER"));
+			    vo.setSector(rs.getString("SECTOR"));
 				
 	            voList.add(vo);
 			}
@@ -230,7 +235,12 @@ public class MemberDAO extends BaseSqlDAO {
 			query += " 	  EMAIL = ?, ";
 			query += " 	  MOBILE = ?, ";
 			query += " 	  EDIT_ID = ?, ";
-			query += " 	  EDIT_DT = SYSDATE ";
+			query += " 	  EDIT_DT = SYSDATE, ";
+			query += " 	  SECTOR = ?, ";
+			query += " 	  IDFINDQUESTION = ?, ";
+			query += " 	  IDFINDANSWER = ?, ";
+			query += " 	  PWFINDQUESTION = ?, ";
+			query += " 	  PWFINDANSWER = ? ";
 			query += " WHERE USER_ID = ? ";
 				
 			param =1;
@@ -248,6 +258,11 @@ public class MemberDAO extends BaseSqlDAO {
 			pstmt.setString(param++, vo.getEmail());
 			pstmt.setString(param++, vo.getMobile());
 			pstmt.setString(param++, vo.getLogin_id());
+			pstmt.setString(param++, vo.getSector());
+			pstmt.setString(param++, vo.getIdFindQuestion());
+			pstmt.setString(param++, vo.getIdFindAnswer());
+			pstmt.setString(param++, vo.getPwFindQuestion());
+			pstmt.setString(param++, vo.getPwFindAnswer());
 			pstmt.setString(param++, vo.getLogin_id());
 			
 			pstmt.executeUpdate();

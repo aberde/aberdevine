@@ -144,6 +144,15 @@
 	                                    <td><input type="text" name="vo.title" style="width:98%;" title="제목"/></td>
 	                                </tr>
 	                                <tr>
+                                        <th scope="row">게시판타입</th>
+                                        <td>
+                                            <select name="vo.board_type">
+                                                <option value="SYSTEM">연구관리제도</option>
+                                                <option value="DATA">기타</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+	                                <tr>
 	                                    <th scope="row"><label for="txtarea1">답변내용</label></th>
 	                                    <td>
 	                                        <textarea id="txtarea1" name="vo.contents" cols="0" rows="0" value=""  style="width:97%; min-height:254px; ">

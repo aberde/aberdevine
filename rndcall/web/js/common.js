@@ -166,7 +166,7 @@ function goPasswordCheckForm(baord_type, baord_seq, func) {
 	html += '						<td>                                                                                         ';
 	html += '							<input type="hidden" id="passwordCheck_baord_type" value="' + baord_type + '" />         ';
 	html += '							<input type="hidden" id="passwordCheck_baord_seq" value="' + baord_seq + '" />         ';
-	html += '							<input type="text" id="passwordCheck_baord_password" style="width:200px"/>                                         ';
+	html += '							<input type="password" id="passwordCheck_baord_password" style="width:200px"/>                                         ';
 	html += '							<span class="btn-set set2 s-blue"><a href="javascript:' + func + '">확인</a><span class="zoom"></span></span>  ';
 	html += '						</td>                                                                                        ';
 	html += '					</tr>                                                                                            ';
@@ -216,7 +216,12 @@ function goPasswordCheck() {
 		}
 		, success: function(data) {
 			if ( data.success == "true" ) {
-				goInquireView($("#passwordCheck_baord_type").val(), $("#passwordCheck_baord_seq").val());
+				var baord_type = $("#passwordCheck_baord_type").val();
+				if ( baord_type == "OFFER" ) {
+					offerDetailView($("#passwordCheck_baord_type").val(), $("#passwordCheck_baord_seq").val());
+				} else {
+					goInquireView($("#passwordCheck_baord_type").val(), $("#passwordCheck_baord_seq").val());
+				}
 				$("#passwordCheckDiv").remove();
 			} else {
 				alert("비밀번호를 확인해 주세요.");

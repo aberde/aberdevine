@@ -129,6 +129,7 @@
 	                                <col width="10%" />
 <!-- 	                                <col width="12%" /> -->
 	                                <col width="*" />
+	                                <col width="14%" />
 <!-- 	                                <col width="12%" /> -->
 	                            </colgroup>
 	                            <thead>
@@ -137,6 +138,7 @@
 	                                    <th scope="col">ID</th>
 <!-- 	                                    <th scope="col">이름</th> -->
 	                                    <th scope="col">소속기관</th>
+	                                    <th scope="col">최종접속일자</th>
 <!-- 	                                    <th scope="col">수정</th> -->
 	                                </tr>
 	                            </thead>
@@ -161,6 +163,7 @@
                                                     <logic:equal name="vo" property="sector" value="6">기타</logic:equal>
 <%--                                                 <bean:write name="vo" property="org_nm"/> --%>
                                                 </td>
+                                                <td><bean:write name="vo" property="last_visit_dt"/></td>
 <%--                                                 <td><bean:write name="vo" property="attached_nm"/></td> --%>
 <%--                                                 <td><bean:write name="vo" property="roleCD"/></td> --%>
 <%--                                                 <td><span class="btn-set"><a href="javascript:getUserInfo('<bean:write name="vo" property="auth_id"/>');">수정</a></span></td> --%>

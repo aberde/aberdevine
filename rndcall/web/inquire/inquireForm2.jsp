@@ -54,18 +54,24 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td rowspan="2" class="txt-c">미래창조과학부</td>
+                                <td rowspan="4" class="txt-c">미래창조과학부</td>
                                 <td><a href="http://www.nrf.re.kr/nrf_tot_cms/board/qna_tot/list.jsp?show_no=174&check_no=169&c_relation=biz&c_relation2=0" target="_blank" title="새창열림">한국연구재단</a></td>
                             </tr>
                             <tr class="on">
                                 <td class="line-l"><a href="http://www.nipa.kr/biz/tree.it?menuNo=17" target="_blank" title="새창열림">정보통신산업진흥원</a></td>
                             </tr>
                             <tr>
+                                <td class="line-l"><a href="http://www.nia.or.kr/bbs/freeboard_list.asp?BoardID=201112081218206347&boardtype=qna&order=040100" target="_blank" title="새창열림">한국정보화진흥원</a></td>
+                            </tr>
+                            <tr class="on">
+                                <td class="line-l"><a href="http://www.kisa.or.kr/main.jsp" target="_blank" title="새창열림">한국인터넷진흥원</a></td>
+                            </tr>
+                            <tr>
                                 <td rowspan="3" class="txt-c">산업통상자원부</td>
                                 <td ><a href="http://www.keit.re.kr/voc/list.do?gbn=02_21&voc_code=0027" target="_blank" title="새창열림">한국산업기술평가관리원</a></td>
                             </tr>
                             <tr class="on">
-                                <td class="line-l"><a href="http://www.kiat.or.kr/site/program/board/list.jsp?menuID=001003001&boardTypeID=4" target="_blank" title="새창열림">국산업기술진흥원</a></td>
+                                <td class="line-l"><a href="http://www.kiat.or.kr/site/program/board/list.jsp?menuID=001003001&boardTypeID=4" target="_blank" title="새창열림">한국산업기술진흥원</a></td>
                             </tr>
                             <tr>
                                 <td class="line-l"><a href="http://voc.ketep.re.kr/ketep/contents/main/NR_index.do?_m=main" target="_blank" title="새창열림">한국에너지기술평가원</a></td>
@@ -80,7 +86,7 @@
                             </tr>
                             <tr>
                                 <td class="txt-c">농림축산식품부</td>
-                                <td class="on"><a href="http://www.ipet.re.kr/Rnd/QnaLV.asp?cate=MB" target="_blank" title="새창열림">기술기획평가원</a></td>
+                                <td class="on"><a href="http://www.ipet.re.kr/Rnd/QnaLV.asp?cate=MB" target="_blank" title="새창열림">농림수산식품기술기획평가원</a></td>
                             </tr>
                             <tr>
                                 <td class="txt-c">보건복지부</td>

@@ -38,7 +38,7 @@
 		
 		function cate_update(id) {
 			var url = "/switch.do?prefix=&page=/category.do?method=getCategoryInfo&searchVO.category_id=" + id; 
-			popWinCenter(url,'Info',435,220,0,0,0,1);
+			popWinCenter(url,'Info',580,305,0,0,0,1);
 		}
 		
 		function getList() {
@@ -114,7 +114,11 @@
 				} 
 			}
 		}
-	
+		   
+		function goCategoryInsertForm() {
+            var url = "/switch.do?prefix=&page=/category.do?method=getCategoryInputForm&vo.parent_id=" + fm.elements["searchVO.parent_id"].value + "&vo.tree_level=2"; 
+            popWinCenter(url,'Info',580,305,0,0,0,1);
+        }
 	//-->
 	</script>
 
@@ -151,7 +155,7 @@
                     <p>R&amp;D 도우미센터의 관리자 화면입니다.</p>
                 </div>
                 
-                <html:form action="/category" method="post" name="fm" type="kr.go.rndcall.mgnt.category.CategoryForm">
+                <html:form action="/category" method="get" name="fm" type="kr.go.rndcall.mgnt.category.CategoryForm">
 				    <html:hidden name="categoryForm" property="method" value="getCategoryListDtl"/>
 				    <html:hidden name="categoryForm" property="searchVO.parent_id"/>
 				    <html:hidden name="categoryForm" property="searchVO.category_id"/>
@@ -210,21 +214,13 @@
                                             </tr>
                                         </logic:iterate>
                                     </logic:notEmpty>
-                                    <tr>
-                                        <td>
-				                            <html:text name="categoryForm" property="vo.order_no" size="4" maxlength="4" onkeyup="checkNum(this)"/>
-				                        </td>
-				                        <td colspan="2">
-				                            <span class="input-set"><html:text name="categoryForm" property="vo.category_nm" style="width:290px;" maxlength="50"/></span>
-				                        </td>
-				                        <td>              
-				                            <span class="btn-set set2 green"><a href="javascript:insert();">저장</a></span>
-				                        </td>
-				                        <td></td>
-				                    </tr>
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    
+                    <div class="mt10 txt-r">
+                        <span class="btn-set set2 green"><a href="javascript:goCategoryInsertForm();">카테고리 추가 +</a></span>
                     </div>
                 </html:form>
                 

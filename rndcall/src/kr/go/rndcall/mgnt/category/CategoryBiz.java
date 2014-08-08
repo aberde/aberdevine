@@ -10,11 +10,12 @@ public class CategoryBiz {
 		CategoryResultVO resultVO = new CategoryResultVO();
 		CategoryDAO dao = new CategoryDAO();
 		
-		if (searchVO.getCrud().equals("INSERT")) {
-			dao.insert(vo);
-		} else if (searchVO.getCrud().equals("UPDATE")) {
-			dao.update(vo);
-		} else if (searchVO.getCrud().equals("DELETE")) {
+//		if (searchVO.getCrud().equals("INSERT")) {
+//			dao.insert(vo);
+//		} else if (searchVO.getCrud().equals("UPDATE")) {
+//			dao.update(vo);
+//		} else if (searchVO.getCrud().equals("DELETE")) {
+		if (searchVO.getCrud().equals("DELETE")) {
 			dao.delete(vo);
 		}
 		searchVO.setCrud("");
@@ -54,6 +55,17 @@ public class CategoryBiz {
 		resultVO.setErrCd(result);
 		
 		return resultVO;
+	}
+
+	public CategoryResultVO getCategoryInsert(CategorySearchVO searchVO, CategoryVO vo) throws Exception {
+	    CategoryResultVO result = new CategoryResultVO();
+	    CategoryDAO dao = new CategoryDAO();
+	    
+	    if (searchVO.getCrud().equals("INSERT")) {
+	        dao.insert(vo);
+	        result.setErrCd("INSERT");
+	    }
+	    return result;
 	}
 
 }

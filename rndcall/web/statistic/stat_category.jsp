@@ -134,157 +134,175 @@
                     <h3>통계정보</h3>
                     <p>R&amp;D 도우미센터의 관리자 화면입니다.</p>
                 </div>
-                <!-- board-write -->
-                <div class="board-write mt30">
-                    <div class="board-box">
-                        <table summary="시작년도, 시작월, 종료년도, 종료월 검색 페이지">
-                            <caption>검색 페이지</caption>
-                            <colgroup>
-                                <col width="16%"/>
-                                <col width="*"/>
-                            </colgroup>
-                            <tbody>
-                                <tr>
-                                    <th scope="row"><label for="info1">검색</label></th>
-                                    <td>
-                                        <html:select name="StatisticForm" property="searchVO.start_yy" styleId="searchVO.start_yy" style="width:100px;" title="시작년도" alt="시작년도">
-                                            <html:options name="StatisticForm" property="yearListDesc"/>
-                                        </html:select>
-                                        <label for="searchVO.start_yy">년</label>
-                                        <html:select name="StatisticForm" property="searchVO.start_mm" styleId="searchVO.start_mm" title="시작월" alt="시작월">
-                                            <html:options name="StatisticForm" property="mon_list"/>
-                                        </html:select>
-                                        <label for="searchVO.start_mm">월</label>
-                                        ~
-                                        <html:select name="StatisticForm" property="searchVO.end_yy" styleId="searchVO.end_yy" style="width:100px;" title="종료년도" alt="종료년도">
-                                            <html:options name="StatisticForm" property="yearListDesc"/>
-                                        </html:select>
-                                        <label for="searchVO.end_yy">년</label>
-                                        <html:select name="StatisticForm" property="searchVO.end_mm" styleId="searchVO.end_mm" title="종료월" alt="종료월">
-                                            <html:options name="StatisticForm" property="mon_list"/>
-                                        </html:select>
-                                        <label for="searchVO.end_mm">월</label>
-                                        <span class="btn-set set2 navy"><a href="javascript:goSearch()">검색</a><span class="zoom">아이콘 실제 사용시 텍스트 삭제</span></span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                          </table>
-                    </div>
+                
+                <!--  tab-typ01 -->
+                <div class="tab-type01 mt30">
+                    <ul class="clearfix">
+                        <li class="on"><a href="JavaScript:goCategoryL()">등록현황통계</a></li>
+                        <li><a href="JavaScript:goVisitL()">접속자현황</a></li>
+                    </ul>
                 </div>
-                <!-- // board-write -->
-                <!-- tbl-type01 -->
-                <div class="tbl-type01 mt30">
-                    <table border="0" summary="질의자 소속기관별, 대분류별, 소분류별, 등록건수, 처리건수, 미처리건수 목록 페이지">
-                        <caption>통계정보 목록 페이지</caption>
-                        <colgroup>
-                            <col width="*" />
-                            <col width="11%" />
-                            <col width="11%" />
-                            <col width="9%" />
-                            <col width="9%" />
-                            <col width="9%" />
-                            <col width="11%" />
-                            <col width="11%" />
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th scope="col" rowspan="2">질의자 소속기관별</th>
-                                <th scope="col" rowspan="2">대분류별</th>
-                                <th scope="col" rowspan="2">소분류별</th>
-                                <th scope="col" colspan="3">등록건수</th>
-                                <th scope="col" rowspan="2">처리건수</th>
-                                <th scope="col" rowspan="2">미처리건수</th>
-                            </tr>
-                            <tr class="on">
-                                <th scope="col" class="line-l">전체건수</th>
-                                <th scope="col">온라인</th>
-                                <th scope="col">오프라인</th>
-                            </tr>
-                                
-                        </thead>
-                        <tbody>
-                            <logic:empty name="StatisticForm" property="voList">
-                                <tr><td colspan="8" style="text-align: center;">등록된 정보가 없습니다.</td></tr>
-                            </logic:empty>
-                            <logic:notEmpty name="StatisticForm" property="voList">
-                                <logic:iterate name="StatisticForm" property="voList" indexId="rowNum" id="vo">
-									<bean:define name="vo" property="category1" id="category1" type="java.lang.String"/>
-									<bean:define name="vo" property="category2" id="category2" type="java.lang.String"/>                    
-									<bean:define name="vo" property="category1_nm" id="category1_nm" type="java.lang.String"/>
-									<bean:define name="vo" property="total_cnt" id="total_cnt" type="java.lang.Integer"/>
-									<bean:define name="vo" property="online_cnt" id="online_cnt" type="java.lang.Integer"/>
-									<bean:define name="vo" property="offline_cnt" id="offline_cnt" type="java.lang.Integer"/>
-									<bean:define name="vo" property="disposal_cnt" id="disposal_cnt" type="java.lang.Integer"/>                     
-									<bean:define name="vo" property="undisposal_cnt" id="undisposal_cnt" type="java.lang.Integer"/>
-                                    <%
-										cnt1 += total_cnt.intValue();
-										cnt2 += online_cnt.intValue();
-										cnt3 += offline_cnt.intValue();
-										cnt4 += disposal_cnt.intValue();
-										cnt5 += undisposal_cnt.intValue();
-										if ( category1.equals(category2) ) {
-										    new_category2 ="";
-										} else {
-										    new_category2 = category2;
-										}
-										if ( category1.equals(old_cate) ) {
-										    cnt1_1 += total_cnt.intValue();
-										    cnt2_1 += online_cnt.intValue();
-										    cnt3_1 += offline_cnt.intValue();
-										    cnt4_1 += disposal_cnt.intValue();
-										    cnt5_1 += undisposal_cnt.intValue();
-										} else {
-										    if ( !old_cate.equals("") && !old_cate.equals("1") && !old_cate.equals("2") && !old_cate.equals("6") ) {
-                                    %>
-<!--                                     <tr> -->
-<%-- 										<td style="text-align:left;"><%=old_cate_nm %></td> --%>
-<!-- 										<td style="text-align:left;"><b>소계</b></td> -->
-<%-- 										<td style="text-align:center;"><a href="JavaScript:goStatList('SUB_T','<%=old_cate%>','')"><b><%=cnt1_1%></b></a></td> --%>
-<%-- 										<td style="text-align:center;"><a href="JavaScript:goStatList('SUB_ON','<%=old_cate%>','')"><b><%=cnt2_1%></b></a></td> --%>
-<%-- 										<td style="text-align:center;"><a href="JavaScript:goStatList('SUB_OFF','<%=old_cate%>','')"><b><%=cnt3_1%></b></a></td> --%>
-<%-- 										<td style="text-align:center;"><a href="JavaScript:goStatList('SUB_Y','<%=old_cate%>','')"><b><%=cnt4_1%></b></a></td>                       --%>
-<%-- 										<td style="text-align:center;"><a href="JavaScript:goStatList('SUB_N','<%=old_cate%>','')"><b><%=cnt5_1%></b></a></td>   --%>
-<!--                                     </tr> -->
-                                    <%
-	                                        }
-											cnt1_1 = 0;
-											cnt2_1 = 0;
-											cnt3_1 = 0;
-											cnt4_1 = 0;
-											cnt5_1 = 0;
-											cnt1_1 += total_cnt.intValue();
-											cnt2_1 += online_cnt.intValue();
-											cnt3_1 += offline_cnt.intValue();
-											cnt4_1 += disposal_cnt.intValue();
-											cnt5_1 += undisposal_cnt.intValue();
-											old_cate =category1;
-											old_cate_nm=category1_nm;
-										}
-                                    %>
-									<tr <%= rowNum.intValue() % 2 == 1 ? "class=\"on\"" : "" %>>
-										<td><bean:write name="vo" property="category1_nm"/></td>
-										<td><bean:write name="vo" property="category2_nm"/></td>
-										<td><a href="JavaScript:goStatList('T','<bean:write name="vo" property="category1"/>','<%=new_category2%>')"><bean:write name="vo" property="total_cnt"/></a></td>
-										<td><a href="JavaScript:goStatList('ON','<bean:write name="vo" property="category1"/>','<%=new_category2%>')"><bean:write name="vo" property="online_cnt"/></a></td>
-										<td><a href="JavaScript:goStatList('OFF','<bean:write name="vo" property="category1"/>','<%=new_category2%>')"><bean:write name="vo" property="offline_cnt"/></a></td>
-										<td><a href="JavaScript:goStatList('Y','<bean:write name="vo" property="category1"/>','<%=new_category2%>')"><bean:write name="vo" property="disposal_cnt"/></a></td>                        
-										<td><a href="JavaScript:goStatList('N','<bean:write name="vo" property="category1"/>','<%=new_category2%>')"><bean:write name="vo" property="undisposal_cnt"/></a></td>
-									</tr>
-                                </logic:iterate>
-                            </logic:notEmpty>
-<!--                             // TODO 총건수 확인 필요 -->
-<!--                             <tr bgcolor="#e0ffff"><td class="center" style="display:none"></td> -->
-<!-- 								<td style="text-align:left;" colspan="2"><b>총건수</b></td> -->
-<%-- 								<td style="text-align:center;"><b><%=cnt1%></b></td> --%>
-<%-- 								<td style="text-align:center;"><b><%=cnt2%></b></td> --%>
-<%-- 								<td style="text-align:center;"><b><%=cnt3%></b></td> --%>
-<%-- 								<td style="text-align:center;"><b><%=cnt4%></b></td>                         --%>
-<%-- 								<td style="text-align:center;"><b><%=cnt5%></b></td> --%>
-<!--                             </tr> -->
-                        </tbody>
-                    </table>
-                </div>
-                <!-- // board-type01 -->
+                
+                <html:form action="/Statistic" method="post" name="fm" type="kr.go.rndcall.mgnt.statistic.form.StatisticForm">
+				    <html:hidden name="StatisticForm" property="method" value="getStatCategory"/>
+				    <html:hidden name="StatisticForm" property="searchVO.stat_type"/>
+				    <html:hidden name="StatisticForm" property="searchVO.down_type"/>
+				    <html:hidden name="StatisticForm" property="searchVO.menu_sn"/>
+    
+	                <!-- board-write -->
+	                <div class="board-write mt30">
+	                    <div class="board-box">
+	                        <table summary="시작년도, 시작월, 종료년도, 종료월 검색 페이지">
+	                            <caption>검색 페이지</caption>
+	                            <colgroup>
+	                                <col width="16%"/>
+	                                <col width="*"/>
+	                            </colgroup>
+	                            <tbody>
+	                                <tr>
+	                                    <th scope="row"><label for="info1">검색</label></th>
+	                                    <td>
+	                                        <html:select name="StatisticForm" property="searchVO.start_yy" styleId="searchVO.start_yy" style="width:100px;" title="시작년도" alt="시작년도">
+	                                            <html:options name="StatisticForm" property="yearListDesc"/>
+	                                        </html:select>
+	                                        <label for="searchVO.start_yy">년</label>
+	                                        <html:select name="StatisticForm" property="searchVO.start_mm" styleId="searchVO.start_mm" title="시작월" alt="시작월">
+	                                            <html:options name="StatisticForm" property="mon_list"/>
+	                                        </html:select>
+	                                        <label for="searchVO.start_mm">월</label>
+	                                        ~
+	                                        <html:select name="StatisticForm" property="searchVO.end_yy" styleId="searchVO.end_yy" style="width:100px;" title="종료년도" alt="종료년도">
+	                                            <html:options name="StatisticForm" property="yearListDesc"/>
+	                                        </html:select>
+	                                        <label for="searchVO.end_yy">년</label>
+	                                        <html:select name="StatisticForm" property="searchVO.end_mm" styleId="searchVO.end_mm" title="종료월" alt="종료월">
+	                                            <html:options name="StatisticForm" property="mon_list"/>
+	                                        </html:select>
+	                                        <label for="searchVO.end_mm">월</label>
+	                                        <span class="btn-set set2 navy"><a href="javascript:goSearch()">검색</a><span class="zoom">아이콘 실제 사용시 텍스트 삭제</span></span>
+	                                    </td>
+	                                </tr>
+	                            </tbody>
+	                          </table>
+	                    </div>
+	                </div>
+	                <!-- // board-write -->
+	                <!-- tbl-type01 -->
+	                <div class="tbl-type01 mt30">
+	                    <table border="0" summary="질의자 소속기관별, 대분류별, 소분류별, 등록건수, 처리건수, 미처리건수 목록 페이지">
+	                        <caption>통계정보 목록 페이지</caption>
+	                        <colgroup>
+	                            <col width="*" />
+	<!--                             <col width="11%" /> -->
+	                            <col width="20%" />
+	                            <col width="9%" />
+	                            <col width="9%" />
+	                            <col width="9%" />
+	                            <col width="11%" />
+	                            <col width="11%" />
+	                        </colgroup>
+	                        <thead>
+	                            <tr>
+	<!--                                 <th scope="col" rowspan="2">질의자 소속기관별</th> -->
+	                                <th scope="col" rowspan="2">대분류별</th>
+	                                <th scope="col" rowspan="2">소분류별</th>
+	                                <th scope="col" colspan="3">등록건수</th>
+	                                <th scope="col" rowspan="2">처리건수</th>
+	                                <th scope="col" rowspan="2">미처리건수</th>
+	                            </tr>
+	                            <tr class="on">
+	                                <th scope="col" class="line-l">전체건수</th>
+	                                <th scope="col">온라인</th>
+	                                <th scope="col">오프라인</th>
+	                            </tr>
+	                                
+	                        </thead>
+	                        <tbody>
+	                            <logic:empty name="StatisticForm" property="voList">
+	                                <tr><td colspan="8" style="text-align: center;">등록된 정보가 없습니다.</td></tr>
+	                            </logic:empty>
+	                            <logic:notEmpty name="StatisticForm" property="voList">
+	                                <logic:iterate name="StatisticForm" property="voList" indexId="rowNum" id="vo">
+										<bean:define name="vo" property="category1" id="category1" type="java.lang.String"/>
+										<bean:define name="vo" property="category2" id="category2" type="java.lang.String"/>                    
+										<bean:define name="vo" property="category1_nm" id="category1_nm" type="java.lang.String"/>
+										<bean:define name="vo" property="total_cnt" id="total_cnt" type="java.lang.Integer"/>
+										<bean:define name="vo" property="online_cnt" id="online_cnt" type="java.lang.Integer"/>
+										<bean:define name="vo" property="offline_cnt" id="offline_cnt" type="java.lang.Integer"/>
+										<bean:define name="vo" property="disposal_cnt" id="disposal_cnt" type="java.lang.Integer"/>                     
+										<bean:define name="vo" property="undisposal_cnt" id="undisposal_cnt" type="java.lang.Integer"/>
+	                                    <%
+											cnt1 += total_cnt.intValue();
+											cnt2 += online_cnt.intValue();
+											cnt3 += offline_cnt.intValue();
+											cnt4 += disposal_cnt.intValue();
+											cnt5 += undisposal_cnt.intValue();
+											if ( category1.equals(category2) ) {
+											    new_category2 ="";
+											} else {
+											    new_category2 = category2;
+											}
+											if ( category1.equals(old_cate) ) {
+											    cnt1_1 += total_cnt.intValue();
+											    cnt2_1 += online_cnt.intValue();
+											    cnt3_1 += offline_cnt.intValue();
+											    cnt4_1 += disposal_cnt.intValue();
+											    cnt5_1 += undisposal_cnt.intValue();
+											} else {
+											    if ( !old_cate.equals("") && !old_cate.equals("1") && !old_cate.equals("2") && !old_cate.equals("6") ) {
+	                                    %>
+	<!--                                     <tr> -->
+	<%-- 										<td style="text-align:left;"><%=old_cate_nm %></td> --%>
+	<!-- 										<td style="text-align:left;"><b>소계</b></td> -->
+	<%-- 										<td style="text-align:center;"><a href="JavaScript:goStatList('SUB_T','<%=old_cate%>','')"><b><%=cnt1_1%></b></a></td> --%>
+	<%-- 										<td style="text-align:center;"><a href="JavaScript:goStatList('SUB_ON','<%=old_cate%>','')"><b><%=cnt2_1%></b></a></td> --%>
+	<%-- 										<td style="text-align:center;"><a href="JavaScript:goStatList('SUB_OFF','<%=old_cate%>','')"><b><%=cnt3_1%></b></a></td> --%>
+	<%-- 										<td style="text-align:center;"><a href="JavaScript:goStatList('SUB_Y','<%=old_cate%>','')"><b><%=cnt4_1%></b></a></td>                       --%>
+	<%-- 										<td style="text-align:center;"><a href="JavaScript:goStatList('SUB_N','<%=old_cate%>','')"><b><%=cnt5_1%></b></a></td>   --%>
+	<!--                                     </tr> -->
+	                                    <%
+		                                        }
+												cnt1_1 = 0;
+												cnt2_1 = 0;
+												cnt3_1 = 0;
+												cnt4_1 = 0;
+												cnt5_1 = 0;
+												cnt1_1 += total_cnt.intValue();
+												cnt2_1 += online_cnt.intValue();
+												cnt3_1 += offline_cnt.intValue();
+												cnt4_1 += disposal_cnt.intValue();
+												cnt5_1 += undisposal_cnt.intValue();
+												old_cate =category1;
+												old_cate_nm=category1_nm;
+											}
+	                                    %>
+										<tr <%= rowNum.intValue() % 2 == 1 ? "class=\"on\"" : "" %>>
+											<td><bean:write name="vo" property="category1_nm"/></td>
+											<td><bean:write name="vo" property="category2_nm"/></td>
+											<td><a href="JavaScript:goStatList('T','<bean:write name="vo" property="category1"/>','<%=new_category2%>')"><bean:write name="vo" property="total_cnt"/></a></td>
+											<td><a href="JavaScript:goStatList('ON','<bean:write name="vo" property="category1"/>','<%=new_category2%>')"><bean:write name="vo" property="online_cnt"/></a></td>
+											<td><a href="JavaScript:goStatList('OFF','<bean:write name="vo" property="category1"/>','<%=new_category2%>')"><bean:write name="vo" property="offline_cnt"/></a></td>
+											<td><a href="JavaScript:goStatList('Y','<bean:write name="vo" property="category1"/>','<%=new_category2%>')"><bean:write name="vo" property="disposal_cnt"/></a></td>                        
+											<td><a href="JavaScript:goStatList('N','<bean:write name="vo" property="category1"/>','<%=new_category2%>')"><bean:write name="vo" property="undisposal_cnt"/></a></td>
+										</tr>
+	                                </logic:iterate>
+	                            </logic:notEmpty>
+	<!--                             // TODO 총건수 확인 필요 -->
+	<!--                             <tr bgcolor="#e0ffff"><td class="center" style="display:none"></td> -->
+	<!-- 								<td style="text-align:left;" colspan="2"><b>총건수</b></td> -->
+	<%-- 								<td style="text-align:center;"><b><%=cnt1%></b></td> --%>
+	<%-- 								<td style="text-align:center;"><b><%=cnt2%></b></td> --%>
+	<%-- 								<td style="text-align:center;"><b><%=cnt3%></b></td> --%>
+	<%-- 								<td style="text-align:center;"><b><%=cnt4%></b></td>                         --%>
+	<%-- 								<td style="text-align:center;"><b><%=cnt5%></b></td> --%>
+	<!--                             </tr> -->
+	                        </tbody>
+	                    </table>
+	                </div>
+	                <!-- // board-type01 -->
+	                
+	            </html:form>
+	                
             </div>  
             <!-- //section -->  
         </div>

@@ -169,5 +169,46 @@ public class CategoryAction extends DispatchAction {
 		logger.debug("target: " + target);
 		return mapping.findForward(target);
 	}
+	
+   public ActionForward getCategoryInputForm(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        
+        String target = "getCategoryInputForm";
+        ActionErrors errors = null;
+        
+        if (request.getAttribute("org.apache.struts.action.ERROR") == null) {
+            errors = new ActionErrors();
+        } else {
+            errors = (ActionErrors) request
+                    .getAttribute("org.apache.struts.action.ERROR");
+        }
+
+        if (errors.isEmpty()) {
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                    "errors.getList.success"));
+        }
+        
+        CategoryForm fm = (CategoryForm) form;
+        CategorySearchVO searchVO = fm.getSearchVO();
+        CategoryResultVO resultVO = new CategoryResultVO();
+        CategoryVO vo = fm.getVo();
+        
+        try {              
+            CategoryBiz biz = new CategoryBiz();
+            resultVO = biz.getCategoryInsert(searchVO, vo);
+        } catch (Exception e) {
+            logger.error("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                    "errors.database.error", e.getMessage()));
+        }
+
+        saveErrors(request, errors);
+
+        fm.setErrCd(resultVO.getErrCd());
+        
+        logger.debug("target: " + target);
+        return mapping.findForward(target);
+    }
 
 }

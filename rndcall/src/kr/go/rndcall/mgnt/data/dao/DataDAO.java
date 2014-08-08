@@ -165,6 +165,7 @@ public class DataDAO extends BaseSqlDAO{
                 pstmt.setString(param++, vo.getInsert_type());
                 pstmt.setString(param++, vo.getFile_id());
                 pstmt.setString(param++, vo.getContents());
+                pstmt.setString(param++, vo.getBoard_type());
                 
                 executeQueryForCUD();
                 
@@ -565,6 +566,7 @@ public class DataDAO extends BaseSqlDAO{
                 pstmt.setString(param++, vo.getInsert_type());
                 pstmt.setString(param++, vo.getFile_id());
                 pstmt.setString(param++, vo.getContents());
+                pstmt.setString(param++, vo.getBoard_type());
                 
                 executeQueryForCUD();
                 

@@ -49,7 +49,11 @@
 %>
 	<script type="text/javascript">
 	<!--
+	    var loading = false;
 		function goAnswerCreate(){
+			if ( loading ) {
+				return;
+			}
 			var del_file_id = "";
 			if(validate()){
                 <%
@@ -87,6 +91,7 @@
                         }
                     %>
                     fm.submit();
+                    loading = true;
                 }
 			}
 		}

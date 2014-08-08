@@ -190,6 +190,11 @@
 		function menuFocus(data) {
 			$("#gnb > .gnbContainer > ul > li > a:eq(" + data.num + ")").css("color", "#d23962");
 		}
+        
+        // 내정보 페이지 이동.
+        function goUserUpdate() {
+        	document.location.href = "/member.do?method=getUserView";
+        }
 	//-->
 	</script>
 </head>

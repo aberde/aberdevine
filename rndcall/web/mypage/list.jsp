@@ -48,6 +48,7 @@
             </div>
             <ul class="lnb-lst">
                 <li class="on"><a href="JavaScript:goMypage()">마이페이지</a></li>
+                <li><a href="javascript:goUserUpdate();">내정보</a></li>
             </ul>
         </div>
         <!-- //lnb -->

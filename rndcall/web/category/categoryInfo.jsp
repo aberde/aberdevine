@@ -54,6 +54,7 @@
 			if ('UPDATE' == '<%= errCd %>') {
 				alert('정상적으로 수정되었습니다.');
 				opener.location.reload();
+				window.close();
 			}
 		}	
 		

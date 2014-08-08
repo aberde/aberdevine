@@ -189,11 +189,16 @@
                                                         } else {
                                                             if ( (login_id != null && !login_id.isEmpty() && login_id.equals(reg_id)) || mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C") ) {
                                                     %>
-                                                    <a href="JavaScript:offerDetailView('OFFER',<bean:write name="vo" property="seq"/>)"><bean:write name="vo" property="title"/></a>
+                                                    <a href="JavaScript:offerDetailView('OFFER',<bean:write name="vo" property="seq"/>)" class="lock"> <bean:write name="vo" property="title"/></a>
                                                     <%
                                                             } else {
                                                     %>
-                                                    <span style="padding-left: 20px;"><span style="color: blue">[비공개]</span> <%=title_n %></span>
+                                                    <logic:empty name="vo" property="reg_id">
+                                                        <a href="javascript:goPasswordCheckForm('OFFER',<bean:write name="vo" property="seq"/>, 'goPasswordCheck({url: \'/switch.do?prefix=/offer&method=offerDetailView&page=\'})')" class="lock"> <%=title_n %></a>
+                                                    </logic:empty>
+                                                    <logic:notEmpty name="vo" property="reg_id">
+	                                                    <a href="#none" class="lock">&nbsp;</a><%=title_n %>
+                                                    </logic:notEmpty>
                                                     <%
                                                             }
                                                         }
@@ -214,11 +219,11 @@
                                                     <bean:define name="vo" property="stat" id="stat" type="java.lang.String"/>
                                                     <%
                                                         if ( stat.equals("Y") ) {
-                                                            out.print("<span class=\"btn-set set4 gray\">답변완료</span>");
+                                                            out.print("<span class=\"btn-set set4 green\">답변완료</span>");
                                                         } else if ( stat.equals("S") ) {
-                                                            out.print("<span class=\"btn-set set4 gray\">검토중</span>");
+                                                            out.print("<span class=\"btn-set set4 yellow\">검토중</span>");
                                                         } else {
-                                                            out.print("<span class=\"btn-set set4 yellow\">접수중</span>");
+                                                            out.print("<span class=\"btn-set set4 gray\">접수중</span>");
                                                         }
                                                     %>
                                                 </td>

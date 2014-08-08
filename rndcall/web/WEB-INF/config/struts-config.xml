@@ -43,6 +43,7 @@
       <forward name="idFind" path="/member/idView.jsp"/>
       <forward name="pwFind" path="/member/pwView.jsp"/>
       <forward name="oldDocFind" path="/member/oldDocFind.jsp"/>
+      <forward name="getUserView" path="/member/userView.jsp"/>
     </action>
     <action path="/memberAdmin" name="memberAdminForm" type="kr.go.rndcall.mgnt.member.admin.MemberAdminAction" scope="session" input="memberAdmin" parameter="method">
       <forward name="getUserList" path="/member/admin/userList.jsp"/>
@@ -52,6 +53,7 @@
       <forward name="getCategoryList" path="/category/categoryList.jsp"/>
       <forward name="getCategoryListDtl" path="/category/categoryListDtl.jsp"/>
       <forward name="getCategoryInfo" path="/category/categoryInfo.jsp"/>
+      <forward name="getCategoryInputForm" path="/category/categoryInputForm.jsp"/>
     </action>
     <action path="/discussion" name="discussionForm" type="kr.go.rndcall.mgnt.discussion.DiscussionAction" scope="session" input="discussion" parameter="method">
       <forward name="retrieveDiscussDetail" path="/discussion/discussDetail.jsp"/>
