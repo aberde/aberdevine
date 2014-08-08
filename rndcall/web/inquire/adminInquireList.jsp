@@ -76,7 +76,7 @@
 		function goInquireView(arg1, arg2){
 			fm.elements["searchVO.seq"].value=arg2;	
 			fm.elements["searchVO.board_type"].value=arg1;	
-			fm.elements["method"].value="getInquireView";
+			fm.elements["method"].value="getAdminInquireView";
 			fm.submit();
 		}
 
@@ -167,7 +167,11 @@
             
 	                <!-- search-box -->
 	                <div class="search-box mt10">
-	                    <div class="search-form">
+	                    <div class="search-form" style="width: 450px;">
+	                        <html:select name="InquireForm" property="searchVO.searchCategory">
+                                <html:option value=""> == 분류선택 == </html:option>
+                                <html:optionsCollection name="InquireForm" property="voList2" value="code" label="code_nm"/>
+                            </html:select>
 	                        <html:select name="InquireForm" property="searchVO.whichSearch" style="width:90px;">
                                 <html:option value="reg_id">글쓴이</html:option>
                                 <html:option value="title">제목</html:option>
@@ -180,29 +184,31 @@
 	                </div>
 	                <!-- //search-box -->
 	                <!-- board-type01 -->
-	                <div class="board-type01 mt10">
-	                    <div class="board-box">
-	                        <table border="0" summary="번호, 제목, 글쓴이, 등록일, 상태, 조회수 목록 페이지">
-	                            <caption>온라인 상담 목록 페이지</caption>
-	                            <colgroup>
-	                                <col width="7%" />
-	                                <col width="*" />
-	                                <col width="8%" />
-	                                <col width="12%" />
-	                                <col width="12%" />
-	                                <col width="8%" />
-	                            </colgroup>
-	                            <thead>
-	                                <tr>
-	                                    <th scope="col">번호</th>
-	                                    <th scope="col">제목</th>
-	                                    <th scope="col">글쓴이</th>
-	                                    <th scope="col">등록일</th>
-	                                    <th scope="col">상태</th>
-	                                    <th scope="col">조회수</th>
-	                                </tr>
-	                            </thead>
-	                            <tbody>
+                    <div class="board-type01 mt10">
+                        <div class="board-box">
+                            <table border="0" summary="번호, 제목, 글쓴이, 등록일, 상태, 조회수 목록 페이지">
+                                <caption>온라인 상담 목록 페이지</caption>
+                                <colgroup>
+                                    <col width="7%" />
+                                    <col width="*" />
+                                    <col width="15%" />
+                                    <col width="8%" />
+                                    <col width="12%" />
+                                    <col width="12%" />
+                                    <col width="8%" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">번호</th>
+                                        <th scope="col">제목</th>
+                                        <th scope="col">분야</th>
+                                        <th scope="col">글쓴이</th>
+                                        <th scope="col">등록일</th>
+                                        <th scope="col">상태</th>
+                                        <th scope="col">조회수</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                     <logic:empty name="InquireForm" property="voList">
                                         <tr><td colspan="6">등록된 정보가 없습니다.</td></tr>
                                     </logic:empty>
@@ -223,6 +229,7 @@
                                                         } else {
                                                             title_n = title;
                                                         }
+                                                        
                                                     %>
                                                     <%
                                                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd");
@@ -244,15 +251,24 @@
                                                         } else {
                                                             if ( (login_id != null && !login_id.isEmpty() && login_id.equals(reg_id)) || mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C") ) {
                                                     %>
-                                                    <a href="JavaScript:goInquireView('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>)"><%=title_n %> <%= new_img %></a>
+                                                    <a href="JavaScript:goInquireView('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>)" class="lock"> <%=title_n %> <%= new_img %></a>
                                                     <%
                                                             } else {
                                                     %>
-                                                    <span style="padding-left: 20px;">[비공개] <%=title_n %> <%= new_img %></span>
+                                                    <logic:empty name="vo" property="reg_id">
+                                                        <a href="javascript:goPasswordCheckForm('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>, 'goPasswordCheck()')" class="lock"> <%=title_n %> <%= new_img %></a>
+                                                    </logic:empty>
+                                                    <logic:notEmpty name="vo" property="reg_id">
+                                                        <a href="#none" class="lock">&nbsp;</a><%=title_n %> <%= new_img %>
+                                                    </logic:notEmpty>
+<%--                                                     <span style="padding-left: 20px;"><span style="color: blue">[비공개]</span> <%=title_n %> <%= new_img %></span> --%>
                                                     <%
                                                             }
                                                         }
-                                                    %>               
+                                                    %>
+                                                </td>
+                                                <td>
+                                                    <bean:write name="vo" property="category1"/>
                                                 </td>
                                                 <td>
                                                     <logic:notEmpty name="vo" property="reg_id">
@@ -267,9 +283,9 @@
                                                     <bean:define name="vo" property="stat" id="stat" type="java.lang.String"/>
                                                     <%
                                                         if ( stat.equals("Y") ) {
-                                                            out.print("<span class=\"btn-set set4 gray\">답변완료</span>");
+                                                            out.print("<span class=\"btn-set set4 green\">답변완료</span>");
                                                         } else {
-                                                            out.print("<span class=\"btn-set set4 yellow\">접수중</span>");
+                                                            out.print("<span class=\"btn-set set4 gray\">접수중</span>");
                                                         }
                                                     %>
                                                 </td>
@@ -277,19 +293,14 @@
                                             </tr>
                                         </logic:iterate>
                                     </logic:notEmpty>
-	                            </tbody>
-	                        </table>
-	                    </div>
-	                </div>
-	                <!-- // board-type01 -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- // board-type01 -->
 	                <!-- page-area-->
 	                <%@include file="/include/page.jsp"%>
 	                <!-- //page-area -->
-	                <!-- btn-set-->
-	                <div class="btn-lst txt-r">
-	                    <span class="btn-set pink"><a href="JavaScript:goAdminInquireForm()">상담하기</a></span>
-	                </div>
-	                <!-- //btn-set-->
 	            
 	            </html:form>
 	                         

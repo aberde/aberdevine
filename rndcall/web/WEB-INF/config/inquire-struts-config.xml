@@ -46,6 +46,11 @@
       <forward name="update_result_iframe_er" path="/_iframeer.jsp" />
       <forward name="getAdminInquireList" path="/adminInquireList.jsp" />
       <forward name="getAdminInquireForm" path="/adminInquireForm.jsp" />
+      <forward name="getAdminInquireView" path="/adminInquireView.jsp" />
+      <forward name="getAdminInquireDelete" path="/adminInquireList.jsp" />
+      <forward name="getAdminAnswerInsertForm" path="/adminInquireAnswerForm.jsp" />
+      <forward name="getAdminAnswerInsert" path="/adminInquireView.jsp" />
+      <forward name="getAdminAnswerUpdate" path="/adminInquireView.jsp" />
     </action>
   </action-mappings>
 </struts-config>
