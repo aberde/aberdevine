@@ -35,3 +35,35 @@ function contentBanner(){
 		});
 	});
 }
+
+//메인 새소식 , 자료실
+function FNrolling(_parent){
+	var intervalTime=3000;
+	var $notice=_parent;
+	var $item=$("p", $notice);
+	var cnt=0;
+	var intervarID;
+
+	function FNinterval_start(){
+		intervarID=setInterval(FNinterval, intervalTime);
+	}
+
+	function FNinterval(){
+		$item.eq(cnt).appendTo($notice);
+		cnt++;
+		if(cnt >=3) cnt=0;
+	}
+
+	$item.on("mouseenter", function(){
+		clearInterval(intervarID)
+	})
+	$item.on("mouseleave", function(){
+		clearInterval(intervarID)
+		FNinterval_start();
+	})
+	FNinterval_start()
+}
+$(document).ready(function(){
+	FNrolling($(".notice-bx"));
+	FNrolling($(".data-bx"));
+});

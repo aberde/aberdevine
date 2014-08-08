@@ -65,7 +65,7 @@ html,body {width:100%;height:100%;}
 .bn-slide {display:block; position:relative; overflow:hidden; width:319px; height:144px;}
 .bn-slide .slide{overflow:hidden;  height:144px;}
 .bn-slide .slide div{float:left;}
-.btn-bx{position:absolute; width:50px;left:210px; top:10px; overflow:hidden;}
+.btn-bx{position:absolute; width:50px;left:190px; top:10px; overflow:hidden;}
 .btn-bx .btn-con{float:left; width:50px; margin:0 10px 0 0; }
 .btn-bx .btn-con button{float:left; display:block; margin:0; padding:0;  overflow:hidden; border:0 none; cursor:pointer;}
 .btn-bx .btn-con button strong{height:0; width:0; overflow:hidden; visibility:hidden;}
@@ -88,9 +88,10 @@ html,body {width:100%;height:100%;}
 /* cont-foot */
 .cont-foot{background:#f1f1f1; padding-bottom:25px; border-top:1px solid #e4e4e4; width:100%; height:40px;}
 .cont-foot .cont-lst{margin:0 auto; padding:10px 0; overflow:hidden; width:952px; height:20px;}
-.cont-foot .cont-lst li{float:left;}
-.cont-foot .cont-lst li strong{margin-right:20px; font-size:19px; color:#6095c3;}
-.cont-foot .cont-lst li span {padding-left:7px; color:#000; font-size:11px; background: url(../img/main/icon_bullet.gif) no-repeat left center;}
+.cont-foot .cont-lst li{float:left; overflow:hidden;height:20px;}
+.cont-foot .cont-lst li strong{float:left;margin-right:20px; font-size:19px; color:#6095c3;}
+.cont-foot .cont-lst li div{float:left;display:inline-block;}
+.cont-foot .cont-lst li p {padding-left:7px; color:#000; font-size:11px; background: url(../img/main/icon_bullet.gif) no-repeat left center;}
 .cont-foot .cont-lst li a{color:#000; font-size:11px; text-decoration:underline;}
 .cont-foot .cont-lst li.txt{margin-left:120px;}
 .cont-foot .cont-lst li.txt strong{color:#aaca5c;}

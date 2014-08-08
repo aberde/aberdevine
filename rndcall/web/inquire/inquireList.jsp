@@ -229,15 +229,15 @@
                                                         } else {
 	                                                        if ( (login_id != null && !login_id.isEmpty() && login_id.equals(reg_id)) || mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C") ) {
                                                     %>
-                                                    <a href="JavaScript:goInquireView('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>)"><span style="color: blue">[비공개]</span> <%=title_n %> <%= new_img %></a>
+                                                    <a href="JavaScript:goInquireView('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>)" class="lock"> <%=title_n %> <%= new_img %></a>
                                                     <%
 	                                                        } else {
                                                     %>
                                                     <logic:empty name="vo" property="reg_id">
-	                                                    <a href="javascript:goPasswordCheckForm('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>, 'goPasswordCheck()')">[비공개] <%=title_n %> <%= new_img %></a>
+	                                                    <a href="javascript:goPasswordCheckForm('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>, 'goPasswordCheck()')" class="lock"> <%=title_n %> <%= new_img %></a>
                                                     </logic:empty>
                                                     <logic:notEmpty name="vo" property="reg_id">
-                                                        <span style="padding-left: 20px;">[비공개] <%=title_n %> <%= new_img %></span>
+                                                        <a href="#none" class="lock">&nbsp;</a><%=title_n %> <%= new_img %>
                                                     </logic:notEmpty>
 <%--                                                     <span style="padding-left: 20px;"><span style="color: blue">[비공개]</span> <%=title_n %> <%= new_img %></span> --%>
                                                     <%
@@ -261,9 +261,9 @@
                                                     <bean:define name="vo" property="stat" id="stat" type="java.lang.String"/>
                                                     <%
                                                         if ( stat.equals("Y") ) {
-                                                            out.print("<span class=\"btn-set set4 gray\">답변완료</span>");
+                                                            out.print("<span class=\"btn-set set4 green\">답변완료</span>");
                                                         } else {
-                                                            out.print("<span class=\"btn-set set4 yellow\">접수중</span>");
+                                                            out.print("<span class=\"btn-set set4 gray\">접수중</span>");
                                                         }
                                                     %>
                                                 </td>

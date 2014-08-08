@@ -216,7 +216,7 @@
                                     <col width="7%" />
                                     <col width="*" />
                                     <col width="8%" />
-                                    <col width="12%" />
+<!--                                     <col width="12%" /> -->
                                     <col width="12%" />
                                     <col width="8%" />
                                 </colgroup>
@@ -224,7 +224,7 @@
                                     <tr>
                                         <th scope="col">번호</th>
                                         <th scope="col">제목</th>
-                                        <th scope="col">글쓴이</th>
+<!--                                         <th scope="col">글쓴이</th> -->
                                         <th scope="col">등록일</th>
                                         <th scope="col">조회수</th>
                                     </tr>
@@ -252,7 +252,7 @@
                                                     %>
                                                     <a href="JavaScript:faqDetailView('FAQ','<bean:write name="vo" property="seq"/>')"><%=title_n %></a>
                                                 </td>
-                                                <td><bean:write name="vo" property="reg_nm"/></td>
+<%--                                                 <td><bean:write name="vo" property="reg_nm"/></td> --%>
                                                 <td><bean:write name="vo" property="reg_dt"/></td>
                                                 <td><bean:write name="vo" property="read_count"/></td>
                                             </tr>

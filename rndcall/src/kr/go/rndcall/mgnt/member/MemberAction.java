@@ -5,10 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.go.rndcall.mgnt.login.LoginResultVO;
 import kr.go.rndcall.mgnt.login.LoginVO;
-import kr.go.rndcall.mgnt.member.MemberBiz;
-import kr.go.rndcall.mgnt.member.MemberForm;
-import kr.go.rndcall.mgnt.member.MemberResultVO;
-import kr.go.rndcall.mgnt.member.MemberSearchVO;
 import kr.go.rndcall.mgnt.member.admin.MemberAdminDAO;
 
 import org.apache.log4j.Logger;
@@ -460,5 +456,52 @@ public class MemberAction extends DispatchAction {
 		logger.debug("target: " + target);
 		return mapping.findForward(target);
 	}
-	
+
+	   
+    /**
+     * getUserUpdateForm 회원정보상세폼
+     * @param mapping
+     * @param form
+     * @param request
+     * @param response
+     */
+    public ActionForward getUserView(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        String target = "getUserView";
+        ActionErrors errors = null;
+        
+        MemberForm fm = (MemberForm) form;
+        MemberVO vo = fm.getVo();
+        MemberResultVO resultVO = new MemberResultVO();
+
+        if (request.getAttribute("org.apache.struts.action.ERROR") == null) {
+            errors = new ActionErrors();
+        } else {
+            errors = (ActionErrors) request
+                    .getAttribute("org.apache.struts.action.ERROR");
+        }
+        
+        try {
+            LoginVO loginVO = (LoginVO)request.getSession().getAttribute("loginUserVO");
+            vo.setLogin_id(loginVO.getLogin_id());
+            MemberBiz MemberBiz = new MemberBiz();
+            resultVO = MemberBiz.getUserInfo(vo);
+        } catch (Exception e) {
+            logger.error("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                    "errors.database.error", e.getMessage()));
+        }
+        
+        if (errors.isEmpty()) {
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                    "errors.getList.success"));
+        }
+        saveErrors(request, errors);
+        fm.setVo(resultVO.getVo());
+        fm.setErrCd("");
+
+        logger.debug("target: " + target);
+        return mapping.findForward(target);
+    }
 }

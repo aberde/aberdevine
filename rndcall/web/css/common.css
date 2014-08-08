@@ -199,7 +199,8 @@ select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#2429
 .board-type01 tbody td {border-left:1px solid #e2e2e2; border-top:1px solid #eeeeee; padding:9px 5px; color:#474747; text-align:center;  vertical-align:middle;}
 .board-type01 thead th:first-child, .board-type01 tbody td:first-child{border-left:0;}
 .board-type01 tbody tr.on{background-color:#fafafa;}
-.board-type01 tbody td a{padding-left:20px;}
+.board-type01 tbody td a{padding-left:15px;}
+.board-type01 tbody td a.lock{padding-left:20px; background:url(../img/icon/icon_lock.png) 5px 2px no-repeat;}
 .board-type01 tfoot td{border-left:1px solid #e2e2e2;border-top:1px solid #e2e2e2;padding:9px 5px; color:#474747; font-weight:bold;text-align:center;  vertical-align:middle; }
 .board-type01 tfoot td:first-child{border-left:0;}
 

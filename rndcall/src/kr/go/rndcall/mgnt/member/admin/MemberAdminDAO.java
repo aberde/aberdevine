@@ -92,6 +92,7 @@ public class MemberAdminDAO extends BaseSqlDAO {
 				vo.setMobile(rs.getString("MOBILE"));
 				vo.setRoleCD(rs.getString("AUTH"));
 				vo.setSector(rs.getString("SECTOR"));
+				vo.setLast_visit_dt(rs.getString("LAST_VISIT_DT"));
 
 				voList.add(vo);
 			}

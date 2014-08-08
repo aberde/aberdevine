@@ -98,7 +98,7 @@
 		query += "         WHERE Q.DEL_YN='N' ";
 // 		query += "           AND Q.OPEN_YN = 'Y' ";
 // 		query += "           AND Q.INSERT_TYPE = 'ONLINE' ";
-		query += "           AND Q.BOARD_TYPE = 'DATA' ";
+		query += "           AND Q.BOARD_TYPE in ('DATA', 'SYSTEM') ";
 		query += "		 ORDER BY reg_dt DESC limit 0, 4 ";
 // 		query += "         UNION ALL ";
 // 		query += "        (SELECT Q.SEQ, Q.BOARD_TYPE, Q.TITLE, ";
@@ -111,7 +111,7 @@
 // 		query += "           AND Q.INSERT_TYPE = 'ONLINE' ";
 // 		query += "		 ORDER BY reg_dt DESC limit 0, 4) ";
 		query += "       ) AS A";
-		query += " ORDER BY reg_dt DESC limit 0, 1 ";
+		query += " ORDER BY reg_dt DESC limit 0, 3 ";
 		
 		System.out.println("Query :::: " +query);
 		pstmt = conn.prepareStatement(query);
@@ -157,7 +157,7 @@
 		query += "  FROM RNDCALL_BOARD_QUESTION Q";
 		query += " WHERE Q.DEL_YN='N'";
 		query += "   AND Q.BOARD_TYPE ='NOTICE'";
-		query += "ORDER BY reg_dt DESC limit 0, 1";
+		query += "ORDER BY reg_dt DESC limit 0, 3";
 		
 		pstmt = conn.prepareStatement(query);
 	    rs = pstmt.executeQuery();
@@ -529,6 +529,7 @@
                     <div class="slide " id="owl-banner">
 <!--                         <div><a href="#none;"><img src="img/main/bn_slide01.jpg" alt="국가연구개발사업 학생인건비. 통합관리제 운영 매뉴얼. 일시 : 2013년 4월 03일 미래창조과학부 장관 " /></a></div> -->
                         <div><a href="javascript:banner();"><img src="img/main/bn_slide02.jpg" alt="R&amp;D도우미센터 이렇게 바뀌었습니다. " /></a></div>
+                        <div><a href="#none;"><img src="img/main/bn_slide03.jpg" alt="국가연구개발사업의 관리 등에 관한 규정 일부개정령(안) 입법예고" /></a></div>
                     </div>
                     <div class="btn-bx">
                         <span class="btn-con">
@@ -548,7 +549,7 @@
                 <div class="bn-tel">
                     <p><img src="img/main/bn_tel.png" alt="친한연구 1800 - 7109" /></p>
                     <ul class="mt15">
-                        <li>평일 : 09:00 ~ 11:30, 13:30 ~18:00</li>
+                        <li>평일 : 9:00 ~ 11:30, 13:30 ~18:00</li>
                         <li>국가R&amp;D사업 관련 규정 및 제도에 대한 <br />궁금증을 문의하세요.</li>
                     </ul>               
                 </div>
@@ -581,8 +582,9 @@
         <!-- //content -->
         <div class="cont-foot">
             <ul class="cont-lst clearfix">
-                <li>
+                <li class="clearfix">
                     <strong>새소식</strong>
+                    <div class="notice-bx">
                     <%
                         InquireVO noticeVO = new InquireVO();
                         String title= "";
@@ -597,15 +599,17 @@
                             }
                 
                     %>
-                    <span><%= title %>' <a href="JavaScript:goNotice()">더보기</a></span>
+                    <p><%= title %>' <a href="JavaScript:goNotice()">더보기</a></p>
                     <%
                         }
                     %>
+                    </div>
                 </li>
-                <li class="txt">
+                <li class="txt clearfix">
                     <strong>자료실</strong>
 <!-- 					// TODO  -->
 <!-- 					최근게시판 -->
+                    <div class="data-bx">
 					<%
 						InquireVO boardVO = new InquireVO();
 						String img= "";
@@ -635,10 +639,11 @@
 <%-- 				<tr><td><img src="/images/icon/<%=img%>" /> <a href="<%=link%>"><%=title%></a></td> --%>
 <%-- 					<td class="Day"><%=boardVO.getReg_dt() %></td> --%>
 <!-- 				</tr> -->
-                    <span><%= title %>' <a href="JavaScript:goData()">더보기</a></span>
+                    <p><%= title %>' <a href="JavaScript:goData()">더보기</a></p>
 					<%
  						}
  					%>
+ 					</div>
                 </li>
             </ul>           
         </div>          

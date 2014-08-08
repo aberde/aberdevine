@@ -306,7 +306,7 @@
 	                    <%
 	                        if ( mainLoginVO != null && mainIsLogin ) {
 	                    %>
-	                    <span class="btn-set"><a href="JavaScript:goScrap('QNA','<bean:write name="InquireForm" property="vo.seq"/>');">스크랩하기</a></span>
+	                    <span class="btn-set pink"><a href="JavaScript:goScrap('QNA','<bean:write name="InquireForm" property="vo.seq"/>');">스크랩하기</a></span>
 	                    <%
 	                        }
 	                    %>
