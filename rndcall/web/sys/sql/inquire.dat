@@ -294,7 +294,7 @@ FROM RNDCALL_CATEGORY a
 WHERE a.TREE_LEVEL = '1'
 	  AND a.CATEGORY_ID <> 99999999
 	  AND a.ISUSE = 'Y'
-ORDER BY  a.CATEGORY_ID
+ORDER BY  a.ORDER_NO
  
 #==============================================================
 # 소분류 코드

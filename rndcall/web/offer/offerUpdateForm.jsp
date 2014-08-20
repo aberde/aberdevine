@@ -7,21 +7,21 @@
     
     <script type="text/javascript" src="/js/file.js"></script>
     
+    <script type="text/javascript">
+    <!--
+        var data = {
+           num : 2 // 위치순번
+        };
+        // 현재메뉴 위치.
+        menuFocus(data);
+    //-->
+    </script>
+    
 <%  
     String size = "70"; // default size
     if(!Util.isNull(request.getParameter("size"))) {
     	size = request.getParameter("size");
     }		
-%>
-<%
-	if (mainLoginVO == null || !mainIsLogin) {	
-%>
-	<script type="text/javascript">
-		alert('로그인이 필요한 메뉴입니다.');
-		document.location.href = "/index.jsp";
-	</script>
-<%
-	}
 %>
 	<script type="text/javascript">
 	<!--		

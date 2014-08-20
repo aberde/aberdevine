@@ -20,6 +20,7 @@ public class InquireSearchVO extends BaseSearchVO{
 	protected String trans_phone ="";
 	protected String trans_id =""; //타기관담당자ID
 	protected String insert_type =""; // 등록방법
+	protected String stat =""; // 상태
 	
 	Calendar cal = Calendar.getInstance();
 	
@@ -245,5 +246,13 @@ public class InquireSearchVO extends BaseSearchVO{
 	public void setTrans_phone(String trans_phone) {
 		this.trans_phone = trans_phone;
 	}
+
+    public String getStat() {
+        return stat;
+    }
+
+    public void setStat(String stat) {
+        this.stat = stat;
+    }
 
 }

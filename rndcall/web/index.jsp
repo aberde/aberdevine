@@ -175,6 +175,8 @@
 		rs.close();
 		
 	} catch (Exception ee) {
+	    ee.printStackTrace();
+	    
 		ee.printStackTrace(System.out);
 		if(rs != null) rs.close();
 		if(rs != null) pstmt.close();
@@ -435,8 +437,8 @@
                             <div class="snb-bx">
                                 <ul>
                                     <li><a href="Javascript:goLawInfo()">법령 및 행정 규칙</a></li>
-                                    <li><a href="JavaScript:goIns('SYSTEM')">연구관리제도</a></li>
-                                    <li><a href="JavaScript:goIns('DATA')">기타</a></li>
+                                    <li><a href="/switch.do?prefix=/data&page=/Data.do?method=dataSystemList&searchVO.menu_sn=02">연구관리제도</a></li>
+                                    <li><a href="JavaScript:goData()">기타</a></li>
                                 </ul>
                             </div>
                         </div>  
@@ -516,7 +518,7 @@
                     </li>
                     <li class="bg03">
                         <strong class="mb20">자료실</strong>
-                        <a href="JavaScript:goData();" class="btn-go">이동</a>
+                        <a href="JavaScript:goLawInfo();" class="btn-go">이동</a>
                     </li>
                     <li class="bg04">
                         <strong class="mb20">새소식</strong>
@@ -528,8 +530,8 @@
                 <div class="bn-slide">
                     <div class="slide " id="owl-banner">
 <!--                         <div><a href="#none;"><img src="img/main/bn_slide01.jpg" alt="국가연구개발사업 학생인건비. 통합관리제 운영 매뉴얼. 일시 : 2013년 4월 03일 미래창조과학부 장관 " /></a></div> -->
-                        <div><a href="javascript:banner();"><img src="img/main/bn_slide02.jpg" alt="R&amp;D도우미센터 이렇게 바뀌었습니다. " /></a></div>
-                        <div><a href="#none;"><img src="img/main/bn_slide03.jpg" alt="국가연구개발사업의 관리 등에 관한 규정 일부개정령(안) 입법예고" /></a></div>
+                        <div><a href="javascript:banner();"><img src="img/main/bn_slide03.jpg" alt="R&amp;D도우미센터 이렇게 바뀌었습니다. " /></a></div>
+                        <div><a href="/notice/Notice.do?method=noticeDetailView&searchVO.board_type=NOTICE&searchVO.seq=4444"><img src="img/main/bn_slide02.jpg" alt="국가연구개발사업의 관리 등에 관한 규정 일부개정령(안) 입법예고" /></a></div>
                     </div>
                     <div class="btn-bx">
                         <span class="btn-con">

@@ -15,7 +15,7 @@
     <script type="text/javascript">
     <!--
         var data = {
-            num : 1 // 위치순번
+            num : 6 // 위치순번
         };
         // 현재메뉴 위치.
         menuFocus(data);

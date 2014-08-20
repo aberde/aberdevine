@@ -14,7 +14,7 @@
     <script type="text/javascript">
     <!--
         var data = {
-           num : 2 // 위치순번
+           num : 6 // 위치순번
         };
         // 현재메뉴 위치.
         menuFocus(data);
@@ -24,7 +24,7 @@
     <script type="text/javascript">
     <!--		
 		function goOfferList(){
-			fm.action = "/switch.do?prefix=/offer&method=offerList&page=/Offer.do?pager.offset=" + fm.elements["searchVO.pagerOffset"].value;
+			fm.action = "/switch.do?prefix=/offer&method=adminOfferList&page=/Offer.do?pager.offset=" + fm.elements["searchVO.pagerOffset"].value;
 			fm.submit();
 		}
 		
@@ -66,12 +66,12 @@
 		
 		function goOfferAnswerInsert(){
 				fm.elements["searchVO.searchCategory"].value="";
-				fm.elements["method"].value="offerAnswerInsertForm";
+				fm.elements["method"].value="adminOfferAnswerInsertForm";
 				fm.submit();
 		}
 		function goOfferDelete(){
 			fm.elements["searchVO.searchCategory"].value="";
-			fm.elements["method"].value="offerDelete";
+			fm.elements["method"].value="adminOfferDelete";
 			fm.submit();
 		}
 		
@@ -82,15 +82,20 @@
 	</script>
 	
 	<!-- container -->
-    <div id="container" class="sinmungo">
+    <div id="container">
         <!-- lnb -->
         <div class="lnb">
             <div class="tit-area">
-                <h2>R&amp;D 신문고</h2>
-                <span><img src="/img/common/h2_entxt03.gif" alt="Online Sinmungo" /></span>
+                <h2>관리자</h2>
+                <span><img src="/img/common/h2_admin_entxt.gif" alt="Admin" /></span>
             </div>
             <ul class="lnb-lst">
-                <li class="on"><a href="JavaScript:goOffer()">R&amp;D 신문고</a></li>
+                <li><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getAdminInquireList&searchVO.board_type=QNA&searchVO.type=&searchVO.searchCategory=&searchVO.menu_sn=01">온라인 상담</a></li>
+                <li class="on"><a href="/switch.do?prefix=/offer&page=/Offer.do?method=adminOfferList&searchVO.menu_sn=14">R&amp;D 신문고</a></li>
+                <li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.roleCD=&searchVO.search_sel=&searchVO.search_word=&searchVO.menu_sn=09">회원관리</a></li>
+                <li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=09">질문분야관리</a></li>
+                <li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=09">오프라인자료 등록</a></li>
+                <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=09">통계정보</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -99,8 +104,7 @@
             <div class="location txt-r">        
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goOffer()">R&amp;D 신문고</a></li>
-                    <li class="on"><a href="JavaScript:goOffer()">R&amp;D 신문고</a></li>
+                    <li class="on"><a href="/switch.do?prefix=/offer&page=/Offer.do?method=adminOfferList&searchVO.menu_sn=14">관리자</a></li>
                 </ul>
             </div>
             <!-- section -->
@@ -186,17 +190,13 @@
 	                <!-- btn-set -->
                     <div class="btn-lst txt-r">
                         <bean:define name="OfferForm" property="vo.up_del_stat" id="up_del_stat" type="java.lang.String"/>
-                        <bean:define name="OfferForm" property="vo.stat" id="stat" type="java.lang.String"/>    
+                        <bean:define name="OfferForm" property="vo.stat" id="stat" type="java.lang.String"/>
                         <span class="btn-set"><a href="JavaScript:goPrint('OFFER','<bean:write name="vo" property="seq"/>');">인쇄</a></span>
                         <span class="btn-set"><a href="JavaScript:goOfferList()">목록</a></span>
                         <%
                             if ( login_id != null && !login_id.isEmpty() && login_id.equals(vo.getReg_id()) ) {
                         %>
                         <span class="btn-set pink"><a href="JavaScript:goOfferUpdate()">질의수정</a></span>
-                        <%
-                            } else if ( vo.getReg_id() == null || vo.getReg_id().isEmpty() ) {
-                        %>
-                            <span class="btn-set"><a href="javascript:goPasswordCheckForm('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>, 'goOfferUpdate()')">질의수정</a></span>
                         <%
                             }
                             if ( roleCd.equals("0000Z") || roleCd.equals("0000C") ) {

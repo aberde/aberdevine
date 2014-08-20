@@ -81,6 +81,11 @@ public class OfferDAO extends BaseSqlDAO{
 				    query += " AND Q.reg_id like '%"+searchVO.getSearchTxt()+"%' ";
 				}
 			}
+			
+			if ( searchVO.getStat() != null && !"".equals(searchVO.getStat()) ) {
+                query += "       AND DECODE(A.SEQ,null,'N',DECODE(A.COMPLETE_YN, NULL, 'S', 'Y')) = '"+searchVO.getStat()+"' ";
+            }
+			
 			query += " ORDER BY Q.REG_DT DESC";
 			
 			openPreparedStatementForR(query, true);

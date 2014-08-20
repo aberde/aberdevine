@@ -152,6 +152,7 @@
 							    <html:optionsCollection name="InquireForm" property="voList2" value="code" label="code_nm"/>
 							</html:select>
 	                        <html:select name="InquireForm" property="searchVO.whichSearch" style="width:90px;">
+	                            <html:option value="reg_id">글쓴이</html:option>
                                 <html:option value="title">제목</html:option>
                                 <html:option value="contents">내용</html:option>
                                 <html:option value="all">제목+내용</html:option>
@@ -168,8 +169,8 @@
 	                            <caption>온라인 상담 목록 페이지</caption>
 	                            <colgroup>
 	                                <col width="7%" />
+	                                <col width="13%" />
 	                                <col width="*" />
-	                                <col width="15%" />
 	                                <col width="8%" />
 	                                <col width="12%" />
 	                                <col width="12%" />
@@ -178,8 +179,8 @@
 	                            <thead>
 	                                <tr>
 	                                    <th scope="col">번호</th>
-	                                    <th scope="col">제목</th>
 	                                    <th scope="col">분야</th>
+	                                    <th scope="col">제목</th>
 	                                    <th scope="col">글쓴이</th>
 	                                    <th scope="col">등록일</th>
 	                                    <th scope="col">상태</th>
@@ -194,6 +195,9 @@
                                         <logic:iterate name="InquireForm" property="voList" indexId="rowNum" id="vo">
                                             <tr>
                                                 <td><%= totRowCount.intValue() - rowNum.intValue() -  Util.replaceNull((String)pagerOffset, 0) %></td>
+                                                <td>
+                                                    <bean:write name="vo" property="category1"/>
+                                                </td>
                                                 <td class="txt-l">
                                                     <bean:define name="vo" property="title" id="title" type="java.lang.String"/>
                                                     <bean:define name="vo" property="reg_id" id="reg_id" type="java.lang.String"/>
@@ -244,9 +248,6 @@
                                                             }
                                                         }
                                                     %>
-                                                </td>
-                                                <td>
-                                                    <bean:write name="vo" property="category1"/>
                                                 </td>
                                                 <td>
                                                     <logic:notEmpty name="vo" property="reg_id">
