@@ -126,10 +126,10 @@
 	                            <caption>회원관리 목록 페이지</caption>
 	                            <colgroup>
 	                                <col width="7%" />
-	                                <col width="10%" />
+	                                <col width="20%" />
 <!-- 	                                <col width="12%" /> -->
 	                                <col width="*" />
-	                                <col width="14%" />
+	                                <col width="20%" />
 <!-- 	                                <col width="12%" /> -->
 	                            </colgroup>
 	                            <thead>

@@ -290,8 +290,8 @@ public class MemberDAO extends BaseSqlDAO {
 			
 			pstmt = conn.prepareStatement(query);
 			System.out.println("query:::"+query);
-			System.out.println("vo.getName():::"+vo.getName());
-			System.out.println("vo.getEmail():::"+vo.getEmail());
+			System.out.println("vo.getIdFindQuestion():::"+vo.getIdFindQuestion());
+			System.out.println("vo.getIdFindAnswer():::"+vo.getIdFindAnswer());
 			
 			pstmt.setString(1, vo.getIdFindQuestion());
 			pstmt.setString(2, vo.getIdFindAnswer());

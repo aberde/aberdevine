@@ -233,6 +233,11 @@ public class InquireDAO extends BaseSqlDAO{
 				}
 			}
 			
+			if ( searchVO.getStat() != null && !"".equals(searchVO.getStat()) ) {
+			    query += "       AND DECODE(A.SEQ,null,'N','Y') = '"+searchVO.getStat()+"' ";
+                countQuery += "       AND DECODE(A.SEQ,null,'N','Y') = '"+searchVO.getStat()+"' ";
+			}
+			
 			Calendar cal = Calendar.getInstance();
 			if(searchVO.getStart_yy().equals("")) searchVO.setStart_yy("2007");
 			if(searchVO.getStart_mm().equals("")) searchVO.setStart_mm("01");

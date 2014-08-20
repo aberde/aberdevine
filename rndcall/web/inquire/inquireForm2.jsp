@@ -42,7 +42,7 @@
                     <table border="0" summary="중앙행정기관, 전문기관, 전문기관 링크주소">
                         <caption>중앙행정기관 링크</caption>
                         <colgroup>
-                            <col width="20%" />
+                            <col width="25%" />
                             <col width="*" />
 
                         </colgroup>

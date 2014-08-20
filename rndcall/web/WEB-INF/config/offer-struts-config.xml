@@ -28,6 +28,12 @@
       <forward name="offerDelete" path="/offerList.jsp" />
       <forward name="myPageMethod" path="/switch.do?prefix=/mypage&amp;page=/Mypage.do?method=getMypageList"/>
       <forward name="adminOfferList" path="/adminOfferList.jsp" />
+      <forward name="adminOfferDetailView" path="/adminOfferDetailView.jsp" />
+      <forward name="adminOfferDelete" path="/adminOfferList.jsp" />
+      <forward name="adminOfferAnswerInsertForm" path="/adminOfferAnswerInsertForm.jsp" />
+      <forward name="adminOfferAnswerInsert" path="/adminOfferDetailView.jsp" />
+      <forward name="adminOfferAnswerUpdate" path="/adminOfferDetailView.jsp" />
+      <forward name="getOfferViewPop" path="/offerViewPop.jsp" />
     </action>
   </action-mappings>
 </struts-config>

@@ -51,7 +51,7 @@
                         </ul>
                     </div>
                     <div class="sitebox data">
-                        <h3><a href="JavaScript:goData()">자료실</a></h3>
+                        <h3><a href="JavaScript:goLawInfo()">자료실</a></h3>
                         <ul>
                             <li><a href="Javascript:goLawInfo()">법령 및 행정규칙</a></li>
                             <li><a href="/switch.do?prefix=/data&page=/Data.do?method=dataSystemList&searchVO.menu_sn=02">연구관리제도</a></li>

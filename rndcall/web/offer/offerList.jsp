@@ -128,6 +128,7 @@
                     <div class="search-box">
                         <div class="search-form">
                             <html:select name="OfferForm" property="searchVO.whichSearch" style="width:90px;">
+                                <html:option value="reg_id">글쓴이</html:option>
                                 <html:option value="title">제목</html:option>
                                 <html:option value="contents">내용</html:option>
                                 <html:option value="all">전체</html:option>

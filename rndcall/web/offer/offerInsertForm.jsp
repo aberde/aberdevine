@@ -7,6 +7,16 @@
 
     <script type="text/javascript" src="/js/file.js"></script>
     
+    <script type="text/javascript">
+    <!--
+        var data = {
+           num : 2 // 위치순번
+        };
+        // 현재메뉴 위치.
+        menuFocus(data);
+    //-->
+    </script>
+    
     <%  
         String size = "70"; // default size
         if ( !Util.isNull(request.getParameter("size")) ) {

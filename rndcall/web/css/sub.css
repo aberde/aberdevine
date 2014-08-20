@@ -144,23 +144,24 @@
 .sitemap-area:after{content:"";clear:both;display:block;}
 .sitebox{float:left;width:228px;height:200px;padding-left:25px;}
 .sitebox.rnd, .sitebox.notic{padding-left:0;}
-.sitebox h3{display:block;height:36px; padding-top:15px;padding-left:10px;margin-bottom:20px;}
-.sitebox h3 a{font-size:18px;line-height:25px; color:#fff;}
+.sitebox h3{display:inline-block; margin-bottom: 20px; background:url(../img/bg/sitemap_tit_bg.png) no-repeat; width:222px; height:40px; }
+.sitebox h3 a{display:block; padding:0 0 0 25px; font-size:14px; line-height:40px; color:#fff;}
 .sitebox ul {padding-left:15px;}
 .sitebox ul li a{font-size:13px;padding-bottom:5px; color:#000000;}
 
-.rnd h3{background-color:#6095c3;}
+.rng h3 {background-position: 0 0;}
+.online h3 {background-position: 0 -50px;}
+.sinmungo h3 {background-position: 0 -100px;}
+.notic h3 {background-position: 0 -150px;}
+.data h3 {background-position: 0 -200px;}
+.center h3 {background-position: 0 -250px;}
+
 .rnd ul li{padding-left:20px;background:url(../img/sub/bullet_site01.gif) 0px 8px no-repeat; }
-
-.online h3{background-color:#f5cb49;}
 .online ul li{padding-left:20px;background:url(../img/sub/bullet_site02.gif) 0px 8px no-repeat; }
-
-.sinmungo h3{background-color:#aaca5c;}
-.notic h3{background-color:#959191;}
 .notic ul li{padding-left:20px;background:url(../img/sub/bullet_site03.gif) 0px 8px no-repeat; }
-.data h3{background-color:#2a4266;}
 .data ul li{padding-left:20px;background:url(../img/sub/bullet_site04.gif) 0px 8px no-repeat; }
-.center h3{background-color:#d23962;}
+
+
 
 
 /* 2014-07-24  정현주 private */

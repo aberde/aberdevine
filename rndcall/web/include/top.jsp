@@ -260,8 +260,7 @@
 					%>
 					<li><a href="JavaScript:goMypage()">마이페이지</a></li>
 					<li><a href="/logout.jsp">로그아웃</a></li>
-<!-- 					// TODO 사용자 접속확인 메세지 사용여부 확인. -->
-<%-- 					<li class="Join-infor"><strong><%= nameKO %></strong>님 접속하셨습니다.</li> --%>
+                    <li class="user"><strong><%= login_id %></strong>님 접속하셨습니다.</li>
 				</ul>
 				<div class="search-bx fl">
 					<label for="search"><strong>통합검색</strong></label>
@@ -312,8 +311,8 @@
                             <div class="snb-bx">
                                 <ul>
                                     <li><a href="Javascript:goLawInfo()">법령 및 행정 규칙</a></li>
-                                    <li><a href="JavaScript:goIns('SYSTEM')">연구관리제도</a></li>
-                                    <li><a href="JavaScript:goIns('DATA')">기타</a></li>
+                                    <li><a href="/switch.do?prefix=/data&page=/Data.do?method=dataSystemList&searchVO.menu_sn=02">연구관리제도</a></li>
+                                    <li><a href="JavaScript:goData()">기타</a></li>
                                 </ul>
                             </div>
                         </div>  

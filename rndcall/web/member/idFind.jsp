@@ -58,7 +58,7 @@
 		
 		    var winfeatures = "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=580,height=340";
 // 		    var url = "/switch.do?prefix=&page=/member.do?method=idFind&vo.name=" + document.all.name.value + "&vo.email=" + escape(document.all.email_id.value+"@"+document.all.email_domain.value);
-		    var url = "/switch.do?prefix=&page=/member.do?method=idFind&vo.idFindQuestion=" + document.all.idFindQuestion.value + "&vo.idFindAnswer=" + document.all.idFindQuestion.value;
+		    var url = "/switch.do?prefix=&page=/member.do?method=idFind&vo.idFindQuestion=" + document.all.idFindQuestion.value + "&vo.idFindAnswer=" + document.all.idFindAnswer.value;
 		    document.location.href = url;
 // 		    idFindWin = window.open( url, "idFind", winfeatures);
 		    

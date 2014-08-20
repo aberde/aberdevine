@@ -18,7 +18,7 @@
     <script type="text/javascript">
     <!--
         var data = {
-            num : 1 // 위치순번
+            num : 6 // 위치순번
         };
         // 현재메뉴 위치.
         menuFocus(data);
@@ -89,7 +89,7 @@
         
         function goAnswerInsert(){
         <%
-            if(mainRoleCD.equals("0000Z")){
+            if(mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C")){
         %>      
                 fm.elements["searchVO.searchCategory"].value="";
                 fm.elements["method"].value="getAdminAnswerInsertForm";

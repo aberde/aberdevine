@@ -15,7 +15,17 @@ public class OfferSearchVO extends BaseSearchVO{
 	protected String type = ""; //타입
 	protected String searchType =""; // 검색분류
 	protected String flag; //상세 수정 구분
+	protected String stat; //상태
 	
+	
+
+    public String getStat() {
+        return stat;
+    }
+
+    public void setStat(String stat) {
+        this.stat = stat;
+    }
 
     public String getBoard_type() {
 		return board_type;

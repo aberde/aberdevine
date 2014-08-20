@@ -167,10 +167,15 @@
             
 	                <!-- search-box -->
 	                <div class="search-box mt10">
-	                    <div class="search-form" style="width: 450px;">
+	                    <div class="search-form" style="width: 580px;">
 	                        <html:select name="InquireForm" property="searchVO.searchCategory">
                                 <html:option value=""> == 분류선택 == </html:option>
                                 <html:optionsCollection name="InquireForm" property="voList2" value="code" label="code_nm"/>
+                            </html:select>
+                            <html:select name="InquireForm" property="searchVO.stat">
+                                <html:option value=""> == 상태선택 == </html:option>
+                                <html:option value="N">접수중</html:option>
+                                <html:option value="Y">답변완료</html:option>
                             </html:select>
 	                        <html:select name="InquireForm" property="searchVO.whichSearch" style="width:90px;">
                                 <html:option value="reg_id">글쓴이</html:option>
@@ -190,8 +195,8 @@
                                 <caption>온라인 상담 목록 페이지</caption>
                                 <colgroup>
                                     <col width="7%" />
+                                    <col width="13%" />
                                     <col width="*" />
-                                    <col width="15%" />
                                     <col width="8%" />
                                     <col width="12%" />
                                     <col width="12%" />
@@ -200,8 +205,8 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">번호</th>
-                                        <th scope="col">제목</th>
                                         <th scope="col">분야</th>
+                                        <th scope="col">제목</th>
                                         <th scope="col">글쓴이</th>
                                         <th scope="col">등록일</th>
                                         <th scope="col">상태</th>
@@ -216,6 +221,9 @@
                                         <logic:iterate name="InquireForm" property="voList" indexId="rowNum" id="vo">
                                             <tr>
                                                 <td><%= totRowCount.intValue() - rowNum.intValue() -  Util.replaceNull((String)pagerOffset, 0) %></td>
+                                                <td>
+                                                    <bean:write name="vo" property="category1"/>
+                                                </td>
                                                 <td class="txt-l">
                                                     <bean:define name="vo" property="title" id="title" type="java.lang.String"/>
                                                     <bean:define name="vo" property="reg_id" id="reg_id" type="java.lang.String"/>
@@ -266,9 +274,6 @@
                                                             }
                                                         }
                                                     %>
-                                                </td>
-                                                <td>
-                                                    <bean:write name="vo" property="category1"/>
                                                 </td>
                                                 <td>
                                                     <logic:notEmpty name="vo" property="reg_id">
