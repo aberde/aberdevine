@@ -75,7 +75,7 @@
                 <li class="on"><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.roleCD=&searchVO.search_sel=&searchVO.search_word=&searchVO.menu_sn=09">회원관리</a></li>
                 <li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=09">질문분야관리</a></li>
                 <li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=09">오프라인자료 등록</a></li>
-                <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=09">통계정보</a></li>
+                <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatBoardType&searchVO.menu_sn=09">통계정보</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -130,6 +130,7 @@
 <!-- 	                                <col width="12%" /> -->
 	                                <col width="*" />
 	                                <col width="20%" />
+	                                <col width="20%" />
 <!-- 	                                <col width="12%" /> -->
 	                            </colgroup>
 	                            <thead>
@@ -139,13 +140,14 @@
 <!-- 	                                    <th scope="col">이름</th> -->
 	                                    <th scope="col">소속기관</th>
 	                                    <th scope="col">최종접속일자</th>
+	                                    <th scope="col">탈퇴여부</th>
 <!-- 	                                    <th scope="col">수정</th> -->
 	                                </tr>
 	                            </thead>
 	                            <tbody>
 	                                <logic:empty name="memberAdminForm" property="voList">
                                         <tr>
-                                            <td colspan="4">조건에 해당하는 회원이 없습니다.</td>
+                                            <td colspan="5">조건에 해당하는 회원이 없습니다.</td>
                                         </tr>
                                     </logic:empty>  
                                     <logic:notEmpty name="memberAdminForm" property="voList">
@@ -164,6 +166,7 @@
 <%--                                                 <bean:write name="vo" property="org_nm"/> --%>
                                                 </td>
                                                 <td><bean:write name="vo" property="last_visit_dt"/></td>
+                                                <td><logic:equal name="vo" property="del_yn" value="Y">탈퇴</logic:equal></td>
 <%--                                                 <td><bean:write name="vo" property="attached_nm"/></td> --%>
 <%--                                                 <td><bean:write name="vo" property="roleCD"/></td> --%>
 <%--                                                 <td><span class="btn-set"><a href="javascript:getUserInfo('<bean:write name="vo" property="auth_id"/>');">수정</a></span></td> --%>

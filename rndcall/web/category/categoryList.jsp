@@ -129,7 +129,7 @@
                 <li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=09">회원관리</a></li>
                 <li class="on"><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=09">질문분야관리</a></li>
                 <li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=09">오프라인자료 등록</a></li>
-                <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=09">통계정보</a></li>
+                <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatBoardType&searchVO.menu_sn=09">통계정보</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -178,7 +178,8 @@
 	                                <col width="7%" />
 	                                <col width="13%" />
 	                                <col width="*" />
-	                                <col width="18%" />
+	                                <col width="12%" />
+	                                <col width="12%" />
 	                                <col width="12%" />
 	                                <col width="12%" />
 	                            </colgroup>
@@ -187,6 +188,7 @@
 	                                    <th scope="col">번호</th>
 	                                    <th scope="col">분야코드</th>
 	                                    <th scope="col">분야명</th>
+	                                    <th scope="col">온라인상담용 여부</th>
 	                                    <th scope="col">하위분야</th>
 	                                    <th scope="col">수정</th>
 	                                    <th scope="col">삭제</th>
@@ -195,7 +197,7 @@
 	                            <tbody>
 	                                <logic:empty name="categoryForm" property="voList">
 	                                    <tr>
-	                                        <td colspan="6">등록된 카테고리가 없습니다.</td>
+	                                        <td colspan="7">등록된 카테고리가 없습니다.</td>
 	                                    </tr>
 	                                </logic:empty>
 	                                <logic:notEmpty name="categoryForm" property="voList">
@@ -204,6 +206,9 @@
 	                                            <td><bean:write name="vo" property="order_no"/></td>
 	                                            <td><bean:write name="vo" property="category_id"/></td>
 	                                            <td><bean:write name="vo" property="category_nm"/></td>
+	                                            <td>
+	                                               <logic:equal name="vo" property="qna_yn" value="Y">온라인상담용</logic:equal>
+	                                            </td>
 												<td><a href="javascript:getDtlList('<bean:write name="vo" property="category_id"/>');"><bean:write name="vo" property="dtl_cnt"/>건</a></td>
 												<td><span class="btn-set"><a href="javascript:cate_update('<bean:write name="vo" property="category_id"/>');">수정</a></span></td>
 												<td><span class="btn-set"><a href="javascript:fn_delete('<bean:write name="vo" property="category_id"/>');">삭제</a></span></td>
@@ -216,7 +221,7 @@
 	                </div>
 	                <!-- // board-type01 -->
 	                <div class="mt10 txt-r">
-                        <span class="btn-set set2 green"><a href="javascript:goCategoryInsertForm();">카테고리 추가 +</a></span>
+                        <span class="btn-set green"><a href="javascript:goCategoryInsertForm();">카테고리 추가 +</a></span>
 	                </div>
 	                <!-- page-area-->
 <%-- 	                <%@include file="/include/page.jsp"%> --%>

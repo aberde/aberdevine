@@ -78,7 +78,7 @@ public class OfferDAO extends BaseSqlDAO{
 					.append(" or Q.title LIKE '%").append(searchVO.getSearchTxt()).append("%') ")
 				 	.toString();
 				}else if(searchVO.getWhichSearch().equals("reg_id")){
-				    query += " AND Q.reg_id like '%"+searchVO.getSearchTxt()+"%' ";
+				    query += " AND DECODE(Q.REG_ID, NULL, '비회원', '', '비회원') like '%"+searchVO.getSearchTxt()+"%' ";
 				}
 			}
 			
@@ -735,7 +735,8 @@ public class OfferDAO extends BaseSqlDAO{
 			pstmt = conn.prepareStatement(query);
 	    	pstmt.setString(1, vo.getCategory1());
 	    	pstmt.setString(2, vo.getCategory2());
-			pstmt.setString(3, searchVO.getSeq());
+	    	pstmt.setString(3, vo.getOpen_yn());
+			pstmt.setString(4, searchVO.getSeq());
 			
 			pstmt.executeUpdate();
 			pstmt.close();
@@ -803,6 +804,17 @@ public class OfferDAO extends BaseSqlDAO{
 			pstmt.close();
 			conn.commit();
 			
+			String query = loadQueryString("sql.inquire.question.getCategoryUpdate");     
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, vo.getCategory1());
+            pstmt.setString(2, vo.getCategory2());
+            pstmt.setString(3, vo.getOpen_yn());
+            pstmt.setString(4, searchVO.getSeq());
+            
+            pstmt.executeUpdate();
+            pstmt.close();
+            conn.commit();
+            
 			//���ǳ��� clob�÷��� �����´�.			
 //			try{
 //				sbQuery = new StringBuffer();

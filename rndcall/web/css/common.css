@@ -196,10 +196,10 @@ select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#2429
 .board-type01 table{border-collapse:collapse;}
 .board-type01 thead tr:first-child th {border-top:0;}
 .board-type01 thead th {border-left:1px solid #e2e2e2; border-top:1px solid #eeeeee; background-color:#f1f0f0; color:#474747;  font-weight:bold; text-align:center; padding:12px 6px 12px; }
-.board-type01 tbody td {border-left:1px solid #e2e2e2; border-top:1px solid #eeeeee; padding:9px 5px; color:#474747; font-size:12px; text-align:center;  vertical-align:middle;}
+.board-type01 tbody td {border-left:1px solid #e2e2e2; border-top:1px solid #eeeeee; padding:9px 5px; color:#474747; font-size:11px; text-align:center;  vertical-align:middle;}
 .board-type01 thead th:first-child, .board-type01 tbody td:first-child{border-left:0;}
 .board-type01 tbody tr.on{background-color:#fafafa;}
-.board-type01 tbody td a{padding-left:15px;}
+.board-type01 tbody td a{padding-left:15px; font-size:11px;}
 .board-type01 tbody td a.lock{padding-left:20px; background:url(../img/icon/icon_lock.png) 5px 2px no-repeat;}
 .board-type01 tfoot td{border-left:1px solid #e2e2e2;border-top:1px solid #e2e2e2;padding:9px 5px; color:#474747; font-weight:bold;text-align:center;  vertical-align:middle; }
 .board-type01 tfoot td:first-child{border-left:0;}
@@ -246,6 +246,21 @@ select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#2429
 .tbl-type01 tbody tr th {text-align:center; vertical-align:middle; font-size:14px; color:#3a7fa3; background:#eef9fc; font-weight:bold; text-align:center; border-top:1px solid #eeeeee;}
 .tbl-type01 tbody tr td.row-line{border-left:1px solid #e2e2e2;}
 .tbl-type01 .bg-butterfly{position:absolute; bottom:2px; right:19px; width:354px;height:366px; background:url(../img/sub/bg_butterfly.png) 0 0 no-repeat;}
+
+/* tbl-type02 */
+.tbl-type02 {border-top:2px solid #474747; border-bottom:2px solid #474747;}
+.tbl-type02 thead tr th:first-child {border-left:0}
+.tbl-type02 thead tr th {text-align:center; vertical-align:middle; font-size:14px;  color:#3a7fa3; background:#eef9fc; font-weight:bold; border-bottom:1px solid #eeeeee;  padding:10px 0 13px; border-left:1px solid #e2e2e2;}
+.tbl-type02 thead tr.on th {background:#f6fdff; color:#6caccd; font-size:14px; }
+.tbl-type02 tbody tr td {vertical-align:middle; padding:8px 10px 10px; font-size:14px; color:#474747; border-top:1px solid #eeeeee; border-left:1px solid #e2e2e2; border-left:1px solid #e2e2e2; border-right:1px solid #e2e2e2; letter-spacing:-1px;}
+.tbl-type02 tbody tr td a{font-size:14px; color:#2279a6;}
+.tbl-type02 tbody tr.on td, 
+.tbl-type02 tbody tr td.on{background:#fafafa}
+.tbl-type02 tbody tr:first-child td,
+.tbl-type02 tbody tr:first-child th {border-top:0;}
+.tbl-type02 tbody tr th {text-align:center; vertical-align:middle; font-size:14px; color:#3a7fa3; background:#eef9fc; font-weight:bold; text-align:center; border-top:1px solid #eeeeee;}
+.tbl-type02 tbody tr td.row-line{border-left:1px solid #e2e2e2;}
+.tbl-type02 .bg-butterfly{position:absolute; bottom:2px; right:19px; width:354px;height:366px; background:url(../img/sub/bg_butterfly.png) 0 0 no-repeat;}
 
 .tbl-type01 tbody td .small{font-size:12px;}
 /* blullet */

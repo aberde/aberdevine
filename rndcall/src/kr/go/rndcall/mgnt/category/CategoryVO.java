@@ -13,8 +13,16 @@ public class CategoryVO extends BaseVO {
 	private String login_id = "";
 	private String dtl_cnt = "";
 	private String parent_nm = "";
+	private String qna_yn = "";
 	
-	/**
+	
+	public String getQna_yn() {
+        return qna_yn;
+    }
+    public void setQna_yn(String qna_yn) {
+        this.qna_yn = qna_yn;
+    }
+    /**
 	 * @return the dtl_cnt
 	 */
 	public String getDtl_cnt() {

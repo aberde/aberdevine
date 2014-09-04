@@ -54,7 +54,7 @@
 							<li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.roleCD=&searchVO.search_sel=&searchVO.search_word=&searchVO.menu_sn=09"><img src="../images/content/SiteMap_Title05_1.gif" border="0" alt="권한관리" /></a></li>
 							<li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=09"><img src="../images/content/SiteMap_Title05_2.gif" border="0" alt="분야관리" /></a></li>
 							<li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=09"><img src="../images/content/SiteMap_Title05_3.gif" border="0" alt="오프라인자료등록" /></a></li>
-							<li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=09"><img src="../images/content/SiteMap_Title05_4.gif" border="0" alt="통계정보" /></a></li>
+							<li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatBoardType&searchVO.menu_sn=09"><img src="../images/content/SiteMap_Title05_4.gif" border="0" alt="통계정보" /></a></li>
 					</ul>
 			</div>														
 	</td>

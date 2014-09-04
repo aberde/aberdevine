@@ -39,6 +39,11 @@
 		    fm.submit();
 		}
 		
+		function goBoardTypeL(){
+            fm.elements["method"].value="getStatBoardType";
+            fm.submit();
+        }
+		
 		function goDateL(){
 		    fm.elements["method"].value="getStatDate";
 		    fm.submit();
@@ -96,6 +101,16 @@
 		    fm.elements["method"].value="getStatExcelDownLoad";
 		    fm.submit();
 		}
+		
+		function goQueryUserInfoL(){
+            fm.elements["method"].value="getStatQueryUserInfo";
+            fm.submit();
+        }
+		
+		function goUserSectorL(){
+            fm.elements["method"].value="getStatUserSector";
+            fm.submit();
+        }
 	//-->
 	</script>
     
@@ -113,7 +128,7 @@
                 <li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=09">회원관리</a></li>
                 <li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=09">질문분야관리</a></li>
                 <li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=09">오프라인자료 등록</a></li>
-                <li class="on"><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=09">통계정보</a></li>
+                <li class="on"><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatBoardType&searchVO.menu_sn=09">통계정보</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -122,7 +137,7 @@
             <div class="location txt-r">        
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li class="on"><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=09">관리자</a></li>
+                    <li class="on"><a href="JavaScript:goBoardTypeL()">관리자</a></li>
                 </ul>
             </div>
             <!-- section -->
@@ -135,8 +150,11 @@
                 <!--  tab-typ01 -->
                 <div class="tab-type01 mt30">
                     <ul class="clearfix">
-                        <li><a href="JavaScript:goCategoryL()">등록현황통계</a></li>
-                        <li class="on"><a href="JavaScript:goVisitL()">접속자현황</a></li>
+                        <li><a href="JavaScript:goBoardTypeL()">전체 통계</a></li>
+                        <li><a href="JavaScript:goCategoryL()">분류별 통계</a></li>
+                        <li><a href="JavaScript:goQueryUserInfoL()">소속별 통계</a></li>
+                        <li class="on"><a href="JavaScript:goVisitL()">접속자 현황</a></li>
+                        <li><a href="JavaScript:goUserSectorL()">사용자 소속기관별 통계</a></li>
                     </ul>
                 </div>
                 
@@ -182,9 +200,9 @@
 	                </div>
 	                <!-- // board-write -->
 	                <!-- board-type01 -->
-	                <div class="board-type01 mt20">
+	                <div class="tbl-type02 mt20">
 	                    <div class="board-box">
-	                        <table border="0" summary="작성자, 제목, 이메일, 내용 쓰기페이지">
+	                        <table summary="작성자, 제목, 이메일, 내용 쓰기페이지">
 	                            <caption>쓰기 페이지</caption>
 	                            <colgroup>
 	                                <col width="10%" />
@@ -208,20 +226,17 @@
 						                        total_cnt +=  cnt.intValue();
 						%>                  
 						                    <tr>
-						                        <td><%=++count %></td>
-						                        <td><bean:write name="vo" property="code"/></td>
-						                        <td><bean:write name="vo" property="cnt"/></td>
+						                        <td class="txt-c"><%=++count %></td>
+						                        <td class="txt-c"><bean:write name="vo" property="code"/></td>
+						                        <td class="txt-r"><%= Util.getNumberFormat(cnt) %></td>
 						                    </tr>
 						                </logic:iterate>
 						            </logic:notEmpty>
-	                            </tbody>
-						        <tfoor>
 						            <tr>
 						                <td></td>
-						                <td>총계</td>
-						                <td><%=total_cnt%></td>
+						                <td class="txt-c">총계</td>
+						                <td class="txt-r"><%= Util.getNumberFormat(total_cnt) %></td>
 						            </tr>
-						        </tfoor>
 	                        </table>
 	                    </div>
 	                </div>

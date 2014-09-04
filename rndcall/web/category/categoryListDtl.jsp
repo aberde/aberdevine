@@ -136,7 +136,7 @@
                 <li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=09">회원관리</a></li>
                 <li class="on"><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=09">질문분야관리</a></li>
                 <li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=09">오프라인자료 등록</a></li>
-                <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=09">통계정보</a></li>
+                <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatBoardType&searchVO.menu_sn=09">통계정보</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -220,7 +220,8 @@
                     </div>
                     
                     <div class="mt10 txt-r">
-                        <span class="btn-set set2 green"><a href="javascript:goCategoryInsertForm();">카테고리 추가 +</a></span>
+                        <span class="btn-set"><a href="javascript:getList();">이전화면</a></span>
+                        <span class="btn-set green"><a href="javascript:goCategoryInsertForm();">카테고리 추가 +</a></span>
                     </div>
                 </html:form>
                 

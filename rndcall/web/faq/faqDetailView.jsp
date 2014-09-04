@@ -80,6 +80,22 @@
 		    fileDownLoad.elements["desCipher"].value = yn;
 		    fileDownLoad.submit();
 		}
+		
+		function goScrap(arg1, arg2){
+            if("<%=login_id%>" ==""){
+                alert("로그인후 이용하실수 있습니다.");
+                return;
+            }else{
+                fm.elements["searchVO.board_type"].value=arg1;  
+                fm.elements["searchVO.seq"].value=arg2; 
+                fm.elements["method"].value="getInquireScrap";
+                fm.action = "/inquire/Inquire.do";
+                fm.submit();
+            }
+        }
+		function goPrint(arg1, arg2){
+            window.open("/switch.do?prefix=/faq&page=/Faq.do?method=getFaqViewPop&searchVO.board_type=" + arg1 + "&searchVO.seq=" + arg2, "techpop","toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=800,height=800");
+        }
 	</script>
 	
     <!-- container -->
@@ -102,13 +118,13 @@
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
                     <li><a href=JavaScript:goInquireMainList()>온라인 상담</a></li>
-                    <li class="on"><a href="JavaScript:goFaq()">자주묻는 질문</a></li>
+                    <li class="on"><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
                 </ul>
             </div>
             <!-- section -->
             <div class="section">       
                 <div class="tit-area">
-                    <h3>자주묻는 질문</h3>
+                    <h3>자주 묻는 질문</h3>
                     <p>가장 많이 묻는 질의 응답을 카테고리별로 검색이 가능합니다.</p>
                 </div>
                 
@@ -178,6 +194,7 @@
 	                <!-- //board-detail -->
 	                <!-- btn-set-->
 	                <div class="btn-lst txt-r">
+	                    <span class="btn-set"><a href="JavaScript:goPrint('FAQ','<bean:write name="FaqForm" property="searchVO.seq"/>');">인쇄</a></span>
 	                    <%
 	                        if ( roleCd.equals("0000Z") || roleCd.equals("0000C") ) {
                         %>
@@ -185,6 +202,13 @@
 	                    <span class="btn-set"><a href="JavaScript:faqContentDelete()">삭제</a></span>
 	                    <% 
 	                        }
+                        %>
+	                    <%
+                            if ( mainLoginVO != null && mainIsLogin ) {
+                        %>
+                        <span class="btn-set"><a href="JavaScript:goScrap('FAQ','<bean:write name="FaqForm" property="searchVO.seq"/>');">스크랩</a></span>
+                        <%
+                            }
                         %>
 	                    <%
 	                        if ( uni.equals("uni") ) {

@@ -128,10 +128,10 @@
                     <div class="search-box">
                         <div class="search-form">
                             <html:select name="OfferForm" property="searchVO.whichSearch" style="width:90px;">
-                                <html:option value="reg_id">글쓴이</html:option>
+                                <html:option value="all">제목+내용</html:option>
                                 <html:option value="title">제목</html:option>
                                 <html:option value="contents">내용</html:option>
-                                <html:option value="all">전체</html:option>
+                                <html:option value="reg_id">글쓴이</html:option>
                             </html:select>
                             <html:text name="OfferForm" property="searchVO.searchTxt" title="검색어를 입력하세요" maxlength="35"onchange="trim(this)"  />
                             <a href="javascript:goSearch()" class="search-btn"><img src="/img/sub/icon_zoom.gif" alt="검색" /></a>
@@ -175,7 +175,7 @@
                                                     <bean:define name="vo" property="open_yn" id="open_yn" type="java.lang.String"/>
                                                     <%
                                                         String title_n = "";
-                                                        int len = 14;
+                                                        int len = 30;
                                                         if ( title.length() > len ) {
                                                             title_n = title.substring(0,len) + "...";
                                                         } else {

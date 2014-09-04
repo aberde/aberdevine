@@ -195,13 +195,13 @@
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
                     <li><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
-                    <li class="on"><a href="JavaScript:goFaq()">자주묻는 질문</a></li>
+                    <li class="on"><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
                 </ul>
             </div>
             <!-- section -->
             <div class="section">       
                 <div class="tit-area">
-                    <h3>자주묻는 질문</h3>
+                    <h3>자주 묻는 질문</h3>
                     <p>가장 많이 묻는 질의 응답을 카테고리별로 검색이 가능합니다.</p>
                 </div>
                 

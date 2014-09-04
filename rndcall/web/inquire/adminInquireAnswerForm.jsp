@@ -209,6 +209,14 @@
 		    fileDownLoad.elements["desCipher"].value = yn;
 		    fileDownLoad.submit();
 		}
+		
+		function goPrint(){
+            window.open("", "techpop","toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=800,height=800");
+            
+            $("#method").val("getInquireViewPopup");
+            fm.target = "techpop";
+            fm.submit();
+        }
 	//-->
 	</script>
 	
@@ -226,7 +234,7 @@
                 <li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.roleCD=&searchVO.search_sel=&searchVO.search_word=&searchVO.menu_sn=09">회원관리</a></li>
                 <li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=09">질문분야관리</a></li>
                 <li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=09">오프라인자료 등록</a></li>
-                <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=09">통계정보</a></li>
+                <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatBoardType&searchVO.menu_sn=09">통계정보</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -246,7 +254,7 @@
                 </div>
                 
                 <html:form action="/Inquire" method="post" name="fm" enctype="multipart/form-data" type="kr.go.rndcall.mgnt.inquire.form.InquireForm" onsubmit="return checkOnSubmit(this)">
-		            <html:hidden name="InquireForm" property="method" value="getAnswerInsert"/>
+		            <html:hidden name="InquireForm" property="method" styleId="method" value="getAnswerInsert"/>
 		            <html:hidden name="InquireForm" property="vo.cell_number"/>
 		            <html:hidden name="InquireForm" property="vo.email"/>
 		            <html:hidden name="InquireForm" property="searchVO.loginId"/>
@@ -341,6 +349,15 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <th scope="row"><label for="open1">공개여부</label></th>
+                                        <td>
+                                            <html:radio name="InquireForm" styleId="vo.open_yn1" property="vo.open_yn" value="Y"></html:radio>
+                                            <label for="vo.open_yn1">공개</label>
+                                            <html:radio name="InquireForm" styleId="vo.open_yn2" property="vo.open_yn" value="N"></html:radio>
+                                            <label for="vo.open_yn2">비공개</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
 	                                    <th scope="row">분야 선택</th>
 	                                    <td>
 	                                        <html:select name="InquireForm" property="vo.category1" styleId="category1" title="대분류" onchange="f_cate_change(this.value)">
@@ -389,6 +406,7 @@
                     
                     <!-- btn-set -->
                     <div class="btn-lst txt-r">
+                        <span class="btn-set"><a href="JavaScript:goPrint()">인쇄</a></span>
                         <span class="btn-set pink"><a href="JavaScript:goAnswerCreate()">답변등록</a></span>
                         <span class="btn-set"><a href="JavaScript:goCancel()">취소</a></span>
                     </div>

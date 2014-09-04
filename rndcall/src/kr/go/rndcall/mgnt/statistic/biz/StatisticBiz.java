@@ -76,4 +76,24 @@ public class StatisticBiz {
 		return StatisticDAO.getStatExcelList(searchVO);
 	}
 	
+	public StatisticResultVO getStatBoardType(StatisticSearchVO searchVO) throws Exception {
+        
+        StatisticDAO StatisticDAO = new StatisticDAO();
+        
+        return StatisticDAO.getStatBoardType(searchVO);
+    }
+	
+	public StatisticResultVO getStatQueryUserInfo(StatisticSearchVO searchVO) throws Exception {
+	    
+	    StatisticDAO StatisticDAO = new StatisticDAO();
+	    
+	    return StatisticDAO.getStatQueryUserInfo(searchVO);
+	}
+
+	public StatisticResultVO getStatUserSector(StatisticSearchVO searchVO) throws Exception {
+	    
+	    StatisticDAO StatisticDAO = new StatisticDAO();
+	    
+	    return StatisticDAO.getStatUserSector(searchVO);
+	}
 }

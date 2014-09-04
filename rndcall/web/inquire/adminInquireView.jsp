@@ -137,6 +137,11 @@
                 fm.submit();
             }
         }
+        
+        function goDocDownload() {
+            fm.elements["method"].value="getInquireViewDoc";
+            fm.submit();
+        }
     //-->
     </script>
 
@@ -154,7 +159,7 @@
                 <li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.roleCD=&searchVO.search_sel=&searchVO.search_word=&searchVO.menu_sn=09">회원관리</a></li>
                 <li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=09">질문분야관리</a></li>
                 <li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=09">오프라인자료 등록</a></li>
-                <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=09">통계정보</a></li>
+                <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatBoardType&searchVO.menu_sn=09">통계정보</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -306,27 +311,23 @@
 	                <!-- //board-detail -->
 	                <!-- btn-set-->
 	                <div class="btn-lst txt-r">
-	                    <%
-	                        if ( mainLoginVO != null && mainIsLogin ) {
-	                    %>
-	                    <span class="btn-set pink"><a href="JavaScript:goScrap('QNA','<bean:write name="InquireForm" property="vo.seq"/>');">스크랩하기</a></span>
-	                    <%
-	                        }
-	                    %>
+	                    <span class="btn-set"><a href="JavaScript:goDocDownload()">파일저장</a></span>
 	                    <%
 	                        if ( mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C") ) {
 	                    %>
 	                    <logic:equal name="InquireForm" property="vo.stat" value="N">
-	                       <span class="btn-set"><a href="JavaScript:goAnswerInsert()">답변</a></span>
+	                       <span class="btn-set pink"><a href="JavaScript:goAnswerInsert()">답변</a></span>
 	                    </logic:equal>
 	                    <logic:notEqual name="InquireForm" property="vo.stat" value="N">
-                            <span class="btn-set"><a href="JavaScript:goAnswerInsert()">답변수정</a></span>
+                            <span class="btn-set pink"><a href="JavaScript:goAnswerInsert()">답변수정</a></span>
                         </logic:notEqual>
+                        <span class="btn-set"><a href="JavaScript:goPrint('QNA','<bean:write name="InquireForm" property="vo.seq"/>');">인쇄</a></span>
 <!-- 	                    <span class="btn-set"><a href="JavaScript:goUpdate()">수정</a></span> -->
 	                    <span class="btn-set"><a href="JavaScript:goDelete()">삭제</a></span>
 	                    <%
 	                        } else if ( login_id != null && !login_id.isEmpty() && login_id.equals(vo.getReg_id()) ) {
 	                    %>
+	                    <span class="btn-set"><a href="JavaScript:goPrint('QNA','<bean:write name="InquireForm" property="vo.seq"/>');">인쇄</a></span>
 	                    <logic:equal name="InquireForm" property="vo.up_del_stat" value="Y">
 		                    <span class="btn-set"><a href="JavaScript:goUpdate()">수정</a></span>
 		                    <span class="btn-set"><a href="JavaScript:goDelete()">삭제</a></span>
@@ -334,20 +335,26 @@
 	                    <%
 	                        } else if ( vo.getReg_id() == null || vo.getReg_id().isEmpty() ) {
 	                    %>
+	                        <span class="btn-set"><a href="JavaScript:goPrint('QNA','<bean:write name="InquireForm" property="vo.seq"/>');">인쇄</a></span>
 	                        <span class="btn-set"><a href="javascript:goPasswordCheckForm('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>, 'goUpdate()')">수정</a></span>
                             <span class="btn-set"><a href="javascript:goPasswordCheckForm('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>, 'goDelete()')">삭제</a></span>
 	                    <%
 	                        }
 	                    %>
 	                    <%
+	                        if ( mainLoginVO != null && mainIsLogin ) {
+	                    %>
+	                    <span class="btn-set"><a href="JavaScript:goScrap('QNA','<bean:write name="InquireForm" property="vo.seq"/>');">스크랩</a></span>
+	                    <%
+	                        }
+	                    %>
+	                    <%
 	                        if ( uni.equals("uni") ) {
 	                    %>
-	                    <span class="btn-set"><a href="JavaScript:goPrint('QNA','<bean:write name="InquireForm" property="vo.seq"/>');">인쇄</a></span>
 	                    <span class="btn-set"><a href="JavaScript:history.back()">목록</a></span>
 	                    <%
 	                        } else {
 	                    %>
-	                    <span class="btn-set"><a href="JavaScript:goPrint('QNA','<bean:write name="InquireForm" property="vo.seq"/>');">인쇄</a></span>
 	                    <span class="btn-set"><a href="/switch.do?prefix=/inquire&page=/Inquire.do?method=getAdminInquireList&searchVO.board_type=QNA&searchVO.type=&searchVO.searchCategory=&searchVO.menu_sn=01">목록</a></span>
 	                    <%
 	                        }

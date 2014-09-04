@@ -12,6 +12,7 @@
     <!--		
 		function goList(){
 			fm.elements["method"].value="getMypageList";
+			fm.elements["searchVO.board_type"].value="";
 			fm.submit();
 		}
 
@@ -96,11 +97,11 @@
                                             <%
                                                 if ( board_type.equals("QNA") ) {
                                             %>
-                                            [문의]
+                                            [온라인 상담]
                                             <%
                                                 } else if ( board_type.equals("OFFER") ) {
                                             %>
-                                            [기타]
+                                            [R&D 신문고]
                                             <%
                                                 }
                                             %>

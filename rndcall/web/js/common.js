@@ -229,3 +229,91 @@ function goPasswordCheck() {
 		}
 	});
 }
+
+/****************************************************
+테이블 병합
+tbl      : 병합할 대상 table object
+startRow : 병합 시작 row, title 한 줄일 경우 1
+cNum     : 병합 실시할 컬럼번호, 0부터 시작
+length   : 병합할 row의 길이, 보통 1
+add      : 비교할 기준에 추가할 컬럼번호
+          A | 1
+          B | 1
+         을 서로 구분하고 싶다면, add에 0번째
+         컬럼을 추가
+*****************************************************/
+function mergeCell(tbl, startRow, cNum, length, add) {
+	var isAdd = false;
+	if(tbl == null) return;
+	if(startRow == null || startRow.length == 0) startRow = 1;
+	if(cNum == null || cNum.length == 0) return ;
+	if(add  == null || add.length == 0) {
+		isAdd = false;
+	}else {
+		isAdd = true;
+		add   = parseInt(add);
+	}
+	cNum   = parseInt(cNum);
+	length = parseInt(length);
+	
+	rows   = tbl.rows;
+	rowNum = rows.length;
+	
+	tempVal  = '';
+	cnt      = 0;
+	startRow = parseInt(startRow);
+	for( i = startRow; i < rowNum; i++ ) { 
+		curVal = rows[i].cells[cNum].innerHTML.trim();
+		if(isAdd) curVal += rows[i].cells[add].innerHTML.trim();
+		if( curVal == tempVal ) {
+			if(cnt == 0) {
+				cnt++;
+				startRow = i - 1;
+			}
+			cnt++;
+		}else if(cnt > 0) {
+			merge(tbl, startRow, cnt, cNum, length);
+			startRow = endRow = 0;
+			cnt = 0;
+		}else {
+		}
+		tempVal = curVal;
+	}
+
+	if(cnt > 0) {
+		merge(tbl, startRow, cnt, cNum, length);
+	}
+}
+
+/*******************************************
+mergeCell에서 사용하는 함수
+********************************************/
+function merge(tbl, startRow, cnt, cellNum, length) {
+	rows = tbl.rows;
+	row  = rows[startRow];
+	
+	for( i = startRow + 1; i < startRow + cnt; i++ ) {
+		for( j = 0; j < length; j++) {
+			rows[i].deleteCell(cellNum);
+		}
+	}
+	for( j = 0; j < length; j++) {
+		row.cells[cellNum + j].rowSpan = cnt;
+	}
+}
+
+/**
+ * jquery outerHTML함수 추가.
+ */
+$.fn.outerHTML = function() {
+    var el = $(this);
+    if( !el[0] ) return "";
+ 
+    if (el[0].outerHTML) {
+        return el[0].outerHTML;
+    } else {
+        var content = el.wrap('<p/>').parent().html();
+        el.unwrap();
+        return content;
+    }
+}

@@ -130,7 +130,7 @@
             <div class="section">       
                 <div class="tit-area">
                     <h3>연구관리제도</h3>
-                    <p>국가연구개발사업 관련 법령,제도 외 참고자료 검색이 가능합니다.</p>
+                    <p>국가연구개발사업 관련 주요 연구관리제도 자료 검색이 가능합니다.</p>
                 </div>
                 
                 <html:form action="Data" method="post" name="fm" type="kr.go.rndcall.mgnt.data.form.DataForm">

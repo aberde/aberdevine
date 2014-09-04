@@ -5,31 +5,6 @@
 
     <bean:define id="path" type="java.lang.String" value="/Statistic .do"/>
     
-<%
-	int cnt1 = 0;
-	int cnt2 = 0;
-	int cnt3 = 0;
-	int cnt4 = 0;
-	int cnt5 = 0;
-	int cnt1_1 = 0;
-	int cnt2_1 = 0;
-	int cnt3_1 = 0;
-	int cnt4_1 = 0;
-	int cnt5_1 = 0;
-	int cnt1_2 = 0;
-	int cnt2_2 = 0;
-	int cnt3_2 = 0;
-	int cnt4_2 = 0;
-	int cnt5_2 = 0;
-	
-	int count=0;
-	String old_board_type="";
-	String old_cate="";
-	String old_cate_nm="";
-	String old_cate2="";
-	String new_category2= "";
-%>
-
 	<script type="text/javascript" src="/js/FusionCharts.js"></script>
 	<script type="text/javascript" src="/js/rowspan-bacchusl.js"></script>
 <%
@@ -62,16 +37,11 @@
 			fm.elements["method"].value="getStatCategory";
 			fm.submit();
 		}
-
+		
 		function goBoardTypeL(){
-			fm.elements["method"].value="getStatBoardType";
-			fm.submit();
-		}
-
-		function goQueryUserInfoL(){
-			fm.elements["method"].value="getStatQueryUserInfo";
-			fm.submit();
-		}
+            fm.elements["method"].value="getStatBoardType";
+            fm.submit();
+        }
 		
 		function goDateL(){
 			fm.elements["method"].value="getStatDate";
@@ -83,6 +53,11 @@
 			fm.elements["method"].value="getStatVisit";
 			fm.submit();
 		}
+		
+		function goUserSectorL(){
+            fm.elements["method"].value="getStatUserSector";
+            fm.submit();
+        }
 		
 		function goExcelDown(arg){
 			fm.elements["searchVO.down_type"].value=arg;	
@@ -114,20 +89,14 @@
 		}
 			
 		function goSearch(){
-			fm.elements["method"].value="getStatCategory";
+			fm.elements["method"].value="getStatBoardType";
 			fm.submit();
 		}
 		
-		function goUserSectorL(){
-            fm.elements["method"].value="getStatUserSector";
+		function goQueryUserInfoL(){
+            fm.elements["method"].value="getStatQueryUserInfo";
             fm.submit();
         }
-		
-		$(document).ready(function (){
-			mergeCell(document.getElementById('tbl0'), '1', '2', '1', '1');
-			mergeCell(document.getElementById('tbl0'), '1', '1', '1', '1');
-			mergeCell(document.getElementById('tbl0'), '1', '0', '1');
-		});
 	//-->
 	</script>
 	
@@ -167,8 +136,8 @@
                 <!--  tab-typ01 -->
                 <div class="tab-type01 mt30">
                     <ul class="clearfix">
-                        <li><a href="JavaScript:goBoardTypeL()">전체 통계</a></li>
-                        <li class="on"><a href="JavaScript:goCategoryL()">분류별 통계</a></li>
+                        <li class="on"><a href="JavaScript:goBoardTypeL()">전체 통계</a></li>
+                        <li><a href="JavaScript:goCategoryL()">분류별 통계</a></li>
                         <li><a href="JavaScript:goQueryUserInfoL()">소속별 통계</a></li>
                         <li><a href="JavaScript:goVisitL()">접속자 현황</a></li>
                         <li><a href="JavaScript:goUserSectorL()">사용자 소속기관별 통계</a></li>
@@ -224,20 +193,18 @@
 	                <div id="excelDiv" class="tbl-type02 mt30">
 	                    <table id="tbl0" summary="질의자 소속기관별, 대분류별, 소분류별, 등록건수, 처리건수, 미처리건수 목록 페이지">
 	                        <colgroup>
+	                            <col width="*" />
+	<!--                             <col width="11%" /> -->
 	                            <col width="12%" />
 	                            <col width="12%" />
-	                            <col width="*%" />
-	                            <col width="9%" />
-	                            <col width="9%" />
-	                            <col width="9%" />
-	                            <col width="11%" />
-	                            <col width="11%" />
+	                            <col width="12%" />
+	                            <col width="12%" />
+	                            <col width="12%" />
 	                        </colgroup>
 	                        <thead>
 	                            <tr>
-	                                <th scope="col" rowspan="2">게시판유형</th>
-	                                <th scope="col" rowspan="2">대분류별</th>
-	                                <th scope="col" rowspan="2">소분류별</th>
+	<!--                                 <th scope="col" rowspan="2">질의자 소속기관별</th> -->
+	                                <th scope="col" rowspan="2">게시판유형별</th>
 	                                <th scope="col" colspan="3">등록건수</th>
 	                                <th scope="col" rowspan="2">처리건수</th>
 	                                <th scope="col" rowspan="2">미처리건수</th>
@@ -251,14 +218,18 @@
 	                        </thead>
 	                        <tbody>
 	                            <logic:empty name="StatisticForm" property="voList">
-	                                <tr><td colspan="8" style="text-align: center;">등록된 정보가 없습니다.</td></tr>
+	                                <tr><td colspan="6" style="text-align: center;">등록된 정보가 없습니다.</td></tr>
 	                            </logic:empty>
 	                            <logic:notEmpty name="StatisticForm" property="voList">
+	                                <%
+									    int cnt1 = 0;
+									    int cnt2 = 0;
+									    int cnt3 = 0;
+									    int cnt4 = 0;
+									    int cnt5 = 0;
+									%>
 	                                <logic:iterate name="StatisticForm" property="voList" indexId="rowNum" id="vo">
 										<bean:define name="vo" property="board_type" id="board_type" type="java.lang.String"/>
-										<bean:define name="vo" property="category1" id="category1" type="java.lang.String"/>
-										<bean:define name="vo" property="category2" id="category2" type="java.lang.String"/>                    
-										<bean:define name="vo" property="category1_nm" id="category1_nm" type="java.lang.String"/>
 										<bean:define name="vo" property="total_cnt" id="total_cnt" type="java.lang.Integer"/>
 										<bean:define name="vo" property="online_cnt" id="online_cnt" type="java.lang.Integer"/>
 										<bean:define name="vo" property="offline_cnt" id="offline_cnt" type="java.lang.Integer"/>
@@ -270,101 +241,24 @@
 											cnt3 += offline_cnt.intValue();
 											cnt4 += disposal_cnt.intValue();
 											cnt5 += undisposal_cnt.intValue();
-											if ( category1.equals(category2) ) {
-											    new_category2 ="";
-											} else {
-											    new_category2 = category2;
-											}
-											if ( category1.equals(old_cate) ) {
-											    cnt1_1 += total_cnt.intValue();
-											    cnt2_1 += online_cnt.intValue();
-											    cnt3_1 += offline_cnt.intValue();
-											    cnt4_1 += disposal_cnt.intValue();
-											    cnt5_1 += undisposal_cnt.intValue();
-											} else {
-											    if ( !old_cate.equals("") && !old_cate.equals("1") && !old_cate.equals("2") && !old_cate.equals("6") && !old_cate2.equals("") ) {
 	                                    %>
-	                                    <tr>
-											<td><%="QNA".equals(old_board_type) ? "온라인 상담" : "R&D 신문고" %></td>
-											<td><%=old_cate_nm %></td>
-											<td>소계</td>
-											<td class="txt-r"><%= Util.getNumberFormat(cnt1_1) %></td>
-											<td class="txt-r"><%= Util.getNumberFormat(cnt2_1) %></td>
-											<td class="txt-r"><%= Util.getNumberFormat(cnt3_1) %></td>
-											<td class="txt-r"><%= Util.getNumberFormat(cnt4_1) %></td>                      
-											<td class="txt-r"><%= Util.getNumberFormat(cnt5_1) %></td>  
-	                                    </tr>
-	                                    <%
-		                                        }
-												cnt1_1 = 0;
-												cnt2_1 = 0;
-												cnt3_1 = 0;
-												cnt4_1 = 0;
-												cnt5_1 = 0;
-												cnt1_1 += total_cnt.intValue();
-												cnt2_1 += online_cnt.intValue();
-												cnt3_1 += offline_cnt.intValue();
-												cnt4_1 += disposal_cnt.intValue();
-												cnt5_1 += undisposal_cnt.intValue();
-												old_cate =category1;
-												old_cate_nm=category1_nm;
-											}
-	                                    %>
-	                                    
-	                                    <%
-                                            if ( board_type.equals(old_board_type) ) {
-                                                cnt1_2 += total_cnt.intValue();
-                                                cnt2_2 += online_cnt.intValue();
-                                                cnt3_2 += offline_cnt.intValue();
-                                                cnt4_2 += disposal_cnt.intValue();
-                                                cnt5_2 += undisposal_cnt.intValue();
-                                            } else {
-                                                if ( !old_board_type.equals("") ) {
-                                        %>
-                                        <tr>
-                                            <td><%="QNA".equals(old_board_type) ? "온라인 상담" : "R&D 신문고" %></td>
-                                            <td colspan="2">소계</td>
-                                            <td class="txt-r"><%= Util.getNumberFormat(cnt1_2) %></td>
-                                            <td class="txt-r"><%= Util.getNumberFormat(cnt2_2) %></td>
-                                            <td class="txt-r"><%= Util.getNumberFormat(cnt3_2) %></td>
-                                            <td class="txt-r"><%= Util.getNumberFormat(cnt4_2) %></td>                      
-                                            <td class="txt-r"><%= Util.getNumberFormat(cnt5_2) %></td>  
-                                        </tr>
-                                        <%
-                                                }
-                                                cnt1_2 = 0;
-                                                cnt2_2 = 0;
-                                                cnt3_2 = 0;
-                                                cnt4_2 = 0;
-                                                cnt5_2 = 0;
-                                                cnt1_2 += total_cnt.intValue();
-                                                cnt2_2 += online_cnt.intValue();
-                                                cnt3_2 += offline_cnt.intValue();
-                                                cnt4_2 += disposal_cnt.intValue();
-                                                cnt5_2 += undisposal_cnt.intValue();
-                                                
-                                                old_board_type = board_type; 
-                                            }
-	                                        old_cate2 = category2;
-                                        %>
-	                                    
+	<!--                                     <tr> -->
+	<%-- 										<td style="text-align:left;"><%=old_cate_nm %></td> --%>
+	<!-- 										<td style="text-align:left;"><b>소계</b></td> -->
+	<%-- 										<td style="text-align:center;"><a href="JavaScript:goStatList('SUB_T','<%=old_cate%>','')"><b><%=cnt1_1%></b></a></td> --%>
+	<%-- 										<td style="text-align:center;"><a href="JavaScript:goStatList('SUB_ON','<%=old_cate%>','')"><b><%=cnt2_1%></b></a></td> --%>
+	<%-- 										<td style="text-align:center;"><a href="JavaScript:goStatList('SUB_OFF','<%=old_cate%>','')"><b><%=cnt3_1%></b></a></td> --%>
+	<%-- 										<td style="text-align:center;"><a href="JavaScript:goStatList('SUB_Y','<%=old_cate%>','')"><b><%=cnt4_1%></b></a></td>                       --%>
+	<%-- 										<td style="text-align:center;"><a href="JavaScript:goStatList('SUB_N','<%=old_cate%>','')"><b><%=cnt5_1%></b></a></td>   --%>
+	<!--                                     </tr> -->
 										<tr <%= rowNum.intValue() % 2 == 1 ? "class=\"on\"" : "" %>>
 											<td>
 											    <logic:equal name="vo" property="board_type" value="QNA">
-                                                       온라인 상담
-                                                </logic:equal>
-                                                <logic:equal name="vo" property="board_type" value="OFFER">
-                                                R&D 신문고
-                                                </logic:equal>
-											</td>
-											<td><bean:write name="vo" property="category1_nm"/></td>
-											<td>
-											    <logic:empty name="vo" property="category2_nm">
-											    소계
-											    </logic:empty>
-											    <logic:notEmpty name="vo" property="category2_nm">
-    											    <bean:write name="vo" property="category2_nm"/>
-											    </logic:notEmpty>
+											    온라인 상담
+											    </logic:equal>
+											    <logic:equal name="vo" property="board_type" value="OFFER">
+											    R&D 신문고
+											    </logic:equal>
 											</td>
 											<td class="txt-r"><%= Util.getNumberFormat(total_cnt) %></td>
 											<td class="txt-r"><%= Util.getNumberFormat(online_cnt) %></td>
@@ -373,31 +267,22 @@
 											<td class="txt-r"><%= Util.getNumberFormat(undisposal_cnt) %></td>
 										</tr>
 	                                </logic:iterate>
+		                            <tr>
+										<td>총건수</td>
+										<td class="txt-r"><%= Util.getNumberFormat(cnt1) %></td>
+										<td class="txt-r"><%= Util.getNumberFormat(cnt2) %></td>
+										<td class="txt-r"><%= Util.getNumberFormat(cnt3) %></td>
+										<td class="txt-r"><%= Util.getNumberFormat(cnt4) %></td>
+										<td class="txt-r"><%= Util.getNumberFormat(cnt5) %></td>
+		                            </tr>
 	                            </logic:notEmpty>
-                                <tr>
-                                    <td><%="QNA".equals(old_board_type) ? "온라인 상담" : "R&D 신문고" %></td>
-                                    <td colspan="2">소계</td>
-                                    <td class="txt-r"><%= Util.getNumberFormat(cnt1_2) %></td>
-                                    <td class="txt-r"><%= Util.getNumberFormat(cnt2_2) %></td>
-                                    <td class="txt-r"><%= Util.getNumberFormat(cnt3_2) %></td>
-                                    <td class="txt-r"><%= Util.getNumberFormat(cnt4_2) %></td>                      
-                                    <td class="txt-r"><%= Util.getNumberFormat(cnt5_2) %></td>  
-                                </tr>
-	                            <tr>
-	                                <td colspan="3">총건수</td>
-									<td class="txt-r"><%= Util.getNumberFormat(cnt1) %></td>
-									<td class="txt-r"><%= Util.getNumberFormat(cnt2) %></td>
-									<td class="txt-r"><%= Util.getNumberFormat(cnt3) %></td>
-									<td class="txt-r"><%= Util.getNumberFormat(cnt4) %></td>                        
-									<td class="txt-r"><%= Util.getNumberFormat(cnt5) %></td>
-	                            </tr>
 	                        </tbody>
 	                    </table>
 	                </div>
 	                <!-- // board-type01 -->
 	                
 	                <div class="btn-lst txt-r">
-                        <span class="btn-set green"><a href="javascript:goExcelDown('category');">엑셀 다운로드</a></span>
+                        <span class="btn-set green"><a href="javascript:goExcelDown('board_type');">엑셀 다운로드</a></span>
                     </div>
 	            </html:form>
 	                

@@ -1,6 +1,7 @@
 package kr.go.rndcall.mgnt.faq.action;
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,6 +16,10 @@ import kr.go.rndcall.mgnt.faq.biz.FaqBiz;
 import kr.go.rndcall.mgnt.faq.form.FaqForm;
 import kr.go.rndcall.mgnt.faq.vo.FaqResultVO;
 import kr.go.rndcall.mgnt.faq.vo.FaqSearchVO;
+import kr.go.rndcall.mgnt.offer.biz.OfferBiz;
+import kr.go.rndcall.mgnt.offer.form.OfferForm;
+import kr.go.rndcall.mgnt.offer.vo.OfferResultVO;
+import kr.go.rndcall.mgnt.offer.vo.OfferSearchVO;
 
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionError;
@@ -934,5 +939,78 @@ public class FaqAction extends DispatchAction {
 		fm.setSearchVO(searchVO);
     	saveErrors(request, errors);        
     	return mapping.findForward(target);
+    }
+    
+    /**
+     * 자주 묻는 질문 상세정보를 프린트하기위해 불러오는 팝업창
+     */     
+    public ActionForward getFaqViewPop(ActionMapping mapping, ActionForm form, HttpServletRequest request
+            , HttpServletResponse response) throws Exception {      
+        
+        String target = "getFaqViewPop"; 
+        
+        ActionErrors errors = null;
+        
+        if (request.getAttribute("org.apache.struts.action.ERROR") == null) {
+            errors = new ActionErrors();
+        } else {
+            errors = (ActionErrors) request
+            .getAttribute("org.apache.struts.action.ERROR");
+        }
+        
+        FaqForm fm = (FaqForm) form;
+        FaqSearchVO searchVO = fm.getSearchVO();
+        FaqResultVO resultVO = new FaqResultVO();
+        FaqResultVO satiResultVO = new FaqResultVO();
+        FaqResultVO resultFileVO = new FaqResultVO();
+        FaqVO vo = fm.getVo();
+        
+        if(Util.getLoginUserVO(request) != null){
+            searchVO.setLoginId(Util.getLoginId(request)); //로그인 아이디정보
+            searchVO.setName(Util.getName(request)); //로그인 이름정보
+            searchVO.setRoleCD(Util.getLoginUserVO(request).getRoleCD());
+            vo.setReg_id(Util.getLoginId(request));
+        }
+        
+        try{
+            FaqBiz biz = new FaqBiz();
+            resultVO = biz.faqDetailView(vo, searchVO);
+            //seq = FaqDAO.getSeq();
+        } catch (Exception e) {
+            logger.debug("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
+        }
+        try{
+            FaqBiz FaqBiz = new FaqBiz();
+            resultFileVO = FaqBiz.getFileInfo(resultVO.getVo().getFile_id());
+        } catch (Exception e) {
+            logger.debug("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
+        }
+        //fm.setVo(resultVO.getVo());
+        try{
+            FaqBiz FaqBiz = new FaqBiz();
+            satiResultVO = FaqBiz.getSatiInfo(resultVO.getVo().getSeq(), searchVO.getLoginId());
+        } catch (Exception e) {
+            logger.debug("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
+        }
+        
+        if (errors.isEmpty()) {
+            if (resultVO.getTotRowCount().intValue() == 0) {
+                errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                "errors.getList.DataNotFound"));
+            } else {
+                errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                "errors.getList.success"));
+            }
+        }
+        
+        fm.setVoList1(resultFileVO.getVoList());
+        fm.setVoList(resultVO.getVoList());
+        fm.setVo(resultVO.getVo());
+        fm.setSatiVO(satiResultVO.getSatiVO());
+        saveErrors(request, errors);        
+        return mapping.findForward(target);
     }
 }

@@ -5,6 +5,8 @@ package kr.go.rndcall.mgnt.common;
 import java.io.BufferedWriter;
 import java.io.Reader;
 import java.sql.*;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
@@ -18,6 +20,7 @@ import kr.go.rndcall.mgnt.login.LoginVO;
 
 
 import oracle.sql.*;
+
 import org.apache.log4j.*;
 import org.apache.struts.action.ActionForm;
 
@@ -719,4 +722,13 @@ public class Util {
     	}    	
     }
     
+    
+    public static String getNumberFormat(Object target) {
+        String result = "";
+        
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        result = decimalFormat.format(target);
+        
+        return result;
+    }
 }

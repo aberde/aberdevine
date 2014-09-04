@@ -18,6 +18,21 @@ public class StatisticVO extends BaseVO{
 	private int undisposal_cnt;		//미처리건수
 	private int cnt;		//건수
 	
+	private String board_type;		// 게시판유형
+	private String board_typeNm;	// 게시판유형
+	private String userType;      // 사용자유형(비회원, 회원)
+	private String userTypeNm;      // 사용자유형(비회원, 회원)
+	private String queryUserInfo;   // 소속
+	private String queryUserInfoNm;   // 소속
+
+	private int sector1;   //중앙행정기관
+	private int sector2;   //전문기관
+	private int sector3;   //정부출연연구기관
+	private int sector4;   //대학
+	private int sector5;   //기업
+	private int sector6;   //기타
+	private int sector7;   //무소속
+	
 	
 	/**
 	 * BuAdNotiLVO 생성자
@@ -34,6 +49,20 @@ public class StatisticVO extends BaseVO{
 		this.disposal_cnt = 0;
 		this.undisposal_cnt = 0;
 		this.cnt = 0;
+		this.board_type = "";
+		this.board_typeNm = "";
+		this.userType = "";
+		this.userTypeNm = "";
+		this.queryUserInfo = "";
+		this.queryUserInfoNm = "";
+		
+		this.sector1 = 0;
+		this.sector2 = 0;
+		this.sector3 = 0;
+		this.sector4 = 0;
+		this.sector5 = 0;
+		this.sector6 = 0;
+		this.sector7 = 0;
 	}
 	
 	/**
@@ -162,5 +191,109 @@ public class StatisticVO extends BaseVO{
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
-	
+
+    public String getBoard_type() {
+        return board_type;
+    }
+
+    public void setBoard_type(String board_type) {
+        this.board_type = board_type;
+    }
+
+    public String getUserTypeNm() {
+        return userTypeNm;
+    }
+
+    public void setUserTypeNm(String userTypeNm) {
+        this.userTypeNm = userTypeNm;
+    }
+
+    public String getQueryUserInfoNm() {
+        return queryUserInfoNm;
+    }
+
+    public void setQueryUserInfoNm(String queryUserInfoNm) {
+        this.queryUserInfoNm = queryUserInfoNm;
+    }
+
+    public String getBoard_typeNm() {
+        return board_typeNm;
+    }
+
+    public void setBoard_typeNm(String board_typeNm) {
+        this.board_typeNm = board_typeNm;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    public String getQueryUserInfo() {
+        return queryUserInfo;
+    }
+
+    public void setQueryUserInfo(String queryUserInfo) {
+        this.queryUserInfo = queryUserInfo;
+    }
+
+    public int getSector1() {
+        return sector1;
+    }
+
+    public void setSector1(int sector1) {
+        this.sector1 = sector1;
+    }
+
+    public int getSector2() {
+        return sector2;
+    }
+
+    public void setSector2(int sector2) {
+        this.sector2 = sector2;
+    }
+
+    public int getSector3() {
+        return sector3;
+    }
+
+    public void setSector3(int sector3) {
+        this.sector3 = sector3;
+    }
+
+    public int getSector4() {
+        return sector4;
+    }
+
+    public void setSector4(int sector4) {
+        this.sector4 = sector4;
+    }
+
+    public int getSector5() {
+        return sector5;
+    }
+
+    public void setSector5(int sector5) {
+        this.sector5 = sector5;
+    }
+
+    public int getSector6() {
+        return sector6;
+    }
+
+    public void setSector6(int sector6) {
+        this.sector6 = sector6;
+    }
+
+    public int getSector7() {
+        return sector7;
+    }
+
+    public void setSector7(int sector7) {
+        this.sector7 = sector7;
+    }
+
 }

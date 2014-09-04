@@ -136,7 +136,7 @@ SELECT a.CATEGORY_ID AS code,
 FROM RNDCALL_CATEGORY a
 WHERE a.TREE_LEVEL = '1'
 	  AND a.ISUSE = 'Y'
-	  AND a.CATEGORY_ID <> 99999999
+	  AND a.CATEGORY_ID IN (97, 74, 91, 77)
 ORDER BY  a.ORDER_NO
  
 #==============================================================

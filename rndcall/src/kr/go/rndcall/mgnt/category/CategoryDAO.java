@@ -45,6 +45,7 @@ public class CategoryDAO extends BaseSqlDAO {
 				vo.setParent_id(rs.getString("PARENT_ID"));
 				vo.setReg_dt(rs.getString("REG_DT"));
 				vo.setDtl_cnt(rs.getString("DTL_CNT"));
+				vo.setQna_yn(rs.getString("QNA_YN"));
 
 				voList.add(vo);
 			}
@@ -88,6 +89,7 @@ public class CategoryDAO extends BaseSqlDAO {
 				vo.setParent_id(rs.getString("PARENT_ID"));
 				vo.setReg_dt(rs.getString("REG_DT"));
 				vo.setParent_nm(rs.getString("PARENT_NM"));
+				vo.setQna_yn(rs.getString("QNA_YN"));
 
 				voList.add(vo);
 			}
@@ -142,6 +144,7 @@ public class CategoryDAO extends BaseSqlDAO {
 				vo.setIs_use(rs.getString("ISUSE"));
 				vo.setParent_id(rs.getString("PARENT_ID"));
 				vo.setReg_dt(rs.getString("REG_DT"));
+				vo.setQna_yn(rs.getString("QNA_YN"));
 
 			}
 			resultVO.setVo(vo);
@@ -167,6 +170,7 @@ public class CategoryDAO extends BaseSqlDAO {
 				pstmt.setString(3, vo.getOrder_no());
 				pstmt.setString(4, vo.getParent_id());
 				pstmt.setString(5, vo.getLogin_id());
+				pstmt.setString(6, vo.getQna_yn());
 				
 				pstmt.execute();
 			}
@@ -190,7 +194,8 @@ public class CategoryDAO extends BaseSqlDAO {
 			pstmt.setString(1, vo.getCategory_nm());
 			pstmt.setString(2, vo.getOrder_no());
 			pstmt.setString(3, vo.getLogin_id());
-			pstmt.setString(4, vo.getCategory_id());
+			pstmt.setString(4, vo.getQna_yn());
+			pstmt.setString(5, vo.getCategory_id());
 			
 			pstmt.execute();
 			result = "UPDATE";

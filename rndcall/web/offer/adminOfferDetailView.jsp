@@ -78,6 +78,11 @@
 		function goPrint(arg1, arg2){
             window.open("/switch.do?prefix=/offer&page=/Offer.do?method=getOfferViewPop&searchVO.board_type=" + arg1 + "&searchVO.seq=" + arg2, "techpop","toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=800,height=800");
         }
+		
+		function goDocDownload() {
+            fm.elements["method"].value="offerDetailViewDoc";
+            fm.submit();
+        }
 	//-->
 	</script>
 	
@@ -95,7 +100,7 @@
                 <li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.roleCD=&searchVO.search_sel=&searchVO.search_word=&searchVO.menu_sn=09">회원관리</a></li>
                 <li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=09">질문분야관리</a></li>
                 <li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=09">오프라인자료 등록</a></li>
-                <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=09">통계정보</a></li>
+                <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatBoardType&searchVO.menu_sn=09">통계정보</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -191,27 +196,39 @@
                     <div class="btn-lst txt-r">
                         <bean:define name="OfferForm" property="vo.up_del_stat" id="up_del_stat" type="java.lang.String"/>
                         <bean:define name="OfferForm" property="vo.stat" id="stat" type="java.lang.String"/>
-                        <span class="btn-set"><a href="JavaScript:goPrint('OFFER','<bean:write name="vo" property="seq"/>');">인쇄</a></span>
-                        <span class="btn-set"><a href="JavaScript:goOfferList()">목록</a></span>
+                        <span class="btn-set"><a href="JavaScript:goDocDownload()">파일저장</a></span>
                         <%
-                            if ( login_id != null && !login_id.isEmpty() && login_id.equals(vo.getReg_id()) ) {
-                        %>
-                        <span class="btn-set pink"><a href="JavaScript:goOfferUpdate()">질의수정</a></span>
-                        <%
-                            }
                             if ( roleCd.equals("0000Z") || roleCd.equals("0000C") ) {
                                 if(stat.equals("N")){
                         %>
                         <span class="btn-set pink"><a href="JavaScript:goOfferAnswerInsert()">답변달기</a></span>
+                        <span class="btn-set"><a href="JavaScript:goPrint('OFFER','<bean:write name="vo" property="seq"/>');">인쇄</a></span>
+<!--                         <span class="btn-set pink"><a href="JavaScript:goOfferDelete()">삭제</a></span> -->
                         <%
                                 }else{
                         %>
                         <span class="btn-set pink"><a href="JavaScript:goOfferAnswerInsert()">답변수정</a></span>
-                        <span class="btn-set pink"><a href="JavaScript:goOfferDelete()">삭제</a></span>
+                        <span class="btn-set"><a href="JavaScript:goPrint('OFFER','<bean:write name="vo" property="seq"/>');">인쇄</a></span>
+                        <span class="btn-set"><a href="JavaScript:goOfferDelete()">삭제</a></span>
                         <% 
                                 }
                             }
                         %>
+                        <%
+                            if ( login_id != null && !login_id.isEmpty() && login_id.equals(vo.getReg_id()) ) {
+                        %>
+                        <span class="btn-set"><a href="JavaScript:goOfferUpdate()">질의수정</a></span>
+                        <%
+                            }
+                        %>
+                        <%
+                            if ( mainLoginVO != null && mainIsLogin ) {
+                        %>
+                        <span class="btn-set"><a href="JavaScript:goScrap('OFFER','<bean:write name="vo" property="seq"/>');">스크랩</a></span>
+                        <%
+                            }
+                        %>
+                        <span class="btn-set"><a href="JavaScript:goOfferList()">목록</a></span>
                     </div>
                     <!-- //btn-set-->
 	            </html:form>

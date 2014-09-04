@@ -85,7 +85,7 @@
                     </div>
                     <div class="scrap">
                         <h4 class="orange">스크랩현황</h4>
-                        <p class="number">건수 : <span><a href="JavaScript:goStatList('QNA','4')"><bean:write name="MypageForm" property="vo.statCnt7"/>건</a></span></p>
+                        <p class="number">건수 : <span><a href="JavaScript:goStatList('','4')"><bean:write name="MypageForm" property="vo.statCnt7"/>건</a></span></p>
                     </div>
                 </div>
                 <!-- my-bx -->
@@ -123,7 +123,7 @@
 	                            <caption>마이페이지 목록 페이지</caption>
 	                            <colgroup>
 	                                <col width="6%" />
-	                                <col width="7%" />
+	                                <col width="12%" />
 	                                <col width="14%" />
 	                                <col width="*" />
 	                                <col width="12%" />
@@ -153,11 +153,11 @@
                                                 <%
                                                     if ( board_type.equals("QNA") ) {
                                                 %>
-                                                <td><span class="icon icon03 mr0">문의</span></td>
+                                                <td><span class="icon mr0">상담</span></td>
                                                 <%
                                                     } else if ( board_type.equals("OFFER") ) {
                                                 %>
-                                                <td><span class="icon icon03 mr0">제안</span></td>
+                                                <td><span class="icon icon01 mr0">신문고</span></td>
                                                 <%
                                                     }
                                                 %>
@@ -196,11 +196,11 @@
                                                     <%
                                                         } else if ( stat.equals("S") ) {
                                                     %>
-                                                    <span class="btn-set set4 green">검토중</span>
+                                                    <span class="btn-set set4 yellow">검토중</span>
                                                     <%
                                                         } else {
                                                     %>
-                                                    <span class="btn-set set4 green">접수중</span>
+                                                    <span class="btn-set set4 gray">접수중</span>
                                                     <%
                                                         }
                                                     %>

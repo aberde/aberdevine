@@ -43,6 +43,12 @@
 			fm.elements["method"].value="getMypageList";
 			fm.submit();
 		}
+		
+		function goMemberDelete() {
+			if ( confirm("탈퇴하시겠습니까?") ) {
+	            document.fm5.submit();
+			}
+		}
 	//-->
     </script>
 	
@@ -142,6 +148,7 @@
                 <!-- // board-write -->
                 <!-- btn-set -->
                 <div class="btn-lst txt-r">
+                    <span class="btn-set green"><a href="javascript:goMemberDelete();">탈퇴</a></span>
                     <span class="btn-set green"><a href="javascript:update();">수정</a></span>
                 </div>
                 <!-- //btn-set-->
@@ -152,4 +159,9 @@
     </div>
     <!-- // container -->
 	
+	<form name="fm5" method="post" action="/member.do" >
+      <input type="hidden" name="method" value="getDelete"/>
+      <input type="hidden" name="vo.login_id" value="<bean:write name="memberForm" property="vo.login_id" />"/>
+    </form>
+    
 <%@include file="/include/bottom.jsp"%>

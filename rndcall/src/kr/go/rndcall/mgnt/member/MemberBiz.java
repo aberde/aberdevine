@@ -74,4 +74,11 @@ public class MemberBiz {
 		return resultVO;		
 	}
 
+	public String getDelete(MemberVO vo) throws Exception {
+        String ins = "";        
+        MemberDAO dao =  new MemberDAO();
+        ins =  dao.getDelete(vo);
+        
+        return ins;
+    }
 }

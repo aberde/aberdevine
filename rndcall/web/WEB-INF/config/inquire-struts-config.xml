@@ -51,6 +51,7 @@
       <forward name="getAdminAnswerInsertForm" path="/adminInquireAnswerForm.jsp" />
       <forward name="getAdminAnswerInsert" path="/adminInquireView.jsp" />
       <forward name="getAdminAnswerUpdate" path="/adminInquireView.jsp" />
+      <forward name="getInquireViewDoc" path="/inquireViewDoc.jsp" />
     </action>
   </action-mappings>
 </struts-config>

@@ -11,6 +11,7 @@
 	<!--		
 		function goList(){
 			fm.elements["method"].value="getMypageList";
+			fm.elements["searchVO.board_type"].value="";
 			fm.submit();
 		}
 		
@@ -105,11 +106,15 @@
                                             <%
                                                 if ( board_type.equals("QNA") ) {
                                             %>
-                                            [문의]
+                                            [온라인 상담]
                                             <%
                                                 } else if ( board_type.equals("OFFER") ) {
                                             %>
-                                            [기타]
+                                            [R&D 신문고]
+                                            <%
+                                                } else if ( board_type.equals("FAQ") ) {
+                                            %>
+                                            [자주 묻는 질문]
                                             <%
                                                 }
                                             %>
@@ -163,8 +168,8 @@
                     <!-- //board-detail -->
                     <!-- btn-set-->
                     <div class="btn-lst txt-r">
-                        <span class="btn-set"><a href="JavaScript:JavaScript:goScrapDel('<bean:write name="MypageForm" property="vo.scrap_id"/>')">스크랩삭제</a></span>
-                        <span class="btn-set"><a href="JavaScript:JavaScript:goList()')">목록</a></span>
+                        <span class="btn-set"><a href="JavaScript:goScrapDel('<bean:write name="MypageForm" property="vo.scrap_id"/>')">스크랩삭제</a></span>
+                        <span class="btn-set"><a href="JavaScript:goList()">목록</a></span>
                         
                         <bean:define name="MypageForm" property="vo.up_del_stat" id="up_del_stat" type="java.lang.String"/>
                         <bean:define name="MypageForm" property="vo.stat" id="stat" type="java.lang.String"/>

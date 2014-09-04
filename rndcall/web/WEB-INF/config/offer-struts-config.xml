@@ -34,6 +34,7 @@
       <forward name="adminOfferAnswerInsert" path="/adminOfferDetailView.jsp" />
       <forward name="adminOfferAnswerUpdate" path="/adminOfferDetailView.jsp" />
       <forward name="getOfferViewPop" path="/offerViewPop.jsp" />
+      <forward name="getOfferDetailViewDoc" path="/offerDetailViewDoc.jsp" />
     </action>
   </action-mappings>
 </struts-config>

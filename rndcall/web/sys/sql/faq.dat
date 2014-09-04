@@ -268,7 +268,7 @@ SELECT a.CATEGORY_ID AS code,
 FROM RNDCALL_CATEGORY a
 WHERE a.TREE_LEVEL = '1'
 	  AND a.ISUSE = 'Y'
-ORDER BY  a.CATEGORY_ID
+ORDER BY  a.ORDER_NO
 
 #==============================================================
 # �Һз� �ڵ�

@@ -24,7 +24,7 @@ response.setHeader("Content-Disposition", "attachment;filename=%EB%B6%84%EC%95%B
 response.setHeader("Content-Description", "JSP Generated Data"); 
 %>
 <body>
-    <table border="0" cellspacing="0" cellpadding="0">			
+    <table border="0" cellspacing="0" cellpadding="0">          
         <tr>
             <th class="center">통계년도</th>
             <td><%=start_yy%>년<%=start_mm%>월 ~ <%=start_yy%>년<%=end_mm%>월</td>
@@ -33,10 +33,10 @@ response.setHeader("Content-Description", "JSP Generated Data");
             <th class="center" colspan="2" height="25"></th>
         </tr>
         <tr>
-            <td colspan="2">			
+            <td colspan="2">            
                 <%= excelForm %>
             </td>
         </tr>
     </table>
 </body>
-</html>	
+</html> 

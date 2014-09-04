@@ -38,7 +38,7 @@
                         <h3><a href="JavaScript:goInquireMainList()">온라인 상담</a></h3>
                         <ul>
                             <li><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
-                            <li><a href="JavaScript:goFaq()">자주찾는 질문</a></li>
+                            <li><a href="JavaScript:goFaq()">자주 묻는 질문</a></li>
                         </ul>
                     </div>
                     <div class="sitebox sinmungo">

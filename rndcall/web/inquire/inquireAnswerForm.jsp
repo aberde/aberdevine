@@ -209,6 +209,14 @@
 		    fileDownLoad.elements["desCipher"].value = yn;
 		    fileDownLoad.submit();
 		}
+		
+		function goPrint(){
+            window.open("", "techpop","toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=800,height=800");
+			
+			$("#method").val("getInquireViewPopup");
+			fm.target = "techpop";
+			fm.submit();
+        }
 	//-->
 	</script>
 	
@@ -231,8 +239,8 @@
             <div class="location txt-r">        
                 <ul class="fr clearfix">
                     <li><a href="/index.jsp"><img src="/img/common/location_home.gif" alt="home" /></a></li>
-                    <li><a href="JavaScript:goInquireForm()">온라인 상담</a></li>
-                    <li class="on"><a href="JavaScript:goInquireForm()">온라인 상담</a></li>
+                    <li><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
+                    <li class="on"><a href="JavaScript:goInquireMainList()">온라인 상담</a></li>
                 </ul>
             </div>
             <!-- section -->
@@ -243,13 +251,13 @@
                 </div>
                 
                 <html:form action="/Inquire" method="post" name="fm" enctype="multipart/form-data" type="kr.go.rndcall.mgnt.inquire.form.InquireForm" onsubmit="return checkOnSubmit(this)">
-		            <html:hidden name="InquireForm" property="method" value="getAnswerInsert"/>
+		            <html:hidden name="InquireForm" property="method" styleId="method" value="getAnswerInsert"/>
 		            <html:hidden name="InquireForm" property="vo.cell_number"/>
 		            <html:hidden name="InquireForm" property="vo.email"/>
 		            <html:hidden name="InquireForm" property="searchVO.loginId"/>
 		            <html:hidden name="InquireForm" property="searchVO.name"/>
-		            <html:hidden name="InquireForm" property="searchVO.seq"/>
-		            <html:hidden name="InquireForm" property="searchVO.board_type"/>
+		            <html:hidden name="InquireForm" property="searchVO.seq" styleId="searchVO.seq" />
+		            <html:hidden name="InquireForm" property="searchVO.board_type" styleId="searchVO.board_type" />
 		            <html:hidden name="InquireForm" property="vo.del_file_id"/>
 		            <html:hidden name="InquireForm" property="vo.answer_seq"/>
 		            <html:hidden name="InquireForm" property="vo.title"/>
@@ -338,6 +346,15 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <th scope="row"><label for="open1">공개여부</label></th>
+                                        <td>
+                                            <html:radio name="InquireForm" styleId="vo.open_yn1" property="vo.open_yn" value="Y"></html:radio>
+                                            <label for="vo.open_yn1">공개</label>
+                                            <html:radio name="InquireForm" styleId="vo.open_yn2" property="vo.open_yn" value="N"></html:radio>
+                                            <label for="vo.open_yn2">비공개</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
 	                                    <th scope="row">분야 선택</th>
 	                                    <td>
 	                                        <html:select name="InquireForm" property="vo.category1" styleId="category1" title="대분류" onchange="f_cate_change(this.value)">
@@ -386,6 +403,7 @@
                     
                     <!-- btn-set -->
                     <div class="btn-lst txt-r">
+                        <span class="btn-set"><a href="JavaScript:goPrint()">인쇄</a></span>
                         <span class="btn-set pink"><a href="JavaScript:goAnswerCreate()">답변등록</a></span>
                         <span class="btn-set"><a href="JavaScript:goCancel()">취소</a></span>
                     </div>

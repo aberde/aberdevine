@@ -22,9 +22,17 @@ public class StatisticSearchVO extends BaseSearchVO{
 	private String category1 = "";
 	private String category2 = "";
 	private String seq =""; // 글번호
-	private String board_type =""; // 게시물 구분
+	private String board_type = ""; // 게시물 구분
+	private String excelForm = ""; // 엑세 파일첨부시 화면
 	
-	public String getCategory1() {
+	
+	public String getExcelForm() {
+        return excelForm;
+    }
+    public void setExcelForm(String excelForm) {
+        this.excelForm = excelForm;
+    }
+    public String getCategory1() {
 		return category1;
 	}
 	public void setCategory1(String category1) {

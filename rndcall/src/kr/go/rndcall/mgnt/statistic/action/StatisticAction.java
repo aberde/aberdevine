@@ -521,6 +521,8 @@ public class StatisticAction extends DispatchAction {
 			target = "stat_date_excel";
 		}else if(searchVO.getDown_type().equals("visit")){
 			target = "stat_visit_excel";
+		}else if(searchVO.getDown_type().equals("board_type")){
+		    target = "stat_board_type_excel";
 		}
         
 		try{
@@ -554,5 +556,170 @@ public class StatisticAction extends DispatchAction {
         
         return mapping.findForward(target);
     }
+
     
+    /**
+    * 통계관리 게시타입별 통계현황 정보조회
+    */        
+   public ActionForward getStatBoardType(ActionMapping mapping, ActionForm form, HttpServletRequest request
+                                , HttpServletResponse response) throws Exception {
+       
+       String target = "getStatBoardType";
+       ActionErrors errors = null;
+       if (request.getAttribute("org.apache.struts.action.ERROR") == null) {
+           errors = new ActionErrors();
+       } else {
+           errors = (ActionErrors) request
+           .getAttribute("org.apache.struts.action.ERROR");
+       }
+       
+       StatisticForm fm = (StatisticForm) form;
+       StatisticSearchVO searchVO = fm.getSearchVO();
+       StatisticResultVO resultVO = new StatisticResultVO();
+       StatisticVO vo = fm.getVo();
+       
+       if(Util.getLoginUserVO(request) != null){
+           searchVO.setLoginId(Util.getLoginId(request)); //로그인 아이디정보
+           searchVO.setName(Util.getName(request)); //로그인 이름정보
+           searchVO.setRoleCD(Util.getLoginUserVO(request).getRoleCD());
+       }
+       
+       searchVO.setCrud("category");
+       searchVO.setPagerOffset(Util.replaceNull(request.getParameter("pager.offset"), "0"));
+       try{
+           StatisticBiz biz = new StatisticBiz();
+           resultVO = biz.getStatBoardType(searchVO);
+           
+       } catch (Exception e) {
+           logger.debug("Exception: " + e.getMessage());
+           errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
+       }
+       
+       if (errors.isEmpty()) {
+           if (resultVO.getTotRowCount().intValue() == 0) {
+               errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+               "errors.getList.DataNotFound"));
+           } else {
+               errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+               "errors.getList.success"));
+           }
+       }
+
+       fm.setVoList(resultVO.getVoList());
+       saveErrors(request, errors);   
+       
+       return mapping.findForward(target); 
+       
+       
+   }
+   
+   /**
+   * 통계관리 사용자 소속별 통계현황 정보조회
+   */        
+  public ActionForward getStatQueryUserInfo(ActionMapping mapping, ActionForm form, HttpServletRequest request
+                               , HttpServletResponse response) throws Exception {
+      
+      String target = "getStatQueryUserInfo";
+      ActionErrors errors = null;
+      if (request.getAttribute("org.apache.struts.action.ERROR") == null) {
+          errors = new ActionErrors();
+      } else {
+          errors = (ActionErrors) request
+          .getAttribute("org.apache.struts.action.ERROR");
+      }
+      
+      StatisticForm fm = (StatisticForm) form;
+      StatisticSearchVO searchVO = fm.getSearchVO();
+      StatisticResultVO resultVO = new StatisticResultVO();
+      StatisticVO vo = fm.getVo();
+      
+      if(Util.getLoginUserVO(request) != null){
+          searchVO.setLoginId(Util.getLoginId(request)); //로그인 아이디정보
+          searchVO.setName(Util.getName(request)); //로그인 이름정보
+          searchVO.setRoleCD(Util.getLoginUserVO(request).getRoleCD());
+      }
+      
+      searchVO.setCrud("category");
+      searchVO.setPagerOffset(Util.replaceNull(request.getParameter("pager.offset"), "0"));
+      try{
+          StatisticBiz biz = new StatisticBiz();
+          resultVO = biz.getStatQueryUserInfo(searchVO);
+          
+      } catch (Exception e) {
+          logger.debug("Exception: " + e.getMessage());
+          errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
+      }
+      
+      if (errors.isEmpty()) {
+          if (resultVO.getTotRowCount().intValue() == 0) {
+              errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+              "errors.getList.DataNotFound"));
+          } else {
+              errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+              "errors.getList.success"));
+          }
+      }
+
+      fm.setVoList(resultVO.getVoList());
+      saveErrors(request, errors);   
+      
+      return mapping.findForward(target); 
+      
+      
+  }
+  
+  /**
+   * 통계관리 사용자 소속별 통계현황 정보조회
+   */        
+  public ActionForward getStatUserSector(ActionMapping mapping, ActionForm form, HttpServletRequest request
+          , HttpServletResponse response) throws Exception {
+      
+      String target = "getStatUserSector";
+      ActionErrors errors = null;
+      if (request.getAttribute("org.apache.struts.action.ERROR") == null) {
+          errors = new ActionErrors();
+      } else {
+          errors = (ActionErrors) request
+                  .getAttribute("org.apache.struts.action.ERROR");
+      }
+      
+      StatisticForm fm = (StatisticForm) form;
+      StatisticSearchVO searchVO = fm.getSearchVO();
+      StatisticResultVO resultVO = new StatisticResultVO();
+      StatisticVO vo = fm.getVo();
+      
+      if(Util.getLoginUserVO(request) != null){
+          searchVO.setLoginId(Util.getLoginId(request)); //로그인 아이디정보
+          searchVO.setName(Util.getName(request)); //로그인 이름정보
+          searchVO.setRoleCD(Util.getLoginUserVO(request).getRoleCD());
+      }
+      
+      searchVO.setCrud("category");
+      searchVO.setPagerOffset(Util.replaceNull(request.getParameter("pager.offset"), "0"));
+      try{
+          StatisticBiz biz = new StatisticBiz();
+          resultVO = biz.getStatUserSector(searchVO);
+          
+      } catch (Exception e) {
+          logger.debug("Exception: " + e.getMessage());
+          errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
+      }
+      
+      if (errors.isEmpty()) {
+          if (resultVO.getTotRowCount().intValue() == 0) {
+              errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                      "errors.getList.DataNotFound"));
+          } else {
+              errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                      "errors.getList.success"));
+          }
+      }
+      
+      fm.setVoList(resultVO.getVoList());
+      saveErrors(request, errors);   
+      
+      return mapping.findForward(target); 
+      
+      
+  }
 }

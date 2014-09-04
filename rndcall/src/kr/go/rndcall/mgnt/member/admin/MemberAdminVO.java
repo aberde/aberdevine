@@ -19,8 +19,15 @@ public class MemberAdminVO extends BaseVO {
 	private String tel = "";
 	private String sector = "";
 	private String last_visit_dt = "";
+	private String del_yn = "";
 	
-	public String getLast_visit_dt() {
+	public String getDel_yn() {
+        return del_yn;
+    }
+    public void setDel_yn(String del_yn) {
+        this.del_yn = del_yn;
+    }
+    public String getLast_visit_dt() {
         return last_visit_dt;
     }
     public void setLast_visit_dt(String last_visit_dt) {

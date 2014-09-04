@@ -39,15 +39,15 @@
 
     <script type="text/javascript" src="/js/file.js"></script>
 	<script type="text/JavaScript">
-		window.onload=function(){
+	   $(document).ready(function() {
 			if("<%=errCd%>" == "1"){
-				alert("오프라인자료등록이 성공하였습니다. /n Q&A에서 확인하실수 있습니다.");
+				alert("오프라인자료등록이 성공하였습니다. \n 온라인 상담에서 확인하실수 있습니다.");
 				return;
 			}else if("<%=errCd%>" == "-1"){
 				alert("오프라인자료등록이 등록이 실패하였습니다.");
 				return;
 			}
-		};
+		});
 	
 		function fncFileAddLenChk(fileObjName, size){
 		    var fileArea = document.getElementById(fileObjName);
@@ -163,7 +163,7 @@
                 <li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=09">회원관리</a></li>
                 <li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=09">질문분야관리</a></li>
                 <li class="on"><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=09">오프라인자료등록</a></li>
-                <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=09">통계정보</a></li>
+                <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatBoardType&searchVO.menu_sn=09">통계정보</a></li>
             </ul>               
         </div>
         <!-- //lnb -->

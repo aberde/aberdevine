@@ -1,32 +1,23 @@
 package kr.go.rndcall.mgnt.statistic.dao;
 
 import java.io.Reader;
-import java.sql.CallableStatement;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import javax.naming.NamingException;
-import oracle.jdbc.OracleCallableStatement;
-import oracle.jdbc.OracleTypes;
-import oracle.sql.ARRAY;
-import oracle.sql.ArrayDescriptor;
-import oracle.sql.CHAR;
-import org.apache.log4j.Logger;
-
-import com.initech.util.URLEncoder;
-
-import kr.go.rndcall.mgnt.common.DesCipher;
 import kr.go.rndcall.mgnt.common.BaseSqlDAO;
 import kr.go.rndcall.mgnt.common.DAOBaseException;
+import kr.go.rndcall.mgnt.common.DesCipher;
 import kr.go.rndcall.mgnt.common.Util;
 import kr.go.rndcall.mgnt.inquire.vo.InquireVO;
-import kr.go.rndcall.mgnt.offer.vo.OfferVO;
+import kr.go.rndcall.mgnt.statistic.vo.StatisticAttachVO;
 import kr.go.rndcall.mgnt.statistic.vo.StatisticResultVO;
 import kr.go.rndcall.mgnt.statistic.vo.StatisticSearchVO;
 import kr.go.rndcall.mgnt.statistic.vo.StatisticVO;
-import kr.go.rndcall.mgnt.statistic.vo.StatisticAttachVO;
+
+import org.apache.log4j.Logger;
+
+import com.initech.util.URLEncoder;
 
 public class StatisticDAO extends BaseSqlDAO{
 
@@ -77,28 +68,21 @@ public class StatisticDAO extends BaseSqlDAO{
 			
 			pstmt.setString(1, start_yymm);
 			pstmt.setString(2, end_yymm);
-			pstmt.setString(3, start_yymm);
-			pstmt.setString(4, end_yymm);
-			pstmt.setString(5, start_yymm);
-			pstmt.setString(6, end_yymm);
-			pstmt.setString(7, start_yymm);
-			pstmt.setString(8, end_yymm);
-			pstmt.setString(9, start_yymm);
-			pstmt.setString(10, end_yymm);
 			
 			executeQueryForR();
 			
 			while (rs.next()) {
 				vo = new StatisticVO();
-				vo.setCategory1_nm(rs.getString("CATEGORY1_NM"));
-				vo.setCategory2_nm(rs.getString("CATEGORY2_NM"));
-				vo.setCategory1(rs.getString("CATEGORY1_ID"));
-				vo.setCategory2(rs.getString("CATEGORY2_ID"));
-				vo.setTotal_cnt(rs.getInt("TOTAL_CNT"));				
-				vo.setOnline_cnt(rs.getInt("ONLINE_CNT"));		//�¶��ΰǼ�
-				vo.setOffline_cnt(rs.getInt("OFFLINE_CNT"));		//�������ΰǼ�
-				vo.setDisposal_cnt(rs.getInt("ANSWER_Y_CNT"));		//ó���Ǽ�
-				vo.setUndisposal_cnt(rs.getInt("ANSWER_N_CNT"));		//��ó���Ǽ�
+				vo.setBoard_type(rs.getString("BOARD_TYPE"));
+				vo.setCategory1_nm(rs.getString("CATEGORY_NM"));
+				vo.setCategory2_nm(rs.getString("CATEGORY_NM2"));
+				vo.setCategory1(rs.getString("CATEGORY_ID"));
+				vo.setCategory2(rs.getString("CATEGORY_ID2"));
+				vo.setTotal_cnt(rs.getInt("TOT_CNT"));				
+				vo.setOnline_cnt(rs.getInt("ONLINE_CNT"));
+				vo.setOffline_cnt(rs.getInt("OFFLINE_CNT"));
+				vo.setDisposal_cnt(rs.getInt("ANSWER_Y_CNT"));
+				vo.setUndisposal_cnt(rs.getInt("ANSWER_N_CNT"));
 				
 				voList.add(vo);
 			}
@@ -941,4 +925,170 @@ public class StatisticDAO extends BaseSqlDAO{
 
 		return resultVO;
 	}
+	
+    public StatisticResultVO getStatBoardType(StatisticSearchVO searchVO) throws SQLException, DAOBaseException {
+
+
+        StatisticVO vo = null;
+        ArrayList voList = new ArrayList();
+        StatisticResultVO resultVO = new StatisticResultVO();
+        
+        String start_yymm="";
+        String end_yymm="";
+        try {
+            getConnection(dsname);
+            
+            String query = loadQueryString("sql.statistic.getStatBoardType");
+            
+            Calendar cal = Calendar.getInstance();
+            if(searchVO.getStart_yy().equals("")) searchVO.setStart_yy("2007");
+            if(searchVO.getStart_mm().equals("")) searchVO.setStart_mm("01");
+            if(searchVO.getEnd_yy().equals("")) searchVO.setEnd_yy(Integer.toString(cal.get(Calendar.YEAR)));
+            String mm =Integer.toString(cal.get(Calendar.MONTH)+1);
+            if(mm.length() < 2 ) mm = "0"+mm;
+    
+            if(searchVO.getEnd_mm().equals("")) {
+                searchVO.setEnd_mm(mm);
+            }else{
+                if(searchVO.getEnd_mm().length() < 2 ) searchVO.setEnd_mm("0"+searchVO.getEnd_mm());
+            }
+            
+            start_yymm =searchVO.getStart_yy()+""+searchVO.getStart_mm();
+            end_yymm =searchVO.getEnd_yy()+""+searchVO.getEnd_mm();
+            
+            System.out.println("start_yymm::"+start_yymm+"&end_yymm::"+end_yymm+"&searchVO.getStart_mm()::"+searchVO.getEnd_mm()+"&searchVO.getEnd_mm()::"+searchVO.getEnd_mm());
+            openPreparedStatementForR(query, false);
+            
+            pstmt.setString(1, start_yymm);
+            pstmt.setString(2, end_yymm);
+            
+            executeQueryForR();
+            
+            while (rs.next()) {
+                vo = new StatisticVO();
+                vo.setBoard_type(rs.getString("BOARD_TYPE"));
+                vo.setTotal_cnt(rs.getInt("TOTAL_CNT"));                
+                vo.setOnline_cnt(rs.getInt("ONLINE_CNT"));
+                vo.setOffline_cnt(rs.getInt("OFFLINE_CNT"));
+                vo.setDisposal_cnt(rs.getInt("ANSWER_Y_CNT"));
+                vo.setUndisposal_cnt(rs.getInt("ANSWER_N_CNT"));
+                
+                voList.add(vo);
+            }
+            
+            resultVO.setVoList(voList);
+        } catch (Exception e) {
+            throwDAOBaseException(e, "not");
+            System.out.println(e.getStackTrace());
+            return null;
+        } finally {
+            close();
+        }
+
+        return resultVO;
+    }
+    
+    public StatisticResultVO getStatQueryUserInfo(StatisticSearchVO searchVO) throws SQLException, DAOBaseException {
+        
+        
+        StatisticVO vo = null;
+        ArrayList voList = new ArrayList();
+        StatisticResultVO resultVO = new StatisticResultVO();
+        
+        String start_yymm="";
+        String end_yymm="";
+        try {
+            getConnection(dsname);
+            
+            String query = loadQueryString("sql.statistic.getStatQueryUserInfo");
+            
+            Calendar cal = Calendar.getInstance();
+            if(searchVO.getStart_yy().equals("")) searchVO.setStart_yy("2007");
+            if(searchVO.getStart_mm().equals("")) searchVO.setStart_mm("01");
+            if(searchVO.getEnd_yy().equals("")) searchVO.setEnd_yy(Integer.toString(cal.get(Calendar.YEAR)));
+            String mm =Integer.toString(cal.get(Calendar.MONTH)+1);
+            if(mm.length() < 2 ) mm = "0"+mm;
+            
+            if(searchVO.getEnd_mm().equals("")) {
+                searchVO.setEnd_mm(mm);
+            }else{
+                if(searchVO.getEnd_mm().length() < 2 ) searchVO.setEnd_mm("0"+searchVO.getEnd_mm());
+            }
+            
+            start_yymm =searchVO.getStart_yy()+""+searchVO.getStart_mm();
+            end_yymm =searchVO.getEnd_yy()+""+searchVO.getEnd_mm();
+            
+            System.out.println("start_yymm::"+start_yymm+"&end_yymm::"+end_yymm+"&searchVO.getStart_mm()::"+searchVO.getEnd_mm()+"&searchVO.getEnd_mm()::"+searchVO.getEnd_mm());
+            openPreparedStatementForR(query, false);
+            
+            pstmt.setString(1, start_yymm);
+            pstmt.setString(2, end_yymm);
+            
+            executeQueryForR();
+            
+            while (rs.next()) {
+                vo = new StatisticVO();
+                vo.setBoard_type(rs.getString("BOARD_TYPE"));
+                vo.setBoard_typeNm(rs.getString("BOARD_TYPE_NM"));
+                vo.setUserType(rs.getString("USER_TYPE"));
+                vo.setUserTypeNm(rs.getString("USER_TYPE_NM"));
+                vo.setQueryUserInfo(rs.getString("QUERY_USER_INFO"));
+                vo.setQueryUserInfoNm(rs.getString("QUERY_USER_INFO_NM"));
+                vo.setTotal_cnt(rs.getInt("TOTAL_CNT"));                
+                vo.setOnline_cnt(rs.getInt("ONLINE_CNT"));
+                vo.setOffline_cnt(rs.getInt("OFFLINE_CNT"));
+                vo.setDisposal_cnt(rs.getInt("ANSWER_Y_CNT"));
+                vo.setUndisposal_cnt(rs.getInt("ANSWER_N_CNT"));
+                
+                voList.add(vo);
+            }
+            
+            resultVO.setVoList(voList);
+        } catch (Exception e) {
+            throwDAOBaseException(e, "not");
+            System.out.println(e.getStackTrace());
+            return null;
+        } finally {
+            close();
+        }
+        
+        return resultVO;
+    }
+    
+    public StatisticResultVO getStatUserSector(StatisticSearchVO searchVO) throws SQLException, DAOBaseException {
+        StatisticVO vo = null;
+        ArrayList voList = new ArrayList();
+        StatisticResultVO resultVO = new StatisticResultVO();
+        
+        try {
+            getConnection(dsname);
+            
+            String query = loadQueryString("sql.statistic.getStatUserSector");
+            openPreparedStatementForR(query, false);
+            executeQueryForR();
+            
+            while (rs.next()) {
+                vo = new StatisticVO();
+                vo.setSector1(rs.getInt("SECTOR1"));
+                vo.setSector2(rs.getInt("SECTOR2"));
+                vo.setSector3(rs.getInt("SECTOR3"));
+                vo.setSector4(rs.getInt("SECTOR4"));
+                vo.setSector5(rs.getInt("SECTOR5"));
+                vo.setSector6(rs.getInt("SECTOR6"));
+                vo.setSector7(rs.getInt("SECTOR7"));
+                
+                voList.add(vo);
+            }
+            
+            resultVO.setVoList(voList);
+        } catch (Exception e) {
+            throwDAOBaseException(e, "not");
+            System.out.println(e.getStackTrace());
+            return null;
+        } finally {
+            close();
+        }
+        
+        return resultVO;
+    }
 }
