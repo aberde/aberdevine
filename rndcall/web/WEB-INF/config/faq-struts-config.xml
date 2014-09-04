@@ -27,6 +27,7 @@
       <forward name="smsPopForm" path="/popup/smsPopForm.jsp" />
       <forward name="smsCommit" path="/popup/smsPopForm.jsp" />
       <forward name="orgTelNum" path="/popup/orgTelNum.jsp" />
+      <forward name="getFaqViewPop" path="/faqViewPop.jsp" />
     </action>
   </action-mappings>
 </struts-config>

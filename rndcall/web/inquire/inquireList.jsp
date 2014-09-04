@@ -152,10 +152,10 @@
 							    <html:optionsCollection name="InquireForm" property="voList2" value="code" label="code_nm"/>
 							</html:select>
 	                        <html:select name="InquireForm" property="searchVO.whichSearch" style="width:90px;">
-	                            <html:option value="reg_id">글쓴이</html:option>
+                                <html:option value="all">제목+내용</html:option>
                                 <html:option value="title">제목</html:option>
                                 <html:option value="contents">내용</html:option>
-                                <html:option value="all">제목+내용</html:option>
+	                            <html:option value="reg_id">글쓴이</html:option>
                             </html:select>
                             <html:text name="InquireForm" property="searchVO.searchTxt" title="검색어를 입력하세요" maxlength="35" onchange="trim(this)" />
 	                        <a href="javascript:goSearch()" class="search-btn"><img src="/img/sub/icon_zoom.gif" alt="검색" /></a>
@@ -169,12 +169,12 @@
 	                            <caption>온라인 상담 목록 페이지</caption>
 	                            <colgroup>
 	                                <col width="7%" />
-	                                <col width="13%" />
+	                                <col width="11%" />
 	                                <col width="*" />
 	                                <col width="8%" />
-	                                <col width="12%" />
-	                                <col width="12%" />
-	                                <col width="8%" />
+	                                <col width="10%" />
+	                                <col width="10%" />
+	                                <col width="7%" />
 	                            </colgroup>
 	                            <thead>
 	                                <tr>
@@ -205,7 +205,7 @@
                                                     <bean:define name="vo" property="reg_dt" id="reg_dt" type="java.lang.String"/>
                                                     <%
                                                         String title_n = "";
-                                                        int len = 24;
+                                                        int len = 30;
                                                         if ( title.length() > len ) {
                                                             title_n = title.substring(0,len) + "...";
                                                         } else {

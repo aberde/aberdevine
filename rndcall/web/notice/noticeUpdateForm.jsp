@@ -113,11 +113,6 @@
             </div>
             <!-- section -->
             <div class="section">       
-                <div class="tit-area">
-                    <h3>새소식</h3>
-                    <p>규정 및 제도에 대한 개선사항을 건의해주세요</p>
-                </div>
-
                 <html:form action="/Notice" method="post" name="fm" enctype="multipart/form-data" type="kr.go.rndcall.mgnt.notice.form.NoticeForm" onsubmit="return checkOnSubmit(this)">
 				    <html:hidden name="NoticeForm" property="method" value="noticeUpdate"/>
 				    <html:hidden name="NoticeForm" property="searchVO.loginId"/>

@@ -197,9 +197,9 @@
                     <div class="search-box mt20">
                         <div class="search-form">
                             <html:select name="FaqForm" property="searchVO.whichSearch" style="width:90px;">
+                                <html:option value="all">제목+내용</html:option>
                                 <html:option value="title">제목</html:option>
                                 <html:option value="contents">내용</html:option>
-                                <html:option value="all">제목+내용</html:option>
                             </html:select>
        
                             <html:text name="FaqForm" property="searchVO.searchTxt" title="검색어를 입력하세요" maxlength="35" onchange="trim(this)"  />
@@ -269,15 +269,6 @@
      
                     <!-- btn-set-->
                     <div class="btn-lst txt-r">
-                    <%
-                        if ( roleCd.equals("0000A") || roleCd.equals("0000B") || roleCd.equals("0000Z") ) {
-                    %>
-                        <span class="btn-set pink"><a href="JavaScript:goInquireForm()">상담하기</a></span>
-                        <!--       // TODO 취소 이벤트 추가. -->
-                        <span class="btn-set"><a href="JavaScript:goCancel()">취소</a></span>
-                    <%
-                        }
-                    %>
                     <%
                         if ( roleCd.equals("0000Z") || roleCd.equals("0000C") ) {
                     %>

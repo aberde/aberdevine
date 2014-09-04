@@ -44,6 +44,7 @@
       <forward name="pwFind" path="/member/pwView.jsp"/>
       <forward name="oldDocFind" path="/member/oldDocFind.jsp"/>
       <forward name="getUserView" path="/member/userView.jsp"/>
+      <forward name="logout" path="/logout.jsp"/>
     </action>
     <action path="/memberAdmin" name="memberAdminForm" type="kr.go.rndcall.mgnt.member.admin.MemberAdminAction" scope="session" input="memberAdmin" parameter="method">
       <forward name="getUserList" path="/member/admin/userList.jsp"/>

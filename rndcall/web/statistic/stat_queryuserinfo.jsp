@@ -24,9 +24,8 @@
 	
 	int count=0;
 	String old_board_type="";
-	String old_cate="";
-	String old_cate_nm="";
-	String old_cate2="";
+	String old_userType="";
+	String old_queryUserInfo="";
 	String new_category2= "";
 %>
 
@@ -65,11 +64,6 @@
 
 		function goBoardTypeL(){
 			fm.elements["method"].value="getStatBoardType";
-			fm.submit();
-		}
-
-		function goQueryUserInfoL(){
-			fm.elements["method"].value="getStatQueryUserInfo";
 			fm.submit();
 		}
 		
@@ -117,6 +111,11 @@
 			fm.elements["method"].value="getStatCategory";
 			fm.submit();
 		}
+		
+		function goQueryUserInfoL(){
+            fm.elements["method"].value="getStatQueryUserInfo";
+            fm.submit();
+        }
 		
 		function goUserSectorL(){
             fm.elements["method"].value="getStatUserSector";
@@ -168,8 +167,8 @@
                 <div class="tab-type01 mt30">
                     <ul class="clearfix">
                         <li><a href="JavaScript:goBoardTypeL()">전체 통계</a></li>
-                        <li class="on"><a href="JavaScript:goCategoryL()">분류별 통계</a></li>
-                        <li><a href="JavaScript:goQueryUserInfoL()">소속별 통계</a></li>
+                        <li><a href="JavaScript:goCategoryL()">분류별 통계</a></li>
+                        <li class="on"><a href="JavaScript:goQueryUserInfoL()">소속별 통계</a></li>
                         <li><a href="JavaScript:goVisitL()">접속자 현황</a></li>
                         <li><a href="JavaScript:goUserSectorL()">사용자 소속기관별 통계</a></li>
                     </ul>
@@ -236,8 +235,8 @@
 	                        <thead>
 	                            <tr>
 	                                <th scope="col" rowspan="2">게시판유형</th>
-	                                <th scope="col" rowspan="2">대분류별</th>
-	                                <th scope="col" rowspan="2">소분류별</th>
+	                                <th scope="col" rowspan="2">회원유형</th>
+	                                <th scope="col" rowspan="2">소속</th>
 	                                <th scope="col" colspan="3">등록건수</th>
 	                                <th scope="col" rowspan="2">처리건수</th>
 	                                <th scope="col" rowspan="2">미처리건수</th>
@@ -256,9 +255,9 @@
 	                            <logic:notEmpty name="StatisticForm" property="voList">
 	                                <logic:iterate name="StatisticForm" property="voList" indexId="rowNum" id="vo">
 										<bean:define name="vo" property="board_type" id="board_type" type="java.lang.String"/>
-										<bean:define name="vo" property="category1" id="category1" type="java.lang.String"/>
-										<bean:define name="vo" property="category2" id="category2" type="java.lang.String"/>                    
-										<bean:define name="vo" property="category1_nm" id="category1_nm" type="java.lang.String"/>
+										<bean:define name="vo" property="userType" id="userType" type="java.lang.String"/>
+										<bean:define name="vo" property="queryUserInfo" id="queryUserInfo" type="java.lang.String"/>                    
+										<bean:define name="vo" property="userTypeNm" id="userTypeNm" type="java.lang.String"/>
 										<bean:define name="vo" property="total_cnt" id="total_cnt" type="java.lang.Integer"/>
 										<bean:define name="vo" property="online_cnt" id="online_cnt" type="java.lang.Integer"/>
 										<bean:define name="vo" property="offline_cnt" id="offline_cnt" type="java.lang.Integer"/>
@@ -270,23 +269,18 @@
 											cnt3 += offline_cnt.intValue();
 											cnt4 += disposal_cnt.intValue();
 											cnt5 += undisposal_cnt.intValue();
-											if ( category1.equals(category2) ) {
-											    new_category2 ="";
-											} else {
-											    new_category2 = category2;
-											}
-											if ( category1.equals(old_cate) ) {
+											if ( userType.equals(old_userType) ) {
 											    cnt1_1 += total_cnt.intValue();
 											    cnt2_1 += online_cnt.intValue();
 											    cnt3_1 += offline_cnt.intValue();
 											    cnt4_1 += disposal_cnt.intValue();
 											    cnt5_1 += undisposal_cnt.intValue();
 											} else {
-											    if ( !old_cate.equals("") && !old_cate.equals("1") && !old_cate.equals("2") && !old_cate.equals("6") && !old_cate2.equals("") ) {
+											    if ( !old_userType.equals("") && !old_userType.equals("1") && !old_userType.equals("2") && !old_userType.equals("6") && !old_queryUserInfo.equals("") ) {
 	                                    %>
 	                                    <tr>
 											<td><%="QNA".equals(old_board_type) ? "온라인 상담" : "R&D 신문고" %></td>
-											<td><%=old_cate_nm %></td>
+											<td><%="01".equals(old_userType) ? "회원" : "비회원" %></td>
 											<td>소계</td>
 											<td class="txt-r"><%= Util.getNumberFormat(cnt1_1) %></td>
 											<td class="txt-r"><%= Util.getNumberFormat(cnt2_1) %></td>
@@ -306,8 +300,7 @@
 												cnt3_1 += offline_cnt.intValue();
 												cnt4_1 += disposal_cnt.intValue();
 												cnt5_1 += undisposal_cnt.intValue();
-												old_cate =category1;
-												old_cate_nm=category1_nm;
+												old_userType =userType;
 											}
 	                                    %>
 	                                    
@@ -345,7 +338,8 @@
                                                 
                                                 old_board_type = board_type; 
                                             }
-	                                        old_cate2 = category2;
+	                                    
+	                                        old_queryUserInfo = queryUserInfo;
                                         %>
 	                                    
 										<tr <%= rowNum.intValue() % 2 == 1 ? "class=\"on\"" : "" %>>
@@ -357,14 +351,39 @@
                                                 R&D 신문고
                                                 </logic:equal>
 											</td>
-											<td><bean:write name="vo" property="category1_nm"/></td>
 											<td>
-											    <logic:empty name="vo" property="category2_nm">
+											    <logic:equal name="vo" property="userType" value="01">
+                                                        회원 
+                                                </logic:equal>
+                                                <logic:equal name="vo" property="userType" value="02">
+                                                        비회원
+                                                </logic:equal>
+											</td>
+											<td>
+											    <logic:empty name="vo" property="queryUserInfo">
 											    소계
 											    </logic:empty>
-											    <logic:notEmpty name="vo" property="category2_nm">
-    											    <bean:write name="vo" property="category2_nm"/>
-											    </logic:notEmpty>
+											    <logic:equal name="vo" property="queryUserInfo" value="0">
+                                                        무소속
+                                                </logic:equal>
+											    <logic:equal name="vo" property="queryUserInfo" value="1">
+                                                        중앙행정기관
+                                                </logic:equal>
+											    <logic:equal name="vo" property="queryUserInfo" value="2">
+                                                        전문기관
+                                                </logic:equal>
+											    <logic:equal name="vo" property="queryUserInfo" value="3">
+                                                        정부출연연구기관
+                                                </logic:equal>
+											    <logic:equal name="vo" property="queryUserInfo" value="4">
+                                                        대학
+                                                </logic:equal>
+											    <logic:equal name="vo" property="queryUserInfo" value="5">
+                                                        기업
+                                                </logic:equal>
+											    <logic:equal name="vo" property="queryUserInfo" value="6">
+                                                        기타
+                                                </logic:equal>
 											</td>
 											<td class="txt-r"><%= Util.getNumberFormat(total_cnt) %></td>
 											<td class="txt-r"><%= Util.getNumberFormat(online_cnt) %></td>

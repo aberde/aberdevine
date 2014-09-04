@@ -111,9 +111,67 @@
 		}
 		
 	
-	
-	window.onload= function() { // onload 시 호출. 데이터 초기화.
-	}
+		// 중분류 자바스크립트 객체를 저장할 배열변수
+        var categoryL = new Array();
+        var categoryM = new Array();
+        // 자바스크립트 사용자정의 객체
+        function category_obejct(codeName, codeValue, parentCode) {
+            this.codeName = codeName;
+            this.codeValue = codeValue;
+            this.parentCode = parentCode;
+        }
+    
+        window.onload= function() { // onload 시 호출. 데이터 초기화.
+            <logic:iterate name="OfferForm" property="voList2" id="mCode" indexId="comRowNm">
+            categoryL[<%=comRowNm.intValue()%>] = new category_obejct("<bean:write name="mCode" property="code_nm" />", "<bean:write name="mCode" property="code" />", "<bean:write name="mCode" property="subjectNo" />");
+            </logic:iterate>
+            <logic:iterate name="OfferForm" property="voList3" id="mCode" indexId="comRowNm">
+            categoryM[<%=comRowNm.intValue()%>] = new category_obejct("<bean:write name="mCode" property="code_nm" />", "<bean:write name="mCode" property="code" />", "<bean:write name="mCode" property="p_code" />");
+            </logic:iterate>
+            
+            //f_cate_change2(fmDetail.elements["searchVO.bz_id"].value);
+            f_cate_change2();
+            f_cate_change(<%=category1%>);
+        }
+    
+        function f_cate_change2() { // 대분류 값 가져옴. 중분류 객체의 parentCode 에 해당하는 값.
+            // 모든 option 제거.
+            var cateL = document.getElementById("category1"); //중분류 select 박스 객체
+            var opts = cateL.options; // select 박스의 모든 option 을 가져옴.
+            while(opts.length>1) { // 최초 == 선택 == 이라고 된 부분 제외하고 모두 삭제
+                opts[1]=null;
+            }
+            
+            var idx = opts.length; // 남은 option 갯수. 여기선 당연히 1 이겠지만 다른곳에서 응용을 위해..
+            for(var i=0; i<categoryL.length; i++) { // 중분류객체들 모두 조사         
+                if(categoryL[i].codeValue =="<%=category1%>"){
+                    cateL[idx++] = new Option(categoryL[i].codeName, categoryL[i].codeValue,true,true);
+                }else{
+                    cateL[idx++] = new Option(categoryL[i].codeName, categoryL[i].codeValue);
+                }
+            } // for끝
+        } // function f_cate_change 끝
+    
+        function f_cate_change(value) { // 대분류 값 가져옴. 중분류 객체의 parentCode 에 해당하는 값.
+            // 모든 option 제거.
+            var cateM = document.getElementById("category2"); //중분류 select 박스 객체
+            var opts = cateM.options; // select 박스의 모든 option 을 가져옴.
+            while(opts.length>1) { // 최초 == 선택 == 이라고 된 부분 제외하고 모두 삭제
+                opts[1]=null;
+            }
+        
+            var idx = opts.length; // 남은 option 갯수. 여기선 당연히 1 이겠지만 다른곳에서 응용을 위해..
+            for(var i=0; i<categoryM.length; i++) { // 중분류객체들 모두 조사
+                if(categoryM[i].parentCode == value) { // 중분류객체의 parentCode 와 대분류값 비교.. 같다면..
+                // option 생성하여 현재 객체의 codeName, codeValue 추가.
+                    if(categoryM[i].codeValue =="<%=category2%>"){
+                        cateM[idx++] = new Option(categoryM[i].codeName, categoryM[i].codeValue,true,true);
+                    }else{
+                        cateM[idx++] = new Option(categoryM[i].codeName, categoryM[i].codeValue); 
+                    }
+                } // if끝
+            } // for끝
+        } // function f_cate_change 끝
 	
 	//-->
 	</script>
@@ -132,7 +190,7 @@
                 <li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.roleCD=&searchVO.search_sel=&searchVO.search_word=&searchVO.menu_sn=09">회원관리</a></li>
                 <li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=09">질문분야관리</a></li>
                 <li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=09">오프라인자료 등록</a></li>
-                <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=09">통계정보</a></li>
+                <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatBoardType&searchVO.menu_sn=09">통계정보</a></li>
             </ul>               
         </div>
         <!-- //lnb -->
@@ -219,6 +277,26 @@
                                             <bean:write name="OfferForm" property="vo.contents" filter="false"/>
 	                                    </td>
 	                                </tr>
+	                                <tr>
+                                        <th scope="row"><label for="open1">공개여부</label></th>
+                                        <td>
+                                            <html:radio name="OfferForm" styleId="vo.open_yn1" property="vo.open_yn" value="Y"></html:radio>
+                                            <label for="vo.open_yn1">공개</label>
+                                            <html:radio name="OfferForm" styleId="vo.open_yn2" property="vo.open_yn" value="N"></html:radio>
+                                            <label for="vo.open_yn2">비공개</label>
+                                        </td>
+                                    </tr>
+	                                <tr>
+                                        <th scope="row">분야 선택</th>
+                                        <td colspan="3">
+                                            <html:select name="OfferForm" property="vo.category1" styleId="category1" title="대분류" onchange="f_cate_change(this.value)">
+                                                <html:option value="">::: 선택 :::</html:option>
+                                            </html:select>
+                                            <html:select name="OfferForm" property="vo.category2" styleId="category2" title="소분류">
+                                                <html:option value="">::: 선택 :::</html:option>
+                                            </html:select>
+                                        </td>
+                                    </tr>
 	                                <tr class="comment">
 	                                    <th scope="row" class="txt-blue">답변내용</th>
 	                                    <td colspan="3" class="txt-blue">

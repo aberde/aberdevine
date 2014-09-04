@@ -6,72 +6,89 @@
 # �оߺ� ��� ��ȸ
 #==============================================================
 @sql.statistic.getStatCategory
-SELECT C.CATEGORY1_ID, nvl(c.CATEGORY2_ID, 99999999) as CATEGORY2_ID, C.CATEGORY1_NM,C.CATEGORY2_NM, 
-       NVL(Q1.total_cnt,0) AS total_cnt, NVL(Q2.online_cnt,0) AS online_cnt,
-       NVL(Q3.offline_cnt,0) AS offline_cnt, NVL(Q4.answer_y_cnt,0) AS answer_y_cnt, NVL(Q5.answer_n_cnt,0) AS answer_n_cnt
-FROM 
-(
-	SELECT A.CATEGORY_ID AS CATEGORY1_ID,
-         NVL(b.CATEGORY_ID, '') AS CATEGORY2_ID,
-         a.CATEGORY_NM AS CATEGORY1_NM, 
-         b.CATEGORY_NM AS CATEGORY2_NM 
-  FROM (SELECT CATEGORY_ID ,CATEGORY_NM, parent_id FROM RNDCALL_CATEGORY WHERE ISUSE='Y') a
-        LEFT OUTER JOIN (SELECT CATEGORY_ID ,CATEGORY_NM, parent_id, order_no FROM RNDCALL_CATEGORY WHERE ISUSE='Y') b ON A.CATEGORY_ID = B.PARENT_ID
-  WHERE a.parent_id = '-1'
-  ORDER BY a.CATEGORY_ID, b.ORDER_NO ASC
-) C LEFT OUTER JOIN 
-(
-    SELECT decode(category1,'','99999999',category1) AS category1, category2, COUNT(*) AS total_cnt
-     FROM RNDCALL_BOARD_QUESTION
-    WHERE board_type='QNA'
-          AND INSERT_TYPE != 'TEL'
-          AND DEL_YN='N'
-          AND TO_CHAR(reg_dt,'yyyymm') BETWEEN ? AND ?
-    GROUP BY decode(category1,'','99999999',category1), category2
-) Q1 ON C.CATEGORY1_ID = Q1.CATEGORY1 AND C.CATEGORY2_ID = Q1.CATEGORY2
-LEFT OUTER JOIN
- (
-    SELECT decode(category1,'','99999999',category1) AS category1, category2, COUNT(*) AS online_cnt
-    FROM RNDCALL_BOARD_QUESTION
-    WHERE board_type='QNA'
-          AND DEL_YN='N'
-          AND INSERT_TYPE='ONLINE'   
-          AND TO_CHAR(reg_dt,'yyyymm') BETWEEN ? AND ?
-    GROUP BY decode(category1,'','99999999',category1), category2
-) Q2 ON C.CATEGORY1_ID = Q2.CATEGORY1 AND C.CATEGORY2_ID = Q2.CATEGORY2
-LEFT OUTER JOIN
- (
-    SELECT decode(category1,'','99999999',category1) AS category1, category2, COUNT(*) AS offline_cnt
-    FROM RNDCALL_BOARD_QUESTION
-    WHERE board_type='QNA'
-          AND DEL_YN='N'
-          AND INSERT_TYPE='OFFLINE'
-          AND TO_CHAR(reg_dt,'yyyymm') BETWEEN ? AND ?
-    GROUP BY decode(category1,'','99999999',category1), category2
-) Q3 ON C.CATEGORY1_ID = Q3.CATEGORY1 AND C.CATEGORY2_ID = Q3.CATEGORY2
-LEFT OUTER JOIN
- (
-    SELECT decode(category1,'','99999999',category1) AS category1,category2, COUNT(*) AS answer_y_cnt
-    FROM RNDCALL_BOARD_QUESTION Q
-    WHERE board_type='QNA'
-          AND DEL_YN='N'
-          AND INSERT_TYPE != 'TEL'
-          AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER S WHERE Q.SEQ = S.Q_SEQ)
-          AND TO_CHAR(reg_dt,'yyyymm') BETWEEN ? AND ?
-    GROUP BY decode(category1,'','99999999',category1), category2
-) Q4 ON C.CATEGORY1_ID = Q4.CATEGORY1 AND C.CATEGORY2_ID = Q4.CATEGORY2
-LEFT OUTER JOIN
- (
-    SELECT decode(category1,'','99999999',category1) AS category1, category2, COUNT(*) AS answer_n_cnt 
-    FROM RNDCALL_BOARD_QUESTION Q
-    WHERE board_type='QNA'
-          AND DEL_YN='N'
-          AND INSERT_TYPE != 'TEL'
-          AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER S WHERE Q.SEQ = S.Q_SEQ)
-          AND TO_CHAR(reg_dt,'yyyymm') BETWEEN ? AND ?
-    GROUP BY decode(category1,'','99999999',category1), category2
-) Q5 ON C.CATEGORY1_ID = Q5.CATEGORY1 AND C.CATEGORY2_ID = Q5.CATEGORY2
-ORDER BY CATEGORY1_ID, CATEGORY2_ID ASC   
+SELECT 
+    A.BOARD_TYPE
+    , A.CATEGORY_ID
+    , A.CATEGORY_NM
+    , A.ORDER_NO
+    , A.CATEGORY_ID2
+    , A.CATEGORY_NM2
+    , A.ORDER_NO2
+    , B.TOT_CNT
+    , B.ONLINE_CNT
+    , B.OFFLINE_CNT
+    , B.ANSWER_Y_CNT
+    , B.ANSWER_N_CNT
+FROM (
+    SELECT 
+        'QNA' BOARD_TYPE
+        , A.CATEGORY_ID
+        , A.CATEGORY_NM
+        , A.ORDER_NO
+        , NVL(B.CATEGORY_ID, '') CATEGORY_ID2
+        , B.CATEGORY_NM CATEGORY_NM2
+        , B.ORDER_NO ORDER_NO2
+    FROM RNDCALL_CATEGORY A
+    LEFT OUTER JOIN RNDCALL_CATEGORY B
+        ON B.PARENT_ID = A.CATEGORY_ID
+        AND B.ISUSE = 'Y'
+    WHERE
+        A.PARENT_ID = -1
+        AND A.QNA_YN = 'Y'
+        AND A.ISUSE = 'Y'
+    UNION ALL
+    SELECT 
+        'OFFER' BOARD_TYPE
+        , A.CATEGORY_ID
+        , A.CATEGORY_NM
+        , A.ORDER_NO
+        , NVL(B.CATEGORY_ID, '') CATEGORY_ID2
+        , B.CATEGORY_NM CATEGORY_NM2
+        , B.ORDER_NO ORDER_NO2
+    FROM RNDCALL_CATEGORY A
+    LEFT OUTER JOIN RNDCALL_CATEGORY B
+        ON B.PARENT_ID = A.CATEGORY_ID
+        AND B.ISUSE = 'Y'
+    WHERE
+        A.PARENT_ID = -1
+        AND A.ISUSE = 'Y'
+) A
+LEFT OUTER JOIN (
+    SELECT
+        A.BOARD_TYPE
+        , DECODE(A.CATEGORY1, NULL, '99999999', '', '99999999', A.CATEGORY1) CATEGORY1
+        , NVL(A.CATEGORY2, '') CATEGORY2
+        , COUNT(*) TOT_CNT
+        , SUM(DECODE(A.INSERT_TYPE, 'ONLINE', 1, 0)) ONLINE_CNT
+        , SUM(DECODE(A.INSERT_TYPE, 'OFFLINE', 1, 0)) OFFLINE_CNT
+        , SUM(DECODE(B.SEQ, NULL, 0, 1)) ANSWER_Y_CNT
+        , SUM(DECODE(B.SEQ, NULL, 1, 0)) ANSWER_N_CNT
+    FROM RNDCALL_BOARD_QUESTION A
+    LEFT OUTER JOIN RNDCALL_BOARD_ANSWER B
+        ON B. Q_SEQ = A.SEQ
+    INNER JOIN RNDCALL_CATEGORY C
+        ON C.CATEGORY_ID = DECODE(A.CATEGORY1, NULL, '99999999', '', '99999999', A.CATEGORY1)
+        AND C.ISUSE = 'Y'
+    INNER JOIN RNDCALL_CATEGORY D
+        ON D.CATEGORY_ID = DECODE(A.CATEGORY1, NULL, '99999999', '', '99999999', A.CATEGORY1)
+        AND D.ISUSE = 'Y'
+    WHERE 
+        A.DEL_YN ='N'
+        AND A.BOARD_TYPE IN ( 'QNA', 'OFFER' )
+        AND TO_CHAR(A.REG_DT, 'YYYYMM') BETWEEN ? AND ?
+    GROUP BY
+        A.BOARD_TYPE
+        , A.CATEGORY1
+        , A.CATEGORY2
+) B
+    ON B.BOARD_TYPE = A.BOARD_TYPE
+    AND B.CATEGORY1 = A.CATEGORY_ID
+    AND B.CATEGORY2 = A.CATEGORY_ID2
+ORDER BY 
+    A.BOARD_TYPE DESC
+    , A.ORDER_NO
+    , A.ORDER_NO2
+
 
       
 #==============================================================
@@ -302,4 +319,115 @@ A.ANSWER_CONT, A.FILE_ID AS ANSWER_FILE_ID,
          DECODE(A.SEQ,NULL,'N','Y') AS STAT, NVL(A.SEQ,'0') AS ANSWER_SEQ
 FROM RNDCALL_BOARD_QUESTION Q LEFT OUTER JOIN RNDCALL_BOARD_ANSWER A ON Q.SEQ = A.Q_SEQ
 WHERE Q.DEL_YN='N' 
-      
+
+#==============================================================
+# 게시판유형별 통계.
+#==============================================================
+@sql.statistic.getStatBoardType
+SELECT
+    A.BOARD_TYPE
+    , COUNT(*) TOTAL_CNT
+    , SUM(DECODE(A.INSERT_TYPE, 'ONLINE', 1, 0)) ONLINE_CNT
+    , SUM(DECODE(A.INSERT_TYPE, 'OFFLINE', 1, 0)) OFFLINE_CNT
+    , SUM(DECODE(B.SEQ, NULL, 0, 1)) ANSWER_Y_CNT
+    , SUM(DECODE(B.SEQ, NULL, 1, 0)) ANSWER_N_CNT
+FROM RNDCALL_BOARD_QUESTION A
+LEFT OUTER JOIN RNDCALL_BOARD_ANSWER B
+    ON B.Q_SEQ = A.SEQ
+INNER JOIN RNDCALL_CATEGORY C
+    ON C.CATEGORY_ID = DECODE(A.CATEGORY1, NULL, '99999999', '', '99999999', A.CATEGORY1)
+    AND C.ISUSE = 'Y'
+INNER JOIN RNDCALL_CATEGORY D
+    ON D.CATEGORY_ID = DECODE(A.CATEGORY1, NULL, '99999999', '', '99999999', A.CATEGORY1)
+    AND D.ISUSE = 'Y'
+WHERE 
+    A.DEL_YN ='N'
+    AND A.BOARD_TYPE IN ( 'QNA', 'OFFER' )
+    AND TO_CHAR(A.REG_DT, 'YYYYMM') BETWEEN ? AND ?
+GROUP BY
+    A.BOARD_TYPE
+ORDER BY 
+    A.BOARD_TYPE DESC
+    
+#==============================================================
+# 사용자 소속별 통계.
+#==============================================================
+@sql.statistic.getStatQueryUserInfo
+SELECT A.BOARD_TYPE, A.BOARD_TYPE_NM, A.USER_TYPE, A.USER_TYPE_NM, A.QUERY_USER_INFO, A.QUERY_USER_INFO_NM, B.TOTAL_CNT, B.ONLINE_CNT, B.OFFLINE_CNT, B.ANSWER_Y_CNT, B.ANSWER_N_CNT FROM (
+    SELECT A.BOARD_TYPE, A.BOARD_TYPE_NM, B.USER_TYPE, B.USER_TYPE_NM, C.QUERY_USER_INFO, C.QUERY_USER_INFO_NM FROM (
+        SELECT 'QNA' BOARD_TYPE, '온라인 상담' BOARD_TYPE_NM
+        UNION ALL
+        SELECT 'OFFER' BOARD_TYPE, 'R&D 신문고' BOARD_TYPE_NM
+    ) A
+    CROSS JOIN (
+        SELECT A.USER_TYPE, A.USER_TYPE_NM FROM (
+            SELECT '01' USER_TYPE, '회원' USER_TYPE_NM
+            UNION ALL
+            SELECT '02' USER_TYPE, '비회원' USER_TYPE_NM
+        ) A
+    ) B
+    CROSS JOIN (
+        SELECT A.QUERY_USER_INFO, A.QUERY_USER_INFO_NM FROM (
+            SELECT '1' QUERY_USER_INFO, '중앙행정기관' QUERY_USER_INFO_NM
+            UNION ALL
+            SELECT '2' QUERY_USER_INFO, '전문기관' QUERY_USER_INFO_NM
+            UNION ALL
+            SELECT '3' QUERY_USER_INFO, '정부출연연구기관' QUERY_USER_INFO_NM
+            UNION ALL
+            SELECT '4' QUERY_USER_INFO, '대학' QUERY_USER_INFO_NM
+            UNION ALL
+            SELECT '5' QUERY_USER_INFO, '기업' QUERY_USER_INFO_NM
+            UNION ALL
+            SELECT '6' QUERY_USER_INFO, '기타' QUERY_USER_INFO_NM
+            UNION ALL
+            SELECT '0' QUERY_USER_INFO, '무소속' QUERY_USER_INFO_NM
+        ) A
+    ) C
+) A
+LEFT OUTER JOIN (
+    SELECT
+        A.BOARD_TYPE
+        , DECODE(A.REG_ID, '', '02', NULL, '02', '01') USER_TYPE
+        , DECODE(A.QUERY_USER_INFO, NULL, '0', '', '0', A.QUERY_USER_INFO) QUERY_USER_INFO
+        , COUNT(*) TOTAL_CNT
+        , SUM(DECODE(A.INSERT_TYPE, 'ONLINE', 1, 0)) ONLINE_CNT
+        , SUM(DECODE(A.INSERT_TYPE, 'OFFLINE', 1, 0)) OFFLINE_CNT
+        , SUM(DECODE(B.SEQ, NULL, 0, 1)) ANSWER_Y_CNT
+        , SUM(DECODE(B.SEQ, NULL, 1, 0)) ANSWER_N_CNT
+    FROM RNDCALL_BOARD_QUESTION A
+    LEFT OUTER JOIN RNDCALL_BOARD_ANSWER B
+        ON B.Q_SEQ = A.SEQ
+    INNER JOIN RNDCALL_CATEGORY C
+        ON C.CATEGORY_ID = DECODE(A.CATEGORY1, NULL, '99999999', '', '99999999', A.CATEGORY1)
+        AND C.ISUSE = 'Y'
+    INNER JOIN RNDCALL_CATEGORY D
+        ON D.CATEGORY_ID = DECODE(A.CATEGORY1, NULL, '99999999', '', '99999999', A.CATEGORY1)
+        AND D.ISUSE = 'Y'
+    WHERE   
+        A.DEL_YN ='N'
+        AND A.BOARD_TYPE IN ( 'QNA', 'OFFER' )
+        AND TO_CHAR(A.REG_DT, 'YYYYMM') BETWEEN ? AND ?
+    GROUP BY
+        A.BOARD_TYPE
+        , DECODE(A.REG_ID, '', '비회원', NULL, '비회원', '회원')
+        , DECODE(A.QUERY_USER_INFO, NULL, '0', '', '0', A.QUERY_USER_INFO)
+) B
+    ON B.BOARD_TYPE = A.BOARD_TYPE
+    AND B.USER_TYPE = A.USER_TYPE
+    AND B.QUERY_USER_INFO = A.QUERY_USER_INFO
+
+#==============================================================
+# 사용자 소속별 통계.
+#==============================================================
+@sql.statistic.getStatUserSector
+SELECT
+    SUM(DECODE(A.SECTOR, '1', 1, 0)) AS SECTOR1
+    , SUM(DECODE(A.SECTOR, '2', 1, 0)) AS SECTOR2
+    , SUM(DECODE(A.SECTOR, '3', 1, 0)) AS SECTOR3
+    , SUM(DECODE(A.SECTOR, '4', 1, 0)) AS SECTOR4
+    , SUM(DECODE(A.SECTOR, '5', 1, 0)) AS SECTOR5
+    , SUM(DECODE(A.SECTOR, '6', 1, 0)) AS SECTOR6
+    , SUM(DECODE(A.SECTOR, NULL, 1, '', 1, 0)) AS SECTOR7
+FROM RNDCALL_AUTH A
+WHERE
+    A.DEL_YN IS NULL

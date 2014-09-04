@@ -75,7 +75,12 @@ public class MypageDAO extends BaseSqlDAO{
 			}
 			
 			if(searchVO.getBoard_type().equals("")){
-				query += " AND Q.BOARD_TYPE in ('QNA','OFFER')";
+			    if ( searchVO.getType().equals("4") ) {
+			        query += " AND Q.BOARD_TYPE in ('QNA','OFFER','FAQ')";
+			    } else {
+			        query += " AND Q.BOARD_TYPE in ('QNA','OFFER')";
+			    }
+			    
 			}else{
 				query += " AND Q.BOARD_TYPE = '" + searchVO.getBoard_type() + "'";
 			}

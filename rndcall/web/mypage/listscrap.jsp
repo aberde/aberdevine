@@ -84,7 +84,7 @@
                     </div>
                     <div class="scrap">
                         <h4 class="orange">스크랩현황</h4>
-                        <p class="number">건수 : <span><a href="JavaScript:goStatList('QNA','4')"><bean:write name="MypageForm" property="vo.statCnt7"/>건</a></span></p>
+                        <p class="number">건수 : <span><a href="JavaScript:goStatList('','4')"><bean:write name="MypageForm" property="vo.statCnt7"/>건</a></span></p>
                     </div>
                 </div>
                 <!-- my-bx -->

@@ -294,6 +294,7 @@ FROM RNDCALL_CATEGORY a
 WHERE a.TREE_LEVEL = '1'
 	  AND a.CATEGORY_ID <> 99999999
 	  AND a.ISUSE = 'Y'
+	  AND A.QNA_YN = 'Y'
 ORDER BY  a.ORDER_NO
  
 #==============================================================
@@ -411,7 +412,8 @@ WHERE SEQ= ?
 @sql.inquire.question.getCategoryUpdate
 UPDATE RNDCALL_BOARD_QUESTION SET
 	CATEGORY1 = ?,
-	CATEGORY2 = ?
+	CATEGORY2 = ?,
+	OPEN_YN = ?
 WHERE SEQ = ?
 
 

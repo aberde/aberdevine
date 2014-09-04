@@ -109,6 +109,13 @@
 	                                <html:text styleId="ip2" name="categoryForm" property="vo.category_nm" maxlength="100" style="width:200px" />
 	                            </td>
 	                        </tr>
+	                        <tr>
+                                <th scope="row"><label for="ip3">온라인상담용</label></th>
+                                <td>
+                                    <html:radio name="categoryForm" styleId="ip3_y" property="vo.qna_yn" value="Y" /> <label for="ip3_y">적용</label>
+                                    <html:radio name="categoryForm" styleId="ip3_n" property="vo.qna_yn" value="N" /> <label for="ip3_n">미적용</label>
+                                </td>
+                            </tr>
 	                    </tbody>
 	                 </table>
 	            </div>

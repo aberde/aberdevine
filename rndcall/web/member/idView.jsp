@@ -35,6 +35,7 @@
                             </td>
                         </tr>
                         </logic:empty>
+                        <logic:notEmpty name="memberForm" property="voList">
                         <tr>
                             <td colspan="2" class="txt-c bdl-n" >
                                 <span>
@@ -52,6 +53,7 @@
 	                            </div>
                             </td>
                         </tr>
+                        </logic:notEmpty>
                     </tbody>
                  </table>
             </div>

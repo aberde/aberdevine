@@ -44,7 +44,7 @@ public class LoginDAO extends BaseSqlDAO{
     		} catch (Exception e){}
     		
     		String query = loadQueryString("sql.login.member_select"); 
-			query = new StringBuffer(query).append("\n AND A.USER_ID = '" + vo.getLogin_id() + "' AND A.PASSWORD = '"+pw+"'").toString();
+			query = new StringBuffer(query).append("\n AND DEL_YN IS NULL AND A.USER_ID = '" + vo.getLogin_id() + "' AND A.PASSWORD = '"+pw+"'").toString();
     		
     		pstmt = conn.prepareStatement(query);
 	        this.rs = pstmt.executeQuery();

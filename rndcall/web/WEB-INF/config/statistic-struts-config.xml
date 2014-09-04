@@ -27,7 +27,10 @@
 	  <forward name="getStatView" path="/stat_view.jsp" />	  
 	  <forward name="getStatListExcel" path="/stat_excel.jsp" />	  
       <forward name="getStatDataExcel" path="/stat_excel.jsp" />
-	  
+      <forward name="getStatBoardType" path="/stat_boardtype.jsp" />
+      <forward name="stat_board_type_excel" path="/stat_board_type_excel.jsp" />
+      <forward name="getStatQueryUserInfo" path="/stat_queryuserinfo.jsp" />
+      <forward name="getStatUserSector" path="/stat_user_sector.jsp" />
     </action>
   </action-mappings>
 </struts-config>

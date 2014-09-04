@@ -65,11 +65,6 @@
             </div>
             <!-- section -->
             <div class="section">       
-                <div class="tit-area">
-                    <h3>새소식</h3>
-                    <p>규정 및 제도에 대한 개선사항을 건의해주세요</p>
-                </div>
-                
                 <html:form action="/Notice" method="post" name="fm" type="kr.go.rndcall.mgnt.notice.form.NoticeForm">
 				    <html:hidden name="NoticeForm" property="method" value="getInquireInsert"/>
 				    <html:hidden name="NoticeForm" property="searchVO.loginId"/>
@@ -94,10 +89,10 @@
                                         <th scope="row">제목</th>
                                         <td><bean:write name="NoticeForm" property="vo.title" filter="false"/></td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">작성자</th>
-                                        <td><bean:write name="NoticeForm" property="vo.reg_nm"/></td>
-                                    </tr>
+<!--                                     <tr> -->
+<!--                                         <th scope="row">작성자</th> -->
+<%--                                         <td><bean:write name="NoticeForm" property="vo.reg_nm"/></td> --%>
+<!--                                     </tr> -->
                                     <tr class="comment">
                                         <th scope="row">내용</th>
                                         <td>

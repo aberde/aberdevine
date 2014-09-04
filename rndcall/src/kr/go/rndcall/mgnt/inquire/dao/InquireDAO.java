@@ -228,8 +228,8 @@ public class InquireDAO extends BaseSqlDAO{
 					query += "       AND Q.REG_NM like '%"+searchVO.getSearchTxt()+"%' ";
 					countQuery += " AND Q.REG_NM like '%"+searchVO.getSearchTxt()+"%' ";
 				}else if(searchVO.getWhichSearch().equals("reg_id")){
-				    query += "       AND Q.REG_ID like '%"+searchVO.getSearchTxt()+"%' ";
-				    countQuery += " AND Q.REG_ID like '%"+searchVO.getSearchTxt()+"%' ";
+				    query += "       AND DECODE(Q.REG_ID, NULL, '비회원', '', '비회원') like '%"+searchVO.getSearchTxt()+"%' ";
+				    countQuery += " AND DECODE(Q.REG_ID, NULL, '비회원', '', '비회원') like '%"+searchVO.getSearchTxt()+"%' ";
 				}
 			}
 			
@@ -969,7 +969,8 @@ public class InquireDAO extends BaseSqlDAO{
 			pstmt = conn.prepareStatement(query);
 	    	pstmt.setString(1, vo.getCategory1());
 	    	pstmt.setString(2, vo.getCategory2());
-			pstmt.setString(3, searchVO.getSeq());
+	    	pstmt.setString(3, vo.getOpen_yn());
+			pstmt.setString(4, searchVO.getSeq());
 			
 			pstmt.executeUpdate();
 			pstmt.close();
@@ -1042,7 +1043,8 @@ public class InquireDAO extends BaseSqlDAO{
 			pstmt = conn.prepareStatement(query);
 	    	pstmt.setString(1, vo.getCategory1());
 	    	pstmt.setString(2, vo.getCategory2());
-			pstmt.setString(3, searchVO.getSeq());
+	    	pstmt.setString(3, vo.getOpen_yn());
+			pstmt.setString(4, searchVO.getSeq());
 			
 			pstmt.executeUpdate();
 			pstmt.close();

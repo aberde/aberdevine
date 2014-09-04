@@ -343,6 +343,7 @@ public class InquireAction extends DispatchAction {
     	
     	InquireForm fm = (InquireForm) form;
     	InquireSearchVO searchVO = fm.getSearchVO();
+    	InquireVO vo = fm.getVo();
     	InquireResultVO resultVO = new InquireResultVO();		
     	InquireResultVO satiResultVO = new InquireResultVO();
     	InquireResultVO cateResultVO1 = new InquireResultVO();//대분야정보
@@ -401,6 +402,11 @@ public class InquireAction extends DispatchAction {
     		logger.debug("Exception: " + e.getMessage());
     		errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
     	}
+
+    	resultVO.getVo().setOpen_yn(vo.getOpen_yn());
+    	resultVO.getVo().setCategory1(vo.getCategory1());
+    	resultVO.getVo().setCategory2(vo.getCategory2());
+    	resultVO.getVo().setAnswerContents(vo.getAnswerContents());
     	
     	fm.setVo(resultVO.getVo());
     	fm.setVoList(questionFileVO.getVoList());	//질문첨부파일정보
@@ -3114,4 +3120,94 @@ public class InquireAction extends DispatchAction {
 
     }
 
+    /**
+     * Q&A 상세정보를 워드파일로 다운로드
+     */     
+    public ActionForward getInquireViewDoc(ActionMapping mapping, ActionForm form, HttpServletRequest request
+                             , HttpServletResponse response) throws Exception {     
+        
+        String target = "getInquireViewDoc"; 
+        ActionErrors errors = null;
+        if (request.getAttribute("org.apache.struts.action.ERROR") == null) {
+            errors = new ActionErrors();
+        } else {
+            errors = (ActionErrors) request
+                    .getAttribute("org.apache.struts.action.ERROR");
+        }
+
+        InquireForm fm = (InquireForm) form;
+        InquireSearchVO searchVO = fm.getSearchVO();
+        InquireResultVO resultVO = new InquireResultVO();       
+        InquireResultVO satiResultVO = new InquireResultVO();
+        InquireResultVO cateResultVO1 = new InquireResultVO();//대분야정보
+        
+        InquireResultVO questionFileVO = new InquireResultVO(); //질문 첨부파일
+        InquireResultVO answerFileVO = new InquireResultVO(); //답변첨부파일
+        
+        if(Util.getLoginUserVO(request) != null){
+            searchVO.setLoginId(Util.getLoginId(request)); //로그인 아이디정보
+            searchVO.setName(Util.getName(request)); //로그인 이름정보
+            searchVO.setRoleCD(Util.getLoginUserVO(request).getRoleCD());
+        }
+        request.setAttribute("searchVO.menu_sn", searchVO.getMenu_sn());
+
+        try{
+            InquireBiz InquireBiz = new InquireBiz();
+            searchVO.setFlag("V");
+            resultVO = InquireBiz.getInquireView(searchVO);
+            
+        } catch (Exception e) {
+            logger.debug("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
+        }
+        
+        try{
+            InquireBiz InquireBiz = new InquireBiz();
+            questionFileVO = InquireBiz.getFileInfo(resultVO.getVo().getQuestion_file_id());
+        } catch (Exception e) {
+            logger.debug("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
+        }
+        
+        try{
+            InquireBiz InquireBiz = new InquireBiz();
+            answerFileVO = InquireBiz.getFileInfo(resultVO.getVo().getAnswer_file_id());
+        } catch (Exception e) {
+            logger.debug("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
+        }
+        
+        
+        System.out.println("resultVO.getVo().getSeq()::"+resultVO.getVo().getSeq());
+        try{
+            InquireBiz InquireBiz = new InquireBiz();
+            satiResultVO = InquireBiz.getSatiInfo(resultVO.getVo().getSeq(), searchVO.getLoginId());
+        } catch (Exception e) {
+            logger.debug("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
+        }
+        
+        // 대분류 정보 조회
+        try{
+            InquireBiz InquireBiz = new InquireBiz();
+            cateResultVO1 = InquireBiz.getCodeInfo();
+        } catch (Exception e) {
+            logger.debug("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
+        }
+        
+        fm.setVo(resultVO.getVo());
+        fm.setVoList(questionFileVO.getVoList());   //질문첨부파일정보
+        fm.setVoList1(answerFileVO.getVoList());    //답변첨부파일
+        fm.setSatiVO(satiResultVO.getSatiVO());
+        fm.setVoList2(cateResultVO1.getVoList());
+        
+        if (errors.isEmpty()) {
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                    "errors.getList.success"));
+        }
+        saveErrors(request, errors);
+       
+        return mapping.findForward(target);
+    }
 }

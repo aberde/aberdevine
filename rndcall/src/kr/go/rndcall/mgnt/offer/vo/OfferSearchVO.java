@@ -8,7 +8,7 @@ import kr.go.rndcall.mgnt.common.BaseSearchVO;
 public class OfferSearchVO extends BaseSearchVO{
 	// 검색을 위한 조건들
 	protected String searchTxt = ""; // 검색Text
-	protected String whichSearch = ""; // 검색구분
+	protected String whichSearch = "all"; // 검색구분
 	protected String seq = ""; //게시글고유번호
 	protected String board_type = ""; //보드타입
 	protected String searchCategory = ""; //카테고리

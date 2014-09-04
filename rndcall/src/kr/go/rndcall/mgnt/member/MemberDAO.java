@@ -434,4 +434,48 @@ public class MemberDAO extends BaseSqlDAO {
 		}
 		return result;
 	}
+	
+	public String getDelete(MemberVO vo) throws SQLException, DAOBaseException {
+        
+        SSOUtil ssoUtil = new SSOUtil();
+        String query =  "";
+        int param =1;
+        String ssoPw = "";
+        String ins = "false";
+        
+        try {
+            ssoPw = ssoUtil.encrypt(vo.getPassword());          
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        try {
+            getConnection(dsname);      
+            
+            //query = loadQueryString("sql.member.getUpdate"); 
+            query  = " UPDATE RNDCALL_AUTH SET ";
+            query += "    DEL_YN = 'Y' ";
+            query += " WHERE USER_ID = ? ";
+                
+            param =1;
+        
+            System.out.println("delete query="+query);
+            
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(param++, vo.getLogin_id());
+            
+            pstmt.executeUpdate();
+            pstmt.close();              
+                
+        }catch(SQLException e){
+            ins = "false";
+            e.printStackTrace();
+        } finally {
+            ins="true";
+//          conn.commit();
+            close();
+        }
+        
+        return ins;
+    }
 }

@@ -9,7 +9,7 @@ import kr.go.rndcall.mgnt.common.BaseSearchVO;
 public class InquireSearchVO extends BaseSearchVO{
 	// 검색을 위한 조건들
 	protected String searchTxt = ""; // 검색Text
-	protected String whichSearch = ""; // 검색구분
+	protected String whichSearch = "all"; // 검색구분
 	protected String searchType =""; // 검색분류
 	protected String seq =""; // 글번호
 	protected String board_type =""; // 게시물 구분

@@ -504,4 +504,54 @@ public class MemberAction extends DispatchAction {
         logger.debug("target: " + target);
         return mapping.findForward(target);
     }
+    
+    /**
+     * getDelete 회원탈퇴
+     * @param mapping
+     * @param form
+     * @param request
+     * @param response
+     */
+    public ActionForward getDelete(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        String target = "logout";
+        ActionErrors errors = null;
+        
+        MemberForm fm = (MemberForm) form;
+        MemberSearchVO searchVO = fm.getSearchVO();
+        MemberResultVO resultVO = new MemberResultVO();
+        MemberVO vo = fm.getVo();
+        String ins = "false";
+        int oldDocCnt = 0;
+    
+        if (request.getAttribute("org.apache.struts.action.ERROR") == null) {
+            errors = new ActionErrors();
+        } else {
+            errors = (ActionErrors) request
+                    .getAttribute("org.apache.struts.action.ERROR");
+        }
+        
+        try {              
+            MemberBiz MemberBiz = new MemberBiz();
+            ins = MemberBiz.getDelete(vo);
+            oldDocCnt = MemberBiz.getOldDocCnt(vo);
+        } catch (Exception e) {
+            logger.error("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                    "errors.database.error", e.getMessage()));
+        }
+        
+        if (errors.isEmpty()) {
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                    "errors.getList.success"));
+        }
+        
+        fm.setErrCd(ins);
+        fm.setErrMsg(String.valueOf(oldDocCnt));
+        saveErrors(request, errors);
+
+        logger.debug("target: " + target);
+        return mapping.findForward(target);
+    }
 }
