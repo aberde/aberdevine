@@ -33,6 +33,13 @@ public class StatisticVO extends BaseVO{
 	private int sector6;   //기타
 	private int sector7;   //무소속
 	
+	private int online_rnd_cnt;  // 온라인 신문고건수
+	private int online_tot_cnt;  // 온라인 총 건수
+	private int answer_y_cnt;  // 온라인 처리 건수
+	private int answer_rnd_y_cnt;  // 신문고 처리 건수
+	private int answer_n_cnt;  // 온라인 미처리 건수
+	private int answer_rnd_n_cnt;  // 신문고 미처리 건수
+	
 	
 	/**
 	 * BuAdNotiLVO 생성자
@@ -63,6 +70,13 @@ public class StatisticVO extends BaseVO{
 		this.sector5 = 0;
 		this.sector6 = 0;
 		this.sector7 = 0;
+		
+		this.online_rnd_cnt = 0;   
+		this.online_tot_cnt = 0;    
+		this.answer_y_cnt = 0;     
+		this.answer_rnd_y_cnt = 0; 
+		this.answer_n_cnt = 0;    
+		this.answer_rnd_n_cnt = 0;
 	}
 	
 	/**
@@ -296,4 +310,53 @@ public class StatisticVO extends BaseVO{
         this.sector7 = sector7;
     }
 
+    public int getOnline_rnd_cnt() {
+        return online_rnd_cnt;
+    }
+
+    public void setOnline_rnd_cnt(int online_rnd_cnt) {
+        this.online_rnd_cnt = online_rnd_cnt;
+    }
+
+    public int getOnline_tot_cnt() {
+        return online_tot_cnt;
+    }
+
+    public void setOnline_tot_cnt(int online_tot_cnt) {
+        this.online_tot_cnt = online_tot_cnt;
+    }
+
+    public int getAnswer_y_cnt() {
+        return answer_y_cnt;
+    }
+
+    public void setAnswer_y_cnt(int answer_y_cnt) {
+        this.answer_y_cnt = answer_y_cnt;
+    }
+
+    public int getAnswer_rnd_y_cnt() {
+        return answer_rnd_y_cnt;
+    }
+
+    public void setAnswer_rnd_y_cnt(int answer_rnd_y_cnt) {
+        this.answer_rnd_y_cnt = answer_rnd_y_cnt;
+    }
+
+    public int getAnswer_n_cnt() {
+        return answer_n_cnt;
+    }
+
+    public void setAnswer_n_cnt(int answer_n_cnt) {
+        this.answer_n_cnt = answer_n_cnt;
+    }
+
+    public int getAnswer_rnd_n_cnt() {
+        return answer_rnd_n_cnt;
+    }
+
+    public void setAnswer_rnd_n_cnt(int answer_rnd_n_cnt) {
+        this.answer_rnd_n_cnt = answer_rnd_n_cnt;
+    }
+
+    
 }

@@ -96,4 +96,11 @@ public class StatisticBiz {
 	    
 	    return StatisticDAO.getStatUserSector(searchVO);
 	}
+	
+	public StatisticResultVO getStatCategory2(StatisticSearchVO searchVO) throws Exception {
+        
+        StatisticDAO StatisticDAO = new StatisticDAO();
+        
+        return StatisticDAO.getStatCategory2(searchVO);
+    }
 }
