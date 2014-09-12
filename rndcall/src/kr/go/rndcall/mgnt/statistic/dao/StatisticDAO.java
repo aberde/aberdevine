@@ -1091,4 +1091,76 @@ public class StatisticDAO extends BaseSqlDAO{
         
         return resultVO;
     }
+    
+    public StatisticResultVO getStatCategory2(StatisticSearchVO searchVO) throws SQLException, DAOBaseException {
+        StatisticVO vo = null;
+        ArrayList voList = new ArrayList();
+        StatisticResultVO resultVO = new StatisticResultVO();
+        
+        String start_yymm="";
+        String end_yymm="";
+        try {
+            System.out.println("통계정보리스트 >>>> " + URLEncoder.encode("통계정보리스트", "UTF-8"));
+            System.out.println("기간별통계 >>>> " + URLEncoder.encode("기간별통계", "UTF-8"));
+            System.out.println("분야별통계 >>>> " + URLEncoder.encode("분야별통계", "UTF-8"));
+            System.out.println("접속자통계 >>>> " + URLEncoder.encode("접속자통계", "UTF-8"));
+            System.out.println("온라인상담 >>>> " + URLEncoder.encode("온라인상담", "UTF-8"));
+            getConnection(dsname);
+            
+            String query = loadQueryString("sql.statistic.getStatCategory2");
+            
+            Calendar cal = Calendar.getInstance();
+            if(searchVO.getStart_yy().equals("")) searchVO.setStart_yy("2007");
+            if(searchVO.getStart_mm().equals("")) searchVO.setStart_mm("01");
+            if(searchVO.getEnd_yy().equals("")) searchVO.setEnd_yy(Integer.toString(cal.get(Calendar.YEAR)));
+            String mm =Integer.toString(cal.get(Calendar.MONTH)+1);
+            if(mm.length() < 2 ) mm = "0"+mm;
+    
+            if(searchVO.getEnd_mm().equals("")) {
+                searchVO.setEnd_mm(mm);
+            }else{
+                if(searchVO.getEnd_mm().length() < 2 ) searchVO.setEnd_mm("0"+searchVO.getEnd_mm());
+            }
+            
+            start_yymm =searchVO.getStart_yy()+""+searchVO.getStart_mm();
+            end_yymm =searchVO.getEnd_yy()+""+searchVO.getEnd_mm();
+            
+            System.out.println("start_yymm::"+start_yymm+"&end_yymm::"+end_yymm+"&searchVO.getStart_mm()::"+searchVO.getEnd_mm()+"&searchVO.getEnd_mm()::"+searchVO.getEnd_mm());
+            openPreparedStatementForR(query, false);
+            
+            pstmt.setString(1, start_yymm);
+            pstmt.setString(2, end_yymm);
+            
+            executeQueryForR();
+            
+            while (rs.next()) {
+                vo = new StatisticVO();
+                vo.setCategory1_nm(rs.getString("CATEGORY_NM"));
+                vo.setCategory2_nm(rs.getString("CATEGORY_NM2"));
+                vo.setCategory1(rs.getString("CATEGORY_ID"));
+                vo.setCategory2(rs.getString("CATEGORY_ID2"));
+                vo.setOnline_cnt(rs.getInt("ONLINE_CNT"));
+                vo.setOnline_rnd_cnt(rs.getInt("ONLINE_RND_CNT"));
+                vo.setOnline_tot_cnt(rs.getInt("ONLINE_TOT_CNT"));
+                vo.setOffline_cnt(rs.getInt("OFFLINE_CNT"));
+                vo.setTotal_cnt(rs.getInt("TOTAL_CNT"));              
+                vo.setAnswer_y_cnt(rs.getInt("ANSWER_Y_CNT"));
+                vo.setAnswer_rnd_y_cnt(rs.getInt("ANSWER_RND_Y_CNT"));
+                vo.setAnswer_n_cnt(rs.getInt("ANSWER_N_CNT"));
+                vo.setAnswer_rnd_n_cnt(rs.getInt("ANSWER_RND_N_CNT"));
+                
+                voList.add(vo);
+            }
+            
+            resultVO.setVoList(voList);
+        } catch (Exception e) {
+            throwDAOBaseException(e, "not");
+            System.out.println(e.getStackTrace());
+            return null;
+        } finally {
+            close();
+        }
+
+        return resultVO;
+    }
 }

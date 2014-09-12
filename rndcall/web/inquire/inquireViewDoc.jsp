@@ -608,7 +608,7 @@ html,body {height:100%;}
                           </td>
                       </tr>
                       <tr class="comment">
-                          <th scope="row" class="txt-blue">답변내용(자체검토)</th>
+                          <th scope="row" class="txt-blue">답변내용</th>
                           <td class="txt-blue">
                               <bean:write name="InquireForm" property="vo.answerContents" filter="false"/>
                                  <br/><br/>

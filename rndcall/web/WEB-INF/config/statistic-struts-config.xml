@@ -16,6 +16,7 @@
     
     <action name="StatisticForm" parameter="method" path="/Statistic" scope="request" type="kr.go.rndcall.mgnt.statistic.action.StatisticAction" validate="false">
       <forward name="getStatCategory" path="/stat_category.jsp" />
+      <forward name="getStatCategory2" path="/stat_category2.jsp" />
       <forward name="getStatDate" path="/stat_date.jsp" />
       <forward name="getStatVisit" path="/stat_visit.jsp" />
       <forward name="stat_category_list_excel" path="/stat_category_list_excel.jsp" />

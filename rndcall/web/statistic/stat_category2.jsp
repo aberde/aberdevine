@@ -11,23 +11,25 @@
 	int cnt3 = 0;
 	int cnt4 = 0;
 	int cnt5 = 0;
+	int cnt6 = 0;
+	int cnt7 = 0;
+	int cnt8 = 0;
+	int cnt9 = 0;
 	int cnt1_1 = 0;
 	int cnt2_1 = 0;
 	int cnt3_1 = 0;
 	int cnt4_1 = 0;
 	int cnt5_1 = 0;
-	int cnt1_2 = 0;
-	int cnt2_2 = 0;
-	int cnt3_2 = 0;
-	int cnt4_2 = 0;
-	int cnt5_2 = 0;
+	int cnt6_1 = 0;
+	int cnt7_1 = 0;
+	int cnt8_1 = 0;
+	int cnt9_1 = 0;
 	
 	int count=0;
-	String old_board_type="";
 	String old_cate="";
-	String old_cate_nm="";
-	String old_cate2="";
-	String new_category2= "";
+    String old_cate_nm="";
+    String new_category2= "";
+    String old_cate2="";
 %>
 
 	<script type="text/javascript" src="/js/FusionCharts.js"></script>
@@ -62,7 +64,7 @@
 			fm.elements["method"].value="getStatCategory";
 			fm.submit();
 		}
-	
+
 		function goCategory2L(){
 			fm.elements["method"].value="getStatCategory2";
 			fm.submit();
@@ -129,8 +131,6 @@
         }
 		
 		$(document).ready(function (){
-			mergeCell(document.getElementById('tbl0'), '1', '2', '1', '1');
-			mergeCell(document.getElementById('tbl0'), '1', '1', '1', '1');
 			mergeCell(document.getElementById('tbl0'), '1', '0', '1');
 		});
 	//-->
@@ -173,8 +173,8 @@
                 <div class="tab-type01 mt30">
                     <ul class="clearfix">
                         <li><a href="JavaScript:goBoardTypeL()">전체 통계</a></li>
-                        <li class="on"><a href="JavaScript:goCategoryL()">분류별 통계</a></li>
-                        <li><a href="JavaScript:goCategory2L()">분류별 통계2</a></li>
+                        <li><a href="JavaScript:goCategoryL()">분류별 통계</a></li>
+                        <li class="on"><a href="JavaScript:goCategory2L()">분류별 통계2</a></li>
                         <li><a href="JavaScript:goQueryUserInfoL()">소속별 통계</a></li>
                         <li><a href="JavaScript:goVisitL()">접속자 현황</a></li>
                         <li><a href="JavaScript:goUserSectorL()">사용자 소속기관별 통계</a></li>
@@ -231,29 +231,39 @@
 	                    <table id="tbl0" summary="질의자 소속기관별, 대분류별, 소분류별, 등록건수, 처리건수, 미처리건수 목록 페이지">
 	                        <colgroup>
 	                            <col width="12%" />
-	                            <col width="12%" />
 	                            <col width="*%" />
-	                            <col width="9%" />
-	                            <col width="9%" />
-	                            <col width="9%" />
-	                            <col width="11%" />
-	                            <col width="11%" />
+	                            <col width="7%" />
+	                            <col width="7%" />
+	                            <col width="7%" />
+	                            <col width="7%" />
+	                            <col width="7%" />
+	                            <col width="7%" />
+	                            <col width="7%" />
+	                            <col width="7%" />
+	                            <col width="7%" />
 	                        </colgroup>
 	                        <thead>
 	                            <tr>
-	                                <th scope="col" rowspan="2">게시판유형</th>
-	                                <th scope="col" rowspan="2">대분류별</th>
-	                                <th scope="col" rowspan="2">소분류별</th>
-	                                <th scope="col" colspan="3">등록건수</th>
-	                                <th scope="col" rowspan="2">처리건수</th>
-	                                <th scope="col" rowspan="2">미처리건수</th>
+	                                <th scope="col" rowspan="3">대분류별</th>
+	                                <th scope="col" rowspan="3">소분류별</th>
+	                                <th scope="col" colspan="5">등록건수</th>
+	                                <th scope="col" rowspan="2" colspan="2">처리</th>
+	                                <th scope="col" rowspan="2" colspan="2">미처리</th>
 	                            </tr>
 	                            <tr class="on">
-	                                <th scope="col" class="line-l">전체건수</th>
-	                                <th scope="col">온라인</th>
-	                                <th scope="col">오프라인</th>
+	                                <th scope="col" colspan="3" class="line-l">온라인</th>
+	                                <th scope="col" rowspan="2">오프라인</th>
+	                                <th scope="col" rowspan="2">총계</th>
 	                            </tr>
-	                                
+	                            <tr class="on">
+	                                <th scope="col" class="line-l">상담</th>
+	                                <th scope="col">신문고</th>
+	                                <th scope="col">합계</th>
+	                                <th scope="col">상담</th>
+	                                <th scope="col">신문고</th>
+	                                <th scope="col">상담</th>
+	                                <th scope="col">신문고</th>
+	                            </tr>
 	                        </thead>
 	                        <tbody>
 	                            <logic:empty name="StatisticForm" property="voList">
@@ -261,44 +271,58 @@
 	                            </logic:empty>
 	                            <logic:notEmpty name="StatisticForm" property="voList">
 	                                <logic:iterate name="StatisticForm" property="voList" indexId="rowNum" id="vo">
-										<bean:define name="vo" property="board_type" id="board_type" type="java.lang.String"/>
 										<bean:define name="vo" property="category1" id="category1" type="java.lang.String"/>
 										<bean:define name="vo" property="category2" id="category2" type="java.lang.String"/>                    
 										<bean:define name="vo" property="category1_nm" id="category1_nm" type="java.lang.String"/>
-										<bean:define name="vo" property="total_cnt" id="total_cnt" type="java.lang.Integer"/>
 										<bean:define name="vo" property="online_cnt" id="online_cnt" type="java.lang.Integer"/>
+										<bean:define name="vo" property="online_rnd_cnt" id="online_rnd_cnt" type="java.lang.Integer"/>
+										<bean:define name="vo" property="online_tot_cnt" id="online_tot_cnt" type="java.lang.Integer"/>
 										<bean:define name="vo" property="offline_cnt" id="offline_cnt" type="java.lang.Integer"/>
-										<bean:define name="vo" property="disposal_cnt" id="disposal_cnt" type="java.lang.Integer"/>                     
-										<bean:define name="vo" property="undisposal_cnt" id="undisposal_cnt" type="java.lang.Integer"/>
+										<bean:define name="vo" property="total_cnt" id="total_cnt" type="java.lang.Integer"/>
+										<bean:define name="vo" property="answer_y_cnt" id="answer_y_cnt" type="java.lang.Integer"/>                     
+										<bean:define name="vo" property="answer_rnd_y_cnt" id="answer_rnd_y_cnt" type="java.lang.Integer"/>
+										<bean:define name="vo" property="answer_n_cnt" id="answer_n_cnt" type="java.lang.Integer"/>                     
+										<bean:define name="vo" property="answer_rnd_n_cnt" id="answer_rnd_n_cnt" type="java.lang.Integer"/>
 	                                    <%
-											cnt1 += total_cnt.intValue();
-											cnt2 += online_cnt.intValue();
-											cnt3 += offline_cnt.intValue();
-											cnt4 += disposal_cnt.intValue();
-											cnt5 += undisposal_cnt.intValue();
-											if ( category1.equals(category2) ) {
-											    new_category2 ="";
+		                                    cnt1 += online_cnt.intValue();
+		                                    cnt2 += online_rnd_cnt.intValue();
+		                                    cnt3 += online_tot_cnt.intValue();
+		                                    cnt4 += offline_cnt.intValue();
+		                                    cnt5 += total_cnt.intValue();
+		                                    cnt6 += answer_y_cnt.intValue();
+		                                    cnt7 += answer_rnd_y_cnt.intValue();
+		                                    cnt8 += answer_n_cnt.intValue();
+		                                    cnt9 += answer_rnd_n_cnt.intValue();
+		                                    if(category1.equals(category2)){
+		                                        new_category2 ="";
+		                                    }else{
+		                                        new_category2 = category2;
+		                                    }
+		                                    if(category1.equals(old_cate)){
+		                                        cnt1_1 += online_cnt.intValue();
+		                                        cnt2_1 += online_rnd_cnt.intValue();
+		                                        cnt3_1 += online_tot_cnt.intValue();
+		                                        cnt4_1 += offline_cnt.intValue();
+		                                        cnt5_1 += total_cnt.intValue();
+		                                        cnt6_1 += answer_y_cnt.intValue();
+		                                        cnt7_1 += answer_rnd_y_cnt.intValue();
+		                                        cnt8_1 += answer_n_cnt.intValue();
+		                                        cnt9_1 += answer_rnd_n_cnt.intValue();
 											} else {
-											    new_category2 = category2;
-											}
-											if ( category1.equals(old_cate) ) {
-											    cnt1_1 += total_cnt.intValue();
-											    cnt2_1 += online_cnt.intValue();
-											    cnt3_1 += offline_cnt.intValue();
-											    cnt4_1 += disposal_cnt.intValue();
-											    cnt5_1 += undisposal_cnt.intValue();
-											} else {
-											    if ( !old_cate.equals("") && !old_cate.equals("1") && !old_cate.equals("2") && !old_cate.equals("6") && !old_cate2.equals("") ) {
+											    if(!old_cate.equals("")&& !old_cate.equals("1")&&!old_cate.equals("2")&&!old_cate.equals("6") && !old_cate2.equals("")){
 	                                    %>
 	                                    <tr>
-											<td><%="QNA".equals(old_board_type) ? "온라인 상담" : "R&D 신문고" %></td>
 											<td><%=old_cate_nm %></td>
-											<td>소계</td>
+											<td>계</td>
 											<td class="txt-r"><%= Util.getNumberFormat(cnt1_1) %></td>
 											<td class="txt-r"><%= Util.getNumberFormat(cnt2_1) %></td>
 											<td class="txt-r"><%= Util.getNumberFormat(cnt3_1) %></td>
 											<td class="txt-r"><%= Util.getNumberFormat(cnt4_1) %></td>                      
 											<td class="txt-r"><%= Util.getNumberFormat(cnt5_1) %></td>  
+											<td class="txt-r"><%= Util.getNumberFormat(cnt6_1) %></td>  
+											<td class="txt-r"><%= Util.getNumberFormat(cnt7_1) %></td>  
+											<td class="txt-r"><%= Util.getNumberFormat(cnt8_1) %></td>  
+											<td class="txt-r"><%= Util.getNumberFormat(cnt9_1) %></td>  
 	                                    </tr>
 	                                    <%
 		                                        }
@@ -307,95 +331,58 @@
 												cnt3_1 = 0;
 												cnt4_1 = 0;
 												cnt5_1 = 0;
-												cnt1_1 += total_cnt.intValue();
-												cnt2_1 += online_cnt.intValue();
-												cnt3_1 += offline_cnt.intValue();
-												cnt4_1 += disposal_cnt.intValue();
-												cnt5_1 += undisposal_cnt.intValue();
+												cnt6_1 = 0;
+												cnt7_1 = 0;
+												cnt8_1 = 0;
+												cnt9_1 = 0;
+												cnt1_1 += online_cnt.intValue();
+                                                cnt2_1 += online_rnd_cnt.intValue();
+                                                cnt3_1 += online_tot_cnt.intValue();
+                                                cnt4_1 += offline_cnt.intValue();
+                                                cnt5_1 += total_cnt.intValue();
+                                                cnt6_1 += answer_y_cnt.intValue();
+                                                cnt7_1 += answer_rnd_y_cnt.intValue();
+                                                cnt8_1 += answer_n_cnt.intValue();
+                                                cnt9_1 += answer_rnd_n_cnt.intValue();
 												old_cate =category1;
 												old_cate_nm=category1_nm;
 											}
+		                                    
+		                                    old_cate2 = category2;
 	                                    %>
-	                                    
-	                                    <%
-                                            if ( board_type.equals(old_board_type) ) {
-                                                cnt1_2 += total_cnt.intValue();
-                                                cnt2_2 += online_cnt.intValue();
-                                                cnt3_2 += offline_cnt.intValue();
-                                                cnt4_2 += disposal_cnt.intValue();
-                                                cnt5_2 += undisposal_cnt.intValue();
-                                            } else {
-                                                if ( !old_board_type.equals("") ) {
-                                        %>
-                                        <tr>
-                                            <td><%="QNA".equals(old_board_type) ? "온라인 상담" : "R&D 신문고" %></td>
-                                            <td colspan="2">소계</td>
-                                            <td class="txt-r"><%= Util.getNumberFormat(cnt1_2) %></td>
-                                            <td class="txt-r"><%= Util.getNumberFormat(cnt2_2) %></td>
-                                            <td class="txt-r"><%= Util.getNumberFormat(cnt3_2) %></td>
-                                            <td class="txt-r"><%= Util.getNumberFormat(cnt4_2) %></td>                      
-                                            <td class="txt-r"><%= Util.getNumberFormat(cnt5_2) %></td>  
-                                        </tr>
-                                        <%
-                                                }
-                                                cnt1_2 = 0;
-                                                cnt2_2 = 0;
-                                                cnt3_2 = 0;
-                                                cnt4_2 = 0;
-                                                cnt5_2 = 0;
-                                                cnt1_2 += total_cnt.intValue();
-                                                cnt2_2 += online_cnt.intValue();
-                                                cnt3_2 += offline_cnt.intValue();
-                                                cnt4_2 += disposal_cnt.intValue();
-                                                cnt5_2 += undisposal_cnt.intValue();
-                                                
-                                                old_board_type = board_type; 
-                                            }
-	                                        old_cate2 = category2;
-                                        %>
-	                                    
 										<tr <%= rowNum.intValue() % 2 == 1 ? "class=\"on\"" : "" %>>
-											<td>
-											    <logic:equal name="vo" property="board_type" value="QNA">
-                                                       온라인 상담
-                                                </logic:equal>
-                                                <logic:equal name="vo" property="board_type" value="OFFER">
-                                                R&D 신문고
-                                                </logic:equal>
-											</td>
 											<td><bean:write name="vo" property="category1_nm"/></td>
 											<td>
 											    <logic:empty name="vo" property="category2_nm">
-											    소계
-											    </logic:empty>
-											    <logic:notEmpty name="vo" property="category2_nm">
-    											    <bean:write name="vo" property="category2_nm"/>
-											    </logic:notEmpty>
+                                                        계
+                                                </logic:empty>
+                                                <logic:notEmpty name="vo" property="category2_nm">
+                                                    <bean:write name="vo" property="category2_nm"/>
+                                                </logic:notEmpty>
 											</td>
-											<td class="txt-r"><%= Util.getNumberFormat(total_cnt) %></td>
 											<td class="txt-r"><%= Util.getNumberFormat(online_cnt) %></td>
-											<td class="txt-r"><%= Util.getNumberFormat(offline_cnt) %></td>
-											<td class="txt-r"><%= Util.getNumberFormat(disposal_cnt) %></td>                        
-											<td class="txt-r"><%= Util.getNumberFormat(undisposal_cnt) %></td>
+											<td class="txt-r"><%= Util.getNumberFormat(online_rnd_cnt) %></td>
+											<td class="txt-r"><%= Util.getNumberFormat(online_tot_cnt) %></td>
+											<td class="txt-r"><%= Util.getNumberFormat(offline_cnt) %></td>                        
+											<td class="txt-r"><%= Util.getNumberFormat(total_cnt) %></td>
+											<td class="txt-r"><%= Util.getNumberFormat(answer_y_cnt) %></td>
+											<td class="txt-r"><%= Util.getNumberFormat(answer_rnd_y_cnt) %></td>
+											<td class="txt-r"><%= Util.getNumberFormat(answer_n_cnt) %></td>
+											<td class="txt-r"><%= Util.getNumberFormat(answer_rnd_n_cnt) %></td>
 										</tr>
 	                                </logic:iterate>
 	                            </logic:notEmpty>
-                                <tr>
-                                    <td><%="QNA".equals(old_board_type) ? "온라인 상담" : "R&D 신문고" %></td>
-                                    <td colspan="2">소계</td>
-                                    <td class="txt-r"><%= Util.getNumberFormat(cnt1_2) %></td>
-                                    <td class="txt-r"><%= Util.getNumberFormat(cnt2_2) %></td>
-                                    <td class="txt-r"><%= Util.getNumberFormat(cnt3_2) %></td>
-                                    <td class="txt-r"><%= Util.getNumberFormat(cnt4_2) %></td>                      
-                                    <td class="txt-r"><%= Util.getNumberFormat(cnt5_2) %></td>  
-                                </tr>
 	                            <tr>
-	                                <td colspan="3">총건수</td>
+	                                <td colspan="2">총건수</td>
 									<td class="txt-r"><%= Util.getNumberFormat(cnt1) %></td>
 									<td class="txt-r"><%= Util.getNumberFormat(cnt2) %></td>
 									<td class="txt-r"><%= Util.getNumberFormat(cnt3) %></td>
 									<td class="txt-r"><%= Util.getNumberFormat(cnt4) %></td>                        
 									<td class="txt-r"><%= Util.getNumberFormat(cnt5) %></td>
+									<td class="txt-r"><%= Util.getNumberFormat(cnt6) %></td>
+									<td class="txt-r"><%= Util.getNumberFormat(cnt7) %></td>
+									<td class="txt-r"><%= Util.getNumberFormat(cnt8) %></td>
+									<td class="txt-r"><%= Util.getNumberFormat(cnt9) %></td>
 	                            </tr>
 	                        </tbody>
 	                    </table>
@@ -403,7 +390,7 @@
 	                <!-- // board-type01 -->
 	                
 	                <div class="btn-lst txt-r">
-                        <span class="btn-set green"><a href="javascript:goExcelDown('category');">엑셀 다운로드</a></span>
+                        <span class="btn-set green"><a href="javascript:goExcelDown('category2');">엑셀 다운로드</a></span>
                     </div>
 	            </html:form>
 	                

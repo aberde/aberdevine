@@ -38,6 +38,11 @@
 			fm.submit();
 		}
 		
+		function goCategory2L(){
+            fm.elements["method"].value="getStatCategory2";
+            fm.submit();
+        }
+		
 		function goBoardTypeL(){
             fm.elements["method"].value="getStatBoardType";
             fm.submit();
@@ -138,6 +143,7 @@
                     <ul class="clearfix">
                         <li class="on"><a href="JavaScript:goBoardTypeL()">전체 통계</a></li>
                         <li><a href="JavaScript:goCategoryL()">분류별 통계</a></li>
+                        <li><a href="JavaScript:goCategory2L()">분류별 통계2</a></li>
                         <li><a href="JavaScript:goQueryUserInfoL()">소속별 통계</a></li>
                         <li><a href="JavaScript:goVisitL()">접속자 현황</a></li>
                         <li><a href="JavaScript:goUserSectorL()">사용자 소속기관별 통계</a></li>

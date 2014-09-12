@@ -722,4 +722,59 @@ public class StatisticAction extends DispatchAction {
       
       
   }
+  
+  /**
+   * 통계관리 분야별통계현황2 정보조회
+   */        
+  public ActionForward getStatCategory2(ActionMapping mapping, ActionForm form, HttpServletRequest request
+                               , HttpServletResponse response) throws Exception {
+      
+      String target = "getStatCategory2";
+      ActionErrors errors = null;
+      if (request.getAttribute("org.apache.struts.action.ERROR") == null) {
+          errors = new ActionErrors();
+      } else {
+          errors = (ActionErrors) request
+          .getAttribute("org.apache.struts.action.ERROR");
+      }
+      
+      StatisticForm fm = (StatisticForm) form;
+      StatisticSearchVO searchVO = fm.getSearchVO();
+      StatisticResultVO resultVO = new StatisticResultVO();
+      StatisticVO vo = fm.getVo();
+      
+      if(Util.getLoginUserVO(request) != null){
+          searchVO.setLoginId(Util.getLoginId(request)); //로그인 아이디정보
+          searchVO.setName(Util.getName(request)); //로그인 이름정보
+          searchVO.setRoleCD(Util.getLoginUserVO(request).getRoleCD());
+      }
+      
+      searchVO.setCrud("category");
+      searchVO.setPagerOffset(Util.replaceNull(request.getParameter("pager.offset"), "0"));
+      try{
+          StatisticBiz biz = new StatisticBiz();
+          resultVO = biz.getStatCategory2(searchVO);
+          
+      } catch (Exception e) {
+          logger.debug("Exception: " + e.getMessage());
+          errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.database.error", e.getMessage()));
+      }
+      
+      if (errors.isEmpty()) {
+          if (resultVO.getTotRowCount().intValue() == 0) {
+              errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+              "errors.getList.DataNotFound"));
+          } else {
+              errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+              "errors.getList.success"));
+          }
+      }
+
+      fm.setVoList(resultVO.getVoList());
+      saveErrors(request, errors);   
+      
+      return mapping.findForward(target); 
+      
+      
+  }
 }
