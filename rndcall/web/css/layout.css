@@ -67,12 +67,7 @@ html,body {height:100%;}
 #container.dataroom .lnb-lst li.on a {background:url(../img/common/lnb_bg_data.gif) no-repeat;}
 #container.center .lnb-lst li.on a {background:url(../img/common/lnb_bg_center.gif) no-repeat;}
 
-
-
 .content{position:relative; margin-left:220px; padding-top:20px; width:760px;}
-
-
-
 /* location */
 .location li:first-child{padding-left:0; background:none; vertical-align:bottom;}
 .location li:first-child a{vertical-align:bottom;}
@@ -93,7 +88,7 @@ html,body {height:100%;}
 #container.center .section .tit-area h3 {background:url(../img/common/h3_line_center.gif) no-repeat left;}
 
 
-.section .tit-area p{font-size:14px; color:#767676;}
+.section .tit-area p{font-size:12px; color:#767676;}
 .section .tit-area p.txt-f{font-size:14px; color:#767676;}
 
 /* foot */
@@ -139,8 +134,6 @@ html,body {height:100%;}
 #pop .menu .txt ul li{padding-left:10px; background:url(../img/icon/pop_bullet.gif) no-repeat left;}
 #pop .menu .txt ul li a{color:#fff; font-size:14px; line-height:30px;}
 
-
-
 /* popup 회원가입 */
 #pop-join{position:relative; padding:35px 40px; background:#fff; z-index:999; width:500px; height:420px;}
 #pop-join .btn-close{display:block; position:absolute; right:40px; top:46px; background:url(../img/icon/btn_close.gif) no-repeat left; width:27px; height:27px;}
@@ -150,6 +143,51 @@ html,body {height:100%;}
 #pop-join .tit strong{font-size:26px; line-height:26px;  color:#333;}
 #pop-join .bdl-n{border-left:none;}
 #pop-join select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#24292c; line-height:12px; padding:1px 1px 1px 5px; background-color:#f9f9f9;}
-
-
 #pop-join span.tbox{display:block;  padding:0 5px;margin-bottom:5px;font-weight:bold;color:#388bd3;font-size:18px !important;line-height:28px; }
+
+/* popup 통계 */
+#pop-detail{position:relative; padding:20px 40px; background:#fff; z-index:999; width:800px; height:420px;}
+#pop-detail .btn-close{display:block; position:absolute; right:40px; top:20px; background:url(../img/icon/btn_close.gif) no-repeat left; width:27px; height:27px;}
+#pop-detail .btn-close span{font-size:0; line-height:0; text-indent:-9999px; color:#fff;}
+#pop-detail .btn-close span{font-size:0; line-height:0; text-indent:-9999px; color:#fff;}
+#pop-detail .tit{ padding-bottom:20px; }
+#pop-detail .tit strong{font-size:26px; line-height:26px;  color:#333;}
+#pop-detail .bdl-n{border-left:none;}
+#pop-detail select{border:1px solid #cbcbcb; font-weight:normal; font-size:12px; color:#24292c; line-height:12px; padding:1px 1px 1px 5px; background-color:#f9f9f9;}
+#pop-detail span.tbox{display:block;  padding:0 5px;margin-bottom:5px;font-weight:bold;color:#388bd3;font-size:18px !important;line-height:28px; }
+#pop-detail .search-box {position:relative;}
+#pop-detail .search-box select {border:0;}
+#pop-detail .search-box .search-excel {position:absolute; right:10px; top:50%; margin-top:-10px;}
+
+/*center-officearea*/
+.center-officearea {overflow:hidden; padding:14px 0; background:#f1f0f0;}
+.center-officearea ul {}
+.center-officearea ul li {float:left; margin:0 0 13px 13px; width:168px; height:40px; background:url(../img/bg/bg_centerOffice_tab.gif) no-repeat;}
+.center-officearea ul li a {width:100%; height:100%; }
+.center-officearea ul li a span {padding:0 0 0 15px; line-height:38px; color:#333;font-weight:bold;font-size:11px;}
+.center-officearea ul li.active {float:left; margin:0 0 13px 13px; width:168px; height:40px; background:url(../img/bg/bg_centerOffice_tab_over.gif) no-repeat;}
+.center-officearea ul li.active a {width:100%; height:100%; fonr-weight:bold;}
+.center-officearea ul li.active a span {padding:0 0 0 15px; line-height:38px; color:#fff; fonr-weight:bold;}
+
+/*center-officearea2*/
+.center-officearea2 {overflow:hidden; padding:14px 0; background:#f1f0f0;}
+.center-officearea2 ul {}
+.center-officearea2 ul li {float:left; margin:0 0 13px 13px; width:168px; height:40px; background:url(../img/bg/bg_centerOffice_tab2.gif) no-repeat;}
+.center-officearea2 ul li a {width:100%; height:100%; }
+.center-officearea2 ul li a span {padding:0 0 0 15px; line-height:38px; color:#333;font-weight:bold;font-size:11px;}
+.center-officearea2 ul li.active {float:left; margin:0 0 13px 13px; width:168px; height:40px; background:url(../img/bg/bg_centerOffice_tab_over.gif) no-repeat;}
+.center-officearea2 ul li.active a {width:100%; height:100%; fonr-weight:bold;}
+.center-officearea2 ul li.active a span {padding:0 0 0 15px; line-height:38px; color:#fff; fonr-weight:bold;}
+
+.center-officeBanner {height:149px;padding:23px 32px 0 32px; background: url(../img/bg/bg_centerOfficeBanner.gif) no-repeat;}
+.center-officeBanner .title {padding:0 0 10px 0; color:#000; font-weight:bold; border-bottom:1px solid #f0f0f0;}
+.center-officeBanner ul {display:none; overflow:hidden; margin:10px 0 0 0;}
+.center-officeBanner ul li {float:left; margin:0 50px 0 0;}
+.center-officeBanner ul li.fnone {margin:0 !important;}
+.center-officeBanner ul li img {border:2px solid #eaeaea;}
+.center-officeBanner ul li p{margin:5px 0 0 0; text-align:center}
+.center-officeBanner .title .info{margin-left:10px; font-weight:normal; color:#595959;}
+.agency-list {}
+.agency-list ul {}
+.agency-list ul li {float:left; width:170px; margin:5px 10px 5px 0; padding:10px 0; border:2px solid #eaeaea;text-align:center}
+

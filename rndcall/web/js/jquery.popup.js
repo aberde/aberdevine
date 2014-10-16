@@ -32,6 +32,21 @@ function popH(){
 	}
 
 }
+function popClose(){
+	$('#dimm').remove();
+	$('#popAll').remove();
+}
+
+//popUp
+function layerPop(_url){
+	var $popAll = $('#popAll');
+	popClose();
+	popAppend();
+
+	$('#popAll').load(_url, function(){
+		popH();
+	});
+}
 
 /*  전체 메뉴 */
 function totalMenuBtnHandler(_url)

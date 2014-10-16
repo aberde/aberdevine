@@ -53,6 +53,9 @@ public class AdminVO extends BaseVO{
     private String question_contents; //질문내용
     private String answer_contents; //답변내용
 
+    private String file_category1;    //일괄등록 대분류
+    private String file_category2;    //일괄등록 소분류
+
     /**
 	 * AdminVO 생성자
 	 */
@@ -94,6 +97,9 @@ public class AdminVO extends BaseVO{
         this.code = ""; //코드
         this.code_nm = ""; //코드명
         this.p_code = ""; //부모코드
+
+        this.file_category1 = "";    //일괄등록 대분류
+        this.file_category2 = "";    //일괄등록 소분류
 	}
 
 	
@@ -553,4 +559,30 @@ public class AdminVO extends BaseVO{
     public void setAnswer_id(String answer_id) {
         this.answer_id = answer_id;
     }
+
+
+
+    public String getFile_category1() {
+        return file_category1;
+    }
+
+
+
+    public void setFile_category1(String file_category1) {
+        this.file_category1 = file_category1;
+    }
+
+
+
+    public String getFile_category2() {
+        return file_category2;
+    }
+
+
+
+    public void setFile_category2(String file_category2) {
+        this.file_category2 = file_category2;
+    }
+    
+    
 }

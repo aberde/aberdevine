@@ -96,13 +96,13 @@
 			fm.submit();
 		}
 		
-		function goStatList(arg1, arg2, arg3){
+		function goStatList(arg1, arg2, arg3, arg4){
 			var width = '900';
 		    var height = '560';
 		    var left = (screen.width - width)/2;
 		    var top = (screen.height - height)/2;
 		   	var winNM = 'getStatList';
-		   	var url = '/switch.do?prefix=/statistic&method=getStatCategory&page=/Statistic.do?method=getStatList&searchVO.whichSearch='+arg1+'&searchVO.category1='+arg2+'&searchVO.category2='+arg3;  
+		   	var url = '/switch.do?prefix=/statistic&method=getStatCategory&page=/Statistic.do?method=getStatList&searchVO.whichSearch='+arg1+'&searchVO.board_type='+arg2+'&searchVO.category1='+arg3+'&searchVO.category2='+arg4;  
 		    var windowFeatures = "width=" + width + ",height=" + height +
 		        ",status,resizable,scrollbars=yes,left=" + left + ",top=" + top +
 		        ",screenX=" + left + ",screenY=" + top;
@@ -294,11 +294,11 @@
 											<td><%="QNA".equals(old_board_type) ? "온라인 상담" : "R&D 신문고" %></td>
 											<td><%=old_cate_nm %></td>
 											<td>소계</td>
-											<td class="txt-r"><%= Util.getNumberFormat(cnt1_1) %></td>
-											<td class="txt-r"><%= Util.getNumberFormat(cnt2_1) %></td>
-											<td class="txt-r"><%= Util.getNumberFormat(cnt3_1) %></td>
-											<td class="txt-r"><%= Util.getNumberFormat(cnt4_1) %></td>                      
-											<td class="txt-r"><%= Util.getNumberFormat(cnt5_1) %></td>  
+											<td class="txt-r"><a href="JavaScript:goStatList('SUB_T', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt1_1) %></a></td>
+											<td class="txt-r"><a href="JavaScript:goStatList('SUB_ON', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt2_1) %></a></td>
+											<td class="txt-r"><a href="JavaScript:goStatList('SUB_OFF', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt3_1) %></a></td>
+											<td class="txt-r"><a href="JavaScript:goStatList('SUB_Y', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt4_1) %></a></td>                      
+											<td class="txt-r"><a href="JavaScript:goStatList('SUB_N', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt5_1) %></a></td>  
 	                                    </tr>
 	                                    <%
 		                                        }
@@ -330,11 +330,11 @@
                                         <tr>
                                             <td><%="QNA".equals(old_board_type) ? "온라인 상담" : "R&D 신문고" %></td>
                                             <td colspan="2">소계</td>
-                                            <td class="txt-r"><%= Util.getNumberFormat(cnt1_2) %></td>
-                                            <td class="txt-r"><%= Util.getNumberFormat(cnt2_2) %></td>
-                                            <td class="txt-r"><%= Util.getNumberFormat(cnt3_2) %></td>
-                                            <td class="txt-r"><%= Util.getNumberFormat(cnt4_2) %></td>                      
-                                            <td class="txt-r"><%= Util.getNumberFormat(cnt5_2) %></td>  
+                                            <td class="txt-r"><a href="JavaScript:goStatList('MAIN_T', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt1_2) %></a></td>
+                                            <td class="txt-r"><a href="JavaScript:goStatList('MAIN_ON', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt2_2) %></a></td>
+                                            <td class="txt-r"><a href="JavaScript:goStatList('MAIN_OFF', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt3_2) %></a></td>
+                                            <td class="txt-r"><a href="JavaScript:goStatList('MAIN_Y', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt4_2) %></a></td>                      
+                                            <td class="txt-r"><a href="JavaScript:goStatList('MAIN_N', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt5_2) %></a></td>  
                                         </tr>
                                         <%
                                                 }
@@ -372,30 +372,30 @@
     											    <bean:write name="vo" property="category2_nm"/>
 											    </logic:notEmpty>
 											</td>
-											<td class="txt-r"><%= Util.getNumberFormat(total_cnt) %></td>
-											<td class="txt-r"><%= Util.getNumberFormat(online_cnt) %></td>
-											<td class="txt-r"><%= Util.getNumberFormat(offline_cnt) %></td>
-											<td class="txt-r"><%= Util.getNumberFormat(disposal_cnt) %></td>                        
-											<td class="txt-r"><%= Util.getNumberFormat(undisposal_cnt) %></td>
+											<td class="txt-r"><a href="JavaScript:goStatList('T', '<%= board_type %>', '<bean:write name="vo" property="category1"/>','<%=new_category2%>')"><%= Util.getNumberFormat(total_cnt) %></a></td>
+											<td class="txt-r"><a href="JavaScript:goStatList('ON', '<%= board_type %>', '<bean:write name="vo" property="category1"/>','<%=new_category2%>')"><%= Util.getNumberFormat(online_cnt) %></a></td>
+											<td class="txt-r"><a href="JavaScript:goStatList('OFF', '<%= board_type %>', '<bean:write name="vo" property="category1"/>','<%=new_category2%>')"><%= Util.getNumberFormat(offline_cnt) %></a></td>
+											<td class="txt-r"><a href="JavaScript:goStatList('Y', '<%= board_type %>', '<bean:write name="vo" property="category1"/>','<%=new_category2%>')"><%= Util.getNumberFormat(disposal_cnt) %></a></td>                        
+											<td class="txt-r"><a href="JavaScript:goStatList('N', '<%= board_type %>', '<bean:write name="vo" property="category1"/>','<%=new_category2%>')"><%= Util.getNumberFormat(undisposal_cnt) %></a></td>
 										</tr>
 	                                </logic:iterate>
 	                            </logic:notEmpty>
                                 <tr>
                                     <td><%="QNA".equals(old_board_type) ? "온라인 상담" : "R&D 신문고" %></td>
                                     <td colspan="2">소계</td>
-                                    <td class="txt-r"><%= Util.getNumberFormat(cnt1_2) %></td>
-                                    <td class="txt-r"><%= Util.getNumberFormat(cnt2_2) %></td>
-                                    <td class="txt-r"><%= Util.getNumberFormat(cnt3_2) %></td>
-                                    <td class="txt-r"><%= Util.getNumberFormat(cnt4_2) %></td>                      
-                                    <td class="txt-r"><%= Util.getNumberFormat(cnt5_2) %></td>  
+                                    <td class="txt-r"><a href="JavaScript:goStatList('MAIN_T', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt1_2) %></a></td>
+                                    <td class="txt-r"><a href="JavaScript:goStatList('MAIN_ON', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt2_2) %></a></td>
+                                    <td class="txt-r"><a href="JavaScript:goStatList('MAIN_OFF', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt3_2) %></a></td>
+                                    <td class="txt-r"><a href="JavaScript:goStatList('MAIN_Y', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt4_2) %></a></td>                      
+                                    <td class="txt-r"><a href="JavaScript:goStatList('MAIN_N', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt5_2) %></a></td>  
                                 </tr>
 	                            <tr>
 	                                <td colspan="3">총건수</td>
-									<td class="txt-r"><%= Util.getNumberFormat(cnt1) %></td>
-									<td class="txt-r"><%= Util.getNumberFormat(cnt2) %></td>
-									<td class="txt-r"><%= Util.getNumberFormat(cnt3) %></td>
-									<td class="txt-r"><%= Util.getNumberFormat(cnt4) %></td>                        
-									<td class="txt-r"><%= Util.getNumberFormat(cnt5) %></td>
+									<td class="txt-r"><a href="JavaScript:goStatList('TOT_T', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt1) %></a></td>
+									<td class="txt-r"><a href="JavaScript:goStatList('TOT_ON', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt2) %></a></td>
+									<td class="txt-r"><a href="JavaScript:goStatList('TOT_OFF', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt3) %></a></td>
+									<td class="txt-r"><a href="JavaScript:goStatList('TOT_Y', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt4) %></a></td>                        
+									<td class="txt-r"><a href="JavaScript:goStatList('TOT_N', '<%= old_board_type %>', '<%=old_cate%>','')"><%= Util.getNumberFormat(cnt5) %></a></td>
 	                            </tr>
 	                        </tbody>
 	                    </table>

@@ -322,21 +322,21 @@
                             <span class="btn-set pink"><a href="JavaScript:goAnswerInsert()">답변수정</a></span>
                         </logic:notEqual>
                         <span class="btn-set"><a href="JavaScript:goPrint('QNA','<bean:write name="InquireForm" property="vo.seq"/>');">인쇄</a></span>
-<!-- 	                    <span class="btn-set"><a href="JavaScript:goUpdate()">수정</a></span> -->
+<!-- 	                    <span class="btn-set"><a href="JavaScript:goUpdate()">질의수정</a></span> -->
 	                    <span class="btn-set"><a href="JavaScript:goDelete()">삭제</a></span>
 	                    <%
 	                        } else if ( login_id != null && !login_id.isEmpty() && login_id.equals(vo.getReg_id()) ) {
 	                    %>
 	                    <span class="btn-set"><a href="JavaScript:goPrint('QNA','<bean:write name="InquireForm" property="vo.seq"/>');">인쇄</a></span>
 	                    <logic:equal name="InquireForm" property="vo.up_del_stat" value="Y">
-		                    <span class="btn-set"><a href="JavaScript:goUpdate()">수정</a></span>
+		                    <span class="btn-set"><a href="JavaScript:goUpdate()">질의수정</a></span>
 		                    <span class="btn-set"><a href="JavaScript:goDelete()">삭제</a></span>
 	                    </logic:equal>
 	                    <%
 	                        } else if ( vo.getReg_id() == null || vo.getReg_id().isEmpty() ) {
 	                    %>
 	                        <span class="btn-set"><a href="JavaScript:goPrint('QNA','<bean:write name="InquireForm" property="vo.seq"/>');">인쇄</a></span>
-	                        <span class="btn-set"><a href="javascript:goPasswordCheckForm('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>, 'goUpdate()')">수정</a></span>
+	                        <span class="btn-set"><a href="javascript:goPasswordCheckForm('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>, 'goUpdate()')">질의수정</a></span>
                             <span class="btn-set"><a href="javascript:goPasswordCheckForm('<bean:write name="vo" property="board_type"/>',<bean:write name="vo" property="seq"/>, 'goDelete()')">삭제</a></span>
 	                    <%
 	                        }

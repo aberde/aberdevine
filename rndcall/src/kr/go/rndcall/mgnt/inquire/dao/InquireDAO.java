@@ -181,6 +181,10 @@ public class InquireDAO extends BaseSqlDAO{
 					query += " AND Q.INSERT_TYPE = '" + searchVO.getInsert_type() + "' \n";
 					countQuery += " AND Q.INSERT_TYPE = '" + searchVO.getInsert_type() + "' \n";
 				}
+				if ( !searchVO.getRoleCD().equals("0000Z") && !searchVO.getRoleCD().equals("0000C") ) {
+				    query += " AND Q.INSERT_TYPE <> 'OFFLINE' \n";
+                    countQuery += " AND Q.INSERT_TYPE <> 'OFFLINE' \n";
+				}
 				if(searchVO.getPublic_trans_yn() != null && !searchVO.getPublic_trans_yn().equals("")){
 					query += " AND Q.PUBLIC_TRANS_YN='" + searchVO.getPublic_trans_yn() + "'";
 					countQuery += " AND Q.PUBLIC_TRANS_YN='" + searchVO.getPublic_trans_yn() + "'";
@@ -257,7 +261,7 @@ public class InquireDAO extends BaseSqlDAO{
 			query += " AND Q.REG_DT >= CAST('"+start_yymm +"01000000.000' AS DATETIME) AND Q.REG_DT <= CAST(TO_CHAR(LAST_DAY(CAST('"+end_yymm+"01' AS DATE)), 'YYYYMMDD') || '235959.999'  AS DATETIME)";
 			countQuery += " AND Q.REG_DT >= CAST('"+start_yymm +"01000000.000' AS DATETIME) AND Q.REG_DT <= CAST(TO_CHAR(LAST_DAY(CAST('"+end_yymm+"01' AS DATE)), 'YYYYMMDD') || '235959.999'  AS DATETIME)";
 			
-			query += " ORDER BY Q.REG_DT DESC";
+			query += " ORDER BY Q.REG_DT DESC, Q.SEQ DESC";
 			
 			openPreparedStatementForR(query, true);
 			executeQueryForRC(searchVO, 1);

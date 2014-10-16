@@ -67,12 +67,15 @@
 		function goOfferAnswerInsert(){
 				fm.elements["searchVO.searchCategory"].value="";
 				fm.elements["method"].value="offerAnswerInsertForm";
+				fm.elements["searchVO.flag"].value="A";
 				fm.submit();
 		}
 		function goOfferDelete(){
-			fm.elements["searchVO.searchCategory"].value="";
-			fm.elements["method"].value="offerDelete";
-			fm.submit();
+			if(confirm("정말로 삭제 하시겠습니까?")){
+				fm.elements["searchVO.searchCategory"].value="";
+				fm.elements["method"].value="offerDelete";
+				fm.submit();
+			}
 		}
 		
 		function goPrint(arg1, arg2){
@@ -134,6 +137,7 @@
 				    <html:hidden name="OfferForm" property="searchVO.searchCategory"/>
 				    <html:hidden name="OfferForm" property="searchVO.menu_sn"/>
 				    <html:hidden name="OfferForm" property="searchVO.pagerOffset"/>
+				    <html:hidden name="OfferForm" property="searchVO.flag"/>
 				    
 	                <!-- board-detail -->
 	                <div class="board-detail mt60">

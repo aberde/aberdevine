@@ -70,9 +70,11 @@
 				fm.submit();
 		}
 		function goOfferDelete(){
-			fm.elements["searchVO.searchCategory"].value="";
-			fm.elements["method"].value="adminOfferDelete";
-			fm.submit();
+			if(confirm("정말로 삭제 하시겠습니까?")){
+				fm.elements["searchVO.searchCategory"].value="";
+				fm.elements["method"].value="adminOfferDelete";
+				fm.submit();
+			}
 		}
 		
 		function goPrint(arg1, arg2){

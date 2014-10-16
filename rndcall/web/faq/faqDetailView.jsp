@@ -68,9 +68,11 @@
 		}
 		
 		function faqContentDelete(){
-			fm.elements["searchVO.searchCategory"].value="";
-			fm.elements["method"].value="faqDelete";
-			fm.submit();
+			if(confirm("정말로 삭제 하시겠습니까?")){
+				fm.elements["searchVO.searchCategory"].value="";
+				fm.elements["method"].value="faqDelete";
+				fm.submit();
+			}
 		}
 		
 		function downLoad(fileNM, saveFileNM, filePath, yn){

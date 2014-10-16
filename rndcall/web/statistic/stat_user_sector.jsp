@@ -150,6 +150,8 @@
                     </ul>
                 </div>
                 
+                <div class="mt30">· 작성기준 : 가입회원 기준</div>
+                
                 <html:form action="/Statistic" method="post" name="fm" type="kr.go.rndcall.mgnt.statistic.form.StatisticForm">
 				    <html:hidden name="StatisticForm" property="method" value="getStatCategory"/>
 				    <html:hidden name="StatisticForm" property="searchVO.stat_type"/>
@@ -158,7 +160,7 @@
 				    <html:hidden name="StatisticForm" property="searchVO.excelForm"/>
     
 	                <!-- tbl-type01 -->
-	                <div id="excelDiv" class="tbl-type02 mt30">
+	                <div id="excelDiv" class="tbl-type02">
 	                    <table id="tbl0" summary="질의자 소속기관별, 대분류별, 소분류별, 등록건수, 처리건수, 미처리건수 목록 페이지">
 	                        <colgroup>
 	                            <col width="15%" />

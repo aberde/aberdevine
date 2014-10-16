@@ -21,6 +21,7 @@
       <forward name="getStatVisit" path="/stat_visit.jsp" />
       <forward name="stat_category_list_excel" path="/stat_category_list_excel.jsp" />
       <forward name="stat_category_excel" path="/stat_category_excel.jsp" /> 
+      <forward name="stat_category2_excel" path="/stat_category2_excel.jsp" /> 
 	  <forward name="stat_date_excel" path="/stat_date_excel.jsp" />
 	  <forward name="stat_visit_excel" path="/stat_visit_excel.jsp" />
 	  <forward name="getStatList" path="/stat_list.jsp" />
@@ -32,6 +33,8 @@
       <forward name="stat_board_type_excel" path="/stat_board_type_excel.jsp" />
       <forward name="getStatQueryUserInfo" path="/stat_queryuserinfo.jsp" />
       <forward name="getStatUserSector" path="/stat_user_sector.jsp" />
+      <forward name="stat_queryuserinfo_excel" path="/stat_queryuserinfo_excel.jsp" />
+      <forward name="stat_user_sector_excel" path="/stat_user_sector_excel.jsp" />
     </action>
   </action-mappings>
 </struts-config>
