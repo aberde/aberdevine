@@ -171,6 +171,14 @@
 	            } // if끝
 	        } // for끝
 	    } // function f_cate_change 끝
+	    
+	    function goPrint(){
+            window.open("", "techpop","toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=800,height=800");
+            
+            $("#method").val("getOfferViewPopup");
+            fm.target = "techpop";
+            fm.submit();
+        }
 	//-->
 	</script>
 	
@@ -198,7 +206,7 @@
             </div>
             
             <html:form action="/Offer" method="post" name="fm" enctype="multipart/form-data" type="kr.go.rndcall.mgnt.offer.form.OfferForm" onsubmit="return checkOnSubmit(this)">
-			    <html:hidden name="OfferForm" property="method" value="getAnswerInsert"/>
+			    <html:hidden name="OfferForm" property="method" styleId="method" value="getAnswerInsert"/>
 			    <html:hidden name="OfferForm" property="vo.cell_number"/>
 			    <html:hidden name="OfferForm" property="vo.email"/>
 			    <html:hidden name="OfferForm" property="searchVO.loginId"/>
@@ -334,6 +342,7 @@
 	                <!-- //board-detail -->
 	                <!-- btn-set -->
 	                <div class="btn-lst txt-r">
+	                    <span class="btn-set"><a href="JavaScript:goPrint()">인쇄</a></span>
 	                    <span class="btn-set pink"><a href="JavaScript:goAnswerCreate()">등록</a></span>
 	                    <span class="btn-set"><a href="JavaScript:history.back()">취소</a></span>
 	                </div>

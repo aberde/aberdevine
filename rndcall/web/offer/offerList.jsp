@@ -185,12 +185,12 @@
                                                     <%
                                                         if ( "Y".equals(open_yn) ) {
                                                     %>
-                                                    <a href="JavaScript:offerDetailView('OFFER',<bean:write name="vo" property="seq"/>)"><bean:write name="vo" property="title"/></a>
+                                                    <a href="JavaScript:offerDetailView('OFFER',<bean:write name="vo" property="seq"/>)"><%=title_n %></a>
                                                     <%
                                                         } else {
                                                             if ( (login_id != null && !login_id.isEmpty() && login_id.equals(reg_id)) || mainRoleCD.equals("0000Z") || mainRoleCD.equals("0000C") ) {
                                                     %>
-                                                    <a href="JavaScript:offerDetailView('OFFER',<bean:write name="vo" property="seq"/>)" class="lock"> <bean:write name="vo" property="title"/></a>
+                                                    <a href="JavaScript:offerDetailView('OFFER',<bean:write name="vo" property="seq"/>)" class="lock"> <%=title_n %></a>
                                                     <%
                                                             } else {
                                                     %>

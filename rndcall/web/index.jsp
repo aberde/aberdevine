@@ -459,7 +459,7 @@
                                     <li><a href="/switch.do?prefix=&page=/memberAdmin.do?method=getUserList&searchVO.menu_sn=05">회원관리</a></li>
                                     <li><a href="/switch.do?prefix=&page=/category.do?method=getCategoryList&searchVO.menu_sn=05">질문분야관리</a></li>
                                     <li><a href="/switch.do?prefix=/admin&page=/Admin.do?method=getOfflineDataForm&searchVO.menu_sn=05">오프라인자료등록</a></li>
-                                    <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatCategory&searchVO.menu_sn=05">통계정보</a></li>
+                                    <li><a href="/switch.do?prefix=/statistic&page=/Statistic.do?method=getStatBoardType&searchVO.menu_sn=09">통계정보</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -531,7 +531,7 @@
                     <div class="slide " id="owl-banner">
 <!--                         <div><a href="#none;"><img src="img/main/bn_slide01.jpg" alt="국가연구개발사업 학생인건비. 통합관리제 운영 매뉴얼. 일시 : 2013년 4월 03일 미래창조과학부 장관 " /></a></div> -->
                         <div><a href="javascript:banner();"><img src="img/main/bn_slide03.jpg" alt="R&amp;D도우미센터 이렇게 바뀌었습니다. " /></a></div>
-                        <div><a href="/notice/Notice.do?method=noticeDetailView&searchVO.board_type=NOTICE&searchVO.seq=4444"><img src="img/main/bn_slide02.jpg" alt="국가연구개발사업의 관리 등에 관한 규정 일부개정령(안) 입법예고" /></a></div>
+                        <div><a href="/notice/Notice.do?method=noticeDetailView&searchVO.board_type=NOTICE&searchVO.seq=4832"><img src="img/main/bn_slide04.gif" alt="국가연구개발사업의 관리 등에 관한 규칙 일부개정령안 입법예고('14.10.6~11.17)" /></a></div>
                     </div>
                     <div class="btn-bx">
                         <span class="btn-con">

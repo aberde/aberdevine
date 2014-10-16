@@ -414,60 +414,109 @@ public class StatisticDAO extends BaseSqlDAO{
 			
 			if(searchVO.getWhichSearch().equals("T")){
 				query = loadQueryString("sql.statistic.getStatList");
-				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
+				query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
 				if(!searchVO.getCategory2().equals("")){
-					query += " AND DECODE(Q.CATEGORY2,NULL,99999999,Q.CATEGORY2) = " + searchVO.getCategory2()+ " ";
+					query += " AND DECODE(Q.CATEGORY2,NULL,99999999,'',99999999,Q.CATEGORY2) = " + searchVO.getCategory2()+ " ";
 				}
 				
 			}else if(searchVO.getWhichSearch().equals("ON")){
 				query = loadQueryString("sql.statistic.getStatList");
-				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
+				query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
 				if(!searchVO.getCategory2().equals("")){
-					query += " AND DECODE(Q.CATEGORY2,NULL,99999999,Q.CATEGORY2) = " + searchVO.getCategory2()+ " ";
+					query += " AND DECODE(Q.CATEGORY2,NULL,99999999,'',99999999,Q.CATEGORY2) = " + searchVO.getCategory2()+ " ";
 				}
 				query += " AND Q.INSERT_TYPE = 'ONLINE' ";
 			}else if(searchVO.getWhichSearch().equals("OFF")){
 				query = loadQueryString("sql.statistic.getStatList");
-				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
+				query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
 				if(!searchVO.getCategory2().equals("")){
-					query += " AND DECODE(Q.CATEGORY2,NULL,99999999,Q.CATEGORY2) = " + searchVO.getCategory2()+ " ";
+					query += " AND DECODE(Q.CATEGORY2,NULL,99999999,'',99999999,Q.CATEGORY2) = " + searchVO.getCategory2()+ " ";
 				}
 				query += " AND Q.INSERT_TYPE = 'OFFLINE' ";
 			}else if(searchVO.getWhichSearch().equals("Y")){
 				query = loadQueryString("sql.statistic.getStatList1");
-				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
+				query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
 				if(!searchVO.getCategory2().equals("")){
-					query += " AND DECODE(Q.CATEGORY2,NULL,99999999,Q.CATEGORY2) = " + searchVO.getCategory2()+ " ";
+					query += " AND DECODE(Q.CATEGORY2,NULL,99999999,'',99999999,Q.CATEGORY2) = " + searchVO.getCategory2()+ " ";
 				}
 				query += " AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
 			}else if(searchVO.getWhichSearch().equals("N")){
 				query = loadQueryString("sql.statistic.getStatList1");
-				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,Q.CATEGORY1) = '" + searchVO.getCategory1()+ "' ";
+				query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = '" + searchVO.getCategory1()+ "' ";
 				if(!searchVO.getCategory2().equals("")){
-					query += " AND DECODE(Q.CATEGORY2,NULL,99999999,Q.CATEGORY2) = '" + searchVO.getCategory2()+ "' ";
+					query += " AND DECODE(Q.CATEGORY2,NULL,99999999,'',99999999,Q.CATEGORY2) = '" + searchVO.getCategory2()+ "' ";
 				}
 				query += " AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
 			//�Ұ�����
 			}else if(searchVO.getWhichSearch().equals("SUB_T")){
 				query = loadQueryString("sql.statistic.getStatList");
-				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
+				query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
 			}else if(searchVO.getWhichSearch().equals("SUB_ON")){
 				query = loadQueryString("sql.statistic.getStatList");
-				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
+				query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
 				query += " AND Q.INSERT_TYPE = 'ONLINE' ";
 			}else if(searchVO.getWhichSearch().equals("SUB_OFF")){
 				query = loadQueryString("sql.statistic.getStatList");
-				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
+				query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
 				query += " AND Q.INSERT_TYPE = 'OFFLINE' ";
 			}else if(searchVO.getWhichSearch().equals("SUB_Y")){
 				query = loadQueryString("sql.statistic.getStatList1");
-				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
+				query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
 				query += " AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
 			}else if(searchVO.getWhichSearch().equals("SUB_N")){
 				query = loadQueryString("sql.statistic.getStatList1");
-				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
+				query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+				query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
 				query += " AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
+			}else if(searchVO.getWhichSearch().equals("MAIN_T")){
+			    query = loadQueryString("sql.statistic.getStatList");
+			    query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+			}else if(searchVO.getWhichSearch().equals("MAIN_ON")){
+			    query = loadQueryString("sql.statistic.getStatList");
+			    query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+			    query += " AND Q.INSERT_TYPE = 'ONLINE' ";
+			}else if(searchVO.getWhichSearch().equals("MAIN_OFF")){
+			    query = loadQueryString("sql.statistic.getStatList");
+			    query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+			    query += " AND Q.INSERT_TYPE = 'OFFLINE' ";
+			}else if(searchVO.getWhichSearch().equals("MAIN_Y")){
+			    query = loadQueryString("sql.statistic.getStatList1");
+			    query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+			    query += " AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
+			}else if(searchVO.getWhichSearch().equals("MAIN_N")){
+			    query = loadQueryString("sql.statistic.getStatList1");
+			    query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+			    query += " AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
+			}else if(searchVO.getWhichSearch().equals("TOT_T")){
+			    query = loadQueryString("sql.statistic.getStatList");
+			    query += " AND Q.BOARD_TYPE IN ('QNA', 'OFFER')";
+			}else if(searchVO.getWhichSearch().equals("TOT_ON")){
+			    query = loadQueryString("sql.statistic.getStatList");
+			    query += " AND Q.BOARD_TYPE IN ('QNA', 'OFFER')";
+			    query += " AND Q.INSERT_TYPE = 'ONLINE' ";
+			}else if(searchVO.getWhichSearch().equals("TOT_OFF")){
+			    query = loadQueryString("sql.statistic.getStatList");
+			    query += " AND Q.BOARD_TYPE IN ('QNA', 'OFFER')";
+			    query += " AND Q.INSERT_TYPE = 'OFFLINE' ";
+			}else if(searchVO.getWhichSearch().equals("TOT_Y")){
+			    query = loadQueryString("sql.statistic.getStatList1");
+			    query += " AND Q.BOARD_TYPE IN ('QNA', 'OFFER')";
+			    query += " AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
+			}else if(searchVO.getWhichSearch().equals("TOT_N")){
+			    query = loadQueryString("sql.statistic.getStatList1");
+			    query += " AND Q.BOARD_TYPE IN ('QNA', 'OFFER')";
+			    query += " AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
 			}
+			
 			
 			if(!searchVO.getWhichSearch1().equals("") && !searchVO.getSearchTxt().equals("")){
 				if(searchVO.getWhichSearch1().equals("all")){
@@ -497,9 +546,9 @@ public class StatisticDAO extends BaseSqlDAO{
 				vo1.setReg_dt(rs.getString("REG_DT1"));
 				vo1.setReg_nm(rs.getString("REG_NM"));
 				vo1.setRead_count(rs.getInt("READ_COUNT"));
-				if(searchVO.getWhichSearch().equals("Y") || searchVO.getWhichSearch().equals("SUB_Y")){
+				if(searchVO.getWhichSearch().equals("Y") || searchVO.getWhichSearch().equals("SUB_Y") || searchVO.getWhichSearch().equals("MAIN_Y") || searchVO.getWhichSearch().equals("TOT_Y")){
 					vo1.setStat("처리완료");
-				}else if(searchVO.getWhichSearch().equals("N") || searchVO.getWhichSearch().equals("SUB_N")){
+				}else if(searchVO.getWhichSearch().equals("N") || searchVO.getWhichSearch().equals("SUB_N") || searchVO.getWhichSearch().equals("MAIN_N") || searchVO.getWhichSearch().equals("TOT_N")){
 					vo1.setStat("미처리");
 				}else{
 					vo1.setStat(rs.getString("STAT"));
@@ -683,61 +732,109 @@ public class StatisticDAO extends BaseSqlDAO{
 			getConnection(dsname);
 			
 			if(searchVO.getWhichSearch().equals("T")){
-				query = loadQueryString("sql.statistic.getStatList");
-				query += " AND DECODE(Q.CATEGORY1,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
-				if(!searchVO.getCategory2().equals("")){
-					query += " AND DECODE(Q.CATEGORY2,'',99999999,Q.CATEGORY2) = " + searchVO.getCategory2()+ " ";
-				}
-				
-			}else if(searchVO.getWhichSearch().equals("ON")){
-				query = loadQueryString("sql.statistic.getStatList");
-				query += " AND DECODE(Q.CATEGORY1,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
-				if(!searchVO.getCategory2().equals("")){
-					query += " AND DECODE(Q.CATEGORY2,'',99999999,Q.CATEGORY2) = " + searchVO.getCategory2()+ " ";
-				}
-				query += " AND Q.INSERT_TYPE = 'ONLINE' ";
-			}else if(searchVO.getWhichSearch().equals("OFF")){
-				query = loadQueryString("sql.statistic.getStatList");
-				query += " AND DECODE(Q.CATEGORY1,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
-				if(!searchVO.getCategory2().equals("")){
-					query += " AND DECODE(Q.CATEGORY2,'',99999999,Q.CATEGORY2) = " + searchVO.getCategory2()+ " ";
-				}
-				query += " AND Q.INSERT_TYPE = 'OFFLINE' ";
-			}else if(searchVO.getWhichSearch().equals("Y")){
-				query = loadQueryString("sql.statistic.getStatList1");
-				query += " AND DECODE(Q.CATEGORY1,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
-				if(!searchVO.getCategory2().equals("")){
-					query += " AND DECODE(Q.CATEGORY2,'',99999999,Q.CATEGORY2) = " + searchVO.getCategory2()+ " ";
-				}
-				query += " AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
-			}else if(searchVO.getWhichSearch().equals("N")){
-				query = loadQueryString("sql.statistic.getStatList1");
-				query += " AND DECODE(Q.CATEGORY1,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
-				if(!searchVO.getCategory2().equals("")){
-					query += " AND DECODE(Q.CATEGORY2,'','99999999',Q.CATEGORY2) = " + searchVO.getCategory2()+ " ";
-				}
-				query += " AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
-			// �Ұ�����
-			}else if(searchVO.getWhichSearch().equals("SUB_T")){
-				query = loadQueryString("sql.statistic.getStatList");
-				query += " AND DECODE(Q.CATEGORY1,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
-			}else if(searchVO.getWhichSearch().equals("SUB_ON")){
-				query = loadQueryString("sql.statistic.getStatList");
-				query += " AND DECODE(Q.CATEGORY1,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
-				query += " AND Q.INSERT_TYPE = 'ONLINE' ";
-			}else if(searchVO.getWhichSearch().equals("SUB_OFF")){
-				query = loadQueryString("sql.statistic.getStatList");
-				query += " AND DECODE(Q.CATEGORY1,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
-				query += " AND Q.INSERT_TYPE = 'OFFLINE' ";
-			}else if(searchVO.getWhichSearch().equals("SUB_Y")){
-				query = loadQueryString("sql.statistic.getStatList1");
-				query += " AND DECODE(Q.CATEGORY1,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
-				query += " AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
-			}else if(searchVO.getWhichSearch().equals("SUB_N")){
-				query = loadQueryString("sql.statistic.getStatList1");
-				query += " AND DECODE(Q.CATEGORY1,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
-				query += " AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
-			}
+                query = loadQueryString("sql.statistic.getStatList");
+                query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+                query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
+                if(!searchVO.getCategory2().equals("")){
+                    query += " AND DECODE(Q.CATEGORY2,NULL,99999999,'',99999999,Q.CATEGORY2) = " + searchVO.getCategory2()+ " ";
+                }
+                
+            }else if(searchVO.getWhichSearch().equals("ON")){
+                query = loadQueryString("sql.statistic.getStatList");
+                query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+                query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
+                if(!searchVO.getCategory2().equals("")){
+                    query += " AND DECODE(Q.CATEGORY2,NULL,99999999,'',99999999,Q.CATEGORY2) = " + searchVO.getCategory2()+ " ";
+                }
+                query += " AND Q.INSERT_TYPE = 'ONLINE' ";
+            }else if(searchVO.getWhichSearch().equals("OFF")){
+                query = loadQueryString("sql.statistic.getStatList");
+                query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+                query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
+                if(!searchVO.getCategory2().equals("")){
+                    query += " AND DECODE(Q.CATEGORY2,NULL,99999999,'',99999999,Q.CATEGORY2) = " + searchVO.getCategory2()+ " ";
+                }
+                query += " AND Q.INSERT_TYPE = 'OFFLINE' ";
+            }else if(searchVO.getWhichSearch().equals("Y")){
+                query = loadQueryString("sql.statistic.getStatList1");
+                query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+                query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
+                if(!searchVO.getCategory2().equals("")){
+                    query += " AND DECODE(Q.CATEGORY2,NULL,99999999,'',99999999,Q.CATEGORY2) = " + searchVO.getCategory2()+ " ";
+                }
+                query += " AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
+            }else if(searchVO.getWhichSearch().equals("N")){
+                query = loadQueryString("sql.statistic.getStatList1");
+                query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+                query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = '" + searchVO.getCategory1()+ "' ";
+                if(!searchVO.getCategory2().equals("")){
+                    query += " AND DECODE(Q.CATEGORY2,NULL,99999999,'',99999999,Q.CATEGORY2) = '" + searchVO.getCategory2()+ "' ";
+                }
+                query += " AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
+            //�Ұ�����
+            }else if(searchVO.getWhichSearch().equals("SUB_T")){
+                query = loadQueryString("sql.statistic.getStatList");
+                query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+                query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
+            }else if(searchVO.getWhichSearch().equals("SUB_ON")){
+                query = loadQueryString("sql.statistic.getStatList");
+                query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+                query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
+                query += " AND Q.INSERT_TYPE = 'ONLINE' ";
+            }else if(searchVO.getWhichSearch().equals("SUB_OFF")){
+                query = loadQueryString("sql.statistic.getStatList");
+                query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+                query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
+                query += " AND Q.INSERT_TYPE = 'OFFLINE' ";
+            }else if(searchVO.getWhichSearch().equals("SUB_Y")){
+                query = loadQueryString("sql.statistic.getStatList1");
+                query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+                query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
+                query += " AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
+            }else if(searchVO.getWhichSearch().equals("SUB_N")){
+                query = loadQueryString("sql.statistic.getStatList1");
+                query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+                query += " AND DECODE(Q.CATEGORY1,NULL,99999999,'',99999999,Q.CATEGORY1) = " + searchVO.getCategory1()+ " ";
+                query += " AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
+            }else if(searchVO.getWhichSearch().equals("MAIN_T")){
+                query = loadQueryString("sql.statistic.getStatList");
+                query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+            }else if(searchVO.getWhichSearch().equals("MAIN_ON")){
+                query = loadQueryString("sql.statistic.getStatList");
+                query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+                query += " AND Q.INSERT_TYPE = 'ONLINE' ";
+            }else if(searchVO.getWhichSearch().equals("MAIN_OFF")){
+                query = loadQueryString("sql.statistic.getStatList");
+                query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+                query += " AND Q.INSERT_TYPE = 'OFFLINE' ";
+            }else if(searchVO.getWhichSearch().equals("MAIN_Y")){
+                query = loadQueryString("sql.statistic.getStatList1");
+                query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+                query += " AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
+            }else if(searchVO.getWhichSearch().equals("MAIN_N")){
+                query = loadQueryString("sql.statistic.getStatList1");
+                query += " AND Q.BOARD_TYPE='" + searchVO.getBoard_type() + "'";
+                query += " AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
+            }else if(searchVO.getWhichSearch().equals("TOT_T")){
+                query = loadQueryString("sql.statistic.getStatList");
+                query += " AND Q.BOARD_TYPE IN ('QNA', 'OFFER')";
+            }else if(searchVO.getWhichSearch().equals("TOT_ON")){
+                query = loadQueryString("sql.statistic.getStatList");
+                query += " AND Q.BOARD_TYPE IN ('QNA', 'OFFER')";
+                query += " AND Q.INSERT_TYPE = 'ONLINE' ";
+            }else if(searchVO.getWhichSearch().equals("TOT_OFF")){
+                query = loadQueryString("sql.statistic.getStatList");
+                query += " AND Q.BOARD_TYPE IN ('QNA', 'OFFER')";
+                query += " AND Q.INSERT_TYPE = 'OFFLINE' ";
+            }else if(searchVO.getWhichSearch().equals("TOT_Y")){
+                query = loadQueryString("sql.statistic.getStatList1");
+                query += " AND Q.BOARD_TYPE IN ('QNA', 'OFFER')";
+                query += " AND EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
+            }else if(searchVO.getWhichSearch().equals("TOT_N")){
+                query = loadQueryString("sql.statistic.getStatList1");
+                query += " AND Q.BOARD_TYPE IN ('QNA', 'OFFER')";
+                query += " AND NOT EXISTS (SELECT 1 FROM RNDCALL_BOARD_ANSWER A WHERE Q.SEQ = A.Q_SEQ)";
+            }
 			
 			if(!searchVO.getWhichSearch1().equals("") && !searchVO.getSearchTxt().equals("")){
 				if(searchVO.getWhichSearch1().equals("all")){
@@ -766,13 +863,13 @@ public class StatisticDAO extends BaseSqlDAO{
 				vo1.setReg_dt(rs.getString("REG_DT1"));
 				vo1.setReg_nm(rs.getString("REG_NM"));
 				vo1.setRead_count(rs.getInt("READ_COUNT"));
-				if(searchVO.getWhichSearch().equals("Y")){
-					vo1.setStat("처리완료");
-				}else if(searchVO.getWhichSearch().equals("N")){
-					vo1.setStat("미처리");
-				}else{
-					vo1.setStat(rs.getString("STAT"));
-				}
+				if(searchVO.getWhichSearch().equals("Y") || searchVO.getWhichSearch().equals("SUB_Y") || searchVO.getWhichSearch().equals("MAIN_Y") || searchVO.getWhichSearch().equals("TOT_Y")){
+                    vo1.setStat("처리완료");
+                }else if(searchVO.getWhichSearch().equals("N") || searchVO.getWhichSearch().equals("SUB_N") || searchVO.getWhichSearch().equals("MAIN_N") || searchVO.getWhichSearch().equals("TOT_N")){
+                    vo1.setStat("미처리");
+                }else{
+                    vo1.setStat(rs.getString("STAT"));
+                }
 				
 				if(rs.getString("INSERT_TYPE").equals("ONLINE")){
 					vo1.setInsert_type("온라인");

@@ -422,7 +422,7 @@
 	                <!-- // board-type01 -->
 	                
 	                <div class="btn-lst txt-r">
-                        <span class="btn-set green"><a href="javascript:goExcelDown('category');">엑셀 다운로드</a></span>
+                        <span class="btn-set green"><a href="javascript:goExcelDown('queryuserinfo');">엑셀 다운로드</a></span>
                     </div>
 	            </html:form>
 	                

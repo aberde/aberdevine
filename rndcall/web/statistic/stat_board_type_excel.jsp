@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="application/vnd.ms-excel; name='excel', text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="/tags/struts-html" prefix="html"%>
 <%@ taglib uri="/tags/struts-logic" prefix="logic"%>
@@ -20,7 +21,7 @@
     </style>
 </head>
 <% 
-response.setHeader("Content-Disposition", "attachment;filename=%EB%B6%84%EC%95%BC%EB%B3%84%ED%86%B5%EA%B3%84.xls"); 
+response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("전체통계", "utf-8") + ".xls"); 
 response.setHeader("Content-Description", "JSP Generated Data"); 
 %>
 <body>

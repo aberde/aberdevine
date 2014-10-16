@@ -229,7 +229,7 @@ public class MypageDAO extends BaseSqlDAO{
 				if(searchVO.getFlag().equals("U")){
 					vo.setAnswerContents(vo.getAnswerContents());		
 				}else{
-					if (vo.getAnswerContents() != null && vo.getAnswerContents().equals("")) {
+					if (vo.getAnswerContents() != null && !vo.getAnswerContents().equals("")) {
 						vo.setAnswerContents(vo.getAnswerContents().replaceAll("\n", "<br>"));
 					}
 				}

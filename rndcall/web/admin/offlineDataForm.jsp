@@ -103,7 +103,7 @@
 		    </logic:iterate>
 		    
 		    //f_cate_change2(fmDetail.elements["searchVO.bz_id"].value);
-// 		    f_cate_change2();
+		    f_cate_change2();
 		};
 	
 	    // 대분류 셀렉트박스의 onChange 이벤트에 설정.
@@ -202,19 +202,30 @@
 	                                <tr>
 	                                    <th scope="col"><label for="title">제목</label></th>
 	                                    <td colspan="3">
-	                                        <html:text name="AdminForm" property="vo.title" title="제목" style="width:98%" />
+	                                        <input type="text" name="vo.title" title="제목" style="width:98%" />
 	                                    </td>
 	                                </tr>
 	                                <tr>
 	                                    <th scope="col"><label for="qu">질문일자</label></th>
-	                                    <td><html:text name="AdminForm" property="vo.reg_dt" style="width:120px" maxlength="10"/><span class="ml10"> 예) 2012-01-01</span></td>
+	                                    <td><input type="text" name="vo.reg_dt" style="width:120px" maxlength="10" /><span class="ml10"> 예) 2012-01-01</span></td>
 	                                    <th scope="col"><label for="qt">질문시간</label></th>
-	                                    <td><html:text name="AdminForm" property="vo.reg_time" style="width:120px" maxlength="5"/><span class="ml10"> 예) 15:23</span></td>
+	                                    <td><input type="text" name="vo.reg_time" style="width:120px" maxlength="5" /><span class="ml10"> 예) 15:23</span></td>
 	                                </tr>
 	                                <tr>
 	                                    <th scope="row" >질문내용</th>
 	                                    <td colspan="3"><textarea name="vo.question_contents" id="question_contents" rows="0" cols="0" style="width:97%; min-height:220px;" title="질문내용"/></textarea> </td>
 	                                </tr>
+	                                <tr>
+                                        <th scope="row"><label for="category1">분야 선택</label></th>
+                                        <td colspan="3">
+                                            <select id="category1" name="vo.category1" title="대분류" onchange="f_cate_change(this.value)">
+                                                <option value="">::: 선택 :::</option>
+                                            </select>
+                                            <select id="category2" name="vo.category2" title="소분류">
+                                                <option value="">::: 선택 :::</option>
+                                            </select>
+                                        </td>
+                                    </tr>
 	                                <tr>
 	                                    <th scope="row">답변내용</th>
 	                                    <td colspan="3"><textarea name="vo.answer_contents" id="contents" rows="0" cols="0" style="width:97%; min-height:200px;" title="답변내용"/></textarea></td>

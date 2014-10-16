@@ -406,7 +406,7 @@ public class InquireAction extends DispatchAction {
     	resultVO.getVo().setOpen_yn(vo.getOpen_yn());
     	resultVO.getVo().setCategory1(vo.getCategory1());
     	resultVO.getVo().setCategory2(vo.getCategory2());
-    	resultVO.getVo().setAnswerContents(vo.getAnswerContents());
+    	resultVO.getVo().setAnswerContents(vo.getAnswerContents().replaceAll("\n", "<br>"));
     	
     	fm.setVo(resultVO.getVo());
     	fm.setVoList(questionFileVO.getVoList());	//질문첨부파일정보

@@ -484,6 +484,7 @@ html,body {height:100%;}
     <script type="text/javascript" src="/js/validate.js"></script>
     <script type="text/javascript" src="/js/common.js"></script> 
 
+
     <!-- section -->
     <div class="section">       
         <html:form action="/Offer" method="post" name="fm" type="kr.go.rndcall.mgnt.offer.form.OfferForm">
@@ -498,6 +499,15 @@ html,body {height:100%;}
             <html:hidden name="OfferForm" property="searchVO.menu_sn"/>
             <html:hidden name="OfferForm" property="searchVO.pagerOffset"/>
             
+            <div class="tit-area">
+	            <h3>R&amp;D 신문고</h3>
+	            <!-- <p>R&amp;D 관련 규정 및 제도에 대해 궁금하신 사항에 담당자가 답변해 드립니다.기존 답변을 검색 후 질의해주세요.</p> -->
+	        </div>
+        
+		    <div class="explain-bx mt60">
+		        <strong>연구현장의 불합리한 제도나 관행 등에 대한 개선사항이나 좋은 아이디어가 있을 때 제안해 주신 의견을 수렴하여 제도개선을 추진합니다.<br />최근 신설되거나 개선된 연구관리 제도를 현장에 적용하는 과정에서 생기는 애로사항이 있을 때 R&D 신문고를 통해 제안해 주시면 법적·제도적으로 직접 해결하여 드립니다</strong>
+		    </div>
+		    
             <!-- board-detail -->
             <div class="board-detail mt60">
                 <div class="board-box">

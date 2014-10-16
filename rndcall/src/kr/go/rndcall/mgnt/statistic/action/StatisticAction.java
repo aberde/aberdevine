@@ -523,6 +523,12 @@ public class StatisticAction extends DispatchAction {
 			target = "stat_visit_excel";
 		}else if(searchVO.getDown_type().equals("board_type")){
 		    target = "stat_board_type_excel";
+		}else if(searchVO.getDown_type().equals("category2")){
+		    target = "stat_category2_excel";
+		}else if(searchVO.getDown_type().equals("queryuserinfo")){
+		    target = "stat_queryuserinfo_excel";
+		}else if(searchVO.getDown_type().equals("user_sector")){
+		    target = "stat_user_sector_excel";
 		}
         
 		try{

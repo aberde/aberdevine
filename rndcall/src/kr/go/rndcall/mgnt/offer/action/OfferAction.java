@@ -22,6 +22,7 @@ import kr.go.rndcall.mgnt.inquire.biz.InquireBiz;
 import kr.go.rndcall.mgnt.inquire.form.InquireForm;
 import kr.go.rndcall.mgnt.inquire.vo.InquireResultVO;
 import kr.go.rndcall.mgnt.inquire.vo.InquireSearchVO;
+import kr.go.rndcall.mgnt.inquire.vo.InquireVO;
 
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionError;
@@ -495,7 +496,7 @@ public class OfferAction extends DispatchAction {
         try{
         	OfferBiz OfferBiz = new OfferBiz();
 //			searchVO.setFlag("U");
-			searchVO.setFlag("");
+//			searchVO.setFlag("");
 			resultVO = OfferBiz.offerDetailView(searchVO);
 		} catch (Exception e) {
             logger.debug("Exception: " + e.getMessage());
@@ -1826,6 +1827,103 @@ public class OfferAction extends DispatchAction {
             errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
                     "errors.database.error", e.getMessage()));
         }
+
+        fm.setVo(resultVO.getVo());
+        fm.setVoList(questionFileVO.getVoList()); // 질문첨부파일정보
+        fm.setVoList1(answerFileVO.getVoList()); // 답변첨부파일
+        fm.setSatiVO(satiResultVO.getSatiVO());
+
+        if (errors.isEmpty()) {
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                    "errors.getList.success"));
+        }
+        saveErrors(request, errors);
+
+        return mapping.findForward(target);
+    }
+    
+    /**
+     * R&D 신문고 상세정보를 프린트하기위해 불러오는 팝업창
+     */     
+    public ActionForward getOfferViewPopup(ActionMapping mapping, ActionForm form, HttpServletRequest request
+            , HttpServletResponse response) throws Exception {      
+        
+        String target = "getOfferViewPopup"; 
+        ActionErrors errors = null;
+        if (request.getAttribute("org.apache.struts.action.ERROR") == null) {
+            errors = new ActionErrors();
+        } else {
+            errors = (ActionErrors) request
+                    .getAttribute("org.apache.struts.action.ERROR");
+        }
+
+        OfferForm fm = (OfferForm) form;
+        OfferSearchVO searchVO = fm.getSearchVO();
+        OfferVO vo = fm.getVo();
+        OfferResultVO resultVO = new OfferResultVO();
+        OfferResultVO satiResultVO = new OfferResultVO();
+
+        OfferResultVO questionFileVO = new OfferResultVO(); // 질문 첨부파일
+        OfferResultVO answerFileVO = new OfferResultVO(); // 답변첨부파일
+
+        if (Util.getLoginUserVO(request) != null) {
+            searchVO.setLoginId(Util.getLoginId(request)); // 로그인 아이디정보
+            searchVO.setName(Util.getName(request)); // 로그인 이름정보
+            searchVO.setRoleCD(Util.getLoginUserVO(request).getRoleCD());
+        }
+
+        // searchVO.setLoginId("admin"); //로그인 아이디정보
+        // searchVO.setName("관리자"); //로그인 이름정보
+
+        try {
+            OfferBiz OfferBiz = new OfferBiz();
+            searchVO.setFlag("V");
+            resultVO = OfferBiz.offerDetailView(searchVO);
+
+        } catch (Exception e) {
+            logger.debug("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                    "errors.database.error", e.getMessage()));
+        }
+        System.out.println("제안하기 시퀀스 넘버?:" + resultVO.getVo().getSeq());
+        System.out.println("제안하기 파일 ID?" + resultVO.getVo().getFile_id());
+
+        try {
+            OfferBiz OfferBiz = new OfferBiz();
+            questionFileVO = OfferBiz.getFileInfo(resultVO.getVo()
+                    .getQuestion_file_id());
+        } catch (Exception e) {
+            logger.debug("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                    "errors.database.error", e.getMessage()));
+        }
+
+        try {
+            OfferBiz OfferBiz = new OfferBiz();
+            answerFileVO = OfferBiz.getFileInfo(resultVO.getVo()
+                    .getAnswer_file_id());
+        } catch (Exception e) {
+            logger.debug("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                    "errors.database.error", e.getMessage()));
+        }
+
+        System.out.println("resultVO.getVo().getSeq()::"
+                + resultVO.getVo().getSeq());
+        try {
+            OfferBiz OfferBiz = new OfferBiz();
+            satiResultVO = OfferBiz.getSatiInfo(resultVO.getVo().getSeq(),
+                    searchVO.getLoginId());
+        } catch (Exception e) {
+            logger.debug("Exception: " + e.getMessage());
+            errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(
+                    "errors.database.error", e.getMessage()));
+        }
+        
+        resultVO.getVo().setOpen_yn(vo.getOpen_yn());
+        resultVO.getVo().setCategory1(vo.getCategory1());
+        resultVO.getVo().setCategory2(vo.getCategory2());
+        resultVO.getVo().setAnswerContents(vo.getAnswerContents().replaceAll("\n", "<br>"));
 
         fm.setVo(resultVO.getVo());
         fm.setVoList(questionFileVO.getVoList()); // 질문첨부파일정보
