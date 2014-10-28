@@ -78,7 +78,7 @@ public class OfferDAO extends BaseSqlDAO{
 					.append(" or Q.title LIKE '%").append(searchVO.getSearchTxt()).append("%') ")
 				 	.toString();
 				}else if(searchVO.getWhichSearch().equals("reg_id")){
-				    query += " AND DECODE(Q.REG_ID, NULL, '비회원', '', '비회원') like '%"+searchVO.getSearchTxt()+"%' ";
+				    query += " AND DECODE(Q.REG_ID, NULL, '비회원', '', '비회원', Q.REG_ID) like '%"+searchVO.getSearchTxt()+"%' ";
 				}
 			}
 			

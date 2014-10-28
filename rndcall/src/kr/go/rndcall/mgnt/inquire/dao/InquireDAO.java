@@ -232,8 +232,8 @@ public class InquireDAO extends BaseSqlDAO{
 					query += "       AND Q.REG_NM like '%"+searchVO.getSearchTxt()+"%' ";
 					countQuery += " AND Q.REG_NM like '%"+searchVO.getSearchTxt()+"%' ";
 				}else if(searchVO.getWhichSearch().equals("reg_id")){
-				    query += "       AND DECODE(Q.REG_ID, NULL, '비회원', '', '비회원') like '%"+searchVO.getSearchTxt()+"%' ";
-				    countQuery += " AND DECODE(Q.REG_ID, NULL, '비회원', '', '비회원') like '%"+searchVO.getSearchTxt()+"%' ";
+				    query += "       AND DECODE(Q.REG_ID, NULL, '비회원', '', '비회원', Q.REG_ID) like '%"+searchVO.getSearchTxt()+"%' ";
+				    countQuery += " AND DECODE(Q.REG_ID, NULL, '비회원', '', '비회원', Q.REG_ID) like '%"+searchVO.getSearchTxt()+"%' ";
 				}
 			}
 			
