@@ -30,6 +30,7 @@
 		
 		function goNoticeUpdateForm(){
 			fm.elements["method"].value="noticeUpdateForm";
+			fm.elements["searchVO.flag"].value="U";
 			fm.submit();
 		}
 		function goNoticeDelete(){
@@ -74,6 +75,7 @@
 				    <html:hidden name="NoticeForm" property="searchVO.menu_sn"/>
 				    <html:hidden name="NoticeForm" property="searchVO.uni"/>
 				    <html:hidden name="NoticeForm" property="searchVO.pagerOffset"/>
+				    <html:hidden name="NoticeForm" property="searchVO.flag"/>
             
                     <!-- board-detail -->
                     <div class="board-detail mt30">
