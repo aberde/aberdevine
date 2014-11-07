@@ -12,6 +12,7 @@
 
 	<sqlMap resource="whoya/sqlmap/com/login/login.xml"/>
 	<sqlMap resource="whoya/sqlmap/com/ac/ACI0010.xml"/>
+	<sqlMap resource="whoya/sqlmap/com/ac/ACI0010_.xml"/>
 	<sqlMap resource="whoya/sqlmap/com/co/COI0010.xml"/>
 	<sqlMap resource="whoya/sqlmap/com/co/COI0020.xml"/>
 	<sqlMap resource="whoya/sqlmap/com/co/COI0040.xml"/>

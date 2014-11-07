@@ -2,11 +2,11 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
-<sqlMap namespace="ACI0010">
-	<select id="ACI0010Rc_acCd" parameterClass="cmap" resultClass="cmap">
+<sqlMap namespace="ACI0010_">
+	<select id="ACI0010_Rc_acCd" resultClass="org.apache.commons.collections.map.CaseInsensitiveMap">
 	<!-- 계정코드콤보  -->
 	<![CDATA[
-    SELECT A.ACCD, ACNM
+    SELECT A.ACCD value, ACNM text
     FROM ( SELECT LEVEL LV, ACCD, ACNM
            FROM   AC_ACD
            WHERE  COID = #coId#
@@ -17,10 +17,10 @@
 	]]>
 	</select>
 	
-	<select id="ACI0010Rs" parameterClass="cmap" resultClass="cmap">
+	<select id="ACI0010_Rs" resultClass="java.util.HashMap">
 	<!-- 계정과목조회  -->
 	<![CDATA[
-    SELECT LEVEL LV, ACCD, ACNM, HACCD, DCDV, WRTYN, CONYN, USEYN, INSID, INSDT
+    SELECT TO_CHAR(LEVEL) LV, ACCD, ACNM, HACCD, DCDV, WRTYN, CONYN, USEYN, INSID, TO_CHAR(INSDT, 'YYYY-MM-DD') INSDT
     FROM   AC_ACD
     WHERE  COID = #coId#
     AND    ACCD LIKE REPLACE('00'||'%','0','')
@@ -29,14 +29,14 @@
     ORDER SIBLINGS BY ACCD
 	]]>
 	</select>
-	<insert id="ACI0010Ui">
+	<insert id="ACI0010_Ui">
 	<!-- 계정과목 INSERT -->
 	<![CDATA[
     INSERT INTO AC_ACD (COID, ACCD, ACNM, HACCD, DCDV, WRTYN, CONYN, USEYN, INSID)
     VALUES (#coId#, #acCd#, #acNm#, #hAcCd#, #dcDv#, #wrtYn#, #conYn#, #useYn#, #insId#)
 	]]>
 	</insert>
-	<update id="ACI0010Uu">
+	<update id="ACI0010_Uu">
 	<!-- 사용자 UPDATE -->
 	<![CDATA[
     UPDATE AC_ACD
@@ -46,7 +46,7 @@
     AND   ACCD = #acCd#
 	]]>
 	</update>
-	<delete id="ACI0010Ud">
+	<delete id="ACI0010_Ud">
 	<!-- 사용자 DELETE -->
 	<![CDATA[
     DELETE FROM AC_ACD 
