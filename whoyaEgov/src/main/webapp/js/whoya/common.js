@@ -7,6 +7,15 @@ function comboDataPut(grid, ColunmNo, data) {
 	}
 }
 
+/*콤보데이터 업로드*/
+function comboDataPut2(grid, ColunmNo, data) {
+	for(var i=0; i<data.length; i++) {
+		if(data[i].value0]!=""){
+			grid.getCombo(ColunmNo).put(data[i][0],data[i][1]);
+		}	
+	}
+}
+
 //Grig편집메뉴
 function comEditGrid(grid, menuItemId, editValues){
 

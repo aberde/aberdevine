@@ -8,9 +8,9 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Repository;
 
+import whoya.whoya;
 import whoya.whoyaList;
 import whoya.whoyaMap;
-import whoya.whoya;
 
 @Repository("whoya")
 public class commonDAO implements whoya {
