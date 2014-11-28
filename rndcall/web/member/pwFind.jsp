@@ -145,7 +145,7 @@
         <!-- btn-set-->
         <div class="btn-lst txt-r">
             <span class="btn-set "><a href="javascript:idFind();">확인</a></span>
-            <span class="btn-set "><a href="window.close();">취소</a></span>
+            <span class="btn-set "><a href="javascript:window.close();">취소</a></span>
         </div>
         <!-- //btn-set-->   
 
