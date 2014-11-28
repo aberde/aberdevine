@@ -530,8 +530,9 @@
                 <div class="bn-slide">
                     <div class="slide " id="owl-banner">
 <!--                         <div><a href="#none;"><img src="img/main/bn_slide01.jpg" alt="국가연구개발사업 학생인건비. 통합관리제 운영 매뉴얼. 일시 : 2013년 4월 03일 미래창조과학부 장관 " /></a></div> -->
-                        <div><a href="javascript:banner();"><img src="img/main/bn_slide03.jpg" alt="R&amp;D도우미센터 이렇게 바뀌었습니다. " /></a></div>
-                        <div><a href="/notice/Notice.do?method=noticeDetailView&searchVO.board_type=NOTICE&searchVO.seq=4832"><img src="img/main/bn_slide04.gif" alt="국가연구개발사업의 관리 등에 관한 규칙 일부개정령안 입법예고('14.10.6~11.17)" /></a></div>
+<!--                         <div><a href="javascript:banner();"><img src="img/main/bn_slide03.jpg" alt="R&amp;D도우미센터 이렇게 바뀌었습니다. " /></a></div> -->
+<!--                         <div><a href="/notice/Notice.do?method=noticeDetailView&searchVO.board_type=NOTICE&searchVO.seq=4832"><img src="img/main/bn_slide04.gif" alt="국가연구개발사업의 관리 등에 관한 규칙 일부개정령안 입법예고('14.10.6~11.17)" /></a></div> -->
+                        <div><a href="http://on.frc.co.kr/nation_rnd/default.asp" target="_blank"><img src="img/main/bn_slide04.jpg" alt="국가연구개발사업 제도개선 만족도 조사(2014.11.24~2014.12.05)" /></a></div>
                     </div>
                     <div class="btn-bx">
                         <span class="btn-con">
