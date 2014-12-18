@@ -94,7 +94,10 @@
 // 				}
 // 			}
 			
-			
+			//비밀번호 필수 입력 체크
+			if ($("#vo.password").length > 0 && isRequired(fm.elements["vo.password"])){
+				return false;
+			}
 			//제목 필수 입력 체크
 			if (isRequired(fm.elements["vo.title"])){
 				return false;
