@@ -239,6 +239,10 @@ public class MemberAction extends DispatchAction {
 		MemberSearchVO searchVO = fm.getSearchVO();
 		MemberResultVO resultVO = new MemberResultVO();
 		MemberVO vo = fm.getVo();
+		
+		LoginVO loginVO = (LoginVO)request.getSession().getAttribute("loginUserVO");  // 세션에서 아이디 가져오기
+        vo.setLogin_id(loginVO.getLogin_id());
+		
 		String ins = "false";
 		int oldDocCnt = 0;
 	
