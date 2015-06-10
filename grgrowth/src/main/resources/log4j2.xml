@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %5p [%c] %m%n" />
+        </Console>
+        <File name="file" fileName="/14.Grgrowth/88.logs/grgrowth.log" append="true" >
+			<PatternLayout pattern="%d %5p [%c] %m%n"/>
+		</File>
+    </Appenders>
+    
+    <Loggers>
+        <Logger name="egovframework" level="debug" additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="file" />
+        </Logger>
+        <Root level="debug">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="file" />
+        </Root>         
+    </Loggers>
+    
+    <RollingFile name="rollingFile" fileName="/14.Grgrowth/88.logs/grgrowth.log" filePattern="/14.Grgrowth/88.logs/grgrowth.log.%d{yyyy-MM-dd-HH-mm-ss}">
+		<PatternLayout pattern="%d %5p [%c] %m%n" />
+		<Policies>
+			<!-- interval(default 1)이므로 1초 간격으로 rolling 수행 --> 
+			<TimeBasedTriggeringPolicy />
+		</Policies>
+	</RollingFile>
+</Configuration>
