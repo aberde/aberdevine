@@ -133,7 +133,7 @@ a, a:hover {text-decoration:none;color:#05b99b;}
 	.nav_cats li ul ul {background:#018a75; margin:-31px 0 0 148px;padding-top:0; width:180px;}
 	.nav_cats li ul ul li a {color:#fff; width:180px;padding:3px;margin:0;height:16px;margin-top:5px;}
 	/* List items that contains sub ul */
-	.sub-depth {background: url(http://www.greengrowth.go.kr/wp-content/uploads/2013/12/arrow-superfish-right.png) no-repeat right center;}
+	.sub-depth {background: url(/images/main/arrow-superfish-right.png) no-repeat right center;}
 	.nav_cats .sf-sub-indicator {background: url(green/icons/arrow-superfish-down.png) no-repeat;position:absolute;display:block;right:7px;top:14px;width:10px;height:10px;text-indent:-999em;overflow:hidden;}
 	.nav_cats li ul .sf-sub-indicator {background:url(green/icons/arrow-superfish-right.png) no-repeat;right:5px;top:8px;}	
 	/*
@@ -151,7 +151,7 @@ a, a:hover {text-decoration:none;color:#05b99b;}
 	.all{position:relative; top:5px; width:940px; margin:0 auto; }
 	.all .naviOpenAll{position:absolute; top:-55px; right:0; border:none; z-index:10000;}
 
-	.divNaviAll{background:url("http://www.greengrowth.go.kr/wp-content/uploads/2013/12/h_menu_bg.png");
+	.divNaviAll{background:url("/images/main/h_menu_bg.png");
 				display:none;border:2px solid #f0f5e6; border-top:none; 
 	            overflow:hidden;position:relative;z-index:999;left:-2px;top:-3px; 
 	            width:940px; height:auto;}
@@ -227,7 +227,7 @@ a, a:hover {text-decoration:none;color:#05b99b;}
 
 
 #home_container .home_right{float:right; width:312px;}
-	.home_r_bn{background:url("http://www.greengrowth.go.kr/wp-content/uploads/2014/01/home_r_bg.gif") no-repeat 0 -1px; height:446px;}
+	.home_r_bn{background:url("/images/main/home_r_bg.gif") no-repeat 0 -1px; height:446px;}
 	.home_r_bn li{width:123px; margin:11px 15px; float:left;}
 	.home_r_bn .orange{color:#ef5a23;}
 	.home_r_bn .blue{color:#3b7deb;}
@@ -365,7 +365,7 @@ a, a:hover {text-decoration:none;color:#05b99b;}
 #side_box ul li{padding-left:10px;}
 #side_box ul ul{border:none;}
 #side_box ul ul a{padding-left:5px;}
-#side_box ul ul li{background:url("http://www.greengrowth.go.kr/wp-content/uploads/2013/12/dot.gif") no-repeat 8px 50%;}
+#side_box ul ul li{background:url("/images/main/dot.gif") no-repeat 8px 50%;}
 #side_box ul ul li ul li{background:none;}
 #side_box .last{border-bottom:1px solid #ededed !important; margin-bottom:5px;}
 #side_box ul.side_1dh a{color:#666; width:180px; display:block; line-height:26px;}
