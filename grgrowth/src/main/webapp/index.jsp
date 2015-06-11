@@ -7,7 +7,7 @@
 	<div class="home_left">
 		<img src="<c:url value="/images/main/home_l_img01.gif" />" alt="녹색성장 더 큰 대한민국" />
 		<div id="search" style="margin-top: 15px;">
-			<!-- <?php get_search_form(); ?> -->
+			<%-- <?php get_search_form(); ?> --%>
 		</div>
 		<p>&nbsp;</p>
 		<p>&nbsp;</p>
@@ -93,7 +93,6 @@
 		</div>
 
 	</div>
-	<!--//home_right-->
 
 </div>
 

@@ -117,7 +117,7 @@
 
 			<!-- logo -->
 			<div id="logo" style="padding:0px 0 10px 0px;">
-				<a href="http://www.greengrowth.go.kr" title="녹색성장위원회"><img 
+				<a href="<c:url value="/" />" title="녹색성장위원회"><img 
 					src="<c:url value="/images/main/logo2.jpg" />" alt="녹색성장위원회" title="녹색성장위원회" /></a>
 			</div>
 			<!-- /logo -->
