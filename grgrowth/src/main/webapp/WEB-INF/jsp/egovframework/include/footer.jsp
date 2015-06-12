@@ -1,5 +1,8 @@
 <%@ page language="java" pageEncoding="utf-8" contentType="text/html; charset=utf-8" session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	</div>
+	<!-- /wrapper -->
+	
 	<div id="bottom">
 		<div id="footer">
 	
@@ -72,4 +75,4 @@
 		<div class="clear"></div>
 	</div>
 	
-</div>
+</html>
