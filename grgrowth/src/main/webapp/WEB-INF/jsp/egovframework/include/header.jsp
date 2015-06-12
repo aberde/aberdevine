@@ -30,6 +30,19 @@
 		/*#navcats .nav_cats .sf-sub-1 .sub-width1-1 a{color:red;}*/
 	</style>
 	
+	<script type="text/javascript">
+		//<![CDATA[
+		// Google Analytics for WordPress by Yoast v4.2.2 | http://yoast.com/wordpress/google-analytics/
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount','UA-24093225-1']);
+		_gaq.push(['_trackPageview'],['_trackPageLoadTime']);
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+		//]]>
+	</script>
 	<script type="text/javascript" src="<c:url value="/js/jquery-1.11.3.js" />"></script>
 	<script type="text/javascript">
 		/**
@@ -108,9 +121,10 @@
 </head>
 
 <body>
-
+	<!-- wrapper -->
 	<div id="wrapper">
 
+		<div class="clear"></div>
 		<div class="clear"></div>
 
 		<div id="navcats">
@@ -125,21 +139,21 @@
 			<!-- navi -->
 			<ul id="menu-main-menu" class="nav_cats dropdown">
 				<li>
-					<a href="<c:url value="" />"><img id="mNavi1" src="<c:url value="/images/main/mNavi1.gif" />"
+					<a href="<c:url value="/menu001/sub001/GRG_001_101.do" />"><img id="mNavi1" src="<c:url value="/images/main/mNavi1.gif" />"
 						border="0" alt="녹색성장" onmouseover="fnShow(1)" onmouseout="fnHide(1);" /></a>
 					<ul class="sub-menu" onmouseover="fnShow(1);" onmouseout="fnHide(1);">
 						<li class="sub-width1-1 sub-depth">
-							<a href="<c:url value="" />">개념</a>
+							<a href="<c:url value="/menu001/sub001/GRG_001_101.do" />">개념</a>
 							<ul class="sub-menu">
-								<li><a href="<c:url value="" />">개념</a></li>
-								<li><a href="<c:url value="" />">추진배경</a></li>
+								<li><a href="<c:url value="/menu001/sub001/GRG_001_101.do" />">개념</a></li>
+								<li><a href="<c:url value="/menu001/sub001/GRG_001_102.do" />">추진배경</a></li>
 							</ul>
 						</li>
 						<li class="sub-width1-2 sub-depth">
-							<a href="<c:url value="" />">국가전략</a>
+							<a href="<c:url value="/menu001/sub002/GRG_001_201.do" />">국가전략</a>
 							<ul class="sub-menu">
-								<li><a href="<c:url value="" />">국가전략</a></li>
-								<li><a href="<c:url value="" />">5개년계획</a></li>
+								<li><a href="<c:url value="/menu001/sub002/GRG_001_201.do" />">국가전략</a></li>
+								<li><a href="<c:url value="/menu001/sub002/GRG_001_202.do" />">5개년계획</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -169,19 +183,19 @@
 					</ul>
 				</li>
 				<li>
-					<a href="<c:url value="" />"><img id="mNavi5" src="<c:url value="/images/main/mNavi5.gif" />"
+					<a href="<c:url value="/menu004/sub001/GRG_004_101.do" />"><img id="mNavi5" src="<c:url value="/images/main/mNavi5.gif" />"
 						border="0" alt="녹색성장위원회 소개" onmouseover="fnShow(5);" onmouseout="fnHide(5);" /></a>
 					<ul class="sub-menu" onmouseover="fnShow(5);" onmouseout="fnHide(5);">
-						<li><a href="<c:url value="" />">인사말</a></li>
-						<li class="sub-width5-2 sub-depth"><a href="<c:url value="" />">위원소개</a>
+						<li><a href="<c:url value="/menu004/sub001/GRG_004_101.do" />">인사말</a></li>
+						<li class="sub-width5-2 sub-depth"><a href="<c:url value="/menu004/sub002/GRG_004_201.do" />">위원소개</a>
 							<ul>
-								<li><a href="<c:url value="" />">당연직위원</a></li>
-								<li><a href="<c:url value="" />">민간위원</a></li>
+								<li><a href="<c:url value="/menu004/sub002/GRG_004_201.do" />">당연직위원</a></li>
+								<li><a href="<c:url value="/menu004/sub002/GRG_004_202.do" />">민간위원</a></li>
 							</ul>
 						</li>
-						<li><a href="<c:url value="" />">위원회연혁</a></li>
-						<li><a href="<c:url value="" />">위원회기능 및 구성</a>
-						<li class="sub-width5-7"><a href="<c:url value="" />">위원회로고</a></li>
+						<li><a href="<c:url value="/menu004/sub003/GRG_004_301.do" />">위원회연혁</a></li>
+						<li><a href="<c:url value="/menu004/sub004/GRG_004_401.do" />">위원회기능 및 구성</a>
+						<li class="sub-width5-7"><a href="<c:url value="/menu004/sub005/GRG_004_501.do" />">위원회로고</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -197,10 +211,10 @@
 				<div class="divNaviAll" id="divNaviAll">
 					<ul class="ulAllNavi-1 ulAllN">
 						<li>
-							<a href="<c:url value="" />" class="me">녹색성장</a>
+							<a href="<c:url value="/menu001/sub001/GRG_001_101.do" />" class="me">녹색성장</a>
 							<ul>
-								<li><a href="<c:url value="" />">개념</a></li>
-								<li><a href="<c:url value="" />">국가전략</a></li>
+								<li><a href="<c:url value="/menu001/sub001/GRG_001_101.do" />">개념</a></li>
+								<li><a href="<c:url value="/menu001/sub002/GRG_001_201.do" />">국가전략</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -228,11 +242,11 @@
 						<li>
 							<a href="<c:url value="" />" class="me">위원회</a>
 							<ul>
-								<li><a href="<c:url value="" />">인사말</a></li>
-								<li><a href="<c:url value="" />">위원회소개</a></li>
-								<li><a href="<c:url value="" />">위원회연혁</a></li>
-								<li><a href="<c:url value="" />">위원회기능 및 구성</a></li>
-								<li><a href="<c:url value="" />">위원회로고</a></li>
+								<li><a href="<c:url value="/menu004/sub001/GRG_004_101.do" />">인사말</a></li>
+								<li><a href="<c:url value="/menu004/sub002/GRG_004_201.do" />">위원회소개</a></li>
+								<li><a href="<c:url value="/menu004/sub003/GRG_004_301.do" />">위원회연혁</a></li>
+								<li><a href="<c:url value="/menu004/sub004/GRG_004_401.do" />">위원회기능 및 구성</a></li>
+								<li><a href="<c:url value="/menu004/sub005/GRG_004_501.do" />">위원회로고</a></li>
 							</ul>
 						</li>
 					</ul>

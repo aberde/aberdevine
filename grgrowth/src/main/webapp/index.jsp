@@ -16,7 +16,7 @@
 	<div class="home_center">
 		<p class="home_c_main">
 			<img src="<c:url value="/images/main/home_c_main.gif" />" alt="Geen KOREA 2013" />
-		<p>
+		</p>
 		<div class="news">
 			<img src="<c:url value="/images/main/home_c_title.gif" />" alt="뉴스" />
 			<ul>
