@@ -15,13 +15,32 @@
  */
 package egovframework.grgrowth.main.service.impl;
 
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
-import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
+import egovframework.grgrowth.common.service.CommonBoardVO;
+import egovframework.rte.psl.dataaccess.mapper.Mapper;
 
 /**
  * 메인에 관한 데이터처리 매퍼 클래스
  */
-@Repository("mainMapper")
-public class MainMapper extends EgovAbstractMapper {
+@Mapper("commonMapper")
+public interface MainMapper {
+    
+    /**
+     * 검색 목록조회 요청을 처리하기 위해 데이터처리를 요청한다.
+     * 
+     * @param vo
+     * @return List
+     * @throws Exception
+     */
+    public List<CommonBoardVO> searchList(CommonBoardVO vo) throws Exception;
+    
+    /**
+     * 검색 총 레코드 수 조회 요청을 처리하기 위해 데이터처리를 요청한다.
+     * 
+     * @param vo
+     * @return int
+     * @throws Exception
+     */
+    public int searchListTotCnt(CommonBoardVO vo) throws Exception;
 }

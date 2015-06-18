@@ -1,0 +1,180 @@
+/* Box-Model Selector */
+
+.btype2 {width: 620px; margin: 10px 0px 0px 0px; line-height: 1.668em; }
+	.btype2 div.wrap {padding: 10px 20px; border: 1px solid #d6e1cc; background: #f7faf3; }
+	.btype2 div.wrap img{padding-right: 10px; }
+	.btype2 div.wrap input.txt-type {width: 315px; margin: 0px;  border: 1px solid #d0d0cc;}
+	.btype2 div.wrap input.contact-txt-type {width: 403px; margin: 0px;  border: 1px solid #d0d0cc;}
+	.btype2 div.wrap .btn-type{margin-bottom:-5px; }
+
+.btype3 {width: 620px; line-height: 1.668em; }
+	.btype3 div.wrap {padding: 15px 20px; border: 1px solid #bce29d; background: #f9fbf8; }
+
+.dic_keyword {
+    float:left;
+    width:620px;
+	height:98px;
+	margin-top:20px;
+	padding-top:10px;
+	clear:both;
+	background:url('<?php echo bloginfo('template_url'); ?>/images/knowledge/word_bg_02.gif') no-repeat left top;
+	}
+
+.dic_keyword .wordtitle {
+    float:left;
+	width:600px;	
+	padding-left:10px;
+	}
+
+.dic_keyword dl {
+	padding-top:2px;
+	width:600px;
+	}
+
+.dic_keyword dt {
+    float:left;
+	width:65px;
+	height:20px;
+	}
+
+.dic_keyword img {
+    vertical-align:middle;
+	margin-bottom:3px;
+	}
+
+.dic_keyword dd {
+	display: inline;
+	}
+
+.keywordlist {
+	padding:15px 10px 20px 10px;
+	width:620px;
+	clear:both;
+	}
+
+.keywordlist dl {
+	padding-top:5px;
+	}	
+
+.keywordlist dt {
+	width:620px;
+	padding-bottom:3px;
+	font-weight:bold;
+	text-decoration:none;
+	}
+
+.keywordlist dd {
+	width:600px;
+	background:#f6f6f6;
+	padding:10px 10px;
+	margin-bottom:15px;
+	}
+
+.keywordlist a {
+	text-decoration:none;
+	}
+
+.keywordtitle{ 
+    width:620px; 
+	border-bottom:1px solid #e4e4e4;
+	clear:both;
+	font-weight:bold;
+	font-size:120%;
+	color:#fc4902;
+	padding:5px 0px 5px 10px;
+	}
+
+.keywordtitle p{ 
+	color:#fc4902;
+	}	
+
+.tablestyle{ 
+    width:100%;
+	float:left;
+	border-top:1px solid #6aa83b;
+	border-bottom:1px solid #e4e4e4;
+	margin-top:25px;
+	clear:both;
+	}
+.paging {
+	text-align:center;
+	padding-top:10px;
+}
+
+/* Data-Table Selector */
+.dtype1 table {clear: both; width: 100%; border-collapse: separate; border-spacing: 1px; }
+	.dtype1 table th {text-align: left; padding: 5px 9px 5px 11px; color: #707999; background: #f0f0f0; }
+	.dtype1 table th.center {text-align: center; padding: 5px 0px 5px 0px; }
+	.dtype1 table td {padding: 5px 15px 5px 15px; background: #FFF url("/resource/new_images/demo/common/dot_h.gif") repeat-x 0px 0px; word-break: keep-all; }
+	.dtype1 table td ol.top {vertical-align: top; }
+	.dtype1 table tr:first-child td, .dtype1 table tr.first-child td {background: none; }
+	.dtype1 table.else thead th {color: #513b00; background: #f0eee7 url("/resource/new_images/demo/common/table/dtype1_bg_head_else.gif") no-repeat 98% 50%; }
+		.dtype1 table.else thead th span {font-weight: normal; font-size: 0.9em; font-family: "돋움", Dotum, AppleGothic, sans-serif; }
+	.dtype1 table.else tbody th {background: #f0eee7; }
+
+/*.dtype2 {clear: both; }
+	.dtype2 table {width: 100%; }
+		.dtype2 table thead th {border: 1px solid #d3e7c6; border-right: 0px none !important; }
+		.dtype2 table tbody td {border: 1px solid #d3e7c6; border-right: 0px none !important; }
+		.dtype2 table thead tr th:first-child,
+		.dtype2 table thead tr th.first-cell,
+		.dtype2 table thead tr th:first-child,
+		.dtype2 table tbody tr td.first-cell {border-left: 0px none !important; }
+	.dtype2 table.row {font-size: 0.9em; line-height: 1.168em; }
+		.dtype2 table.row thead th {padding: 5px 5px 3px 5px; }
+		.dtype2 table.row tbody th {padding: 5px 5px 3px 5px; color: #56b128; border: 1px solid #d3e7c6; border-right: 0px none !important; background: #eaf3e2; text-align: left; }
+		.dtype2 table.row tbody td {padding: 5px 5px 3px 5px; }*/
+
+.dtype2 {clear: both; width: 100%; overflow: hidden; }
+	.dtype2 table {width: 100%; margin-left: -1px; line-height: 1.5em; border-top: 2px solid #b7d6a2; border-bottom: 2px solid #b7d6a2; }
+		.dtype2 table thead th {padding: 7px 5px 6px 5px; color: #56b128; border: 1px solid #d3e7c6; border-right: 0px none !important; background: #eaf3e2; }
+		.dtype2 table tbody td {padding: 7px 5px 6px 5px; border: 1px solid #d3e7c6; border-bottom: 0px none !important; border-right: 0px none !important; word-break: keep-all; }
+		.dtype2 table tbody td.top {vertical-align: top; }
+		.dtype2 table tbody td.b_point {background: #f3f3f3; }
+		.dtype2 table tbody th {padding: 7px 5px 6px 5px; text-align: left; color: #56b128; border: 1px solid #d3e7c6; border-right: 0px none !important; background: #eaf3e2; }
+		.dtype2 table.multi tbody th {text-align: center; font-weight: normal; color: #000; background: none; }
+
+/*2012.03.15 추가*/
+.dtype3 {clear: both; width: 100%; overflow: hidden; }
+	.dtype3 table {width: 100%; margin-left: -1px; line-height: 1.5em; border-bottom: 1px solid #05B99C; }
+		.dtype3 table thead th {padding: 7px 5px 6px 5px; color: #717171; border: 1px solid #05B99C; border-bottom:none; border-right: 0px none !important; background: #e2fdf8; }
+		.dtype3 table tbody td {padding: 7px 5px 6px 5px; border: 1px solid #05B99C; border-bottom: 0px none !important; border-right: 0px none !important; word-break: keep-all; }
+		.dtype3 table tbody td.top {vertical-align: top; }
+		.dtype3 table tbody td.b_point {background: #f3f3f3; }
+		.dtype3 table tbody th {padding: 7px 5px 6px 5px; text-align: left; color: #56b128; border: 1px solid #05B99B; border-right: 0px none !important; background: #eaf3e2; }
+		.dtype3 table.multi tbody th {text-align: center; font-weight: normal; color: #000; background: none; }
+
+/*#eventBg { width:593px; height:358px; background:url(/wp-content/themes/newspro2891/images/swf/eventBg.gif) no-repeat;}*/
+#eventBg { width:593px; height:358px; background:url(/wp-content/uploads/2012/06/eventBg_chg1.gif) no-repeat;}
+#calTb { width:270px; height:300px; float:left; margin:45px 0 0 15px;}
+#calTb #periodTit {display:block;text-align:center;}
+#calBg {clear:both; width:264px; height:237px; padding-top:25px;background:url(/wp-content/themes/newspro2891/images/swf/calbg.gif) no-repeat; margin-top:10px;}
+#calBg ul{margin:0 0 0 6px;padding:0;}
+#calBg ul li {
+	float:left; width:62px; height:53px; text-align:center;
+	border:1px solid #bdbdbd; vertical-align:middle; cursor:pointer;
+	margin:0; padding:23px 0 0 0; font-size:21px; font-family:arial,sans-serif;
+	/*background-color:#F9F9F9;*/
+	color:#03a388; 
+	}
+#calBg ul li span {display:block; font-size:10px; font-family:tahoma; color:#8faba6; margin-top:5px;}
+
+.dtypeEvent {clear: both; width: 100%; overflow: hidden; }
+	.dtypeEvent table {margin-top:7px; width: 595px; line-height: 1.5em; border-top: 1px solid #02BA98; border-bottom: 1px solid #02BA98; }
+		.dtypeEvent table thead th {padding: 7px 5px 6px 5px; color: #27C1A5; border: 1px solid #05BA9B; border-right: 0px none !important; background: #EAF3E2; }
+		.dtypeEvent table tbody td { border: none; border-bottom: 1px solid #DFDFDF; border-right: 0px none !important; word-break: keep-all; font-size:12px;}
+		.dtypeEvent table tbody td.top {vertical-align: top; }
+		.dtypeEvent table tbody td.b_point {background: #f3f3f3; }
+		.dtypeEvent table tbody th {padding: 7px 5px 6px 5px; text-align: left; color: #56b128; border: 1px solid #FFF; border-right: 0px none !important; background: #eaf3e2; }
+		.dtypeEvent table.multi tbody th {text-align: center; font-weight: normal; color: #000; background: none; }
+		
+		.dtypeEvent table tbody td div.listBox {padding:13px 10px 10px 12px;font-family:Dotum,Gyun Gothic,Malgun Gothic;margin:0;}
+		.dtypeEvent table tbody td span.eventName {color:#0D0D0D;font-weight:bold;font-size:14px;display:block;margin-bottom:5px;}
+		.dtypeEvent table tbody td a.eventName {color:#0D0D0D;font-weight:bold;font-size:14px;display:block;margin-bottom:5px;}
+		.dtypeEvent table tbody td a:hover {text-decoration: underline; color:#05B99B;}
+		
+		.dtypeEvent table tbody td div.thumbnail {border:1px solid #DBDBDB;width:154px;height:104px;vertical-align:middle;float:left;margin-right:10px;}
+		.dtypeEvent table tbody td span.nameTit {color:#666;padding-right:5px;}
+		.dtypeEvent table tbody td div span.substanceTit {display:block; width:67px; float:left;}
+
+		
