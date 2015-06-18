@@ -7,9 +7,13 @@
 		<property name="properties">
 			<map>
 				<entry key="pageUnit" value="10" />
-				<entry key="pageSize" value="2" />
+				<entry key="pageSize" value="5" />
 			</map>
 		</property>
+	</bean>
+	
+	<bean id="fileUploadProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location" value="classpath:/META-INF/property/fileUpload.properties"/>
 	</bean>
 </beans>	
 

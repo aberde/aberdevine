@@ -1,5 +1,9 @@
-<%@ page language="java" pageEncoding="utf-8" contentType="text/html; charset=utf-8" session="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" pageEncoding="utf-8" contentType="text/html; charset=utf-8" session="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui" %>
+<%@ taglib prefix="ct" uri="/WEB-INF/tld/customTag.tld" %>
 <!DOCTYPE html>
 <!--[if IE 7]>
 <html id="ie7" dir="ltr" lang="ko-KR">
@@ -12,6 +16,7 @@
 	<title>녹색성장위원회</title>
 	
 	<link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css" />">
+	<link rel="stylesheet" type="text/css" href="<c:url value="/css/layout.css" />">
 	<link rel="stylesheet" type="text/css" href="<c:url value="/css/green.css" />">
 	<style type="text/css">
 		#navcats .nav_cats .sub-menu {
@@ -44,6 +49,7 @@
 		//]]>
 	</script>
 	<script type="text/javascript" src="<c:url value="/js/jquery-1.11.3.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/js/validator.js" />"></script>
 	<script type="text/javascript">
 		/**
 		 * 네비게이션 버튼 선택
@@ -159,27 +165,27 @@
 					</ul>
 				</li>
 				<li>
-					<a href="<c:url value="" />"><img id="mNavi2" src="<c:url value="/images/main/mNavi2.gif" />"
+					<a href="<c:url value="/cmmn/commonBoardList.do?category_seq=1" />"><img id="mNavi2" src="<c:url value="/images/main/mNavi2.gif" />"
 						border="0" alt="소식" onmouseover="fnShow(2);" onmouseout="fnHide(2);" /></a>
 					<ul class="sub-menu" onmouseover="fnShow(2);" onmouseout="fnHide(2);">
-						<li class="sub-width2-1"><a href="<c:url value="" />">위원회활동</a></li>
-						<li class="sub-width2-1"><a href="<c:url value="" />">주요소식</a></li>
+						<li class="sub-width2-1"><a href="<c:url value="/cmmn/commonBoardList.do?category_seq=1" />">위원회활동</a></li>
+						<li class="sub-width2-1"><a href="<c:url value="/cmmn/commonBoardList.do?category_seq=2" />">주요소식</a></li>
 					</ul>
 				</li>
 				<li>
-					<a href="<c:url value="" />"><img id="mNavi3" src="<c:url value="/images/main/mNavi3.gif" />"
+					<a href="<c:url value="/cmmn/commonBoardList.do?category_seq=3" />"><img id="mNavi3" src="<c:url value="/images/main/mNavi3.gif" />"
 						border="0" alt="자료실" onmouseover="fnShow(3);" onmouseout="fnHide(3);" /></a>
 					<ul class="sub-menu" onmouseover="fnShow(3);" onmouseout="fnHide(3);">
 						<li class="sub-width3-1 sub-depth">
-							<a href="<c:url value="" />">회의자료</a>
+							<a href="<c:url value="/cmmn/commonBoardList.do?category_seq=3" />">회의자료</a>
 							<ul class="sub-menu">
-								<li><a href="<c:url value="" />">회의자료(2013.03~)</a></li>
-								<li><a href="<c:url value="" />">회의자료(~2013.02)</a></li>
+								<li><a href="<c:url value="/cmmn/commonBoardList.do?category_seq=3" />">회의자료(2013.03~)</a></li>
+								<li><a href="<c:url value="/cmmn/commonBoardList.do?category_seq=4" />">회의자료(~2013.02)</a></li>
 							</ul>
 						</li>
-						<li class="sub-width3-4"><a href="<c:url value="" />">녹색법령</a></li>
-						<li class="sub-width3-5"><a href="<c:url value="" />">용어사전</a></li>
-						<li class="sub-width3-7"><a href="<c:url value="" />">관련 사이트</a></li>
+						<li class="sub-width3-4"><a href="<c:url value="/menu003/sub002/GRG_003_201.do" />">녹색법령</a></li>
+						<li class="sub-width3-5"><a href="<c:url value="/menu003/sub003/GRG_003_301.do?category_seq=5" />">용어사전</a></li>
+						<li class="sub-width3-7"><a href="<c:url value="/menu003/sub004/GRG_003_401.do" />">관련 사이트</a></li>
 					</ul>
 				</li>
 				<li>
@@ -220,27 +226,27 @@
 					</ul>
 					<ul class="ulAllNavi-2 ulAllN">
 						<li>
-							<a href="<c:url value="" />" class="me">소식</a>
+							<a href="<c:url value="/cmmn/commonBoardList.do?category_seq=1" />" class="me">소식</a>
 							<ul>
-								<li><a href="<c:url value="" />">위원회 활동</a></li>
-								<li><a href="<c:url value="" />">주요소식</a></li>
+								<li><a href="<c:url value="/cmmn/commonBoardList.do?category_seq=1" />">위원회 활동</a></li>
+								<li><a href="<c:url value="/cmmn/commonBoardList.do?category_seq=2" />">주요소식</a></li>
 							</ul>
 						</li>
 					</ul>
 					<ul class="ulAllNavi-3 ulAllN">
 						<li>
-							<a href="<c:url value="" />" class="me">정보</a>
+							<a href="<c:url value="/cmmn/commonBoardList.do?category_seq=3" />" class="me">정보</a>
 							<ul>
-								<li><a href="<c:url value="" />">회의자료</a></li>
-								<li><a href="<c:url value="" />">용어사전</a></li>
-								<li><a href="<c:url value="" />">녹색법령</a></li>
-								<li><a href="<c:url value="" />">관련 사이트</a></li>
+								<li><a href="<c:url value="/cmmn/commonBoardList.do?category_seq=3" />">회의자료</a></li>
+								<li><a href="<c:url value="/menu003/sub002/GRG_003_201.do" />">녹색법령</a></li>
+								<li><a href="<c:url value="/menu003/sub003/GRG_003_301.do?category_seq=5" />">용어사전</a></li>
+								<li><a href="<c:url value="/menu003/sub004/GRG_003_401.do" />">관련 사이트</a></li>
 							</ul>
 						</li>
 					</ul>
 					<ul class="ulAllNavi-4 ulAllN">
 						<li>
-							<a href="<c:url value="" />" class="me">위원회</a>
+							<a href="<c:url value="/menu004/sub001/GRG_004_101.do" />" class="me">위원회</a>
 							<ul>
 								<li><a href="<c:url value="/menu004/sub001/GRG_004_101.do" />">인사말</a></li>
 								<li><a href="<c:url value="/menu004/sub002/GRG_004_201.do" />">위원회소개</a></li>

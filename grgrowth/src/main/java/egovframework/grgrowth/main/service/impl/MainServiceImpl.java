@@ -15,10 +15,13 @@
  */
 package egovframework.grgrowth.main.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import egovframework.grgrowth.common.service.CommonBoardVO;
 import egovframework.grgrowth.main.service.MainService;
 import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 
@@ -33,4 +36,26 @@ public class MainServiceImpl implements MainService {
 
 	@Resource(name = "egovIdGnrServiceEmp")
 	private EgovIdGnrService egovIdGnrService;
+	
+	/**
+     * 검색 목록조회 요청을 처리하기 위해 데이터처리를 요청한다.
+     * 
+     * @param vo
+     * @return List
+     * @throws Exception
+     */
+    public List<CommonBoardVO> searchList(CommonBoardVO vo) throws Exception {
+        return mainMapper.searchList(vo);
+    }
+    
+    /**
+     * 검색 총 레코드 수 조회 요청을 처리하기 위해 데이터처리를 요청한다.
+     * 
+     * @param vo
+     * @return int
+     * @throws Exception
+     */
+    public int searchListTotCnt(CommonBoardVO vo) throws Exception {
+        return mainMapper.searchListTotCnt(vo);
+    }
 }

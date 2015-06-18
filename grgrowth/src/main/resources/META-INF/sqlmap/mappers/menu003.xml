@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="egovframework.grgrowth.menu003.service.impl.Menu003Mapper">
+
+	<!-- 용어사전 목록 -->
+	<select id="dicList" resultType="egovframework.grgrowth.common.service.CommonBoardVO">
+	    <![CDATA[
+			SELECT
+				A.BOARD_SEQ
+				, A.TITLE
+				, A.CONTENT
+				, DATE_FORMAT(A.REGDATE, "%Y/%m/%d") REGDATE
+				, A.FILE_SEQ
+				, A.CATEGORY_SEQ
+				, B.CATEGORY_NM
+			FROM TB_BOARD A
+			INNER JOIN TB_CATEGORY B
+				ON B.CATEGORY_SEQ = A.CATEGORY_SEQ
+				AND B.USE_YN = 'Y'
+			WHERE 1=1
+				AND A.USE_YN = 'Y'
+	    ]]>
+		    <if test="category_seq != null">
+				AND A.CATEGORY_SEQ = #{ category_seq }
+			</if>
+		    <if test="searchCondition != null">
+		    	<choose>
+		    		<when test="searchCondition eq '001'.toString()">
+		    			AND ( A.TITLE RLIKE '^(0|1|2|3|4|5|6|7|8|9)' OR ( A.TITLE >= '0' AND A.TITLE <![CDATA[<]]> '9' ) )
+		    		</when>
+		    		<when test="searchCondition eq '101'.toString()">
+						AND ( A.TITLE RLIKE '^(ㄱ|ㄲ)' OR ( A.TITLE >= '가' AND A.TITLE <![CDATA[<]]> '나' ) )
+					</when>
+		    		<when test="searchCondition eq '102'.toString()">
+						AND ( A.TITLE RLIKE '^ㄴ' OR ( A.TITLE >= '나' AND A.TITLE <![CDATA[<]]> '다' ) )
+					</when>
+		    		<when test="searchCondition eq '103'.toString()">
+						AND ( A.TITLE RLIKE '^(ㄷ|ㄸ)' OR ( A.TITLE >= '다' AND A.TITLE <![CDATA[<]]> '라' ) )
+					</when>
+		    		<when test="searchCondition eq '104'.toString()">
+						AND ( A.TITLE RLIKE '^ㄹ' OR ( A.TITLE >= '라' AND A.TITLE <![CDATA[<]]> '마' ) )
+					</when>
+		    		<when test="searchCondition eq '105'.toString()">
+						AND ( A.TITLE RLIKE '^ㅁ' OR ( A.TITLE >= '마' AND A.TITLE <![CDATA[<]]> '바' ) )
+					</when>
+		    		<when test="searchCondition eq '106'.toString()">
+						AND ( A.TITLE RLIKE '^(ㅂ|ㅃ)' OR ( A.TITLE >= '바' AND A.TITLE <![CDATA[<]]> '사' ) )
+					</when>
+		    		<when test="searchCondition eq '107'.toString()">
+						AND ( A.TITLE RLIKE '^(ㅅ|ㅆ)' OR ( A.TITLE >= '사' AND A.TITLE <![CDATA[<]]> '아' ) )
+					</when>
+		    		<when test="searchCondition eq '108'.toString()">
+						AND ( A.TITLE RLIKE '^ㅇ' OR ( A.TITLE >= '아' AND A.TITLE <![CDATA[<]]> '자' ) )
+					</when>
+		    		<when test="searchCondition eq '109'.toString()">
+						AND ( A.TITLE RLIKE '^(ㅈ|ㅉ)' OR ( A.TITLE >= '자' AND A.TITLE <![CDATA[<]]> '차' ) )
+					</when>
+		    		<when test="searchCondition eq '110'.toString()">
+						AND ( A.TITLE RLIKE '^ㅊ' OR ( A.TITLE >= '차' AND A.TITLE <![CDATA[<]]> '카' ) )
+					</when>
+		    		<when test="searchCondition eq '111'.toString()">
+						AND ( A.TITLE RLIKE '^ㅋ' OR ( A.TITLE >= '카' AND A.TITLE <![CDATA[<]]> '타' ) )
+					</when>
+		    		<when test="searchCondition eq '112'.toString()">
+						AND ( A.TITLE RLIKE '^ㅌ' OR ( A.TITLE >= '타' AND A.TITLE <![CDATA[<]]> '파' ) )
+					</when>
+		    		<when test="searchCondition eq '113'.toString()">
+						AND ( A.TITLE RLIKE '^ㅍ' OR ( A.TITLE >= '파' AND A.TITLE <![CDATA[<]]> '하' ) )
+					</when>
+		    		<when test="searchCondition eq '114'.toString()">
+						AND ( A.TITLE RLIKE '^ㅎ' OR ( A.TITLE >= '하' ) )
+					</when>
+					<otherwise>
+						AND ( A.TITLE like CONCAT(CONCAT('%', #{ searchCondition }), '%') )
+					</otherwise>
+		    	</choose>
+		    </if>
+		    <if test="searchKeyword != null">
+		    	AND ( A.TITLE like CONCAT(CONCAT('%', #{ searchKeyword }), '%') OR A.CONTENT like CONCAT(CONCAT('%', #{ searchKeyword }), '%') )
+		    </if>
+		<![CDATA[		
+			ORDER BY A.BOARD_SEQ DESC
+			LIMIT #{ recordCountPerPage } OFFSET #{ firstIndex }
+		]]>
+	</select>
+	
+	<!-- 용어사전 목록 개수 -->
+	<select id="dicListTotCnt" resultType="int">
+	    <![CDATA[
+			SELECT
+				COUNT(*)
+			FROM TB_BOARD A
+			INNER JOIN TB_CATEGORY B
+				ON B.CATEGORY_SEQ = A.CATEGORY_SEQ
+				AND B.USE_YN = 'Y'
+			WHERE 1=1
+				AND A.USE_YN = 'Y'
+	    ]]>
+		    <if test="category_seq != null">
+				AND A.CATEGORY_SEQ = #{ category_seq }
+			</if>
+			<if test="searchCondition != null">
+		    	<choose>
+		    		<when test="searchCondition eq '001'.toString()">
+		    			AND ( A.TITLE RLIKE '^(0|1|2|3|4|5|6|7|8|9)' OR ( A.TITLE >= '0' AND A.TITLE <![CDATA[<]]> '9' ) )
+		    		</when>
+		    		<when test="searchCondition eq '101'.toString()">
+						AND ( A.TITLE RLIKE '^(ㄱ|ㄲ)' OR ( A.TITLE >= '가' AND A.TITLE <![CDATA[<]]> '나' ) )
+					</when>
+		    		<when test="searchCondition eq '102'.toString()">
+						AND ( A.TITLE RLIKE '^ㄴ' OR ( A.TITLE >= '나' AND A.TITLE <![CDATA[<]]> '다' ) )
+					</when>
+		    		<when test="searchCondition eq '103'.toString()">
+						AND ( A.TITLE RLIKE '^(ㄷ|ㄸ)' OR ( A.TITLE >= '다' AND A.TITLE <![CDATA[<]]> '라' ) )
+					</when>
+		    		<when test="searchCondition eq '104'.toString()">
+						AND ( A.TITLE RLIKE '^ㄹ' OR ( A.TITLE >= '라' AND A.TITLE <![CDATA[<]]> '마' ) )
+					</when>
+		    		<when test="searchCondition eq '105'.toString()">
+						AND ( A.TITLE RLIKE '^ㅁ' OR ( A.TITLE >= '마' AND A.TITLE <![CDATA[<]]> '바' ) )
+					</when>
+		    		<when test="searchCondition eq '106'.toString()">
+						AND ( A.TITLE RLIKE '^(ㅂ|ㅃ)' OR ( A.TITLE >= '바' AND A.TITLE <![CDATA[<]]> '사' ) )
+					</when>
+		    		<when test="searchCondition eq '107'.toString()">
+						AND ( A.TITLE RLIKE '^(ㅅ|ㅆ)' OR ( A.TITLE >= '사' AND A.TITLE <![CDATA[<]]> '아' ) )
+					</when>
+		    		<when test="searchCondition eq '108'.toString()">
+						AND ( A.TITLE RLIKE '^ㅇ' OR ( A.TITLE >= '아' AND A.TITLE <![CDATA[<]]> '자' ) )
+					</when>
+		    		<when test="searchCondition eq '109'.toString()">
+						AND ( A.TITLE RLIKE '^(ㅈ|ㅉ)' OR ( A.TITLE >= '자' AND A.TITLE <![CDATA[<]]> '차' ) )
+					</when>
+		    		<when test="searchCondition eq '110'.toString()">
+						AND ( A.TITLE RLIKE '^ㅊ' OR ( A.TITLE >= '차' AND A.TITLE <![CDATA[<]]> '카' ) )
+					</when>
+		    		<when test="searchCondition eq '111'.toString()">
+						AND ( A.TITLE RLIKE '^ㅋ' OR ( A.TITLE >= '카' AND A.TITLE <![CDATA[<]]> '타' ) )
+					</when>
+		    		<when test="searchCondition eq '112'.toString()">
+						AND ( A.TITLE RLIKE '^ㅌ' OR ( A.TITLE >= '타' AND A.TITLE <![CDATA[<]]> '파' ) )
+					</when>
+		    		<when test="searchCondition eq '113'.toString()">
+						AND ( A.TITLE RLIKE '^ㅍ' OR ( A.TITLE >= '파' AND A.TITLE <![CDATA[<]]> '하' ) )
+					</when>
+		    		<when test="searchCondition eq '114'.toString()">
+						AND ( A.TITLE RLIKE '^ㅎ' OR ( A.TITLE >= '하' ) )
+					</when>
+					<otherwise>
+						AND ( A.TITLE like CONCAT(CONCAT('%', #{ searchCondition }), '%') )
+					</otherwise>
+		    	</choose>
+		    </if>
+		    <if test="searchKeyword != null">
+		    	AND ( A.TITLE like CONCAT(CONCAT('%', #{ searchKeyword }), '%') OR A.CONTENT like CONCAT(CONCAT('%', #{ searchKeyword }), '%') )
+		    </if>
+	</select>
+</mapper>

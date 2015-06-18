@@ -15,13 +15,11 @@
  */
 package egovframework.grgrowth.menu001.service.impl;
 
-import org.springframework.stereotype.Repository;
-
-import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
+import egovframework.rte.psl.dataaccess.mapper.Mapper;
 
 /**
  * 녹색성장에 관한 데이터처리 매퍼 클래스
  */
-@Repository("menu001Mapper")
-public class Menu001Mapper extends EgovAbstractMapper {
+@Mapper("menu001Mapper")
+public interface Menu001Mapper {
 }
