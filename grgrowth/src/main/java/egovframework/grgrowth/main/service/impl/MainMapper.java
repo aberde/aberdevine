@@ -23,7 +23,7 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
 /**
  * 메인에 관한 데이터처리 매퍼 클래스
  */
-@Mapper("commonMapper")
+@Mapper("mainMapper")
 public interface MainMapper {
     
     /**

@@ -20,7 +20,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.xml.parsers.DocumentBuilder;
@@ -144,10 +146,11 @@ public class MainController {
      */
     @RequestMapping(value = "/main/search.do")
     public String search(@ModelAttribute("vo") CommonBoardVO vo, ModelMap model) throws Exception {
-        List<List<CommonBoardVO>> list = new ArrayList<List<CommonBoardVO>>();
+        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         
         if ( vo.getSearchCondition() == null || vo.getSearchCondition().isEmpty() ) {  // 검색구분이 없을때
-            CommonBoardVO commonBoardVO = vo;
+            CommonBoardVO commonBoardVO = new CommonBoardVO();
+            commonBoardVO.setSearchKeyword(vo.getSearchKeyword());
             
             for ( int i = 0; i < GrgrowthConstants.SEARCH_SECTION.length; i++ ) {
                 // 검색구분입력
@@ -166,7 +169,11 @@ public class MainController {
                 List<CommonBoardVO> searchList = mainService.searchList(commonBoardVO);
                 // ####################################################################
                 
-                list.add(searchList);
+                Map<String, Object> map = new HashMap<String, Object>();
+                map.put("searchCondition", GrgrowthConstants.SEARCH_SECTION[i]);
+                map.put("searchList", searchList);
+                
+                list.add(map);
             }
             
             model.addAttribute("list", list);
@@ -179,8 +186,7 @@ public class MainController {
             // pageSize : 페이지 리스트에 게시되는 페이지 건수
             // totalRecordCount : 전체 게시물 건 수
             // pageUnit과 pageSize는 context-properties.xml에서 설정
-
-            vo.setPageUnit(propertiesService.getInt("pageUnit"));
+            vo.setPageUnit(GrgrowthConstants.SEARCH_PAGE_UNIT);
             vo.setPageSize(propertiesService.getInt("pageSize"));
 
             PaginationInfo paginationInfo = new PaginationInfo();
@@ -197,7 +203,7 @@ public class MainController {
             // ####################################################################
             // ## 게시판 페이징
             // ####################################################################
-            int totCnt = commonService.boardListTotCnt(vo);
+            int totCnt = mainService.searchListTotCnt(vo);
             paginationInfo.setTotalRecordCount(totCnt);
 
             model.addAttribute("paginationInfo", paginationInfo);
@@ -206,9 +212,16 @@ public class MainController {
             // ####################################################################
             // ## 게시판 목록
             // ####################################################################
-            List<CommonBoardVO> boardList = commonService.boardList(vo);
-            model.addAttribute("boardList", boardList);
+            List<CommonBoardVO> searchList = mainService.searchList(vo);
             // ####################################################################
+            
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("searchCondition", vo.getSearchCondition());
+            map.put("searchList", searchList);
+            
+            list.add(map);
+            
+            model.addAttribute("list", list);
         }
         
         

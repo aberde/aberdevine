@@ -17,11 +17,21 @@ package egovframework.grgrowth.common.service;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 
 /**
  * 공통 처리하는 비즈니스 인터페이스
  */
 public interface CommonService {
+    
+    /**
+     * 카테고리 목록조회 요청을 처리하기 위해 데이터처리를 요청한다.
+     * 
+     * @return List<CommonCategoryVO>
+     * @throws Exception
+     */
+    public List<CommonCategoryVO> categoryList() throws Exception;
     
     /**
      * 카테고리 상세조회 요청을 처리하기 위해 데이터처리를 요청한다.
@@ -67,4 +77,31 @@ public interface CommonService {
      * @throws Exception
      */
     public FileInfoVO fileInfoView(FileInfoVO vo) throws Exception;
+    
+    /**
+     * 게시판 입력 요청을 처리하기 위해 데이터처리를 요청한다.
+     * 
+     * @param vo
+     * @throws Exception
+     */
+    @Transactional
+    public void boardInsert(CommonBoardVO vo) throws Exception;
+
+    /**
+     * 게시판 수정 요청을 처리하기 위해 데이터처리를 요청한다.
+     * 
+     * @param vo
+     * @throws Exception
+     */
+    @Transactional
+    public void boardUpdate(CommonBoardVO vo) throws Exception;
+    
+    /**
+     * 게시판 삭제 요청을 처리하기 위해 데이터처리를 요청한다.
+     * 
+     * @param vo
+     * @throws Exception
+     */
+    @Transactional
+    public void boardDelete(CommonBoardVO vo) throws Exception;
 }

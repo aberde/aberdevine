@@ -40,6 +40,16 @@ public class CommonServiceImpl implements CommonService {
 	private EgovIdGnrService egovIdGnrService;
 	
 	/**
+     * 카테고리 목록조회 요청을 처리하기 위해 데이터처리를 요청한다.
+     * 
+     * @return List<CommonCategoryVO>
+     * @throws Exception
+     */
+    public List<CommonCategoryVO> categoryList() throws Exception {
+        return commonMapper.categoryList();
+    }
+    
+	/**
 	 * 카테고리 상세조회 요청을 처리하기 위해 데이터처리를 요청한다.
 	 * 
 	 * @param vo
@@ -92,5 +102,36 @@ public class CommonServiceImpl implements CommonService {
      */
     public FileInfoVO fileInfoView(FileInfoVO vo) throws Exception {
         return commonMapper.fileInfoView(vo);
+    }
+    
+    /**
+     * 게시판 입력 요청을 처리하기 위해 데이터처리를 요청한다.
+     * 
+     * @param vo
+     * @throws Exception
+     */
+    public void boardInsert(CommonBoardVO vo) throws Exception {
+        commonMapper.boardInsert(vo);
+    }
+
+    /**
+     * 게시판 수정 요청을 처리하기 위해 데이터처리를 요청한다.
+     * 
+     * @param vo
+     * @throws Exception
+     */
+    public void boardUpdate(CommonBoardVO vo) throws Exception {
+        commonMapper.boardUpdate(vo);
+    }
+    
+
+    /**
+     * 게시판 삭제 요청을 처리하기 위해 데이터처리를 요청한다.
+     * 
+     * @param vo
+     * @throws Exception
+     */
+    public void boardDelete(CommonBoardVO vo) throws Exception {
+        commonMapper.boardDelete(vo);
     }
 }

@@ -2,106 +2,110 @@
 
 <%@ include file="/WEB-INF/jsp/egovframework/include/header.jsp" %>
 
+<script type="text/javascript">
+	/**
+	 * 페이징
+	 */
+	function linkToPage(pageNo) {
+		document.frm.pageIndex.value = pageNo;
+		document.frm.action = "<c:url value='/main/search.do'/>";
+		document.frm.submit();
+	}
+</script>
+
 <div id="sectionWrap">
 
 	<div id="sectionTab">
-		<div class="sectionTab<c:out value="${ empty searchCondition ? 'On' : 'Off' }" />" id="searchTotal" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ searchKeyword }" />';">
+		<div class="sectionTab<c:out value="${ empty vo.searchCondition ? 'On' : 'Off' }" />" id="searchTotal" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />';">
 			<div class="imgTag"><span>통합검색</span></div>
 			<div class="arrowTag"></div>
 		</div>
-		<div class="sectionTab<c:out value="${ searchCondition eq 'policy' ? 'On' : 'Off' }" />" id="searchPolicy" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ searchKeyword }" />&searchCondition=policy';">
+		<div class="sectionTab<c:out value="${ vo.searchCondition eq 'policy' ? 'On' : 'Off' }" />" id="searchPolicy" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />&searchCondition=policy';">
 			<div class="imgTag"><span>관련정책</span></div>
 			<div class="arrowTag"></div>
 		</div>
-		<div class="sectionTab<c:out value="${ searchCondition eq 'news' ? 'On' : 'Off' }" />" id="searchNews" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ searchKeyword }" />&searchCondition=news';">
+		<div class="sectionTab<c:out value="${ vo.searchCondition eq 'news' ? 'On' : 'Off' }" />" id="searchNews" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />&searchCondition=news';">
 			<div class="imgTag"><span>소식/동향</span></div>
 			<div class="arrowTag"></div>
 		</div>
-		<div class="sectionTab<c:out value="${ searchCondition eq 'multimedia' ? 'On' : 'Off' }" />" id="searchMultimedia" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ searchKeyword }" />&searchCondition=multimedia';">
+		<div class="sectionTab<c:out value="${ vo.searchCondition eq 'multimedia' ? 'On' : 'Off' }" />" id="searchMultimedia" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />&searchCondition=multimedia';">
 			<div class="imgTag"><span>멀티미디어</span></div>
 			<div class="arrowTag"></div>
 		</div>
-		<div class="sectionTab<c:out value="${ searchCondition eq 'edudata' ? 'On' : 'Off' }" />" id="searchEdudata" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ searchKeyword }" />&searchCondition=edudata';">
+		<div class="sectionTab<c:out value="${ vo.searchCondition eq 'edudata' ? 'On' : 'Off' }" />" id="searchEdudata" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />&searchCondition=edudata';">
 			<div class="imgTag"><span>교육/자료실</span></div>
 			<div class="arrowTag"></div>
 		</div>
-		<div class="sectionTab<c:out value="${ searchCondition eq 'page' ? 'On' : 'Off' }" />" id="searchPage" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ searchKeyword }" />&searchCondition=page';">
+		<div class="sectionTab<c:out value="${ vo.searchCondition eq 'page' ? 'On' : 'Off' }" />" id="searchPage" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />&searchCondition=page';">
 			<div class="imgTag"><span>관련문서</span></div>
 			<div class="arrowTag"></div>
 		</div>
-		<div class="sectionTab<c:out value="${ searchCondition eq 'participation' ? 'On' : 'Off' }" />" id="searchParticipation" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ searchKeyword }" />&searchCondition=participation';">
+		<div class="sectionTab<c:out value="${ vo.searchCondition eq 'participation' ? 'On' : 'Off' }" />" id="searchParticipation" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />&searchCondition=participation';">
 			<div class="imgTag"><span>참여마당</span></div>
 			<div class="arrowTag"></div>
 		</div>
 	</div>
 
 	<div id="sectionContainer">
-		<div class="sectionTabTitle">
-			?php if($post_category_img): ?><img src="<?php bloginfo('template_url'); ?>/images/search/<?php echo $post_category_img; ?>" border="0" alt="<?php esc_attr_e('소식/동향'); ?>" /> <? ;endif ?>
-		</div>
-	
-
-		<?php 
-	$post_category = '';
-	$post_category_img = '';
-
-	if ($_GET['section'])
-	{
-		$posts_row = 20;
-		switch ($_GET['section'])
-		{
-			case 'news': $post_category = '5'; $post_type = 'post'; $post_category_img='section_news.gif'; include (TEMPLATEPATH . '/archive-news.php'); // 소식동향 
-				break;
-			case 'multimedia': include (TEMPLATEPATH . '/archive-multimedia.php'); // 멀티미디어
-				break;
-			case 'edudata': $post_category = '15,32,16,17'; $post_type = 'post'; $post_category_img='section_edudata.gif'; include (TEMPLATEPATH . '/archive-news.php'); // 교육/자료실
-				break;
-			case 'participation': $post_category = '23,25,26,27,28'; $post_type = 'post'; $post_category_img='section_participation.gif'; include (TEMPLATEPATH . '/archive-news.php'); // 참여마당
-				break;
-			case 'policy': $post_category = '41'; $post_type = 'post'; $post_category_img='section_policy.gif'; include (TEMPLATEPATH . '/archive-news.php'); // 관련정책
-				break;
-			case 'page': $post_category = ''; $post_type = 'page'; $post_category_img='section_page.gif'; include (TEMPLATEPATH . '/archive-news.php'); // 관련문서
-				break;
-		}
-	}
-	else 
-	{
-		$posts_row = 5;
-
-		$post_category = '41';
-		$post_category_img='section_policy.gif'; 
-		$section = 'policy';
-		$post_type = 'post'; 
-		include (TEMPLATEPATH . '/archive-news.php'); // 관련정책
-
-		$post_category = '5';
-		$post_category_img='section_news.gif';
-		$section = 'news';
-		$post_type = 'post'; 
-		include (TEMPLATEPATH . '/archive-news.php'); // 소식동향 
-
-		include (TEMPLATEPATH . '/archive-multimedia.php'); // 멀티미디어
 		
-		$post_category = '15,32,16,17';
-		$post_category_img='section_edudata.gif';
-		$section = 'edudata';
-		$post_type = 'post'; 
-		include (TEMPLATEPATH . '/archive-news.php'); // 교육/자료실
+		<c:forEach var="data" items="${ list }">
+		
+			<!-- 검색구분명 -->
+			<div class="sectionTabTitle">
+				<img src="<c:url value="/images/search/section_${ data.searchCondition }.gif" />" border="0" alt="" />
+			</div>
 
-		$post_category = '';
-		$post_type = 'page';
-		$post_category_img='section_page.gif'; 
-		$section = 'page';
-		include (TEMPLATEPATH . '/archive-news.php'); // 관련문서
+			<!-- 검색목록 -->
+			<c:forEach var="board" items="${ data.searchList }">
+			
+				<div id="post-<c:out value="${ board.board_seq }" />" class="post-<c:out value="${ board.board_seq }" /> post type-post status-publish format-standard hentry category-green-sido-data entry">
+					<h2 class="archiveTitle"><a href="<c:url value="/cmmn/commonBoardView.do?board_seq=${ board.board_seq }" />" rel="bookmark" title="<c:out value="${ board.title }" />"><c:out value="${ board.title }" /></a></h2> &nbsp;&nbsp;
+					<span class="postDate">
+						<c:out value="${ board.regdate }" />
+					</span>
+					<span class="postCategory">
+						<c:out value="${ board.category_nm }" />&nbsp;|&nbsp;
+					</span>
+					<div class="clear"></div>
+					<c:out value="${ ct:subStringBytes(ct:removeTag(board.content), 280) }" />
+				</div>
+				
+			</c:forEach>
+			
+			<c:choose>
+				<c:when test="${ empty vo.searchCondition }">
+					<!-- 더보기 -->
+					<div id="nav-below" class="navigation">
+						<div class="right"><a href="<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />&searchCondition=<c:out value="${ data.searchCondition }" />">검색결과 더보기 <img src="<c:url value="/images/search/bullet_more.gif" />" border="0" align="absmiddle" alt="검색결과 더보기" /></a></div>
+						<div class="clear"></div>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<!-- 페이징 -->
+					<form:form name="frm" commandName="vo" method="post" onsubmit="">
+						<form:hidden path="searchCondition" />
+						<form:hidden path="searchKeyword" />
+						
+						<div id="paging" style="text-align: center; margin-bottom: 10px;">
+							<ui:pagination paginationInfo="${ paginationInfo }" type="text" jsFunction="linkToPage" />
+							<form:hidden path="pageIndex" />
+						</div>
+					</form:form>
+				</c:otherwise>
+			</c:choose>
+			
+		</c:forEach>
 
-		$post_category = '23,25,26,27,28';
-		$post_category_img='section_participation.gif'; 
-		$section = 'participation';
-		$post_type = 'post'; 
-		include (TEMPLATEPATH . '/archive-news.php'); // 참여마당
-
-	}
-?>
+	</div>
+	
+	<div id="sectionSidebar">
+		<div class="interestTag" id="interestTag">
+			<div class="interestTag_title">
+				<img src="<c:url value="/images/search/interest_tag.jpg" />" border="0" alt="인기태그" />
+			</div>
+			<div class="ulDiv">
+			</div>
+		</div>
 	</div>
 	
 </div>

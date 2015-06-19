@@ -332,14 +332,14 @@ text-decoration:underline;
 
 
 /*----- ={ SEARCH } -----*/
-#sectionWrap { border:1px solid #ccc; width:920px; overflow: hidden;background:url(images/search/bg_.gif) repeat-y; }
+#sectionWrap { border:1px solid #ccc; width:920px; overflow: hidden;background:url(/images/search/bg_.gif) repeat-y; }
 	#sectionWrap #sectionTab {float:left;width:161px;margin-top:0px;}
 		.sectionTabOn {height:48px; width:159px; border-bottom:1px solid #ccc; border-right:1px solid #fff;cursor:pointer;}
 			.sectionTabOn .imgTag {float:left;position:relative;top:40%;margin-left:10px;}
 			.sectionTabOn .imgTag span {color:#666;font-weight:bold;}
-			.sectionTabOn .arrowTag {float:right;position:relative;top:40%; right:5%; margin-left:20px;width:9px; height:13px; background:url(images/search/arrow_b.gif) no-repeat;}
-		.sectionTabOff {height:40px; width:160px; border-bottom:1px solid #ccc;background:url(images/search/section_out.gif) no-repeat;cursor:pointer;}
-		.sectionTabOff:hover {background:url(images/search/section_over.gif) no-repeat;}
+			.sectionTabOn .arrowTag {float:right;position:relative;top:40%; right:5%; margin-left:20px;width:9px; height:13px; background:url(/images/search/arrow_b.gif) no-repeat;}
+		.sectionTabOff {height:40px; width:160px; border-bottom:1px solid #ccc;background:url(/images/search/section_out.gif) no-repeat;cursor:pointer;}
+		.sectionTabOff:hover {background:url(/images/search/section_over.gif) no-repeat;}
 			.sectionTabOff .imgTag {float:left;position:relative;top:35%;margin-left:10px;}
 			.sectionTabOff .imgTag span {color:#8e8e8e;font-weight:bold;}
 			.sectionTabOff .arrowTag {float:right;position:relative;top:30%; right:10%; margin-left:20px;}

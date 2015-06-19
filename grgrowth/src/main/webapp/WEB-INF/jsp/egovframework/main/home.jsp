@@ -7,7 +7,12 @@
 	<div class="home_left">
 		<img src="<c:url value="/images/main/home_l_img01.gif" />" alt="녹색성장 더 큰 대한민국" />
 		<div id="search" style="margin-top: 15px;">
-			<%-- <?php get_search_form(); ?> --%>
+			<form name="frm" method="post" action="<c:url value="/main/search.do" />" onsubmit="">
+				<fieldset>
+					<input type="text" id="s" name="searchKeyword" style="width:165px;" value="검색어를 입력하세요" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;"/>
+				</fieldset>
+				<input type="image" id="searchsubmit" src="<c:url value="/images/main/home_l_btn.gif" />" style="margin-top:-4px" alt="Search in site..." />
+			</form>
 		</div>
 		<p>&nbsp;</p>
 		<p>&nbsp;</p>
