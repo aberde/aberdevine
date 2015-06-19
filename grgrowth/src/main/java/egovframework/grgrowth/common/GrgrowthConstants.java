@@ -17,6 +17,9 @@ public class GrgrowthConstants {
 	
 	// 검색구분(policy: 관련정책, news: 소식/동향, multimedia: 멀티미디어, edudata: 교육/자료실, page: 관련문서, participation: 참여마당)
 	public static final String[] SEARCH_SECTION = {"policy", "news", "multimedia", "edudata", "page", "participation"};
+
+	// 검색화면 글 목록 수
+	public static final int SEARCH_PAGE_UNIT = 20;
 	// ###########################################################
 	
 	// ###########################################################

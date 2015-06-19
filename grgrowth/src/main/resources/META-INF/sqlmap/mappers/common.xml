@@ -3,6 +3,20 @@
 
 <mapper namespace="egovframework.grgrowth.common.service.impl.CommonMapper">
 
+	<!-- 카테고리 목록 -->
+	<select id="categoryList" resultType="egovframework.grgrowth.common.service.CommonCategoryVO">
+	    <![CDATA[
+			SELECT
+				A.CATEGORY_SEQ
+				, A.CATEGORY_NM
+				, DATE_FORMAT(A.REGDATE, "%Y/%m/%d") REGDATE
+				, A.USE_YN 
+			FROM TB_CATEGORY A
+			WHERE 1=1
+				AND A.USE_YN = 'Y'
+	    ]]>
+	</select>
+
 	<!-- 카테고리 상세정보 -->
 	<select id="categoryView" resultType="egovframework.grgrowth.common.service.CommonCategoryVO">
 	    <![CDATA[
@@ -15,7 +29,7 @@
 			WHERE 1=1
 				AND A.USE_YN = 'Y'
 	    ]]>
-		    <if test="category_seq != null">
+		    <if test="category_seq > 0">
 				AND A.CATEGORY_SEQ = #{ category_seq }
 			</if>
 	</select>
@@ -38,7 +52,7 @@
 			WHERE 1=1
 				AND A.USE_YN = 'Y'
 	    ]]>
-		    <if test="category_seq != null">
+		    <if test="category_seq > 0">
 				AND A.CATEGORY_SEQ = #{ category_seq }
 			</if>
 		<![CDATA[		
@@ -59,14 +73,14 @@
 			WHERE 1=1
 				AND A.USE_YN = 'Y'
 	    ]]>
-		    <if test="category_seq != null">
+		    <if test="category_seq > 0">
 				AND A.CATEGORY_SEQ = #{ category_seq }
 			</if>
 	</select>
 	
 	<resultMap id="boardViewResultMap" type="egovframework.grgrowth.common.service.CommonBoardVO">
 		<result property="file_seq" column="FILE_SEQ" />
-		<collection property="fileInfoList" javaType="ArrayList" column="FILE_SEQ" ofType="egovframework.grgrowth.common.service.FileInfoVO" select="fileInfoList"/>
+		<collection property="fileInfoList" javaType="ArrayList" column="{file_seq=FILE_SEQ, file_sn=FILE_SN}" ofType="egovframework.grgrowth.common.service.FileInfoVO" select="fileInfoList"/>
 	</resultMap>
 	
 	<!-- 게시판 상세정보 -->
@@ -80,6 +94,7 @@
 				, A.FILE_SEQ
 				, A.CATEGORY_SEQ
 				, B.CATEGORY_NM
+				, NULL FILE_SN
 			FROM TB_BOARD A
 			INNER JOIN TB_CATEGORY B
 				ON B.CATEGORY_SEQ = A.CATEGORY_SEQ
@@ -112,4 +127,46 @@
 				AND A.FILE_SN = #{ file_sn }
 			</if>	
 	</select>
+	
+	<!-- 게시판 등록 -->
+	<insert id="boardInsert">
+		INSERT INTO TB_BOARD (
+			TITLE
+			, CONTENT
+			, REGDATE
+			, FILE_SEQ
+			, CATEGORY_SEQ
+			, USE_YN
+			, UPDDATE
+		) VALUES (
+			#{ title }
+			, #{ content }
+			, now()
+			, #{ file_seq }
+			, #{ category_seq }
+			, 'Y'
+			, now()
+		)
+	</insert>
+
+	<!-- 게시판 수정 -->
+	<insert id="boardUpdate">
+		UPDATE TB_BOARD SET
+			TITLE = #{ title }
+			, CONTENT = #{ content }
+			, FILE_SEQ = #{ file_seq }
+			, CATEGORY_SEQ = #{ category_seq }
+			, UPDDATE = now()
+		WHERE
+			BOARD_SEQ = #{ board_seq }
+	</insert>
+
+	<!-- 게시판 삭제 -->
+	<update id="boardDelete">
+		UPDATE TB_BOARD SET
+			USE_YN = 'N'
+			, UPDDATE = now()
+		WHERE
+			BOARD_SEQ = #{ board_seq }
+	</update>
 </mapper>
