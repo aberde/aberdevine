@@ -578,3 +578,11 @@ ul li .tabDate {color:#666;}
 #ie7 #SidebarTab2 {margin-left:4px;width:280px;}
 
 #ie7 br {margin-top:10px;}
+
+/* 출력 */
+@media print {
+	/* 출력시 숨기기 */
+	.printHide {
+		display: none;
+	}
+}
