@@ -44,7 +44,7 @@
 		<p>&nbsp;</p>
 		<p>1차(09~13)</p>
 		<p>
-			<a href="<c:url value="" />"
+			<a href="<c:url value="/download/0713-1summary.pdf" />"
 				class="su-button su-button-style-1 su-button-class"
 				style="background-color: #05b99b; border: 1px solid #04947c; border-radius: 0px; -moz-border-radius: 0px; -webkit-border-radius: 0px;"
 				target="_blank"><span
@@ -52,7 +52,7 @@
 						요약본 다운로드</b></span></a>
 		</p>
 		<p>
-			<a href="<c:url value="" />"
+			<a href="<c:url value="/download/0713-2full.pdf" />"
 				class="su-button su-button-style-1 su-button-class"
 				style="background-color: #05b99b; border: 1px solid #04947c; border-radius: 0px; -moz-border-radius: 0px; -webkit-border-radius: 0px;"
 				target="_blank"><span
@@ -62,7 +62,7 @@
 		<p>&nbsp;</p>
 		<p>2차(14~18)</p>
 		<p>
-			<a href="<c:url value="" />"
+			<a href="<c:url value="/download/140603-1summary.pdf" />"
 				class="su-button su-button-style-1 su-button-class"
 				style="background-color: #05b99b; border: 1px solid #04947c; border-radius: 0px; -moz-border-radius: 0px; -webkit-border-radius: 0px;"
 				target="_blank"><span
@@ -70,7 +70,7 @@
 						요약본 다운로드</b></span></a>
 		</p>
 		<p>
-			<a href="<c:url value="" />"
+			<a href="<c:url value="/download/140603-2full.pdf" />"
 				class="su-button su-button-style-1 su-button-class"
 				style="background-color: #05b99b; border: 1px solid #04947c; border-radius: 0px; -moz-border-radius: 0px; -webkit-border-radius: 0px;"
 				target="_blank"><span

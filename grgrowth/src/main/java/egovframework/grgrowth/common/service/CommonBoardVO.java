@@ -17,6 +17,8 @@ package egovframework.grgrowth.common.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import egovframework.grgrowth.common.SearchVO;
 
 /**
@@ -49,6 +51,9 @@ public class CommonBoardVO extends SearchVO {
 	
 	/** 첨부파일 목록 */
 	private List<FileInfoVO> fileInfoList;
+	
+	/** 업로드 파일 정보 */
+	private List<MultipartFile> uploadFileInfo; 
 
     public int getBoard_seq() {
         return board_seq;
@@ -113,4 +118,13 @@ public class CommonBoardVO extends SearchVO {
     public void setFileInfoList(List<FileInfoVO> fileInfoList) {
         this.fileInfoList = fileInfoList;
     }
+
+    public List<MultipartFile> getUploadFileInfo() {
+        return uploadFileInfo;
+    }
+
+    public void setUploadFileInfo(List<MultipartFile> uploadFileInfo) {
+        this.uploadFileInfo = uploadFileInfo;
+    }
+    
 }

@@ -19,6 +19,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Properties;
 
@@ -149,7 +150,7 @@ public class CommonController {
         // ####################################################################
         
         
-        File uFile = new File(uploadPath, fileInfoVO.getFile_stre_cours() + fileInfoVO.getStre_file_nm());
+        File uFile = new File(fileInfoVO.getFile_stre_cours() + fileInfoVO.getStre_file_nm() + "." + fileInfoVO.getFile_extsn());
         int fSize = (int) uFile.length();
  
         if ( fSize > 0 ) {
@@ -159,7 +160,7 @@ public class CommonController {
  
             response.setBufferSize(fSize);
             response.setContentType(mimetype);
-            response.setHeader("Content-Disposition", "attachment; filename=\"" + fileInfoVO.getOrignl_file_nm() + "\"");
+            response.setHeader("Content-Disposition", "attachment; filename=\"" + URLEncoder.encode(fileInfoVO.getOrignl_file_nm(), "utf-8") + "\"");
             response.setContentLength(fSize);
  
             FileCopyUtils.copy(in, response.getOutputStream());
@@ -171,7 +172,7 @@ public class CommonController {
             response.setContentType("application/x-msdownload");
             PrintWriter printwriter = response.getWriter();
             printwriter.println("<html>");
-            printwriter.println("<br><br><br><h2>Could not get file name:<br>" + fileInfoVO.getOrignl_file_nm() + "</h2>");
+            printwriter.println("<br><br><br><h2>Could not get file name:<br>" + URLEncoder.encode(fileInfoVO.getOrignl_file_nm(), "utf-8") + "</h2>");
             printwriter.println("<br><br><br><center><h3><a href='javascript: history.go(-1)'>Back</a></h3></center>");
             printwriter.println("<br><br><br>&copy; webAccess");
             printwriter.println("</html>");

@@ -36,7 +36,7 @@
 	 */
 	function fnDelete() {
 		if ( confirm("삭제하시겠습니까?") ) {
-			document.frm.action = "<c:url value='/admin/boardDelete.do'/>";
+			document.frm.action = "<c:url value='/admin/boardDeleteProc.do'/>";
 			document.frm.submit();
 		}
 	}
@@ -44,17 +44,16 @@
 </head>
 
 <body style="text-align: center; margin: 0 auto; display: inline; padding-top: 100px;">
-	<div id="content_pop">
+	<div id="content_pop" style="width: 800px;">
 		<form:form name="frm" commandName="vo" method="post">
 			<form:hidden path="board_seq" />
 			
-			<div id="home">
+			<div id="home" style="text-align: right;">
 				<span class="btn_blue_l" title="홈으로">
 					<a href="<c:url value="/" />">홈으로</a>
-					<img src="<c:url value='/images/egovframework/rte/btn_bg_r.gif'/>" alt="홈으로" style="margin-left:6px;" />
 				</span>
 			</div>
-			<div id="title2">
+			<div id="title2" style="text-align: left;">
 				<ul>
 					<li><img src="<c:url value='/images/egovframework/rte/title_dot.gif'/>" alt="" /> 게시판 상세정보</li>
 				</ul>
@@ -82,32 +81,32 @@
 						<td class="tbtd_caption">내용</td>
 						<td class="tbtd_content"><c:out value="${ ct:rowInsertPTag(commonBoardVO.content) }" escapeXml="false" /></td>
 					</tr>
-					
+					<tr>
+						<td class="tbtd_caption">파일</td>
+						<td class="tbtd_content">
+							<c:forEach var="fileInfo" items="${ commonBoardVO.fileInfoList }">
+								<a href="<c:url value="/cmmn/downloadFile.do?file_seq=${ fileInfo.file_seq }&file_sn=${ fileInfo.file_sn }" />"><c:out value="${ fileInfo.orignl_file_nm }" /></a><br />
+							</c:forEach>
+						</td>
+					</tr>
 				</table>
 			</div>
-			<div id="sysbtn">
+			<div id="sysbtn" style="text-align: right;">
 				<ul>
-					<!-- 수정 버튼 -->
 					<li>
+						<!-- 수정 버튼 -->
 						<span class="btn_blue_l" title="수정">
 							<a href="#link" onClick="fnForm(); return false;">수정</a>
-							<img src="<c:url value='/images/egovframework/rte/btn_bg_r.gif'/>" alt="수정" style="margin-left:6px;" />
 						</span>
-					</li>
-					<!-- 목록 버튼 -->
-					<li>
+						<!-- 목록 버튼 -->
 						<span class="btn_blue_l" title="목록">
 							<a href="#link" onClick="fnList(); return false;">목록</a>
-							<img src="<c:url value='/images/egovframework/rte/btn_bg_r.gif'/>" alt="목록" style="margin-left:6px;" />
 						</span>
-					</li>
-					<!--  삭제 버튼 -->
-					<li>
+						<!--  삭제 버튼 -->
 						<span class="btn_blue_l" title="삭제">
 							<a href="#link" onClick="fnDelete(); return false;">삭제</a>
-							<img src="<c:url value='/images/egovframework/rte/btn_bg_r.gif'/>" alt="삭제" style="margin-left:6px;" />
 						</span>
-					</li>	
+					</li>
 				</ul>
 			</div>
 			

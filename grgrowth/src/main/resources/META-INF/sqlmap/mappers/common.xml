@@ -55,6 +55,16 @@
 		    <if test="category_seq > 0">
 				AND A.CATEGORY_SEQ = #{ category_seq }
 			</if>
+			<if test="searchCondition != null">
+		    	<choose>
+		    		<when test="searchCondition eq '1'.toString()">
+		    			AND B.CATEGORY_NM LIKE CONCAT(CONCAT('%', #{ searchKeyword }), '%')
+		    		</when>
+		    		<when test="searchCondition eq '2'.toString()">
+		    			AND A.TITLE LIKE CONCAT(CONCAT('%', #{ searchKeyword }), '%')
+					</when>
+		    	</choose>
+		    </if>
 		<![CDATA[		
 			ORDER BY A.BOARD_SEQ DESC
 			LIMIT #{ recordCountPerPage } OFFSET #{ firstIndex }
@@ -76,6 +86,16 @@
 		    <if test="category_seq > 0">
 				AND A.CATEGORY_SEQ = #{ category_seq }
 			</if>
+			<if test="searchCondition != null">
+		    	<choose>
+		    		<when test="searchCondition eq '1'.toString()">
+		    			AND B.CATEGORY_NM LIKE CONCAT(CONCAT('%', #{ searchKeyword }), '%')
+		    		</when>
+		    		<when test="searchCondition eq '2'.toString()">
+		    			AND A.TITLE LIKE CONCAT(CONCAT('%', #{ searchKeyword }), '%')
+					</when>
+		    	</choose>
+		    </if>
 	</select>
 	
 	<resultMap id="boardViewResultMap" type="egovframework.grgrowth.common.service.CommonBoardVO">
@@ -125,7 +145,7 @@
 		]]>
 			<if test="file_sn != null">
 				AND A.FILE_SN = #{ file_sn }
-			</if>	
+			</if>
 	</select>
 	
 	<!-- 게시판 등록 -->
@@ -141,11 +161,11 @@
 		) VALUES (
 			#{ title }
 			, #{ content }
-			, now()
+			, NOW()
 			, #{ file_seq }
 			, #{ category_seq }
 			, 'Y'
-			, now()
+			, NOW()
 		)
 	</insert>
 
@@ -156,7 +176,7 @@
 			, CONTENT = #{ content }
 			, FILE_SEQ = #{ file_seq }
 			, CATEGORY_SEQ = #{ category_seq }
-			, UPDDATE = now()
+			, UPDDATE = NOW()
 		WHERE
 			BOARD_SEQ = #{ board_seq }
 	</insert>
@@ -165,8 +185,76 @@
 	<update id="boardDelete">
 		UPDATE TB_BOARD SET
 			USE_YN = 'N'
-			, UPDDATE = now()
+			, UPDDATE = NOW()
 		WHERE
 			BOARD_SEQ = #{ board_seq }
 	</update>
+	
+	<!-- 파일정보 등록 -->
+	<insert id="fileInfoInsert">
+		INSERT INTO TB_FILE (
+			REGDATE
+		) VALUES (
+			NOW()
+		)
+
+		<selectKey keyProperty="file_seq" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<!-- 파일 등록 -->
+	<insert id="fileInsert" >
+		INSERT INTO TB_FILE_DETAIL (
+			FILE_SEQ
+			, FILE_SN
+			, FILE_STRE_COURS
+			, STRE_FILE_NM
+			, ORIGNL_FILE_NM
+			, FILE_EXTSN
+			, FILE_CN
+			, FILE_SIZE
+		) VALUES
+		<foreach collection="list" item="item" index="idx" separator=",">
+			(
+				#{ item.file_seq }
+				, (SELECT IFNULL(MAX(A.FILE_SN), 0) + 1 FILE_SN FROM TB_FILE_DETAIL A WHERE A.FILE_SEQ = #{ item.file_seq } )
+				, #{ item.file_stre_cours }
+				, #{ item.stre_file_nm }
+				, #{ item.orignl_file_nm }
+				, #{ item.file_extsn }
+				, #{ item.file_cn }
+				, #{ item.file_size }
+			)
+		</foreach>
+	</insert>
+	
+	<!-- 파일 삭제 -->
+	<delete id="fileDelete">
+		DELETE FROM TB_FILE_DETAIL
+		WHERE
+			FILE_SEQ = #{ FILE_SEQ }
+			AND FILE_SN = #{ FILE_SN }
+	</delete>
+	
+	<!-- 파일 정보 -->
+	<select id="fileInfoView" resultType="egovframework.grgrowth.common.service.FileInfoVO">
+		<![CDATA[
+			SELECT
+				A.FILE_SEQ
+				, A.FILE_SN
+				, A.FILE_STRE_COURS
+				, A.STRE_FILE_NM
+				, A.ORIGNL_FILE_NM
+				, A.FILE_EXTSN
+				, A.FILE_CN
+				, A.FILE_SIZE 
+			FROM TB_FILE_DETAIL A
+			INNER JOIN TB_FILE B
+				ON B.FILE_SEQ = A.FILE_SEQ
+			WHERE
+				A.FILE_SEQ = #{ file_seq }
+				AND A.FILE_SN = #{ file_sn }
+		]]>
+	</select>
 </mapper>

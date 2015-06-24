@@ -75,7 +75,7 @@
 		</div>
 
 		<div class="home_r_bn2">
-			<a href="http://www.greengrowth.go.kr/wp-content/uploads/2014/12/green-eng-bro.pdf" target="_blank"><img src="<c:url value="/images/main/e-book_22.jpg" />" alt="녹색성장 더 큰 대한민국" /></a>
+			<a href="<c:url value="/download/green-eng-bro.pdf" />" target="_blank"><img src="<c:url value="/images/main/e-book_22.jpg" />" alt="녹색성장 더 큰 대한민국" /></a>
 		</div>
 
 	</div>

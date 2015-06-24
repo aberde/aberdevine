@@ -16,6 +16,7 @@
 package egovframework.grgrowth.common.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -107,4 +108,30 @@ public interface CommonMapper {
      * @throws Exception
      */
     public void boardDelete(CommonBoardVO vo) throws Exception;
+    
+    /**
+     * 파일정보 입력 요청을 처리하기 위해 데이터처리를 요청한다.
+     * @param dataMap
+     * @return
+     * @throws Exception
+     */
+    public int fileInfoInsert(Map<String, Object> dataMap) throws Exception;
+
+    /**
+     * 파일 입력 요청을 처리하기 위해 데이터처리를 요청한다.
+     * 
+     * @param fileInfoList
+     * @throws Exception
+     */
+    public void fileInsert(List<FileInfoVO> fileInfoList) throws Exception;
+    
+    /**
+     * 파일 삭제 요청을 처리하기 위해 데이터처리를 요청한다.
+     * 
+     * @param mapData
+     *   -- file_seq 파일 일련번호
+     *   -- file_sn 파일 순번
+     * @throws Exception
+     */
+    public void fileDelete(Map<String, String> mapData) throws Exception;
 }

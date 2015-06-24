@@ -16,10 +16,12 @@
 package egovframework.grgrowth.common.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import egovframework.grgrowth.common.service.CommonBoardVO;
 import egovframework.grgrowth.common.service.CommonCategoryVO;
@@ -133,5 +135,38 @@ public class CommonServiceImpl implements CommonService {
      */
     public void boardDelete(CommonBoardVO vo) throws Exception {
         commonMapper.boardDelete(vo);
+    }
+    
+    /**
+     * 파일정보 입력 요청을 처리하기 위해 데이터처리를 요청한다.
+     * @param dataMap
+     * @return
+     * @throws Exception
+     */
+    @Transactional
+    public int fileInfoInsert(Map<String, Object> dataMap) throws Exception {
+        return commonMapper.fileInfoInsert(dataMap);
+    }
+    
+    /**
+     * 파일 입력 요청을 처리하기 위해 데이터처리를 요청한다.
+     * 
+     * @param fileInfoList
+     * @throws Exception
+     */
+    public void fileInsert(List<FileInfoVO> fileInfoList) throws Exception {
+        commonMapper.fileInsert(fileInfoList);
+    }
+    
+    /**
+     * 파일 삭제 요청을 처리하기 위해 데이터처리를 요청한다.
+     * 
+     * @param mapData
+     *   -- file_seq 파일 일련번호
+     *   -- file_sn 파일 순번
+     * @throws Exception
+     */
+    public void fileDelete(Map<String, String> mapData) throws Exception {
+        commonMapper.fileDelete(mapData);
     }
 }
