@@ -43,7 +43,7 @@ public class FileInfoVO {
 	private String file_cn;
 	
 	/** 파일크기 */
-	private int file_size;
+	private long file_size;
 
     public int getFile_seq() {
         return file_seq;
@@ -101,11 +101,11 @@ public class FileInfoVO {
         this.file_cn = file_cn;
     }
 
-    public int getFile_size() {
+    public long getFile_size() {
         return file_size;
     }
 
-    public void setFile_size(int file_size) {
+    public void setFile_size(long file_size) {
         this.file_size = file_size;
     }
 	

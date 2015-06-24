@@ -11,7 +11,9 @@
 <meta http-equiv="content-language" content="ko">
 <c:set var="flag" value="${ vo.board_seq > 0 ? '수정' : '등록' }"/>
 <title>게시판 정보 <c:out value="${ flag }"/></title>
-<link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/egov.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css" />">
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/layout.css" />">
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/green.css" />">
 <script type="text/javascript" src="<c:url value="/js/jquery-1.11.3.js" />"></script>
 <script type="text/javaScript">
 	_editor_url = "<c:url value='/html/egovframework/com/cmm/utl/htmlarea3.0/'/>";
@@ -61,25 +63,26 @@
 </head>
 
 <body style="text-align: center; margin: 0 auto; display: inline; padding-top: 100px;">
-	<div id="content_pop">
-		<form:form name="frm" commandName="vo" method="post">
-			 <div id="home">
+	<div id="content_pop" style="width: 800px;">
+		<form:form name="frm" commandName="vo" method="post" enctype="multipart/form-data">
+			<form:hidden path="file_seq" />
+		
+			 <div id="home" style="text-align: right;">
 				<span class="btn_blue_l" title="홈으로">
 					<a href="<c:url value="/" />">홈으로</a>
-					<img src="<c:url value='/images/egovframework/rte/btn_bg_r.gif'/>" alt="홈으로" style="margin-left:6px;" />
 				</span>
 			</div>
 			<div id="title2">
 				<ul>
-					<li><img src="<c:url value='/images/egovframework/rte/title_dot.gif'/>" alt="" /> 게시판 정보 <c:out value="${ flag }"/></li>
+					<li style="text-align: left;"><img src="<c:url value='/images/egovframework/rte/title_dot.gif'/>" alt="" /> 게시판 정보 <c:out value="${ flag }"/></li>
 				</ul>
 			</div>
 			<div id="table">
-				<table width="100%" border="1" cellpadding="0" cellspacing="0" style="border-top:#C2D0DB 2px solid; border-left:#ffffff 1px solid; border-right:#ffffff 1px solid; border-bottom:#C2D0DB 1px solid; border-collapse: collapse;" summary="게시판정보를 등록하고 수정할 수 있다.">
+				<table border="1" cellpadding="0" cellspacing="0" style="width:800px; border-top:#C2D0DB 2px solid; border-left:#ffffff 1px solid; border-right:#ffffff 1px solid; border-bottom:#C2D0DB 1px solid; border-collapse: collapse;" summary="게시판정보를 등록하고 수정할 수 있다.">
 					<caption>게시판정보 등록 및 수정</caption>
 					<colgroup>
-						<col width="120">
-						<col width="680"/>
+						<col width="120" />
+						<col width="680" />
 					</colgroup>
 					
 					<c:if test="${ flag == '수정'}">
@@ -104,31 +107,37 @@
 					</tr>
 					<tr>
 						<td class="tbtd_caption">내용</td>
-						<td class="tbtd_content"><form:textarea path="content" cssStyle="height: 200px;" /></td>
+						<td class="tbtd_content"><form:textarea path="content" cssStyle="height: 200px; width: 680px;" /></td>
+					</tr>
+					<tr>
+						<td class="tbtd_caption">파일</td>
+						<td class="tbtd_content">
+							<c:forEach var="fileInfo" items="${ vo.fileInfoList }">
+								<a href="<c:url value="/cmmn/downloadFile.do?file_seq=${ fileInfo.file_seq }&file_sn=${ fileInfo.file_sn }" />"><c:out value="${ fileInfo.orignl_file_nm }" /></a><br />
+							</c:forEach>
+							<input type="file" name="UploadFileInfo[0]" /><br />
+							<input type="file" name="UploadFileInfo[1]" /><br />
+							<input type="file" name="UploadFileInfo[2]" /><br />
+							<input type="file" name="UploadFileInfo[3]" /><br />
+							<input type="file" name="UploadFileInfo[4]" /><br />
+						</td>
 					</tr>
 				</table>
 			</div>
 			<div id="sysbtn">
 				<ul>
-					<!-- 저장 버튼 -->
-					<li>
+					<li style="text-align: right;">
+						<!-- 저장 버튼 -->
 						<span class="btn_blue_l" title="저장">
 							<a href="#link" onClick="fnSave(); return false;">저장</a>
-							<img src="<c:url value='/images/egovframework/rte/btn_bg_r.gif'/>" alt="저장" style="margin-left:6px;" />
 						</span>
-					</li>
-					<!-- 목록 버튼 -->
-					<li>
+						<!-- 목록 버튼 -->
 						<span class="btn_blue_l" title="목록">
 							<a href="#link" onClick="fnList(); return false;">목록</a>
-							<img src="<c:url value='/images/egovframework/rte/btn_bg_r.gif'/>" alt="목록" style="margin-left:6px;" />
 						</span>
-					</li>
-					<!-- 초기화 버튼 -->
-					<li>
+						<!-- 초기화 버튼 -->
 						<span class="btn_blue_l" title="초기화">
 							<a href="#link" onClick="document.frm.reset(); return false;">초기화</a>
-							<img src="<c:url value='/images/egovframework/rte/btn_bg_r.gif'/>" alt="초기화" style="margin-left:6px;" />
 						</span>
 					</li>
 				</ul>

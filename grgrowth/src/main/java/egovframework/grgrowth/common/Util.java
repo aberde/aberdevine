@@ -1,6 +1,8 @@
 package egovframework.grgrowth.common;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -92,5 +94,16 @@ public class Util {
      */
     public static String rowInsertPTag(String html) throws Exception {
         return html.replaceAll("(.*)", "<p>$1</p>");
+    }
+    
+    /**
+     * 패턴에 해당하는 현재 날짜 가져오기.
+     * @param pattern 날짜 패턴
+     * @return
+     */
+    public static String getDatePattern(String pattern) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+        
+        return dateFormat.format(new Date());
     }
 }

@@ -54,6 +54,7 @@
 <div id="container">
 
 	<form:form name="frm" commandName="vo" method="post" onsubmit="">
+		<form:hidden path="category_seq" />
 		<form:hidden path="board_seq" />
 		<input type="hidden" id="subject_con2" name="subject_con2" value="<c:out value="${ commonBoardVO.title }" />" />
 		<input type="hidden" id="board_url2" name="board_url2" value="<c:url value="${ pageContext.request.scheme }://${ pageContext.request.serverName }:${ pageContext.request.serverPort }${ pageContext.request.contextPath }/commonBoardView.do?${ pageContext.request.queryString }" />" />
@@ -80,7 +81,7 @@
 						<div style="float:left; line-heigt:100%;">
 							
 							<c:forEach var="fileInfo" items="${ commonBoardVO.fileInfoList }">
-								<a href="<c:url value="/cmmn/downloadFile.do?file_seq=${ fileInfo.file_seq }&file_sn=${ fileInfo.file_sn }" />"><img src="<c:url value="/images/disk.png" />" height="14" border="0" alt="첨부파일" align="absmiddle"><c:out value="${ fileInfo.file_sn }" /></a><br />
+								<a href="<c:url value="/cmmn/downloadFile.do?file_seq=${ fileInfo.file_seq }&file_sn=${ fileInfo.file_sn }" />"><img src="<c:url value="/images/disk.png" />" height="14" border="0" alt="첨부파일" align="absmiddle"> <c:out value="${ fileInfo.orignl_file_nm }" /></a><br />
 							</c:forEach>
 						
 						</div>
@@ -101,7 +102,7 @@
 			<div class="fileAdd">
 				<c:if test="${ fn:length(commonBoardVO.fileInfoList) > 0 }">
 					<c:forEach var="fileInfo" items="${ commonBoardVO.fileInfoList }">
-						<a href="<c:url value="/cmmn/downloadFile.do?file_seq=${ fileInfo.file_seq }&file_sn=${ fileInfo.file_sn }" />"><img src="<c:url value="/images/disk.png" />" height="14" border="0" alt="첨부파일" align="absmiddle"><c:out value="${ fileInfo.file_sn }" /></a><br />
+						<a href="<c:url value="/cmmn/downloadFile.do?file_seq=${ fileInfo.file_seq }&file_sn=${ fileInfo.file_sn }" />"><img src="<c:url value="/images/disk.png" />" height="14" border="0" alt="첨부파일" align="absmiddle"> <c:out value="${ fileInfo.orignl_file_nm }" /></a><br />
 					</c:forEach>
 				</c:if>
 			</div>

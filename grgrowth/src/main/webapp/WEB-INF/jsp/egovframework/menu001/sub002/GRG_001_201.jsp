@@ -35,7 +35,7 @@
 			<img class="ban" title="비전체계" alt="" src="<c:url value="/images/menu001/sub002/strategy_ban_01.jpg" />" width="598" height="369" />
 		</p>
 		<p>
-			<a href="<c:url value="" />"
+			<a href="<c:url value="/download/090713NationalStrategy.zip" />"
 				class="su-button su-button-style-1 su-button-class"
 				style="background-color: #05b99b; border: 1px solid #04947c; border-radius: 0px; -moz-border-radius: 0px; -webkit-border-radius: 0px;"
 				target="_blank"><span

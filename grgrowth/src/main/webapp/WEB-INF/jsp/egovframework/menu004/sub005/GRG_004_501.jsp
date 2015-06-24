@@ -30,8 +30,8 @@
 					</h2>
 					<p>
 						<span style="margin: 9px 0px 0px 7px; float: left; display: block;"><a
-							href="<c:url value="" />"
-							onclick="javascript:_gaq.push(['_trackEvent','download','<c:url value="" />']);"
+							href="<c:url value="/download/CI_FILE.zip" />"
+							onclick="javascript:_gaq.push(['_trackEvent','download','<c:url value="/download/CI_FILE.zip" />']);"
 							class="su-button su-button-style-3 su-button-class"
 							style="background-color: #f3f3f3; border: 1px solid #c2c2c2; border-radius: 0px; -moz-border-radius: 0px; -webkit-border-radius: 0px;"
 							target="_blank"><span
@@ -66,8 +66,8 @@
 			</ul>
 			<p>
 				<a
-					href="<c:url value="" />"
-					onclick="javascript:_gaq.push(['_trackEvent','download','<c:url value="" />']);"
+					href="<c:url value="/download/CI_PDF.zip" />"
+					onclick="javascript:_gaq.push(['_trackEvent','download','<c:url value="/download/CI_PDF.zip" />']);"
 					class="su-button su-button-style-1 su-button-class"
 					style="background-color: #05b99b; border: 1px solid #04947c; border-radius: 0px; -moz-border-radius: 0px; -webkit-border-radius: 0px;"
 					target="_blank"><span

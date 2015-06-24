@@ -15,7 +15,11 @@
  */
 package egovframework.grgrowth.admin.service.web;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.annotation.Resource;
@@ -24,10 +28,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
+import egovframework.grgrowth.common.Util;
 import egovframework.grgrowth.common.service.CommonBoardVO;
 import egovframework.grgrowth.common.service.CommonCategoryVO;
 import egovframework.grgrowth.common.service.CommonService;
+import egovframework.grgrowth.common.service.FileInfoVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -151,8 +159,62 @@ public class AdminController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/admin/boardSaveProc.do")
+	@RequestMapping(value = "/admin/boardSaveProc.do", method = RequestMethod.POST)
 	public String boardSaveProc(@ModelAttribute("vo") CommonBoardVO vo, ModelMap model) throws Exception {
+	    int file_seq = 0;
+	    if ( vo.getFile_seq() > 0 ) {  // 수정시
+	        file_seq = vo.getFile_seq();
+	    } else {  // 등록시
+	        Map<String, Object> dataMap = new HashMap<String, Object>();
+	        commonService.fileInfoInsert(dataMap);
+	        file_seq = (int)dataMap.get("file_seq");
+	        vo.setFile_seq(file_seq);
+	    }
+	    
+	    // ####################################################################
+        // ## 파일 저장
+        // ####################################################################
+	    String uploadPath = fileUploadProperties.getProperty("file.upload.path");
+	    List<MultipartFile> uploadFiles = vo.getUploadFileInfo();
+        List<FileInfoVO> fileInfoList = new ArrayList<FileInfoVO>();
+ 
+        // 저장 경로
+        String savePath = uploadPath + Util.getDatePattern("yyyy") + File.separator + Util.getDatePattern("MM") + File.separator;
+        
+        File savePathFile = new File(savePath);
+        if ( !savePathFile.exists() ) {
+            savePathFile.mkdirs();
+        }
+        
+        if ( uploadFiles != null && uploadFiles.size() > 0 ) {
+            for ( int i = 0; i < uploadFiles.size(); i++ ) {
+                MultipartFile multipartFile = uploadFiles.get(i);
+                
+                String orignl_file_nm = multipartFile.getOriginalFilename();  // 원파일명
+                String stre_file_nm = Util.getDatePattern("yyyyMMddHHmmssSSS") + i;  // 실제저장된 파일명
+                String file_extsn = orignl_file_nm.substring(orignl_file_nm.lastIndexOf(".") + 1);
+
+                if ( !"".equalsIgnoreCase(orignl_file_nm) ) {
+                    multipartFile.transferTo(new File(savePath + stre_file_nm + "." + file_extsn));
+
+                    FileInfoVO fileInfoVO = new FileInfoVO();
+                    fileInfoVO.setFile_seq(file_seq);
+                    fileInfoVO.setFile_extsn(file_extsn);
+                    fileInfoVO.setFile_size(multipartFile.getSize());
+                    fileInfoVO.setFile_stre_cours(savePath);
+                    fileInfoVO.setOrignl_file_nm(orignl_file_nm);
+                    fileInfoVO.setStre_file_nm(stre_file_nm);
+                    
+                    fileInfoList.add(fileInfoVO);
+                }
+            }
+        }
+        
+        if ( fileInfoList.size() > 0 ) {
+            commonService.fileInsert(fileInfoList);
+        }
+        // ####################################################################
+	    
 	    if ( vo.getBoard_seq() > 0 ) {
 	        // ####################################################################
 	        // ## 게시판 수정
@@ -167,7 +229,7 @@ public class AdminController {
 	        // ####################################################################
 	    }
 	    
-	    return "forward:/admin/boardList.do";
+	    return "redirect:/admin/boardList.do";
 	}
 	
 	/** 
@@ -179,7 +241,6 @@ public class AdminController {
     @RequestMapping(value = "/admin/boardDeleteProc.do")
     public String boardDeleteProc(@ModelAttribute("vo") CommonBoardVO vo, ModelMap model) throws Exception {
         commonService.boardDelete(vo);
-        
-        return "forward:/admin/boardList.do";
+        return "redirect:/admin/boardList.do";
     }
 }
