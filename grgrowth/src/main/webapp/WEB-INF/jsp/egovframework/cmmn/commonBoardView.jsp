@@ -30,8 +30,7 @@
 	 * @param board_seq 게시판 일련번호
 	 */
 	function printPost(board_seq) {
-		var url = "<c:url value="?page_id=44092&board_seq=" />" + board_seq;
-		window.open(url, "printPost", "width=740, height=720, scrollbars=yes");
+		$("#post-" + board_seq).print();
 	}
 	
 	/**
@@ -66,9 +65,9 @@
 					<span class="postDate"><c:out value="${ commonBoardVO.regdate }" /></span>
 					<span class="postCategory">&nbsp;&nbsp;|&nbsp;&nbsp;<c:out value="${ commonBoardVO.category_nm }" />&nbsp;&nbsp;|&nbsp;&nbsp;</span>
 				</div>
-				<div class="metaRight">
-					&nbsp;&nbsp;<a href="javascript:winTwitter();"><img src="<c:url value="/images/icon_twitter.gif" />" border="0" alt="이 글을 twitter로 보내기"></a>
-					&nbsp;&nbsp;<a href="javascript:winFacebook();"><img src="<c:url value="/images/icon_facebook.gif" />" border="0" alt="이 글을 facebook으로 보내기"></a>
+				<div class="metaRight printHide">
+<%-- 					&nbsp;&nbsp;<a href="javascript:winTwitter();"><img src="<c:url value="/images/icon_twitter.gif" />" border="0" alt="이 글을 twitter로 보내기"></a> --%>
+<%-- 					&nbsp;&nbsp;<a href="javascript:winFacebook();"><img src="<c:url value="/images/icon_facebook.gif" />" border="0" alt="이 글을 facebook으로 보내기"></a> --%>
 					&nbsp;&nbsp;<a href="javascript:printPost('<c:out value="${ commonBoardVO.board_seq }" />');"><img src="<c:url value="/images/icon_print.gif" />" alt="이 글을 인쇄하기" border="0"></a>
 					&nbsp;<a href="javascript:GisaFont.scaleFont(1);"><img src="<c:url value="/images/icon_plus.gif" />" border="0" alt="글자확대" title="글자확대" align="absmiddle" style="margin-bottom:3px;" /></a>
 					&nbsp;<a href="javascript:GisaFont.scaleFont(-1);"><img src="<c:url value="/images/icon_minus.gif" />" border="0" alt="글자축소" title="글자축소" align="absmiddle" style="margin-bottom:3px;" /></a>
