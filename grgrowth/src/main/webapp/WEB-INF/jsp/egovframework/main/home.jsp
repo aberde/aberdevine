@@ -32,7 +32,7 @@
 						
 						<li>
 							<span class="tabTitle"><img src="<c:url value="/images/main/bullet_arrow.gif" />" align="absmiddle" border="0" alt="" />
-							<a href="<c:url value="/cmmn/commonBoardView.do?board_seq=${ vo.board_seq }" />" title="<c:out value="Permalink to ${ vo.title }" />">
+							<a href="<c:url value="/cmmn/commonBoardView.do?category_seq=${ vo.category_seq }&board_seq=${ vo.board_seq }" />" title="<c:out value="Permalink to ${ vo.title }" />">
 								<c:out value="${ ct:subStringBytes(vo.title, 50) }" />
 							</a>
 							</span>

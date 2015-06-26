@@ -15,8 +15,8 @@ public class GrgrowthConstants {
 	// 기상청 지역날씨 URL
 	public static final String WEATHER_URL = "http://www.kma.go.kr/XML/weather/sfc_web_map.xml";
 	
-	// 검색구분(policy: 관련정책, news: 소식/동향, multimedia: 멀티미디어, edudata: 교육/자료실, page: 관련문서, participation: 참여마당)
-	public static final String[] SEARCH_SECTION = {"policy", "news", "multimedia", "edudata", "page", "participation"};
+	// 검색구분(1: 위원회활동, 2: 주요소식, 3: 회의자료(2013.03~), 4: 회의자료(~2013.02), 5: 용어사전)
+	public static final String[] SEARCH_SECTION = {"1", "2", "3", "4", "5"};
 
 	// 검색화면 글 목록 수
 	public static final int SEARCH_PAGE_UNIT = 20;
