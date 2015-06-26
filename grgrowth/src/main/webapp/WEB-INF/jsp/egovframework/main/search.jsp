@@ -59,7 +59,7 @@
 			<c:forEach var="board" items="${ data.searchList }">
 			
 				<div id="post-<c:out value="${ board.board_seq }" />" class="post-<c:out value="${ board.board_seq }" /> post type-post status-publish format-standard hentry category-green-sido-data entry">
-					<h2 class="archiveTitle"><a href="<c:url value="/cmmn/commonBoardView.do?board_seq=${ board.board_seq }" />" rel="bookmark" title="<c:out value="${ board.title }" />"><c:out value="${ board.title }" /></a></h2> &nbsp;&nbsp;
+					<h2 class="archiveTitle"><a href="<c:url value="/cmmn/commonBoardView.do?category_seq=${ board.category_seq }&board_seq=${ board.board_seq }" />" rel="bookmark" title="<c:out value="${ board.title }" />"><c:out value="${ board.title }" /></a></h2> &nbsp;&nbsp;
 					<span class="postDate">
 						<c:out value="${ board.regdate }" />
 					</span>
