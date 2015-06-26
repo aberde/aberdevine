@@ -22,29 +22,7 @@
 				AND A.USE_YN = 'Y'
 	    ]]>
 		    <if test="searchCondition != null">
-		    	<choose>
-		    		<when test="searchCondition eq 'policy'.toString()">
-		    			AND A.CATEGORY_SEQ = 1
-		    		</when>
-		    		<when test="searchCondition eq 'news'.toString()">
-						AND A.CATEGORY_SEQ = 2
-					</when>
-		    		<when test="searchCondition eq 'multimedia'.toString()">
-						AND A.CATEGORY_SEQ = #{ category_seq }
-					</when>
-		    		<when test="searchCondition eq 'edudata'.toString()">
-						AND A.CATEGORY_SEQ = #{ category_seq }
-					</when>
-		    		<when test="searchCondition eq 'page'.toString()">
-						AND A.CATEGORY_SEQ = #{ category_seq }
-					</when>
-		    		<when test="searchCondition eq 'participation'.toString()">
-						AND A.CATEGORY_SEQ = #{ category_seq }
-					</when>
-					<otherwise>
-						AND 1 <![CDATA[<>]]> 1
-					</otherwise>
-		    	</choose>
+    			AND A.CATEGORY_SEQ = #{ searchCondition }
 		    </if>
 		    <if test="searchKeyword != null">
 		    	AND ( A.TITLE like CONCAT(CONCAT('%', #{ searchKeyword }), '%') OR A.CONTENT like CONCAT(CONCAT('%', #{ searchKeyword }), '%') )
@@ -68,29 +46,7 @@
 				AND A.USE_YN = 'Y'
 	    ]]>
 		    <if test="searchCondition != null">
-		    	<choose>
-		    		<when test="searchCondition eq 'policy'.toString()">
-		    			AND A.CATEGORY_SEQ = 1
-		    		</when>
-		    		<when test="searchCondition eq 'news'.toString()">
-						AND A.CATEGORY_SEQ = 2
-					</when>
-		    		<when test="searchCondition eq 'multimedia'.toString()">
-						AND A.CATEGORY_SEQ = #{ category_seq }
-					</when>
-		    		<when test="searchCondition eq 'edudata'.toString()">
-						AND A.CATEGORY_SEQ = #{ category_seq }
-					</when>
-		    		<when test="searchCondition eq 'page'.toString()">
-						AND A.CATEGORY_SEQ = #{ category_seq }
-					</when>
-		    		<when test="searchCondition eq 'participation'.toString()">
-						AND A.CATEGORY_SEQ = #{ category_seq }
-					</when>
-					<otherwise>
-						AND 1 <![CDATA[<>]]> 1
-					</otherwise>
-		    	</choose>
+    			AND A.CATEGORY_SEQ = #{ searchCondition }
 		    </if>
 		    <if test="searchKeyword != null">
 		    	AND ( A.TITLE like CONCAT(CONCAT('%', #{ searchKeyword }), '%') OR A.CONTENT like CONCAT(CONCAT('%', #{ searchKeyword }), '%') )

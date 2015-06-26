@@ -20,28 +20,24 @@
 			<div class="imgTag"><span>통합검색</span></div>
 			<div class="arrowTag"></div>
 		</div>
-		<div class="sectionTab<c:out value="${ vo.searchCondition eq 'policy' ? 'On' : 'Off' }" />" id="searchPolicy" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />&searchCondition=policy';">
-			<div class="imgTag"><span>관련정책</span></div>
+		<div class="sectionTab<c:out value="${ vo.searchCondition eq '1' ? 'On' : 'Off' }" />" id="searchPolicy" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />&searchCondition=1';">
+			<div class="imgTag"><span>위원회활동</span></div>
 			<div class="arrowTag"></div>
 		</div>
-		<div class="sectionTab<c:out value="${ vo.searchCondition eq 'news' ? 'On' : 'Off' }" />" id="searchNews" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />&searchCondition=news';">
-			<div class="imgTag"><span>소식/동향</span></div>
+		<div class="sectionTab<c:out value="${ vo.searchCondition eq '2' ? 'On' : 'Off' }" />" id="searchNews" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />&searchCondition=2';">
+			<div class="imgTag"><span>주요소식</span></div>
 			<div class="arrowTag"></div>
 		</div>
-		<div class="sectionTab<c:out value="${ vo.searchCondition eq 'multimedia' ? 'On' : 'Off' }" />" id="searchMultimedia" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />&searchCondition=multimedia';">
-			<div class="imgTag"><span>멀티미디어</span></div>
+		<div class="sectionTab<c:out value="${ vo.searchCondition eq '3' ? 'On' : 'Off' }" />" id="searchMultimedia" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />&searchCondition=3';">
+			<div class="imgTag"><span>회의자료(2013.03~)</span></div>
 			<div class="arrowTag"></div>
 		</div>
-		<div class="sectionTab<c:out value="${ vo.searchCondition eq 'edudata' ? 'On' : 'Off' }" />" id="searchEdudata" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />&searchCondition=edudata';">
-			<div class="imgTag"><span>교육/자료실</span></div>
+		<div class="sectionTab<c:out value="${ vo.searchCondition eq '4' ? 'On' : 'Off' }" />" id="searchEdudata" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />&searchCondition=4';">
+			<div class="imgTag"><span>회의자료(~2013.02)</span></div>
 			<div class="arrowTag"></div>
 		</div>
-		<div class="sectionTab<c:out value="${ vo.searchCondition eq 'page' ? 'On' : 'Off' }" />" id="searchPage" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />&searchCondition=page';">
-			<div class="imgTag"><span>관련문서</span></div>
-			<div class="arrowTag"></div>
-		</div>
-		<div class="sectionTab<c:out value="${ vo.searchCondition eq 'participation' ? 'On' : 'Off' }" />" id="searchParticipation" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />&searchCondition=participation';">
-			<div class="imgTag"><span>참여마당</span></div>
+		<div class="sectionTab<c:out value="${ vo.searchCondition eq '5' ? 'On' : 'Off' }" />" id="searchPage" onclick="location.href='<c:url value="/main/search.do" />?searchKeyword=<c:out value="${ vo.searchKeyword }" />&searchCondition=5';">
+			<div class="imgTag"><span>용어사전</span></div>
 			<div class="arrowTag"></div>
 		</div>
 	</div>
