@@ -148,13 +148,16 @@ public class MainController {
     public String search(@ModelAttribute("vo") CommonBoardVO vo, ModelMap model) throws Exception {
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         
+        // 검색구분
+        model.addAttribute("search_section", GrgrowthConstants.SEARCH_SECTION);
+        
         if ( vo.getSearchCondition() == null || vo.getSearchCondition().isEmpty() ) {  // 검색구분이 없을때
             CommonBoardVO commonBoardVO = new CommonBoardVO();
             commonBoardVO.setSearchKeyword(vo.getSearchKeyword());
             
-            for ( int i = 0; i < GrgrowthConstants.SEARCH_SECTION.length; i++ ) {
+            for ( int i = 0; i < GrgrowthConstants.SEARCH_SECTION.size(); i++ ) {
                 // 검색구분입력
-                commonBoardVO.setSearchCondition(GrgrowthConstants.SEARCH_SECTION[i]);
+                commonBoardVO.setSearchCondition((String)GrgrowthConstants.SEARCH_SECTION.keySet().toArray()[i]);
                 
                 // ####################################################################
                 // ## 최근목록 5개 가져오기
@@ -170,7 +173,7 @@ public class MainController {
                 // ####################################################################
                 
                 Map<String, Object> map = new HashMap<String, Object>();
-                map.put("searchCondition", GrgrowthConstants.SEARCH_SECTION[i]);
+                map.put("searchCondition", (String)GrgrowthConstants.SEARCH_SECTION.keySet().toArray()[i]);
                 map.put("searchList", searchList);
                 
                 list.add(map);
