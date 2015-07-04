@@ -44,11 +44,12 @@
 
 	<div id="sectionContainer">
 		
-		<c:forEach var="data" items="${ list }">
-		
+		<c:forEach var="data" items="${ list }" varStatus="status">
+			<c:set var="count">${ status.count }</c:set>
+			
 			<!-- 검색구분명 -->
 			<div class="sectionTabTitle">
-				<img src="<c:url value="/images/search/section_${ data.searchCondition }.gif" />" border="0" alt="" />
+				<h5><b><c:out value="${ search_section[count] }" /></b></h5>
 			</div>
 
 			<!-- 검색목록 -->

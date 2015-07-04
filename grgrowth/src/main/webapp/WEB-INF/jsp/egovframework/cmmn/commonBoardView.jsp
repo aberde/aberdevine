@@ -107,9 +107,6 @@
 			</div>
 			
 			<div class="metaAdd">
-				<div class="metaAddLevel1" style="float:left;">
-					<img src="<c:url value="/images/icon_tag.gif" />" alt="태그아이콘" align="absmiddle" border="0">
-				</div>
 				<div class="metaAddLevel2" style="float:right;">
 					<a href="javascript:scroll(0,0);"><img src="<c:url value="/images/btn_top.gif" />" alt="위로가기" title="위로가기" align="absmiddle" border="0"></a>
 				</div>

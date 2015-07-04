@@ -1,5 +1,9 @@
 package egovframework.grgrowth.common;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 공통 상수 <br/>
  */
@@ -16,8 +20,17 @@ public class GrgrowthConstants {
 	public static final String WEATHER_URL = "http://www.kma.go.kr/XML/weather/sfc_web_map.xml";
 	
 	// 검색구분(1: 위원회활동, 2: 주요소식, 3: 회의자료(2013.03~), 4: 회의자료(~2013.02), 5: 용어사전)
-	public static final String[] SEARCH_SECTION = {"1", "2", "3", "4", "5"};
-
+	public static final Map<String, String> SEARCH_SECTION;
+	static {
+        Map<String, String> dataMap = new HashMap<String, String>();
+        dataMap.put("1", "위원회활동");
+        dataMap.put("2", "주요소식");
+        dataMap.put("3", "회의자료(2013.03~)");
+        dataMap.put("4", "회의자료(~2013.02)");
+        dataMap.put("5", "용어사전");
+        SEARCH_SECTION = Collections.unmodifiableMap(dataMap);
+    }
+	
 	// 검색화면 글 목록 수
 	public static final int SEARCH_PAGE_UNIT = 20;
 	// ###########################################################
