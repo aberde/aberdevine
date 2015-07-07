@@ -54,7 +54,6 @@
 	 * 게시판 목록으로 이동.
 	 */
 	function fnList() {
-		document.frm.category_seq.value = "0";  // 게시판목록으로 이동시 카테고리 초기화
 		document.frm.action = "<c:url value='/admin/boardList.do'/>";
 		document.frm.submit();
 	}
@@ -95,10 +94,7 @@
 					<tr>
 						<td class="tbtd_caption">카테고리</td>
 						<td class="tbtd_content">
-							<form:select path="category_seq" cssClass="use">
-								<form:option value="">선택하세요</form:option>
-								<form:options items="${ categoryList }" itemLabel="category_nm" itemValue="category_seq" />
-							</form:select>
+							<c:out value="${ search_section[param.category_seq] }" />
 						</td>
 					</tr>
 					<tr>
@@ -144,6 +140,7 @@
 			</div>
 			
 			<!-- 검색조건 유지 -->
+			<form:hidden path="category_seq" />
 			<form:hidden path="searchCondition" />
 			<form:hidden path="searchKeyword" />
 			<form:hidden path="pageIndex" />

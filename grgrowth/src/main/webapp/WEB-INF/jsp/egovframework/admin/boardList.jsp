@@ -53,19 +53,39 @@
 		document.frm.action = "<c:url value='/admin/boardList.do'/>";
 		document.frm.submit();
 	}
+	
+	/**
+	 * 카테고리 변경
+	 * @param category_seq 카테고리 일련번호
+	 */
+	function fnCategoryChange(category_seq) {
+		document.frm.category_seq.value = category_seq;
+		document.frm.action = "<c:url value='/admin/boardList.do'/>";
+		document.frm.submit();
+	}
 </script>
 </head>
 
 <body style="margin:0; padding:0;text-align: center; margin: 0 auto; display: inline; padding-top: 100px;">
 	<div id="content_pop" style="width: 800px;">
 		<form:form name="frm" commandName="vo" method="post" onsubmit="fnList()">
-			<input type="hidden" name="board_seq" />
+			<form:hidden path="category_seq"/>
+			<form:hidden path="board_seq"/>
 			
 			<div id="home" style="text-align: right;">
 				<span class="btn_blue_l" title="홈으로">
 					<a href="<c:url value="/" />">홈으로</a>
 				</span>
 			</div>
+			
+			<div>
+				<ul>
+					<c:forEach var="section" items="${ search_section }">
+						<li style="display: inline; padding-left: 30px; <c:if test="${ section.key eq vo.category_seq }">font-weight: bold;</c:if>"><a href="#" onclick="fnCategoryChange('<c:out value="${ section.key }" />');"><c:out value="${ section.value }" /></a></li>
+					</c:forEach>
+				</ul>
+			</div>
+			
 			<div id="title2">
 				<ul>
 					<li style="text-align: left;">

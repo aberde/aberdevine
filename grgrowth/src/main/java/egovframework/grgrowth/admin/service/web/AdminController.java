@@ -31,9 +31,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import egovframework.grgrowth.common.GrgrowthConstants;
 import egovframework.grgrowth.common.Util;
 import egovframework.grgrowth.common.service.CommonBoardVO;
-import egovframework.grgrowth.common.service.CommonCategoryVO;
 import egovframework.grgrowth.common.service.CommonService;
 import egovframework.grgrowth.common.service.FileInfoVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
@@ -85,8 +85,9 @@ public class AdminController {
 	    vo.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 	    // ####################################################################
 
-	    // 모든 카테고리에서 검색
-	    vo.setCategory_seq(0);
+	    if ( vo.getCategory_seq() == 0 ) {  // 카테고리 미존재시 위원회활동으로 설정
+	        vo.setCategory_seq(1);
+	    }
 	    
 	    // ####################################################################
 	    // ## 게시판 페이징
@@ -103,6 +104,9 @@ public class AdminController {
 	    List<CommonBoardVO> boardList = commonService.boardList(vo);
 	    model.addAttribute("boardList", boardList);
 	    // ####################################################################
+	    
+	    // 검색구분
+        model.addAttribute("search_section", GrgrowthConstants.SEARCH_SECTION);
 
 	    return "/admin/boardList";
 	}
@@ -133,13 +137,8 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/boardForm.do")
 	public String boardForm(@ModelAttribute("vo") CommonBoardVO vo, ModelMap model) throws Exception {
-	    // ####################################################################
-        // ## 카테고리 목록
-        // ####################################################################
-        List<CommonCategoryVO> categoryList = commonService.categoryList();
-        
-        model.addAttribute("categoryList", categoryList);
-        // ####################################################################
+	    // 카테고리
+        model.addAttribute("search_section", GrgrowthConstants.SEARCH_SECTION);
 	    
 	    if ( vo.getBoard_seq() > 0 ) {
 	        // ####################################################################
@@ -229,7 +228,7 @@ public class AdminController {
 	        // ####################################################################
 	    }
 	    
-	    return "redirect:/admin/boardList.do";
+	    return "redirect:/admin/boardList.do?category_seq=" + vo.getCategory_seq();
 	}
 	
 	/** 
