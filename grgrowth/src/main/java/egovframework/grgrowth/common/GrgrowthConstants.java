@@ -1,7 +1,7 @@
 package egovframework.grgrowth.common;
 
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -22,7 +22,7 @@ public class GrgrowthConstants {
 	// 검색구분(1: 위원회활동, 2: 주요소식, 3: 회의자료(2013.03~), 4: 회의자료(~2013.02), 5: 용어사전)
 	public static final Map<String, String> SEARCH_SECTION;
 	static {
-        Map<String, String> dataMap = new HashMap<String, String>();
+        Map<String, String> dataMap = new LinkedHashMap<String, String>();
         dataMap.put("1", "위원회활동");
         dataMap.put("2", "주요소식");
         dataMap.put("3", "회의자료(2013.03~)");
