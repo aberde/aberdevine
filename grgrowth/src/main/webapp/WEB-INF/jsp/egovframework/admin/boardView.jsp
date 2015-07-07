@@ -111,6 +111,7 @@
 			</div>
 			
 			<!-- 검색조건 유지 -->
+			<form:hidden path="category_seq" />
 			<form:hidden path="searchCondition" />
 			<form:hidden path="searchKeyword" />
 			<form:hidden path="pageIndex" />
