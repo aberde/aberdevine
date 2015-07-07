@@ -18,8 +18,6 @@ package egovframework.grgrowth.common.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import egovframework.grgrowth.common.service.CommonBoardVO;
 import egovframework.grgrowth.common.service.CommonCategoryVO;
 import egovframework.grgrowth.common.service.FileInfoVO;
