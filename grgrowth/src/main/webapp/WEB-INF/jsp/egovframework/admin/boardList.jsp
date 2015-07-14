@@ -60,6 +60,7 @@
 	 */
 	function fnCategoryChange(category_seq) {
 		document.frm.category_seq.value = category_seq;
+		document.frm.pageIndex.value = "1";
 		document.frm.action = "<c:url value='/admin/boardList.do'/>";
 		document.frm.submit();
 	}
@@ -75,6 +76,7 @@
 			<div id="home" style="text-align: right;">
 				<span class="btn_blue_l" title="홈으로">
 					<a href="<c:url value="/" />">홈으로</a>
+					<a href="<c:url value="/admin/adminLogoutProc.do" />">로그아웃</a>
 				</span>
 			</div>
 			
@@ -89,7 +91,8 @@
 			<div id="title2">
 				<ul>
 					<li style="text-align: left;">
-						<img src="<c:url value='/images/egovframework/rte/title_dot.gif'/>" alt="" /> 게시판 목록
+						<c:set var="category">${ vo.category_seq }</c:set>
+						<img src="<c:url value='/images/egovframework/rte/title_dot.gif'/>" alt="" /> <c:out value="${ search_section[category] }" />
 						<span style="font-size: 13px; padding-left: 5px;">(<c:out value='${ paginationInfo.totalRecordCount }' />건)</span>
 					</li>
 				</ul>

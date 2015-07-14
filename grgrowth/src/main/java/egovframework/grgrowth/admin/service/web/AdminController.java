@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -31,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import egovframework.grgrowth.admin.service.AdminLoginVO;
 import egovframework.grgrowth.common.GrgrowthConstants;
 import egovframework.grgrowth.common.Util;
 import egovframework.grgrowth.common.service.CommonBoardVO;
@@ -55,6 +57,52 @@ public class AdminController {
 	protected EgovPropertyService propertiesService;
 	
 	/** 
+	 * 로그인
+	 * @param vo
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/admin/adminLogin.do")
+	public String adminLogin(@ModelAttribute("vo") AdminLoginVO vo, ModelMap model) throws Exception {
+	    return "/admin/adminLogin";
+	}
+	
+	/** 
+	 * 로그인 처리
+	 * @param vo
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/admin/adminLoginProc.do")
+	public String adminLoginProc(@ModelAttribute("vo") AdminLoginVO vo, ModelMap model, HttpServletRequest request) throws Exception {
+	    if ( GrgrowthConstants.ADMIN_USER_ID.equals(vo.getUser_id())
+	            && GrgrowthConstants.ADMIN_USER_PW.equals(vo.getUser_pw()) ) {
+	        request.getSession().setAttribute(GrgrowthConstants.SESSION_USER_ID, vo.getUser_id());
+	        
+	        return "redirect:/admin/boardList.do";
+	    } else {
+	        vo.setErr_msg(GrgrowthConstants.ERR_LOGIN_FALSE);
+	        return "/admin/adminLogin";
+	    }
+	}
+	
+	/** 
+	 * 로그아웃 처리
+	 * @param vo
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/admin/adminLogoutProc.do")
+	public String adminLogoutProc(@ModelAttribute("vo") AdminLoginVO vo, ModelMap model, HttpServletRequest request) throws Exception {
+	    request.getSession().invalidate();
+	    
+	    return "redirect:/admin/adminLogin.do";
+	}
+	
+	/** 
 	 * 게시판 > 목록
 	 * @param vo
 	 * @param model
@@ -62,7 +110,11 @@ public class AdminController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/admin/boardList.do")
-	public String boardList(@ModelAttribute("vo") CommonBoardVO vo, ModelMap model) throws Exception {
+	public String boardList(@ModelAttribute("vo") CommonBoardVO vo, ModelMap model, HttpServletRequest request) throws Exception {
+	    if ( Util.getSessionUser_id(request) == null ) {
+	        return "redirect:/admin/adminLogin.do";
+	    }
+	    
 	    // ####################################################################
 	    // ## 페이징 설정
 	    // ####################################################################
@@ -118,7 +170,11 @@ public class AdminController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/admin/boardView.do")
-	public String boardView(@ModelAttribute("vo") CommonBoardVO vo, ModelMap model) throws Exception {
+	public String boardView(@ModelAttribute("vo") CommonBoardVO vo, ModelMap model, HttpServletRequest request) throws Exception {
+	    if ( Util.getSessionUser_id(request) == null ) {
+	        return "redirect:/admin/adminLogin.do";
+        }
+	    
 	    // ####################################################################
 	    // ## 게시판 목록
 	    // ####################################################################
@@ -136,7 +192,11 @@ public class AdminController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/admin/boardForm.do")
-	public String boardForm(@ModelAttribute("vo") CommonBoardVO vo, ModelMap model) throws Exception {
+	public String boardForm(@ModelAttribute("vo") CommonBoardVO vo, ModelMap model, HttpServletRequest request) throws Exception {
+	    if ( Util.getSessionUser_id(request) == null ) {
+	        return "redirect:/admin/adminLogin.do";
+        }
+	    
 	    // 카테고리
         model.addAttribute("search_section", GrgrowthConstants.SEARCH_SECTION);
 	    
@@ -159,7 +219,11 @@ public class AdminController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/admin/boardSaveProc.do", method = RequestMethod.POST)
-	public String boardSaveProc(@ModelAttribute("vo") CommonBoardVO vo, ModelMap model) throws Exception {
+	public String boardSaveProc(@ModelAttribute("vo") CommonBoardVO vo, ModelMap model, HttpServletRequest request) throws Exception {
+	    if ( Util.getSessionUser_id(request) == null ) {
+	        return "redirect:/admin/adminLogin.do";
+        }
+	    
 	    int file_seq = 0;
 	    if ( vo.getFile_seq() > 0 ) {  // 수정시
 	        file_seq = vo.getFile_seq();
@@ -238,7 +302,11 @@ public class AdminController {
      * @throws Exception
      */
     @RequestMapping(value = "/admin/boardDeleteProc.do")
-    public String boardDeleteProc(@ModelAttribute("vo") CommonBoardVO vo, ModelMap model) throws Exception {
+    public String boardDeleteProc(@ModelAttribute("vo") CommonBoardVO vo, ModelMap model, HttpServletRequest request) throws Exception {
+        if ( Util.getSessionUser_id(request) == null ) {
+            return "redirect:/admin/adminLogin.do";
+        }
+        
         commonService.boardDelete(vo);
         return "redirect:/admin/boardList.do";
     }
