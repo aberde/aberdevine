@@ -33,6 +33,9 @@ public class GrgrowthConstants {
 	
 	// 검색화면 글 목록 수
 	public static final int SEARCH_PAGE_UNIT = 20;
+	
+	// 세션 사용자 키
+	public static final String SESSION_USER_ID = "SESSION_USER_ID";
 	// ###########################################################
 	
 	// ###########################################################
@@ -41,5 +44,22 @@ public class GrgrowthConstants {
 	public static final String GET_IMAGE_TAG_CONTENT = "content";
 
 	public static final String GET_IMAGE_TAG_TAGYN = "tagyn";
+	// ###########################################################
+	
+	// ###########################################################
+	// ## 관리자 로그인 정보
+	// ###########################################################
+	// 관리자 아이디
+	public static final String ADMIN_USER_ID = "admin";
+
+	// 관리자 비밀번호
+	public static final String ADMIN_USER_PW = "1234";
+	// ###########################################################
+	
+	// ###########################################################
+	// ## 에러메세지
+	// ###########################################################
+	// 관리자 로그인 정보 미일치
+	public static final String ERR_LOGIN_FALSE = "관리자 로그인정보가 일치하지 않습니다.";
 	// ###########################################################
 }

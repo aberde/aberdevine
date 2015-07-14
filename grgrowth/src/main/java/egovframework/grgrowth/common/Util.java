@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class Util {
 
     /**
@@ -106,4 +108,15 @@ public class Util {
         
         return dateFormat.format(new Date());
     }
+    
+    /**
+     * 세션에서 사용자 아이디 가져오기.
+     * @param request
+     * @return
+     */
+    public static String getSessionUser_id(HttpServletRequest request) {
+        return (String)request.getSession().getAttribute(GrgrowthConstants.SESSION_USER_ID);
+    }
+    
+    
 }

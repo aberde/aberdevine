@@ -51,6 +51,7 @@
 			<div id="home" style="text-align: right;">
 				<span class="btn_blue_l" title="홈으로">
 					<a href="<c:url value="/" />">홈으로</a>
+					<a href="<c:url value="/admin/adminLogoutProc.do" />">로그아웃</a>
 				</span>
 			</div>
 			<div id="title2" style="text-align: left;">
