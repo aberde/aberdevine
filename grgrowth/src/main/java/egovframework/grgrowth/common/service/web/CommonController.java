@@ -141,8 +141,6 @@ public class CommonController {
 	 */
     @RequestMapping(value = "/cmmn/downloadFile.do")
     public void downloadFile(@ModelAttribute("vo") FileInfoVO vo, HttpServletResponse response) throws Exception {
-        String uploadPath = fileUploadProperties.getProperty("file.upload.path");
- 
         // ####################################################################
         // ## 첨부파일 상세정보
         // ####################################################################
@@ -155,7 +153,6 @@ public class CommonController {
  
         if ( fSize > 0 ) {
             BufferedInputStream in = new BufferedInputStream(new FileInputStream(uFile));
-            // String mimetype = servletContext.getMimeType(requestedFile);
             String mimetype = "text/html";
  
             response.setBufferSize(fSize);
