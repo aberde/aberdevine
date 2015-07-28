@@ -22,6 +22,7 @@
 	</div>
 	
 	<form:form name="frm" commandName="vo" method="post" onsubmit="">
+		<form:hidden path="tmpSecureID" />
 		<form:hidden path="category_seq" />
 	
 		<c:forEach var="board" items="${ boardList }">

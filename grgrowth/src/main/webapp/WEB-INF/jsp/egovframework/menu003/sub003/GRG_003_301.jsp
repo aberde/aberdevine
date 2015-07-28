@@ -49,6 +49,7 @@
 				<div class="front">
 					
 					<form:form name="frm" commandName="vo" method="post" action="/menu003/sub003/GRG_003_301.do" onsubmit="">
+						<form:hidden path="tmpSecureID" />
 						<form:hidden path="category_seq" />
 						<form:hidden path="searchCondition" />
 						
