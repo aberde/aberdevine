@@ -230,7 +230,7 @@ public class AdminController {
 	    } else {  // 등록시
 	        Map<String, Object> dataMap = new HashMap<String, Object>();
 	        commonService.fileInfoInsert(dataMap);
-	        file_seq = Integer.parseInt((String)dataMap.get("file_seq"));
+	        file_seq = (Integer)dataMap.get("file_seq");
 	        vo.setFile_seq(file_seq);
 	    }
 	    

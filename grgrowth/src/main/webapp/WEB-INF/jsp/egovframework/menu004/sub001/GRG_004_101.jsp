@@ -69,42 +69,45 @@
 					<tr>
 						<td class="d" style="vertical-align: top;">
 							<p style="text-align: center;">
-								<img class="aligncenter size-full wp-image-59907" title="정홍원_인사말" src="<c:url value="/images/menu004/sub001/lwg_1.jpg" />" alt="" width="147" height="200" />
+								<img class="aligncenter size-full wp-image-59907" title="황교안_인사말" src="<c:url value="/images/menu004/sub001/h.jpg"/>" alt="황안교" width="147" height="166" />
 							</p>
 							<p style="text-align: center;">
-								<strong>이완구(李完九)</strong>
+								<strong>황교안(黃敎安)</strong>
 							</p>
 						</td>
 						<td>
+
 							<ul>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">공주대학교 명예경영학(박사)</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">충남대학교 명예법학(박사)</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">단국대학교 행정학(박사)</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">서울대학교 행정대학원 국가정책과정(수료)</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">미국 미시간주립대 대학원 형사정책학과(석사)</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">성균관대학교 행정학과 졸업</span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">성균관대학원 법학(석사)</span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">성균관대학교 법학과 졸업</span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">경기고등학교 졸업</span></li>
+								<br />
 								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">-</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">現 제43대 국무총리</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">새누리당 원내대표</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">새누리당 비상대책위원회 위원장</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">새누리당 원내대표</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">現 제19대 국회의원</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">충청남도 도지사</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">미국 캘리포니아대학교 L.A. 한국학연구소 객원교수</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">제16대 국회의원</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">제15대 국회의원</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">충남지방경찰청장</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">충북지방경찰청장</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">미국 LA 한국총영사관 외교관(내무영사)</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">충남 홍성경찰서장</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">경제기획원 사무관</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">충남도청 홍성군청 사무관</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">제15회 행정고시 합격</span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">제44대 국무총리 </span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">제19대 국회의원선거 선거방송 심의위원회 위원장 </span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">법무법인(유) 태평양 변호사</span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">부산고검장</span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">대구고검장</span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">창원지검장</span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">법무연수원 기획부장 </span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">법무부 정책기획단장</span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">수원지검 성남지청장</span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">서울중앙지검 2차장검사</span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">부산지검 동부지청 차장검사</span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">서울지검 공안2부장 </span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">서울지검 컴퓨터수사부장 </span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">대검 공안3과장</span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">서울지검 북부지청 형사5부장</span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">사법연수원 교수</span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">창원지검 통영지청장 </span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">서울지검 검사 </span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">대검 검찰연구관</span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">서울지검 검사 </span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">청주지검 검사 </span></li>
+								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">제23회 사법시험 합격</span></li>
 							</ul>
 							<p>
-								<span style="font-family: Consolas, Monaco, monospace;">
-									<span style="font-size: 12px; line-height: 18px;"><br /></span>
-								</span>
+								<span style="font-family: Consolas, Monaco, monospace;"><span style="font-size: 12px; line-height: 18px;"><br /> </span></span>
 							</p>
 						</td>
 					</tr>

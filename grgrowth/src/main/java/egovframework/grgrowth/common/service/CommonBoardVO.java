@@ -20,6 +20,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import egovframework.grgrowth.common.SearchVO;
+import egovframework.grgrowth.common.Util;
 
 /**
  * 게시판 정보를 저장하기 위한 VO클래스
@@ -53,7 +54,10 @@ public class CommonBoardVO extends SearchVO {
 	private List<FileInfoVO> fileInfoList;
 	
 	/** 업로드 파일 정보 */
-	private List<MultipartFile> uploadFileInfo; 
+	private List<MultipartFile> uploadFileInfo;
+	
+	/** 보안임시키 */
+	private String tmpSecureID;
 
     public int getBoard_seq() {
         return board_seq;
@@ -125,6 +129,14 @@ public class CommonBoardVO extends SearchVO {
 
     public void setUploadFileInfo(List<MultipartFile> uploadFileInfo) {
         this.uploadFileInfo = uploadFileInfo;
+    }
+
+    public String getTmpSecureID() {
+        return tmpSecureID = Util.getDatePattern("yyyyMMddHHmmssSSS");
+    }
+
+    public void setTmpSecureID(String tmpSecureID) {
+        this.tmpSecureID = tmpSecureID;
     }
     
 }

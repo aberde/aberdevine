@@ -55,8 +55,8 @@
 	<form:form name="frm" commandName="vo" method="post" onsubmit="">
 		<form:hidden path="category_seq" />
 		<form:hidden path="board_seq" />
-		<input type="hidden" id="subject_con2" name="subject_con2" value="<c:out value="${ commonBoardVO.title }" />" />
-		<input type="hidden" id="board_url2" name="board_url2" value="<c:url value="${ pageContext.request.scheme }://${ pageContext.request.serverName }:${ pageContext.request.serverPort }${ pageContext.request.contextPath }/commonBoardView.do?${ pageContext.request.queryString }" />" />
+<%-- 		<input type="hidden" id="subject_con2" name="subject_con2" value="<c:out value="${ commonBoardVO.title }" />" /> --%>
+<%-- 		<input type="hidden" id="board_url2" name="board_url2" value="<c:url value="${ pageContext.request.scheme }://${ pageContext.request.serverName }:${ pageContext.request.serverPort }${ pageContext.request.contextPath }/commonBoardView.do?${ pageContext.request.queryString }" />" /> --%>
 	
 		<div id="post-<c:out value="${ commonBoardVO.board_seq }" />" class="post type-post status-publish format-standard hentry category-archive-2-2 entry">
 			<h1 class="entry_title"><c:out value="${ commonBoardVO.title }" /></h1>

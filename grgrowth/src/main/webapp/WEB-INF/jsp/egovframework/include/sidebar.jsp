@@ -101,7 +101,7 @@
 						</ul>
 					</li>
 					<li class="last"><a href="<c:url value="/menu003/sub002/GRG_003_201.do" />" class="<c:out value="${ fn:indexOf(pageContext.request.requestURI, 'sub002') >= 0 ? 'ontitle' : 'outtitle' }" />"><b>녹색법령</b></a></li>
-					<li class="last"><a href="<c:url value="/cmmn/commonBoardList.do?category_seq=5" />" class="<c:out value="${ param.category_seq eq '5' ? 'ontitle' : 'outtitle' }" />"><b>용어사전</b></a></li>
+					<li class="last"><a href="<c:url value="/menu003/sub003/GRG_003_301.do?category_seq=5" />" class="<c:out value="${ param.category_seq eq '5' ? 'ontitle' : 'outtitle' }" />"><b>용어사전</b></a></li>
 					<li class="last"><a href="<c:url value="/menu003/sub004/GRG_003_401.do" />" class="<c:out value="${ fn:indexOf(pageContext.request.requestURI, 'sub004') >= 0 ? 'ontitle' : 'outtitle' }" />"><b>관련 사이트</b></a></li>
 				</ul>
 			</div>

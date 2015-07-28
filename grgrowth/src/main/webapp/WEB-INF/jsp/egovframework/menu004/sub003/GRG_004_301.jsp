@@ -14,11 +14,13 @@
 				<ul>
 					<ul>
 						<img class="alignnone size-full wp`-image-614" title="history_sttl_05" src="<c:url value="/images/menu004/sub003/sttl_2014.jpg" />" alt="" width="80" height="38" />
-						<li>2014.12.19 제5기 1차 전체회의 개최</li>
-						<li>2014.09.04 제4기 5차 전체회의 개최</li>
-						<li>2014.05.21 제4기 4차 전체회의 개최</li>
-						<li>2014.01.23 제4기 3차 전체회의 개최</li>
-						<li>2014.01.08 제4기 2차 전체회의 개최</li>
+						<ul>
+							<li>2014.12.19 제5기 1차 전체회의 개최</li>
+							<li>2014.09.04 제4기 5차 전체회의 개최</li>
+							<li>2014.05.21 제4기 4차 전체회의 개최</li>
+							<li>2014.01.23 제4기 3차 전체회의 개최</li>
+							<li>2014.01.08 제4기 2차 전체회의 개최</li>
+						</ul>
 					</ul>
 					<ul>
 						<img class="alignnone size-full wp`-image-614" title="history_sttl_05" src="<c:url value="/images/menu004/sub003/history_sttl_2013.jpg" />" alt="" width="80" height="38" />
