@@ -114,7 +114,7 @@
 					<tr>
 						<td class="d2" style="vertical-align: top;">
 							<p style="text-align: center;">
-								<img title="이승훈" src="<c:url value="/images/menu004/sub001/이승훈.bmp" />" alt="" />
+								<img title="이승훈" src="<c:url value="/images/menu004/sub001/lsh.bmp" />" alt="" />
 							</p>
 							<p style="text-align: center;">
 								<strong>이승훈(李承勳)</strong>
