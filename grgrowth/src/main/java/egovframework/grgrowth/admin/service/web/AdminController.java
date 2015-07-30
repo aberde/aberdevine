@@ -77,7 +77,10 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/adminLoginProc.do")
 	public String adminLoginProc(@ModelAttribute("vo") AdminLoginVO vo, ModelMap model, HttpServletRequest request) throws Exception {
-	    if ( GrgrowthConstants.ADMIN_USER_ID.equals(vo.getUser_id())
+	    if ( !GrgrowthConstants.ADMIN_ACCESS_MAC_ADDRESS.containsKey(Util.getMACAddress(request.getRemoteAddr())) ) {
+            vo.setErr_msg(GrgrowthConstants.ERR_ADMIN_ACCESS_FALSE);
+            return "/admin/adminLogin";
+        } else if ( GrgrowthConstants.ADMIN_USER_ID.equals(vo.getUser_id())
 	            && GrgrowthConstants.ADMIN_USER_PW.equals(vo.getUser_pw()) ) {
 	        request.getSession().setAttribute(GrgrowthConstants.SESSION_USER_ID, vo.getUser_id());
 	        

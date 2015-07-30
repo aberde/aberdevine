@@ -13,10 +13,10 @@
 					<img src="<c:url value="/images/main/logo.gif" />" alt="Logo 녹색성장위원회" />
 				</div>
 				<div class="foo_widget1_left">
-					<a href="<c:url value="" />"><img src="<c:url value="/images/main/f21.gif" />" alt="개인정보보호정책" /></a>
-					<a href="<c:url value="" />"><img src="<c:url value="/images/main/f1.gif" />" alt="저작권정책" /></a>
-					<a href="<c:url value="" />"><img src="<c:url value="/images/main/f4.gif" />" alt="사이트맵" /></a>
-					<a href="<c:url value="" />"><img src="<c:url value="/images/main/f5.gif" />" alt="찾아오시는 길" /></a>
+					<a href="<c:url value="/menu999/sub001/GRG_999_101.do" />"><img src="<c:url value="/images/main/f21.gif" />" alt="개인정보보호정책" /></a>
+					<a href="<c:url value="/menu999/sub002/GRG_999_201.do" />"><img src="<c:url value="/images/main/f1.gif" />" alt="저작권정책" /></a>
+					<a href="<c:url value="/menu999/sub003/GRG_999_301.do" />"><img src="<c:url value="/images/main/f4.gif" />" alt="사이트맵" /></a>
+					<a href="<c:url value="/menu999/sub004/GRG_999_401.do" />"><img src="<c:url value="/images/main/f5.gif" />" alt="찾아오시는 길" /></a>
 				</div>
 				<div class="foo_widget1_right">
 					<select name="menuitem" onchange="window.open(this.options[this.selectedIndex].value, 'new')">

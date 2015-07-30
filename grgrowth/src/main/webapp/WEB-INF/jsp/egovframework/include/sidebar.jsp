@@ -113,7 +113,7 @@
 					<img src="<c:url value="/images/menu004/menu_tt04.gif" />">
 				</p>
 				<ul class="side_1dh">
-					<li class="last"><a href="<c:url value="/menu004/sub001/GRG_004_101.do" />" class="<c:out value="${ fn:indexOf(pageContext.request.requestURI, 'GRG_004_101') >= 0 ? 'ontitle' : 'outtitle' }" />"><b>인사말</b></a>
+					<li class="last"><a href="<c:url value="/menu004/sub001/GRG_004_101.do" />" class="<c:out value="${ fn:indexOf(pageContext.request.requestURI, 'GRG_004_101') >= 0 ? 'ontitle' : 'outtitle' }" />"><b>인사말</b></a></li>
 					<li class="last"><a href="<c:url value="/menu004/sub002/GRG_004_201.do" />" class="<c:out value="${ fn:indexOf(pageContext.request.requestURI, 'GRG_004_201') >= 0 ? 'ontitle' : 'outtitle' }" />"><b>위원소개</b></a>
 						<ul>
 							<li>
@@ -138,9 +138,23 @@
 							</li>
 						</ul>
 					</li>
-					<li class="last"><a href="<c:url value="/menu004/sub003/GRG_004_301.do" />" class="<c:out value="${ fn:indexOf(pageContext.request.requestURI, 'GRG_004_301') >= 0 ? 'ontitle' : 'outtitle' }" />"><b>위원회연혁</b></a>
+					<li class="last"><a href="<c:url value="/menu004/sub003/GRG_004_301.do" />" class="<c:out value="${ fn:indexOf(pageContext.request.requestURI, 'GRG_004_301') >= 0 ? 'ontitle' : 'outtitle' }" />"><b>위원회연혁</b></a></li>
 					<li class="last"><a href="<c:url value="/menu004/sub004/GRG_004_401.do" />" class="<c:out value="${ fn:indexOf(pageContext.request.requestURI, 'GRG_004_401') >= 0 ? 'ontitle' : 'outtitle' }" />"><b>위원회기능 및 구성 </b></a></li>
-					<li class="last"><a href="<c:url value="/menu004/sub005/GRG_004_501.do" />" class="<c:out value="${ fn:indexOf(pageContext.request.requestURI, 'GRG_004_501') >= 0 ? 'ontitle' : 'outtitle' }" />"><b>위원회로고</b></a>
+					<li class="last"><a href="<c:url value="/menu004/sub005/GRG_004_501.do" />" class="<c:out value="${ fn:indexOf(pageContext.request.requestURI, 'GRG_004_501') >= 0 ? 'ontitle' : 'outtitle' }" />"><b>위원회로고</b></a></li>
+				</ul>
+			</div>
+		</c:when>
+		<c:when test="${ fn:indexOf(pageContext.request.requestURI, 'menu999') >= 0 && fn:indexOf(pageContext.request.requestURI, 'GRG_999_301') == -1 }">
+			<!--//위원회-->
+			<div id="side_box">
+				<p>
+					<img src="<c:url value="/images/menu999/menu_tt05.gif" />">
+				</p>
+				<ul class="side_1dh">
+					<li class="last"><a href="<c:url value="/menu999/sub001/GRG_999_101.do" />" class="<c:out value="${ fn:indexOf(pageContext.request.requestURI, 'GRG_999_101') >= 0 ? 'ontitle' : 'outtitle' }" />"><b>홈페이지이용안내</b></a></li>
+					<li class="last"><a href="<c:url value="/menu999/sub002/GRG_999_201.do" />" class="<c:out value="${ fn:indexOf(pageContext.request.requestURI, 'GRG_999_201') >= 0 ? 'ontitle' : 'outtitle' }" />"><b>저작권정책</b></a></li>
+					<li class="last"><a href="<c:url value="/menu999/sub003/GRG_999_301.do" />" class="<c:out value="${ fn:indexOf(pageContext.request.requestURI, 'GRG_999_301') >= 0 ? 'ontitle' : 'outtitle' }" />"><b>사이트맵</b></a></li>
+					<li class="last"><a href="<c:url value="/menu999/sub004/GRG_999_401.do" />" class="<c:out value="${ fn:indexOf(pageContext.request.requestURI, 'GRG_999_401') >= 0 ? 'ontitle' : 'outtitle' }" />"><b>찾아오시는길</b></a></li>
 				</ul>
 			</div>
 		</c:when>
