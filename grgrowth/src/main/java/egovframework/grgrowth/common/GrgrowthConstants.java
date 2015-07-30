@@ -54,6 +54,16 @@ public class GrgrowthConstants {
 
 	// 관리자 비밀번호
 	public static final String ADMIN_USER_PW = "1234";
+	
+	// 관리자 접근 가능 MAC ADDRESS
+    public static final Map<String, String> ADMIN_ACCESS_MAC_ADDRESS;
+    static {
+        Map<String, String> dataMap = new LinkedHashMap<String, String>();
+        dataMap.put("10-78-D2-94-00-F5", "");
+        dataMap.put("10-78-D2-94-00-86", "");
+        dataMap.put("D0-50-99-70-BA-A7", "");  // 테스트용
+        ADMIN_ACCESS_MAC_ADDRESS = Collections.unmodifiableMap(dataMap);
+    }
 	// ###########################################################
 	
 	// ###########################################################
@@ -61,5 +71,7 @@ public class GrgrowthConstants {
 	// ###########################################################
 	// 관리자 로그인 정보 미일치
 	public static final String ERR_LOGIN_FALSE = "관리자 로그인정보가 일치하지 않습니다.";
+	// 관리자 접근 불가능 MAC ADDRESS
+	public static final String ERR_ADMIN_ACCESS_FALSE = "접근 불가능한 장치입니다.";
 	// ###########################################################
 }

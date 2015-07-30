@@ -1,5 +1,7 @@
 package egovframework.grgrowth.common;
 
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -118,5 +120,32 @@ public class Util {
         return (String)request.getSession().getAttribute(GrgrowthConstants.SESSION_USER_ID);
     }
     
-    
+    /**
+     * MAC ADDRESS 가져오기
+     * @param ip MAC ADDRESS 가져올 IP
+     * @return
+     */
+    public static String getMACAddress(String ip) throws Exception {
+        String macAddress = "";
+        InetAddress address = InetAddress.getByName(ip);
+
+        /*
+         * Get NetworkInterface for the current host and then read the
+         * hardware address.
+         */
+        NetworkInterface ni = NetworkInterface.getByInetAddress(address);
+        if (ni != null) {
+            byte[] mac = ni.getHardwareAddress();
+            if (mac != null) {
+                for (int i = 0; i < mac.length; i++) {
+                    if ( i != 0 ) {
+                        macAddress += "-";
+                    }
+                    macAddress += String.format("%02X", mac[i]);
+                }
+            }
+        }
+        
+        return macAddress;
+    }    
 }
