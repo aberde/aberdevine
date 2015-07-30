@@ -128,7 +128,6 @@ public class Util {
     public static String getMACAddress(String ip) throws Exception {
         String macAddress = "";
         InetAddress address = InetAddress.getByName(ip);
-
         /*
          * Get NetworkInterface for the current host and then read the
          * hardware address.
@@ -137,11 +136,9 @@ public class Util {
         if (ni != null) {
             byte[] mac = ni.getHardwareAddress();
             if (mac != null) {
+                StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < mac.length; i++) {
-                    if ( i != 0 ) {
-                        macAddress += "-";
-                    }
-                    macAddress += String.format("%02X", mac[i]);
+                    sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));        
                 }
             }
         }
