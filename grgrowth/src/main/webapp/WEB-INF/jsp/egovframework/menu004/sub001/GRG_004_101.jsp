@@ -111,35 +111,35 @@
 							</p>
 						</td>
 					</tr>
-					<tr>
-						<td class="d2" style="vertical-align: top;">
-							<p style="text-align: center;">
-								<img title="이승훈" src="<c:url value="/images/menu004/sub001/lsh.bmp" />" alt="" />
-							</p>
-							<p style="text-align: center;">
-								<strong>이승훈(李承勳)</strong>
-							</p>
-						</td>
-						<td>
-							<ul>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">서울대학교 공과대학 졸업 전자공학과 학사</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">미국 노스웨스턴대학교 경제학과 박사</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">現 녹색성장위원회 위원장</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">現 서울대학교 경제학부 명예교수</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">사단법인 전력산업연구회 이사장(회장)</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">산업자원부 전기위원회 위원장</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">한국계량경제학회 회장</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">한국산업조직학회 회장</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">서울대학교 사회과학연구원 원장</span></li>
-								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">서울대학교 경제학부 교수</span></li>
-							</ul>
-							<p>
-								<span style="font-family: Consolas, Monaco, monospace;">
-									<span style="font-size: 12px; line-height: 18px;"><br /></span>
-								</span>
-							</p>
-						</td>
-					</tr>
+<!-- 					<tr> -->
+<!-- 						<td class="d2" style="vertical-align: top;"> -->
+<!-- 							<p style="text-align: center;"> -->
+<%-- 								<img title="이승훈" src="<c:url value="/images/menu004/sub001/lsh.bmp" />" alt="" /> --%>
+<!-- 							</p> -->
+<!-- 							<p style="text-align: center;"> -->
+<!-- 								<strong>이승훈(李承勳)</strong> -->
+<!-- 							</p> -->
+<!-- 						</td> -->
+<!-- 						<td> -->
+<!-- 							<ul> -->
+<!-- 								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">서울대학교 공과대학 졸업 전자공학과 학사</span></li> -->
+<!-- 								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">미국 노스웨스턴대학교 경제학과 박사</span></li> -->
+<!-- 								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">現 녹색성장위원회 위원장</span></li> -->
+<!-- 								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">現 서울대학교 경제학부 명예교수</span></li> -->
+<!-- 								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">사단법인 전력산업연구회 이사장(회장)</span></li> -->
+<!-- 								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">산업자원부 전기위원회 위원장</span></li> -->
+<!-- 								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">한국계량경제학회 회장</span></li> -->
+<!-- 								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">한국산업조직학회 회장</span></li> -->
+<!-- 								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">서울대학교 사회과학연구원 원장</span></li> -->
+<!-- 								<li><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">서울대학교 경제학부 교수</span></li> -->
+<!-- 							</ul> -->
+<!-- 							<p> -->
+<!-- 								<span style="font-family: Consolas, Monaco, monospace;"> -->
+<!-- 									<span style="font-size: 12px; line-height: 18px;"><br /></span> -->
+<!-- 								</span> -->
+<!-- 							</p> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
 				</tbody>
 			</table>
 		</div>

@@ -23,15 +23,15 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td rowspan="1"></td>
-						<td>위원장</td>
-						<td>
-							<img class="aligncenter size-full wp-image-59883" title="25" alt="" src="<c:url value="/images/menu004/sub002/25.jpg" />" width="115" height="134" />
-						</td>
-						<td>이승훈</td>
-						<td class="r">서울대 경제학부 명예교수</td>
-					</tr>
+<!-- 					<tr> -->
+<!-- 						<td rowspan="1"></td> -->
+<!-- 						<td>위원장</td> -->
+<!-- 						<td> -->
+<%-- 							<img class="aligncenter size-full wp-image-59883" title="25" alt="" src="<c:url value="/images/menu004/sub002/25.jpg" />" width="115" height="134" /> --%>
+<!-- 						</td> -->
+<!-- 						<td>이승훈</td> -->
+<!-- 						<td class="r">서울대 경제학부 명예교수</td> -->
+<!-- 					</tr> -->
 					<tr>
 						<td rowspan="5">녹색성장전략</td>
 						<td>전략</td>
