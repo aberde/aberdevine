@@ -56,13 +56,16 @@ public class GrgrowthConstants {
 	public static final String ADMIN_USER_PW = "1234";
 	
 	// 관리자 접근 가능 MAC ADDRESS
-    public static final Map<String, String> ADMIN_ACCESS_MAC_ADDRESS;
+    public static final Map<String, String> ADMIN_ACCESS_IP;
     static {
         Map<String, String> dataMap = new LinkedHashMap<String, String>();
-        dataMap.put("10-78-D2-94-00-F5", "");
-        dataMap.put("10-78-D2-94-00-86", "");
-        dataMap.put("D0-50-99-70-BA-A7", "");  // 테스트용
-        ADMIN_ACCESS_MAC_ADDRESS = Collections.unmodifiableMap(dataMap);
+//        DATAMAP.PUT("10-78-D2-94-00-F5", "");
+//        dataMap.put("10-78-D2-94-00-86", "");
+        dataMap.put("172.20.12.164", "");
+        dataMap.put("172.20.12.166", "");
+        dataMap.put("61.34.132.197", "");  // 테스트용
+        dataMap.put("61.101.87.129", "");  // 테스트용
+        ADMIN_ACCESS_IP = Collections.unmodifiableMap(dataMap);
     }
 	// ###########################################################
 	

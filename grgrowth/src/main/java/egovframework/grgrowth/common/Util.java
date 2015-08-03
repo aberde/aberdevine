@@ -128,6 +128,7 @@ public class Util {
     public static String getMACAddress(String ip) throws Exception {
         String macAddress = "";
         InetAddress address = InetAddress.getByName(ip);
+        System.out.println("ip : " + ip);
         /*
          * Get NetworkInterface for the current host and then read the
          * hardware address.
@@ -142,6 +143,7 @@ public class Util {
                 }
             }
         }
+        System.out.println("macAddress : " + macAddress);
         
         return macAddress;
     }    
