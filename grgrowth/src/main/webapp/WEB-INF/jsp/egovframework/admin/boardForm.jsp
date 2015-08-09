@@ -14,7 +14,10 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css" />">
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/layout.css" />">
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/green.css" />">
+<link rel="stylesheet" type="text/css" href="<c:url value="/js/jquery-ui-1.11.4/jquery-ui.css" />">
 <script type="text/javascript" src="<c:url value="/js/jquery-1.11.3.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/jquery-1.11.3.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/jquery-ui-1.11.4/jquery-ui.js" />"></script>
 <script type="text/javaScript">
 	_editor_url = "<c:url value='/html/egovframework/com/cmm/utl/htmlarea3.0/'/>";
 	_editor_area = "content";
@@ -22,6 +25,15 @@
 	$(document).ready(function() {
 		HTMLArea.init();
 		HTMLArea.onload = initEditor;
+		
+		$("#regdate").datepicker({
+			dateFormat: "yy/mm/dd"
+		});
+		
+		// 게시판 등록시 기본일자 설정
+		if ( !$("#regdate").datepicker("getDate") ) {
+			$("#regdate").datepicker("setDate", new Date());
+		}
 	});
 	
 	/**
@@ -97,6 +109,10 @@
 						<td class="tbtd_content">
 							<c:out value="${ search_section[param.category_seq] }" />
 						</td>
+					</tr>
+					<tr>
+						<td class="tbtd_caption">등록일</td>
+						<td class="tbtd_content"><form:input path="regdate" cssStyle="width: 120px;" /></td>
 					</tr>
 					<tr>
 						<td class="tbtd_caption">제목</td>
