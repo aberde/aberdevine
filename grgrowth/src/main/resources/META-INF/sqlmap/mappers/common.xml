@@ -66,7 +66,8 @@
 		    	</choose>
 		    </if>
 		<![CDATA[		
-			ORDER BY A.BOARD_SEQ DESC
+			ORDER BY 
+				A.REGDATE DESC, A.BOARD_SEQ DESC
 			LIMIT #{ recordCountPerPage } OFFSET #{ firstIndex }
 		]]>
 	</select>
