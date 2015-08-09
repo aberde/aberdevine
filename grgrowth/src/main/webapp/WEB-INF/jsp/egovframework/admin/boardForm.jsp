@@ -28,7 +28,7 @@
 	 * 게시판 저장
 	 */
 	function fnSave() {
-		frm = document.frm;
+		var frm = document.frm;
 		frm.onsubmit();
 
 		if(frm.category_seq.value == ""){
