@@ -64,7 +64,7 @@ public class GrgrowthConstants {
         dataMap.put("172.20.12.164", "");
         dataMap.put("172.20.12.166", "");
         dataMap.put("61.34.132.197", "");  // 테스트용
-        dataMap.put("61.101.87.129", "");  // 테스트용
+        dataMap.put("61.101.199.48", "");  // 테스트용
         ADMIN_ACCESS_IP = Collections.unmodifiableMap(dataMap);
     }
 	// ###########################################################

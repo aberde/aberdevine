@@ -161,7 +161,7 @@
 		) VALUES (
 			#{ title }
 			, #{ content }
-			, NOW()
+			, #{ regdate }
 			, #{ file_seq }
 			, #{ category_seq }
 			, 'Y'
@@ -176,6 +176,7 @@
 			, CONTENT = #{ content }
 			, FILE_SEQ = #{ file_seq }
 			, CATEGORY_SEQ = #{ category_seq }
+			, REGDATE = #{ regdate }
 			, UPDDATE = NOW()
 		WHERE
 			BOARD_SEQ = #{ board_seq }

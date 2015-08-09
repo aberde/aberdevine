@@ -75,6 +75,10 @@
 						<td class="tbtd_content"><c:out value="${ commonBoardVO.category_nm }" /></td>
 					</tr>
 					<tr>
+						<td class="tbtd_caption">등록일</td>
+						<td class="tbtd_content"><c:out value="${ commonBoardVO.regdate }" /></td>
+					</tr>
+					<tr>
 						<td class="tbtd_caption">제목</td>
 						<td class="tbtd_content"><c:out value="${ commonBoardVO.title }" /></td>
 					</tr>
