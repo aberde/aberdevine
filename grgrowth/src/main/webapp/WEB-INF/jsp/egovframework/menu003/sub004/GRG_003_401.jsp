@@ -29,19 +29,14 @@
 					KAIST 녹색성장대학원은 녹색정책 석사과정, 녹색경영 석/박사과정, 녹색MBA 과정을 통해 녹색경영, 금융과 정책을 선도할 세계적 수준의 인재를 양성합니다.</div>
 				</li>
 				<li>
-					<div class="link_img"><img class="block" alt="Green College 사이트" src="<c:url value="/images/menu003/sub004/banner_13.gif" />" /></div>
-					<div class="link_text"><strong><a title="홈페이지로 이동합니다" href="http://cafe.naver.com/greencollege" target="_blank">http://cafe.naver.com/greencollege</a></strong><br />
-					국가 차세대 리더가 될 대학생 여러분이 직접 ‘저탄소 녹색성장’을 배우고, 함께 고민하고, 실천하면서 스스로의 녹색 커리어 비전을 찾아가는 프로그램입니다.</div>
+					<div class="link_img"><img class="block" alt="온실가스종합정보센터 사이트" src="<c:url value="/images/menu003/sub004/banner_13.png" />" style="width: 177px;" /></div>
+					<div class="link_text"><strong><a title="홈페이지로 이동합니다" href="http://www.gir.go.kr" target="_blank">http://www.gir.go.kr</a></strong><br />
+					온실가스종합정보센터는 국가 온실가스 정보허브(Information Hub)이자 온실가스 감축연구의 싱크탱크(Think-tank)로서 종합적 효율적 온실가스 정보관리, 온실가스 감축을 통한 기후변화 대응, 기후변화 국제공조를 위한 글로벌 협력체계 구축을 목표로 하고 있습니다.</div>
 				</li>
 				<li>
-					<div class="link_img"><img class="block" alt="그린스타트 사이트" src="<c:url value="/images/menu003/sub004/banner_06.gif" />" /></div>
-					<div class="link_text"><strong><a title="홈페이지로 이동합니다" href="http://www.greenstart.kr" target="_blank">http://www.greenstart.kr</a></strong><br />
-					녹색성장을 통한 저탄소 사회구현을 위해 일상생활에서 온실가스 줄이기를 실천하는 범국민운동 홈페이지입니다. 기후변화관련 정보와 자료등을 제공하고 있습니다.</div>
-				</li>
-				<li>
-					<div class="link_img"><img class="block" alt="행정안전부 녹색성장 사이트" src="<c:url value="/images/menu003/sub004/banner_14.gif" />" /></div>
-					<div class="link_text"><strong><a title="홈페이지로 이동합니다" href="http://www.green.go.kr" target="_blank">http://www.green.go.kr</a></strong><br />
-					행정안전부 녹색성장 홍보사이트로 행정안전부의 주요 정책과 지역 녹색성장 소식을 제공하고 있습니다.</div>
+					<div class="link_img"><img class="block" alt="한국기후·환경 네트워크 사이트" src="<c:url value="/images/menu003/sub004/banner_06.png" />" style="width: 177px;" /></div>
+					<div class="link_text"><strong><a title="홈페이지로 이동합니다" href="http://kcen.kr" target="_blank">http://kcen.kr</a></strong><br />
+					한국기후·환경 네트워크는 시민사회단체, 기업, 정부가 함께 참여하는 네트워크를 통해 저탄소형 생활문회의 확산을 위한 다양한 온실가스 줄이기 프로그램을 개발하여 국민들이 쉽게 실천하는데 앞장설 것입니다.</div>
 				</li>
 				<li>
 					<div class="link_img"><img class="block" alt="이산화탄소저감및처리기술개발사업단 사이트" src="<c:url value="/images/menu003/sub004/banner_15.gif" />" /></div>
@@ -72,33 +67,13 @@
 					<div class="link_text"><strong><a title="홈페이지로 이동합니다" href="http://carbon.forest.go.kr" target="_blank">http://carbon.forest.go.kr</a></strong><br />
 					기후변화란 무엇인지 원인과 산림의 역할과 영향에 대하여 자세한 내용을 제공하고 있습니다.</div></li>
 				<li>
-					<div class="link_img"><img class="block" alt="무역환경정보네트워크 사이트" src="<c:url value="/images/menu003/sub004/banner_21.gif" />" /></div>
-					<div class="link_text"><strong><a title="홈페이지로 이동합니다" href="http://www.ten-info.com" target="_blank">http://www.ten-info.com</a></strong><br />
-					우리나라 산업에 영향을 미치는 무역과 연계된 해외각구의 환경규제, 환경표준, 환경협약협상 및 국내 제품환경 정책 정보를 종합적·체계적으로 수집, 분석, 제공함으로써 국내산업의 국제환경경쟁력 강화를 지원합니다.</div></li>
+					<div class="link_img"><img class="block" alt="해외환경통합정보시스템 사이트" src="<c:url value="/images/menu003/sub004/banner_21.gif" />" style="width: 177px;" /></div>
+					<div class="link_text"><strong><a title="홈페이지로 이동합니다" href="http://www.eishub.or.kr/main_v2.asp" target="_blank">http://www.eishub.or.kr/main_v2.asp</a></strong><br />
+					해외환경통합정보시스템은 해외환경 시장 진출 기업을 위한 환경전문정보 서비스 포털로서 해외환경 산업정보, 해외환경 법령규제, 해외국가 정보 등으로 구성되어 있습니다.</div></li>
 				<li>
 					<div class="link_img"><img class="block" alt="기후변화정보센터 사이트" src="<c:url value="/images/menu003/sub004/banner_07.gif" />" /></div>
 					<div class="link_text"><strong><a title="홈페이지로 이동합니다" href="http://www.climate.go.kr" target="_blank">http://www.climate.go.kr</a></strong><br />
 					기후변화정보센터는 국내외 기후변화 정보사이트들에 대한 자료를 토대로 기후변화 과학 정보에 대한 이해를 돕고자 하는 취지로 구성 되어 있습니다.</div></li>
-				<li>
-					<div class="link_img"><img class="block" alt="대한민국정책포털사이트" src="<c:url value="/images/menu003/sub004/banner_08.gif" />" /></div>
-					<div class="link_text"><strong><a title="홈페이지로 이동합니다" href="http://green.korea.kr" target="_blank">http://green.korea.kr</a></strong><br />
-					대한민국정책포털 녹색성장 페이지는 정부의 저탄소 녹색성장 비전에 대한 설명과 관련 뉴스·해외 동향 콘텐츠를 중심으로 운영중 입니다.</div>
-				</li>
-				<li>
-					<div class="link_img"><img class="block" alt="녹색성장포럼 사이트" src="<c:url value="/images/menu003/sub004/banner_09.gif" />" /></div>
-					<div class="link_text"><strong><a title="홈페이지로 이동합니다" href="http://greengrowth.kei.re.kr" target="_blank">http://greengrowth.kei.re.kr</a></strong><br />
-					녹색강국으로 발돋움하기 위해 구체적인 실천전략 또는 국가발전 뉴패러다임을 제시하기 위한식 등을 수록하고 있습니다.</div>
-				</li>
-				<li>
-					<div class="link_img"><img class="block" alt="저탄소 녹색성장 국민포럼사이트" src="<c:url value="/images/menu003/sub004/banner_10.gif" />" /></div>
-					<div class="link_text"><strong><a title="홈페이지로 이동합니다" href="http://www.kookminforum.or.kr" target="_blank">http://www.kookminforum.or.kr</a></strong><br />
-					범 정부적 차원에서 저탄소 녹색성장 이라는 새로운 패러다임에 대해 구현할 수 있는 입법 및 정책 사안들을 연구하며, 국민적 공감대를 확대하기 위한 국민포럼 입니다. 저탄소 녹색성장 전략, 입법 및 정책사안 연구, 국민 공감대 확대 방안 등을 안내하고 있습니다.</div>
-				</li>
-				<li>
-					<div class="link_img"><img class="block" alt="환경과녹색성장사이트" src="<c:url value="/images/menu003/sub004/banner_11.gif" />" /></div>
-					<div class="link_text"><strong><a title="홈페이지로 이동합니다" href="http://me.greengrowth.go.kr" target="_blank">http://me.greengrowth.go.kr</a></strong><br />
-					저탄소 녹색성장을 위한 녹색성장 10대 정책과제 및 해외동향등을 소개하고 있습니다.</div>
-				</li>
 				<li>
 					<div class="link_img"> <img title="the-green" alt="" src="<c:url value="/images/menu003/sub004/the-green1.jpg" />" width="177" height="52" /></div>
 					<div class="link_text"><strong><a href="http://thegreen.lh.or.kr/">http://thegreen.lh.or.kr/</a></strong><br />
