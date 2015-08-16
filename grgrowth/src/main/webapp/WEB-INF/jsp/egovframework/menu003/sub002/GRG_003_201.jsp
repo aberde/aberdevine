@@ -11,7 +11,7 @@
 				<li><a onclick="window.open('http://www.law.go.kr/lsInfoP.do?lsiSeq=142380&efYd=20131031#0000','112447','width=800px height=750px');">저탄소 녹색성장 기본법</a></li>
 			</ul>
 			<ul>
-				<li><a onclick="window.open(http://www.law.go.kr/lsInfoP.do?lsiSeq=136485&efYd=20130323#0000','114241','width=800px height=750px');">저탄소 녹색성장 기본법 시행령</a></li>
+				<li><a onclick="window.open('http://www.law.go.kr/lsInfoP.do?lsiSeq=136485&efYd=20130323#0000','114241','width=800px height=750px');">저탄소 녹색성장 기본법 시행령</a></li>
 			</ul>
 			<span class="arrListdotted"></span>
 			<ul>
@@ -52,7 +52,7 @@
 				<li><a onclick="window.open('http://www.law.go.kr/lsInfoP.do?lsiSeq=142376&efYd=20131031#0000','110970','width=800px height=750px');">신에너지 및 재생에너지 개발·이용·보급 촉진법</a></li>
 			</ul>
 			<ul>
-				<li><a onclick="window.open(http://www.law.go.kr/lsInfoP.do?lsiSeq=147379&efYd=20131212#0000','107722','width=800px height=750px');">신에너지 및 재생에너지 개발·이용·보급 촉진법 시행령</a></li>
+				<li><a onclick="window.open('http://www.law.go.kr/lsInfoP.do?lsiSeq=147379&efYd=20131212#0000','107722','width=800px height=750px');">신에너지 및 재생에너지 개발·이용·보급 촉진법 시행령</a></li>
 			</ul>
 			<ul>
 				<li><a onclick="window.open('http://www.law.go.kr/lsInfoP.do?lsiSeq=147657&efYd=20131212#0000','107822','width=800px height=750px');">신에너지 및 재생에너지 개발·이용·보급 촉진법 시행규칙</a></li>
@@ -69,7 +69,7 @@
 			</ul>
 			<span class="arrListdotted"></span>
 			<ul>
-				<li><a onclick="window.open(http://www.law.go.kr/lsInfoP.do?lsiSeq=141688&efYd=20130628#0000','105269','width=800px height=750px');">친환경건축물의 인증에 관한 규칙</a></li>
+				<li><a onclick="window.open('http://www.law.go.kr/lsInfoP.do?lsiSeq=141688&efYd=20130628#0000','105269','width=800px height=750px');">친환경건축물의 인증에 관한 규칙</a></li>
 			</ul>
 		</div>
 		<div class="clear"></div>

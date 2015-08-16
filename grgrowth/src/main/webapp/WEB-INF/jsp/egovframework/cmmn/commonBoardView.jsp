@@ -111,6 +111,10 @@
 					<a href="javascript:scroll(0,0);"><img src="<c:url value="/images/btn_top.gif" />" alt="위로가기" title="위로가기" align="absmiddle" border="0"></a>
 				</div>
 			</div>
+
+			<div class="metaAddLevel2" style="float:right;">
+				<a href="<c:url value="/cmmn/commonBoardList.do?category_seq=${ commonBoardVO.category_seq }&pageIndex=${ param.pageIndex }" />"><img src="<c:url value="/images/bk_list.jpg" />" alt="목록가기" title="목록가기" align="absmiddle" border="0"></a>
+			</div>
 		</div>
 					
 	</form:form>
