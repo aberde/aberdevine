@@ -15,6 +15,7 @@ public class ContentController {
 	@RequestMapping(value = "/content", method = RequestMethod.GET)
 	public String layout(Model model) {
 		logger.debug("content");
+		logger.debug("content");
 		
 		return "content/content";
 	}
